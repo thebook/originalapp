@@ -204,6 +204,8 @@ function lf_add_styles () {
 	
 	wp_enqueue_style( 'core-style', COREURI . '/core-css.css' );
 	
+	wp_enqueue_style( 'lfstyle', COREURI . '/sass/style-core.css' );
+	
 	wp_enqueue_style( 'core-style-media-queries', COREURI . '/core-css-media-queries.css' );
 
 }
