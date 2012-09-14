@@ -454,8 +454,62 @@ function lf_post_gallery_callback() {
 	
 	echo '</table>';
 	
-	
+}
 
+function lf_post_link_callback() {
+
+	wp_nonce_field( basename(__FILE__), 'lf-nonce-meta-field' );
+
+	echo '<table class="form-table lf-admin-post-meta-table">';
+	
+	echo '<tbody>';
+	
+	echo '<p>';
+	
+	echo 'You can enter you link here along with a description.';
+	
+	echo '</p>';
+	
+	lf_create_meta_opt( 
+					'text', 
+					'Link',
+					'Your link url', 
+					'main_meta', 
+					'post_link_format_link',
+					'' );	
+					
+	lf_create_meta_opt( 
+					'select', 
+					'Text Choice',
+					'Use actual link url as text or a custom written text', 
+					'main_meta', 
+					'post_link_format_text_style',
+					'custom',
+					array( 'link', 'custom' ),
+					array( 'Link Text', 'Custom' ) );
+					
+	lf_create_meta_opt( 
+					'textarea', 
+					'Link Text',
+					'You can enter text describing your link here', 
+					'main_meta', 
+					'post_link_format_desc',
+					'' );
+							
+	lf_create_meta_opt( 
+					'radio', 
+					'Text',
+					'You can hide or enable your body text, if hidden the text written in the editor will not be shown', 
+					'main_meta', 
+					'post_link_format_text',
+					'text',
+					array( 'text', 'notext' ),
+					array( 'Show', 'Hide' ) );
+
+	echo '</tbody>';
+	
+	echo '</table>';
+	
 }
 
 function lf_post_meta_boxes_save($post_id) { 
@@ -508,6 +562,14 @@ function lf_post_meta_boxes() {
 		'gallery_format_meta',
 		__('Gallery Settings', 'liquidflux'),
 		'lf_post_gallery_callback',
+		'post',
+		'normal',
+		'high' );
+		
+	add_meta_box(
+		'gallery_format_meta',
+		__('Link Settings', 'liquidflux'),
+		'lf_post_link_callback',
 		'post',
 		'normal',
 		'high' );
