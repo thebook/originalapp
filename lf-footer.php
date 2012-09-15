@@ -9,7 +9,7 @@
 $main_opt = get_option( 'main_options' );
 
 $layout = layout_finder( 'main_options', 'main_meta', $post->ID, 'chosen_layout', 'footer_state' );
-			
+	
 if ( $layout != 'nofooter' ) {
 					 
 if ( $main_opt['footer_hide_shadow'] != "yes" ) {

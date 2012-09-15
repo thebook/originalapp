@@ -1,3 +1,39 @@
+@mixin block( $float : 'none', $type : 'block' ) { 
+	
+
+	@if $float == 'none' { 
+
+		
+	}
+
+	@if $float == 'l' { 
+
+		float: left;
+	}
+	@if $float == 'r' { 
+
+		float: right;
+	}
+
+	@if $type == 'block' { 
+
+		display: block;
+	}
+	@if $type == 'i' { 
+
+		display: inline;
+	}
+	@if $type == 'ib' { 
+
+		display: inline-block;
+	}
+
+	
+
+}
+
+
+
 @mixin lffontface { 
 
 	/* ie fix */

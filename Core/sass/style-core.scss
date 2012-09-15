@@ -1,3 +1,17 @@
+ $default-box-shadow-color: rgba(0, 0, 0, 0.1);
+ $default-box-shadow-v-offset: 1px;
+ $default-box-shadow-blur: 1px;
+
+ @mixin arrows { 
+	@include opacity( 0.8 );
+	position: relative;
+	vertical-align: middle;
+	top: 50%;
+	margin: 0 0 -40px;
+	z-index: 10;
+	color: #fff; 	
+}
+
  @import "compass";
  @import "font";
 
@@ -5,4 +19,1301 @@
 
  @include lffontface;
 
+ $w : 960px;
+ $cp: 0 9px;
 
+
+
+#lf-core-main-body-wrap,
+#footer,
+.hunprec,
+.lf-header-main-wrap { 
+
+	width: 100%;
+
+}
+
+.loadpage { 
+
+	width: $w;
+	@include block( l );
+
+}
+
+.contentwrap { 
+	
+	width: $w;
+	margin: auto;
+
+}
+
+.lf-header-main-wrap { 
+
+	@include block( l );
+	overflow: hidden;
+
+}
+
+.lf-header { 
+
+	width: 95%;
+	@include block( l );
+	position: absolute;
+	padding: 0 2.5%; 
+	overflow: hidden;
+	z-index: 1;
+
+}
+
+.lf-header-background-image { 
+
+	position: relative;
+	z-index: 1;
+	@include block( l );
+	
+}
+
+.lf-sitetitle-whole-wrap { 
+	
+	width: 95%;
+	@include block( l );
+	position: absolute;
+	z-index: 5;
+
+}
+
+.lf-sitetitle-wrap { 
+	
+	width: 99%;
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+	text-align: center;
+	z-index: 5;
+		
+}
+
+.lf-header-logo {
+
+	display: inline-block;
+
+	img	{ 
+	
+	width: auto !important;
+	box-shadow: none !important;
+
+	}
+
+}
+	
+.lf-header-bar { 
+
+    width: 97%;
+	@include block( l );
+	position: relative;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	clear: both;
+    z-index: 2;
+
+    small {
+
+		font-size: 10px;
+
+	}
+
+}
+
+.lf-sitetitle {
+
+	display: inline-block;
+
+	h1 {
+
+	    font-style: normal;
+	    font-weight: normal;
+	    line-height: 3.75rem;
+		margin: 0;
+
+	}
+
+	a:hover { 
+
+		text-decoration: none;
+
+	}
+	
+}
+
+
+.lf-sitetitle-none {
+
+	h1 { 
+
+		text-indent: -9999px;
+		height: 0px;
+
+	}
+	
+}
+
+.lf-logo-h1  {
+
+	margin: 0px;
+
+}
+/* content bodies */
+.lf-core-content-three,
+.lf-core-content-three article { 
+
+	padding: $cp;
+	@include block( l, ib );
+
+}
+
+.lf-core-content-full { 
+
+	width: 100%;
+	padding: $cp;
+	@include block( l );
+
+	article {
+
+		width: 100%;
+		margin: 42px 0;
+	
+	}
+
+}
+
+/* aside */
+.lf-core-content-aside { 
+	
+	width: 296px;
+	@include block( l, ib );
+	margin: 0 9px;
+	
+}
+
+.lf-core-content-aside-widget { 
+
+	width: 260px;
+	@include block( l );
+	padding: 24px 18px;
+	margin: 24px 0;
+	background-color: #fff;
+
+}
+
+.lf-core-content-aside-widget-h3 { 
+
+    margin: 1.5rem 0;
+    text-align: right;
+
+}
+
+.lf-widget-field {
+
+    width: 70%;
+    margin: 0 5% 12px;
+    padding: 6px 12px;
+    color: #444444;
+	background-color: #FFFFFF;
+    border: medium none;
+	@include single-box-shadow();
+}
+
+#searchform { 
+
+	.lf-button {
+		margin: 0 0 12px 5%;
+	}
+}
+
+/* meta & post title */
+.lf-meta-edit { 
+
+	margin-left: 12px;
+}
+
+.post-edit-link { 
+
+	&:hover { 
+
+		text-decoration: none;
+	}
+	&:before { 
+
+		content: "5"
+	}
+}
+
+.lf-meta-text-comp {
+
+	margin: 0 0 0 5px; 
+}
+
+.lf-bookmark-meta { 
+
+	margin: 0 12px 0 0;
+}
+
+.lf-next-to-icon { 
+
+	margin: 0 5px;	
+}
+
+.lf-meta-text {
+
+	margin: 0 0 0 24px;
+
+	a { 
+
+		margin: 0 5px;
+	}
+}
+
+.lf-posttitle { 
+
+	margin: 24px 0 12px; 
+
+	a:hover {
+
+		text-decoration: none;
+		border-width: 4px;
+		border-bottom-style: solid;	
+	}	
+}
+
+.lf-core-content-post-format-head-holder-wrap { 
+
+	@include block( l, ib );
+
+}
+
+/* button -to be changed */
+.lf-button {
+	
+	@include block( l );
+	cursor: pointer;
+	padding: 5px 12px;
+	text-decoration: none;	
+	border: none;
+	margin: 0 0 12px;
+	-webkit-border-radius: 4px;
+    border-radius: 4px;	
+
+    a:hover {
+
+	text-decoration: none;
+	
+	}	
+}
+
+/* post formats  @include single-box-shadow(); */ 
+
+.lf-core-content-post-format-head-wrap { 
+	
+	width: 92%;
+	padding: 12px 4% 24px;
+	overflow: hidden;
+	@include single-box-shadow();
+	background-color: #fff;
+	background-image:  url("http://localhost:36792/wp-content/themes/WhiteWhale/Core/Images/textures/striped_lens.png");
+}
+
+.lf-core-content-post-format-head-holder-wrap { 
+	
+	width: 85%;
+
+}
+
+.lf-meta-text-tags {
+
+	@include block( r, i );
+	padding: 21px 21px;
+	margin: 21px 0 21px 14px;
+	background-color: #fff;
+}
+
+.lf-core-content-body-text { 
+	
+	padding: 28px 21px 28px;
+	background-color: #fff;
+	@include single-box-shadow();
+
+	p:last-child { 
+
+		margin: 0 0 0px;
+
+	}
+}
+
+.lf-core-content-text-entry { 
+	
+	overflow: hidden;
+	margin: 36px 0 6px;
+}
+
+/* // // Milacilous */
+
+.lf-post-format-media-title { 
+
+	font-size: 12px;
+	text-decoration: underline;
+	margin: 0 0 14px; 
+
+}
+
+.lf-post-format-text-entry {
+
+	overflow: hidden;
+	margin: 8px 0 0;
+
+}
+
+.lf-post-format-media-line { 
+	
+	width: 92%;
+	@include block( l );
+	padding: 8px 4% 5px;
+	background-color: #fff;
+	background-image:  url("http://localhost:36792/wp-content/themes/WhiteWhale/Core/Images/textures/striped_lens.png");
+	
+}
+
+
+/* // // Image */
+.lf-post-img-text-wrap { 
+
+	width: 100%;
+	float: left;
+
+}
+
+.lf-post-format-img { 
+
+	width: 100%;
+	height: auto;
+	display: block;
+	float: left;
+	vertical-align: middle;
+	z-index: 10;
+    box-shadow:  0px 1px 1px rgba(0, 0, 0, 0.1);
+	@include single-box-shadow();
+}
+
+.lf-post-format-img-link { 
+	
+	float: left;
+	position: relative;
+	top: auto;
+	font-size: 11px;
+	padding: 2px 5px;
+	margin: -53px 0 0 21px;
+	cursor: default;
+	z-index: 11;
+	background-color: #444;
+	color: #fff;
+
+}
+
+.post-arrow { 
+	
+	position: relative;
+	float: right;
+	margin: -22px 21px -30px;
+	cursor: default;
+	z-index: 500;
+
+}
+
+.post-arrow:before { 
+
+	content: "^";
+	font-size: 28px;
+	line-height: 20px;
+	color: #fff;
+
+}
+
+
+/* // // Quote */
+.lf-post-format-quote-wrap { 
+	
+	@include block();
+    padding: 28px 21px 28px;
+	margin: 0 0 7px;
+	position: relative;
+    overflow: hidden;
+	z-index: 10;
+	background-color: #FFFFFF;
+    background-image: url("http://localhost:35273/wp-content/themes/WhiteWhale/Core/Images/textures/striped_lens.png");
+
+}
+
+.lf-post-format-quote-text { 
+	
+	@include block( l, i );
+	padding: 0 0 0 21px;
+	margin: 0 0 0 72px;
+	border-left: {
+		width: 1px;
+		style: solid;
+		color: #444;
+	}	
+}
+
+.lf-post-format-quote { 
+
+	float: left;
+	font-size: 16px;
+	line-height: 19px;
+	margin: 9px 0 10px;
+}
+
+.lf-post-format-quote-author { 
+
+	clear: both;
+	float: left;
+}
+
+.post-format-quote-image { 
+	
+	width: 40px;
+	height: 40px;
+	@include block( l, i );
+	position: relative;
+	margin: 2px 0 -42px 7px;
+}
+
+.post-format-quote-image:before { 
+
+	content: "6";
+	font-size: 40px;
+	cursor: default;
+}
+
+
+/* // // Gallery */
+.lf-post-format-gallery-dot { 
+
+	position: absolute;
+	margin: -39px 28px 0;
+	cursor: pointer;
+	z-index: 1;
+	color: #fff;
+}
+
+.post-format-gallery-dot { 
+
+	margin: 0 5px 0 0;
+
+	&:hover { 
+		@include opacity( 1 );
+	}
+
+	&:before { 
+
+		content: "#";
+		font-size: 12px;
+		color: #fff;
+	}
+}
+
+.post-format-right-arrow { 
+
+	float: right;
+	@include arrows();
+
+	&:hover { 
+
+		@include opacity( 1 );
+	}
+	
+	&:before {
+
+		content: "9";
+		font-size: 50px;
+		cursor: pointer;
+	}
+}
+
+.post-format-left-arrow { 
+	
+	float: left;
+	@include arrows();
+
+	&:hover { 
+
+		@include opacity( 1 );
+	}
+
+	&:before { 
+
+		content: "8";
+		font-size: 50px;
+		cursor: pointer;	
+	}
+}
+
+/* // // Link */
+.post-format-link-image { 
+
+	width: 40px;
+	height: 40px;
+	display: inline;
+	float: left; 
+	position: relative;
+	margin: 3px 0 -45px 7px;
+
+	&:before { 
+
+		content: "$";
+		font-size: 40px;
+		cursor: default;
+		text-align: center;
+	}
+}
+
+.lf-post-format-quote { 
+
+	a { 
+		color: #444;
+	}
+
+	a:hover { 
+		text-decoration: none;
+	}
+
+}
+
+
+/* author box */
+.lf-article-author-wrap { 
+
+	margin: 28px 0 12px;
+
+}
+
+.lf-article-author-inner-wrap-box { 
+
+	width: 50%;
+	@include block( r );
+}
+
+.lf-article-author-img-wrap { 
+	
+	height: auto;
+	width: 10.5%;
+    @include block( r, ib );
+	padding: 1%;
+    margin: 6px 2% 0 0;	
+
+    img { 
+    	width: 100%;
+		height: auto;
+    }
+}
+
+.lf-article-author-text-wrap {
+	
+	width: 75.5%;
+	@include block( r, ib );
+	padding: 12px 5%;
+	background-color: #fff;
+	background-image:  url("http://localhost:36792/wp-content/themes/WhiteWhale/Core/Images/textures/striped_lens.png");
+}
+
+.lf-article-author-box-text {
+
+	width: 100%;
+	float: right;
+}
+
+.lf-article-author-box-h3 {
+
+	margin: 6px 0;
+}
+
+/* uttility, should be added to each style */
+.lf-core-content-post-format-head-wrap,
+.lf-article-author-wrap,
+.lf-comments-wrap,
+.lf-comment-full-header-wrap,
+.lf-comment-full-wrap,
+.lf-comment-article-avatar-wrap,
+.lf-comment-article-inner { 
+
+	display: block;
+	float: left;
+}
+
+.lf-shortcode-img-wrap img,
+.lf-header-background-image,
+.lf-slider-slide-cont img   { 
+
+	width: 100%;
+	height: auto;
+} /* prob out of place, each feature should be moved to specific */
+
+
+/* Article Widget */
+.lf-article-widget-wrap { 
+	
+	width: 43%;
+	@include block( r );
+	padding: 15px 2.5% 24px;
+	margin: 0 2% 24px 0;
+	background-color: #fff;
+}
+
+.lf-article-widget-name { 
+	
+	font-size: 12px;
+	line-height: 12px;
+	margin: 6px 0 18px;
+}
+
+
+/* navigation */ 
+
+/* // Pagnation // */
+.lf-pagnation {
+
+	margin: 0 0 12px;
+	@include block( l );
+}
+
+.lf-pagnation-nav {
+
+	@include block( l, ib );
+}
+
+.lf-pagnation-num,
+.lf-pagnation-num-current {
+
+	padding: 6px;
+	margin: 0 6px;
+}
+
+/* // navigation bar // */
+.lf-main-navigation-style { 
+
+	width: 100%;
+	@include block( l );
+	position: relative;
+    z-index: 5;		
+
+    ul { 
+    	list-style-type: none;
+		padding: 0 12px; 
+    }
+
+    ol { 
+    	list-style-type: none;
+		padding: 0 12px;
+    }
+
+    li { 
+		display: inline-block;
+	}
+
+	a {
+   		display: inline-block;
+    	font-size: 0.75rem;
+    	padding: 12px;
+    	@include single-transition( all, 400ms );
+	}
+
+	a:hover{
+		@include single-transition( all, 400ms );
+		text-decoration: none;
+	}
+
+	.children { 
+		position: absolute;
+		z-index: 20;
+		display: none;
+
+		ul {
+			width: 144px;
+			display: none;
+		}
+
+		li a {
+			width: 120px;
+		}
+
+	}
+
+	.sub-menu { 
+		position: absolute;
+		z-index: 20;
+		display: none;
+
+		ul {
+			width: 144px;
+			display: none;
+		}
+
+		li a {
+			width: 120px;
+		}
+	}
+}
+
+.lf-main-navigation-style  ul.sub-menu ul.sub-menu,
+.lf-main-navigation-style  ul.sub-menu,
+.lf-main-navigation-style ul.children,
+.lf-main-navigation-style ul.children ul.children  { 
+
+	margin: 0px;
+	display: none;	
+}
+
+.lf-drop-down-hook {
+
+	z-index: 7;
+}
+
+.longnav-dropdown { 
+
+	width: 90%;
+	margin: 0 5%;
+}
+
+
+/* footer */
+
+.lf-footer-shadow { 
+
+    height: 23px;
+	width: 100%;
+    @include block( l );
+    margin: -23px 0 0;
+    position: relative;
+    z-index: 2;
+	background: url("Images/footershadow.png") no-repeat scroll center center transparent;
+}
+
+.lf-footer { 
+
+	width: 95%;
+	@include block( l );
+	padding: 0 2.5%;
+
+    .lf-button {
+
+		margin: 0 6px 0 0;
+	}
+}
+
+.lf-footer-wrap {
+
+	@include block( l );
+}
+
+.lf-footer-widget { 
+	
+	width: 90%;
+	@include block( l, ib );
+	margin: 24px 0;
+	padding: 12px 5%;
+}
+
+.lf-footer-widget-h3 { 
+
+	margin: 12px 0;
+}
+
+.lf-footer-widget-one { 
+
+	width: 25%;
+	@include block( l, ib );
+}
+
+.lf-footer-widget-two {
+
+	width: 50%;
+	@include block( l, ib );
+}
+
+.lf-footer-widget-three {
+
+	width: 33.3%;
+	@include block( l, ib );
+}
+
+.lf-footer-widget-four {
+
+	width: 100%;
+	@include block( l, ib );
+}
+
+
+/* comments */
+.lf-comments-wrap { 
+
+	width: 98%;
+	padding: 0 1%;
+}
+
+.lf-comments-header-wrap { 
+	
+	width: 100%;
+	@include block( l );
+	margin: 30px 0 8px;
+}
+
+.lf-comment-header-counter { 
+
+	margin: 6px 0;
+}
+
+.lf-comment-header-disclaimer { 
+
+	margin: 0 6px;
+}
+
+.lf-comment-article-wrap { 
+
+	width: 100%;
+	@include block( r );
+	margin: 12px 0;
+
+	.children { 
+
+		width: 92%;
+		@include block( l );
+		padding: 0;
+		margin: 6px 0 0 8%; 
+	}
+}
+
+.lf-comment-article-inner { 
+
+	width: 100%;
+	padding: 24px 0;
+	background-color: #fff;
+}
+
+.lf-comment-article-inner-wrap { 
+	
+	@include block( l );
+	padding: 0 22px;
+}
+
+.lf-comment-article-avatar-wrap { 
+
+	margin: 0 18px 0 0;
+}
+
+.lf-comment-article-text { 
+
+	@include block( l, ib );
+}
+
+.lf-comment-article-comment {
+
+	clear: both;
+	margin: 8px 0 0;
+
+	 p { 
+		margin: 0 0 5px;
+	}
+}
+
+.lf-comment-article-time-meta,
+.lf-comment-links-wrap,
+.lf-comment-article-comment { 
+
+	float: left;	
+}
+
+.lf-comment-links-wrap {
+
+	margin: 0 0 0 4px;
+}
+
+.lf-comment-form-wrap { 
+
+	width: 95%;
+	@include block( l );
+	margin: 36px 0 0;
+	padding: 0 2.5% 1.5%;
+
+	form {
+		width: 95%;
+		margin: 12px 0 0;
+	}
+}
+
+.lf-comment-form-input-text {
+
+    width: 100%;
+    color: #444444;
+    margin: 0 0 12px;
+    padding: 6px 12px;
+    border: medium none;
+    @include single-box-shadow();
+}
+
+.lf-comment-form-textarea { 
+	
+	width: 100%;
+    margin: 0;
+    padding: 12px;
+    border: medium none;
+}
+
+.lf-comment-form-wrap input[type = "submit"] {
+
+    @include block( l );
+    margin: 12px 0;
+    padding: 5px 12px;
+    text-decoration: none;
+	border: medium none;
+    cursor: pointer;
+    @include border-radius( 4px, 4px );
+}
+
+/* pages - will need to be altered */
+.lf-core-content-three-page-left,
+.lf-core-content-three-page-right {
+
+	display: inline-block;
+    float: left;
+    width: 654px;
+
+}
+.lf-core-content-two-page-left,
+.lf-core-content-two-page-right {
+
+	width: 420px;
+	display: inline-block;
+	float: left;	
+}
+
+.lf-core-content-one-page-left,
+.lf-core-content-one-page-right {
+
+	width: 210px;
+	display: inline-block;
+	float: left;
+	padding: 0 12px 0 12px;
+	
+}
+
+.lf-core-content-three-page-left,
+.lf-core-content-two-page-left {
+
+	border-left-style: solid;
+    border-width: 6px;
+    margin: 0 0 0 6px;
+    padding: 0 12px 0 24px;
+
+}
+
+.lf-core-content-three-page-right,
+.lf-core-content-two-page-right {
+
+	border-right-style: solid;
+    border-width: 6px;
+    margin: 0 6px 0 0;
+    padding: 0 24px 0 12px;
+
+}
+
+
+/* // Featured Image */ 
+.lf-featured-image {
+
+	width: 240px;
+	@include block( l, i );
+	padding: 12px;
+	margin: 15px 30px 27px 0;
+	background-color: #fff; 
+
+	a {
+		width: 100%;
+		@include block( l );
+	}
+
+	img { 
+		height: auto;
+		width: 100%;
+		vertical-align: middle;		
+	}
+}
+
+/* portfolio and featured image lightbox - all to be adjusted */
+
+.lf-featured-image-opt {
+
+	width: 100%;
+	display: none;
+	float: left;
+	position: relative;
+	text-align: center;
+	margin: -48px 0 0;
+	background-color: transparent;
+	cursor: pointer;
+	@include opacity( 0 );
+	z-index: 3;
+
+	&:hover { 
+		opacity: 1;
+	}
+	
+}
+
+.lf-featured-image-opt-lightbox { 
+
+	width: 100%;
+	@include block( l );
+	position: relative;
+	text-align: center;
+	margin: -54px 0 0;
+	background-color: transparent;
+	cursor: pointer;
+	z-index: 3;
+}
+
+.lf-featured-image-opt-square-small { 
+
+	height: 18px;
+	width: 18px;
+	display: inline-block;
+	margin: 3px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: #fff;
+	@include border-radius( 50px, 50px );
+}
+
+.lf-featured-image-opt-square-big { 
+
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	cursor: pointer;
+	border-width: 3px;
+	border-style: solid;
+	border-color: #fff;
+	@include border-radius( 50px, 50px );
+}
+
+.lf-featured-image-lightboxed {
+
+	height: 85%;
+	width: 85%;
+	@include block( l );
+	position: fixed;
+	top: 2.5%;
+	left: 5%;
+	padding: 2.5%;
+	text-align: center;
+	z-index: 25;
+
+	img {
+		height: 100%;
+		width: auto;
+		z-index: 25;
+		@include opacity(1);
+		@include single-box-shadow();
+	}
+}
+
+
+.lf-portfolio-piece-wrap {
+
+	width: 100%;
+	@include block( l );
+}
+
+.lf-portfolio-dimension-quarter,
+.lf-portfolio-dimension-half,
+.lf-portfolio-dimension-third {
+
+	@include block( l, ib );
+	min-height: 24px;	
+}
+
+.lf-portfolio-dimension-quarter {
+
+	width: 22%;
+	padding: 0 1.5%;
+}
+
+.lf-portfolio-dimension-half { 
+
+	width: 47%;
+	padding: 0 1.5%;
+}
+
+.lf-portfolio-dimension-third {
+
+	width: 30%;
+	padding: 0 1.65%;
+}
+
+.lf-portfolio-posttitle {
+
+	margin: 24px 0 12px;
+}
+
+.lf-portfolio-posttitle a:hover  {
+
+	text-decoration: none;
+	border-bottom { 
+		width: 4px;
+		style: solid;
+	}
+}
+
+.lf-portfolio-desc {
+
+	width: 100%;
+	padding: 24px 0;
+}
+
+.lf-portfolio-filter-bar {
+
+	width: 95%;
+	margin: 0 0 24px;
+    padding: 0 2.5%;
+}
+
+.lf-portfolio-filter-text,
+.lf-portfolio-filter-text-info {
+
+	display: inline-block;
+    font-size: 0.75rem;
+	cursor: pointer;
+    padding: 6px 12px;
+}
+
+.lf-portfolio-filter-text,
+.lf-portfolio-filter-text-info,
+.lf-portfolio-filter-text:hover,
+.lf-portfolio-filter-text-info:hover  {
+
+	@include single-transition( all, 700ms );
+}
+
+.lf-portfolio-filter-text-info {
+
+	font-style: italic;
+}
+
+
+.lf-portfolio-filter-hidden {
+
+	display: none;
+}
+
+/* shortcodes - only video styles kept from original */
+.lf-shortcode-video-wrap { 
+	
+	height: 0;
+	position: relative;
+	padding-bottom: 55.5%;
+	padding-top: 24px;
+	overflow: hidden;
+}
+
+.lf-shortcode-video-wrap iframe,
+.lf-shortcode-video-wrap object,
+.lf-shortcode-video-wrap embed {
+
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.lf-youtube-video {
+
+	width: 100%;
+}
+
+.lf-core-content-three .lf-youtube-video {
+
+	height: 500px;
+}
+
+.fullwidth .lf-youtube-video { 
+
+	height: 500px;
+}
+
+/* advert styles */
+.lf-resp-aside-wrap { 
+
+	@include block( l, ib );
+}
+
+.lf-resp-widget-area { 
+
+	width: 85.5%;
+	@include block( l );
+	padding: 0 5.25% 0 9.25%;
+}
+
+.lf-test-ad { 
+
+	height: 250px;
+	width: 100%;
+	background-color: #000;
+}
+
+.lf-ad-widget-dummy-ad {
+
+	width: 70%;
+	height: 10px;
+	padding: 55px 15%;
+	text-align: center;
+	background-color: #ff3f3f;
+}
+
+.lf-ad-widget-dummy-ad-inner { 
+
+	width: 100%;
+	height: 10px;
+	padding: 25px 0 35px;
+	background-color:#ff3f4c;
+}
+
+.lf-ad-widget-link-ad { 
+
+	width: 100%;
+	height: 24px;
+	text-align: center;
+	background-color:#ff3f4c;
+}
+
+.lf-header-ad-wrap { 
+	
+	display: block;
+	margin: 24px 0;
+	z-index: 5;
+}
+
+.lf-header-leaderboard-ad { 
+
+	height: 90px;
+	width: 728px;
+	margin: 0 auto;
+	clear: both;
+	background-color: #000;
+}
+
+.lf-header-banner-ad { 
+
+	height: 60px;
+	width: 468px;
+	margin: 0 auto;
+	clear: both;
+	background-color: #000;
+}

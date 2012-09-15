@@ -78,7 +78,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* Uses data attributes to insert icons */
-/* line 25, _font.scss */
+/* line 61, _font.scss */
 [data-icon]:before {
   font-family: 'lftastic';
   content: attr(data-icon);
@@ -88,9 +88,1318 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* Allows icons to be assigned via "post-" class */
-/* line 36, _font.scss */
+/* line 72, _font.scss */
 [class^="post-"]:before {
   font-family: 'lftastic';
   font-style: normal;
   font-weight: normal;
+}
+
+/* line 30, style-core.scss */
+#lf-core-main-body-wrap,
+#footer,
+.hunprec,
+.lf-header-main-wrap {
+  width: 100%;
+}
+
+/* line 36, style-core.scss */
+.loadpage {
+  width: 960px;
+  float: left;
+  display: block;
+}
+
+/* line 43, style-core.scss */
+.contentwrap {
+  width: 960px;
+  margin: auto;
+}
+
+/* line 50, style-core.scss */
+.lf-header-main-wrap {
+  float: left;
+  display: block;
+  overflow: hidden;
+}
+
+/* line 57, style-core.scss */
+.lf-header {
+  width: 95%;
+  float: left;
+  display: block;
+  position: absolute;
+  padding: 0 2.5%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* line 68, style-core.scss */
+.lf-header-background-image {
+  position: relative;
+  z-index: 1;
+  float: left;
+  display: block;
+}
+
+/* line 76, style-core.scss */
+.lf-sitetitle-whole-wrap {
+  width: 95%;
+  float: left;
+  display: block;
+  position: absolute;
+  z-index: 5;
+}
+
+/* line 85, style-core.scss */
+.lf-sitetitle-wrap {
+  width: 99%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+  text-align: center;
+  z-index: 5;
+}
+
+/* line 95, style-core.scss */
+.lf-header-logo {
+  display: inline-block;
+}
+/* line 99, style-core.scss */
+.lf-header-logo img {
+  width: auto !important;
+  box-shadow: none !important;
+}
+
+/* line 108, style-core.scss */
+.lf-header-bar {
+  width: 97%;
+  float: left;
+  display: block;
+  position: relative;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+  clear: both;
+  z-index: 2;
+}
+/* line 118, style-core.scss */
+.lf-header-bar small {
+  font-size: 10px;
+}
+
+/* line 126, style-core.scss */
+.lf-sitetitle {
+  display: inline-block;
+}
+/* line 130, style-core.scss */
+.lf-sitetitle h1 {
+  font-style: normal;
+  font-weight: normal;
+  line-height: 3.75rem;
+  margin: 0;
+}
+/* line 139, style-core.scss */
+.lf-sitetitle a:hover {
+  text-decoration: none;
+}
+
+/* line 150, style-core.scss */
+.lf-sitetitle-none h1 {
+  text-indent: -9999px;
+  height: 0px;
+}
+
+/* line 159, style-core.scss */
+.lf-logo-h1 {
+  margin: 0px;
+}
+
+/* content bodies */
+/* line 166, style-core.scss */
+.lf-core-content-three,
+.lf-core-content-three article {
+  padding: 0 9px;
+  float: left;
+  display: inline-block;
+}
+
+/* line 173, style-core.scss */
+.lf-core-content-full {
+  width: 100%;
+  padding: 0 9px;
+  float: left;
+  display: block;
+}
+/* line 179, style-core.scss */
+.lf-core-content-full article {
+  width: 100%;
+  margin: 42px 0;
+}
+
+/* aside */
+/* line 189, style-core.scss */
+.lf-core-content-aside {
+  width: 296px;
+  float: left;
+  display: inline-block;
+  margin: 0 9px;
+}
+
+/* line 197, style-core.scss */
+.lf-core-content-aside-widget {
+  width: 260px;
+  float: left;
+  display: block;
+  padding: 24px 18px;
+  margin: 24px 0;
+  background-color: #fff;
+}
+
+/* line 207, style-core.scss */
+.lf-core-content-aside-widget-h3 {
+  margin: 1.5rem 0;
+  text-align: right;
+}
+
+/* line 214, style-core.scss */
+.lf-widget-field {
+  width: 70%;
+  margin: 0 5% 12px;
+  padding: 6px 12px;
+  color: #444444;
+  background-color: #FFFFFF;
+  border: medium none;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* line 227, style-core.scss */
+#searchform .lf-button {
+  margin: 0 0 12px 5%;
+}
+
+/* meta & post title */
+/* line 233, style-core.scss */
+.lf-meta-edit {
+  margin-left: 12px;
+}
+
+/* line 240, style-core.scss */
+.post-edit-link:hover {
+  text-decoration: none;
+}
+/* line 244, style-core.scss */
+.post-edit-link:before {
+  content: "5";
+}
+
+/* line 250, style-core.scss */
+.lf-meta-text-comp {
+  margin: 0 0 0 5px;
+}
+
+/* line 255, style-core.scss */
+.lf-bookmark-meta {
+  margin: 0 12px 0 0;
+}
+
+/* line 260, style-core.scss */
+.lf-next-to-icon {
+  margin: 0 5px;
+}
+
+/* line 265, style-core.scss */
+.lf-meta-text {
+  margin: 0 0 0 24px;
+}
+/* line 269, style-core.scss */
+.lf-meta-text a {
+  margin: 0 5px;
+}
+
+/* line 275, style-core.scss */
+.lf-posttitle {
+  margin: 24px 0 12px;
+}
+/* line 279, style-core.scss */
+.lf-posttitle a:hover {
+  text-decoration: none;
+  border-width: 4px;
+  border-bottom-style: solid;
+}
+
+/* line 287, style-core.scss */
+.lf-core-content-post-format-head-holder-wrap {
+  float: left;
+  display: inline-block;
+}
+
+/* button -to be changed */
+/* line 294, style-core.scss */
+.lf-button {
+  float: left;
+  display: block;
+  cursor: pointer;
+  padding: 5px 12px;
+  text-decoration: none;
+  border: none;
+  margin: 0 0 12px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 305, style-core.scss */
+.lf-button a:hover {
+  text-decoration: none;
+}
+
+/* post formats  @include single-box-shadow(); */
+/* line 314, style-core.scss */
+.lf-core-content-post-format-head-wrap {
+  width: 92%;
+  padding: 12px 4% 24px;
+  overflow: hidden;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  background-image: url("http://localhost:36792/wp-content/themes/WhiteWhale/Core/Images/textures/striped_lens.png");
+}
+
+/* line 324, style-core.scss */
+.lf-core-content-post-format-head-holder-wrap {
+  width: 85%;
+}
+
+/* line 330, style-core.scss */
+.lf-meta-text-tags {
+  float: right;
+  display: inline;
+  padding: 21px 21px;
+  margin: 21px 0 21px 14px;
+  background-color: #fff;
+}
+
+/* line 338, style-core.scss */
+.lf-core-content-body-text {
+  padding: 28px 21px 28px;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+/* line 344, style-core.scss */
+.lf-core-content-body-text p:last-child {
+  margin: 0 0 0px;
+}
+
+/* line 351, style-core.scss */
+.lf-core-content-text-entry {
+  overflow: hidden;
+  margin: 36px 0 6px;
+}
+
+/* // // Milacilous */
+/* line 359, style-core.scss */
+.lf-post-format-media-title {
+  font-size: 12px;
+  text-decoration: underline;
+  margin: 0 0 14px;
+}
+
+/* line 367, style-core.scss */
+.lf-post-format-text-entry {
+  overflow: hidden;
+  margin: 8px 0 0;
+}
+
+/* line 374, style-core.scss */
+.lf-post-format-media-line {
+  width: 92%;
+  float: left;
+  display: block;
+  padding: 8px 4% 5px;
+  background-color: #fff;
+  background-image: url("http://localhost:36792/wp-content/themes/WhiteWhale/Core/Images/textures/striped_lens.png");
+}
+
+/* // // Image */
+/* line 386, style-core.scss */
+.lf-post-img-text-wrap {
+  width: 100%;
+  float: left;
+}
+
+/* line 393, style-core.scss */
+.lf-post-format-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  float: left;
+  vertical-align: middle;
+  z-index: 10;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* line 405, style-core.scss */
+.lf-post-format-img-link {
+  float: left;
+  position: relative;
+  top: auto;
+  font-size: 11px;
+  padding: 2px 5px;
+  margin: -53px 0 0 21px;
+  cursor: default;
+  z-index: 11;
+  background-color: #444;
+  color: #fff;
+}
+
+/* line 420, style-core.scss */
+.post-arrow {
+  position: relative;
+  float: right;
+  margin: -22px 21px -30px;
+  cursor: default;
+  z-index: 500;
+}
+
+/* line 430, style-core.scss */
+.post-arrow:before {
+  content: "^";
+  font-size: 28px;
+  line-height: 20px;
+  color: #fff;
+}
+
+/* // // Quote */
+/* line 441, style-core.scss */
+.lf-post-format-quote-wrap {
+  display: block;
+  padding: 28px 21px 28px;
+  margin: 0 0 7px;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  background-color: #FFFFFF;
+  background-image: url("http://localhost:35273/wp-content/themes/WhiteWhale/Core/Images/textures/striped_lens.png");
+}
+
+/* line 454, style-core.scss */
+.lf-post-format-quote-text {
+  float: left;
+  display: inline;
+  padding: 0 0 0 21px;
+  margin: 0 0 0 72px;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: #444;
+}
+
+/* line 466, style-core.scss */
+.lf-post-format-quote {
+  float: left;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 9px 0 10px;
+}
+
+/* line 474, style-core.scss */
+.lf-post-format-quote-author {
+  clear: both;
+  float: left;
+}
+
+/* line 480, style-core.scss */
+.post-format-quote-image {
+  width: 40px;
+  height: 40px;
+  float: left;
+  display: inline;
+  position: relative;
+  margin: 2px 0 -42px 7px;
+}
+
+/* line 489, style-core.scss */
+.post-format-quote-image:before {
+  content: "6";
+  font-size: 40px;
+  cursor: default;
+}
+
+/* // // Gallery */
+/* line 498, style-core.scss */
+.lf-post-format-gallery-dot {
+  position: absolute;
+  margin: -39px 28px 0;
+  cursor: pointer;
+  z-index: 1;
+  color: #fff;
+}
+
+/* line 507, style-core.scss */
+.post-format-gallery-dot {
+  margin: 0 5px 0 0;
+}
+/* line 511, style-core.scss */
+.post-format-gallery-dot:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 515, style-core.scss */
+.post-format-gallery-dot:before {
+  content: "#";
+  font-size: 12px;
+  color: #fff;
+}
+
+/* line 523, style-core.scss */
+.post-format-right-arrow {
+  float: right;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  position: relative;
+  vertical-align: middle;
+  top: 50%;
+  margin: 0 0 -40px;
+  z-index: 10;
+  color: #fff;
+}
+/* line 528, style-core.scss */
+.post-format-right-arrow:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 533, style-core.scss */
+.post-format-right-arrow:before {
+  content: "9";
+  font-size: 50px;
+  cursor: pointer;
+}
+
+/* line 541, style-core.scss */
+.post-format-left-arrow {
+  float: left;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  position: relative;
+  vertical-align: middle;
+  top: 50%;
+  margin: 0 0 -40px;
+  z-index: 10;
+  color: #fff;
+}
+/* line 546, style-core.scss */
+.post-format-left-arrow:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 551, style-core.scss */
+.post-format-left-arrow:before {
+  content: "8";
+  font-size: 50px;
+  cursor: pointer;
+}
+
+/* // // Link */
+/* line 560, style-core.scss */
+.post-format-link-image {
+  width: 40px;
+  height: 40px;
+  display: inline;
+  float: left;
+  position: relative;
+  margin: 3px 0 -45px 7px;
+}
+/* line 569, style-core.scss */
+.post-format-link-image:before {
+  content: "$";
+  font-size: 40px;
+  cursor: default;
+  text-align: center;
+}
+
+/* line 580, style-core.scss */
+.lf-post-format-quote a {
+  color: #444;
+}
+/* line 584, style-core.scss */
+.lf-post-format-quote a:hover {
+  text-decoration: none;
+}
+
+/* author box */
+/* line 592, style-core.scss */
+.lf-article-author-wrap {
+  margin: 28px 0 12px;
+}
+
+/* line 598, style-core.scss */
+.lf-article-author-inner-wrap-box {
+  width: 50%;
+  float: right;
+  display: block;
+}
+
+/* line 604, style-core.scss */
+.lf-article-author-img-wrap {
+  height: auto;
+  width: 10.5%;
+  float: right;
+  display: inline-block;
+  padding: 1%;
+  margin: 6px 2% 0 0;
+}
+/* line 612, style-core.scss */
+.lf-article-author-img-wrap img {
+  width: 100%;
+  height: auto;
+}
+
+/* line 618, style-core.scss */
+.lf-article-author-text-wrap {
+  width: 75.5%;
+  float: right;
+  display: inline-block;
+  padding: 12px 5%;
+  background-color: #fff;
+  background-image: url("http://localhost:36792/wp-content/themes/WhiteWhale/Core/Images/textures/striped_lens.png");
+}
+
+/* line 627, style-core.scss */
+.lf-article-author-box-text {
+  width: 100%;
+  float: right;
+}
+
+/* line 633, style-core.scss */
+.lf-article-author-box-h3 {
+  margin: 6px 0;
+}
+
+/* uttility, should be added to each style */
+/* line 645, style-core.scss */
+.lf-core-content-post-format-head-wrap,
+.lf-article-author-wrap,
+.lf-comments-wrap,
+.lf-comment-full-header-wrap,
+.lf-comment-full-wrap,
+.lf-comment-article-avatar-wrap,
+.lf-comment-article-inner {
+  display: block;
+  float: left;
+}
+
+/* line 653, style-core.scss */
+.lf-shortcode-img-wrap img,
+.lf-header-background-image,
+.lf-slider-slide-cont img {
+  width: 100%;
+  height: auto;
+}
+
+/* prob out of place, each feature should be moved to specific */
+/* Article Widget */
+/* line 661, style-core.scss */
+.lf-article-widget-wrap {
+  width: 43%;
+  float: right;
+  display: block;
+  padding: 15px 2.5% 24px;
+  margin: 0 2% 24px 0;
+  background-color: #fff;
+}
+
+/* line 670, style-core.scss */
+.lf-article-widget-name {
+  font-size: 12px;
+  line-height: 12px;
+  margin: 6px 0 18px;
+}
+
+/* navigation */
+/* // Pagnation // */
+/* line 681, style-core.scss */
+.lf-pagnation {
+  margin: 0 0 12px;
+  float: left;
+  display: block;
+}
+
+/* line 687, style-core.scss */
+.lf-pagnation-nav {
+  float: left;
+  display: inline-block;
+}
+
+/* line 693, style-core.scss */
+.lf-pagnation-num,
+.lf-pagnation-num-current {
+  padding: 6px;
+  margin: 0 6px;
+}
+
+/* // navigation bar // */
+/* line 700, style-core.scss */
+.lf-main-navigation-style {
+  width: 100%;
+  float: left;
+  display: block;
+  position: relative;
+  z-index: 5;
+}
+/* line 707, style-core.scss */
+.lf-main-navigation-style ul {
+  list-style-type: none;
+  padding: 0 12px;
+}
+/* line 712, style-core.scss */
+.lf-main-navigation-style ol {
+  list-style-type: none;
+  padding: 0 12px;
+}
+/* line 717, style-core.scss */
+.lf-main-navigation-style li {
+  display: inline-block;
+}
+/* line 721, style-core.scss */
+.lf-main-navigation-style a {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 12px;
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -ms-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms false;
+}
+/* line 728, style-core.scss */
+.lf-main-navigation-style a:hover {
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -ms-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms false;
+  text-decoration: none;
+}
+/* line 733, style-core.scss */
+.lf-main-navigation-style .children {
+  position: absolute;
+  z-index: 20;
+  display: none;
+}
+/* line 738, style-core.scss */
+.lf-main-navigation-style .children ul {
+  width: 144px;
+  display: none;
+}
+/* line 743, style-core.scss */
+.lf-main-navigation-style .children li a {
+  width: 120px;
+}
+/* line 749, style-core.scss */
+.lf-main-navigation-style .sub-menu {
+  position: absolute;
+  z-index: 20;
+  display: none;
+}
+/* line 754, style-core.scss */
+.lf-main-navigation-style .sub-menu ul {
+  width: 144px;
+  display: none;
+}
+/* line 759, style-core.scss */
+.lf-main-navigation-style .sub-menu li a {
+  width: 120px;
+}
+
+/* line 768, style-core.scss */
+.lf-main-navigation-style ul.sub-menu ul.sub-menu,
+.lf-main-navigation-style ul.sub-menu,
+.lf-main-navigation-style ul.children,
+.lf-main-navigation-style ul.children ul.children {
+  margin: 0px;
+  display: none;
+}
+
+/* line 774, style-core.scss */
+.lf-drop-down-hook {
+  z-index: 7;
+}
+
+/* line 779, style-core.scss */
+.longnav-dropdown {
+  width: 90%;
+  margin: 0 5%;
+}
+
+/* footer */
+/* line 788, style-core.scss */
+.lf-footer-shadow {
+  height: 23px;
+  width: 100%;
+  float: left;
+  display: block;
+  margin: -23px 0 0;
+  position: relative;
+  z-index: 2;
+  background: url("Images/footershadow.png") no-repeat scroll center center transparent;
+}
+
+/* line 799, style-core.scss */
+.lf-footer {
+  width: 95%;
+  float: left;
+  display: block;
+  padding: 0 2.5%;
+}
+/* line 805, style-core.scss */
+.lf-footer .lf-button {
+  margin: 0 6px 0 0;
+}
+
+/* line 811, style-core.scss */
+.lf-footer-wrap {
+  float: left;
+  display: block;
+}
+
+/* line 816, style-core.scss */
+.lf-footer-widget {
+  width: 90%;
+  float: left;
+  display: inline-block;
+  margin: 24px 0;
+  padding: 12px 5%;
+}
+
+/* line 824, style-core.scss */
+.lf-footer-widget-h3 {
+  margin: 12px 0;
+}
+
+/* line 829, style-core.scss */
+.lf-footer-widget-one {
+  width: 25%;
+  float: left;
+  display: inline-block;
+}
+
+/* line 835, style-core.scss */
+.lf-footer-widget-two {
+  width: 50%;
+  float: left;
+  display: inline-block;
+}
+
+/* line 841, style-core.scss */
+.lf-footer-widget-three {
+  width: 33.3%;
+  float: left;
+  display: inline-block;
+}
+
+/* line 847, style-core.scss */
+.lf-footer-widget-four {
+  width: 100%;
+  float: left;
+  display: inline-block;
+}
+
+/* comments */
+/* line 855, style-core.scss */
+.lf-comments-wrap {
+  width: 98%;
+  padding: 0 1%;
+}
+
+/* line 861, style-core.scss */
+.lf-comments-header-wrap {
+  width: 100%;
+  float: left;
+  display: block;
+  margin: 30px 0 8px;
+}
+
+/* line 868, style-core.scss */
+.lf-comment-header-counter {
+  margin: 6px 0;
+}
+
+/* line 873, style-core.scss */
+.lf-comment-header-disclaimer {
+  margin: 0 6px;
+}
+
+/* line 878, style-core.scss */
+.lf-comment-article-wrap {
+  width: 100%;
+  float: right;
+  display: block;
+  margin: 12px 0;
+}
+/* line 884, style-core.scss */
+.lf-comment-article-wrap .children {
+  width: 92%;
+  float: left;
+  display: block;
+  padding: 0;
+  margin: 6px 0 0 8%;
+}
+
+/* line 893, style-core.scss */
+.lf-comment-article-inner {
+  width: 100%;
+  padding: 24px 0;
+  background-color: #fff;
+}
+
+/* line 900, style-core.scss */
+.lf-comment-article-inner-wrap {
+  float: left;
+  display: block;
+  padding: 0 22px;
+}
+
+/* line 906, style-core.scss */
+.lf-comment-article-avatar-wrap {
+  margin: 0 18px 0 0;
+}
+
+/* line 911, style-core.scss */
+.lf-comment-article-text {
+  float: left;
+  display: inline-block;
+}
+
+/* line 916, style-core.scss */
+.lf-comment-article-comment {
+  clear: both;
+  margin: 8px 0 0;
+}
+/* line 921, style-core.scss */
+.lf-comment-article-comment p {
+  margin: 0 0 5px;
+}
+
+/* line 928, style-core.scss */
+.lf-comment-article-time-meta,
+.lf-comment-links-wrap,
+.lf-comment-article-comment {
+  float: left;
+}
+
+/* line 933, style-core.scss */
+.lf-comment-links-wrap {
+  margin: 0 0 0 4px;
+}
+
+/* line 938, style-core.scss */
+.lf-comment-form-wrap {
+  width: 95%;
+  float: left;
+  display: block;
+  margin: 36px 0 0;
+  padding: 0 2.5% 1.5%;
+}
+/* line 945, style-core.scss */
+.lf-comment-form-wrap form {
+  width: 95%;
+  margin: 12px 0 0;
+}
+
+/* line 951, style-core.scss */
+.lf-comment-form-input-text {
+  width: 100%;
+  color: #444444;
+  margin: 0 0 12px;
+  padding: 6px 12px;
+  border: medium none;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* line 961, style-core.scss */
+.lf-comment-form-textarea {
+  width: 100%;
+  margin: 0;
+  padding: 12px;
+  border: medium none;
+}
+
+/* line 969, style-core.scss */
+.lf-comment-form-wrap input[type="submit"] {
+  float: left;
+  display: block;
+  margin: 12px 0;
+  padding: 5px 12px;
+  text-decoration: none;
+  border: medium none;
+  cursor: pointer;
+  -webkit-border-radius: 4px 4px;
+  -moz-border-radius: 4px / 4px;
+  -ms-border-radius: 4px / 4px;
+  -o-border-radius: 4px / 4px;
+  border-radius: 4px / 4px;
+}
+
+/* pages - will need to be altered */
+/* line 982, style-core.scss */
+.lf-core-content-three-page-left,
+.lf-core-content-three-page-right {
+  display: inline-block;
+  float: left;
+  width: 654px;
+}
+
+/* line 990, style-core.scss */
+.lf-core-content-two-page-left,
+.lf-core-content-two-page-right {
+  width: 420px;
+  display: inline-block;
+  float: left;
+}
+
+/* line 998, style-core.scss */
+.lf-core-content-one-page-left,
+.lf-core-content-one-page-right {
+  width: 210px;
+  display: inline-block;
+  float: left;
+  padding: 0 12px 0 12px;
+}
+
+/* line 1008, style-core.scss */
+.lf-core-content-three-page-left,
+.lf-core-content-two-page-left {
+  border-left-style: solid;
+  border-width: 6px;
+  margin: 0 0 0 6px;
+  padding: 0 12px 0 24px;
+}
+
+/* line 1018, style-core.scss */
+.lf-core-content-three-page-right,
+.lf-core-content-two-page-right {
+  border-right-style: solid;
+  border-width: 6px;
+  margin: 0 6px 0 0;
+  padding: 0 24px 0 12px;
+}
+
+/* // Featured Image */
+/* line 1029, style-core.scss */
+.lf-featured-image {
+  width: 240px;
+  float: left;
+  display: inline;
+  padding: 12px;
+  margin: 15px 30px 27px 0;
+  background-color: #fff;
+}
+/* line 1037, style-core.scss */
+.lf-featured-image a {
+  width: 100%;
+  float: left;
+  display: block;
+}
+/* line 1042, style-core.scss */
+.lf-featured-image img {
+  height: auto;
+  width: 100%;
+  vertical-align: middle;
+}
+
+/* portfolio and featured image lightbox - all to be adjusted */
+/* line 1051, style-core.scss */
+.lf-featured-image-opt {
+  width: 100%;
+  display: none;
+  float: left;
+  position: relative;
+  text-align: center;
+  margin: -48px 0 0;
+  background-color: transparent;
+  cursor: pointer;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  z-index: 3;
+}
+/* line 1064, style-core.scss */
+.lf-featured-image-opt:hover {
+  opacity: 1;
+}
+
+/* line 1070, style-core.scss */
+.lf-featured-image-opt-lightbox {
+  width: 100%;
+  float: left;
+  display: block;
+  position: relative;
+  text-align: center;
+  margin: -54px 0 0;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* line 1082, style-core.scss */
+.lf-featured-image-opt-square-small {
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  margin: 3px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #fff;
+  -webkit-border-radius: 50px 50px;
+  -moz-border-radius: 50px / 50px;
+  -ms-border-radius: 50px / 50px;
+  -o-border-radius: 50px / 50px;
+  border-radius: 50px / 50px;
+}
+
+/* line 1094, style-core.scss */
+.lf-featured-image-opt-square-big {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  cursor: pointer;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #fff;
+  -webkit-border-radius: 50px 50px;
+  -moz-border-radius: 50px / 50px;
+  -ms-border-radius: 50px / 50px;
+  -o-border-radius: 50px / 50px;
+  border-radius: 50px / 50px;
+}
+
+/* line 1106, style-core.scss */
+.lf-featured-image-lightboxed {
+  height: 85%;
+  width: 85%;
+  float: left;
+  display: block;
+  position: fixed;
+  top: 2.5%;
+  left: 5%;
+  padding: 2.5%;
+  text-align: center;
+  z-index: 25;
+}
+/* line 1118, style-core.scss */
+.lf-featured-image-lightboxed img {
+  height: 100%;
+  width: auto;
+  z-index: 25;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* line 1128, style-core.scss */
+.lf-portfolio-piece-wrap {
+  width: 100%;
+  float: left;
+  display: block;
+}
+
+/* line 1136, style-core.scss */
+.lf-portfolio-dimension-quarter,
+.lf-portfolio-dimension-half,
+.lf-portfolio-dimension-third {
+  float: left;
+  display: inline-block;
+  min-height: 24px;
+}
+
+/* line 1142, style-core.scss */
+.lf-portfolio-dimension-quarter {
+  width: 22%;
+  padding: 0 1.5%;
+}
+
+/* line 1148, style-core.scss */
+.lf-portfolio-dimension-half {
+  width: 47%;
+  padding: 0 1.5%;
+}
+
+/* line 1154, style-core.scss */
+.lf-portfolio-dimension-third {
+  width: 30%;
+  padding: 0 1.65%;
+}
+
+/* line 1160, style-core.scss */
+.lf-portfolio-posttitle {
+  margin: 24px 0 12px;
+}
+
+/* line 1165, style-core.scss */
+.lf-portfolio-posttitle a:hover {
+  text-decoration: none;
+}
+/* line 1168, style-core.scss */
+.lf-portfolio-posttitle a:hover border-bottom {
+  width: 4px;
+  style: solid;
+}
+
+/* line 1174, style-core.scss */
+.lf-portfolio-desc {
+  width: 100%;
+  padding: 24px 0;
+}
+
+/* line 1180, style-core.scss */
+.lf-portfolio-filter-bar {
+  width: 95%;
+  margin: 0 0 24px;
+  padding: 0 2.5%;
+}
+
+/* line 1188, style-core.scss */
+.lf-portfolio-filter-text,
+.lf-portfolio-filter-text-info {
+  display: inline-block;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 6px 12px;
+}
+
+/* line 1199, style-core.scss */
+.lf-portfolio-filter-text,
+.lf-portfolio-filter-text-info,
+.lf-portfolio-filter-text:hover,
+.lf-portfolio-filter-text-info:hover {
+  -webkit-transition: all 700ms;
+  -moz-transition: all 700ms;
+  -ms-transition: all 700ms;
+  -o-transition: all 700ms;
+  transition: all 700ms false;
+}
+
+/* line 1204, style-core.scss */
+.lf-portfolio-filter-text-info {
+  font-style: italic;
+}
+
+/* line 1210, style-core.scss */
+.lf-portfolio-filter-hidden {
+  display: none;
+}
+
+/* shortcodes - only video styles kept from original */
+/* line 1216, style-core.scss */
+.lf-shortcode-video-wrap {
+  height: 0;
+  position: relative;
+  padding-bottom: 55.5%;
+  padding-top: 24px;
+  overflow: hidden;
+}
+
+/* line 1227, style-core.scss */
+.lf-shortcode-video-wrap iframe,
+.lf-shortcode-video-wrap object,
+.lf-shortcode-video-wrap embed {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* line 1236, style-core.scss */
+.lf-youtube-video {
+  width: 100%;
+}
+
+/* line 1241, style-core.scss */
+.lf-core-content-three .lf-youtube-video {
+  height: 500px;
+}
+
+/* line 1246, style-core.scss */
+.fullwidth .lf-youtube-video {
+  height: 500px;
+}
+
+/* advert styles */
+/* line 1252, style-core.scss */
+.lf-resp-aside-wrap {
+  float: left;
+  display: inline-block;
+}
+
+/* line 1257, style-core.scss */
+.lf-resp-widget-area {
+  width: 85.5%;
+  float: left;
+  display: block;
+  padding: 0 5.25% 0 9.25%;
+}
+
+/* line 1264, style-core.scss */
+.lf-test-ad {
+  height: 250px;
+  width: 100%;
+  background-color: #000;
+}
+
+/* line 1271, style-core.scss */
+.lf-ad-widget-dummy-ad {
+  width: 70%;
+  height: 10px;
+  padding: 55px 15%;
+  text-align: center;
+  background-color: #ff3f3f;
+}
+
+/* line 1280, style-core.scss */
+.lf-ad-widget-dummy-ad-inner {
+  width: 100%;
+  height: 10px;
+  padding: 25px 0 35px;
+  background-color: #ff3f4c;
+}
+
+/* line 1288, style-core.scss */
+.lf-ad-widget-link-ad {
+  width: 100%;
+  height: 24px;
+  text-align: center;
+  background-color: #ff3f4c;
+}
+
+/* line 1296, style-core.scss */
+.lf-header-ad-wrap {
+  display: block;
+  margin: 24px 0;
+  z-index: 5;
+}
+
+/* line 1303, style-core.scss */
+.lf-header-leaderboard-ad {
+  height: 90px;
+  width: 728px;
+  margin: 0 auto;
+  clear: both;
+  background-color: #000;
+}
+
+/* line 1312, style-core.scss */
+.lf-header-banner-ad {
+  height: 60px;
+  width: 468px;
+  margin: 0 auto;
+  clear: both;
+  background-color: #000;
 }

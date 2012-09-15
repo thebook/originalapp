@@ -202,7 +202,7 @@ add_filter( 'get_media_item_args', 'force_send' );
 
 function lf_add_styles () { 
 	
-	wp_enqueue_style( 'core-style', COREURI . '/core-css.css' );
+	//wp_enqueue_style( 'core-style', COREURI . '/core-css.css' );
 	
 	wp_enqueue_style( 'lfstyle', COREURI . '/sass/style-core.css' );
 	
