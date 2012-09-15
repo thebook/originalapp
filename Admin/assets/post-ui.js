@@ -10,7 +10,7 @@
 				var find = $( map ).map( 
 							function ( index ) { 
 							var theval =  map[index]; 	
-								return selector.attr( "value") == theval; 
+								return selector.attr( "value" ) == theval; 
 							}).get();
 			
 				checker = $.inArray( true, find );
@@ -104,10 +104,35 @@
 							window.send_to_editor = dsend; 
 						};
 					
-						window.send_to_editor = sender; 
-							
+						window.send_to_editor = sender; 			
+					});			
+				},
+				
+		hider : function ( values, elements, input ) { 
+			$( values ).map( function( index ) {
+				var v = values[index];
+				var e = elements[index];
+				if ( input == v ) { $( e ).show(); } else { $( e ).hide(); }
+			});
+		},
+		radio_reveal : function ( wrap, radval, meta ) { 
+			var id = $( wrap );
+			var r = id.find('input[type=radio]');	
+				id.bind('click',
+					function( e ) { 
+						var target = e.target;
+						var	click = $( target );
+						var	val = click.attr('value');
+						var ch  = click.attr('checked');
+						if ( ch == 'checked' ) { parts.hider( radval, meta, val ); }		
+					});	
+				r.each( 
+					function() { 
+						var t = $( this );
+						var val = t.attr('value');
+						var ch  = t.attr('checked');
+						if ( ch == 'checked' ) { parts.hider( radval, meta, val ); }
 					});
-							
 				}
 	};
 

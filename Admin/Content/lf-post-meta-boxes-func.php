@@ -306,9 +306,12 @@ function lf_post_settings_callback() {
 				array( 'show', 'hide' ),
 				array( 'Show', 'Hide' ) ); 
 			
+	echo '<script>parts.radio_reveal("#post-formats-select", ["gallery", "image", "quote", "link"], ["#gallery_format_meta", "#image_format_meta", "#quote_format_meta", "#link_format_meta"]);</script>';
+	
 	echo '</tbody>';
 	
 	echo '</table>'; 
+	
 	
 }
 
@@ -567,7 +570,7 @@ function lf_post_meta_boxes() {
 		'high' );
 		
 	add_meta_box(
-		'gallery_format_meta',
+		'link_format_meta',
 		__('Link Settings', 'liquidflux'),
 		'lf_post_link_callback',
 		'post',

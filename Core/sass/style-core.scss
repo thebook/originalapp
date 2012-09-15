@@ -172,17 +172,15 @@
 
 .lf-core-content-full { 
 
-	width: 100%;
 	padding: $cp;
-	@include block( l );
+	@include block();
+	
 
 	article {
 
 		width: 100%;
 		margin: 42px 0;
-	
 	}
-
 }
 
 /* aside */
@@ -333,6 +331,11 @@
 	padding: 21px 21px;
 	margin: 21px 0 21px 14px;
 	background-color: #fff;
+
+	a { 
+
+		text-decoration: none;
+	}
 }
 
 .lf-core-content-body-text { 
