@@ -18,7 +18,7 @@ $meta = get_post_meta( $post->ID, 'main_meta', true );
 				
 				<a href="<?php echo $meta['post_link_format_link']; ?>" title="<?php the_title(); ?>">
 				
-					<?php echo ( $meta['post_link_format_text_style'] == 'custom' ? $meta['post_link_format_desc'] : $meta['post_link_format_link'] );  ?>
+					<?php echo ( ctype_space( $meta['post_link_format_desc'] ) ? $meta['post_link_format_link'] : $meta['post_link_format_desc'] );  ?>
 					
 				</a>
 				

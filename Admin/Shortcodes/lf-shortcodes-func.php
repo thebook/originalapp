@@ -555,4 +555,37 @@ function lf_video_shortcode( $atts, $content = null ) {
 add_shortcode( 'video', 'lf_video_shortcode' );
 
 
+function lf_video_embed_shortcode( $atts, $content = null ) { 
+
+	extract(
+	shortcode_atts(
+		array(
+			'link' => '' ), 
+			$atts ) );
+				
+	$yt = strpos( $link, 'youtu.be' );
+	$v  = strpos( $link, 'vimeo.com' );
+
+		if ( $yt !== false ) { 
+
+			$url = str_replace( 'http://youtu.be/', '', $link );
+			
+			return '<iframe style="display:none;"></iframe><iframe class="lf-youtube-video" src="http://www.youtube.com/embed/'.$url.'" frameborder="0" allowfullscreen></iframe>';
+		
+		}
+		
+		else if( $v !== false ) {
+
+			$url = str_replace('http://vimeo.com/', '', $link );
+			
+			return '<div class="lf-shortcode-video-wrap"><iframe src="http://player.vimeo.com/video/'. $url .'" frameborder="0" ></iframe></div>';
+		
+		}
+
+}
+
+add_shortcode( 'embed', 'lf_video_embed_shortcode' );
+
+
+
 ?>

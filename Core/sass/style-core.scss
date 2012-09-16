@@ -590,6 +590,9 @@
 
 }
 
+/* // // Video */
+
+
 
 /* author box */
 .lf-article-author-wrap { 
@@ -1239,6 +1242,8 @@
 .lf-youtube-video {
 
 	width: 100%;
+	height: 500px;
+	@include block( l  );
 }
 
 .lf-core-content-three .lf-youtube-video {

@@ -306,7 +306,7 @@ function lf_post_settings_callback() {
 				array( 'show', 'hide' ),
 				array( 'Show', 'Hide' ) ); 
 			
-	echo '<script>parts.radio_reveal("#post-formats-select", ["gallery", "image", "quote", "link"], ["#gallery_format_meta", "#image_format_meta", "#quote_format_meta", "#link_format_meta"]);</script>';
+	echo '<script>parts.radio_reveal("#post-formats-select", ["gallery", "image", "quote", "link", "video" ], ["#gallery_format_meta", "#image_format_meta", "#quote_format_meta", "#link_format_meta", "#video_format_meta"]);</script>';
 	
 	echo '</tbody>';
 	
@@ -480,21 +480,11 @@ function lf_post_link_callback() {
 					'main_meta', 
 					'post_link_format_link',
 					'' );	
-					
-	lf_create_meta_opt( 
-					'select', 
-					'Text Choice',
-					'Use actual link url as text or a custom written text', 
-					'main_meta', 
-					'post_link_format_text_style',
-					'custom',
-					array( 'link', 'custom' ),
-					array( 'Link Text', 'Custom' ) );
-					
+									
 	lf_create_meta_opt( 
 					'textarea', 
 					'Link Text',
-					'You can enter text describing your link here', 
+					'You can enter text describing your link here, if left blank the link url will be used instead', 
 					'main_meta', 
 					'post_link_format_desc',
 					'' );
@@ -514,6 +504,45 @@ function lf_post_link_callback() {
 	echo '</table>';
 	
 }
+
+function lf_post_video_callback() { 
+
+	wp_nonce_field( basename(__FILE__), 'lf-nonce-meta-field' );
+
+	echo '<table class="form-table lf-admin-post-meta-table">';
+	
+	echo '<tbody>';
+	
+	echo '<p>';
+	
+	echo 'You can upload your video and either use you tube or vimeo';
+	
+	echo '</p>';
+				
+	lf_create_meta_opt( 
+					'text', 
+					'Embed',
+					'Acepts either youtube :<br/> ( youtu.be/... ) or vimeo : <br/> ( vimeo.com/... )', 
+					'main_meta', 
+					'post_video_format_embed',
+					'' );
+					
+	lf_create_meta_opt( 
+					'radio', 
+					'Text',
+					'You can hide or enable your body text. If hidden the text written in the editor will not be shown.', 
+					'main_meta', 
+					'post_video_format_text',
+					'text',
+					array( 'text', 'notext' ),
+					array( 'Show', 'Hide' ) );
+	
+	echo '</tbody>';
+	
+	echo '</table>';
+
+}
+
 
 function lf_post_meta_boxes_save($post_id) { 
 
@@ -543,7 +572,7 @@ function lf_post_meta_boxes() {
 		'lf_post_settings_callback',
 		'post',
 		'normal',
-		'high' );
+		'low' );
 		
 	add_meta_box(
 		'image_format_meta',
@@ -573,6 +602,14 @@ function lf_post_meta_boxes() {
 		'link_format_meta',
 		__('Link Settings', 'liquidflux'),
 		'lf_post_link_callback',
+		'post',
+		'normal',
+		'high' );
+		
+	add_meta_box(
+		'video_format_meta',
+		__('Video Settings', 'liquidflux'),
+		'lf_post_video_callback',
 		'post',
 		'normal',
 		'high' );
