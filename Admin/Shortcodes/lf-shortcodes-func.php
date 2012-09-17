@@ -560,8 +560,13 @@ function lf_video_embed_shortcode( $atts, $content = null ) {
 	extract(
 	shortcode_atts(
 		array(
-			'link' => '' ), 
+			'link' => '',
+			'height' => '500px' ), 
 			$atts ) );
+
+	if ( $height == '' ) { $height = '500px'; }
+
+	if ( strpos( $height, 'px' ) === false ) { $height = $height . 'px'; }
 				
 	$yt = strpos( $link, 'youtu.be' );
 	$v  = strpos( $link, 'vimeo.com' );
@@ -570,7 +575,7 @@ function lf_video_embed_shortcode( $atts, $content = null ) {
 
 			$url = str_replace( 'http://youtu.be/', '', $link );
 			
-			return '<iframe style="display:none;"></iframe><iframe class="lf-youtube-video" src="http://www.youtube.com/embed/'.$url.'" frameborder="0" allowfullscreen></iframe>';
+			return '<iframe style="display:none;"></iframe><iframe style="height: '. $height .';" class="lf-youtube-video" src="http://www.youtube.com/embed/'.$url.'" frameborder="0" allowfullscreen></iframe>';
 		
 		}
 		
@@ -578,7 +583,7 @@ function lf_video_embed_shortcode( $atts, $content = null ) {
 
 			$url = str_replace('http://vimeo.com/', '', $link );
 			
-			return '<div class="lf-shortcode-video-wrap"><iframe src="http://player.vimeo.com/video/'. $url .'" frameborder="0" ></iframe></div>';
+			return '<div style="height: '. $height .';" class="lf-shortcode-video-wrap"><iframe style="height: '. $height .';" src="http://player.vimeo.com/video/'. $url .'" frameborder="0" ></iframe></div>';
 		
 		}
 

@@ -520,13 +520,31 @@ function lf_post_video_callback() {
 	echo '</p>';
 				
 	lf_create_meta_opt( 
-					'text', 
+					'textarea', 
 					'Embed',
-					'Acepts either youtube :<br/> ( youtu.be/... ) or vimeo : <br/> ( vimeo.com/... )', 
+					'Acepts either youtube or vimeo embeds and urls', 
 					'main_meta', 
 					'post_video_format_embed',
 					'' );
+
+	lf_create_meta_opt( 
+					'text', 
+					'Height',
+					'Set the height of your video, the default is 500px', 
+					'main_meta', 
+					'post_video_format_height',
+					'' );
 					
+	lf_create_meta_opt( 
+					'radio', 
+					'Preview',
+					'You can have your thumbnail replace the video when seen as an excerpt, or show the video instead', 
+					'main_meta', 
+					'post_video_format_preview',
+					'video',
+					array( 'video', 'thumb' ),
+					array( 'Video', 'Thumbnail' ) );
+
 	lf_create_meta_opt( 
 					'radio', 
 					'Text',

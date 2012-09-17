@@ -591,6 +591,67 @@
 }
 
 /* // // Video */
+/* the player */
+
+.jp-video {
+
+	width: 100%;
+	@include block( l );
+
+}
+
+.jp-jplayer {
+	
+	div {
+
+		height: 0px;
+		width: 0px;
+	}
+
+} 
+
+.jp-video-play {
+
+	width: 100%;
+	background: transparent;
+	cursor: pointer;
+	overflow: hidden;
+
+	.jp-video-play-icon {}
+}
+
+.jp-interface {
+
+	height: 28px;
+	width: 100%;
+	@include block( l );
+	background-color: #000;
+} 
+
+.jp-progress {}
+.jp-seek-bar {} 
+.jp-play-bar {} 
+
+.jp-controls-holder {} 
+.jp-controls {}
+.jp-play {} 
+.jp-pause {}
+.jp-stop {}
+.jp-mute {}
+.jp-unmute {}
+
+.jp-volume-bar {} 
+.jp-volume-bar-value {}
+
+.jp-no-solution {
+
+	display: none;
+
+}
+
+
+
+
 
 
 
@@ -1223,37 +1284,21 @@
 	
 	height: 0;
 	position: relative;
-	padding-bottom: 55.5%;
-	padding-top: 24px;
 	overflow: hidden;
-}
 
-.lf-shortcode-video-wrap iframe,
-.lf-shortcode-video-wrap object,
-.lf-shortcode-video-wrap embed {
-
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
+	iframe, object, embed { 
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 }
 
 .lf-youtube-video {
 
 	width: 100%;
-	height: 500px;
 	@include block( l  );
-}
-
-.lf-core-content-three .lf-youtube-video {
-
-	height: 500px;
-}
-
-.fullwidth .lf-youtube-video { 
-
-	height: 500px;
 }
 
 /* advert styles */

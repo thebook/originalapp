@@ -171,6 +171,12 @@ function liquidflux_script_reg () {
 						array( 'jquery' ), 
 						'1.3', 
 						true );
+
+	wp_register_script ('jplayer', 
+						COREURI . '/Js/jquery.jplayer.min.js', 
+						array( 'jquery' ), 
+						'2.2', 
+						true );
 						
 	wp_register_script ( 'lf-functions',
 						COREURI . '/Js/lf-functions.js',
@@ -179,6 +185,8 @@ function liquidflux_script_reg () {
 						true );
 														
 	wp_enqueue_script  ('lf-functions');
+
+	wp_enqueue_script  ('jplayer');
 																																								
 }
 
