@@ -652,17 +652,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 635, style-core.scss */
-.jp-jplayer {
-  background-color: #000;
-}
-/* line 637, style-core.scss */
+/* line 636, style-core.scss */
 .jp-jplayer div {
   height: 0px;
   width: 0px;
 }
 
-/* line 643, style-core.scss */
+/* line 642, style-core.scss */
 .jp-video-play {
   width: 100%;
   background: transparent;
@@ -670,7 +666,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   overflow: hidden;
 }
 
-/* line 653, style-core.scss */
+/* line 652, style-core.scss */
 .jp-interface {
   height: 42px;
   width: 100%;
@@ -679,27 +675,27 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: black url("Images/playerbody4.png") repeat-x 0 0;
 }
 
-/* line 663, style-core.scss */
+/* line 662, style-core.scss */
 .jp-controls {
   display: inline;
   float: left;
   height: 42px;
   width: 7%;
 }
-/* line 669, style-core.scss */
+/* line 668, style-core.scss */
 .jp-controls span {
   float: left;
   display: inline;
   line-height: 14px;
 }
 
-/* line 676, style-core.scss */
+/* line 675, style-core.scss */
 .jp-play-hold {
   z-index: 2;
   margin: 0 0 -25px;
 }
 
-/* line 681, style-core.scss */
+/* line 680, style-core.scss */
 .jp-play {
   display: block;
   width: 20%;
@@ -710,12 +706,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
   color: #fff;
 }
-/* line 684, style-core.scss */
+/* line 683, style-core.scss */
 .jp-play:before {
   content: "'";
 }
 
-/* line 689, style-core.scss */
+/* line 688, style-core.scss */
 .jp-pause {
   display: block;
   width: 20%;
@@ -726,12 +722,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
   color: #fff;
 }
-/* line 692, style-core.scss */
+/* line 691, style-core.scss */
 .jp-pause:before {
   content: "*";
 }
 
-/* line 697, style-core.scss */
+/* line 696, style-core.scss */
 .jp-progress {
   width: 71%;
   height: 14px;
@@ -742,7 +738,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   overflow: hidden;
   cursor: pointer;
 }
-/* line 708, style-core.scss */
+/* line 707, style-core.scss */
 .jp-progress .jp-seek-bar {
   height: 14px;
   position: relative;
@@ -755,7 +751,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -o-border-radius: 25px / 25px;
   border-radius: 25px / 25px;
 }
-/* line 716, style-core.scss */
+/* line 715, style-core.scss */
 .jp-progress .jp-seek-bar .jp-play-bar {
   height: 14px;
   display: block;
@@ -767,7 +763,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border-radius: 25px / 25px;
 }
 
-/* line 725, style-core.scss */
+/* line 724, style-core.scss */
 .jp-progress-shadow {
   width: 100%;
   height: 14px;
@@ -786,7 +782,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   z-index: 2;
 }
 
-/* line 738, style-core.scss */
+/* line 737, style-core.scss */
 .jp-mute {
   display: inline;
   float: left;
@@ -798,12 +794,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
   color: #fff;
 }
-/* line 741, style-core.scss */
+/* line 740, style-core.scss */
 .jp-mute:before {
   content: "+";
 }
 
-/* line 746, style-core.scss */
+/* line 745, style-core.scss */
 .jp-unmute {
   display: inline;
   float: left;
@@ -815,12 +811,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
   color: #fff;
 }
-/* line 749, style-core.scss */
+/* line 748, style-core.scss */
 .jp-unmute:before {
   content: ",";
 }
 
-/* line 754, style-core.scss */
+/* line 753, style-core.scss */
 .jp-volume-bar {
   width: 13%;
   height: 14px;
@@ -836,7 +832,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border-radius: 25px / 25px;
 }
 
-/* line 766, style-core.scss */
+/* line 765, style-core.scss */
 .jp-volume-bar-value {
   height: 14px;
   background-color: #fff;
@@ -848,25 +844,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border-radius: 25px / 25px;
 }
 
-/* line 774, style-core.scss */
+/* line 773, style-core.scss */
 .jp-no-solution {
   display: none;
 }
 
 /* author box */
-/* line 786, style-core.scss */
+/* line 785, style-core.scss */
 .lf-article-author-wrap {
   margin: 28px 0 12px;
 }
 
-/* line 792, style-core.scss */
+/* line 791, style-core.scss */
 .lf-article-author-inner-wrap-box {
   width: 50%;
   float: right;
   display: block;
 }
 
-/* line 798, style-core.scss */
+/* line 797, style-core.scss */
 .lf-article-author-img-wrap {
   height: auto;
   width: 10.5%;
@@ -875,13 +871,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   padding: 1%;
   margin: 6px 2% 0 0;
 }
-/* line 806, style-core.scss */
+/* line 805, style-core.scss */
 .lf-article-author-img-wrap img {
   width: 100%;
   height: auto;
 }
 
-/* line 812, style-core.scss */
+/* line 811, style-core.scss */
 .lf-article-author-text-wrap {
   width: 75.5%;
   float: right;
@@ -891,19 +887,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-image: url("http://localhost:36792/wp-content/themes/WhiteWhale/Core/Images/textures/striped_lens.png");
 }
 
-/* line 821, style-core.scss */
+/* line 820, style-core.scss */
 .lf-article-author-box-text {
   width: 100%;
   float: right;
 }
 
-/* line 827, style-core.scss */
+/* line 826, style-core.scss */
 .lf-article-author-box-h3 {
   margin: 6px 0;
 }
 
 /* uttility, should be added to each style */
-/* line 839, style-core.scss */
+/* line 838, style-core.scss */
 .lf-core-content-post-format-head-wrap,
 .lf-article-author-wrap,
 .lf-comments-wrap,
@@ -915,7 +911,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   float: left;
 }
 
-/* line 847, style-core.scss */
+/* line 846, style-core.scss */
 .lf-shortcode-img-wrap img,
 .lf-header-background-image,
 .lf-slider-slide-cont img {
@@ -925,7 +921,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /* prob out of place, each feature should be moved to specific */
 /* Article Widget */
-/* line 855, style-core.scss */
+/* line 854, style-core.scss */
 .lf-article-widget-wrap {
   width: 43%;
   float: right;
@@ -935,7 +931,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #fff;
 }
 
-/* line 864, style-core.scss */
+/* line 863, style-core.scss */
 .lf-article-widget-name {
   font-size: 12px;
   line-height: 12px;
@@ -944,20 +940,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /* navigation */
 /* // Pagnation // */
-/* line 875, style-core.scss */
+/* line 874, style-core.scss */
 .lf-pagnation {
   margin: 0 0 12px;
   float: left;
   display: block;
 }
 
-/* line 881, style-core.scss */
+/* line 880, style-core.scss */
 .lf-pagnation-nav {
   float: left;
   display: inline-block;
 }
 
-/* line 887, style-core.scss */
+/* line 886, style-core.scss */
 .lf-pagnation-num,
 .lf-pagnation-num-current {
   padding: 6px;
@@ -965,7 +961,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* // navigation bar // */
-/* line 894, style-core.scss */
+/* line 893, style-core.scss */
 .lf-main-navigation-style {
   width: 100%;
   float: left;
@@ -973,21 +969,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   position: relative;
   z-index: 5;
 }
-/* line 901, style-core.scss */
+/* line 900, style-core.scss */
 .lf-main-navigation-style ul {
   list-style-type: none;
   padding: 0 12px;
 }
-/* line 906, style-core.scss */
+/* line 905, style-core.scss */
 .lf-main-navigation-style ol {
   list-style-type: none;
   padding: 0 12px;
 }
-/* line 911, style-core.scss */
+/* line 910, style-core.scss */
 .lf-main-navigation-style li {
   display: inline-block;
 }
-/* line 915, style-core.scss */
+/* line 914, style-core.scss */
 .lf-main-navigation-style a {
   display: inline-block;
   font-size: 0.75rem;
@@ -998,7 +994,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -o-transition: all 400ms;
   transition: all 400ms false;
 }
-/* line 922, style-core.scss */
+/* line 921, style-core.scss */
 .lf-main-navigation-style a:hover {
   -webkit-transition: all 400ms;
   -moz-transition: all 400ms;
@@ -1007,38 +1003,38 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   transition: all 400ms false;
   text-decoration: none;
 }
-/* line 927, style-core.scss */
+/* line 926, style-core.scss */
 .lf-main-navigation-style .children {
   position: absolute;
   z-index: 20;
   display: none;
 }
-/* line 932, style-core.scss */
+/* line 931, style-core.scss */
 .lf-main-navigation-style .children ul {
   width: 144px;
   display: none;
 }
-/* line 937, style-core.scss */
+/* line 936, style-core.scss */
 .lf-main-navigation-style .children li a {
   width: 120px;
 }
-/* line 943, style-core.scss */
+/* line 942, style-core.scss */
 .lf-main-navigation-style .sub-menu {
   position: absolute;
   z-index: 20;
   display: none;
 }
-/* line 948, style-core.scss */
+/* line 947, style-core.scss */
 .lf-main-navigation-style .sub-menu ul {
   width: 144px;
   display: none;
 }
-/* line 953, style-core.scss */
+/* line 952, style-core.scss */
 .lf-main-navigation-style .sub-menu li a {
   width: 120px;
 }
 
-/* line 962, style-core.scss */
+/* line 961, style-core.scss */
 .lf-main-navigation-style ul.sub-menu ul.sub-menu,
 .lf-main-navigation-style ul.sub-menu,
 .lf-main-navigation-style ul.children,
@@ -1047,19 +1043,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: none;
 }
 
-/* line 968, style-core.scss */
+/* line 967, style-core.scss */
 .lf-drop-down-hook {
   z-index: 7;
 }
 
-/* line 973, style-core.scss */
+/* line 972, style-core.scss */
 .longnav-dropdown {
   width: 90%;
   margin: 0 5%;
 }
 
 /* footer */
-/* line 982, style-core.scss */
+/* line 981, style-core.scss */
 .lf-footer-shadow {
   height: 23px;
   width: 100%;
@@ -1071,25 +1067,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: url("Images/footershadow.png") no-repeat scroll center center transparent;
 }
 
-/* line 993, style-core.scss */
+/* line 992, style-core.scss */
 .lf-footer {
   width: 95%;
   float: left;
   display: block;
   padding: 0 2.5%;
 }
-/* line 999, style-core.scss */
+/* line 998, style-core.scss */
 .lf-footer .lf-button {
   margin: 0 6px 0 0;
 }
 
-/* line 1005, style-core.scss */
+/* line 1004, style-core.scss */
 .lf-footer-wrap {
   float: left;
   display: block;
 }
 
-/* line 1010, style-core.scss */
+/* line 1009, style-core.scss */
 .lf-footer-widget {
   width: 90%;
   float: left;
@@ -1098,33 +1094,33 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   padding: 12px 5%;
 }
 
-/* line 1018, style-core.scss */
+/* line 1017, style-core.scss */
 .lf-footer-widget-h3 {
   margin: 12px 0;
 }
 
-/* line 1023, style-core.scss */
+/* line 1022, style-core.scss */
 .lf-footer-widget-one {
   width: 25%;
   float: left;
   display: inline-block;
 }
 
-/* line 1029, style-core.scss */
+/* line 1028, style-core.scss */
 .lf-footer-widget-two {
   width: 50%;
   float: left;
   display: inline-block;
 }
 
-/* line 1035, style-core.scss */
+/* line 1034, style-core.scss */
 .lf-footer-widget-three {
   width: 33.3%;
   float: left;
   display: inline-block;
 }
 
-/* line 1041, style-core.scss */
+/* line 1040, style-core.scss */
 .lf-footer-widget-four {
   width: 100%;
   float: left;
@@ -1132,13 +1128,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* comments */
-/* line 1049, style-core.scss */
+/* line 1048, style-core.scss */
 .lf-comments-wrap {
   width: 98%;
   padding: 0 1%;
 }
 
-/* line 1055, style-core.scss */
+/* line 1054, style-core.scss */
 .lf-comments-header-wrap {
   width: 100%;
   float: left;
@@ -1146,24 +1142,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin: 30px 0 8px;
 }
 
-/* line 1062, style-core.scss */
+/* line 1061, style-core.scss */
 .lf-comment-header-counter {
   margin: 6px 0;
 }
 
-/* line 1067, style-core.scss */
+/* line 1066, style-core.scss */
 .lf-comment-header-disclaimer {
   margin: 0 6px;
 }
 
-/* line 1072, style-core.scss */
+/* line 1071, style-core.scss */
 .lf-comment-article-wrap {
   width: 100%;
   float: right;
   display: block;
   margin: 12px 0;
 }
-/* line 1078, style-core.scss */
+/* line 1077, style-core.scss */
 .lf-comment-article-wrap .children {
   width: 92%;
   float: left;
@@ -1172,54 +1168,54 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin: 6px 0 0 8%;
 }
 
-/* line 1087, style-core.scss */
+/* line 1086, style-core.scss */
 .lf-comment-article-inner {
   width: 100%;
   padding: 24px 0;
   background-color: #fff;
 }
 
-/* line 1094, style-core.scss */
+/* line 1093, style-core.scss */
 .lf-comment-article-inner-wrap {
   float: left;
   display: block;
   padding: 0 22px;
 }
 
-/* line 1100, style-core.scss */
+/* line 1099, style-core.scss */
 .lf-comment-article-avatar-wrap {
   margin: 0 18px 0 0;
 }
 
-/* line 1105, style-core.scss */
+/* line 1104, style-core.scss */
 .lf-comment-article-text {
   float: left;
   display: inline-block;
 }
 
-/* line 1110, style-core.scss */
+/* line 1109, style-core.scss */
 .lf-comment-article-comment {
   clear: both;
   margin: 8px 0 0;
 }
-/* line 1115, style-core.scss */
+/* line 1114, style-core.scss */
 .lf-comment-article-comment p {
   margin: 0 0 5px;
 }
 
-/* line 1122, style-core.scss */
+/* line 1121, style-core.scss */
 .lf-comment-article-time-meta,
 .lf-comment-links-wrap,
 .lf-comment-article-comment {
   float: left;
 }
 
-/* line 1127, style-core.scss */
+/* line 1126, style-core.scss */
 .lf-comment-links-wrap {
   margin: 0 0 0 4px;
 }
 
-/* line 1132, style-core.scss */
+/* line 1131, style-core.scss */
 .lf-comment-form-wrap {
   width: 95%;
   float: left;
@@ -1227,13 +1223,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin: 36px 0 0;
   padding: 0 2.5% 1.5%;
 }
-/* line 1139, style-core.scss */
+/* line 1138, style-core.scss */
 .lf-comment-form-wrap form {
   width: 95%;
   margin: 12px 0 0;
 }
 
-/* line 1145, style-core.scss */
+/* line 1144, style-core.scss */
 .lf-comment-form-input-text {
   width: 100%;
   color: #444444;
@@ -1245,7 +1241,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-/* line 1155, style-core.scss */
+/* line 1154, style-core.scss */
 .lf-comment-form-textarea {
   width: 100%;
   margin: 0;
@@ -1253,7 +1249,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border: medium none;
 }
 
-/* line 1163, style-core.scss */
+/* line 1162, style-core.scss */
 .lf-comment-form-wrap input[type="submit"] {
   float: left;
   display: block;
@@ -1270,7 +1266,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* pages - will need to be altered */
-/* line 1176, style-core.scss */
+/* line 1175, style-core.scss */
 .lf-core-content-three-page-left,
 .lf-core-content-three-page-right {
   display: inline-block;
@@ -1278,7 +1274,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 654px;
 }
 
-/* line 1184, style-core.scss */
+/* line 1183, style-core.scss */
 .lf-core-content-two-page-left,
 .lf-core-content-two-page-right {
   width: 420px;
@@ -1286,7 +1282,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   float: left;
 }
 
-/* line 1192, style-core.scss */
+/* line 1191, style-core.scss */
 .lf-core-content-one-page-left,
 .lf-core-content-one-page-right {
   width: 210px;
@@ -1295,7 +1291,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   padding: 0 12px 0 12px;
 }
 
-/* line 1202, style-core.scss */
+/* line 1201, style-core.scss */
 .lf-core-content-three-page-left,
 .lf-core-content-two-page-left {
   border-left-style: solid;
@@ -1304,7 +1300,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   padding: 0 12px 0 24px;
 }
 
-/* line 1212, style-core.scss */
+/* line 1211, style-core.scss */
 .lf-core-content-three-page-right,
 .lf-core-content-two-page-right {
   border-right-style: solid;
@@ -1314,7 +1310,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* // Featured Image */
-/* line 1223, style-core.scss */
+/* line 1222, style-core.scss */
 .lf-featured-image {
   width: 240px;
   float: left;
@@ -1323,13 +1319,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin: 15px 30px 27px 0;
   background-color: #fff;
 }
-/* line 1231, style-core.scss */
+/* line 1230, style-core.scss */
 .lf-featured-image a {
   width: 100%;
   float: left;
   display: block;
 }
-/* line 1236, style-core.scss */
+/* line 1235, style-core.scss */
 .lf-featured-image img {
   height: auto;
   width: 100%;
@@ -1337,7 +1333,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* portfolio and featured image lightbox - all to be adjusted */
-/* line 1245, style-core.scss */
+/* line 1244, style-core.scss */
 .lf-featured-image-opt {
   width: 100%;
   display: none;
@@ -1351,12 +1347,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   opacity: 0;
   z-index: 3;
 }
-/* line 1258, style-core.scss */
+/* line 1257, style-core.scss */
 .lf-featured-image-opt:hover {
   opacity: 1;
 }
 
-/* line 1264, style-core.scss */
+/* line 1263, style-core.scss */
 .lf-featured-image-opt-lightbox {
   width: 100%;
   float: left;
@@ -1369,7 +1365,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   z-index: 3;
 }
 
-/* line 1276, style-core.scss */
+/* line 1275, style-core.scss */
 .lf-featured-image-opt-square-small {
   height: 18px;
   width: 18px;
@@ -1385,7 +1381,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border-radius: 50px / 50px;
 }
 
-/* line 1288, style-core.scss */
+/* line 1287, style-core.scss */
 .lf-featured-image-opt-square-big {
   height: 30px;
   width: 30px;
@@ -1401,7 +1397,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border-radius: 50px / 50px;
 }
 
-/* line 1300, style-core.scss */
+/* line 1299, style-core.scss */
 .lf-featured-image-lightboxed {
   height: 85%;
   width: 85%;
@@ -1414,7 +1410,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-align: center;
   z-index: 25;
 }
-/* line 1312, style-core.scss */
+/* line 1311, style-core.scss */
 .lf-featured-image-lightboxed img {
   height: 100%;
   width: auto;
@@ -1426,14 +1422,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-/* line 1322, style-core.scss */
+/* line 1321, style-core.scss */
 .lf-portfolio-piece-wrap {
   width: 100%;
   float: left;
   display: block;
 }
 
-/* line 1330, style-core.scss */
+/* line 1329, style-core.scss */
 .lf-portfolio-dimension-quarter,
 .lf-portfolio-dimension-half,
 .lf-portfolio-dimension-third {
@@ -1442,53 +1438,53 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   min-height: 24px;
 }
 
-/* line 1336, style-core.scss */
+/* line 1335, style-core.scss */
 .lf-portfolio-dimension-quarter {
   width: 22%;
   padding: 0 1.5%;
 }
 
-/* line 1342, style-core.scss */
+/* line 1341, style-core.scss */
 .lf-portfolio-dimension-half {
   width: 47%;
   padding: 0 1.5%;
 }
 
-/* line 1348, style-core.scss */
+/* line 1347, style-core.scss */
 .lf-portfolio-dimension-third {
   width: 30%;
   padding: 0 1.65%;
 }
 
-/* line 1354, style-core.scss */
+/* line 1353, style-core.scss */
 .lf-portfolio-posttitle {
   margin: 24px 0 12px;
 }
 
-/* line 1359, style-core.scss */
+/* line 1358, style-core.scss */
 .lf-portfolio-posttitle a:hover {
   text-decoration: none;
 }
-/* line 1362, style-core.scss */
+/* line 1361, style-core.scss */
 .lf-portfolio-posttitle a:hover border-bottom {
   width: 4px;
   style: solid;
 }
 
-/* line 1368, style-core.scss */
+/* line 1367, style-core.scss */
 .lf-portfolio-desc {
   width: 100%;
   padding: 24px 0;
 }
 
-/* line 1374, style-core.scss */
+/* line 1373, style-core.scss */
 .lf-portfolio-filter-bar {
   width: 95%;
   margin: 0 0 24px;
   padding: 0 2.5%;
 }
 
-/* line 1382, style-core.scss */
+/* line 1381, style-core.scss */
 .lf-portfolio-filter-text,
 .lf-portfolio-filter-text-info {
   display: inline-block;
@@ -1497,7 +1493,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   padding: 6px 12px;
 }
 
-/* line 1393, style-core.scss */
+/* line 1392, style-core.scss */
 .lf-portfolio-filter-text,
 .lf-portfolio-filter-text-info,
 .lf-portfolio-filter-text:hover,
@@ -1509,24 +1505,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   transition: all 700ms false;
 }
 
-/* line 1398, style-core.scss */
+/* line 1397, style-core.scss */
 .lf-portfolio-filter-text-info {
   font-style: italic;
 }
 
-/* line 1404, style-core.scss */
+/* line 1403, style-core.scss */
 .lf-portfolio-filter-hidden {
   display: none;
 }
 
 /* shortcodes - only video styles kept from original */
-/* line 1410, style-core.scss */
+/* line 1409, style-core.scss */
 .lf-shortcode-video-wrap {
   height: 0;
   position: relative;
   overflow: hidden;
 }
-/* line 1416, style-core.scss */
+/* line 1415, style-core.scss */
 .lf-shortcode-video-wrap iframe, .lf-shortcode-video-wrap object, .lf-shortcode-video-wrap embed {
   height: 100%;
   width: 100%;
@@ -1535,7 +1531,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   left: 0;
 }
 
-/* line 1425, style-core.scss */
+/* line 1424, style-core.scss */
 .lf-youtube-video {
   width: 100%;
   float: left;
@@ -1543,13 +1539,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* advert styles */
-/* line 1432, style-core.scss */
+/* line 1431, style-core.scss */
 .lf-resp-aside-wrap {
   float: left;
   display: inline-block;
 }
 
-/* line 1437, style-core.scss */
+/* line 1436, style-core.scss */
 .lf-resp-widget-area {
   width: 85.5%;
   float: left;
@@ -1557,14 +1553,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   padding: 0 5.25% 0 9.25%;
 }
 
-/* line 1444, style-core.scss */
+/* line 1443, style-core.scss */
 .lf-test-ad {
   height: 250px;
   width: 100%;
   background-color: #000;
 }
 
-/* line 1451, style-core.scss */
+/* line 1450, style-core.scss */
 .lf-ad-widget-dummy-ad {
   width: 70%;
   height: 10px;
@@ -1573,7 +1569,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #ff3f3f;
 }
 
-/* line 1460, style-core.scss */
+/* line 1459, style-core.scss */
 .lf-ad-widget-dummy-ad-inner {
   width: 100%;
   height: 10px;
@@ -1581,7 +1577,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #ff3f4c;
 }
 
-/* line 1468, style-core.scss */
+/* line 1467, style-core.scss */
 .lf-ad-widget-link-ad {
   width: 100%;
   height: 24px;
@@ -1589,14 +1585,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #ff3f4c;
 }
 
-/* line 1476, style-core.scss */
+/* line 1475, style-core.scss */
 .lf-header-ad-wrap {
   display: block;
   margin: 24px 0;
   z-index: 5;
 }
 
-/* line 1483, style-core.scss */
+/* line 1482, style-core.scss */
 .lf-header-leaderboard-ad {
   height: 90px;
   width: 728px;
@@ -1605,7 +1601,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #000;
 }
 
-/* line 1492, style-core.scss */
+/* line 1491, style-core.scss */
 .lf-header-banner-ad {
   height: 60px;
   width: 468px;

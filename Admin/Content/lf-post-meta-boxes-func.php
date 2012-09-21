@@ -3,6 +3,8 @@
 function lf_create_meta_opt( $type ='text', $realname = null, $desc = null, $optarray = null, $name = null, $default = null, $options = null, $optvals = null, $hider = null ) { 
 	
 	global $post;
+
+/* sda sadasd */
 	
 	$meta = get_post_meta( $post->ID, $optarray, true );
 			
@@ -38,7 +40,7 @@ function lf_create_meta_opt( $type ='text', $realname = null, $desc = null, $opt
 			
 			echo '<select id="lf-post-meta-'. $name .'" class="lf-admin-post-meta-td-select" name="main_meta['.$name.']">';
 			
-			foreach ( $options  as $index => $value ) { 
+			foreach ( $options as $index => $value ) { 
 			
 				echo '<option value="'. $value .'" '. selected( $the_opt, $value, false ) .'>';
 				
@@ -99,7 +101,8 @@ function lf_create_meta_opt( $type ='text', $realname = null, $desc = null, $opt
 			echo '<input id="lf-post-meta-'. $name .'-button" class="button lf-admin-post-meta-td-button" type="button" value="Upload Image" />';
 		
 			echo '</td>';
-		
+
+
 		break;
 		
 		case 'gallery' : 
@@ -520,6 +523,22 @@ function lf_post_video_callback() {
 	echo '</p>';
 				
 	lf_create_meta_opt( 
+					'text', 
+					'OGV file url',
+					'The url of your .ogv file', 
+					'main_meta', 
+					'post_video_format_ogv_url',
+					'' );
+
+	lf_create_meta_opt( 
+					'text', 
+					'M4V file url',
+					'The url of your .m4v file', 
+					'main_meta', 
+					'post_video_format_m4v_url',
+					'' );
+
+	lf_create_meta_opt( 
 					'textarea', 
 					'Embed',
 					'Acepts either youtube or vimeo embeds and urls', 
@@ -529,8 +548,8 @@ function lf_post_video_callback() {
 
 	lf_create_meta_opt( 
 					'text', 
-					'Height',
-					'Set the height of your video, the default is 500px', 
+					'Embed Height',
+					'Height of your embeded video, the default is 500px', 
 					'main_meta', 
 					'post_video_format_height',
 					'' );

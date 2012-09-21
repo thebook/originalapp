@@ -6,25 +6,44 @@ $meta = get_post_meta( $post->ID, 'main_meta', true );
 
 <article id="post-<?php the_ID(); ?>" class="lf-core-content-<?php lf_content_state_class_echo(); ?>-article">
 
-	<?php 
+<?php 
 
 		$embed = $meta['post_video_format_embed'];
 		$h 	   = $meta['post_video_format_height'];
 		
 		if ( $embed !== '' ) { 
-
 			lf_video_format_vid( $embed, $h );
-
 		}
 
-		else { ?>
-	 <script> 
-	
-	$(document).ready(function(){
+		else { 
+		
+?>
+
+<script> 	
+$(document).ready(function(){
 
 	$("#jquery_jplayer_1").jPlayer({
 		ready: function () {
 			$(this).jPlayer("setMedia", {
+
+			<?php 
+
+				$ogv = $meta['post_video_format_ogv_url'];
+				$m4v = $meta['post_video_format_m4v_url']
+
+				if ( $ogv != '' ) {
+
+					echo "ogv: '$ogv',";
+
+				} 
+
+				if ( $m4v != '' ) {
+
+					echo "m4v: '$m4v',";
+
+				}
+
+			?>
 				m4v: "http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v",
 				ogv: "http://www.jplayer.org/video/ogv/Big_Buck_Bunny_Trailer.ogv",
 				webmv: "http://www.jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm",
@@ -33,13 +52,17 @@ $meta = get_post_meta( $post->ID, 'main_meta', true );
 			});
 		},
 		swfPath: "js",
-		supplied: "webmv, ogv, m4v"
-		
+		supplied: "ogv, m4v",
+		size: { 
+			width : "100%",
+			height: "auto",
+			cssClass: "jp-video"		
+		}	
 	});
-
 });
-	</script> 
-	
+</script> 
+
+
 	<div id="jp_container_1" class="jp-video ">
 			<div class="jp-type-single">
 				<div id="jquery_jplayer_1" class="jp-jplayer"></div>
@@ -50,8 +73,7 @@ $meta = get_post_meta( $post->ID, 'main_meta', true );
 						
 						<div class="jp-controls">
 							<span class="jp-play-hold"><a href="javascript:;" class="jp-play" tabindex="1"></a></span>
-							<span class="jp-pause-hold"><a href="javascript:;" class="jp-pause" tabindex="1"></a></span>								
-															
+							<span class="jp-pause-hold"><a href="javascript:;" class="jp-pause" tabindex="1"></a></span>																
 						</div>
 						
 						<div class="jp-progress">
