@@ -4,8 +4,6 @@ function lf_create_meta_opt( $type ='text', $realname = null, $desc = null, $opt
 	
 	global $post;
 
-/* sda sadasd */
-	
 	$meta = get_post_meta( $post->ID, $optarray, true );
 			
 	$the_opt = ( isset( $meta[$name] )? $meta[$name] : $default );
@@ -309,7 +307,7 @@ function lf_post_settings_callback() {
 				array( 'show', 'hide' ),
 				array( 'Show', 'Hide' ) ); 
 			
-	echo '<script>parts.radio_reveal("#post-formats-select", ["gallery", "image", "quote", "link", "video" ], ["#gallery_format_meta", "#image_format_meta", "#quote_format_meta", "#link_format_meta", "#video_format_meta"]);</script>';
+	echo '<script>parts.radio_reveal("#post-formats-select", ["gallery", "image", "quote", "link", "video", "audio" ], ["#gallery_format_meta", "#image_format_meta", "#quote_format_meta", "#link_format_meta", "#video_format_meta", "#audio_format_meta"]);</script>';
 	
 	echo '</tbody>';
 	
@@ -518,7 +516,7 @@ function lf_post_video_callback() {
 	
 	echo '<p>';
 	
-	echo 'You can upload your video and either use you tube or vimeo';
+	echo 'You can upload your own video and either use you tube or vimeo';
 	
 	echo '</p>';
 				
@@ -567,6 +565,59 @@ function lf_post_video_callback() {
 					'You can hide or enable your body text. If hidden the text written in the editor will not be shown.', 
 					'main_meta', 
 					'post_video_format_text',
+					'text',
+					array( 'text', 'notext' ),
+					array( 'Show', 'Hide' ) );
+	
+	echo '</tbody>';
+	
+	echo '</table>';
+
+}
+
+function lf_post_audio_callback() { 
+
+	wp_nonce_field( basename(__FILE__), 'lf-nonce-meta-field' );
+
+	echo '<table class="form-table lf-admin-post-meta-table">';
+	
+	echo '<tbody>';
+	
+	echo '<p>';
+	
+	echo 'Upload your own audio';
+	
+	echo '</p>';
+				
+	lf_create_meta_opt( 
+					'text', 
+					'OGA file url',
+					'The url of your .oga file', 
+					'main_meta', 
+					'post_audio_format_oga_url',
+					'' );
+
+	lf_create_meta_opt( 
+					'text', 
+					'MP3 file url',
+					'The url of your .mp3 file', 
+					'main_meta', 
+					'post_audio_format_mp3_url',
+					'' );
+					
+	lf_create_meta_opt( 
+					'upload', 
+					'Poster',
+					'Upload the poster for your audio file', 
+					'main_meta', 
+					'post_audio_format_poster_upload' );
+								
+	lf_create_meta_opt( 
+					'radio', 
+					'Text',
+					'You can hide or enable your body text. If hidden the text written in the editor will not be shown.', 
+					'main_meta', 
+					'post_audio_format_text',
 					'text',
 					array( 'text', 'notext' ),
 					array( 'Show', 'Hide' ) );
@@ -644,6 +695,14 @@ function lf_post_meta_boxes() {
 		'video_format_meta',
 		__('Video Settings', 'liquidflux'),
 		'lf_post_video_callback',
+		'post',
+		'normal',
+		'high' );
+		
+	add_meta_box(
+		'audio_format_meta',
+		__('Audio Settings', 'liquidflux'),
+		'lf_post_audio_callback',
 		'post',
 		'normal',
 		'high' );

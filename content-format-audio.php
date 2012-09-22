@@ -1,34 +1,19 @@
 <?php
 
 $meta   = get_post_meta( $post->ID, 'main_meta', true );
-$embed  = $meta['post_video_format_embed'];
-$h 	    = $meta['post_video_format_height'];
-$ogv    = $meta['post_video_format_ogv_url'];
-$m4v    = $meta['post_video_format_m4v_url'];
-$p      = $meta['post_video_format_poster_upload'];
+$jp     = new jplayer;
+$oga    = $meta['post_audio_format_oga_url'];
+$mp3    = $meta['post_audio_format_mp3_url'];
+$p      = $meta['post_audio_format_poster_upload'];
 $poster = ( isset( $p )) ? array( 'poster' => $p ) : '' ;
 
 ?>
 
 <article id="post-<?php the_ID(); ?>" class="lf-core-content-<?php lf_content_state_class_echo(); ?>-article">
 
-<?php 
-
-	if ( $embed !== '' ) { 
-		lf_video_format_embed( $embed, $h );
-	}
-
-	elseif ( $ogv !== '' or $m4v !== '' ) {  	
-	
-		$jp = new jplayer;
-	
-		$jp->play( 'video', 'jp-video', $post->ID, array( 'ogv' => $ogv, 'm4v' => $m4v ), $poster );	
+	<?php $jp->play( 'audio', 'jp-audio', $post->ID, array( 'oga' => $oga, 'mp3' => $mp3 ), $poster ); ?>
 		
-	} 
-	
-?>
-		
-	<?php if ( $meta['post_video_format_text'] == 'text' )  : ?>
+	<?php if ( $meta['post_audio_format_text'] == 'text' )  : ?>
 	
 	<div class="lf-post-img-text-wrap">
 		
