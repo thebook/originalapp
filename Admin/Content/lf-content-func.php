@@ -187,44 +187,6 @@ function lf_core_sidebar_generate( $type ) {
 
 }
 
-function lf_video_format_vid( $video, $h ) { 
-
-	if ( $h == '' ) { $h = '500px'; }
-
-	if ( strpos( $h, 'px' ) === false ) { $h = $h . 'px'; }
-
-			if ( $video != strip_tags( $video ) ) { 
-
-				if ( strpos( $video, 'vimeo' ) !== false ) { 
-
-					$video = explode( '<p>', $video );
-
-					echo '<div style="height: '. $h .';" class="lf-shortcode-video-wrap">';
-
-					echo stripslashes( htmlspecialchars_decode( $video[0] ) );
-
-					echo '</div>';
-
-				}
-
-				elseif ( strpos( $video, 'youtube' ) !== false ) { 
-
-					$video = str_replace( '<iframe', '<iframe style="height: '. $h .';" class="lf-youtube-video"', $video );
-
-					echo stripslashes( htmlspecialchars_decode( $video ) );
-
-				}
-
-			}
-
-			else { 
-
-				echo do_shortcode('[embed link="'. $video .'" height="'. $h .'"]'); 
-
-			}
-
-}
-
 function lf_content_section_callback() { 
 
 	echo '<div class="form-table">';

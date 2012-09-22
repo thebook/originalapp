@@ -537,7 +537,14 @@ function lf_post_video_callback() {
 					'main_meta', 
 					'post_video_format_m4v_url',
 					'' );
-
+					
+	lf_create_meta_opt( 
+					'upload', 
+					'Poster',
+					'Upload the poster for your hosted video', 
+					'main_meta', 
+					'post_video_format_poster_upload' );
+								
 	lf_create_meta_opt( 
 					'textarea', 
 					'Embed',
@@ -553,17 +560,7 @@ function lf_post_video_callback() {
 					'main_meta', 
 					'post_video_format_height',
 					'' );
-					
-	lf_create_meta_opt( 
-					'radio', 
-					'Preview',
-					'You can have your thumbnail replace the video when seen as an excerpt, or show the video instead', 
-					'main_meta', 
-					'post_video_format_preview',
-					'video',
-					array( 'video', 'thumb' ),
-					array( 'Video', 'Thumbnail' ) );
-
+				
 	lf_create_meta_opt( 
 					'radio', 
 					'Text',

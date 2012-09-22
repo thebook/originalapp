@@ -593,7 +593,7 @@
 /* // // Video */
 /* the player */
 
-$play_w : 7%; 
+$play_w   : 7%; 
 $prog_w : 71%;
 $mute_w : 13%;
 $marg_v : 14px;
@@ -633,9 +633,14 @@ $marg_h : 1.5%;
 }
 
 .jp-jplayer {	
+
 	div {
 		height: 0px;
 		width: 0px;
+	}
+	
+	img, video { 
+		float: left;
 	}
 } 
 

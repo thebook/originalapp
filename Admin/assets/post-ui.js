@@ -53,7 +53,7 @@
 						
 						theid = input.attr('id');
 						
-						tb_show( '', 'media-upload.php?type=image&amp;TB_iframe=true' );
+						tb_show( '', 'media-upload.php?post_id=0&amp;type=image&amp;TB_iframe=true' );
 							
 						dsend = window.send_to_editor;
 							
