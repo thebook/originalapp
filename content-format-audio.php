@@ -42,3 +42,6 @@ $poster = ( isset( $p )) ? array( 'poster' => $p ) : '' ;
 	
 	
 </article>
+
+
+

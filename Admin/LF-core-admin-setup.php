@@ -310,6 +310,8 @@ include( ADMINPATH . '/Header/lf-header-func.php' );
 
 include( ADMINPATH . '/Navigation/lf-navigation-func.php' ); 
 
+include( ADMINPATH . '/Content/meta.php' ); 
+
 //include( ADMINPATH . '/Slider/lf-slider-func.php' ); // post error
 
 //include( ADMINPATH . '/Page_templates/lf-page-templates-func.php' ); // post error

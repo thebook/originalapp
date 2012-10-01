@@ -1,11 +1,21 @@
 <?php 
+/*
+function lf_create_meta_opt( 
 
-function lf_create_meta_opt( $type ='text', $realname = null, $desc = null, $optarray = null, $name = null, $default = null, $options = null, $optvals = null, $hider = null ) { 
+			$type ='text', 
+			$realname = null, 
+			$desc = null, 
+			$optarray = null, 
+			$name = null, 
+			$default = null, 
+			$options = null, 
+			$optvals = null, 
+			$hider = null ) { 
 	
 	global $post;
 
 	$meta = get_post_meta( $post->ID, $optarray, true );
-			
+		
 	$the_opt = ( isset( $meta[$name] )? $meta[$name] : $default );
 		
 	echo "<tr id='$name-hook'>";
@@ -25,10 +35,12 @@ function lf_create_meta_opt( $type ='text', $realname = null, $desc = null, $opt
 		echo $desc;
 			
 		echo '</span>';
-			
+
 		echo '</label>';
 		
 		echo '</th>';
+
+		
 	
 	switch ( $type ) {
 		
@@ -166,6 +178,8 @@ function lf_create_meta_opt( $type ='text', $realname = null, $desc = null, $opt
 
 function lf_post_settings_callback() {
 
+	
+	
 	global $post;
 	
 	$main_meta = get_post_meta( $post->ID, 'main_meta', true );
@@ -228,8 +242,8 @@ function lf_post_settings_callback() {
 		
 		echo '</td>';
 		
-		echo '</tr>';
-	
+		echo '</tr>'; 
+		
 	// Thumbnails
 	lf_create_meta_opt( 
 				'radio', 
@@ -506,6 +520,8 @@ function lf_post_link_callback() {
 	
 }
 
+
+
 function lf_post_video_callback() { 
 
 	wp_nonce_field( basename(__FILE__), 'lf-nonce-meta-field' );
@@ -568,7 +584,7 @@ function lf_post_video_callback() {
 					'text',
 					array( 'text', 'notext' ),
 					array( 'Show', 'Hide' ) );
-	
+					
 	echo '</tbody>';
 	
 	echo '</table>';
@@ -620,13 +636,65 @@ function lf_post_audio_callback() {
 					'post_audio_format_text',
 					'text',
 					array( 'text', 'notext' ),
-					array( 'Show', 'Hide' ) );
-	
+					array( 'Show', 'Hide' ) );		
+
 	echo '</tbody>';
 	
 	echo '</table>';
 
 }
+
+
+function lf_test_meta_box() { 
+
+global $post;
+
+
+$ar   = array( 
+		'opt' => 
+			array(
+				array ( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'testio',
+								'desc'=> 'This be desc for meta',
+								'title' => 'test meta',
+								'post_type' => 'post',
+								'context' => 'normal',
+								'priority' => 'low',
+								'options' => 
+									array( 
+										'opt' => 
+											array(
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'text1', 
+															'desc 1', 
+															'main_meta', 
+															'testio1') ),
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'textarea', 
+															'text2', 
+															'desc 2', 
+															'testiso1',
+															'main_meta') )
+													), )
+												)))
+										)); 
+
+
+}
+
+add_action( 'add_meta_boxes', 'lf_test_meta_box' ); 
+
 
 
 function lf_post_meta_boxes_save($post_id) { 
@@ -713,5 +781,5 @@ add_action( 'add_meta_boxes', 'lf_post_meta_boxes' );
 
 add_action( 'save_post', 'lf_post_meta_boxes_save' );
 
-
+ */
 ?>

@@ -1,7 +1,6 @@
 <?php 
 
-function lf_meta_opt( 
-			$post,
+function lf_meta_opt(
 			$type ='text', 
 			$realname = null, 
 			$desc = null, 
@@ -12,8 +11,10 @@ function lf_meta_opt(
 			$optvals = null, 
 			$hider = null ) { 
 	
-	$meta = get_post_meta( $post, $optarray, true );
-			
+	global $post;
+	
+	$meta = get_post_meta( $post->ID, $optarray, true );
+	
 	$the_opt = ( isset( $meta[$name] )? $meta[$name] : $default );
 		
 	echo "<tr id='$name-hook'>";
@@ -171,51 +172,42 @@ function lf_meta_opt(
 	
 }
 
-function ite( $post, $o ) { 
 
-	$id = $post->ID;
-	$d  = array( 'type'  => 'text', 
-				 'rname' => null, 
-				 'desc'  => null, 
-				 'meta'  => null, 
-				 'name'  => null, 
-				 'def'   => null, 
-				 'optt'  => null, 
-				 'optv'  => null, 
-				 'hider' => null );
+// Multi
+function multi( $o ) { 
 
 	if ( !is_array( $o ) ) return false;
 
-	foreach ( $o['options'] as $ar ) {
-	
-	$ar = wp_parse_args( $ar, $d );
+	foreach ( $o['opt'] as $a ) {
 
-	lf_meta_opt(
-			$post     = $id,
-			$type     = $ar['type'], 
-			$realname = $ar['rname'], 
-			$desc     = $ar['desc'], 
-			$optarray = $ar['meta'], 
-			$name     = $ar['name'], 
-			$default  = $ar['def'], 
-			$options  = $ar['optt'], 
-			$optvals  = $ar['optv'], 
-			$hider    = $ar['hider'] );		
+		call_user_func_array( $a['f'], $a['o'] ); 
+		
 	} 
+	
+	if ( array_key_exists( 'c', $o ) ) {
+	
+		foreach ( $o['c'] as $c ) {
+		
+			( array_key_exists( 'p', $c ) ? call_user_func_array( $c['c'], $c['p'] ) : call_user_func( $c['c'] ) );
+		
+		}
 
+	}
+	
 }
+
 
 function wrap_ite( $post, $o ) { 
 
-	wp_nonce_field( basename(__FILE__), 'lf-nonce-meta-field' );
-
+	// wp_nonce_field( basename(__FILE__), 'lf-meta-nonce' );	
+	
 	echo '<table class="form-table lf-admin-post-meta-table">';
 	
 	echo '<tbody>';
 	
 	echo '<p>'.$o['desc'].'</p>';
 	
-	ite( $post, $o );
+	multi( $o['options'] );
 	
 	echo '</tbody>';
 	
@@ -223,23 +215,27 @@ function wrap_ite( $post, $o ) {
 
 }
 
+// Meta Step 3
 function pop( $a ) { 
 	
-	$callback = create_function( '$post, $a', 'wrap_ite( $post, $a["args"] );' );
+	$call = 'wrap_ite( $post, $a["args"] );';
+	
+	$callback = create_function( '$post, $a', $call );
 
 	add_meta_box( $a['id'], $a['title'], $callback, $a['post_type'], $a['context'], $a['priority'], $a  );
 
 }
 
-function mloop( $ar ) { 
+/* looper
+function mloop( $f, $ar = null ) { 
 
 	foreach ( $ar as $a ) { 
 	
-		pop( $a );
+		call_user_func_array( $f, $a );
 	
 	}
 
-}
+} */
 
 
 class jplayer { 

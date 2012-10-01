@@ -2,7 +2,7 @@
 
 	parts = { 
 		reveal : function ( id, tohide, map ) {
-			var selector = $( id ); 
+			var selector = $( id )
 			
 			selector.bind(
 				'change', 
@@ -22,10 +22,10 @@
 				} 										
 				else {	
 					$( tohide ).hide();
-				}	 
+				} 
 			}); 
 				
-			selector.change();			
+			selector.change(); 		
 		},
 
 		image_load : function ( num, input, url, extra ) { 
