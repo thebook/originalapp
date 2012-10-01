@@ -302,7 +302,7 @@ include( ADMINPATH . '/Content/lf-widgets-func.php' );
 
 include( ADMINPATH . '/Content/lf-homepage-func.php' );
 
-include( ADMINPATH . '/Content/lf-post-meta-boxes-func.php' ); // post error 
+include( ADMINPATH . '/Content/meta.php' ); 
 
 include( ADMINPATH . '/Footer/lf-footer-func.php' );
 
@@ -310,7 +310,6 @@ include( ADMINPATH . '/Header/lf-header-func.php' );
 
 include( ADMINPATH . '/Navigation/lf-navigation-func.php' ); 
 
-include( ADMINPATH . '/Content/meta.php' ); 
 
 //include( ADMINPATH . '/Slider/lf-slider-func.php' ); // post error
 

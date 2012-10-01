@@ -226,17 +226,11 @@ function pop( $a ) {
 
 }
 
-/* looper
-function mloop( $f, $ar = null ) { 
+function scripter($script) {
 
-	foreach ( $ar as $a ) { 
-	
-		call_user_func_array( $f, $a );
-	
-	}
+	echo "<script>$script</script>";
 
-} */
-
+}
 
 class jplayer { 
 

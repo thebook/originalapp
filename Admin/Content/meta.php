@@ -55,6 +55,11 @@ $meta = array(
 																basename(__FILE__), 
 																'lf-meta-nonce' )
 														 ),
+												// Echo the function call which displays metaboxes acording to post format
+												array(
+													'f' => 'scripter',
+													'o' => array( 'parts.radio_reveal("#post-formats-select", ["gallery", "image", "quote", "link", "video", "audio" ], ["#gallery_format_meta", "#image_format_meta", "#quote_format_meta", "#link_format_meta", "#video_format_meta", "#audio_format_meta"]);' )
+														),
 												// Show post thumbnails(preivew images)
 												array(
 													'f' => 'lf_meta_opt',
@@ -158,8 +163,492 @@ $meta = array(
 															array( 'Show', 'Hide' )) )
 
 													), )
+												))),
+				// Seo Settings
+				array( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'seo_post_settings',
+								'desc'=> 'Configure your SEO settings.',
+								'title' => __('SEO Settings', 'liquidflux'),
+								'post_type' => 'post',
+								'context' => 'normal',
+								'priority' => 'high',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// Post title
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'Title',
+															'Search engines take up a maximum of 60 characters for the title', 
+															'main_meta', 
+															'post_seo_title') ),
+												// Post description
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'Description',
+															'Search engines ussaly take a maxumum of 160 characters for the description', 
+															'main_meta', 
+															'post_seo_description' ) ),
+												// Post keywords
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'Keywords',
+															'Seperate the keywords by commas', 
+															'main_meta', 
+															'post_seo_key' ) ),
+												// Post meta robots index
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'radio', 
+															'Robot Meta Index',
+															'Let robots index this page', 
+															'main_meta', 
+															'post_seo_robots_index',
+															'index',
+															array( 'index', 'noidex' ),
+															array( 'Index', 'Dont Index')) ),
+												// Post meta robots link follow
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'radio', 
+															'Robot Meta Follow',
+															'Let robots follow links from this page', 
+															'main_meta', 
+															'post_seo_robots_follow',
+															'follow',
+															array( 'follow', 'nofollow' ),
+															array( 'Follow', 'Dont Follow')) )																																	
+													), )
+												))),
+				// Image Format 
+				array( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'image_format_meta',
+								'desc'=> 'You can upload and adjust your image post format.',
+								'title' => __('Image Settings', 'liquidflux'),
+								'post_type' => 'post',
+								'context' => 'normal',
+								'priority' => 'high',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// Upload Image
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'upload', 
+															'Upload Image',
+															'Upload the posts image', 
+															'main_meta', 
+															'post_image_format_img_upload' ) ),
+												// Image credit or author
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'Credit',
+															'You can write the name of the image author, if left blank no credit will show up.', 
+															'main_meta', 
+															'post_image_format_credit' ) ),
+												// Image credit link
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'Link',
+															'You can have the credited name link to any webpage', 
+															'main_meta', 
+															'post_image_format_credit_link'  ) ),
+												// Show/Hide text
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'radio', 
+															'Text',
+															'You can hide or enable your body text. If hidden the text written in the editor will not be shown.', 
+															'main_meta', 
+															'post_image_format_text',
+															'text',
+															array( 'text', 'notext' ),
+															array( 'Show', 'Hide' )) )																							
+													), )
+												))),
+				// Quote Format 
+				array( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'quote_format_meta',
+								'desc'=> 'You can paste the quote and author here and adjust settings.',
+								'title' => __('Quote Settings', 'liquidflux'),
+								'post_type' => 'post',
+								'context' => 'normal',
+								'priority' => 'high',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// Quote Text
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'textarea', 
+															'Quote',
+															'Quote Text', 
+															'main_meta', 
+															'post_quote_format' ) ),
+												// Author name
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'Author',
+															'Name of the quote author, if left blank no author name will show up', 
+															'main_meta', 
+															'post_quote_format_credit' ) ),
+												// Show/Hide text
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'radio', 
+															'Text',
+															'You can hide or enable your body text, if hidden the text written in the editor will not be shown', 
+															'main_meta', 
+															'post_quote_format_text',
+															'text',
+															array( 'text', 'notext' ),
+															array( 'Show', 'Hide' )) )																																
+													), )
+												))),
+				// Gallery Format
+				array( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'gallery_format_meta',
+								'desc'=> 'You can upload your gallery images through this meta.',
+								'title' => __('Gallery Settings', 'liquidflux'),
+								'post_type' => 'post',
+								'context' => 'normal',
+								'priority' => 'high',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// Upload Images
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'gallery', 
+															'Upload Images',
+															'Upload gallery images, you can upload as many as you want, click on an image to remove it', 
+															'main_meta', 
+															'post_gallery_format_upload',
+															'' ) ),
+												// Transition effects
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'select', 
+															'Transition',
+															'The images in your gallery can transition in different ways', 
+															'main_meta', 
+															'post_gallery_format_effect',
+															'text',
+															array( 'slide', 'fade' ),
+															array( 'Slide', 'Fade' )) ),
+												// Show/Hide text
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'radio', 
+															'Text',
+															'You can hide or enable your body text. If hidden the text written in the editor will not be shown.', 
+															'main_meta', 
+															'post_gallery_format_text',
+															'text',
+															array( 'text', 'notext' ),
+															array( 'Show', 'Hide' )) )																																		
+													), )
+												))),
+				// Link Format
+				array( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'link_format_meta',
+								'desc'=> 'You can enter you link here along with a description.',
+								'title' => __('Link Settings', 'liquidflux'),
+								'post_type' => 'post',
+								'context' => 'normal',
+								'priority' => 'high',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// Link url
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'Link',
+															'Your link url', 
+															'main_meta', 
+															'post_link_format_link',
+															'' ) ),
+												// Link description 
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'textarea', 
+															'Link Text',
+															'You can enter text describing your link here, if left blank the link url will be used instead', 
+															'main_meta', 
+															'post_link_format_desc',
+															''  ) ),
+												// Show/Hide text
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'radio', 
+															'Text',
+															'You can hide or enable your body text, if hidden the text written in the editor will not be shown', 
+															'main_meta', 
+															'post_link_format_text',
+															'text',
+															array( 'text', 'notext' ),
+															array( 'Show', 'Hide' )) )																																													
+													), )
+												))),
+				// Video Format 
+				array( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'video_format_meta',
+								'desc'=> 'You can upload your own video and either use you tube or vimeo',
+								'title' => __('Video Settings', 'liquidflux'),
+								'post_type' => 'post',
+								'context' => 'normal',
+								'priority' => 'high',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// OGV url link
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'OGV file url',
+															'The url of your .ogv file', 
+															'main_meta', 
+															'post_video_format_ogv_url',
+															'' ) ),
+												// M4V url link
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'M4V file url',
+															'The url of your .m4v file', 
+															'main_meta', 
+															'post_video_format_m4v_url',
+															'') ),
+												// Poster Upload
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'upload', 
+															'Poster',
+															'Upload the poster for your hosted video', 
+															'main_meta', 
+															'post_video_format_poster_upload' ) ),
+												// Embeded video text
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'textarea', 
+															'Embed',
+															'Acepts either youtube or vimeo embeds and urls', 
+															'main_meta', 
+															'post_video_format_embed',
+															'' ) ),
+												// Embeded video height
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'Embed Height',
+															'Height of your embeded video, the default is 500px', 
+															'main_meta', 
+															'post_video_format_height',
+															''  ) ),
+												// Show/Hide Text
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'radio', 
+															'Text',
+															'You can hide or enable your body text. If hidden the text written in the editor will not be shown.', 
+															'main_meta', 
+															'post_video_format_text',
+															'text',
+															array( 'text', 'notext' ),
+															array( 'Show', 'Hide' )) )																																		
+													), )
+												))),
+				// Audio Format
+				array( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'audio_format_meta',
+								'desc'=> 'Upload your own audio',
+								'title' => __('Audio Settings', 'liquidflux'),
+								'post_type' => 'post',
+								'context' => 'normal',
+								'priority' => 'high',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// OGA file url
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'OGA file url',
+															'The url of your .oga file', 
+															'main_meta', 
+															'post_audio_format_oga_url',
+															'' ) ),
+												// MP3 file url
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text', 
+															'MP3 file url',
+															'The url of your .mp3 file', 
+															'main_meta', 
+															'post_audio_format_mp3_url',
+															'' ) ),
+												// Poster upload
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'upload', 
+															'Poster',
+															'Upload the poster for your audio file', 
+															'main_meta', 
+															'post_audio_format_poster_upload' ) ),
+												// Show/Hide text
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'radio', 
+															'Text',
+															'You can hide or enable your body text. If hidden the text written in the editor will not be shown.', 
+															'main_meta', 
+															'post_audio_format_text',
+															'text',
+															array( 'text', 'notext' ),
+															array( 'Show', 'Hide' )) )																																		
+													), )
 												)))
-										)); 
+										));
 
 										
 	multi( $meta );		
