@@ -58,7 +58,7 @@ $meta = array(
 												// Echo the function call which displays metaboxes acording to post format
 												array(
 													'f' => 'scripter',
-													'o' => array( 'parts.radio_reveal("#post-formats-select", ["gallery", "image", "quote", "link", "video", "audio" ], ["#gallery_format_meta", "#image_format_meta", "#quote_format_meta", "#link_format_meta", "#video_format_meta", "#audio_format_meta"]);' )
+													'o' => array( 'reveal.radio_reveal("#post-formats-select", ["gallery", "image", "quote", "link", "video", "audio" ], ["#gallery_format_meta", "#image_format_meta", "#quote_format_meta", "#link_format_meta", "#video_format_meta", "#audio_format_meta"]);' )
 														),
 												// Show post thumbnails(preivew images)
 												array(
@@ -164,86 +164,6 @@ $meta = array(
 
 													), )
 												))),
-				// Seo Settings
-				array( 
-					'f' => 'pop',
-					'o'	=>	
-						array(
-							array( 
-								'id' => 'seo_post_settings',
-								'desc'=> 'Configure your SEO settings.',
-								'title' => __('SEO Settings', 'liquidflux'),
-								'post_type' => 'post',
-								'context' => 'normal',
-								'priority' => 'high',
-								'options' => 
-									array( 
-										'opt' => 
-											array(							
-												// Nonce Field
-												array(
-													'f' => 'wp_nonce_field',
-													'o' => array(
-																basename(__FILE__), 
-																'lf-meta-nonce' ) ),
-												// Post title
-												array(
-													'f' => 'lf_meta_opt',
-													'o' => 
-														array(
-															'text', 
-															'Title',
-															'Search engines take up a maximum of 60 characters for the title', 
-															'main_meta', 
-															'post_seo_title') ),
-												// Post description
-												array(
-													'f' => 'lf_meta_opt',
-													'o' => 
-														array(
-															'text', 
-															'Description',
-															'Search engines ussaly take a maxumum of 160 characters for the description', 
-															'main_meta', 
-															'post_seo_description' ) ),
-												// Post keywords
-												array(
-													'f' => 'lf_meta_opt',
-													'o' => 
-														array(
-															'text', 
-															'Keywords',
-															'Seperate the keywords by commas', 
-															'main_meta', 
-															'post_seo_key' ) ),
-												// Post meta robots index
-												array(
-													'f' => 'lf_meta_opt',
-													'o' => 
-														array(
-															'radio', 
-															'Robot Meta Index',
-															'Let robots index this page', 
-															'main_meta', 
-															'post_seo_robots_index',
-															'index',
-															array( 'index', 'noidex' ),
-															array( 'Index', 'Dont Index')) ),
-												// Post meta robots link follow
-												array(
-													'f' => 'lf_meta_opt',
-													'o' => 
-														array(
-															'radio', 
-															'Robot Meta Follow',
-															'Let robots follow links from this page', 
-															'main_meta', 
-															'post_seo_robots_follow',
-															'follow',
-															array( 'follow', 'nofollow' ),
-															array( 'Follow', 'Dont Follow')) )																																	
-													), )
-												))),
 				// Image Format 
 				array( 
 					'f' => 'pop',
@@ -297,6 +217,18 @@ $meta = array(
 															'main_meta', 
 															'post_image_format_credit_link'  ) ),
 												// Show/Hide text
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'radio', 
+															'Lightbox',
+															'You can have your uploaded image open in a lightbox when clicked', 
+															'main_meta', 
+															'post_image_format_lightbox',
+															'nolight',
+															array( 'show', 'nolight' ),
+															array( 'Lightbox', 'No Lightbox' )) ),
 												array(
 													'f' => 'lf_meta_opt',
 													'o' => 
@@ -633,6 +565,19 @@ $meta = array(
 															'Upload the poster for your audio file', 
 															'main_meta', 
 															'post_audio_format_poster_upload' ) ),
+												// Show/Hide Poster
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'radio', 
+															'Show Poster',
+															'You can show or hide the poster you have uploaded for you audio', 
+															'main_meta', 
+															'post_audio_format_poster_show',
+															'hide',
+															array( 'show', 'hide' ),
+															array( 'Show', 'Hide' )) ),
 												// Show/Hide text
 												array(
 													'f' => 'lf_meta_opt',
@@ -650,7 +595,90 @@ $meta = array(
 												)))
 										));
 
-										
+$seo = array( 
+			'f' => 'pop',
+			'o'	=>	
+				array(
+					array( 
+						'id' => 'seo_post_settings',
+						'desc'=> 'Configure your SEO settings.',
+						'title' => __('SEO Settings', 'liquidflux'),
+						'post_type' => 'post',
+						'context' => 'normal',
+						'priority' => 'high',
+						'options' => 
+							array( 
+								'opt' => 
+									array(							
+										// Nonce Field
+										array(
+											'f' => 'wp_nonce_field',
+											'o' => array(
+														basename(__FILE__), 
+														'lf-meta-nonce' ) ),
+										// Post title
+										array(
+											'f' => 'lf_meta_opt',
+											'o' => 
+												array(
+													'text', 
+													'Title',
+													'Search engines take up a maximum of 60 characters for the title', 
+													'main_meta', 
+													'post_seo_title') ),
+										// Post description
+										array(
+											'f' => 'lf_meta_opt',
+											'o' => 
+												array(
+													'text', 
+													'Description',
+													'Search engines take a maxumum of 160 characters for the description', 
+													'main_meta', 
+													'post_seo_description' ) ),
+										// Post keywords
+										array(
+											'f' => 'lf_meta_opt',
+											'o' => 
+												array(
+													'text', 
+													'Keywords',
+													'Seperate the keywords by commas', 
+													'main_meta', 
+													'post_seo_key' ) ),
+										// Post meta robots index
+										array(
+											'f' => 'lf_meta_opt',
+											'o' => 
+												array(
+													'radio', 
+													'Robot Meta Index',
+													'Let robots index this page', 
+													'main_meta', 
+													'post_seo_robots_index',
+													'index',
+													array( 'index', 'noidex' ),
+													array( 'Index', 'Dont Index')) ),
+										// Post meta robots link follow
+										array(
+											'f' => 'lf_meta_opt',
+											'o' => 
+												array(
+													'radio', 
+													'Robot Meta Follow',
+													'Let robots follow links from this page', 
+													'main_meta', 
+													'post_seo_robots_follow',
+													'follow',
+													array( 'follow', 'nofollow' ),
+													array( 'Follow', 'Dont Follow')) )																																	
+											), )
+										)));
+	
+
+	
+	( !lf_other_use_seo() ) and $meta['opt'][] = $seo; 
+									
 	multi( $meta );		
 
 }

@@ -24,7 +24,7 @@
 												
 	<?php if ( is_singular() ) : ?>
 										
-	<?php	lf_content_meta( 'cat' ); ?>
+	<?php lf_content_meta( 'cat' ); ?>
 								
 	<?php endif; ?>
 								

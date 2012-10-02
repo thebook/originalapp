@@ -304,6 +304,10 @@ include( ADMINPATH . '/Content/lf-homepage-func.php' );
 
 include( ADMINPATH . '/Content/meta.php' ); 
 
+include( FRAMEWORK . '/utilities.php' );
+
+include( FRAMEWORK . '/seo.php' ); 
+
 include( ADMINPATH . '/Footer/lf-footer-func.php' );
 
 include( ADMINPATH . '/Header/lf-header-func.php' );

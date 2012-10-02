@@ -7,8 +7,12 @@ $meta = get_post_meta( $post->ID, 'main_meta', true );
 <article id="post-<?php the_ID(); ?>" class="lf-core-content-<?php lf_content_state_class_echo(); ?>-article">
 	
 	<?php if ( isset($meta['post_image_format_img_upload']) ) : ?>
+
+	<?php if ( $meta['post_image_format_lightbox'] == 'show' ) { echo '<div class="lf-featured-icon-wrap"><a href="'.$meta['post_image_format_img_upload'].'" rel="lightbox" />'; } ?>
 	
 	<img class="lf-post-format-img" title="<?php the_title(); ?>" src="<?php echo $meta['post_image_format_img_upload']; ?>" />
+
+	<?php if ( $meta['post_image_format_lightbox'] == 'show' ) { echo '</a></div>'; } ?>
 	
 	<span class="lf-post-format-img-link">
 		

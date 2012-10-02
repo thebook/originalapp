@@ -2,6 +2,7 @@
 
 define('TEXTDOMAIN', 'liquidflux');
 define('ADMINPATH', TEMPLATEPATH . '/Admin' );
+define('FRAMEWORK', TEMPLATEPATH . '/Framework' );
 define('ADMINURI', get_template_directory_uri(). '/Admin');
 define('LAYOUTPATH', TEMPLATEPATH. '/Layout');
 define('LAYOUTURI',  get_template_directory_uri(). '/Layout');
@@ -183,10 +184,18 @@ function liquidflux_script_reg () {
 						array( 'jquery', 'j-ease' ),
 						'1',
 						true );
+
+	wp_register_script ( 'slimbox',
+						COREURI . '/Js/slimbox2.js',
+						array( 'jquery' ),
+						'2.0',
+						true );
 														
 	wp_enqueue_script  ('lf-functions');
 
 	wp_enqueue_script  ('jplayer');
+
+	wp_enqueue_script  ('slimbox');
 																																								
 }
 

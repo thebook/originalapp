@@ -1227,22 +1227,138 @@ $marg_h : 1.5%;
 .lf-featured-image {
 
 	width: 240px;
-	@include block( l, i );
-	padding: 12px;
-	margin: 15px 30px 27px 0;
+	display: table;
+	float: left;
+	padding: 14px;
+	margin: 21px 21px 21px 0;
 	background-color: #fff; 
 
 	a {
 		width: 100%;
 		@include block( l );
+		vertical-align: middle;
+		position: relative;
+		z-index: 2;
 	}
 
 	img { 
 		height: auto;
 		width: 100%;
-		vertical-align: middle;		
+		vertical-align: middle;
+		position: relative;
+		cursor: pointer;
 	}
 }
+
+.lf-featured-icon-wrap { 
+
+		width: 100%;
+		height: 100%;
+		display: block;
+		float: left;
+		position: relative;
+		vertical-align: middle;
+		background: #444 url(Images/open.png) 50% 50% no-repeat;
+		z-index: 1;
+
+		img { 
+
+			@include single-transition( all, 400ms );
+
+			&:hover { 
+				@include opacity( 0.2);
+				@include single-transition( all, 400ms );
+			}
+		}
+	}
+
+//  Lightbox 
+
+#lbOverlay {
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	cursor: pointer;
+}
+
+#lbCenter, #lbBottomContainer {
+	position: absolute;
+	z-index: 9999;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+.lbLoading {
+	background: #fff url(Images/loading.gif) no-repeat center;
+}
+
+#lbImage {
+	position: absolute;
+	left: 0;
+	top: 0;
+	border: 10px solid #fff;
+	background-repeat: no-repeat;
+}
+
+#lbPrevLink, #lbNextLink {
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 50%;
+	outline: none;
+}
+
+#lbPrevLink {
+	left: 0;
+}
+
+#lbPrevLink:hover {
+	
+}
+
+#lbNextLink {
+	right: 0;
+}
+
+#lbNextLink:hover {
+	
+}
+
+#lbBottom {
+
+	font-size: 11px;
+	color: inherit;
+	line-height: 1.4em;
+	text-align: left;
+	padding: 5px 10px 10px 10px;
+
+}
+
+#lbCloseLink {
+	display: block;
+	float: right;
+	text-decoration: none;
+	vertical-align: baseline;
+	color: inherit;
+	&:before { 
+		font-size: 20px;
+		line-height: 20px;
+		content: "k";
+	}
+}
+
+#lbCaption, #lbNumber {
+	margin:0  71px 0 7px;
+}
+
+#lbCaption {
+	font-style: italic;
+}
+
 
 /* portfolio and featured image lightbox - all to be adjusted */
 

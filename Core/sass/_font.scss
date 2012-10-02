@@ -68,7 +68,7 @@
 
 	}
 
-	[class^="jp-"]:before {
+	[class^="jp-"]:before, [id^="lb"]:before {
 
 		font-family: 'lftastic';
 		font-style: normal;

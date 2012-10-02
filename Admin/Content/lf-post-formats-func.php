@@ -154,19 +154,19 @@ function lf_meta_opt(
 	
 	if ( isset( $hider ) ) {
 	
-		echo '<script>parts.reveal("'. $hider[0] .'","'. $hider[1] .'",'. $hider[2] .' );</script>';
+		echo '<script>reveal.reveal("'. $hider[0] .'","'. $hider[1] .'",'. $hider[2] .' );</script>';
 	
 	}
 	
 	if ( $type == 'upload' ) { 
 	
-		echo '<script> parts.supload( "#lf-post-meta-'. $name .'-button", "#lf-post-meta-'. $name .'" );</script>';
+		echo '<script> load.upload( "#lf-post-meta-'. $name .'-button", "#lf-post-meta-'. $name .'" );</script>';
 	
 	}
 	
 	if ( $type == 'gallery' ) { 
 	
-		echo '<script> parts.gallery( "#lf-post-meta-'. $name .'-button", "'.$name.'", "'.$optarray.'" );</script>';
+		echo '<script> load.gallery( "#lf-post-meta-'. $name .'-button", "'.$name.'", "'.$optarray.'" );</script>';
 	
 	}
 	
@@ -198,9 +198,7 @@ function multi( $o ) {
 
 
 function wrap_ite( $post, $o ) { 
-
-	// wp_nonce_field( basename(__FILE__), 'lf-meta-nonce' );	
-	
+		
 	echo '<table class="form-table lf-admin-post-meta-table">';
 	
 	echo '<tbody>';
@@ -226,11 +224,7 @@ function pop( $a ) {
 
 }
 
-function scripter($script) {
 
-	echo "<script>$script</script>";
-
-}
 
 class jplayer { 
 

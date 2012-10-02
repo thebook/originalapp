@@ -9,7 +9,7 @@ $meta = get_post_meta( $post->ID, 'main_meta', true );
 	
 <?php 
 		
-	$gallery = $meta['post_gallery_format_upload'];
+	$gallery = ( isset( $meta['post_gallery_format_upload'] ) ? $meta['post_gallery_format_upload'] : '' );
 	
 	if ( $gallery != '' ) {
 	

@@ -5,8 +5,9 @@ $jp     = new jplayer;
 $oga    = $meta['post_audio_format_oga_url'];
 $mp3    = $meta['post_audio_format_mp3_url'];
 $p      = $meta['post_audio_format_poster_upload'];
-$poster = ( isset( $p )) ? array( 'poster' => $p ) : '' ;
-
+$show   = $meta['post_audio_format_poster_show'];
+$pos    = ( ( isset( $p ) ) ? array( 'poster' => $p ) : '' );
+$poster = ( $show == 'show' ? $pos : '' );
 ?>
 
 <article id="post-<?php the_ID(); ?>" class="lf-core-content-<?php lf_content_state_class_echo(); ?>-article">

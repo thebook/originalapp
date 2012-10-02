@@ -8,23 +8,12 @@
 <html <?php language_attributes(); ?>>
 
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	
-		<title>
-		
-<?php 	
+	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>" charset="<?php bloginfo( 'charset' ); ?>" />
+	
+	<title><?php wp_title(''); ?></title>
 
-	wp_title('|', true, 'right'); bloginfo( 'name' );
-				
-	$main_description = get_bloginfo('description', 'display');
-	
-	if ($main_description && ( is_home() || is_front_page()) )
-		
-		echo  " | $main_description";
-				
-?>		
-		
-		</title>
+	<?php lf_head_hook(); ?>
 
 <?php 
 
@@ -36,16 +25,16 @@
 	
 ?>
 	
-		<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" />
+	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" />
 	
-		<meta name="viewport" content="width=device-width; initial-scale=0.1; maximum-scale=0.1; user-scalable=0;" />
+	<meta name="viewport" content="width=device-width; initial-scale=0.1; maximum-scale=0.1; user-scalable=0;" />
 	
-		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 		
-		<!-- this creates the html5 elements in IE browsers below version 9 -->
-		<!--[if lt IE 9]>
-		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+	<!-- this creates the html5 elements in IE browsers below version 9 -->
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 		
 <?php wp_head(); ?>
 
