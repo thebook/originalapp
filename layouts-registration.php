@@ -261,115 +261,51 @@ function content_level() {
 				get_template_part( 'single-content' );
 			
 			}
-			
 			elseif ( is_page() ) {
 				
 				if ( is_page_template( 'page-one-sidebar-left.php' ) ) {
 			
 					lf_page_generate( 'onesidebarleft', 'left' );
 			
-				}
-				
+				}				
 				elseif ( is_page_template( 'page-one-sidebar-right.php' ) ) {
 			
 					lf_page_generate( 'onesidebarright', 'right' );
 			
 				}
-				
-				elseif ( is_page_template( 'page-two-sidebar-left.php' ) ) {
-			
-					lf_page_generate( 'twosidebarleft', 'left' );
-			
-				}
-				
-				elseif ( is_page_template( 'page-two-sidebar-right.php' ) ) {
-			
-					lf_page_generate( 'twosidebarright', 'right' );
-			
-				}
-				
-				elseif ( is_page_template( 'page-three-sidebar-left.php' ) ) {
-			
-					lf_page_generate( 'threesidebarleft', 'left' );
-			
-				}
-				
-				elseif ( is_page_template( 'page-three-sidebar-right.php' ) ) {
-			
-					lf_page_generate( 'threesidebarright', 'right' );
-			
-				}
-				
-				elseif ( is_page_template( 'portfolio-full.php' ) ) {
-			
-					lf_portfolio_generate( 'full', 1 );
-			
-				}
-				
-				elseif ( is_page_template( 'portfolio-two.php' ) ) {
-			
-					lf_portfolio_generate( 'full', 2 );
-			
-				}
-				
-				elseif ( is_page_template( 'portfolio-three.php' ) ) {
-			
-					lf_portfolio_generate( 'full', 3 );
-			
-				}
-				
-				elseif ( is_page_template( 'portfolio-four.php' ) ) {
-			
-					lf_portfolio_generate( 'full', 4 );
-			
-				}
-				
-				elseif ( is_page_template( 'portfolio-left-sidebar.php' ) ) {
-			
-					lf_portfolio_generate( 'three-page-left', 1, 'left' );
-			
-				}
-				
-				elseif ( is_page_template( 'portfolio-right-sidebar.php' ) ) {
-			
-					lf_portfolio_generate( 'three-page-right', 1, 'right' );
-			
-				}
-				
+				elseif ( is_page_template( 'archive-template.php' ) ) {
+
+					include( FRAMEWORK .'/Pages/archive.php' );
+
+				}							
 				elseif ( ! is_page_template() ) { 
 				
-					get_template_part( 'page-content' );
-				
+					get_template_part( 'page-content' );	
+
 				}
-			
+
 			}
-			
 			elseif ( is_404() ) {
 			
 				lf_not_found_generate( 'full' );	
-			
+
 			}
-			
 			elseif ( is_archive() ) {
 			
 				lf_archive_generate( 'archive' );	
 			
 			}
-			
 			elseif ( is_search() ) {
 			
 				lf_archive_generate( 'search' );	
 			
-			}
-			
+			}	
 			else {
 		
 				get_template_part( 'index-content' ); 
 			
 			} 
-			
 		}
-	
 	}
 	
 	lf_register_level_func( 3, "content_level_func" );
