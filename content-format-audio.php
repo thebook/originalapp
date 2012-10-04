@@ -10,7 +10,7 @@ $pos    = ( ( isset( $p ) ) ? array( 'poster' => $p ) : '' );
 $poster = ( $show == 'show' ? $pos : '' );
 ?>
 
-<article id="post-<?php the_ID(); ?>" class="lf-core-content-<?php lf_content_state_class_echo(); ?>-article">
+<article id="post-<?php the_ID(); ?>" >
 
 	<?php $jp->play( 'audio', 'jp-audio', $post->ID, array( 'oga' => $oga, 'mp3' => $mp3 ), $poster ); ?>
 		
@@ -26,7 +26,7 @@ $poster = ( $show == 'show' ? $pos : '' );
 					
 		</h3>
 				
-		<?php the_content();?>
+		<?php lf_content();?>
 																																		
 	</div>
 	
@@ -34,12 +34,7 @@ $poster = ( $show == 'show' ? $pos : '' );
 	
 	<?php endif; ?>
 	
-	<?php if ( is_singular() ) : ?>
-										
-	<?php	lf_content_meta( 'cat' ); ?>
-								
-	
-	<?php endif; ?>
+	<?php lf_cat_single(); ?>
 	
 	
 </article>

@@ -41,6 +41,10 @@ function lf_title_seo( $title ) {
 			return $st . $name;
 
 		}
+		else { 
+
+			return $title . $name;
+		}
 	}
 	else { 
 

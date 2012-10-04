@@ -675,9 +675,10 @@ $seo = array(
 											), )
 										)));
 	
-
+$seop = $seo;
+$seop['o']['0']['post_type'] = 'page';
 	
-	( !lf_other_use_seo() ) and $meta['opt'][] = $seo; 
+	( !lf_other_use_seo() ) and array_push( $meta['opt'], $seo, $seop ); 
 									
 	multi( $meta );		
 

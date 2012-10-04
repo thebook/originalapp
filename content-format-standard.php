@@ -1,4 +1,4 @@
-<article id="post-<?php the_ID(); ?>" class="lf-core-content-<?php lf_content_state_class_echo(); ?>-article">
+<article id="post-<?php the_ID(); ?>" >
 	
 	<div class="lf-core-content-post-format-head-wrap">
 	
@@ -22,11 +22,7 @@
 	
 	</div>
 												
-	<?php if ( is_singular() ) : ?>
-										
-	<?php lf_content_meta( 'cat' ); ?>
-								
-	<?php endif; ?>
+	<?php lf_cat_single(); ?>
 								
 	<?php lf_featured_img(); ?>
 	
@@ -34,7 +30,7 @@
 											
 		<div class="lf-core-content-body-text">
 											
-			<?php the_content();?>
+			<?php lf_content();?>
 														
 		</div>
 	

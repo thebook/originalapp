@@ -29,6 +29,8 @@ function lf_theme_update() {
 	
 }
 
+add_action('admin_init', 'lf_theme_update' ); 
+
 function lf_whitespace( $string ) { 
 	
 		if ( $string == '' ) { 
@@ -50,9 +52,6 @@ function lf_whitespace( $string ) {
 		}
 	
 }
-
-add_action('admin_init', 'lf_theme_update' ); 
-
 
 function lf_theme_opt_section_callback() {
 

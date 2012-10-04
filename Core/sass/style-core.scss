@@ -177,9 +177,9 @@
 	
 
 	article {
-
+		@include block( l );		
 		width: 100%;
-		margin: 42px 0;
+		margin: 42px 0 28px;
 	}
 }
 
@@ -344,10 +344,32 @@
 	background-color: #fff;
 	@include single-box-shadow();
 
-	p:last-child { 
+	p { 
+		margin: 0 0 17px;
 
-		margin: 0 0 0px;
+		&:last-child { 
+			margin: 0px;
+		}
+	}
 
+	ul {
+
+		list-style-type: disc;
+		margin: 0 0 17px 28px;
+
+		&:last-child { 
+			margin: 0 0 0 28px;
+		}
+	}
+
+	ol { 
+
+		margin: 0 0 17px 28pxpx;
+		list-style-type: decimal;
+
+		&:last-child { 
+			margin: 0 0 0 28px;
+		}
 	}
 }
 

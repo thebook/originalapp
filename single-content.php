@@ -10,13 +10,10 @@
 <div class="contentwrap">
 
 	<div id="homepage" class="loadpage">
-	
-<?php 
 
-	lf_core_sidebar_generate( 'left' );
+	<?php lf_sidebar( 'left' ); ?>
 			
-?>
-		
+
 	<div class="lf-core-content-<?php lf_content_state_class_echo(); ?>">
 										
 		<div class="leftinlineb hunprec">
@@ -86,15 +83,8 @@
 					
 		</div>
 		
-<?php 
-		
-	lf_core_sidebar_generate( 'right' );
-
-?>
+		<?php lf_sidebar( 'right' ); ?>
 	
 	</div>
 
 </div>	
-	
-			
-

@@ -10,7 +10,7 @@ $poster = ( isset( $p )) ? array( 'poster' => $p ) : '' ;
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" class="lf-core-content-<?php lf_content_state_class_echo(); ?>-article">
+<article id="post-<?php the_ID(); ?>" >
 
 <?php 
 
@@ -40,7 +40,7 @@ $poster = ( isset( $p )) ? array( 'poster' => $p ) : '' ;
 					
 		</h3>
 				
-		<?php the_content();?>
+		<?php lf_content();?>
 																																		
 	</div>
 	
@@ -48,12 +48,7 @@ $poster = ( isset( $p )) ? array( 'poster' => $p ) : '' ;
 	
 	<?php endif; ?>
 	
-	<?php if ( is_singular() ) : ?>
-										
-	<?php	lf_content_meta( 'cat' ); ?>
-								
-	
-	<?php endif; ?>
+	<?php lf_cat_single(); ?>
 	
 	
 </article>

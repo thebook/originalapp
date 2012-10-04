@@ -4,7 +4,7 @@ $meta = get_post_meta( $post->ID, 'main_meta', true );
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" class="lf-core-content-<?php lf_content_state_class_echo(); ?>-article">
+<article id="post-<?php the_ID(); ?>" >
 	
 	
 <?php 
@@ -48,7 +48,7 @@ $meta = get_post_meta( $post->ID, 'main_meta', true );
 					
 		</h3>
 				
-		<?php the_content();?>
+		<?php lf_content();?>
 																																		
 	</div>
 	
@@ -57,12 +57,6 @@ $meta = get_post_meta( $post->ID, 'main_meta', true );
 	<?php endif; ?>
 	
 
-	<?php if ( is_singular() ) : ?>
-										
-	<?php	lf_content_meta( 'cat' ); ?>
-								
-	
-	<?php endif; ?>
-	
+	<?php lf_cat_single(); ?>
 	
 </article>

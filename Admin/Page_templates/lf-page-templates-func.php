@@ -301,7 +301,7 @@ function lf_excerpt_more_filter() {
 }
 
 add_filter( 'excerpt_more', 'lf_excerpt_more_filter' );
-
+/*
 function lf_portolfio_meta_content() {
 
 	global $post;
@@ -1389,9 +1389,9 @@ function lf_editable_style_portfolio() {
 }
 
 add_action( 'lf_editable_style', 'lf_editable_style_portfolio' );
-
+ */
 include( ADMINPATH . '/Page_templates/lf-archives-func.php' );
 
 include( ADMINPATH . '/Page_templates/lf-404-func.php' );
 
-?>
+?> 

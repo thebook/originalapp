@@ -9,7 +9,7 @@
 
 <head>
 	
-	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>" charset="<?php bloginfo( 'charset' ); ?>" />
+	<meta http-equiv="Content-Typse" content="<?php bloginfo('html_type'); ?>" charset="<?php bloginfo( 'charset' ); ?>" />
 	
 	<title><?php wp_title(''); ?></title>
 

@@ -308,6 +308,14 @@ include( FRAMEWORK . '/utilities.php' );
 
 include( FRAMEWORK . '/seo.php' ); 
 
+include( FRAMEWORK . '/sidebar.php' ); 
+
+include( FRAMEWORK . '/Content/post-meta.php' ); 
+
+include( FRAMEWORK . '/Content/featured-image.php' ); 
+
+include( FRAMEWORK . '/Content/post-text.php' ); 
+
 include( ADMINPATH . '/Footer/lf-footer-func.php' );
 
 include( ADMINPATH . '/Header/lf-header-func.php' );

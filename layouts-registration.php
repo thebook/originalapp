@@ -254,7 +254,7 @@ function content_level() {
 	
 	$options = get_option('main_options');
 	
-		if ( $options["content_state"] != "nocontent" ) {
+		if ( $options["content_state"] !== "nocontent" ) {
 		
 			if ( is_single() ) { 
 				
@@ -262,25 +262,25 @@ function content_level() {
 			
 			}
 			elseif ( is_page() ) {
-				
-				if ( is_page_template( 'page-one-sidebar-left.php' ) ) {
-			
-					lf_page_generate( 'onesidebarleft', 'left' );
-			
-				}				
-				elseif ( is_page_template( 'page-one-sidebar-right.php' ) ) {
-			
-					lf_page_generate( 'onesidebarright', 'right' );
-			
-				}
-				elseif ( is_page_template( 'archive-template.php' ) ) {
+
+				if ( is_page_template( 'archive-template.php' ) ) {
 
 					include( FRAMEWORK .'/Pages/archive.php' );
 
-				}							
-				elseif ( ! is_page_template() ) { 
+				}	
+				elseif ( is_page_template( 'sitemap-page.php' ) ) {
+
+					include( FRAMEWORK .'/Pages/sitemap.php' );
+
+				}
+				elseif ( is_page_template( 'list-page.php' ) ) {
+
+					include( FRAMEWORK .'/Pages/list.php' );					
+
+				} 						
+				elseif ( !is_page_template() ) { 
 				
-					get_template_part( 'page-content' );	
+					include( FRAMEWORK .'/Pages/page.php' );	
 
 				}
 
@@ -320,10 +320,10 @@ function call_multi_opt_content() {
 	echo "<select name='main_options[content_state]' id='content-state-multisort' class='multilev-inv-select'>";
 	
 	echo "<option value='nosidebar' ". selected( $value, "nosidebar" ) .">No Sidebar</option>";
-	echo "<option value='onesidebarright' ". selected( $value, "onesidebarright" ) ." >One Sidebar Right</option>";
+	echo "<option value='right' ". selected( $value, "right" ) ." >One Sidebar Right</option>";
 	echo "<option value='twosidebarright' ". selected( $value, "twosidebarright" ) ." >Two Sidebar Right</option>"; 
 	echo "<option value='threesidebarright' ". selected( $value, "threesidebarright" ) ."  >Three Sidebar Right</option>"; 
-	echo "<option value='onesidebarleft' ". selected( $value, "onesidebarleft" ) ."  >One Sidebar Left</option>"; 
+	echo "<option value='left' ". selected( $value, "left" ) ."  >One Sidebar Left</option>"; 
 	echo "<option value='twosidebarleft' ". selected( $value, "twosidebarleft" ) ."  >Two Sidebar Left</option>"; 
 	echo "<option value='threesidebarleft' ". selected( $value, "threesidebarleft" ) ."  >Three Sidebar Left</option>"; 
 	echo "<option value='nocontent' ". selected( $value, "nocontent" ) ."  >No Content</option>"; 

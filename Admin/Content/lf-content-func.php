@@ -1,191 +1,22 @@
 <?php 
 
-function lf_content_meta( $type = 'category' ) { 
-
-	if ( $type == 'category' || $type == 'cat' ) { 
-	
-		echo '<div class="lf-meta-text-tags">';
-			
-		echo '<span data-icon="4" aria-hidden="true"></span>';
-		
-		echo '</div>';
-	
-		echo '<div class="lf-meta-text-tags">';
-		
-		$tag_list = get_the_tag_list('',', ');
-		
-		echo '<span>';
-								
-		if ($tag_list) { 
-													
-			echo $tag_list . ', ';
-				
-		}
-											
-		if ( is_object_in_taxonomy( get_post_type(), 'category') ) { 
-
-			echo get_the_category_list(', ') . ';';
-					
-		}	
-
-		echo '</span>';
-																
-		edit_post_link( '', '<span class="lf-meta-edit">', '</span>' );	
-	
-		echo '</div>';
-		
-	}
-	
-	elseif ( $type == 'meta' ) { ?>
-	
-		<div class="sidesix">
-							
-			<span class="lf-meta-text" data-icon="1" aria-hidden="true">
-											
-					<?php the_author_link(); ?>
-														
-			</span>
-													
-			<span class="lf-meta-text-comp" data-icon="(" aria-hidden="true">
-												
-				<span class="lf-meta-highlight lf-next-to-icon" >
-													
-					<?php  printf( __('%1$s'), get_comments_number() ); ?> 
-												
-				</span>									
-											
-			</span>
-
-			<span class="lf-meta-text-comp">
-			
-				<time datetime="<?php the_time('d m, Y'); ?>" pubdate><?php the_time('| d-m-Y'); ?></time>
-				
-			</span>
-										
-		</div>
-	
-<?php }
-
-}
-
-function lf_featured_img() { 
-
-	global $post;
-
-	$m = get_post_meta( $post->ID, 'main_meta', true );
-
-	$setting = $m['post_thumbnail_click'];
-
-	if ( has_post_thumbnail() ) {
-
-		echo '<p class="lf-featured-image">';
-
-			if ( $setting == 'post' or $setting == 'webpage' ) {
-
-				$href = ( $setting == 'post' ? get_permalink() : $m['post_thumbnail_click_webpage'] );
-
-				echo '<a href="'.$href.'" title="'.get_the_title().'" />';
-
-				the_post_thumbnail();
-
-				echo '</a>';
-				
-			}
-			elseif ( $setting == 'lightbox' or $setting =='otherlight' ) {
-
-				$href = ( $setting == 'lightbox' ?  wp_get_attachment_url( get_post_thumbnail_id() ) : $m['post_thumbnail_click_image'] );
-
-				echo '<span class="lf-featured-icon-wrap">';
-
-				echo '<a href="'.$href.'" title="'.get_the_title().'" rel="lightbox" />';
-
-				the_post_thumbnail();
-
-				echo '</a>';
-				
-				echo '</span>';
-
-			}
-			else { 
-
-				the_post_thumbnail();
-			}
-										
-		echo '<p>';
-	
-	}
-
-}
-
 function lf_content_state_class_echo() { 
 		
 	global $post;	
 	
-	$layout = layout_finder( 'main_options', 'main_meta', $post->ID, 'chosen_layout', 'content_state' );
+	$l = layout_finder( 'main_options', 'main_meta', $post->ID, 'chosen_layout', 'content_state' );
 	
-	if ( is_page() ) {
-	
-		if ( is_page_template( 'page-one-sidebar-left.php' ) 
-			|| is_page_template( 'page-one-sidebar-right.php' ) )  {
-	
-			echo 'three';
-		
-		}
-		
-		elseif ( is_page_template( 'page-two-sidebar-left.php' )
-				|| is_page_template( 'page-two-sidebar-right.php' ) ) {
-	
-			echo 'two';
-		
-		}
-		
-		elseif ( is_page_template( 'page-three-sidebar-left.php' )
-				|| is_page_template( 'page-three-sidebar-right.php' ) ) {
-	
-			echo 'one';
-		
-		}
-		
-		else { 
+
+	if ( !isset( $l ) or $l == 'nosidebar' ) {
 		
 			echo 'full';
 		
-		}
+	}
+	elseif ( $l == 'left' or $l == 'right' ) { 
+			
+				echo 'three';
 			
 	}
-	
-	else {
-
-		if ( $layout == null
-			|| $layout == 'nosidebar' ) {
-			
-				echo 'full';
-			
-			}
-		
-		elseif ( $layout == 'onesidebarleft' 
-				|| $layout == 'onesidebarright' ) { 
-				
-					echo 'three';
-				
-				}
-				
-		elseif ( $layout == 'twosidebarleft' 
-				|| $layout == 'twosidebarright' ) { 
-				
-					echo 'two';
-				
-				}
-				
-		elseif ( $layout == 'threesidebarleft' 
-				|| $layout == 'threesidebarright' ) { 
-				
-					echo 'one';
-				
-				}
-	
-	}
-
 }
 
 function lf_core_sidebar_generate( $type ) { 

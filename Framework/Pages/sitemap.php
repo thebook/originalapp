@@ -21,40 +21,30 @@
 				<?php the_title(); ?> 
 					
 			</h3>
-											
+								
 			<?php the_content();?>
 
+			<?php endwhile; ?>
+			
 			<p></p>
 
-			<h3>Last 30 Posts</h3>
+			<h3>Pages</h3>
 
-			<ul><?php
-				
-				$r = wp_get_recent_posts( array( 'numberposts' => '30' ) );
+			<ul><?php wp_list_pages( array( 'title_li' => '' ) ); ?></ul>
 
-				foreach ($r as $p ) {
-
-					$rt = $p['post_title'];
-
-					echo "<li><a href='".get_permalink( $p['ID'] )."' title='$rt'>$rt</a></li>";
-				
-				} ?></ul>
-
-			<h3>Posts By Date</h3>
-
-			<ul><?php wp_get_archives(); ?></ul>
-
-			<h3>Posts By Subject</h3>
+			<h3>Categories</h3>
 
 			<ul><?php wp_list_categories( array( 'title_li' => '' ) ); ?></ul>
-														
+
+			<h3>Posts By Category</h3>
+
+			<?php lf_cat_posts(); ?>
+
 		</div>
 	
 	</div>
 	
 </article>
-
-<?php endwhile; ?>
 
 			</div>
 		</div>
