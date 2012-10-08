@@ -1,0 +1,130 @@
+ $b : #f5f5f5;
+ $t : #222;
+ $d : #999;
+ $e : #eee;
+ $df: #dfdfdf;
+ $bb: #bbb;
+
+ body {
+
+ 	font: normal 12px/12px sans-serif;
+ 	color: $t;
+ 	margin: 0 auto;
+ 	background-color: $b;
+ }
+
+ .desc {
+
+ 	width: 100%;
+ 	float: left;
+ 	border-top : 1px solid $e;
+ 	
+ 	.title {
+ 		width: 96%;
+ 		display: block;
+ 		float: left;
+ 		padding: 0 2%;
+ 		background-color: $t;
+
+ 		h1 { 
+
+ 			font-size: 16px;
+ 			color: #fff;
+ 			margin: 20px 0;
+ 		}
+ 	}
+
+ 	.d {
+
+ 		@extend .title;
+ 		background-color: $e; 		
+
+ 		p { 
+ 			margin: 20px 0;
+ 			font-style: italic;
+ 			color: $d;
+ 		}
+ 	}
+ }
+
+ table {
+
+ 	float: left;
+ 	width: 100%;
+ 	margin: 30px 0 10px;
+
+
+ 	th { 
+
+ 		width: 27%;
+ 		padding: 20px 2%;
+ 		text-align: left;
+ 		font-size: 13px;
+ 		border-top: 1px solid $e;
+
+ 		strong { 
+
+ 			font-size: 12px;
+ 			float: left;
+ 		}
+
+ 		span { 
+
+ 			color: $d;
+ 			font-size: 12px;
+ 			font-weight: 400;
+ 			clear: both;
+ 			float: left;
+ 			margin: 5px 0 0;
+ 		}
+ 	}
+
+ 	td { 
+
+ 		@extend th; 
+ 		width: 65%;
+
+ 		input[type="text"] { 
+
+ 			width: 98%;
+ 			padding: 10px 5px;
+ 			border-radius: 3px;
+ 			border: 1px solid $df;
+
+ 			&:focus { 
+
+ 				border-color: $bb;
+ 			}
+ 		}
+
+ 		select { 
+
+ 			@extend input[type="text"];
+ 		 }
+
+ 		textarea {
+
+ 			@extend input[type="text"];
+ 			font: inherit;
+ 		}
+ 	}
+ }
+
+ a {
+
+ 	border-radius: 10px;
+ 	display: inline-block;
+ 	float: right;
+ 	padding: 10px 25px;
+ 	margin: 10px 4% 20px;
+ 	border: 1px solid $df;
+ 	text-decoration: none;
+ 	color: $t;
+ 	background-color: #fff;
+
+ 	&:hover {
+
+ 		border-color: $bb;
+ 	}
+
+ }

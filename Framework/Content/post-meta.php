@@ -65,7 +65,6 @@ function _lf_category_meta() {	?>
 	
 	</div>
 
-
 <?php }
 
 function lf_cat_single() {
@@ -75,7 +74,6 @@ function lf_cat_single() {
 		_lf_category_meta();
 
 	}
-
 }
 
 
@@ -85,18 +83,16 @@ function lf_content_meta( $type = 'cat' ) {
 
 		case 'cat' :
 
-		_lf_category_meta();
+			_lf_category_meta();
 
 		break;
 
 		case 'meta' : 
 
-		_lf_time_meta();
+			_lf_time_meta();
 
 		break;
-
 	}
-
 }
 
 ?>

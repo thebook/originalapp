@@ -316,6 +316,8 @@ include( FRAMEWORK . '/Content/featured-image.php' );
 
 include( FRAMEWORK . '/Content/post-text.php' ); 
 
+include( FRAMEWORK . '/Content/title.php' ); 
+
 include( ADMINPATH . '/Footer/lf-footer-func.php' );
 
 include( ADMINPATH . '/Header/lf-header-func.php' );
@@ -327,8 +329,11 @@ include( ADMINPATH . '/Navigation/lf-navigation-func.php' );
 
 //include( ADMINPATH . '/Page_templates/lf-page-templates-func.php' ); // post error
 
-include( ADMINPATH . '/Shortcodes/lf-shortcodes-func.php' );
+// include( ADMINPATH . '/Shortcodes/lf-shortcodes-func.php' );
 
+include( FRAMEWORK . '/Shortcodes/add-shortcode.php' );
+
+include( FRAMEWORK . '/Shortcodes/shortcodes/button.php' );
 
 
 function add_white_whale_options() {

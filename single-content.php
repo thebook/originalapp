@@ -16,7 +16,7 @@
 
 	<div class="lf-core-content-<?php lf_content_state_class_echo(); ?>">
 										
-		<div class="leftinlineb hunprec">
+		<div class="lf-core-content-wrap">
 				
 		<?php while (have_posts()) : the_post(); ?>
 	
@@ -70,9 +70,7 @@
 		<?php dynamic_sidebar( 'lf-content-default-single-widget-area' ); ?>
 							
 	</footer>
-							
-	
-								
+															
 		<?php endwhile; ?>
 						
 			<!-- Comments -->

@@ -592,6 +592,34 @@ $meta = array(
 															array( 'text', 'notext' ),
 															array( 'Show', 'Hide' )) )																																		
 													), )
+												))),
+				// Page General Settings
+				array( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'page_general_settings',
+								'desc'=> 'Adjust page settings, including layout',
+								'title' => __('Page Settings', 'liquidflux'),
+								'post_type' => 'page',
+								'context' => 'normal',
+								'priority' => 'high',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// Upload Image
+												array(
+													'f' => 'meta_layout',
+													'o' => array() )																					
+													), )
 												)))
 										));
 

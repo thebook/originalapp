@@ -22,7 +22,7 @@ $poster = ( $show == 'show' ? $pos : '' );
 		
 		<h3 class="lf-post-format-media-title"> 
 				
-			<?php the_title(); ?> 
+			<?php lf_title(); ?> 
 					
 		</h3>
 				

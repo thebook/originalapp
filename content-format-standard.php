@@ -8,7 +8,7 @@
 							
 				<h1 class="lf-posttitle">
 										
-					<?php the_title(); ?>
+					<?php lf_title(); ?> 
 											
 				</h1>
 										

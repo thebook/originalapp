@@ -36,7 +36,7 @@ $poster = ( isset( $p )) ? array( 'poster' => $p ) : '' ;
 		
 		<h3 class="lf-post-format-media-title"> 
 				
-			<?php the_title(); ?> 
+			<?php lf_title(); ?> 
 					
 		</h3>
 				

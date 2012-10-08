@@ -14,7 +14,7 @@
 			
 	<div class="lf-core-content-<?php lf_content_state_class_echo(); ?>">
 										
-		<div class="leftinlineb hunprec">
+		<div class="lf-core-content-wrap">
 	
 		<?php $q = new WP_Query( 'posts_per_page=-1' ); ?>
 

@@ -197,7 +197,7 @@ function lf_button_shortcode( $atts, $content = null ) {
 
 add_shortcode( 'button', 'lf_button_shortcode' );
 
-
+// [button color="" background="" url="" size="" read="" ]
 function lf_button_wide_shortcode( $atts, $content = null ) {
 
 	extract(
@@ -491,8 +491,6 @@ function lf_column_wrap_width_shortcode( $atts, $content = null ) {
 }
 
 add_shortcode( 'col_wrap', 'lf_column_wrap_width_shortcode' );
-
-include( ADMINPATH . '/Shortcodes/editor/editor-func.php' );
 
 
 function lf_img_align_shortcode( $atts, $content = null ) {

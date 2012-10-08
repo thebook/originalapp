@@ -12,7 +12,6 @@ function _lf_more_text($link = false, $n = 'Read More') {
 
 	return $n = "<p class='lf-button'>$n</p>";
 
-
 }
 
 
@@ -61,9 +60,7 @@ function _lf_cut_excerpt($e, $l) {
  	else {
 
  		return $e;
-
  	}
-
 }
 
 

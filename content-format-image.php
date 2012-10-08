@@ -69,7 +69,7 @@ $meta = get_post_meta( $post->ID, 'main_meta', true );
 		
 		<h3 class="lf-post-format-media-title"> 
 				
-			<?php the_title(); ?> 
+			<?php lf_title(); ?> 
 					
 		</h3>
 				

@@ -3,6 +3,7 @@
 define('TEXTDOMAIN', 'liquidflux');
 define('ADMINPATH', TEMPLATEPATH . '/Admin' );
 define('FRAMEWORK', TEMPLATEPATH . '/Framework' );
+define('FRAMEWORKURI', get_template_directory_uri() . '/Framework' );
 define('ADMINURI', get_template_directory_uri(). '/Admin');
 define('LAYOUTPATH', TEMPLATEPATH. '/Layout');
 define('LAYOUTURI',  get_template_directory_uri(). '/Layout');
