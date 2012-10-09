@@ -7,13 +7,13 @@ body {
 }
 
 /* line 16, style.scss */
-.desc {
+.desc, .tab {
   width: 100%;
   float: left;
   border-top: 1px solid #eeeeee;
 }
 /* line 22, style.scss */
-.desc .title, .desc .d {
+.desc .title, .tab .title, .desc .d, .tab .desc .d, .desc .tab .d, .desc .tab .d, .tab .desc .d, .tab .d {
   width: 96%;
   display: block;
   float: left;
@@ -21,17 +21,17 @@ body {
   background-color: #222222;
 }
 /* line 29, style.scss */
-.desc .title h1, .desc .d h1 {
+.desc .title h1, .tab .title h1, .desc .d h1, .tab .desc .d h1, .desc .tab .d h1, .desc .tab .d h1, .tab .desc .d h1, .tab .d h1 {
   font-size: 16px;
   color: #fff;
   margin: 20px 0;
 }
 /* line 37, style.scss */
-.desc .d {
+.desc .d, .tab .d {
   background-color: #eeeeee;
 }
 /* line 42, style.scss */
-.desc .d p {
+.desc .d p, .tab .d p {
   margin: 20px 0;
   font-style: italic;
   color: #999999;
@@ -41,7 +41,7 @@ body {
 table {
   float: left;
   width: 100%;
-  margin: 30px 0 10px;
+  margin: 15px 0 20px;
 }
 /* line 57, style.scss */
 table th, table td {
@@ -86,7 +86,7 @@ table td textarea {
 }
 
 /* line 113, style.scss */
-a {
+.ins, .add, .rm {
   border-radius: 10px;
   display: inline-block;
   float: right;
@@ -98,6 +98,22 @@ a {
   background-color: #fff;
 }
 /* line 125, style.scss */
-a:hover {
+.ins:hover, .add:hover, .rm:hover {
   border-color: #bbbbbb;
+}
+
+/* line 132, style.scss */
+.add, .rm {
+  float: left;
+  margin: 10px 0 20px 2%;
+}
+
+/* line 139, style.scss */
+.rm {
+  display: none;
+}
+
+/* line 145, style.scss */
+.tab {
+  margin: 15px 0 0;
 }

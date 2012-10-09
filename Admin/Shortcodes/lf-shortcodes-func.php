@@ -522,35 +522,35 @@ function lf_img_wrap_shortcode( $atts, $content = null ) {
 add_shortcode( 'img_wrap', 'lf_img_wrap_shortcode' );
 
 
-// Video
+// // Video
 
-function lf_video_shortcode( $atts, $content = null ) { 
-	extract(
-		shortcode_atts(
-			array(
-				'type' => '', 
-				'link' => '' ), 
-				$atts ) );
+// function lf_video_shortcode( $atts, $content = null ) { 
+// 	extract(
+// 		shortcode_atts(
+// 			array(
+// 				'type' => '', 
+// 				'link' => '' ), 
+// 				$atts ) );
 						
-		if ( $type == 'youtube' ) {
+// 		if ( $type == 'youtube' ) {
 		
-			$link = str_replace('http://youtu.be/', '', $link );
+// 			$link = str_replace('http://youtu.be/', '', $link );
 			
-			return '<iframe class="lf-youtube-video" src="http://www.youtube.com/embed/'.$link.'" frameborder="0" allowfullscreen></iframe>';
+// 			return '<iframe class="lf-youtube-video" src="http://www.youtube.com/embed/'.$link.'" frameborder="0" allowfullscreen></iframe>';
 	
-		}
+// 		}
 		
-		elseif ( $type == 'vimeo' ) {
+// 		elseif ( $type == 'vimeo' ) {
 		
-			$link = str_replace('http://vimeo.com/', '', $link );
+// 			$link = str_replace('http://vimeo.com/', '', $link );
 			
-			return '<div class="lf-shortcode-video-wrap"><iframe src="http://player.vimeo.com/video/'. $link .'" frameborder="0" ></iframe></div>';
+// 			return '<div class="lf-shortcode-video-wrap"><iframe src="http://player.vimeo.com/video/'. $link .'" frameborder="0" ></iframe></div>';
 		
-		}
+// 		}
 	
-}
+// }
 
-add_shortcode( 'video', 'lf_video_shortcode' );
+// add_shortcode( 'video', 'lf_video_shortcode' );
 
 
 function lf_video_embed_shortcode( $atts, $content = null ) { 

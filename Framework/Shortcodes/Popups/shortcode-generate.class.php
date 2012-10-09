@@ -7,7 +7,6 @@
 class short
 {
 	var $val;
-	var $key;
 	/**
 	 * Sets the $this->val variable and $this->key variable, so as to get the option array and the option to generate
 	 * @param array $v The manifest array, this array holds all the shortcode option definitions
@@ -16,7 +15,6 @@ class short
 	function __construct($v, $k)
 	{			
 		$this->val = $v[$k];
-		$this->key = $k;
 	}
 
 	/**
@@ -71,9 +69,10 @@ class short
 	 * fills in the appropriate shortcode variables with them upon insertion
 	 * @param  array $j The array which holds all of the shortcode options
 	 * @param  string $n The shorcode name, which would look like this ( [shortcodename ... ] );
+	 * @param  string $c the 'content' key, if is not false the shortcode encloses content, the value of the key is the name of the content inputs id
 	 * @return javascript    Class responsible for inserting the shortcode
 	 */
-	public function script( $j, $n )
+	public function script( $j, $n, $c )
 	{ ?>
 		<script>
 
@@ -85,21 +84,45 @@ class short
 					tinyMCEPopup.resizeToInnerSize();
 				},
 
+			opt : function literator( o ) {
+
+			var o = '';
+
+				$('table').each( function() {
+
+				 	o += '[<?php echo $n; ?> ';
+
+					<?php foreach ($j as $key => $v) : ?>
+
+					<?php $v = $v['id']; ?> 
+
+					<?php if ( isset( $v ) ) :?>
+
+					o += '<?php echo $v; ?>="' + $('#<?php echo $v; ?>', this).val() + '" ' ;
+
+					<?php endif; ?> 
+
+					<?php endforeach; ?> 
+
+					o += ']';
+					
+					<?php if ( $c !== false ) : ?>
+
+					o +=  $('#<?php echo $c; ?>', this).val() + '[/<?php echo $n; ?>]';
+
+					<?php endif; ?> 
+
+				});
+
+				return o;
+
+			},
+
 			insert : function insertButton( ed ) {
 
 				tinyMCEPopup.execCommand('mceRemoveNode', false, null);
 
-				var o = '[<?php echo $n; ?> ';
-
-					<?php foreach ($j as $key => $v) : ?>
-
-					<?php $v = $v['id']; ?>
-
-					o += '<?php echo $v; ?>="' + $('#<?php echo $v; ?>').val() + '" ' ;
-
-					<?php endforeach; ?>
-
-					o += ']';
+				var o = lfDialog.opt( o );
 				
 					tinyMCEPopup.execCommand('mceReplaceContent', false, o );
 					
@@ -122,9 +145,11 @@ class short
 		<html>
 			<head>
 				<meta charset="UTF-8" content="text/html" http-equiv="Content-Typse">
-				<?php include('./scripts.php'); ?>
+				<script><?php include('./scripts/tinyMCE-pop.js'); ?></script>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+				<script><?php include('./scripts/clone.js'); ?></script>
+				<?php $this->script( $this->val['o'], $this->val['shortcode'], $this->val['content'] ); ?>
 				<style><?php include('./style.css'); ?></style>
-				<?php $this->script( $this->val['o'], $this->val['shortcode'] ); ?>
 			</head>
 			<body>
 				<div class="desc">
@@ -140,6 +165,10 @@ class short
 						<?php $this->multi($this->val['o']); ?>
 					</tbody>
 				</table>
+				<?php if ( $this->val['tabs'] !== false ) : ?>
+					<a href="javascript:clone.clone('.add', '.rm', '<?php echo $this->val["tabs"]; ?>')" class="add" >Add</a>
+					<a href="javascript:clone.remove('.add', '.rm')" class="rm" >Remove</a>  
+				<?php endif; ?>
 				<a href="javascript:lfDialog.insert(lfDialog.local_ed)" class="ins" >Insert</a>
 			</body>
 		</html>

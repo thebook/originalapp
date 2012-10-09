@@ -14,7 +14,7 @@ function lf_but_shortcode( $atts, $content = null ) {
 		) 
 	);
 
-	$c = esc_attr( $color );
+	$c  = esc_attr( $color );
 	$r  = esc_attr( $read );
 	$u  = esc_attr( $url );
 	$s  = esc_attr( $size );

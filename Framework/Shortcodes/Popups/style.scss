@@ -51,7 +51,7 @@
 
  	float: left;
  	width: 100%;
- 	margin: 30px 0 10px;
+ 	margin: 15px 0 20px;
 
 
  	th { 
@@ -110,7 +110,7 @@
  	}
  }
 
- a {
+ .ins {
 
  	border-radius: 10px;
  	display: inline-block;
@@ -127,4 +127,23 @@
  		border-color: $bb;
  	}
 
+ }
+
+ .add { 
+
+ 	@extend .ins;
+ 	float: left;
+ 	margin: 10px 0 20px 2%;
+ }
+
+ .rm { 
+
+ 	@extend .add;
+ 	display: none;
+ }
+
+ .tab {
+
+ 	@extend .desc;
+	margin: 15px 0 0; 	
  }
