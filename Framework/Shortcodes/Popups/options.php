@@ -24,7 +24,8 @@ $short = array(
 			   			'description' => 'Chose the type of alertbox you want, and set its text',
 			   			'shortcode'   => 'alert',
 			   			'content'     => 'content',
-				   		'tabs'        => false ),
+				   		'tabs'        => false,
+				   		'wrap'        => false ),
 			// Button shortcode [button url="" read="" size="" color="" ]
 			'buttons' => array( 
 						'o' => 
@@ -62,7 +63,8 @@ $short = array(
 			   			'description' => 'Set the url, size, colors and text of your button',
 			   			'shortcode'   => 'button',
 			   			'content'     => false,
-				   		'tabs'        => false ),
+				   		'tabs'        => false,
+				   		'wrap'        => false ),
 			// Video embed [video video="" height="" ]
 			'embed' => array( 
 							'o' => 
@@ -86,7 +88,90 @@ $short = array(
 				   			'description' => 'Embed youtube and vimeo videos',
 				   			'shortcode'   => 'video',
 				   			'content'     => false,
-				   			'tabs'        => 'Videos' )
+				   			'tabs'        => 'Videos',
+				   			'wrap'        => false ),
+			// [column size=""]content[/column]
+			'column' => array( 
+							'o' => 
+								array( 								
+									array( 
+										'type' => 'select', 
+									 	'text' => 'Size', 
+									 	'desc' => 'The width of your column', 
+									 	'id'   => 'size', 						   	        
+									 	'val'  => array("Half", "Third", "Quarter", "Full")
+									),
+									array( 
+										'type' => 'textarea', 
+									 	'text' => 'Text', 
+									 	'desc' => 'The content of your column, can be left blank if you plan to add content later', 
+									 	'exc'   => 'content', 						   	        
+									 	'val'  => array()
+									)
+								),
+				   			'name' 	      => 'Columns', 
+				   			'description' => 'Create columns of various widths',
+				   			'shortcode'   => 'column',
+				   			'content'     => 'content',
+				   			'tabs'        => 'Column',
+				   			'wrap'        => false ),
+			// [tog open="" title=""]content[/tog]
+			'toggles' => array( 
+							'o' => 
+								array( 								
+									array( 
+										'type' => 'text', 
+									 	'text' => 'Header', 
+									 	'desc' => 'The header title of the box', 
+									 	'id'   => 'title', 						   	        
+									 	'val'  => array()
+									),
+									array( 
+										'type' => 'select', 
+									 	'text' => 'Close', 
+									 	'desc' => 'Keep the toggle box opened or closed', 
+									 	'id'   => 'open', 						   	        
+									 	'val'  => array("Close", "Open")
+									),
+									array( 
+										'type' => 'textarea', 
+									 	'text' => 'Text', 
+									 	'desc' => 'The content text', 
+									 	'exc'   => 'tog', 						   	        
+									 	'val'  => array()
+									)
+								),
+				   			'name' 	      => 'Toggle box', 
+				   			'description' => 'Create toggle boxes, with content inside them',
+				   			'shortcode'   => 'tog',
+				   			'content'     => 'tog',
+				   			'tabs'        => 'Toggle Box',
+				   			'wrap'        => false ),
+			// [tabwrap][tab title=""]content[/tab][tab title=""]...[/tab][/tabwrap]
+			'tabs' => array( 
+							'o' => 
+								array( 								
+									array( 
+										'type' => 'text', 
+									 	'text' => 'Title', 
+									 	'desc' => 'The tab title', 
+									 	'id'   => 'title', 						   	        
+									 	'val'  => array()
+									),
+									array( 
+										'type' => 'textarea', 
+									 	'text' => 'Text', 
+									 	'desc' => 'The content of your tab', 
+									 	'exc'   => 'tab', 						   	        
+									 	'val'  => array()
+									)
+								),
+				   			'name' 	      => 'Tab box', 
+				   			'description' => 'A text box of tabs',
+				   			'shortcode'   => 'tab',
+				   			'content'     => 'tab',
+				   			'tabs'        => 'Tab side',
+				   			'wrap'        => 'tabwrap' ),	
 			);
 
 ?>

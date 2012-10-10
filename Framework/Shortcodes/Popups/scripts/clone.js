@@ -22,7 +22,7 @@ clone = {
 
 		o = $(o);
 
-		( i > 1 ) ? o.css('display', 'inline') : o.css('display', 'none') ;
+		( i > 1 ) ? o.css('display', 'inline') : o.css('display', 'none');
 	},
 
 	clone : function( o, rm, t ) { 

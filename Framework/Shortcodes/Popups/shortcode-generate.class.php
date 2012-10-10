@@ -70,9 +70,10 @@ class short
 	 * @param  array $j The array which holds all of the shortcode options
 	 * @param  string $n The shorcode name, which would look like this ( [shortcodename ... ] );
 	 * @param  string $c the 'content' key, if is not false the shortcode encloses content, the value of the key is the name of the content inputs id
+	 * @param  string $w The wrap content if it does not equal "false" then its value will be used to create a wrap around the shortcode or shortcodes
 	 * @return javascript    Class responsible for inserting the shortcode
 	 */
-	public function script( $j, $n, $c )
+	public function script( $j, $n, $c, $w )
 	{ ?>
 		<script>
 
@@ -84,7 +85,7 @@ class short
 					tinyMCEPopup.resizeToInnerSize();
 				},
 
-			opt : function literator( o ) {
+			opt : function literator() {
 
 			var o = '';
 
@@ -122,7 +123,15 @@ class short
 
 				tinyMCEPopup.execCommand('mceRemoveNode', false, null);
 
-				var o = lfDialog.opt( o );
+				<?php if ( $w !== false ) : ?>
+
+				var o = <?php echo "\"[$w]\""; ?> + lfDialog.opt() + <?php echo "\"[/$w]\";"; ?>;
+
+				<?php else : ?>
+
+				var o = lfDialog.opt();
+
+				<?php endif; ?>
 				
 					tinyMCEPopup.execCommand('mceReplaceContent', false, o );
 					
@@ -148,7 +157,7 @@ class short
 				<script><?php include('./scripts/tinyMCE-pop.js'); ?></script>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 				<script><?php include('./scripts/clone.js'); ?></script>
-				<?php $this->script( $this->val['o'], $this->val['shortcode'], $this->val['content'] ); ?>
+				<?php $this->script( $this->val['o'], $this->val['shortcode'], $this->val['content'], $this->val['wrap'] ); ?>
 				<style><?php include('./style.css'); ?></style>
 			</head>
 			<body>

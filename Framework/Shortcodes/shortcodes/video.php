@@ -13,7 +13,7 @@ function lf_embed_vid($atts, $content = null) {
 		shortcode_atts(
 			array( 
 				'video'   => '',
-				'height' => '500px';
+				'height' => '500px'
 				), 
 			$atts 
 		) 
