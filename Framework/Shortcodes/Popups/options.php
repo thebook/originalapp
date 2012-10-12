@@ -13,7 +13,7 @@ $short = array(
 								 	'val'  => array("Gray", "Yellow", "Green", "Red", "Blue")
 								),
 								array( 
-									'type' => 'text', 
+									'type' => 'textarea', 
 								 	'text' => 'Text', 
 								 	'desc' => 'The text content of your alert box', 
 								 	'exc'  => 'content', 						   	        
@@ -99,7 +99,14 @@ $short = array(
 									 	'text' => 'Size', 
 									 	'desc' => 'The width of your column', 
 									 	'id'   => 'size', 						   	        
-									 	'val'  => array("Half", "Third", "Quarter", "Full")
+									 	'val'  => array("Half", "Third", "Quarter", "Sixth" )
+									),
+									array( 
+										'type' => 'select', 
+									 	'text' => 'Position', 
+									 	'desc' => 'Set whether this is the last column in the row( right next to the end of the page ) or a standard one', 
+									 	'id'   => 'place', 						   	        
+									 	'val'  => array("Standard", "Last")
 									),
 									array( 
 										'type' => 'textarea', 

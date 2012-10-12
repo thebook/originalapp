@@ -418,6 +418,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  *zoom: 1;
+}
+/* line 38, compass/utilities/general/_clearfix.scss */
+.lf-core-content-body-text:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 /* line 369, style-core.scss */
 .lf-core-content-body-text p {
@@ -1714,19 +1721,22 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 1608, style-core.scss */
+/* line 1610, style-core.scss */
 .lf-shortcode-button-medium-default, .lf-shortcode-button-large-default, .lf-shortcode-button-small-default {
   color: #222222;
   padding: 14px;
   margin: 0 7px;
-  border: 2px solid white;
+  border: 1px solid #bfbfbf;
   text-decoration: none;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
-  background: -webkit-linear-gradient(top, #ffffff, #dddddd);
-  background: -moz-linear-gradient(top, #ffffff, #dddddd);
-  background: -o-linear-gradient(top, #ffffff, #dddddd);
-  background: -ms-linear-gradient(top, #ffffff, #dddddd);
-  background: linear-gradient(top, #ffffff, #dddddd);
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #d9d9d9));
+  background: -webkit-linear-gradient(top, #ffffff, #d9d9d9);
+  background: -moz-linear-gradient(top, #ffffff, #d9d9d9);
+  background: -o-linear-gradient(top, #ffffff, #d9d9d9);
+  background: -ms-linear-gradient(top, #ffffff, #d9d9d9);
+  background: linear-gradient(top, #ffffff, #d9d9d9);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -1736,39 +1746,42 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 1618, style-core.scss */
+/* line 1621, style-core.scss */
 .lf-shortcode-button-medium-default:hover, .lf-shortcode-button-large-default:hover, .lf-shortcode-button-small-default:hover {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e2e2e2));
-  background: -webkit-linear-gradient(top, #ffffff, #e2e2e2);
-  background: -moz-linear-gradient(top, #ffffff, #e2e2e2);
-  background: -o-linear-gradient(top, #ffffff, #e2e2e2);
-  background: -ms-linear-gradient(top, #ffffff, #e2e2e2);
-  background: linear-gradient(top, #ffffff, #e2e2e2);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dedede));
+  background: -webkit-linear-gradient(top, #ffffff, #dedede);
+  background: -moz-linear-gradient(top, #ffffff, #dedede);
+  background: -o-linear-gradient(top, #ffffff, #dedede);
+  background: -ms-linear-gradient(top, #ffffff, #dedede);
+  background: linear-gradient(top, #ffffff, #dedede);
 }
 
-/* line 1623, style-core.scss */
+/* line 1626, style-core.scss */
 .lf-shortcode-button-large-default {
   padding: 21px 28px;
 }
 
-/* line 1629, style-core.scss */
+/* line 1632, style-core.scss */
 .lf-shortcode-button-small-default {
   padding: 7px 14px;
 }
 
-/* line 1608, style-core.scss */
+/* line 1610, style-core.scss */
 .lf-shortcode-button-medium-pink, .lf-shortcode-button-large-pink, .lf-shortcode-button-small-pink {
   color: white;
   padding: 14px;
   margin: 0 7px;
-  border: 2px solid #d68189;
+  border: 1px solid #ac163d;
   text-decoration: none;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d68189), color-stop(100%, #e94e77));
-  background: -webkit-linear-gradient(top, #d68189, #e94e77);
-  background: -moz-linear-gradient(top, #d68189, #e94e77);
-  background: -o-linear-gradient(top, #d68189, #e94e77);
-  background: -ms-linear-gradient(top, #d68189, #e94e77);
-  background: linear-gradient(top, #d68189, #e94e77);
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ea577e), color-stop(100%, #d91b4e));
+  background: -webkit-linear-gradient(top, #ea577e, #d91b4e);
+  background: -moz-linear-gradient(top, #ea577e, #d91b4e);
+  background: -o-linear-gradient(top, #ea577e, #d91b4e);
+  background: -ms-linear-gradient(top, #ea577e, #d91b4e);
+  background: linear-gradient(top, #ea577e, #d91b4e);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -1778,39 +1791,42 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 1618, style-core.scss */
+/* line 1621, style-core.scss */
 .lf-shortcode-button-medium-pink:hover, .lf-shortcode-button-large-pink:hover, .lf-shortcode-button-small-pink:hover {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d98990), color-stop(100%, #ea577e));
-  background: -webkit-linear-gradient(top, #d98990, #ea577e);
-  background: -moz-linear-gradient(top, #d98990, #ea577e);
-  background: -o-linear-gradient(top, #d98990, #ea577e);
-  background: -ms-linear-gradient(top, #d98990, #ea577e);
-  background: linear-gradient(top, #d98990, #ea577e);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eb6085), color-stop(100%, #e21c51));
+  background: -webkit-linear-gradient(top, #eb6085, #e21c51);
+  background: -moz-linear-gradient(top, #eb6085, #e21c51);
+  background: -o-linear-gradient(top, #eb6085, #e21c51);
+  background: -ms-linear-gradient(top, #eb6085, #e21c51);
+  background: linear-gradient(top, #eb6085, #e21c51);
 }
 
-/* line 1623, style-core.scss */
+/* line 1626, style-core.scss */
 .lf-shortcode-button-large-pink {
   padding: 21px 28px;
 }
 
-/* line 1629, style-core.scss */
+/* line 1632, style-core.scss */
 .lf-shortcode-button-small-pink {
   padding: 7px 14px;
 }
 
-/* line 1608, style-core.scss */
+/* line 1610, style-core.scss */
 .lf-shortcode-button-medium-yellow, .lf-shortcode-button-large-yellow, .lf-shortcode-button-small-yellow {
   color: white;
   padding: 14px;
   margin: 0 7px;
-  border: 2px solid #ffd573;
+  border: 1px solid #f3aa00;
   text-decoration: none;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffd573), color-stop(100%, #ecb163));
-  background: -webkit-linear-gradient(top, #ffd573, #ecb163);
-  background: -moz-linear-gradient(top, #ffd573, #ecb163);
-  background: -o-linear-gradient(top, #ffd573, #ecb163);
-  background: -ms-linear-gradient(top, #ffd573, #ecb163);
-  background: linear-gradient(top, #ffd573, #ecb163);
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffd573), color-stop(100%, #ffbe26));
+  background: -webkit-linear-gradient(top, #ffd573, #ffbe26);
+  background: -moz-linear-gradient(top, #ffd573, #ffbe26);
+  background: -o-linear-gradient(top, #ffd573, #ffbe26);
+  background: -ms-linear-gradient(top, #ffd573, #ffbe26);
+  background: linear-gradient(top, #ffd573, #ffbe26);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -1820,39 +1836,42 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 1618, style-core.scss */
+/* line 1621, style-core.scss */
 .lf-shortcode-button-medium-yellow:hover, .lf-shortcode-button-large-yellow:hover, .lf-shortcode-button-small-yellow:hover {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffd87d), color-stop(100%, #edb66c));
-  background: -webkit-linear-gradient(top, #ffd87d, #edb66c);
-  background: -moz-linear-gradient(top, #ffd87d, #edb66c);
-  background: -o-linear-gradient(top, #ffd87d, #edb66c);
-  background: -ms-linear-gradient(top, #ffd87d, #edb66c);
-  background: linear-gradient(top, #ffd87d, #edb66c);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffd87d), color-stop(100%, #ffc131));
+  background: -webkit-linear-gradient(top, #ffd87d, #ffc131);
+  background: -moz-linear-gradient(top, #ffd87d, #ffc131);
+  background: -o-linear-gradient(top, #ffd87d, #ffc131);
+  background: -ms-linear-gradient(top, #ffd87d, #ffc131);
+  background: linear-gradient(top, #ffd87d, #ffc131);
 }
 
-/* line 1623, style-core.scss */
+/* line 1626, style-core.scss */
 .lf-shortcode-button-large-yellow {
   padding: 21px 28px;
 }
 
-/* line 1629, style-core.scss */
+/* line 1632, style-core.scss */
 .lf-shortcode-button-small-yellow {
   padding: 7px 14px;
 }
 
-/* line 1608, style-core.scss */
+/* line 1610, style-core.scss */
 .lf-shortcode-button-medium-blue, .lf-shortcode-button-large-blue, .lf-shortcode-button-small-blue {
   color: white;
   padding: 14px;
   margin: 0 7px;
-  border: 2px solid #a7dbd8;
+  border: 1px solid #4db6b0;
   text-decoration: none;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a7dbd8), color-stop(100%, #69d2e7));
-  background: -webkit-linear-gradient(top, #a7dbd8, #69d2e7);
-  background: -moz-linear-gradient(top, #a7dbd8, #69d2e7);
-  background: -o-linear-gradient(top, #a7dbd8, #69d2e7);
-  background: -ms-linear-gradient(top, #a7dbd8, #69d2e7);
-  background: linear-gradient(top, #a7dbd8, #69d2e7);
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a7dbd8), color-stop(100%, #71c5c0));
+  background: -webkit-linear-gradient(top, #a7dbd8, #71c5c0);
+  background: -moz-linear-gradient(top, #a7dbd8, #71c5c0);
+  background: -o-linear-gradient(top, #a7dbd8, #71c5c0);
+  background: -ms-linear-gradient(top, #a7dbd8, #71c5c0);
+  background: linear-gradient(top, #a7dbd8, #71c5c0);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -1862,39 +1881,42 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 1618, style-core.scss */
+/* line 1621, style-core.scss */
 .lf-shortcode-button-medium-blue:hover, .lf-shortcode-button-large-blue:hover, .lf-shortcode-button-small-blue:hover {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aededb), color-stop(100%, #72d5e8));
-  background: -webkit-linear-gradient(top, #aededb, #72d5e8);
-  background: -moz-linear-gradient(top, #aededb, #72d5e8);
-  background: -o-linear-gradient(top, #aededb, #72d5e8);
-  background: -ms-linear-gradient(top, #aededb, #72d5e8);
-  background: linear-gradient(top, #aededb, #72d5e8);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aededb), color-stop(100%, #78c8c3));
+  background: -webkit-linear-gradient(top, #aededb, #78c8c3);
+  background: -moz-linear-gradient(top, #aededb, #78c8c3);
+  background: -o-linear-gradient(top, #aededb, #78c8c3);
+  background: -ms-linear-gradient(top, #aededb, #78c8c3);
+  background: linear-gradient(top, #aededb, #78c8c3);
 }
 
-/* line 1623, style-core.scss */
+/* line 1626, style-core.scss */
 .lf-shortcode-button-large-blue {
   padding: 21px 28px;
 }
 
-/* line 1629, style-core.scss */
+/* line 1632, style-core.scss */
 .lf-shortcode-button-small-blue {
   padding: 7px 14px;
 }
 
-/* line 1608, style-core.scss */
+/* line 1610, style-core.scss */
 .lf-shortcode-button-medium-red, .lf-shortcode-button-large-red, .lf-shortcode-button-small-red {
   color: white;
   padding: 14px;
   margin: 0 7px;
-  border: 2px solid #f25e5e;
+  border: 1px solid #c11010;
   text-decoration: none;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f25e5e), color-stop(100%, #fa3737));
-  background: -webkit-linear-gradient(top, #f25e5e, #fa3737);
-  background: -moz-linear-gradient(top, #f25e5e, #fa3737);
-  background: -o-linear-gradient(top, #f25e5e, #fa3737);
-  background: -ms-linear-gradient(top, #f25e5e, #fa3737);
-  background: linear-gradient(top, #f25e5e, #fa3737);
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f25e5e), color-stop(100%, #ec1717));
+  background: -webkit-linear-gradient(top, #f25e5e, #ec1717);
+  background: -moz-linear-gradient(top, #f25e5e, #ec1717);
+  background: -o-linear-gradient(top, #f25e5e, #ec1717);
+  background: -ms-linear-gradient(top, #f25e5e, #ec1717);
+  background: linear-gradient(top, #f25e5e, #ec1717);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -1904,39 +1926,42 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 1618, style-core.scss */
+/* line 1621, style-core.scss */
 .lf-shortcode-button-medium-red:hover, .lf-shortcode-button-large-red:hover, .lf-shortcode-button-small-red:hover {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f36767), color-stop(100%, #fa4141));
-  background: -webkit-linear-gradient(top, #f36767, #fa4141);
-  background: -moz-linear-gradient(top, #f36767, #fa4141);
-  background: -o-linear-gradient(top, #f36767, #fa4141);
-  background: -ms-linear-gradient(top, #f36767, #fa4141);
-  background: linear-gradient(top, #f36767, #fa4141);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f36767), color-stop(100%, #ed2121));
+  background: -webkit-linear-gradient(top, #f36767, #ed2121);
+  background: -moz-linear-gradient(top, #f36767, #ed2121);
+  background: -o-linear-gradient(top, #f36767, #ed2121);
+  background: -ms-linear-gradient(top, #f36767, #ed2121);
+  background: linear-gradient(top, #f36767, #ed2121);
 }
 
-/* line 1623, style-core.scss */
+/* line 1626, style-core.scss */
 .lf-shortcode-button-large-red {
   padding: 21px 28px;
 }
 
-/* line 1629, style-core.scss */
+/* line 1632, style-core.scss */
 .lf-shortcode-button-small-red {
   padding: 7px 14px;
 }
 
-/* line 1608, style-core.scss */
+/* line 1610, style-core.scss */
 .lf-shortcode-button-medium-green, .lf-shortcode-button-large-green, .lf-shortcode-button-small-green {
   color: white;
   padding: 14px;
   margin: 0 7px;
-  border: 2px solid #7bbd82;
+  border: 1px solid #3d7b44;
   text-decoration: none;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7bbd82), color-stop(100%, #3d9949));
-  background: -webkit-linear-gradient(top, #7bbd82, #3d9949);
-  background: -moz-linear-gradient(top, #7bbd82, #3d9949);
-  background: -o-linear-gradient(top, #7bbd82, #3d9949);
-  background: -ms-linear-gradient(top, #7bbd82, #3d9949);
-  background: linear-gradient(top, #7bbd82, #3d9949);
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7bbd82), color-stop(100%, #4e9d57));
+  background: -webkit-linear-gradient(top, #7bbd82, #4e9d57);
+  background: -moz-linear-gradient(top, #7bbd82, #4e9d57);
+  background: -o-linear-gradient(top, #7bbd82, #4e9d57);
+  background: -ms-linear-gradient(top, #7bbd82, #4e9d57);
+  background: linear-gradient(top, #7bbd82, #4e9d57);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -1946,33 +1971,36 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 1618, style-core.scss */
+/* line 1621, style-core.scss */
 .lf-shortcode-button-medium-green:hover, .lf-shortcode-button-large-green:hover, .lf-shortcode-button-small-green:hover {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #82c088), color-stop(100%, #40a04c));
-  background: -webkit-linear-gradient(top, #82c088, #40a04c);
-  background: -moz-linear-gradient(top, #82c088, #40a04c);
-  background: -o-linear-gradient(top, #82c088, #40a04c);
-  background: -ms-linear-gradient(top, #82c088, #40a04c);
-  background: linear-gradient(top, #82c088, #40a04c);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #82c088), color-stop(100%, #52a45b));
+  background: -webkit-linear-gradient(top, #82c088, #52a45b);
+  background: -moz-linear-gradient(top, #82c088, #52a45b);
+  background: -o-linear-gradient(top, #82c088, #52a45b);
+  background: -ms-linear-gradient(top, #82c088, #52a45b);
+  background: linear-gradient(top, #82c088, #52a45b);
 }
 
-/* line 1623, style-core.scss */
+/* line 1626, style-core.scss */
 .lf-shortcode-button-large-green {
   padding: 21px 28px;
 }
 
-/* line 1629, style-core.scss */
+/* line 1632, style-core.scss */
 .lf-shortcode-button-small-green {
   padding: 7px 14px;
 }
 
-/* line 1608, style-core.scss */
+/* line 1610, style-core.scss */
 .lf-shortcode-button-medium-black, .lf-shortcode-button-large-black, .lf-shortcode-button-small-black {
   color: white;
   padding: 14px;
   margin: 0 7px;
-  border: 2px solid #242424;
+  border: 1px solid black;
   text-decoration: none;
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #242424), color-stop(100%, #000000));
   background: -webkit-linear-gradient(top, #242424, #000000);
   background: -moz-linear-gradient(top, #242424, #000000);
@@ -1988,7 +2016,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 1618, style-core.scss */
+/* line 1621, style-core.scss */
 .lf-shortcode-button-medium-black:hover, .lf-shortcode-button-large-black:hover, .lf-shortcode-button-small-black:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #292929), color-stop(100%, #050505));
   background: -webkit-linear-gradient(top, #292929, #050505);
@@ -1998,29 +2026,32 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: linear-gradient(top, #292929, #050505);
 }
 
-/* line 1623, style-core.scss */
+/* line 1626, style-core.scss */
 .lf-shortcode-button-large-black {
   padding: 21px 28px;
 }
 
-/* line 1629, style-core.scss */
+/* line 1632, style-core.scss */
 .lf-shortcode-button-small-black {
   padding: 7px 14px;
 }
 
-/* line 1608, style-core.scss */
+/* line 1610, style-core.scss */
 .lf-shortcode-button-medium-gray, .lf-shortcode-button-large-gray, .lf-shortcode-button-small-gray {
   color: #222222;
   padding: 14px;
   margin: 0 7px;
-  border: 2px solid #e5e5e5;
+  border: 1px solid #a5a5a5;
   text-decoration: none;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e5e5e5), color-stop(100%, #b7b7b7));
-  background: -webkit-linear-gradient(top, #e5e5e5, #b7b7b7);
-  background: -moz-linear-gradient(top, #e5e5e5, #b7b7b7);
-  background: -o-linear-gradient(top, #e5e5e5, #b7b7b7);
-  background: -ms-linear-gradient(top, #e5e5e5, #b7b7b7);
-  background: linear-gradient(top, #e5e5e5, #b7b7b7);
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e5e5e5), color-stop(100%, #bfbfbf));
+  background: -webkit-linear-gradient(top, #e5e5e5, #bfbfbf);
+  background: -moz-linear-gradient(top, #e5e5e5, #bfbfbf);
+  background: -o-linear-gradient(top, #e5e5e5, #bfbfbf);
+  background: -ms-linear-gradient(top, #e5e5e5, #bfbfbf);
+  background: linear-gradient(top, #e5e5e5, #bfbfbf);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -2030,34 +2061,156 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 1618, style-core.scss */
+/* line 1621, style-core.scss */
 .lf-shortcode-button-medium-gray:hover, .lf-shortcode-button-large-gray:hover, .lf-shortcode-button-small-gray:hover {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eaeaea), color-stop(100%, #bcbcbc));
-  background: -webkit-linear-gradient(top, #eaeaea, #bcbcbc);
-  background: -moz-linear-gradient(top, #eaeaea, #bcbcbc);
-  background: -o-linear-gradient(top, #eaeaea, #bcbcbc);
-  background: -ms-linear-gradient(top, #eaeaea, #bcbcbc);
-  background: linear-gradient(top, #eaeaea, #bcbcbc);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eaeaea), color-stop(100%, #c4c4c4));
+  background: -webkit-linear-gradient(top, #eaeaea, #c4c4c4);
+  background: -moz-linear-gradient(top, #eaeaea, #c4c4c4);
+  background: -o-linear-gradient(top, #eaeaea, #c4c4c4);
+  background: -ms-linear-gradient(top, #eaeaea, #c4c4c4);
+  background: linear-gradient(top, #eaeaea, #c4c4c4);
 }
 
-/* line 1623, style-core.scss */
+/* line 1626, style-core.scss */
 .lf-shortcode-button-large-gray {
   padding: 21px 28px;
 }
 
-/* line 1629, style-core.scss */
+/* line 1632, style-core.scss */
 .lf-shortcode-button-small-gray {
   padding: 7px 14px;
 }
 
+/* line 1663, style-core.scss */
+.alert-box-red {
+  color: #7a0a0a;
+  padding: 14px;
+  margin: 0 0 17px;
+  border-bottom: 1px solid #f25e5e;
+  border-top: 1px solid #f25e5e;
+  background-color: #f79797;
+  clear: both;
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* line 1663, style-core.scss */
+.alert-box-gray {
+  color: #7f7f7f;
+  padding: 14px;
+  margin: 0 0 17px;
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+  background-color: white;
+  clear: both;
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* line 1663, style-core.scss */
+.alert-box-yellow {
+  color: #a67400;
+  padding: 14px;
+  margin: 0 0 17px;
+  border-bottom: 1px solid #ffd573;
+  border-top: 1px solid #ffd573;
+  background-color: #ffe7b0;
+  clear: both;
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* line 1663, style-core.scss */
+.alert-box-blue {
+  color: #35817d;
+  padding: 14px;
+  margin: 0 0 17px;
+  border-bottom: 1px solid #a7dbd8;
+  border-top: 1px solid #a7dbd8;
+  background-color: #d2edeb;
+  clear: both;
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* line 1663, style-core.scss */
+.alert-box-green {
+  color: #244828;
+  padding: 14px;
+  margin: 0 0 17px;
+  border-bottom: 1px solid #7bbd82;
+  border-top: 1px solid #7bbd82;
+  background-color: #a4d1a9;
+  clear: both;
+  -webkit-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* line 1692, style-core.scss */
+.lf-column-size-standard-half, .lf-column-size-last-half {
+  width: 47.5%;
+  display: inline;
+  float: left;
+  margin: 0 5% 34px 0;
+}
+
+/* line 1699, style-core.scss */
+.lf-column-size-last-half {
+  margin: 0 0 43px;
+}
+
+/* line 1692, style-core.scss */
+.lf-column-size-standard-third, .lf-column-size-last-third {
+  width: 30%;
+  display: inline;
+  float: left;
+  margin: 0 5% 34px 0;
+}
+
+/* line 1699, style-core.scss */
+.lf-column-size-last-third {
+  margin: 0 0 43px;
+}
+
+/* line 1692, style-core.scss */
+.lf-column-size-standard-quarter, .lf-column-size-last-quarter {
+  width: 21.25%;
+  display: inline;
+  float: left;
+  margin: 0 5% 34px 0;
+}
+
+/* line 1699, style-core.scss */
+.lf-column-size-last-quarter {
+  margin: 0 0 43px;
+}
+
+/* line 1692, style-core.scss */
+.lf-column-size-standard-sixth, .lf-column-size-last-sixth {
+  width: 12.5%;
+  display: inline;
+  float: left;
+  margin: 0 5% 34px 0;
+}
+
+/* line 1699, style-core.scss */
+.lf-column-size-last-sixth {
+  margin: 0 0 43px;
+}
+
 /* advert styles */
-/* line 1656, style-core.scss */
+/* line 1718, style-core.scss */
 .lf-resp-aside-wrap {
   float: left;
   display: inline-block;
 }
 
-/* line 1661, style-core.scss */
+/* line 1723, style-core.scss */
 .lf-resp-widget-area {
   width: 85.5%;
   float: left;
@@ -2065,14 +2218,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   padding: 0 5.25% 0 9.25%;
 }
 
-/* line 1668, style-core.scss */
+/* line 1730, style-core.scss */
 .lf-test-ad {
   height: 250px;
   width: 100%;
   background-color: #000;
 }
 
-/* line 1675, style-core.scss */
+/* line 1737, style-core.scss */
 .lf-ad-widget-dummy-ad {
   width: 70%;
   height: 10px;
@@ -2081,7 +2234,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #ff3f3f;
 }
 
-/* line 1684, style-core.scss */
+/* line 1746, style-core.scss */
 .lf-ad-widget-dummy-ad-inner {
   width: 100%;
   height: 10px;
@@ -2089,7 +2242,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #ff3f4c;
 }
 
-/* line 1692, style-core.scss */
+/* line 1754, style-core.scss */
 .lf-ad-widget-link-ad {
   width: 100%;
   height: 24px;
@@ -2097,14 +2250,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #ff3f4c;
 }
 
-/* line 1700, style-core.scss */
+/* line 1762, style-core.scss */
 .lf-header-ad-wrap {
   display: block;
   margin: 24px 0;
   z-index: 5;
 }
 
-/* line 1707, style-core.scss */
+/* line 1769, style-core.scss */
 .lf-header-leaderboard-ad {
   height: 90px;
   width: 728px;
@@ -2113,7 +2266,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #000;
 }
 
-/* line 1716, style-core.scss */
+/* line 1778, style-core.scss */
 .lf-header-banner-ad {
   height: 60px;
   width: 468px;

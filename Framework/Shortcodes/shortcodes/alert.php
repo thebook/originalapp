@@ -18,7 +18,7 @@ function lf_alert_short($atts, $content = null) {
 		) 
 	);
 
-	$c   = esc_attr( $color );
+	$c   = strtolower( esc_attr( $color ) );
 	$con = strip_tags( $content );
 
 	return "<div class='alert-box-$c'>$con</div>";

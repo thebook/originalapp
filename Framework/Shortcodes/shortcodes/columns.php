@@ -11,17 +11,19 @@ function lf_col_short($atts, $content = null) {
 	extract(
 		shortcode_atts(
 			array( 
-				'size' => 'full'
+				'size' => 'full',
+				'place'=> 'Standard'
 				), 
 			$atts 
 		) 
 	);
 
-	$s  = esc_attr( $size );
+	$p  = strtolower( esc_attr( $place ) );
+	$s  = strtolower( esc_attr( $size ) );
 	$cc = strip_tags( $content );
 	$c  = do_shortcode( $cc );
 
-	return "<div class=\"lf-column-size-$s\">$c</div>";
+	return "<div class=\"lf-column-size-$p-$s\"><p>$c</p></div>";
 
 }
 

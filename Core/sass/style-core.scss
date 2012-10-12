@@ -365,7 +365,7 @@
 	padding: 28px 21px 28px;
 	background-color: #fff;
 	@include single-box-shadow();
-
+	@include pie-clearfix();
 	p { 
 		margin: 0 0 17px;
 
@@ -1600,23 +1600,26 @@ $marg_h : 1.5%;
 }
 
 // buttons
-@mixin but( $c1, $c2, $c3, $t, $name ) {
+@mixin but( $c1, $s, $t, $name ) {
 	
-	$col : linear-gradient( $c1, $c2, $c3 );
-	$dc  : linear-gradient( $c1, lighten($c2, 2%), lighten($c3, 2%) );
+	$shade  : darken( $s, 15% );
+	$border : darken( $s, 25% );
+	$gari   : linear-gradient( $c1, $s, $shade );
+	$hover  : linear-gradient( $c1, lighten($s, 2%), lighten($shade, 2%) );
 	
 	.lf-shortcode-button-medium-#{$name} {
 		color: $t;
 		padding: 14px;
 		margin: 0 7px;
-		border: 2px solid $c2;
+		border: 1px solid $border;
 		text-decoration: none;
-		@include background($col);
+		@include single-box-shadow( rgba( 0, 0, 0, 0.2 ), 0px, 2px, 3px, 0 );
+		@include background($gari);
 		@include border-radius( 5px);
 		@include single-box-shadow( rgba( 0, 0, 0, 1), 1px 1px 2px 0px );
 
 		&:hover { 
-			@include background($dc);
+			@include background($hover);
 		}
 	}
 
@@ -1634,21 +1637,80 @@ $marg_h : 1.5%;
 }
 
 // Default Button
-@include but( top, #fff, #ddd, #222, 'default' );
+@include but( top, #fff,    #222, 'default' );
 // Pink Button
-@include but( top, #D68189, #E94E77, #fff, pink );
+@include but( top, #ea577e, #fff, pink );
 // Yellow Button
-@include but( top, #FFD573, #ECB163, #fff, yellow );
+@include but( top, #FFD573, #fff, yellow );
 // Blue Button
-@include but( top, #A7DBD8, #69D2E7, #fff, blue );
+@include but( top, #A7DBD8, #fff, blue );
 // Red Button
-@include but( top, #F25E5E, #FA3737, #fff, red );
+@include but( top, #F25E5E, #fff, red );
 // Green Button
-@include but( top, #7BBD82, #3D9949, #fff, green );
+@include but( top, #7BBD82, #fff, green );
 // Black Button
-@include but( top, #242424, #000, #fff, black );
+@include but( top, #242424, #fff, black );
 // Gray Button
-@include but( top, #e5e5e5, #b7b7b7, #222, gray );
+@include but( top, #e5e5e5, #222, gray );
+
+// Alert boxes 
+@mixin alert( $col, $name ) {
+
+	$color : lighten( $col, 12% );
+	$bor   : darken(  $col, 20% );
+	$t     : darken(  $col, 40% );
+
+	.alert-box-#{$name} {
+
+		color: $t;
+		padding: 14px;
+		margin: 0 0 17px;
+		border-bottom : 1px solid $col;
+		border-top : 1px solid $col;
+		background-color: $color;
+		clear: both;
+		@include single-box-shadow( rgba( 0, 0, 0, 0.2 ), 0px, 2px, 3px, 0 );
+	}
+}
+
+// Red 
+@include alert( #F25E5E, red );
+// Gray
+@include alert( #e5e5e5, gray );
+// Yellow
+@include alert( #FFD573, yellow );
+// Blue
+@include alert( #A7DBD8, blue );
+// Green
+@include alert( #7BBD82, green );
+
+// Columns
+@mixin columns( $number, $name ) {
+
+	$si : ( ( 100% - ( 5% * ( $number - 1) ) ) / $number );
+
+	.lf-column-size-standard-#{$name} { 
+
+		width: $si;
+		display: inline;
+		float: left;
+		margin: 0 5% 34px 0;
+	}
+	.lf-column-size-last-#{$name} { 
+
+		@extend .lf-column-size-standard-#{$name};
+		margin: 0 0 43px;
+	}
+}
+
+// Half 
+@include columns( 2, half );
+// Third
+@include columns( 3, third );
+// Quarter
+@include columns( 4, quarter );
+// Sixth 
+@include columns( 6, sixth );
 
 
 
