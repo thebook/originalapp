@@ -19,10 +19,17 @@ function lf_tog_short($atts, $content = null) {
 	);
 
 	$title = esc_attr( $title );
-	$o     = esc_attr( $open );
+	$o     = strtolower( esc_attr( $open ) );
 	$c     = strip_tags( $content );
+	
+	// The display value of the toggle content
+	$di    = ( $o == 'close' ? 'none' : 'block' );
+	// Icon type "f" for up arrow, "g" for down arrow
+	$i     = ( $o == 'close' ? 'f' : 'g' );
+	// The data icon element attributes
+	$datai = " data-icon=\"$i\" aria-hidden=\"true\" class=\"tog-lf-c\"";
 
-	return "<div class=\"tog-lf-$o\"><span class=\"tog-lf-ti\">$title</span><p>$c</p></div>";
+	return "<div class=\"tog-lf\" data-id=\"$o\"><span class=\"tog-lf-ti\"><span $datai></span><span>$title</span></span><p style=\"display:$di;\" class=\"lf-tog-p\">$c</p></div>";
 
 }
 

@@ -77,7 +77,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* Uses data attributes to insert icons */
-/* line 54, _font.scss */
+/* line 53, _font.scss */
 [data-icon]:before {
   font-family: 'lftastic';
   content: attr(data-icon);
@@ -87,14 +87,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* Allows icons to be assigned via "post-" class */
-/* line 65, _font.scss */
+/* line 64, _font.scss */
 [class^="post-"]:before {
   font-family: 'lftastic';
   font-style: normal;
   font-weight: normal;
 }
 
-/* line 73, _font.scss */
+/* line 72, _font.scss */
 [class^="jp-"]:before, [id^="lb"]:before {
   font-family: 'lftastic';
   font-style: normal;
@@ -2203,14 +2203,133 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   margin: 0 0 43px;
 }
 
+/* line 1719, style-core.scss */
+.tog-lf {
+  width: 100%;
+  float: left;
+  margin: 28px 0 0;
+  -webkit-box-shadow: 0px 1px 1px 0 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 1px 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+/* line 1725, style-core.scss */
+.tog-lf .tog-lf-ti {
+  width: 93%;
+  display: block;
+  float: left;
+  padding: 14px 4.5% 14px 2.5%;
+  border: 1px solid #f1f1f1;
+  background-color: #f4f4f4;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+/* line 1736, style-core.scss */
+.tog-lf .tog-lf-ti:hover {
+  border: 1px solid #e7e7e7;
+}
+/* line 1741, style-core.scss */
+.tog-lf .tog-lf-c {
+  margin: 1px 14px 0 0;
+  height: 16px;
+  float: left;
+}
+/* line 1748, style-core.scss */
+.tog-lf .lf-tog-p {
+  padding: 21px 2.5%;
+  float: left;
+  overflow: hidden;
+  border-bottom: 1px solid #f1f1f1;
+  border-left: 1px solid #f1f1f1;
+  border-right: 1px solid #f1f1f1;
+}
+
+/* line 1761, style-core.scss */
+.tab-wrap-lf {
+  width: 100%;
+  float: left;
+  margin: 28px 0 0;
+}
+/* line 1767, style-core.scss */
+.tab-wrap-lf .tab-head-lf {
+  width: 100%;
+  float: none;
+  list-style-type: none;
+  margin: 0;
+  *zoom: 1;
+}
+/* line 38, compass/utilities/general/_clearfix.scss */
+.tab-wrap-lf .tab-head-lf:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 1775, style-core.scss */
+.tab-wrap-lf .tab-head-lf li {
+  display: inline;
+  float: left;
+  position: relative;
+  z-index: 5;
+  margin-bottom: -1px;
+}
+/* line 1787, style-core.scss */
+.tab-wrap-lf .tab-head-lf .tab-chosen-li-lf a {
+  padding-top: 15px;
+  margin: 1px 5px 0 0;
+  background-color: #fff;
+  border-top: 1px solid #e7e7e7;
+  border-right: 1px solid #e7e7e7;
+  border-left: 1px solid #e7e7e7;
+  -webkit-border-radius: 2px 2px 0 0;
+  -moz-border-radius: 2px 2px 0 0;
+  -ms-border-radius: 2px 2px 0 0;
+  -o-border-radius: 2px 2px 0 0;
+  border-radius: 2px 2px 0 0;
+}
+/* line 1798, style-core.scss */
+.tab-wrap-lf .tab-head-lf a {
+  display: block;
+  padding: 14px 21px;
+  margin: 1px 5px 0 0;
+  border-top: 1px solid #f1f1f1;
+  border-left: 1px solid #f1f1f1;
+  border-right: 1px solid #f1f1f1;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: #f4f4f4;
+  cursor: pointer;
+}
+/* line 1812, style-core.scss */
+.tab-wrap-lf .tab-head-lf a:hover {
+  border-top: 1px solid #e7e7e7;
+  border-right: 1px solid #e7e7e7;
+  border-left: 1px solid #e7e7e7;
+}
+/* line 1821, style-core.scss */
+.tab-wrap-lf .tab-box-lf {
+  width: 95%;
+  padding: 21px 2.5%;
+  border: 1px solid #f1f1f1;
+}
+
+/* line 1830, style-core.scss */
+.tab-close-lf {
+  left: -10000px;
+  position: absolute;
+}
+
 /* advert styles */
-/* line 1718, style-core.scss */
+/* line 1840, style-core.scss */
 .lf-resp-aside-wrap {
   float: left;
   display: inline-block;
 }
 
-/* line 1723, style-core.scss */
+/* line 1845, style-core.scss */
 .lf-resp-widget-area {
   width: 85.5%;
   float: left;
@@ -2218,14 +2337,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   padding: 0 5.25% 0 9.25%;
 }
 
-/* line 1730, style-core.scss */
+/* line 1852, style-core.scss */
 .lf-test-ad {
   height: 250px;
   width: 100%;
   background-color: #000;
 }
 
-/* line 1737, style-core.scss */
+/* line 1859, style-core.scss */
 .lf-ad-widget-dummy-ad {
   width: 70%;
   height: 10px;
@@ -2234,7 +2353,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #ff3f3f;
 }
 
-/* line 1746, style-core.scss */
+/* line 1868, style-core.scss */
 .lf-ad-widget-dummy-ad-inner {
   width: 100%;
   height: 10px;
@@ -2242,7 +2361,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #ff3f4c;
 }
 
-/* line 1754, style-core.scss */
+/* line 1876, style-core.scss */
 .lf-ad-widget-link-ad {
   width: 100%;
   height: 24px;
@@ -2250,14 +2369,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #ff3f4c;
 }
 
-/* line 1762, style-core.scss */
+/* line 1884, style-core.scss */
 .lf-header-ad-wrap {
   display: block;
   margin: 24px 0;
   z-index: 5;
 }
 
-/* line 1769, style-core.scss */
+/* line 1891, style-core.scss */
 .lf-header-leaderboard-ad {
   height: 90px;
   width: 728px;
@@ -2266,7 +2385,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background-color: #000;
 }
 
-/* line 1778, style-core.scss */
+/* line 1900, style-core.scss */
 .lf-header-banner-ad {
   height: 60px;
   width: 468px;

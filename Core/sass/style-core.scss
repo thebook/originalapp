@@ -1712,6 +1712,128 @@ $marg_h : 1.5%;
 // Sixth 
 @include columns( 6, sixth );
 
+// Toggle 
+
+$tcol : lighten( #e7e7e7, 5% );
+
+.tog-lf { 
+	width: 100%;
+	float: left;
+	margin: 28px 0 0;
+	@include single-box-shadow(0 1px 1px rgba(0, 0, 0, 0.1) );
+
+	.tog-lf-ti { 
+
+		width: 93%;
+		display: block;
+		float: left;
+		padding: 14px 4.5% 14px 2.5%;
+		border: 1px solid darken( $tcol, 1% );
+		background-color: $tcol;
+		@include border-radius( 2px);
+		cursor: pointer;
+
+		&:hover { 
+			border: 1px solid darken( $tcol, 5% );
+		}
+	}
+
+	.tog-lf-c { 
+
+		margin: 1px 14px 0 0;
+		height: 16px;
+		float: left;
+	}
+
+	.lf-tog-p { 
+		padding: 21px 2.5%;
+		float: left;
+		overflow: hidden;
+		border-bottom: 1px solid darken( $tcol, 1% );
+		border-left  : 1px solid darken( $tcol, 1% );
+		border-right : 1px solid darken( $tcol, 1% );
+
+	}
+}
+
+// Tab 
+
+.tab-wrap-lf { 
+
+	width: 100%;
+	float: left;
+	margin: 28px 0 0;
+
+	.tab-head-lf { 
+		
+		width: 100%;
+		float: none;
+		list-style-type: none;
+		margin: 0;
+		@include pie-clearfix;
+
+		li {
+			display: inline;
+			float: left;
+			position: relative;
+			z-index: 5;
+			margin-bottom: -1px;
+
+		}
+
+		.tab-chosen-li-lf { 
+
+
+			a {	
+				padding-top: 15px;
+				margin: 1px 5px 0 0;
+				background-color: #fff;
+				border-top: 1px solid darken( $tcol, 5% );
+				border-right: 1px solid darken( $tcol, 5% );
+				border-left: 1px solid darken( $tcol, 5% );
+				@include border-radius( 2px 2px 0 0);
+			}
+		}
+
+		a { 
+			display: block;
+			padding: 14px 21px;
+			margin: 1px 5px 0 0;
+			border-top   : 1px solid darken( $tcol, 1% );
+			border-left  : 1px solid darken( $tcol, 1% );
+			border-right : 1px solid darken( $tcol, 1% );
+			overflow: hidden;
+			text-decoration: none;
+			color: inherit;		
+			background-color: $tcol;
+			cursor: pointer;
+
+
+			&:hover { 
+				border-top: 1px solid darken( $tcol, 5% );
+				border-right: 1px solid darken( $tcol, 5% );
+				border-left: 1px solid darken( $tcol, 5% );
+			}
+		}
+	}
+
+
+	.tab-box-lf { 
+
+		width: 95%;
+		padding: 21px 2.5%;
+		border: 1px solid darken( $tcol, 1% );	
+	}
+
+}
+
+.tab-close-lf { 
+
+	left: -10000px;
+	position: absolute;
+}
+
+
 
 
 /* advert styles */
@@ -1727,7 +1849,7 @@ $marg_h : 1.5%;
 	padding: 0 5.25% 0 9.25%;
 }
 
-.lf-test-ad { 
+.lf-test-ad {
 
 	height: 250px;
 	width: 100%;

@@ -76,6 +76,161 @@
 						}
 					});
 			
+		},	
+	},
+
+	toggle = {
+
+		/**
+		 * Handles the toggle animation and defaults
+		 * @param  {object}     o  The paragraph "object" ( the text element )
+		 * @param  {object}     c  The "character"(icon) holding element ( for up and down arrow switch )
+		 * @param  {paramaters} oo "Options" for the animation, if not supplied the defaults kick in
+		 * Animates the top and bottom pads as well as height, after which it changes the 'data-icon' to specified
+		 */
+		animate : function ( o, c, oo ) {
+
+			var oo    = oo    || {};
+			    oo.pt = oo.pt || '0px';
+			    oo.pb = oo.pb || '0px';
+			    oo.h  = oo.h  || '0px';
+			    oo.s  = oo.s  || '0px';
+			    oo.i  = oo.i  || 'f';
+
+			o.stop().animate({
+						'padding-top' : oo.pt,
+						'padding-bottom' : oo.pb,
+						'height' : oo.h 
+					}, oo.s );
+
+			c.attr('data-icon', oo.i );
+		},
+		/**
+		 * "Toggles" bettwen open and closed state, handles the click and calls toggle.animate()
+		 * @param  {object} o The element which wraps the toggle 
+		 * @param  {string} s The value of the data-id attribute ( used to tell if closed )
+		 * Binds the toggle and checks if the toggle is to be closed 
+		 */
+		t : function ( o, s ) { 
+		
+			var i  = $( o );
+			var h  = i.children('.tog-lf-ti');
+			var p  = i.children('.lf-tog-p');
+			var c  = h.children('.tog-lf-c');
+			var hi = p.height();
+			var pt = p.css( 'padding-top' );
+			var pb = p.css( 'padding-bottom' );
+			var sp = 400;
+			
+			// Binds toggle
+			h.toggle(	
+				// Only passes the "paragraph" element and the "character"(icon) element ( the defaults kick in )
+				function() {
+					toggle.animate( p, c );
+				},
+				// Passes paragraph & character element, top and bottom padding(pb,pt), "height", (animation)"speed", and "icon" type("g") 
+				function () {					
+					toggle.animate( p, c, { pt : pt, pb : pb, h  : hi, s  : sp, i  : 'g' } );
+				} 
+			);
+			// If "State" is close then we triger the first toggle, and display the text as block
+			if( s == 'close' ) { 
+				h.trigger('click'); 
+				p.css('display', 'block') 
+			}
+		},
+
+		/**
+		 * Calls toggle.t for every element with the given class and inits the toggle box
+		 * @param  {string} o The element class
+		 * Gets the atrribute 'data-id' value and passes it to .t() for "if closed" reference
+		 */
+		tog : function ( o ) { 
+
+			$( o ).each( 
+				function() { 
+					var id = $(this).attr('data-id');
+					toggle.t( this, id );
+				});
+			}
+	},
+
+	tab = {
+
+		/**
+		 * Fades out tabs and fades in selected tab
+		 * @param  {int}    i The "index" of the selected tab
+		 * @param  {object} o The element("object") on which to do animation
+		 * @param  {object} l The "li"s which hold the tab links
+		 * @param  {object} s The "selected" tab 'li'
+		 */
+		fader : function( i, o, l, s ) { 
+
+			// Fade all tabs out
+			o.stop().animate({
+				'opacity' : '0' 
+				}, 200, "easeOutCirc",
+				function() {
+					o.addClass('tab-close-lf');
+				});
+			// Fade tab in
+			o.eq( i ).stop().animate({
+				'opacity' : '1',
+				'display' : 'block'
+			}, 200, 
+			function() {
+				o.eq( i ).removeClass('tab-close-lf');
+			});
+
+			// Removes all "tab-chosen-li-lf" ( unselects )
+			l.removeClass('tab-chosen-li-lf');
+			// Adds "tab-chosen-li-lf" to the selected tab
+			s.addClass('tab-chosen-li-lf');
+		},
+
+		/**
+		 * Switches tabs
+		 * @param  {object} o The element which holds the tabs ( tab wrap )
+		 * Handles click event and passes the li index to tab.fader() & inits
+		 */
+		tab : function( o ) { 
+			var id    = $( o );
+			var tabs  = id.children('.tab-head-lf').find('li');
+			var boxes = id.children('.tab-box-lf');
+
+			id.bind( 'click', 
+				function ( e ) { 
+					var t  = e.target;
+					var	cp = $( t ).parent();
+						
+						if ( cp.attr('class') == 'tab-li-lf' ) {
+							var index = cp.index();
+							tab.fader( index, boxes, tabs, cp );				
+						}
+					});
+
+			tab.fader( 0, boxes, tabs, tabs.eq(0) );
+		},
+
+		/**
+		 * Calls tab.tab for every element of the given class, this inits all the tabs
+		 * @param  {string} o The tab class name
+		 */
+		tabs : function( o ) { 			
+
+			$( o ).each(
+				function() { 
+					tab.tab( this );		
+				});
 		}
 	};
 })(jQuery);
+
+/**
+ * Inits the toggles and tabs
+ */
+$(document).ready( 
+	function() {
+		toggle.tog('.tog-lf');
+		tab.tabs('.tab-wrap-lf');
+});
