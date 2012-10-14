@@ -3,7 +3,7 @@
 function lf_reg_slider() {
 	
 	register_post_type(
-		'lfslider',
+		'lf_slide',
 			array(
 				'labels'   => 
 							array(

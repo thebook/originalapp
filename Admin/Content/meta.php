@@ -620,6 +620,185 @@ $meta = array(
 													'f' => 'meta_layout',
 													'o' => array() )																					
 													), )
+												))),
+				// Slider Meta Boxes 
+				// General Settings
+				array( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'general_slide',
+								'desc'=> 'Set the general settings of your slider',
+								'title' => __('General Settings', 'liquidflux'),
+								'post_type' => 'lf_slide',
+								'context' => 'normal',
+								'priority' => 'high',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// Type
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'select',
+															'Type',
+															'Set the layout type of your slider',
+															'main_meta',
+															'general_slider_type',
+															'full',
+															array('full', 'onebox' ),
+															array('Full width', 'Slider & text box' ) ) ), 
+												// Height 
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text',
+															'Height',
+															'Set the height of your slider, if higher than the images there will be white space',
+															'main_meta',
+															'general_slider_height' ) ),
+												// Text box 
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'textarea',
+															'Text Box',
+															'Enter the text of the box, it will appear to the right of the slider',
+															'main_meta',
+															'general_slider_text_box_one',
+															'',
+													        '',
+															'',
+															array( '#lf-post-meta-general_slider_type', 
+																   '#general_slider_text_box_one-hook', 
+																   '["onebox"]' ) ) )																																		
+													), )
+												))),
+				// Add/remove slide
+				array( 
+					'f' => 'pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'add_remove_slide',
+								'desc'=> 'Add and remove slides',
+								'title' => __('Add/Remove', 'liquidflux'),
+								'post_type' => 'lf_slide',
+								'context' => 'side',
+								'priority' => 'low',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// Upload Image
+												array(
+													'f' => 'lf_slide_add',
+													'o' => array() )
+																																		
+													), )
+												))),
+				// Slide prototype 
+				array( 
+					'f' => 'slide_pop',
+					'o'	=>	
+						array(
+							array( 
+								'id' => 'slide',
+								'desc'=> 'Configure your slide to show video or image',
+								'title' => __('Slide', 'liquidflux'),
+								'post_type' => 'lf_slide',
+								'context' => 'normal',
+								'priority' => 'high',
+								'arr' => 'main_meta',
+								'options' => 
+									array( 
+										'opt' => 
+											array(							
+												// Nonce Field
+												array(
+													'f' => 'wp_nonce_field',
+													'o' => array(
+																basename(__FILE__), 
+																'lf-meta-nonce' ) ),
+												// Type 
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'select',
+															'Type',
+															'Chose the type of slide you want to have',
+															'main_meta',
+															'slide_type',
+															'image',
+															array('image', 'video'),
+															array('Image', 'Video') ) ),
+												// Video embed 
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'textarea',
+															'Embed',
+															'Embed your youtube or vimeo video',
+															'main_meta',
+															'slide_embed',
+															'',
+															'',
+															'',
+															array( '#lf-post-meta-slide_type', 
+																   '#slide_embed-hook', 
+																   '["video"]' )  ) ),
+												// Captions 
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'text',
+															'Caption',
+															'The caption for your image, leave blank if no caption is desired',
+															'main_meta',
+															'slide_caption',
+															'',
+															'',
+															'',
+															array( '#lf-post-meta-slide_type', 
+																   '#slide_caption-hook', 
+																   '["image"]' )  ) ),
+												// Image upload 
+												array(
+													'f' => 'lf_meta_opt',
+													'o' => 
+														array(
+															'upload',
+															'Upload Image',
+															'Upload your slide image',
+															'main_meta',
+															'slide_upload',
+															'',
+															'',
+															'',
+															array( '#lf-post-meta-slide_type', 
+																   '#slide_upload-hook', 
+																   '["image"]' )  ) )																													
+													), )
 												)))
 										));
 
@@ -702,6 +881,7 @@ $seo = array(
 													array( 'Follow', 'Dont Follow')) )																																	
 											), )
 										)));
+
 	
 $seop = $seo;
 $seop['o']['0']['post_type'] = 'page';

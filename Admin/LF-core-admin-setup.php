@@ -325,6 +325,8 @@ include( FRAMEWORK . '/Shortcodes/include.php' );
 
 include( FRAMEWORK . '/Slider/slide.php' );
 
+include( FRAMEWORK . '/Slider/options.php' );
+
 
 
 include( ADMINPATH . '/Footer/lf-footer-func.php' );
@@ -419,11 +421,11 @@ function admin_style() {
 	}
 	
 	if (  $pagenow == 'admin.php' 
-		  || $pagenow == 'post-new.php' && $post_type == 'liquidslider'
-		  || $pagenow == 'post.php' && $post_type == 'liquidslider'
-		  || $pagenow == 'post.php' && $post_type == 'page' 
+		  || $pagenow == 'post-new.php' && $post_type == 'lf_slide'
+		  || $pagenow == 'post.php'     && $post_type == 'lf_slide'
+		  || $pagenow == 'post.php'     && $post_type == 'page' 
 		  || $pagenow == 'post-new.php' && $post_type == 'page'
-		  || $pagenow == 'post.php' && $post_type == 'post' 
+		  || $pagenow == 'post.php'     && $post_type == 'post' 
 		  || $pagenow == 'post-new.php' && $post_type == 'post' ) {
 	
 		wp_enqueue_style( 'lf-admin-style',
@@ -444,8 +446,7 @@ function lf_admin_js_ui() {
 
 	global $pagenow, $post_type;
 		
-	if (  $pagenow == 'admin.php'
-		  || $post_type == 'liquidslider' ) {
+	if (  $pagenow == 'admin.php' ) {
 			
 		wp_enqueue_script( 'admin-js-ui',  
 						   trailingslashit( get_template_directory_uri() ) . '/Admin/assets/admin-ui.js', 
@@ -460,12 +461,13 @@ function lf_admin_js_ui() {
 						   
 	}
 	
-	if ( $pagenow == 'post.php' && $post_type == 'post' || $pagenow == 'post-new.php' && $post_type == 'post' ) {
+	if ( $pagenow == 'post.php' && $post_type == 'post' or $post_type == 'lf_slide' || 
+		 $pagenow == 'post-new.php' && $post_type == 'post' or $post_type == 'lf_slide' ) {
 		  
 		wp_enqueue_script( 
 						'admin-js-ui',  
 						trailingslashit( get_template_directory_uri() ) . '/Admin/assets/post-ui.js', 
-						'', 
+						array('thickbox', 'media-upload'), 
 						'0.1', 
 						false );
 							
