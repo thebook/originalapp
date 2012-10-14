@@ -5,6 +5,7 @@
 	@since White Whale 1.0	
 */ ?>
 
+<?php $page = ( isset($_GET['paged']) ? $_GET['paged'] : 0 ); ?>
 
 <div class="contentwrap">
 
@@ -16,8 +17,8 @@
 										
 		<div class="lf-core-content-wrap">
 	
-		<?php $q = new WP_Query( 'posts_per_page=-1' ); ?>
-
+		<?php $q = new WP_Query( "posts_per_page=2&paged=$page" ); ?>
+	
 		<?php while( $q->have_posts() ) : $q->the_post(); ?>
 
 			<?php $format = get_post_format(); ?>
@@ -29,6 +30,10 @@
 		<?php endwhile; ?>
 					
 		</div>
+
+		<?php $p = new pagnation($q->max_num_pages); ?> 
+
+		<?php $p->pag(); ?>
 					
 	</div>
 		

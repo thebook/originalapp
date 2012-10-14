@@ -34,7 +34,7 @@
 	<!-- this creates the html5 elements in IE browsers below version 9 -->
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->z
+	<![endif]-->
 		
 <?php wp_head(); ?>
 

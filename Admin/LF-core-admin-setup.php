@@ -311,6 +311,8 @@ include( FRAMEWORK . '/seo.php' );
 
 include( FRAMEWORK . '/sidebar.php' ); 
 
+include( FRAMEWORK . '/paged.class.php' ); 
+
 include( FRAMEWORK . '/Content/post-meta.php' ); 
 
 include( FRAMEWORK . '/Content/featured-image.php' ); 
@@ -320,6 +322,8 @@ include( FRAMEWORK . '/Content/post-text.php' );
 include( FRAMEWORK . '/Content/title.php' ); 
 
 include( FRAMEWORK . '/Shortcodes/include.php' );
+
+include( FRAMEWORK . '/Slider/slide.php' );
 
 
 
