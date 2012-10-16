@@ -470,7 +470,14 @@ function lf_admin_js_ui() {
 						array('thickbox', 'media-upload'), 
 						'0.1', 
 						false );
-							
+
+		wp_enqueue_script(
+						'clone-js',
+						trailingslashit( get_template_directory_uri() ) . 'Framework/Slider/scripts/clone.js', 
+						'',
+						'1',
+						false );
+
 		}
 	
 	if (  $pagenow == 'admin.php'

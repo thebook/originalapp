@@ -23,7 +23,7 @@ function lf_post_meta_boxes_save($post_id) {
 
 function lf_meta_box() { 
 
-
+$lf_slide_opt = new slide_opt;
 $meta = array( 
 		'opt' => 
 			array(
@@ -710,13 +710,17 @@ $meta = array(
 												// Upload Image
 												array(
 													'f' => 'lf_slide_add',
-													'o' => array() )
+													'o' => array() ),
+												// Hidden counter
+												array(
+													'f' => 'meta_hider',
+													'o' => array( 'meta_count_slider') )
 																																		
 													), )
 												))),
 				// Slide prototype 
 				array( 
-					'f' => 'slide_pop',
+					'f' => array( $lf_slide_opt, 'pop' ),
 					'o'	=>	
 						array(
 							array( 
@@ -725,7 +729,7 @@ $meta = array(
 								'title' => __('Slide', 'liquidflux'),
 								'post_type' => 'lf_slide',
 								'context' => 'normal',
-								'priority' => 'high',
+								'priority' => 'low',
 								'arr' => 'main_meta',
 								'options' => 
 									array( 

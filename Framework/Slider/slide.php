@@ -25,7 +25,7 @@ function lf_reg_slider() {
 				'rewrite'  => false,
 				'show_ui'  => true,
 				'menu_icon'=> '',
-				'supports' => array('title', 'revisions'),
+				'supports' => array('title'),
 				'show_in_menu'        => 'liquidfluxadmin',
 				'exclude_from_search' => true
 		));

@@ -6,7 +6,6 @@ function scripter($script) {
 
 }
 
-
 function lf_head_hook() {
 
 	do_action( 'lf_head_hook' );
