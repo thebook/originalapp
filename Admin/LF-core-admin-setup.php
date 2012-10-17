@@ -473,7 +473,7 @@ function lf_admin_js_ui() {
 
 		wp_enqueue_script(
 						'clone-js',
-						trailingslashit( get_template_directory_uri() ) . 'Framework/Slider/scripts/clone.js', 
+						trailingslashit( get_template_directory_uri() ) . 'Framework/Slider/scripts/remove.js', 
 						'',
 						'1',
 						false );

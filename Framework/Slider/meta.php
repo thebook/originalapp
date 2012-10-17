@@ -1,51 +1,16 @@
 
 <?php $i = $_GET['index']; ?>
 
-<div class="postbox " id="slide<?php echo $i; ?>">
+<div class="postbox " id="slide<?php echo $i; ?>"><div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>Slide <?php echo $i; ?></span></h3><div class="inside"><p>Configure your slide to show video or image</p><table class="form-table lf-admin-post-meta-table"><tbody>
 
-	<div title="Click to toggle" class="handlediv"><br></div>
-	
-	<h3 class="hndle">
 
-		<span>Slide <?php echo $i; ?></span>
 
-	</h3>
+<tr id="slide_type_<?php echo $i; ?>-hook">
 
-	<div class="inside">
+					<th><label for="slide_type_<?php echo $i; ?>"><strong class="lf-admin-post-meta-th-strong">Type</strong><span class="lf-admin-post-meta-th-span">Chose the type of slide you want to have</span></label></th><td><select name="main_meta[slide_type_<?php echo $i; ?>]" class="lf-admin-post-meta-td-select" id="lf-post-meta-slide_type_<?php echo $i; ?>"><option selected="selected" value="image">Image</option>
 
-		<p>Configure your slide to show video or image</p>
-
-		<table class="form-table lf-admin-post-meta-table">
-
-			<tbody>
-
-				<input type="hidden" value="c117186e19" name="lf-meta-nonce" id="lf-meta-nonce">
-
-				<input type="hidden" value="/wp-admin/post-new.php?post_type=lf_slide" name="_wp_http_referer">
-
-				<tr id="slide_type_<?php echo $i; ?>-hook">
-
-					<th>
-
-						<label for="slide_type_<?php echo $i; ?>">
-
-							<strong class="lf-admin-post-meta-th-strong">Type</strong>
-
-							<span class="lf-admin-post-meta-th-span">Chose the type of slide you want to have</span>
-
-						</label>
-
-					</th>
-
-					<td>
-
-						<select name="main_meta[slide_type_<?php echo $i; ?>]" class="lf-admin-post-meta-td-select" id="lf-post-meta-slide_type_<?php echo $i; ?>">
-
-							<option selected="selected" value="image">Image</option>
-
-							<option value="video">Video</option>
-
-						</select>
+<option value="video">Video</option>
+</select>
 
 					</td>
 
@@ -80,7 +45,7 @@
 
 					<th>
 
-						<label for="slide_caption_<?php echo $i ?>">
+						<label for="slide_caption_$">
 
 							<strong class="lf-admin-post-meta-th-strong">Caption</strong>
 

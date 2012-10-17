@@ -23,7 +23,8 @@ function lf_post_meta_boxes_save($post_id) {
 
 function lf_meta_box() { 
 
-$lf_slide_opt = new slide_opt;
+$lf_slide_opt = new slide_opt('main_meta');
+
 $meta = array( 
 		'opt' => 
 			array(
@@ -709,12 +710,15 @@ $meta = array(
 																'lf-meta-nonce' ) ),
 												// Upload Image
 												array(
-													'f' => 'lf_slide_add',
-													'o' => array() ),
-												// Hidden counter
-												array(
-													'f' => 'meta_hider',
-													'o' => array( 'meta_count_slider') )
+													'f' => array( $lf_slide_opt, 'buttons' ),
+													'o' => array( 
+																'/Framework/Slider/meta.php',
+																'lf-remove-button',
+																'meta_count_slider') ),
+												// // Hidden counter
+												// array(
+												// 	'f' => array( $lf_slide_opt, 'hider' ),
+												// 	'o' => array( 'meta_count_slider') )
 																																		
 													), )
 												))),
