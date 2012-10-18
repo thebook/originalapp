@@ -84,7 +84,7 @@ class slide_opt
 	 */
 	public function buttons( $u, $r, $co ) 
 	{ ?>
-
+		<?php global $post; echo $post->ID; ?>
 		<?php $cc = ( isset( $this->m[$co] ) ? $this->m[$co] : 1 ); ?>
 
 		<tr>

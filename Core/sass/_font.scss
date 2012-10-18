@@ -61,7 +61,7 @@
 	}
 
 	/* Allows icons to be assigned via "post-" class */
-	[class^="post-"]:before {
+	[class^="post-"]:before, [class^="lf-"]:before {
 
 		font-family: 'lftastic';
 		font-style: normal;

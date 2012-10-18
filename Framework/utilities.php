@@ -12,6 +12,14 @@ function lf_head_hook() {
 
 }
 
+function lf_pxc($v) {
+
+	if ( strpos( $v, 'px' ) === false ) { $v = $v . 'px'; }
+
+	return $v;
+
+}
+
 function lf_cat_posts() { ?>
 
 	<ul>

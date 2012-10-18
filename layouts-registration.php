@@ -168,7 +168,7 @@ function slider_level() {
 
 	function slider_level_func() {
 		
-			get_template_part( 'liquid-slider' ); 
+		include( '/Framework/Slider/slide-template.php' );
 			
 	}
 	

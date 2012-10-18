@@ -708,17 +708,13 @@ $meta = array(
 													'o' => array(
 																basename(__FILE__), 
 																'lf-meta-nonce' ) ),
-												// Upload Image
+												// Upload Image & counter
 												array(
 													'f' => array( $lf_slide_opt, 'buttons' ),
 													'o' => array( 
 																'/Framework/Slider/meta.php',
 																'lf-remove-button',
 																'meta_count_slider') ),
-												// // Hidden counter
-												// array(
-												// 	'f' => array( $lf_slide_opt, 'hider' ),
-												// 	'o' => array( 'meta_count_slider') )
 																																		
 													), )
 												))),

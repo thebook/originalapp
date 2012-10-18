@@ -21,7 +21,7 @@ function lf_reg_slider() {
 								'parent_item_colon'  => '',
 								'menu_name'          => __('White Whale Sliders', 'liquidflux')
 								),
-				'public'   => true,
+				'public'   => false,
 				'rewrite'  => false,
 				'show_ui'  => true,
 				'menu_icon'=> '',

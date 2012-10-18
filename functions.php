@@ -190,12 +190,20 @@ function liquidflux_script_reg () {
 						array( 'jquery' ),
 						'2.0',
 						true );
-														
+	
+	wp_register_script( 'flexslider', 
+						FRAMEWORKURI . '/Slider/scripts/flexslider-min.js',
+						array( 'jquery', 'j-ease' ),
+						'2.1',
+						true );
+
 	wp_enqueue_script  ('lf-functions');
 
 	wp_enqueue_script  ('jplayer');
 
 	wp_enqueue_script  ('slimbox');
+
+	wp_enqueue_script  ('flexslider');
 																																								
 }
 
