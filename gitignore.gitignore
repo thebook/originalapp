@@ -1,0 +1,6 @@
+# Ignore basic things like pngs, and sass caches
+*.png 
+.sass-cache/
+/Core/sass/images
+/Core/sass/compass
+/Core/sass/fonts
