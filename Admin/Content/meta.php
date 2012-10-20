@@ -658,16 +658,16 @@ $meta = array(
 															'full',
 															array('full', 'onebox' ),
 															array('Full width', 'Slider & text box' ) ) ), 
-												// Height 
-												array(
-													'f' => 'lf_meta_opt',
-													'o' => 
-														array(
-															'text',
-															'Height',
-															'Set the height of your slider, if higher than the images there will be white space',
-															'main_meta',
-															'general_slider_height' ) ),
+												// // Height 
+												// array(
+												// 	'f' => 'lf_meta_opt',
+												// 	'o' => 
+												// 		array(
+												// 			'text',
+												// 			'Height',
+												// 			'Set the height of your slider, if higher than the images there will be white space',
+												// 			'main_meta',
+												// 			'general_slider_height' ) ),
 												// Text box 
 												array(
 													'f' => 'lf_meta_opt',
@@ -718,93 +718,11 @@ $meta = array(
 																																		
 													), )
 												))),
-				// Slide prototype 
+				// Slide prototype array Is defined in "Framework/Slider/options-meta.php" 
 				array( 
 					'f' => array( $lf_slide_opt, 'pop' ),
-					'o'	=>	
-						array(
-							array( 
-								'id' => 'slide',
-								'desc'=> 'Configure your slide to show video or image',
-								'title' => __('Slide', 'liquidflux'),
-								'post_type' => 'lf_slide',
-								'context' => 'normal',
-								'priority' => 'low',
-								'arr' => 'main_meta',
-								'options' => 
-									array( 
-										'opt' => 
-											array(							
-												// Nonce Field
-												array(
-													'f' => 'wp_nonce_field',
-													'o' => array(
-																basename(__FILE__), 
-																'lf-meta-nonce' ) ),
-												// Type 
-												array(
-													'f' => 'lf_meta_opt',
-													'o' => 
-														array(
-															'select',
-															'Type',
-															'Chose the type of slide you want to have',
-															'main_meta',
-															'slide_type',
-															'image',
-															array('image', 'video'),
-															array('Image', 'Video') ) ),
-												// Video embed 
-												array(
-													'f' => 'lf_meta_opt',
-													'o' => 
-														array(
-															'textarea',
-															'Embed',
-															'Embed your youtube or vimeo video',
-															'main_meta',
-															'slide_embed',
-															'',
-															'',
-															'',
-															array( '#lf-post-meta-slide_type', 
-																   '#slide_embed-hook', 
-																   '["video"]' )  ) ),
-												// Captions 
-												array(
-													'f' => 'lf_meta_opt',
-													'o' => 
-														array(
-															'text',
-															'Caption',
-															'The caption for your image, leave blank if no caption is desired',
-															'main_meta',
-															'slide_caption',
-															'',
-															'',
-															'',
-															array( '#lf-post-meta-slide_type', 
-																   '#slide_caption-hook', 
-																   '["image"]' )  ) ),
-												// Image upload 
-												array(
-													'f' => 'lf_meta_opt',
-													'o' => 
-														array(
-															'upload',
-															'Upload Image',
-															'Upload your slide image',
-															'main_meta',
-															'slide_upload',
-															'',
-															'',
-															'',
-															array( '#lf-post-meta-slide_type', 
-																   '#slide_upload-hook', 
-																   '["image"]' )  ) )																													
-													), )
-												)))
-										));
+					'o'	=>	array() )
+					));
 
 $seo = array( 
 			'f' => 'pop',

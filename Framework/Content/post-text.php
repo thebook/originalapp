@@ -44,7 +44,7 @@ function _lf_more_cut($c) {
 }
 
 
-function _lf_cut_excerpt($e, $l) {
+function _lf_cut_excerpt($e, $l, $b = true) {
 
 	if ( mb_strlen( $e ) > $l ) {
 
@@ -54,7 +54,9 @@ function _lf_cut_excerpt($e, $l) {
 
  		$e = ( $et < 0 ? mb_substr( $ec, 0, $et ) : $ec );
 
- 		return $e . _lf_more_text( true );
+ 		$e = ( $b ? ( $e . _lf_more_text( true ) ) : $e );
+
+ 		return $e;
 
  	}
  	else {

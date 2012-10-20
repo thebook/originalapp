@@ -1,7 +1,22 @@
 
 <?php $i = $_GET['index']; ?>
 
-<div class="postbox " id="slide<?php echo $i; ?>"><div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>Slide <?php echo $i; ?></span></h3><div class="inside"><p>Configure your slide to show video or image</p><table class="form-table lf-admin-post-meta-table"><tbody>
+<?php include('options-meta.php'); ?>
+
+
+<div class="postbox " id="slide<?php echo $i; ?>">
+
+	<div title="Click to toggle" class="handlediv"><br></div>
+
+	<h3 class="hndle"><span>Slide <?php echo $i; ?></span></h3>
+
+	<div class="inside">
+
+		<p>Configure your slide to show video or image</p>
+
+		<table class="form-table lf-admin-post-meta-table">
+
+			<tbody>
 
 
 
@@ -93,6 +108,8 @@
 	</tbody>
 
 </table>
+
+
 
 </div>
 

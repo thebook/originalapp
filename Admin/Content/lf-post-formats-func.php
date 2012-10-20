@@ -16,7 +16,7 @@ function lf_meta_opt(
 	$meta = get_post_meta( $post->ID, $optarray, true );
 	
 	$the_opt = ( isset( $meta[$name] )? $meta[$name] : $default );
-		
+
 	echo "<tr id='$name-hook'>";
 		
 		echo '<th>';
@@ -147,6 +147,30 @@ function lf_meta_opt(
 			echo '</td>';
 		
 		break;
+
+		case 'post' : ?>
+
+			<td>
+				
+				<?php $ppp = get_posts(array('numberposts' => '-1' ) ); ?>
+
+				<select id="lf-post-meta-<?php echo $name; ?>" class="lf-admin-post-meta-td-select" name="main_meta[<?php echo $name; ?>]">
+				
+				<?php foreach ($ppp as $p ) : ?>
+					
+					<option value="<?php echo $p->ID; ?>" <?php echo selected( $the_opt, $p->ID, false ); ?>>
+
+						<?php echo $p->post_title; ?>
+
+					</option>					
+
+				<?php endforeach; ?>
+
+				</select>
+
+			</td>
+
+<?php	break;
 		
 	}
 		

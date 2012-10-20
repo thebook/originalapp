@@ -2423,46 +2423,69 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 100%;
   height: auto;
   vertical-align: middle;
+  display: inline;
+  float: left;
 }
-/* line 1946, style-core.scss */
+/* line 1948, style-core.scss */
+.lf-slider-background .lf-slider-wrap .lf-slider-slide .lf-slider-text {
+  height: 240px;
+  width: 70%;
+  top: 56px;
+  left: 28px;
+  margin: 0 0 -240px;
+  display: inline;
+  float: left;
+  position: relative;
+}
+/* line 1959, style-core.scss */
+.lf-slider-background .lf-slider-wrap .lf-slider-slide .lf-slider-text .lf-slider-t-wrap {
+  color: #fff;
+  opacity: 0.8;
+  padding: 7px;
+}
+/* line 1965, style-core.scss */
+.lf-slider-background .lf-slider-wrap .lf-slider-slide .lf-slider-text .lf-slider-t-wrap span {
+  color: inherit;
+}
+/* line 1973, style-core.scss */
 .lf-slider-background .lf-slider-wrap .lf-slider-cap {
   width: 80%;
   position: absolute;
   padding: 7px 10%;
 }
-/* line 1953, style-core.scss */
+/* line 1980, style-core.scss */
 .lf-slider-background .lf-slider-wrap .lf-slider-direction-nav {
   height: 42px;
   text-align: right;
   margin: -42px 3px 0 0;
 }
-/* line 1959, style-core.scss */
+/* line 1986, style-core.scss */
 .lf-slider-background .lf-slider-wrap .lf-slider-direction-nav li {
   position: relative;
   display: inline;
   z-index: 1000;
 }
-/* line 1966, style-core.scss */
+/* line 1993, style-core.scss */
 .lf-slider-background .lf-slider-wrap .lf-slider-direction-nav .lf-slider-prev, .lf-slider-background .lf-slider-wrap .lf-slider-direction-nav .lf-slider-next {
   color: #fff;
   font-size: 32px;
   text-decoration: none;
   opacity: 0.7;
 }
-/* line 1973, style-core.scss */
+/* line 2000, style-core.scss */
 .lf-slider-background .lf-slider-wrap .lf-slider-direction-nav .lf-slider-prev:hover, .lf-slider-background .lf-slider-wrap .lf-slider-direction-nav .lf-slider-next:hover {
   opacity: 1;
 }
-/* line 1977, style-core.scss */
+/* line 2004, style-core.scss */
 .lf-slider-background .lf-slider-wrap .lf-slider-direction-nav .lf-slider-prev:before, .lf-slider-background .lf-slider-wrap .lf-slider-direction-nav .lf-slider-next:before {
   content: "8";
 }
-/* line 1987, style-core.scss */
+/* line 2014, style-core.scss */
 .lf-slider-background .lf-slider-wrap .lf-slider-direction-nav .lf-slider-next:before {
   content: "9";
 }
 
-/* line 2000, style-core.scss */
+/* line 2028, style-core.scss */
 .lf-slider-loading #lf-slide-hook {
   height: 170px;
   visibility: hidden;

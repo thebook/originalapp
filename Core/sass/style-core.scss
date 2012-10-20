@@ -1940,6 +1940,33 @@ $slider : lf-slider;
 				width: 100%;
 				height: auto;
 				vertical-align: middle;
+				display: inline;
+				float: left;
+			}
+
+
+			.#{$slider}-text { 
+
+				height: 240px;
+				width: 70%;
+				top: 56px;
+				left: 28px;
+				margin: 0 0 -240px;
+				display: inline;
+				float: left;
+				position: relative;
+
+				.#{$slider}-t-wrap {
+
+					color: #fff;
+					opacity: 0.8;
+					padding: 7px;
+
+					span { 
+
+						color: inherit;
+					}
+				}
 			}
 		}
 
@@ -1989,6 +2016,7 @@ $slider : lf-slider;
 					content: "9";
 				}
 			}
+
 		}
 	}
 
@@ -2002,3 +2030,4 @@ $slider : lf-slider;
 		visibility: hidden;
 	}
 }
+
