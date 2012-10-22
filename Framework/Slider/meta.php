@@ -12,13 +12,9 @@
 	// Include option generator ( this will brake once its included in the main functions php, therefore remove after that )
 	include( $f . '/Framework/options.class.php');
 	// Create New options instance 
-	$op = new options(
-					array(
-						'input' => 'lf-admin-post-meta-td',
-						'head'  => 'lf-admin-post-meta-th',
-						'id'    => 'lf-post-meta',
-						'wrap'  => array('tr', 'th', 'td' ) ) );
-
+	$op = new options( 'lf-admin-post-meta-td', 'lf-admin-post-meta-th', 'lf-post-meta', array('tr', 'th', 'td' ) );
+	// Create new slide_opt instance for adjusting the array
+	$sp = new slide_opt('', false);
 	// Return the option array into $m
 	$m = lf_slide_meta();
 
@@ -27,6 +23,9 @@
 		$m['options']['opt'][$index]['f'] = array( $op, 'put' );
 	
 	}
+
+	$m = $sp->literate( $m, $i );
+
 
 ?>
 

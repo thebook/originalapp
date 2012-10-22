@@ -19,13 +19,14 @@ class slide_opt
 	 * Gets the saved meta array
 	 * @param array $meta The array in which post meta options are saved
 	 */
-	function __construct( $meta ) 
+	function __construct( $meta, $use = true ) 
 	{	
-		global $post;
+		if ( $use ) {
+			global $post;
 
-		$this->m = get_post_meta( $post->ID, $meta, true );
-		$this->o = lf_slide_meta();
-													
+			$this->m = get_post_meta( $post->ID, $meta, true );
+			$this->o = lf_slide_meta();
+		}											
 	}
 
 	/**

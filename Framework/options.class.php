@@ -10,23 +10,23 @@ class options
 	var $gi;
 	var $w;
 
-	function __construct($c)
+	function __construct($inputclass, $headclass, $id, $elements )
 	{		
 			// Input class
-			$this->ic = $c['input'];
+			$this->ic = $inputclass;
 			// Head class
-			$this->hc = $c['head'];
+			$this->hc = $headclass;
 			// General id prepend
-			$this->gi = $c['id'];
+			$this->gi = $id;
 			// Wrap elements
-			$this->w  = $c['wrap'];
+			$this->w  = $elements;
 
 	}
 
 	public function put( $type, $t, $d, $a, $n, $s, $ov, $o, $h = null )
 	{	?>
 
-		<?php echo '<' . $this->w[0] .'>'; ?>
+		<?php echo '<' . $this->w[0] .' id="'.$n.'-hook">'; ?>
 
 		<?php echo '<' . $this->w[1] .'>'; ?>
 
@@ -49,9 +49,18 @@ class options
 
 		<?php echo '</' . $this->w[0] .'>'; ?>
 
-	
+		<?php $this->hider( $h ); ?>
+
 
 <?php }
+
+	public function hider($hider)
+	{
+		if ( isset( $hider ) ) 
+		{	
+			echo "<script>reveal.reveal( \"$hider[0]\", \"$hider[1]\", $hider[2] );</script>";
+	}
+	}
 
 	public function type($t, $b)
 	{
@@ -61,7 +70,7 @@ class options
 	public function head($title, $description, $name)
 	{ ?>
 		
-		<label for="<? echo $name; ?>">
+		<label for="<?php echo $name; ?>">
 
 			<strong class="<?php echo $this->hc; ?>-strong">
 			
@@ -88,11 +97,11 @@ class options
 			
 				<span class="<?php echo $this->ic; ?>-image-removeable">
 				
-				<input id="<?php echo "$this->gi-".$a['name']; ?>" type="hidden" name="<?php echo $a['array'] ."[".$a['name']."][$key]"; ?>" value="<?php echo $a['saved']; ?>">";
+				<input id="<?php echo "$this->gi-".$a['name']; ?>" type="hidden" name="<?php echo $a['array'] ."[".$a['name']."][$key]"; ?>" value="<?php echo $value; ?>">
 				
-				<img src=\"$value\" title=\"remove image\">";
+				<img src=\"$value\" title=\"remove image\">
 					
-				</span>';	
+				</span>	
 
 			<?php endforeach; ?>
 
