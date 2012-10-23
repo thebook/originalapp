@@ -22,7 +22,7 @@ class generate_upload
 
 		<?php if ( $saved != '' ) : ?>
 
-			<img src="<?php echo $saved; ?>" class="<?php echo $this->class; ?>-img" />
+			<img src="<?php echo $saved; ?>" class="<?php echo $this->class; ?>-image" />
 
 		<?php endif; ?>
 			

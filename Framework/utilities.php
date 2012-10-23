@@ -1,5 +1,20 @@
 <?php 
 
+function _default_meta($array, $name, $default) {
+
+	global $post;
+
+	if ( !$post ) 
+	{ 
+		return $default; 
+	}
+	else 
+	{
+		$m = get_post_meta( $post->ID, $array, true );
+		return (isset( $m[$name] ) ? $m[$name] : $default );
+	}
+}
+
 function scripter($script) {
 
 	echo "<script>$script</script>";

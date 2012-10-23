@@ -1,27 +1,38 @@
 <?php 
 
+// Incude the slide options array
 include('options-meta.php');
 
 /**
-* A class updating the slider metaboxes, with more each to match a the slide number, as well with functions 
-* which allow the ajaxification of dynamicly created metaxboxes for the slider, though jAPI ( sweet plugin )
-*/
+ * A class which puts out a number of slide metaboxes matching that of the meta_count_slider option,
+ * to do this it appends the current index number of the slide at the end of the options names, so that all the inputs 
+ * are saved correctly
+ */
 class slide_opt
 {	
 	/**
 	 * The post "meta" option array
-	 * @var [type]
+	 * @var array
 	 */
 	var $m;
+	/**
+	 * The slide "options" array, this is the blueprint of options to whose names the current slide index is appended
+	 * the file contaning them is included at the top ( check out for better closure ) 
+	 * @var array
+	 */
 	var $o;
 
 	/**
-	 * Gets the saved meta array
-	 * @param array $meta The array in which post meta options are saved
+	 * Sets the $m"eta" and $o"ption" variables if $pop is set to true
+	 * $pop should be set to "true" if you intend to use the $this->pop() function when generating the metaboxes, 
+	 * it should be set to "false" if you are only using the $this->literate() function, since it is used for ajax calling 
+	 * purposes and you wont get a "$post "objectl
+	 * @param string  $meta The name of the meta option array
+	 * @param boolean $pop  Will be using $this->pop() function ?
 	 */
-	function __construct( $meta, $use = true ) 
+	function __construct( $meta, $pop = true ) 
 	{	
-		if ( $use ) {
+		if ( $pop ) {
 			global $post;
 
 			$this->m = get_post_meta( $post->ID, $meta, true );
@@ -37,7 +48,6 @@ class slide_opt
 	 */
 	public function pop()
 	{
-		
 		$s = ( isset( $this->m['meta_count_slider'] ) ? $this->m['meta_count_slider'] : 1 );
 
 		for ($si=1; $si < $s + 1; $si++) { 
@@ -45,7 +55,6 @@ class slide_opt
 			$o = $this->literate( $this->o, $si );
 
 			pop( $o );
-
 		}
 	}
 
@@ -64,22 +73,20 @@ class slide_opt
 		$o['id']    = $o['id'] . $i;
 		// metabox title
 		$o['title'] = $o['title'] . " $i";
-		// Alter inner options to have different "slide" number appended
-		// Type
-		$o['options']['opt'][0]['o'][4] = $o['options']['opt'][0]['o'][4] . "_$i";
-		// Video
-		$o['options']['opt'][1]['o'][4] = $o['options']['opt'][1]['o'][4] . "_$i";
-		$o['options']['opt'][1]['o'][8] = array( "#lf-post-meta-slide_type_$i", "#slide_embed_$i-hook", '["video"]' );
-		// Caption
-		$o['options']['opt'][2]['o'][4] = $o['options']['opt'][2]['o'][4] . "_$i";
-		$o['options']['opt'][2]['o'][8] = array( "#lf-post-meta-slide_type_$i", "#slide_caption_$i-hook", '["image"]' );
-		// Image Upload
-		$o['options']['opt'][3]['o'][4] = $o['options']['opt'][3]['o'][4] . "_$i";
-		$o['options']['opt'][3]['o'][8] = array( "#lf-post-meta-slide_type_$i", "#slide_upload_$i-hook", '["image"]' );
-		//  Post
-		$o['options']['opt'][4]['o'][4] = $o['options']['opt'][4]['o'][4] . "_$i";
-		$o['options']['opt'][4]['o'][8] = array( "#lf-post-meta-slide_type_$i", "#slide_post_$i-hook", '["featured"]' );
-		
+
+		// Literate though each option paramaters and append an index number where necessary
+		foreach ($o['options']['opt'] as $index => $v) 
+		{	
+			// Update the option name paramater to have an appended index 
+			$o['options']['opt'][$index]['o'][4] = $v['o'][4] . "_$i";
+
+			// If a hider paramater is set we update it 
+			if ( isset( $v['o'][8] ) )
+			{
+				$o['options']['opt'][$index]['o'][8][0] = $v['o'][8][0] . "_$i"; 
+			}
+		}		
+		// Return the modified options
 		return $o;
 	}
 
@@ -93,7 +100,9 @@ class slide_opt
 	 */
 	public function buttons( $u, $r, $co ) 
 	{ ?>
+
 		<?php global $post; echo $post->ID; ?>
+	
 		<?php $cc = ( isset( $this->m[$co] ) ? $this->m[$co] : 1 ); ?>
 
 		<tr>

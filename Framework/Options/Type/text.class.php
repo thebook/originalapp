@@ -18,7 +18,7 @@ class generate_text
 	public function put($name, $array, $saved)
 	{ ?>
 
-		<input type="text" id="<?php echo "$this->class-$name"; ?>" class="<?php echo $this->class;?>-text" name="<?php echo $array ."[$name]"; ?>" value="<?php echo $saved; ?>">
+		<input type="text" id="<?php echo "$this->id-$name"; ?>" class="<?php echo $this->class;?>-text" name="<?php echo $array ."[$name]"; ?>" value="<?php echo $saved; ?>">
 
 <?php }
 }

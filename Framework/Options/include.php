@@ -1,15 +1,19 @@
 <?php 
 
-	include '/Type/text.class';
+	include '/Type/text.class.php';
 
-	include '/Type/textarea.class';
+	include '/Type/textarea.class.php';
 
-	include '/Type/select.class';
+	include '/Type/select.class.php';
 
-	include '/Type/radio.class';
+	include '/Type/radio.class.php';
 
-	include '/Type/upload.class';
+	include '/Type/upload.class.php';
 
-	include '/Type/gallery.class';
+	include '/Type/gallery.class.php';
+
+	include '/Type/post.class.php';
+
+	include 'meta.class.php';
 
 ?>

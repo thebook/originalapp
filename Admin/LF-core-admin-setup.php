@@ -325,7 +325,9 @@ include( FRAMEWORK . '/Shortcodes/include.php' );
 
 include( FRAMEWORK . '/Slider/slide.php' );
 
-include( FRAMEWORK . '/Slider/options.php' );
+include( FRAMEWORK . '/Slider/modify.class.php' );
+
+include( FRAMEWORK . '/Options/include.php' );
 
 
 

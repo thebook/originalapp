@@ -59,7 +59,7 @@ class options
 		if ( isset( $hider ) ) 
 		{	
 			echo "<script>reveal.reveal( \"$hider[0]\", \"$hider[1]\", $hider[2] );</script>";
-	}
+		}
 	}
 
 	public function type($t, $b)

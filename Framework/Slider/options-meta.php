@@ -2,6 +2,8 @@
 
 function lf_slide_meta() {
 
+	$lf_meta = new meta_options( 'lf-post-meta', 'lf-admin-post-meta-td' );
+
 	$m = 	array( 
 				'id' => 'slide',
 				'desc' => 'Configure your slide to show video or image',
@@ -16,7 +18,7 @@ function lf_slide_meta() {
 							array(																				
 								// Type 
 								array(
-									'f' => 'lf_meta_opt',
+									'f' => array( $lf_meta, 'put' ),
 									'o' => 
 										array(
 											'select',
@@ -29,7 +31,7 @@ function lf_slide_meta() {
 											array('Image', 'Video', 'Featured Post') ) ),
 								// Video embed 
 								array(
-									'f' => 'lf_meta_opt',
+									'f' => array( $lf_meta, 'put' ),
 									'o' => 
 										array(
 											'textarea',
@@ -40,12 +42,10 @@ function lf_slide_meta() {
 											'',
 											'',
 											'',
-											array( '#lf-post-meta-slide_type', 
-												   '#slide_embed-hook', 
-												   '["video"]' )  ) ),
+											array( 'slide_type', '["video"]' )  ) ),
 								// Captions 
 								array(
-									'f' => 'lf_meta_opt',
+									'f' => array( $lf_meta, 'put' ),
 									'o' => 
 										array(
 											'text',
@@ -56,12 +56,10 @@ function lf_slide_meta() {
 											'',
 											'',
 											'',
-											array( '#lf-post-meta-slide_type', 
-												   '#slide_caption-hook', 
-												   '["image"]' )  ) ),
+											array( 'slide_type', '["image"]' )  ) ),
 								// Image upload 
 								array(
-									'f' => 'lf_meta_opt',
+									'f' => array( $lf_meta, 'put' ),
 									'o' => 
 										array(
 											'upload',
@@ -72,12 +70,10 @@ function lf_slide_meta() {
 											'',
 											'',
 											'',
-											array( '#lf-post-meta-slide_type', 
-												   '#slide_upload-hook', 
-												   '["image"]' )  ) ),
+											array( 'slide_type', '["image"]' )  ) ),
 								//  Featured post
 								array(
-									'f' => 'lf_meta_opt',
+									'f' => array( $lf_meta, 'put' ),
 									'o' => 
 										array(
 											'post',
@@ -88,9 +84,7 @@ function lf_slide_meta() {
 											'',
 									        '',
 											'',
-											array( '#lf-post-meta-slide_type', 
-												   '#slide_post-hook', 
-												   '["featured"]' ) ) )																									
+											array( 'slide_type', '["featured"]' ) ) )																									
 									) )
 								);
 

@@ -18,7 +18,7 @@ class generate_textarea
 	public function put($name, $array, $saved)
 	{ ?>
 
-		<textarea id="<?php echo "$this->class-$name"; ?>" class="<?php echo $this->class;?>-text" name="<?php echo $array ."[$name]"; ?>"><?php echo $saved; ?></textarea>
+		<textarea id="<?php echo "$this->id-$name"; ?>" class="<?php echo $this->class;?>-text" name="<?php echo $array ."[$name]"; ?>"><?php echo $saved; ?></textarea>
 
 <?php }
 }
