@@ -1,0 +1,86 @@
+// 
+// 
+// 
+// Meta Boxes Style 
+// 
+// 
+// 
+// 
+// 
+
+$m: lf-admin-post-meta;
+
+.#{$m}-table { 
+
+	tr {
+		border-top: 1px solid #eee;
+	}
+
+	th {
+
+		width: 25%;
+	}
+
+	strong {
+
+		float: left;
+	}
+
+	span {
+
+		float: left;
+		clear: both;
+		margin: 5px 0 0;
+		color: #999;
+	}
+
+	.#{$m}-td-select { 
+
+		width: 97%;
+		margin: 0 2% 0 0;
+	}
+
+	.#{$m}-td-text { 
+
+		@extend .#{$m}-td-select;		
+	}
+
+	.#{$m}-td-radio-label { 
+
+		margin: 0 12px 0 0;
+
+		.admin-radio { 
+
+			margin: 1px 6px 0 0;
+		}
+	}
+
+	.#{$m}-td-image { 
+
+		width: 23.5%;
+	    height: auto;
+	    display: inline;
+	    margin: 7px 3.35% 7px 0;
+	    border: 7px solid #dfdfdf;
+	    cursor: pointer;
+	    vertical-align: middle;
+	}
+
+	.#{$m}-td-image-removable { 
+
+		@extend .#{$m}-td-image;
+		float: left;
+    	background: url("images/minus.png") no-repeat scroll 50% 50% #999;
+
+    	img { 
+
+		    height: auto;
+		    width: 100%;
+		    vertical-align: middle;
+
+		    &:hover { 
+		    	opacity: 0.15;
+		    }
+    	}
+	}
+}

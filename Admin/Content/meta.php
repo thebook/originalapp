@@ -657,17 +657,7 @@ $meta = array(
 															'general_slider_type',
 															'full',
 															array('full', 'onebox' ),
-															array('Full width', 'Slider & text box' ) ) ), 
-												// // Height 
-												// array(
-												// 	'f' => 'lf_meta_opt',
-												// 	'o' => 
-												// 		array(
-												// 			'text',
-												// 			'Height',
-												// 			'Set the height of your slider, if higher than the images there will be white space',
-												// 			'main_meta',
-												// 			'general_slider_height' ) ),
+															array('Full width', 'Slider & text box' ) ) ), 												
 												// Text box 
 												array(
 													'f' => 'lf_meta_opt',

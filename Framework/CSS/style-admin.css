@@ -1,0 +1,57 @@
+/* line 15, sass/style-admin.scss */
+.lf-admin-post-meta-table tr {
+  border-top: 1px solid #eee;
+}
+/* line 19, sass/style-admin.scss */
+.lf-admin-post-meta-table th {
+  width: 25%;
+}
+/* line 24, sass/style-admin.scss */
+.lf-admin-post-meta-table strong {
+  float: left;
+}
+/* line 29, sass/style-admin.scss */
+.lf-admin-post-meta-table span {
+  float: left;
+  clear: both;
+  margin: 5px 0 0;
+  color: #999;
+}
+/* line 37, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-select, .lf-admin-post-meta-table .lf-admin-post-meta-td-text {
+  width: 97%;
+  margin: 0 2% 0 0;
+}
+/* line 48, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-radio-label {
+  margin: 0 12px 0 0;
+}
+/* line 52, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-radio-label .admin-radio {
+  margin: 1px 6px 0 0;
+}
+/* line 58, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-image, .lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable {
+  width: 23.5%;
+  height: auto;
+  display: inline;
+  margin: 7px 3.35% 7px 0;
+  border: 7px solid #dfdfdf;
+  cursor: pointer;
+  vertical-align: middle;
+}
+/* line 69, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable {
+  float: left;
+  background: url("images/minus.png") no-repeat scroll 50% 50% #999999;
+}
+/* line 75, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable img {
+  height: auto;
+  width: 100%;
+  vertical-align: middle;
+}
+/* line 81, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable img:hover {
+  opacity: 0.15;
+}

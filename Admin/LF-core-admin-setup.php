@@ -329,6 +329,10 @@ include( FRAMEWORK . '/Slider/modify.class.php' );
 
 include( FRAMEWORK . '/Options/include.php' );
 
+include( FRAMEWORK . '/scripts.class.php' );
+
+new lf_registrate_scripts;
+
 
 
 include( ADMINPATH . '/Footer/lf-footer-func.php' );
@@ -412,89 +416,89 @@ function add_white_whale_options() {
 add_action( 'admin_menu', 'add_white_whale_options' );
 
 
-function admin_style() {  
+// function admin_style() {  
 	
-	global $pagenow, $post_type;
+// 	global $pagenow, $post_type;
 		
-	if (  $pagenow == 'admin.php' ) {
+// 	if (  $pagenow == 'admin.php' ) {
 	
-		lf_font_style( 'admin-head' );
+// 		lf_font_style( 'admin-head' );
 		
-	}
+// 	}
 	
-	if (  $pagenow == 'admin.php' 
-		  || $pagenow == 'post-new.php' && $post_type == 'lf_slide'
-		  || $pagenow == 'post.php'     && $post_type == 'lf_slide'
-		  || $pagenow == 'post.php'     && $post_type == 'page' 
-		  || $pagenow == 'post-new.php' && $post_type == 'page'
-		  || $pagenow == 'post.php'     && $post_type == 'post' 
-		  || $pagenow == 'post-new.php' && $post_type == 'post' ) {
+// 	if (  $pagenow == 'admin.php' 
+// 		  || $pagenow == 'post-new.php' && $post_type == 'lf_slide'
+// 		  || $pagenow == 'post.php'     && $post_type == 'lf_slide'
+// 		  || $pagenow == 'post.php'     && $post_type == 'page' 
+// 		  || $pagenow == 'post-new.php' && $post_type == 'page'
+// 		  || $pagenow == 'post.php'     && $post_type == 'post' 
+// 		  || $pagenow == 'post-new.php' && $post_type == 'post' ) {
 	
-		wp_enqueue_style( 'lf-admin-style',
-						  ADMINURI . '/assets/admin-style.css',
-						  '',
-						  '1.0' );
+// 		wp_enqueue_style( 'lf-admin-style',
+// 						  ADMINURI . '/assets/admin-style.css',
+// 						  '',
+// 						  '1.0' );
 						  
-		wp_enqueue_style( 'thickbox' );
+// 		wp_enqueue_style( 'thickbox' );
 	
-	}
+// 	}
 								
-}
+// }
 	
-add_action( 'admin_head', 'admin_style' );
+// add_action( 'admin_head', 'admin_style' );
 	
 
-function lf_admin_js_ui() {
+// function lf_admin_js_ui() {
 
-	global $pagenow, $post_type;
+// 	global $pagenow, $post_type;
 		
-	if (  $pagenow == 'admin.php' ) {
+// 	if (  $pagenow == 'admin.php' ) {
 			
-		wp_enqueue_script( 'admin-js-ui',  
-						   trailingslashit( get_template_directory_uri() ) . '/Admin/assets/admin-ui.js', 
-						   array( 
-								'jquery-ui-tabs', 
-								'jquery-ui-sortable', 
-								'jquery-ui-slider', 
-								'thickbox', 
-								'media-upload' ), 
-						   '0.1', 
-						   false );
+// 		wp_enqueue_script( 'admin-js-ui',  
+// 						   trailingslashit( get_template_directory_uri() ) . '/Admin/assets/admin-ui.js', 
+// 						   array( 
+// 								'jquery-ui-tabs', 
+// 								'jquery-ui-sortable', 
+// 								'jquery-ui-slider', 
+// 								'thickbox', 
+// 								'media-upload' ), 
+// 						   '0.1', 
+// 						   false );
 						   
-	}
+// 	}
 	
-	if ( $pagenow == 'post.php' && $post_type == 'post' or $post_type == 'lf_slide' || 
-		 $pagenow == 'post-new.php' && $post_type == 'post' or $post_type == 'lf_slide' ) {
+// 	if ( $pagenow == 'post.php' && $post_type == 'post' or $post_type == 'lf_slide' || 
+// 		 $pagenow == 'post-new.php' && $post_type == 'post' or $post_type == 'lf_slide' ) {
 		  
-		wp_enqueue_script( 
-						'admin-js-ui',  
-						trailingslashit( get_template_directory_uri() ) . '/Admin/assets/post-ui.js', 
-						array('thickbox', 'media-upload'), 
-						'0.1', 
-						false );
+// 		wp_enqueue_script( 
+// 						'admin-js-ui',  
+// 						trailingslashit( get_template_directory_uri() ) . '/Admin/assets/post-ui.js', 
+// 						array('thickbox', 'media-upload'), 
+// 						'0.1', 
+// 						false );
 
-		wp_enqueue_script(
-						'clone-js',
-						trailingslashit( get_template_directory_uri() ) . 'Framework/Slider/scripts/remove.js', 
-						'',
-						'1',
-						false );
+// 		wp_enqueue_script(
+// 						'clone-js',
+// 						trailingslashit( get_template_directory_uri() ) . 'Framework/Slider/scripts/remove.js', 
+// 						'',
+// 						'1',
+// 						false );
 
-		}
+// 		}
 	
-	if (  $pagenow == 'admin.php'
-		|| $pagenow == 'widgets.php' ) {
+// 	if (  $pagenow == 'admin.php'
+// 		|| $pagenow == 'widgets.php' ) {
 			
-		wp_enqueue_script( 'color-picker', 
-						   trailingslashit( get_template_directory_uri() ) . '/Admin/assets/colorpicker/colorPicker.js', 
-						   '', 
-						   '9.1', 
-						   false );		
+// 		wp_enqueue_script( 'color-picker', 
+// 						   trailingslashit( get_template_directory_uri() ) . '/Admin/assets/colorpicker/colorPicker.js', 
+// 						   '', 
+// 						   '9.1', 
+// 						   false );		
 
-	}
+// 	}
 			
-}
+// }
 	
-	add_action( 'admin_enqueue_scripts', 'lf_admin_js_ui' );
+// 	add_action( 'admin_enqueue_scripts', 'lf_admin_js_ui' );
 	
 ?>
