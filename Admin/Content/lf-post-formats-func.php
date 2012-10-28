@@ -198,27 +198,27 @@ function lf_meta_opt(
 
 
 // Multi
-function multi( $o ) { 
+// function multi( $o ) { 
 
-	if ( !is_array( $o ) ) return false;
+// 	if ( !is_array( $o ) ) return false;
 
-	foreach ( $o['opt'] as $a ) {
+// 	foreach ( $o['opt'] as $a ) {
 
-		call_user_func_array( $a['f'], $a['o'] ); 
+// 		call_user_func_array( $a['f'], $a['o'] ); 
 		
-	} 
+// 	} 
 	
-	if ( array_key_exists( 'c', $o ) ) {
+// 	if ( array_key_exists( 'c', $o ) ) {
 	
-		foreach ( $o['c'] as $c ) {
+// 		foreach ( $o['c'] as $c ) {
 		
-			( array_key_exists( 'p', $c ) ? call_user_func_array( $c['c'], $c['p'] ) : call_user_func( $c['c'] ) );
+// 			( array_key_exists( 'p', $c ) ? call_user_func_array( $c['c'], $c['p'] ) : call_user_func( $c['c'] ) );
 		
-		}
+// 		}
 
-	}
+// 	}
 	
-}
+// }
 
 
 function wrap_ite( $post, $o ) { 

@@ -12,9 +12,6 @@
 	
 	// Create new slide_opt instance for adjusting the array
 	$sp = new slide_opt('', false);
-
-	// Create new meta options instance for generating options 
-	$mo = new meta_options('lf-post-meta', 'lf-admin-post-meta-td');
 	
 	// Return the option defiition array into $m
 	$m = lf_slide_meta();

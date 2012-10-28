@@ -249,50 +249,6 @@ function liquidflux_admin_setup() {
 }
 add_action( 'admin_menu', 'liquidflux_admin_setup');
 
-function white_whale_main_admin() {	?>
-		
-	<div class="LF-main-options-wrapper">
-									
-		<div>
-			<div>	
-				<form id="main-opts-form-hook" name="main_options_form" action="options.php" method="post" class="main-options-form" >
-								
-					<div class="main-form-tabs">
-								
-						<div class="main-options-tab-nav-hook"></div>
-									
-						<div class="lf-main-options-save-button-wrap">
-							
-							<input type="submit" class="lf-main-options-save-button" name="submit" value="Save" />
-										
-							<div class="LF-option-inv-desc"> 
-							
-								<p> The Save Button, which... well... saves your options. </p>
-								
-							</div>
-							
-						</div>
-												
-						<div class="main-options-tiny-info-box">Press the "+" button on your keyboard to open help.</div>
-									
-						<div class="main-options-info-box"></div>
-																	
-						<?php settings_fields('main_options');?>
-						<?php do_settings_sections('whitewhale');?>
-																						
-					</div>
-					
-					<script> lf_ui_parts.media_upload_init(); </script>
-								
-				</form>
-									
-			</div>
-									
-		</div>
-	
-	</div>
-				
-<?php }
 
 include( ADMINPATH . '/Content/lf-content-func.php' );
 
@@ -331,6 +287,10 @@ include( FRAMEWORK . '/Options/include.php' );
 
 include( FRAMEWORK . '/scripts.class.php' );
 
+include( FRAMEWORK . '/admin-page.php' );
+
+include( FRAMEWORK . '/rewrites.php' );
+
 new lf_registrate_scripts;
 
 
@@ -360,57 +320,61 @@ function add_white_whale_options() {
 						'Options', 
 						'manage_options', 
 						'whitewhale',
-						'white_whale_main_admin' );
+						'admin_page' );
 							
 	register_setting(	'main_options', 	
 						'main_options' ); 
-						
-	add_settings_section(
-							'main_options_layouts_section', 	
-							'Layouts', 
-							'main_options_layouts_callback', 	
-							'whitewhale' ); 
+	
+	$page = new admin('white-lf-admin', 'white-lf-admin-td', 'option');
+
+	$page->body();
+	// multi($options);
+	// add_settings_section(
+	// 						'main_options_layouts_section', 	
+	// 						'Layouts', 
+	// 						'main_options_layouts_callback', 	
+	// 						'whitewhale' ); 
 													
-	add_settings_section(	'main_options_header_section', 	
-							'Header', 	
-							'lf_header_section_callback', 	
-							'whitewhale' ); 
+	// add_settings_section(	'main_options_header_section', 	
+	// 						'Header', 	
+	// 						'lf_header_section_callback', 	
+	// 						'whitewhale' ); 
 							
-	add_settings_section(	'main_options_navigation_section', 	
-							'Navigation', 	
-							'lf_navigation_section_callback', 	
-							'whitewhale' ); 
+	// add_settings_section(	'main_options_navigation_section', 	
+	// 						'Navigation', 	
+	// 						'lf_navigation_section_callback', 	
+	// 						'whitewhale' ); 
 							
-	add_settings_section(	'main_options_slider_section', 	
-							'Slider', 	
-							'lf_slider_section_callback', 	
-							'whitewhale' ); 
+	// add_settings_section(	'main_options_slider_section', 	
+	// 						'Slider', 	
+	// 						'lf_slider_section_callback', 	
+	// 						'whitewhale' ); 
 							
-	add_settings_section(	'main_options_content_section', 	
-							'Content', 	
-							'lf_content_section_callback', 	
-							'whitewhale' );
+	// add_settings_section(	'main_options_content_section', 	
+	// 						'Content', 	
+	// 						'lf_content_section_callback', 	
+	// 						'whitewhale' );
 							
-	add_settings_section(	'main_options_footer_section', 	
-							'Footer', 	
-							'lf_footer_section_callback', 	
-							'whitewhale' ); 
+	// add_settings_section(	'main_options_footer_section', 	
+	// 						'Footer', 	
+	// 						'lf_footer_section_callback', 	
+	// 						'whitewhale' ); 
 							
-	add_settings_section(	'main_options_portfolio_section', 	
-							'Portfolio', 	
-							'lf_portfolio_section_callback', 	
-							'whitewhale' ); 
+	// add_settings_section(	'main_options_portfolio_section', 	
+	// 						'Portfolio', 	
+	// 						'lf_portfolio_section_callback', 	
+	// 						'whitewhale' ); 
 							
-	add_settings_section(	'main_options_not_found_section', 	
-							'404', 	
-							'lf_not_found_section_callback', 	
-							'whitewhale' );
+	// add_settings_section(	'main_options_not_found_section', 	
+	// 						'404', 	
+	// 						'lf_not_found_section_callback', 	
+	// 						'whitewhale' );
 							
-	add_settings_section(	'main_options_theme_opt_section', 	
-							'Updates', 	
-							'lf_theme_opt_section_callback', 	
-							'whitewhale' );
-																																		
+	// add_settings_section(	'main_options_theme_opt_section', 	
+	// 						'Updates', 	
+	// 						'lf_theme_opt_section_callback', 	
+	// 						'whitewhale' );
+																																			
 }
 
 add_action( 'admin_menu', 'add_white_whale_options' );

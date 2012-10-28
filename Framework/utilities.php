@@ -1,5 +1,19 @@
 <?php 
 
+function include_fol($fol) {
+
+	$folder = new DirectoryIterator($fol);
+
+	foreach ($folder as $info) 
+	{	
+		if (!$info->isDot())
+		{
+			include $fol.$info->getFilename();
+		}
+	}
+
+}
+
 function _default_meta($array, $name, $default) {
 
 	global $post;
@@ -14,6 +28,35 @@ function _default_meta($array, $name, $default) {
 		return (isset( $m[$name] ) ? $m[$name] : $default );
 	}
 }
+
+function _default_option($array, $name, $default) {
+
+	$option = get_option( $array );
+
+	return ( $option && isset($option[$name]) ? $option[$name] : $default );
+
+}
+
+function _default($type, $array, $name, $default) {
+
+	$d = '_default_'.$type;
+
+	$d($array, $name, $default);
+
+}
+
+function multi( $o ) { 
+
+	if ( !is_array( $o ) ) return false;
+
+	foreach ( $o['opt'] as $a ) {
+
+		call_user_func_array( $a['f'], $a['o'] ); 
+		
+	} 
+	
+}
+
 
 function scripter($script) {
 
