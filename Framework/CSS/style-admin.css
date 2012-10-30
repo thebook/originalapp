@@ -1,36 +1,41 @@
-/* line 15, sass/style-admin.scss */
+/* line 17, sass/style-admin.scss */
 .lf-admin-post-meta-table tr {
   border-top: 1px solid #eee;
 }
-/* line 19, sass/style-admin.scss */
+/* line 21, sass/style-admin.scss */
 .lf-admin-post-meta-table th {
   width: 25%;
+  padding: 10px;
 }
-/* line 24, sass/style-admin.scss */
+/* line 27, sass/style-admin.scss */
+.lf-admin-post-meta-table td {
+  padding: 10px;
+}
+/* line 32, sass/style-admin.scss */
 .lf-admin-post-meta-table strong {
   float: left;
 }
-/* line 29, sass/style-admin.scss */
+/* line 37, sass/style-admin.scss */
 .lf-admin-post-meta-table span {
   float: left;
   clear: both;
   margin: 5px 0 0;
   color: #999;
 }
-/* line 37, sass/style-admin.scss */
+/* line 45, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-select, .lf-admin-post-meta-table .lf-admin-post-meta-td-text {
   width: 97%;
   margin: 0 2% 0 0;
 }
-/* line 48, sass/style-admin.scss */
+/* line 56, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-radio-label {
   margin: 0 12px 0 0;
 }
-/* line 52, sass/style-admin.scss */
+/* line 60, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-radio-label .admin-radio {
   margin: 1px 6px 0 0;
 }
-/* line 58, sass/style-admin.scss */
+/* line 66, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-image, .lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable {
   width: 23.5%;
   height: auto;
@@ -40,18 +45,244 @@
   cursor: pointer;
   vertical-align: middle;
 }
-/* line 69, sass/style-admin.scss */
+/* line 77, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable {
   float: left;
-  background: url("images/minus.png") no-repeat scroll 50% 50% #999999;
+  background: url("./Includes/images/minus.png") no-repeat scroll 50% 50% #999999;
 }
-/* line 75, sass/style-admin.scss */
+/* line 83, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable img {
   height: auto;
   width: 100%;
   vertical-align: middle;
 }
-/* line 81, sass/style-admin.scss */
+/* line 89, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable img:hover {
   opacity: 0.15;
+}
+
+/* line 17, sass/style-admin.scss */
+.lf-admin-table tr {
+  border-top: 1px solid #eee;
+}
+/* line 21, sass/style-admin.scss */
+.lf-admin-table th {
+  width: 25%;
+  padding: 25px 20px 25px 0;
+}
+/* line 27, sass/style-admin.scss */
+.lf-admin-table td {
+  padding: 25px 20px 25px 0;
+}
+/* line 32, sass/style-admin.scss */
+.lf-admin-table strong {
+  float: left;
+}
+/* line 37, sass/style-admin.scss */
+.lf-admin-table span {
+  float: left;
+  clear: both;
+  margin: 10px 0 0;
+  color: #999;
+}
+/* line 45, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-select, .lf-admin-table .lf-admin-td-text {
+  width: 97%;
+  margin: 0 2% 0 0;
+}
+/* line 56, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-radio-label {
+  margin: 0 12px 0 0;
+}
+/* line 60, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-radio-label .admin-radio {
+  margin: 1px 6px 0 0;
+}
+/* line 66, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-image, .lf-admin-table .lf-admin-td-image-removable {
+  width: 23.5%;
+  height: auto;
+  display: inline;
+  margin: 7px 3.35% 7px 0;
+  border: 7px solid #dfdfdf;
+  cursor: pointer;
+  vertical-align: middle;
+}
+/* line 77, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-image-removable {
+  float: left;
+  background: url("./Includes/images/minus.png") no-repeat scroll 50% 50% #999999;
+}
+/* line 83, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-image-removable img {
+  height: auto;
+  width: 100%;
+  vertical-align: middle;
+}
+/* line 89, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-image-removable img:hover {
+  opacity: 0.15;
+}
+
+/* line 115, sass/style-admin.scss */
+.lf-admin-form .lf-admin-body {
+  background-color: #f5f5f5;
+  float: left;
+  width: 95%;
+  padding: 0 2.5% 50px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  -o-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+/* line 124, sass/style-admin.scss */
+.lf-admin-form .lf-admin-body .nav {
+  width: 20%;
+  float: left;
+  margin: 30px 0 20px;
+}
+/* line 130, sass/style-admin.scss */
+.lf-admin-form .lf-admin-body .nav ul {
+  margin: 0 0 10px;
+}
+/* line 134, sass/style-admin.scss */
+.lf-admin-form .lf-admin-body .nav ul li {
+  margin: 0;
+}
+/* line 138, sass/style-admin.scss */
+.lf-admin-form .lf-admin-body .nav ul li a {
+  border-left: 1px solid   #dfdfdf;
+  border-top: 1px solid    #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  -webkit-border-radius: 7px 0 0 7px;
+  -moz-border-radius: 7px 0 0 7px;
+  -ms-border-radius: 7px 0 0 7px;
+  -o-border-radius: 7px 0 0 7px;
+  border-radius: 7px 0 0 7px;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background-color: #f1f1f1;
+  -webkit-box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+/* line 151, sass/style-admin.scss */
+.lf-admin-form .lf-admin-body .nav ul li a.open-page {
+  position: relative;
+  left: 2px;
+  padding-right: 8px;
+  margin: -5px 0 -2px;
+  border-color: #dfdfdf;
+  background-color: #f5f5f5;
+}
+/* line 165, sass/style-admin.scss */
+.lf-admin-form .lf-admin-body .holder {
+  width: 79%;
+  float: left;
+  border-left: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  -o-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+  -webkit-box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
+  -moz-box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
+  box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
+  padding: 20px 0 10px;
+}
+/* line 176, sass/style-admin.scss */
+.lf-admin-form .lf-admin-body .holder .content {
+  width: 97.5%;
+  padding-left: 2.5%;
+  float: left;
+  margin: 0 0 20px;
+}
+/* line 187, sass/style-admin.scss */
+.lf-admin-form .lf-admin-header {
+  width: 95%;
+  float: left;
+  background-color: #222;
+  color: #fff;
+  padding: 20px 2.5%;
+  margin: 20px 0 0;
+  -webkit-border-radius: 15px 15px 0 0;
+  -moz-border-radius: 15px 15px 0 0;
+  -ms-border-radius: 15px 15px 0 0;
+  -o-border-radius: 15px 15px 0 0;
+  border-radius: 15px 15px 0 0;
+}
+/* line 197, sass/style-admin.scss */
+.lf-admin-form .lf-admin-header .lf-admin-header-wrap {
+  width: 80%;
+  float: left;
+  display: inline-block;
+}
+/* line 203, sass/style-admin.scss */
+.lf-admin-form .lf-admin-header .lf-admin-header-wrap ul {
+  clear: both;
+}
+/* line 207, sass/style-admin.scss */
+.lf-admin-form .lf-admin-header .lf-admin-header-wrap ul li {
+  display: inline;
+  float: left;
+}
+/* line 214, sass/style-admin.scss */
+.lf-admin-form .lf-admin-header .lf-admin-header-wrap span {
+  float: left;
+  margin: 24px 0 20px 10px;
+  vertical-align: baseline;
+}
+/* line 221, sass/style-admin.scss */
+.lf-admin-form .lf-admin-header .lf-admin-header-wrap h1 {
+  font-size: 24px;
+  margin: 20px 0;
+  display: inline;
+  float: left;
+}
+/* line 229, sass/style-admin.scss */
+.lf-admin-form .lf-admin-header img {
+  display: inline-block;
+  float: right;
+  width: 10%;
+  padding: 10px 2.5% 0;
+  height: auto;
+}
+/* line 240, sass/style-admin.scss */
+.lf-admin-form .lf-admin-save {
+  width: 95%;
+  padding: 10px 2.5%;
+  clear: both;
+  float: left;
+  background-color: #363636;
+}
+/* line 248, sass/style-admin.scss */
+.lf-admin-form .lf-admin-save button {
+  -moz-box-sizing: content-box;
+  border-radius: 11px 11px 11px 11px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 13px;
+  padding: 3px 8px;
+  text-decoration: none;
+  border-color: #282828;
+  color: white;
+  background: #404040;
+  padding: 5px 15px;
+  margin-right: 10px;
+}
+/* line 33, sass/Imports/_mixins.scss */
+.lf-admin-form .lf-admin-save button:hover {
+  border-color: black;
+}
+/* line 37, sass/Imports/_mixins.scss */
+.lf-admin-form .lf-admin-save button:active {
+  background: #282828;
+  border-color: #282828;
 }

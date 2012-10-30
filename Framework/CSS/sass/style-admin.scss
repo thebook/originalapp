@@ -8,79 +8,248 @@
 // 
 // 
 
-$m: lf-admin-post-meta;
+@import "Imports/import";
 
-.#{$m}-table { 
+@mixin table-data($m, $padding : 10px, $desc : 5px) { 
 
-	tr {
-		border-top: 1px solid #eee;
+	.#{$m}-table { 
+
+		tr {
+			border-top: 1px solid #eee;
+		}
+
+		th {
+
+			width: 25%;
+			padding: $padding;
+		}
+
+		td { 
+
+			padding: $padding;
+		}
+
+		strong {
+
+			float: left;
+		}
+
+		span {
+
+			float: left;
+			clear: both;
+			margin: $desc 0 0;
+			color: #999;
+		}
+
+		.#{$m}-td-select { 
+
+			width: 97%;
+			margin: 0 2% 0 0;
+		}
+
+		.#{$m}-td-text { 
+
+			@extend .#{$m}-td-select;		
+		}
+
+		.#{$m}-td-radio-label { 
+
+			margin: 0 12px 0 0;
+
+			.admin-radio { 
+
+				margin: 1px 6px 0 0;
+			}
+		}
+
+		.#{$m}-td-image { 
+
+			width: 23.5%;
+		    height: auto;
+		    display: inline;
+		    margin: 7px 3.35% 7px 0;
+		    border: 7px solid #dfdfdf;
+		    cursor: pointer;
+		    vertical-align: middle;
+		}
+
+		.#{$m}-td-image-removable { 
+
+			@extend .#{$m}-td-image;
+			float: left;
+	    	background: url("./Includes/images/minus.png") no-repeat scroll 50% 50% #999;
+
+	    	img { 
+
+			    height: auto;
+			    width: 100%;
+			    vertical-align: middle;
+
+			    &:hover { 
+			    	opacity: 0.15;
+			    }
+	    	}
+		}
 	}
+}
 
-	th {
+@include table-data('lf-admin-post-meta');
 
-		width: 25%;
-	}
+// 
+// 
+// 
+// Admin Page Style
+// 
+// 
+// 
+// 
+// 
 
-	strong {
+@include table-data('lf-admin', 20px 20px 20px 0, 10px);
 
+$a: lf-admin;
+
+.#{$a}-form {
+
+	.#{$a}-body { 
+
+		background-color: #f5f5f5;
 		float: left;
+		width: 95%;
+		padding: 0 2.5% 50px;
+		@include border-radius( 0 0 5px 5px);
+	
+
+		.nav { 
+
+			width: 20%;
+			float: left;
+			margin: 30px 0 20px;
+
+			ul { 
+
+				margin: 0 0 10px;
+
+				li {
+
+					margin: 0;
+
+					a { 
+						
+						border-left: 1px solid   #dfdfdf;
+						border-top: 1px solid    #dfdfdf;
+						border-bottom: 1px solid #dfdfdf;
+						@include border-radius( 7px 0 0 7px);
+						padding: 10px;
+						display: block;
+						text-decoration: none;
+						color: inherit;
+						background-color: #f1f1f1;
+						@include single-box-shadow(rgba(0, 0, 0, 0.1), -2px, 2px, 2px, 0 );
+
+						&.open-page { 
+
+							position: relative;
+							left: 2px;
+							padding-right: 8px;
+							margin: -5px 0 -2px;
+							border-color: #dfdfdf;
+							background-color: #f5f5f5;
+						}
+					}
+				}
+			}
+		}
+
+		.holder { 
+
+			width: 79%;
+			float: left;
+			border-left:   1px solid #dfdfdf;
+			border-right:  1px solid #dfdfdf;
+			border-bottom: 1px solid #dfdfdf;
+			@include border-radius( 0 0 5px 5px);
+			@include single-box-shadow(rgba(217, 217, 217, 0.3), -1px, 1px, 1px, 0 );
+			padding: 20px 0 10px;
+
+			.content { 
+
+				width: 97.5%;
+				padding-left: 2.5%;
+				float: left;
+				margin: 0 0 20px;
+			}
+		}
+
 	}
 
-	span {
+	.#{$a}-header { 
 
+		width: 95%;
 		float: left;
-		clear: both;
-		margin: 5px 0 0;
-		color: #999;
-	}
+		background-color: #222;
+		color: #fff;
+		padding: 20px 2.5%;
+		margin: 20px 0 0;
+		@include border-radius( 15px 15px 0 0);
 
-	.#{$m}-td-select { 
+		.#{$a}-header-wrap { 
 
-		width: 97%;
-		margin: 0 2% 0 0;
-	}
+			width: 80%;
+			float: left;
+			display: inline-block;
 
-	.#{$m}-td-text { 
+			ul { 
 
-		@extend .#{$m}-td-select;		
-	}
+				clear:both;
 
-	.#{$m}-td-radio-label { 
+				li {
 
-		margin: 0 12px 0 0;
+					display: inline;
+					float: left;
+				}
+			}
 
-		.admin-radio { 
+			span { 
 
-			margin: 1px 6px 0 0;
+				float: left;
+				margin: 24px 0 20px 10px;
+				vertical-align: baseline;
+			}
+
+			h1 {
+				font-size: 24px;
+				margin: 20px 0;
+				display: inline;
+				float: left;
+			}
+		}
+
+		img { 
+
+			display: inline-block;
+			float: right;
+			width: 10%;
+			padding: 10px 2.5% 0;
+			height: auto;
 		}
 	}
 
-	.#{$m}-td-image { 
 
-		width: 23.5%;
-	    height: auto;
-	    display: inline;
-	    margin: 7px 3.35% 7px 0;
-	    border: 7px solid #dfdfdf;
-	    cursor: pointer;
-	    vertical-align: middle;
-	}
+	.#{$a}-save { 
 
-	.#{$m}-td-image-removable { 
-
-		@extend .#{$m}-td-image;
+		width: 95%;
+		padding: 10px 2.5%;
+		clear: both;	
 		float: left;
-    	background: url("images/minus.png") no-repeat scroll 50% 50% #999;
+		background-color: #363636;
 
-    	img { 
+		button { 
 
-		    height: auto;
-		    width: 100%;
-		    vertical-align: middle;
-
-		    &:hover { 
-		    	opacity: 0.15;
-		    }
-    	}
+			@include wp_button('dark');
+			padding: 5px 15px;
+			margin-right: 10px;
+		}
 	}
-}22
+}

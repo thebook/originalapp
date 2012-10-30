@@ -1,6 +1,5 @@
 # Ignore basic things like pngs, and sass caches
 *.png 
 .sass-cache/
-/Core/sass/images
-/Core/sass/compass
-/Core/sass/fonts
+/Framework/CSS/sass/imports/compass
+/Framework/CSS/Includes

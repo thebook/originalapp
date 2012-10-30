@@ -285,13 +285,13 @@ include( FRAMEWORK . '/Slider/modify.class.php' );
 
 include( FRAMEWORK . '/Options/include.php' );
 
-include( FRAMEWORK . '/scripts.class.php' );
+include( FRAMEWORK . '/register_scripts.class.php' );
 
 include( FRAMEWORK . '/admin-page.php' );
 
 include( FRAMEWORK . '/rewrites.php' );
 
-new lf_registrate_scripts;
+new register_scripts;
 
 
 
@@ -315,17 +315,17 @@ include( ADMINPATH . '/Navigation/lf-navigation-func.php' );
 function add_white_whale_options() {
 
 
-	add_submenu_page( 	'liquidfluxadmin', 
-						'White Whale Admin', 
-						'Options', 
-						'manage_options', 
-						'whitewhale',
-						'admin_page' );
+	// add_submenu_page( 	'liquidfluxadmin', 
+	// 					'White Whale Admin', 
+	// 					'Options', 
+	// 					'manage_options', 
+	// 					'whitewhale',
+	// 					'admin_page' );
 							
-	register_setting(	'main_options', 	
-						'main_options' ); 
+	// register_setting(	'main_options', 	
+	// 					'main_options' ); 
 	
-	$page = new admin('white-lf-admin', 'white-lf-admin-td', 'option');
+	$page = new admin('lf-admin', 'lf-admin-td', 'option');
 
 	$page->body();
 	// multi($options);

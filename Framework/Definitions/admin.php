@@ -3,6 +3,24 @@
 	return array( 
 				'opt' => 
 					array(
+						// Create Submenu page 
+						array(
+							'f' => 'add_submenu_page',
+							'o' => 
+								array(
+									'liquidfluxadmin',
+									'White Whale Admin',
+									'Theme Options',
+									'manage_options',
+									'whitewhale',
+									'admin_page' ) ),
+						// Register settings array 
+						array(
+							'f' => 'register_setting',
+							'o' => 
+								array(
+									'main_options',
+									'main_options') ),
 						// Header
 						array( 
 							'f' => array($this, 'pop'),
@@ -12,6 +30,7 @@
 										'id' => 'header_admin',
 										'title' => __('Header', 'liquidflux'),
 										'page'  => 'whitewhale',
+										'desc'  => __('Configure the style and layout of your header.', 'liquidflux'),
 										'options' => 
 											array( 
 												'opt' => 
@@ -100,6 +119,7 @@
 										'id' => 'navigation_admin',
 										'title' => __('Navigation', 'liquidflux'),
 										'page'  => 'whitewhale',
+										'desc'  => __('Change how the menu bars an breadcrumbs work in your theme.', 'liquidflux'),
 										'options' => 
 											array( 
 												'opt' => 

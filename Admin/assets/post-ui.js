@@ -85,6 +85,28 @@
 				}
 	};
 
+	tab = { 
+
+		tab : function (nav, content) {
+
+			$(nav).bind('click',
+				function () {
+					var dhis = $(this); 
+					var trigger = dhis.attr('href');
+						$(content).hide();
+						$(trigger + '-page').show();
+						$(nav).removeClass('open-page');
+						dhis.addClass('open-page');
+				});
+			},
+
+		init : function (nav, content) {
+
+			this.tab(nav, content);
+			$(nav).eq(0).click();
+		}
+	};
+
 	reveal = { 
 
 		reveal : function ( id, tohide, map ) {

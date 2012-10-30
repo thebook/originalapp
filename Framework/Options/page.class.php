@@ -60,14 +60,17 @@ class admin extends options
 	}
 
 	/**
-	 * Wraps the multi function of a page and then calls multi to further display its options
+	 * Wraps the multi function of a page and then calls it to further display its options
 	 * @return html A option page
 	 */
 	public function wrap($a)
 	{ ?>
-		<table class="form-table">
+		<table class="lf-admin-table form-table">
 			<tbody>
+				<h2><?php echo $a['title']; ?></h2>
+				<p><?php echo $a['callargs']['desc']; ?></p>
 				<?php multi( $a['callargs']['options'] ); ?>
+				<script>tab.init('.nav ul li a', '.holder .content');</script>
 			</tbody>
 		</table>	
 
