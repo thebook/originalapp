@@ -32,7 +32,7 @@ function _default_meta($array, $name, $default) {
 function _default_option($array, $name, $default) {
 
 	$option = get_option( $array );
-
+	
 	return ( $option && isset($option[$name]) ? $option[$name] : $default );
 
 }
@@ -41,7 +41,7 @@ function _default($type, $array, $name, $default) {
 
 	$d = '_default_'.$type;
 
-	$d($array, $name, $default);
+	return $d($array, $name, $default);
 
 }
 

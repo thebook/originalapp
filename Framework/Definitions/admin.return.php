@@ -79,35 +79,50 @@
 															'o' => 
 																array(
 																	'select',
-																	'Title Text Style',
-																	'Style your header title',
+																	'Title Style',
+																	'Style site title',
 																	'main_options',
-																	'header_text_style',
+																	'title_style',
 																	'normal',
-															        array( 'normal', 'italic', 'bold', 'italicbold' ),
-																	array( 'Normal', 'Italic', 'Bold', 'Italic & Bold' ) ) ),
+															        array( 'normal', 'italic'),
+																	array( 'Normal', 'Italic') ) ),
+														//  Title weight 
+														array(
+															'f' => array( $this, 'put'),
+															'o' => 
+																array(
+																	'select',
+																	'Title Weight',
+																	'Set the weight of your site title',
+																	'main_options',
+																	'title_weight',
+																	'normal',
+															        array( 'normal', 'bold'),
+																	array( 'Normal', 'Bold') ) ),
 														// Title size 
-														// array(
-														// 	'f' => array( $this, 'put'),
-														// 	'o' => 
-														// 		array(
-														// 			'slider',
-														// 			'Title Size',
-														// 			'Set the size of your title',
-														// 			'main_options',
-														// 			'header_title_font_size',
-														// 			'32' ) ),
-														// // Title color 
-														// array(
-														// 	'f' => array( $this, 'put'),
-														// 	'o' => 
-														// 		array(
-														// 			'color',
-														// 			'Title Color',
-														// 			'The color of your title text',
-														// 			'main_options',
-														// 			'header_title_color',
-														// 			'#444' ) ),
+														array(
+															'f' => array( $this, 'put'),
+															'o' => 
+																array(
+																	'slider',
+																	'Title Size',
+																	'Set the size of your title',
+																	'main_options',
+																	'header_title_font_size',
+																	'32',
+																	'20',
+																	'120' ) ),
+														// Title color 
+														array(
+															'f' => array( $this, 'put'),
+															'o' => 
+																array(
+																	'color',
+																	'Title Color',
+																	'The color of your title text',
+																	'main_options',
+																	'header_title_color',
+																	'#444444' ) )
 															))
 														))),
 						// Navigation
@@ -129,12 +144,12 @@
 															'f' => array( $this, 'put' ),
 															'o' => 
 																array(
-																	'text',
+																	'color',
 																	'Title Color',
 																	'The color of your title text',
 																	'main_options',
-																	'header_title_color',
-																	'#444' ) ),
+																	'header_titless_color',
+																	'#444444' ) ),
 																																				
 															), )
 														)))

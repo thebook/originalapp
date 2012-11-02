@@ -41,31 +41,31 @@ function lf_header_section_callback() {
 			<p>Note : Header adverts will only be displayed if you have set them to be shown.</p>',
 			'0px' ); 
 	
-	lf_create_option( "select", 
-					  "main_options[header_advert_type]", 
-					  "header_advert_type_opt", 
-					  "main_options", 
-					  "header_advert_type", 
-					  "", 
-					  "Set Header Advert Type", 
-					  array( 'leaderboard', 'banner' ),
-					  array( 'Leaderboard (728x90)', 'Banner (468x60)' ) );
+	// lf_create_option( "select", 
+	// 				  "main_options[header_advert_type]", 
+	// 				  "header_advert_type_opt", 
+	// 				  "main_options", 
+	// 				  "header_advert_type", 
+	// 				  "", 
+	// 				  "Set Header Advert Type", 
+	// 				  array( 'leaderboard', 'banner' ),
+	// 				  array( 'Leaderboard (728x90)', 'Banner (468x60)' ) );
 					 				  
-	lf_create_option( "text-box", 
-					  "main_options[header_leaderboard_ad_code]", 
-					  "header_leaderboard_ad_code_opt", 
-					  "main_options", 
-					  "header_leaderboard_ad_code", 
-					  "<p>Paste in here the code for your leaderboard advert, this advert will only display, if you have set the <b>'Header Advert Type'</b> to <b>'Leaderboard'</b>.</p>", 
-					  "Leaderboard Ad Code" );
+	// lf_create_option( "text-box", 
+	// 				  "main_options[header_leaderboard_ad_code]", 
+	// 				  "header_leaderboard_ad_code_opt", 
+	// 				  "main_options", 
+	// 				  "header_leaderboard_ad_code", 
+	// 				  "<p>Paste in here the code for your leaderboard advert, this advert will only display, if you have set the <b>'Header Advert Type'</b> to <b>'Leaderboard'</b>.</p>", 
+	// 				  "Leaderboard Ad Code" );
 					  
-	lf_create_option( "text-box", 
-					  "main_options[header_banner_ad_code]", 
-					  "header_banner_ad_code_opt", 
-					  "main_options", 
-					  "header_banner_ad_code", 
-					  "<p>Paste in here the code for your banner advert, this advert will only display, if you have set the <b>'Header Advert Type'</b> to <b>'Banner'</b>.</p>", 
-					  "Banner Ad Code" );
+	// lf_create_option( "text-box", 
+	// 				  "main_options[header_banner_ad_code]", 
+	// 				  "header_banner_ad_code_opt", 
+	// 				  "main_options", 
+	// 				  "header_banner_ad_code", 
+	// 				  "<p>Paste in here the code for your banner advert, this advert will only display, if you have set the <b>'Header Advert Type'</b> to <b>'Banner'</b>.</p>", 
+	// 				  "Banner Ad Code" );
 					  
 	lf_create_option( 
 			'divider', 
@@ -74,19 +74,19 @@ function lf_header_section_callback() {
 			<p>and chose the background of your header, amongst many other options.</p>',
 			'24px' ); 
 	
-	lf_create_option( "select", 
-					  "main_options[header_title_state]", 
-					  "header_title_state_opt", 
-					  "main_options", 
-					  "header_title_state", 
-					  "<p>Your title state sets what type of title look is shown in your header.</p><ul>
-					  <li><b>Title Text & Logo</b> : Show your website name and the logo you have uploaded.</li>
-					  <li><b>Logo Only</b> : Only your logo is visible</li>
-					  <li><b>Title Only</b> : Shows only your site title, regardless of weather you have uploaded a logo image</li>
-					  <li><b>None</b> : Hides both logo and title ( your website title is still seen by the browser for SEO purposes )</li></ul>", 
-					  "Set Title State", 
-					  array( "titlelogo", "logo", "title", "none" ),
-					  array( "Title Text & Logo", "Logo Only", "Title Only", "None" ) );
+	// lf_create_option( "select", 
+	// 				  "main_options[header_title_state]", 
+	// 				  "header_title_state_opt", 
+	// 				  "main_options", 
+	// 				  "header_title_state", 
+	// 				  "<p>Your title state sets what type of title look is shown in your header.</p><ul>
+	// 				  <li><b>Title Text & Logo</b> : Show your website name and the logo you have uploaded.</li>
+	// 				  <li><b>Logo Only</b> : Only your logo is visible</li>
+	// 				  <li><b>Title Only</b> : Shows only your site title, regardless of weather you have uploaded a logo image</li>
+	// 				  <li><b>None</b> : Hides both logo and title ( your website title is still seen by the browser for SEO purposes )</li></ul>", 
+	// 				  "Set Title State", 
+	// 				  array( "titlelogo", "logo", "title", "none" ),
+	// 				  array( "Title Text & Logo", "Logo Only", "Title Only", "None" ) );
 					  
 	lf_font_style( 'option',
 				   'main_options[header_title_font]',
@@ -97,18 +97,18 @@ function lf_header_section_callback() {
 					<p>Only select one option. </p>',
 				   'Set Header Title Font' );
 				   
-	lf_create_option( 'select',
-					  'main_options[header_text_style]',
-					  'header_text_style_opt',
-					  'main_options',
-					  'header_text_style',
-					  '<p>Set the header title style to be :</p>
-						<ul>
-						<li>Normal, <i>Italic</i>, <b>Bold</b> or <i><b>Bold & Italic</b></i></li>
-						</ul>',
-					  'Set Header Text Style',
-					  array( 'normal', 'italic', 'bold', 'italicbold' ),
-					  array( 'Normal', 'Italic', 'Bold', 'Italic & Bold' ) );
+	// lf_create_option( 'select',
+	// 				  'main_options[header_text_style]',
+	// 				  'header_text_style_opt',
+	// 				  'main_options',
+	// 				  'header_text_style',
+	// 				  '<p>Set the header title style to be :</p>
+	// 					<ul>
+	// 					<li>Normal, <i>Italic</i>, <b>Bold</b> or <i><b>Bold & Italic</b></i></li>
+	// 					</ul>',
+	// 				  'Set Header Text Style',
+	// 				  array( 'normal', 'italic', 'bold', 'italicbold' ),
+	// 				  array( 'Normal', 'Italic', 'Bold', 'Italic & Bold' ) );
 	
 	lf_create_option( "slider",
 					  "main_options[header_title_font_size]",

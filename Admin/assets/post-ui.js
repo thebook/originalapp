@@ -164,4 +164,58 @@
 				}
 	};
 
+	slider = { 
+
+		slider : function ( opt ) { 
+
+			var input = $('#' + opt.input);
+			var display = input.prev();
+			var inputvalue = input.val();
+
+			$('#' + opt.slider ).slider({
+				range: "min",
+				value: [ inputvalue ],
+				min: opt.min,
+				max: opt.max,
+				step: 2,
+				create: function ( event, slider ) {
+					slider.value = inputvalue;
+					display.text(slider.value + 'px');
+				},
+				slide: function ( event, slider ) {
+					var value = slider.value;
+					input.val(value);
+					display.text(value +'px');
+				}
+			});
+		}
+	};
+
+	color = {
+
+		color : function (opt) {
+			var input = $( opt.id );
+			var color = $( opt.handle );
+			var def   = opt.color.replace('#', '') || 'ffffff';
+			
+			color.ColorPicker({
+				color: def,
+				onSubmit: function (hsb_value, hex_value, rgb_value, element ) {
+					input.val( hex_value );
+					$(element).css('background-color', '#' + hex_value );
+				},
+				onShow: function (colorpicker_html) {
+					var self = $(colorpicker_html);
+					self.fadeIn('400');
+					return false;
+				},
+				onHide: function (colorpicker_html) {
+					var self = $(colorpicker_html);
+					self.fadeOut('400');
+					return false
+				}
+			});
+		}
+	};
+
 })(jQuery);

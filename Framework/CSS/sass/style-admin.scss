@@ -86,13 +86,24 @@
 			    width: 100%;
 			    vertical-align: middle;
 
+
 			    &:hover { 
 			    	opacity: 0.15;
 			    }
 	    	}
 		}
+
+		// Create style for slider control
+		@include lf_slider($m, #363636, #eee, #f5f5f5 );
+
+
+		
 	}
+
 }
+
+@include colorpicker;
+
 
 @include table-data('lf-admin-post-meta');
 
@@ -230,7 +241,7 @@ $a: lf-admin;
 
 			display: inline-block;
 			float: right;
-			width: 10%;
+			width: 8%;
 			padding: 10px 2.5% 0;
 			height: auto;
 		}

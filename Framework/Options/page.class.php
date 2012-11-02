@@ -12,7 +12,7 @@ class admin extends options
 	 */
 	public function body()
 	{	
-		$options = ( include FRAMEWORK .'/Definitions/admin.php' );
+		$options = ( include FRAMEWORK .'/Definitions/admin.return.php' );
 		multi($options);
 	}
 

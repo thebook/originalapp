@@ -39,13 +39,34 @@
 												trailingslashit( get_template_directory_uri() ) . '/Admin/assets/post-ui.js', 
 												array(
 													'thickbox', 
-													'media-upload'), 
+													'media-upload',
+													'jquery-ui-slider'), 
 												'0.8', 
 												false ),
 										'conditional' => 
 											array(
 												array( false, 'admin.php'),
 												array( true,  'lf_slide' )),
+										'enqueue' => true 
+											))),
+						// Colorpicker
+						array(
+							'f' => array( $this, 'sort'),
+							'o' =>
+								array(
+									array(
+										'side' => 'admin',
+										'type' => 'script',
+										'arg'  => 
+											array(
+												'lf-color-picker',  
+												trailingslashit( get_template_directory_uri() ) . '/Framework/scripts/colorpicker.js', 
+												array('jquery'), 
+												'1.16', 
+												false ),
+										'conditional' => 
+											array(
+												array( false, 'admin.php')),
 										'enqueue' => true 
 											))),
 						// clone js, cloning for the slider

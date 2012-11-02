@@ -187,16 +187,19 @@
 			echo '<div class="lf_admin_core_option_wrap">';
 			
 			echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
+
 	
 			echo '<div class="lf_admin_core_input_wrap">';
 	
-			echo '<div class="slider-scaling" id="'. $theid .'" ></div>';
+				echo '<div class="slider-scaling" id="'. $theid .'" ></div>';
 	
-			echo '<input type="text" name="'. $name .'" class="slider-scaling-input" value="'. $the_opt .'" />';
+				echo '<input type="text" name="'. $name .'" class="slider-scaling-input" value="'. $the_opt .'" />';
 			
 			echo '</div>';
 			
 			echo '<div class="slider-scaling-desc-part">'. $the_opt . $thevalue . '</div>';
+
+			
 			
 			echo '<div class="LF-option-inv-desc">'. $description .'</div>';
 	

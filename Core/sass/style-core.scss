@@ -1,7 +1,7 @@
  $default-box-shadow-color: rgba(0, 0, 0, 0.1);
  $default-box-shadow-v-offset: 1px;
  $default-box-shadow-blur: 1px;
-
+#{"<?php some var equals some  ?>"}
  @mixin arrows { 
 	@include opacity( 0.8 );
 	position: relative;

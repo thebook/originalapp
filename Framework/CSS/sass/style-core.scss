@@ -21,6 +21,9 @@
  $w : 960px;
  $cp: 0 9px;
 
+ // Head 
+ $title_style: #{"<?php echo $o['title_style']; ?>"};
+ $title_weight: #{"<?php echo $o['title_weight']; ?>"};
 
 
 #lf-core-main-body-wrap,
@@ -43,7 +46,6 @@
 	
 	width: $w;
 	margin: auto;
-
 }
 
 .lf-header-main-wrap { 
