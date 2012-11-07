@@ -1233,7 +1233,7 @@ function lf_editable_style_content() {
 								
 }
 
-add_action( "lf_editable_style", "lf_editable_style_content" );
+// add_action( "lf_editable_style", "lf_editable_style_content" );
 	
 	
 
@@ -1330,7 +1330,7 @@ function lf_editable_style_content_small() {
 
 }
 
-add_action( "lf_editable_style_small", "lf_editable_style_content_small" );
+// add_action( "lf_editable_style_small", "lf_editable_style_content_small" );
 
 
 ?>

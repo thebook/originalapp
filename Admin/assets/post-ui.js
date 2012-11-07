@@ -7,11 +7,11 @@
 			switch ( num ) {
 				case 'single' : 
 					if ( prev.is('img') ) {  prev.empty().remove(); }
-					input.before('<img src="'+ url +'" class="lf-admin-post-meta-td-image" title="lightbox image" />');
+					input.before('<img src="'+ url +'" class="lf-uploaded-image" title="lightbox image" />');
 				break;
 				
 				case 'gallery' :
-					input.before('<span class="lf-admin-post-meta-td-image-removeable" ><input type="hidden" id="lf-post-meta-' + extra[0] + '" name="' + extra[1] + '[' + extra[0] + ']['+ extra[2] +']" value="' + url +'" /><img src="'+ url +'" title="remove gallery image" /></span>');
+					input.before('<span class="lf-removable-image" ><input type="hidden" id="lf-post-meta-' + extra[0] + '" name="' + extra[1] + '[' + extra[0] + ']['+ extra[2] +']" value="' + url +'" /><img src="'+ url +'" title="remove gallery image" /></span>');
 				break;
 			}
 		},	
@@ -215,6 +215,41 @@
 					return false
 				}
 			});
+		}
+	};
+
+	ajax = {
+
+		reset : function (opt) { 
+
+			$('#' + opt.reset ).on( 'click', 
+				function () { 
+					if (confirm("Are you sure you want to reset, reseting your options will strip them compleatly?")) {
+						alert("stuff");
+					}
+				});
+		},
+
+		save : function (opt) { 
+			
+			$('#' + opt.form).submit(
+				function () { 
+					var form = $(this);
+					var button = $('#' + opt.save);
+					var button_value = button.val();
+					button.val('Saving...');
+
+					$.post(
+						form.attr("action"),
+						form.serialize(),
+						function (response) {
+							$.jGrowl(response.message, { speed: 400, sticky: true, header: response.header});
+							button.val(button_value);
+						},
+						'json' );
+
+					return false;
+				});
 		}
 	};
 

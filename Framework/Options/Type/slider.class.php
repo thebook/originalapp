@@ -3,21 +3,13 @@
 /**
 * A slider option generator
 */
-class generate_slider
+class generate_slider extends alpha_tree_generate_type
 {
-	var $id;
-	var $class;
-	
-	function __construct( $a, $id, $class )
-	{	
-		$this->id    = $id;
-		$this->class = $class;
-		$this->put( $a['name'], $a['array'], $a['options'], $a['values'], $a['saved'] );
-	}
-
-	public function put($name, $array, $max, $min, $saved)
+	public function create($options)
 	{ ?>
-		<!-- The min value display -->
+
+	<?php extract($options); ?>
+			<!-- The min value display -->
 		<span class="<?php echo $this->class;?>-slider-min"><?php echo $min; ?> |</span>
 		<!-- Slider is hooked onto this -->
 		<div id="<?php echo "$this->id-$name";?>-hook" class="<?php echo $this->class;?>-slider"></div>

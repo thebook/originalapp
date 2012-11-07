@@ -21,9 +21,38 @@
  $w : 960px;
  $cp: 0 9px;
 
- // Head 
- $title_style: #{"<?php echo $o['title_style']; ?>"};
- $title_weight: #{"<?php echo $o['title_weight']; ?>"};
+// Content
+$post_title_font: #{"<?php echo $o['post_title_font']; ?>"};
+$post_title_size: #{"<?php echo $o['post_title_size']; ?>"};
+$post_title_style: #{"<?php echo $o['post_title_style']; ?>"};
+$post_title_color: #{"<?php echo $o['post_title_color']; ?>"};
+$post_meta_color: #{"<?php echo $o['post_meta_color']; ?>"};
+$post_meta_size: #{"<?php echo $o['post_meta_size']; ?>"};
+$post_highlight_color: #{"<?php echo $o['post_highlight_color']; ?>"};
+$post_text_font: #{"<?php echo $o['post_text_font']; ?>"};
+$post_text_size: #{"<?php echo $o['post_text_size']; ?>"};
+$post_text_style: #{"<?php echo $o['post_text_style']; ?>"};
+$post_text_weight: #{"<?php echo $o['post_text_weight']; ?>"};
+$post_headers_font: #{"<?php echo $o['post_headers_font']; ?>"};
+$post_headers_style: #{"<?php echo $o['post_headers_style']; ?>"};
+$post_headers_weight: #{"<?php echo $o['post_headers_weight']; ?>"};
+$post_text_color: #{"<?php echo $o['post_text_color']; ?>"};
+$post_readmore_color: #{"<?php echo $o['post_readmore_color']; ?>"};
+$post_readmore_text: #{"<?php echo $o['post_readmore_text']; ?>"};
+$widget_title_size: #{"<?php echo $o['widget_title_size']; ?>"};
+$widget_title_style: #{"<?php echo $o['widget_title_style']; ?>"};
+$widget_title_color: #{"<?php echo $o['widget_title_color']; ?>"};
+$background_color: #{"<?php echo $o['background_color']; ?>"};
+// Header style
+$title_choice: #{"<?php echo $o['title_choice']; ?>"};
+$title_font: #{"<?php echo $o['title_font']; ?>"};
+$title_style: #{"<?php echo $o['title_style']; ?>"};
+$title_weight: #{"<?php echo $o['title_weight']; ?>"};
+$title_size: #{"<?php echo $o['title_size']; ?>"};
+$title_color: #{"<?php echo $o['title_color']; ?>"};
+$logo_size: #{"<?php echo $o['logo_size']; ?>"};
+$header_height: #{"<?php echo $o['header_height']; ?>"};
+
 
 
 #lf-core-main-body-wrap,

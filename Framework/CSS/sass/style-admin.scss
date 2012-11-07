@@ -63,7 +63,20 @@
 			}
 		}
 
-		.#{$m}-td-image { 
+		.#{$m}-td-font { 
+
+			@extend .#{$m}-td-select;
+			height: 75px;
+			font-size: 25px;
+			line-height: 30px;
+			padding: 25px 5px 5px;
+			margin: 20px 0;
+			background: #eee;
+			border: none;
+			@include border-radius( 0px);
+		}
+
+		.lf-uploaded-image { 
 
 			width: 23.5%;
 		    height: auto;
@@ -74,7 +87,7 @@
 		    vertical-align: middle;
 		}
 
-		.#{$m}-td-image-removable { 
+		.lf-removable-image { 
 
 			@extend .#{$m}-td-image;
 			float: left;
@@ -244,6 +257,11 @@ $a: lf-admin;
 			width: 8%;
 			padding: 10px 2.5% 0;
 			height: auto;
+			@include single-transition(all, 400ms);
+			&:hover { 
+				@include opacity( 0.8);
+				@include single-transition(all, 400ms);
+			}
 		}
 	}
 
@@ -256,7 +274,7 @@ $a: lf-admin;
 		float: left;
 		background-color: #363636;
 
-		button { 
+		.#{$a}-button { 
 
 			@include wp_button('dark');
 			padding: 5px 15px;
@@ -264,3 +282,5 @@ $a: lf-admin;
 		}
 	}
 }
+
+@include jgrowl( #fff, #222 );

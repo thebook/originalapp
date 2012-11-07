@@ -1,4 +1,4 @@
-/* line 235, sass/Imports/_mixins.scss */
+/* line 337, sass/Imports/_mixins.scss */
 .colorpicker-open {
   width: 22px;
   height: 22px;
@@ -14,7 +14,7 @@
   background-color: transparent;
   cursor: pointer;
 }
-/* line 245, sass/Imports/_mixins.scss */
+/* line 347, sass/Imports/_mixins.scss */
 .colorpicker-open .colorpicker-handle {
   width: 8.8px;
   height: 8.8px;
@@ -22,7 +22,7 @@
   background: #363636;
 }
 
-/* line 253, sass/Imports/_mixins.scss */
+/* line 355, sass/Imports/_mixins.scss */
 .colorpicker {
   width: 390px;
   height: 180px;
@@ -42,7 +42,7 @@
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 267, sass/Imports/_mixins.scss */
+/* line 369, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_color {
   width: 150px;
   height: 150px;
@@ -53,7 +53,7 @@
   overflow: hidden;
   cursor: crosshair;
 }
-/* line 278, sass/Imports/_mixins.scss */
+/* line 380, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_color div {
   position: absolute;
   top: 0;
@@ -62,7 +62,7 @@
   height: 150px;
   background: url(../CSS/Includes/Images/colorpicker_overlay.png);
 }
-/* line 286, sass/Imports/_mixins.scss */
+/* line 388, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_color div div {
   position: absolute;
   top: 0;
@@ -79,7 +79,7 @@
   -o-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 302, sass/Imports/_mixins.scss */
+/* line 404, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_hue {
   position: absolute;
   top: 15px;
@@ -89,7 +89,7 @@
   cursor: n-resize;
   background: url(../CSS/Includes/Images/hue.png) repeat-x;
 }
-/* line 311, sass/Imports/_mixins.scss */
+/* line 413, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_hue div {
   position: absolute;
   width: 8px;
@@ -103,7 +103,7 @@
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
 }
-/* line 326, sass/Imports/_mixins.scss */
+/* line 428, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_new_color {
   position: absolute;
   width: 70px;
@@ -112,7 +112,7 @@
   top: 15px;
   background: #f00;
 }
-/* line 335, sass/Imports/_mixins.scss */
+/* line 437, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_current_color {
   position: absolute;
   width: 70px;
@@ -121,7 +121,7 @@
   top: 15px;
   background: #fff;
 }
-/* line 180, sass/Imports/_mixins.scss */
+/* line 282, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -129,12 +129,12 @@
   position: absolute;
   color: #999;
 }
-/* line 187, sass/Imports/_mixins.scss */
+/* line 289, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r {
   top: 57px;
   left: 213px;
 }
-/* line 191, sass/Imports/_mixins.scss */
+/* line 293, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r span {
   display: inline-block;
   float: right;
@@ -146,7 +146,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 203, sass/Imports/_mixins.scss */
+/* line 305, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r input {
   width: 35px;
   display: inline-block;
@@ -164,7 +164,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 217, sass/Imports/_mixins.scss */
+/* line 319, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r:before {
   content: "r:";
   width: 10px;
@@ -172,7 +172,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 180, sass/Imports/_mixins.scss */
+/* line 282, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -180,12 +180,12 @@
   position: absolute;
   color: #999;
 }
-/* line 187, sass/Imports/_mixins.scss */
+/* line 289, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g {
   top: 87px;
   left: 213px;
 }
-/* line 191, sass/Imports/_mixins.scss */
+/* line 293, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g span {
   display: inline-block;
   float: right;
@@ -197,7 +197,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 203, sass/Imports/_mixins.scss */
+/* line 305, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g input {
   width: 35px;
   display: inline-block;
@@ -215,7 +215,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 217, sass/Imports/_mixins.scss */
+/* line 319, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g:before {
   content: "g:";
   width: 10px;
@@ -223,7 +223,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 180, sass/Imports/_mixins.scss */
+/* line 282, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -231,12 +231,12 @@
   position: absolute;
   color: #999;
 }
-/* line 187, sass/Imports/_mixins.scss */
+/* line 289, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b {
   top: 117px;
   left: 213px;
 }
-/* line 191, sass/Imports/_mixins.scss */
+/* line 293, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b span {
   display: inline-block;
   float: right;
@@ -248,7 +248,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 203, sass/Imports/_mixins.scss */
+/* line 305, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b input {
   width: 35px;
   display: inline-block;
@@ -266,7 +266,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 217, sass/Imports/_mixins.scss */
+/* line 319, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b:before {
   content: "b:";
   width: 10px;
@@ -274,7 +274,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 180, sass/Imports/_mixins.scss */
+/* line 282, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -282,12 +282,12 @@
   position: absolute;
   color: #999;
 }
-/* line 187, sass/Imports/_mixins.scss */
+/* line 289, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h {
   top: 57px;
   left: 303px;
 }
-/* line 191, sass/Imports/_mixins.scss */
+/* line 293, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h span {
   display: inline-block;
   float: right;
@@ -299,7 +299,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 203, sass/Imports/_mixins.scss */
+/* line 305, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h input {
   width: 35px;
   display: inline-block;
@@ -317,7 +317,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 217, sass/Imports/_mixins.scss */
+/* line 319, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h:before {
   content: "h:";
   width: 10px;
@@ -325,7 +325,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 180, sass/Imports/_mixins.scss */
+/* line 282, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -333,12 +333,12 @@
   position: absolute;
   color: #999;
 }
-/* line 187, sass/Imports/_mixins.scss */
+/* line 289, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s {
   top: 87px;
   left: 303px;
 }
-/* line 191, sass/Imports/_mixins.scss */
+/* line 293, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s span {
   display: inline-block;
   float: right;
@@ -350,7 +350,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 203, sass/Imports/_mixins.scss */
+/* line 305, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s input {
   width: 35px;
   display: inline-block;
@@ -368,7 +368,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 217, sass/Imports/_mixins.scss */
+/* line 319, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s:before {
   content: "s:";
   width: 10px;
@@ -376,7 +376,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 180, sass/Imports/_mixins.scss */
+/* line 282, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -384,12 +384,12 @@
   position: absolute;
   color: #999;
 }
-/* line 187, sass/Imports/_mixins.scss */
+/* line 289, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b {
   top: 117px;
   left: 303px;
 }
-/* line 191, sass/Imports/_mixins.scss */
+/* line 293, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b span {
   display: inline-block;
   float: right;
@@ -401,7 +401,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 203, sass/Imports/_mixins.scss */
+/* line 305, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b input {
   width: 35px;
   display: inline-block;
@@ -419,7 +419,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 217, sass/Imports/_mixins.scss */
+/* line 319, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b:before {
   content: "b:";
   width: 10px;
@@ -427,7 +427,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 352, sass/Imports/_mixins.scss */
+/* line 454, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_hex {
   position: absolute;
   width: 70px;
@@ -435,7 +435,7 @@
   left: 213px;
   top: 147px;
 }
-/* line 359, sass/Imports/_mixins.scss */
+/* line 461, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_hex input {
   margin: 0;
   padding: 2px;
@@ -451,7 +451,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 372, sass/Imports/_mixins.scss */
+/* line 474, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_submit {
   position: absolute;
   width: 62px;
@@ -466,7 +466,7 @@
   top: 147px;
   overflow: hidden;
 }
-/* line 386, sass/Imports/_mixins.scss */
+/* line 488, sass/Imports/_mixins.scss */
 .colorpicker .colorpicker_submit:before {
   content: "Use Color";
 }
@@ -496,7 +496,7 @@
   color: #999;
 }
 /* line 45, sass/style-admin.scss */
-.lf-admin-post-meta-table .lf-admin-post-meta-td-select, .lf-admin-post-meta-table .lf-admin-post-meta-td-text {
+.lf-admin-post-meta-table .lf-admin-post-meta-td-select, .lf-admin-post-meta-table .lf-admin-post-meta-td-text, .lf-admin-post-meta-table .lf-admin-post-meta-td-font {
   width: 97%;
   margin: 0 2% 0 0;
 }
@@ -509,7 +509,22 @@
   margin: 1px 6px 0 0;
 }
 /* line 66, sass/style-admin.scss */
-.lf-admin-post-meta-table .lf-admin-post-meta-td-image, .lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable {
+.lf-admin-post-meta-table .lf-admin-post-meta-td-font {
+  height: 75px;
+  font-size: 25px;
+  line-height: 30px;
+  padding: 25px 5px 5px;
+  margin: 20px 0;
+  background: #eee;
+  border: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+/* line 79, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-uploaded-image {
   width: 23.5%;
   height: auto;
   display: inline;
@@ -518,19 +533,19 @@
   cursor: pointer;
   vertical-align: middle;
 }
-/* line 77, sass/style-admin.scss */
-.lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable {
+/* line 90, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-removable-image {
   float: left;
   background: url("./Includes/images/minus.png") no-repeat scroll 50% 50% #999999;
 }
-/* line 83, sass/style-admin.scss */
-.lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable img {
+/* line 96, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-removable-image img {
   height: auto;
   width: 100%;
   vertical-align: middle;
 }
-/* line 90, sass/style-admin.scss */
-.lf-admin-post-meta-table .lf-admin-post-meta-td-image-removable img:hover {
+/* line 103, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-removable-image img:hover {
   opacity: 0.15;
 }
 /* line 73, sass/Imports/_mixins.scss */
@@ -629,7 +644,7 @@
   color: #999;
 }
 /* line 45, sass/style-admin.scss */
-.lf-admin-table .lf-admin-td-select, .lf-admin-table .lf-admin-td-text {
+.lf-admin-table .lf-admin-td-select, .lf-admin-table .lf-admin-td-text, .lf-admin-table .lf-admin-td-font {
   width: 97%;
   margin: 0 2% 0 0;
 }
@@ -642,7 +657,22 @@
   margin: 1px 6px 0 0;
 }
 /* line 66, sass/style-admin.scss */
-.lf-admin-table .lf-admin-td-image, .lf-admin-table .lf-admin-td-image-removable {
+.lf-admin-table .lf-admin-td-font {
+  height: 75px;
+  font-size: 25px;
+  line-height: 30px;
+  padding: 25px 5px 5px;
+  margin: 20px 0;
+  background: #eee;
+  border: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+/* line 79, sass/style-admin.scss */
+.lf-admin-table .lf-uploaded-image {
   width: 23.5%;
   height: auto;
   display: inline;
@@ -651,19 +681,19 @@
   cursor: pointer;
   vertical-align: middle;
 }
-/* line 77, sass/style-admin.scss */
-.lf-admin-table .lf-admin-td-image-removable {
+/* line 90, sass/style-admin.scss */
+.lf-admin-table .lf-removable-image {
   float: left;
   background: url("./Includes/images/minus.png") no-repeat scroll 50% 50% #999999;
 }
-/* line 83, sass/style-admin.scss */
-.lf-admin-table .lf-admin-td-image-removable img {
+/* line 96, sass/style-admin.scss */
+.lf-admin-table .lf-removable-image img {
   height: auto;
   width: 100%;
   vertical-align: middle;
 }
-/* line 90, sass/style-admin.scss */
-.lf-admin-table .lf-admin-td-image-removable img:hover {
+/* line 103, sass/style-admin.scss */
+.lf-admin-table .lf-removable-image img:hover {
   opacity: 0.15;
 }
 /* line 73, sass/Imports/_mixins.scss */
@@ -737,7 +767,7 @@
   background-color: #dfdfdf;
 }
 
-/* line 126, sass/style-admin.scss */
+/* line 139, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body {
   background-color: #f5f5f5;
   float: left;
@@ -749,21 +779,21 @@
   -o-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
 }
-/* line 135, sass/style-admin.scss */
+/* line 148, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .nav {
   width: 20%;
   float: left;
   margin: 30px 0 20px;
 }
-/* line 141, sass/style-admin.scss */
+/* line 154, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .nav ul {
   margin: 0 0 10px;
 }
-/* line 145, sass/style-admin.scss */
+/* line 158, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .nav ul li {
   margin: 0;
 }
-/* line 149, sass/style-admin.scss */
+/* line 162, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .nav ul li a {
   border-left: 1px solid   #dfdfdf;
   border-top: 1px solid    #dfdfdf;
@@ -782,7 +812,7 @@
   -moz-box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
   box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 162, sass/style-admin.scss */
+/* line 175, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .nav ul li a.open-page {
   position: relative;
   left: 2px;
@@ -791,7 +821,7 @@
   border-color: #dfdfdf;
   background-color: #f5f5f5;
 }
-/* line 176, sass/style-admin.scss */
+/* line 189, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .holder {
   width: 79%;
   float: left;
@@ -808,14 +838,14 @@
   box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
   padding: 20px 0 10px;
 }
-/* line 187, sass/style-admin.scss */
+/* line 200, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .holder .content {
   width: 97.5%;
   padding-left: 2.5%;
   float: left;
   margin: 0 0 20px;
 }
-/* line 198, sass/style-admin.scss */
+/* line 211, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header {
   width: 95%;
   float: left;
@@ -829,43 +859,58 @@
   -o-border-radius: 15px 15px 0 0;
   border-radius: 15px 15px 0 0;
 }
-/* line 208, sass/style-admin.scss */
+/* line 221, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap {
   width: 80%;
   float: left;
   display: inline-block;
 }
-/* line 214, sass/style-admin.scss */
+/* line 227, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap ul {
   clear: both;
 }
-/* line 218, sass/style-admin.scss */
+/* line 231, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap ul li {
   display: inline;
   float: left;
 }
-/* line 225, sass/style-admin.scss */
+/* line 238, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap span {
   float: left;
   margin: 24px 0 20px 10px;
   vertical-align: baseline;
 }
-/* line 232, sass/style-admin.scss */
+/* line 245, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap h1 {
   font-size: 24px;
   margin: 20px 0;
   display: inline;
   float: left;
 }
-/* line 240, sass/style-admin.scss */
+/* line 253, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header img {
   display: inline-block;
   float: right;
   width: 8%;
   padding: 10px 2.5% 0;
   height: auto;
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -ms-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms false;
 }
-/* line 251, sass/style-admin.scss */
+/* line 261, sass/style-admin.scss */
+.lf-admin-form .lf-admin-header img:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -ms-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms false;
+}
+/* line 269, sass/style-admin.scss */
 .lf-admin-form .lf-admin-save {
   width: 95%;
   padding: 10px 2.5%;
@@ -873,8 +918,8 @@
   float: left;
   background-color: #363636;
 }
-/* line 259, sass/style-admin.scss */
-.lf-admin-form .lf-admin-save button {
+/* line 277, sass/style-admin.scss */
+.lf-admin-form .lf-admin-save .lf-admin-button {
   -moz-box-sizing: content-box;
   border-radius: 11px 11px 11px 11px;
   border-style: solid;
@@ -891,11 +936,103 @@
   margin-right: 10px;
 }
 /* line 33, sass/Imports/_mixins.scss */
-.lf-admin-form .lf-admin-save button:hover {
+.lf-admin-form .lf-admin-save .lf-admin-button:hover {
   border-color: black;
 }
 /* line 37, sass/Imports/_mixins.scss */
-.lf-admin-form .lf-admin-save button:active {
+.lf-admin-form .lf-admin-save .lf-admin-button:active {
   background: #282828;
   border-color: #282828;
+}
+
+/* line 180, sass/Imports/_mixins.scss */
+div.jGrowl {
+  position: absolute;
+}
+
+/* line 184, sass/Imports/_mixins.scss */
+body > div.jGrowl {
+  position: fixed;
+}
+/* line 187, sass/Imports/_mixins.scss */
+body > div.jGrowl .highlight {
+  font-weight: normal;
+}
+/* line 191, sass/Imports/_mixins.scss */
+body > div.jGrowl.jGrowl.top-left {
+  left: 0px;
+  top: 40px;
+}
+/* line 196, sass/Imports/_mixins.scss */
+body > div.jGrowl.jGrowl.top-right {
+  right: 0px;
+  top: 40px;
+}
+/* line 201, sass/Imports/_mixins.scss */
+body > div.jGrowl.jGrowl.bottom-left {
+  left: 0px;
+  bottom: 0px;
+}
+/* line 206, sass/Imports/_mixins.scss */
+body > div.jGrowl.jGrowl.bottom-right {
+  right: 0px;
+  bottom: 0px;
+}
+/* line 211, sass/Imports/_mixins.scss */
+body > div.jGrowl.jGrowl.center {
+  top: 0px;
+  width: 50%;
+  left: 25%;
+}
+
+/** Cross Browser Styling **/
+/* line 225, sass/Imports/_mixins.scss */
+.center div .jGrowl-notification, .center div .jGrowl-closer {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 237, sass/Imports/_mixins.scss */
+div.jGrowl div.jGrowl-notification, .center div.jGrowl div.jGrowl-closer, div.jGrowl div.jGrowl-closer {
+  zoom: 1;
+  width: 235px;
+  min-height: 40px;
+  padding: 10px;
+  text-align: left;
+  display: none;
+  background-color: white;
+  color: #222222;
+  margin: 0px 10px 10px!important;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=85);
+  opacity: 0.85;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+/* line 250, sass/Imports/_mixins.scss */
+div.jGrowl div.jGrowl-notification div.jGrowl-header, .center div.jGrowl div.jGrowl-closer div.jGrowl-header, div.jGrowl div.jGrowl-closer div.jGrowl-header {
+  font-weight: bold;
+  font-size: .85em;
+}
+/* line 255, sass/Imports/_mixins.scss */
+div.jGrowl div.jGrowl-notification div.jGrowl-close, .center div.jGrowl div.jGrowl-closer div.jGrowl-close, div.jGrowl div.jGrowl-closer div.jGrowl-close {
+  z-index: 99;
+  float: right;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+}
+/* line 263, sass/Imports/_mixins.scss */
+div.jGrowl div.jGrowl-notification:hover, .center div.jGrowl div.jGrowl-closer:hover, div.jGrowl div.jGrowl-closer:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
+}
+/* line 268, sass/Imports/_mixins.scss */
+div.jGrowl div.jGrowl-closer {
+  min-height: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
 }

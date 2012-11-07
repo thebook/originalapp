@@ -1,4 +1,8 @@
 <?php 
+	
+	// Used within the "register_scripts" Class : path "/Framework/register_scripts.php"
+	// Use this array to feed the class all the js and styles you want registered and enqueued, as such
+	// you will not need to register them anywhere else or in any other file. One registration to rule them all
 
 	return array( 
 				'opt' =>
@@ -35,13 +39,32 @@
 										'type' => 'script',
 										'arg'  => 
 											array(
+												'jGrowl',  
+												trailingslashit( get_template_directory_uri() ) . '/Framework/scripts/jgrowl.min.js', 
+												array('jquery'), 
+												'1.25', 
+												false ),
+										'conditional' => false,
+										'enqueue' => false 
+											))),
+						// admin js
+						array(
+							'f' => array( $this, 'sort'),
+							'o' =>
+								array(
+									array(
+										'side' => 'admin',
+										'type' => 'script',
+										'arg'  => 
+											array(
 												'post-ui',  
-												trailingslashit( get_template_directory_uri() ) . '/Admin/assets/post-ui.js', 
+												trailingslashit( get_template_directory_uri() ) . '/Framework/scripts/post-ui.js', 
 												array(
 													'thickbox', 
 													'media-upload',
+													'jGrowl',
 													'jquery-ui-slider'), 
-												'0.8', 
+												'1.0', 
 												false ),
 										'conditional' => 
 											array(
@@ -98,7 +121,7 @@
 										'arg'  => 
 											array(
 												'jquery', 
-												COREURI . '/Js/jquery.js', 
+												FRAMEWORKURI . '/scripts/jquery.js', 
 												array(), 
 												'1.7.1', 
 												true ),
@@ -116,7 +139,7 @@
 										'arg'  => 
 											array(
 												'lf-functions',
-												COREURI . '/Js/lf-functions.js',
+												FRAMEWORKURI . '/scripts/lf-functions.js',
 												array( 'jquery', 'j-ease' ),
 												'1',
 												true  ),
@@ -134,7 +157,7 @@
 										'arg'  => 
 											array(
 												'j-ease', 
-												COREURI . '/Js/jquery.easing.min.js', 
+												FRAMEWORKURI . '/scripts/jquery.easing.min.js', 
 												array( 'jquery' ), 
 												'1.3', 
 												true ),
@@ -170,7 +193,7 @@
 										'arg'  => 
 											array(
 												'slimbox',
-												COREURI . '/Js/slimbox2.js',
+												FRAMEWORKURI . '/scripts/slimbox2.js',
 												array( 'jquery' ),
 												'2.0',
 												true ),

@@ -1,243 +1,243 @@
 <?php
 
-	function lf_create_option( $type = "text" , $name = null, $theid = null, $optionarray = null, $option = null, $description = null, $optiontext = null, $thevalue = null, $thetext = null, $customquery = null ) {
+	// function lf_create_option( $type = "text" , $name = null, $theid = null, $optionarray = null, $option = null, $description = null, $optiontext = null, $thevalue = null, $thetext = null, $customquery = null ) {
 	
-		$the_opt_array = get_option($optionarray);
+	// 	$the_opt_array = get_option($optionarray);
 		
-		if ( isset( $the_opt_array[$option]) ) {
+	// 	if ( isset( $the_opt_array[$option]) ) {
 		
-			$the_opt = $the_opt_array[$option];
+	// 		$the_opt = $the_opt_array[$option];
 			
-		}
+	// 	}
 		
-		else { 
+	// 	else { 
 		
-			$the_opt = '';
+	// 		$the_opt = '';
 		
-		}
+	// 	}
 		
-			if ( $type == "text" ) {
+	// 		if ( $type == "text" ) {
 			
-			echo '<div class="lf_admin_core_option_wrap">';
+	// 		echo '<div class="lf_admin_core_option_wrap">';
 			
-			echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
+	// 		echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
 			
-			echo '<div class="lf_admin_core_input_wrap" >'; 
+	// 		echo '<div class="lf_admin_core_input_wrap" >'; 
 				
-			echo '<input type="text" name="'. $name .'" id="'. $theid .'" class="lf_admin_core_input" value="'. $the_opt .'" />';
+	// 		echo '<input type="text" name="'. $name .'" id="'. $theid .'" class="lf_admin_core_input" value="'. $the_opt .'" />';
 			
-			echo '<div class="LF-option-inv-desc">'. $description .'</div>';
+	// 		echo '<div class="LF-option-inv-desc">'. $description .'</div>';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			echo '</div>';
+	// 		echo '</div>';
 		
-			}
+	// 		}
 			
-			elseif ( $type == "checkbox" ) {
+	// 		elseif ( $type == "checkbox" ) {
 			
-			echo '<div class="lf_admin_core_option_wrap">';
+	// 		echo '<div class="lf_admin_core_option_wrap">';
 			
-			echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
+	// 		echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
 			
-			echo '<div class="lf_admin_core_input_wrap" >'; 
+	// 		echo '<div class="lf_admin_core_input_wrap" >'; 
 			
-			echo '<input type="checkbox"  name="'. $name .'" id="'. $theid .'" class="lf_admin_core_checkbox" value="true" '. checked( $the_opt, "true", false ) .' />';
+	// 		echo '<input type="checkbox"  name="'. $name .'" id="'. $theid .'" class="lf_admin_core_checkbox" value="true" '. checked( $the_opt, "true", false ) .' />';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			echo '<div class="LF-option-inv-desc">'. $description .'</div>';
+	// 		echo '<div class="LF-option-inv-desc">'. $description .'</div>';
 			
-			echo '</div>';	
+	// 		echo '</div>';	
 			
-			}
+	// 		}
 			
-			elseif ( $type == "select" ) {
+	// 		elseif ( $type == "select" ) {
 			
-			echo '<div class="lf_admin_core_option_wrap">';
+	// 		echo '<div class="lf_admin_core_option_wrap">';
 			
-			echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
+	// 		echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
 			
-			echo '<div class="lf_admin_core_input_wrap" >'; 
+	// 		echo '<div class="lf_admin_core_input_wrap" >'; 
 			
-			echo '<select name="'. $name .'" id="'. $theid .'" class="lf_admin_core_input_select" >';
+	// 		echo '<select name="'. $name .'" id="'. $theid .'" class="lf_admin_core_input_select" >';
 			
-			foreach ( $thevalue as $index => $value ) {
+	// 		foreach ( $thevalue as $index => $value ) {
 			
-				echo '<option value="'. $value .'" '. selected( $the_opt, $value, false ) .'>'. $thetext[$index] .'</option>';
+	// 			echo '<option value="'. $value .'" '. selected( $the_opt, $value, false ) .'>'. $thetext[$index] .'</option>';
 				
-			}
+	// 		}
 			
-			echo '</select>';
+	// 		echo '</select>';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			echo '<div class="LF-option-inv-desc">'. $description .'</div>';
+	// 		echo '<div class="LF-option-inv-desc">'. $description .'</div>';
 			
-			echo '</div>';	
+	// 		echo '</div>';	
 			
-			}
+	// 		}
 			
-			elseif ( $type == "radio" ) {
+	// 		elseif ( $type == "radio" ) {
 			
-			echo '<div class="lf_admin_core_option_wrap">';
+	// 		echo '<div class="lf_admin_core_option_wrap">';
 			
-			echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
+	// 		echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
 			
-			echo '<div class="lf_admin_core_radio_main_wrap">';
+	// 		echo '<div class="lf_admin_core_radio_main_wrap">';
 			
-			foreach ( $thevalue as $index => $value ) {
+	// 		foreach ( $thevalue as $index => $value ) {
 			
-				echo '<div class="lf_admin_core_radio_wrap">';
+	// 			echo '<div class="lf_admin_core_radio_wrap">';
 			
-				echo '<input type="radio" name="'. $name .'" value="'. $value .'" class="lf_admin_core_radio" '. checked( $the_opt, $value, false ) .' />';
+	// 			echo '<input type="radio" name="'. $name .'" value="'. $value .'" class="lf_admin_core_radio" '. checked( $the_opt, $value, false ) .' />';
 				
-				echo '<span class="lf_admin_core_radio_span" >'. $thetext[$index] .'</span>';
+	// 			echo '<span class="lf_admin_core_radio_span" >'. $thetext[$index] .'</span>';
 				
-				echo '</div>';
+	// 			echo '</div>';
 				
-			}
+	// 		}
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			echo '<div class="LF-option-inv-desc">'. $description .'</div>';
+	// 		echo '<div class="LF-option-inv-desc">'. $description .'</div>';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
 			
-			}
+	// 		}
 			
-			elseif ( $type == "color" ) {
+	// 		elseif ( $type == "color" ) {
 			
-			echo '<div class="lf_admin_core_option_wrap">';
+	// 		echo '<div class="lf_admin_core_option_wrap">';
 			
-			echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
+	// 		echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
 			
-			echo '<div class="lf_admin_core_input_wrap" >'; 
+	// 		echo '<div class="lf_admin_core_input_wrap" >'; 
 		
-			echo '<input type="text" name="'. $name .'" id="'. $theid .'" value="'. $the_opt .'" class="lf_admin_core_color_option_input" onclick="colorPicker(event)" />';
+	// 		echo '<input type="text" name="'. $name .'" id="'. $theid .'" value="'. $the_opt .'" class="lf_admin_core_color_option_input" onclick="colorPicker(event)" />';
 			
-			echo '<div style="background-color: '. $the_opt .'" class="lf_admin_core_color_option_col"></div>';
+	// 		echo '<div style="background-color: '. $the_opt .'" class="lf_admin_core_color_option_col"></div>';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			echo '<div class="LF-option-inv-desc">'. $description .'</div>';
+	// 		echo '<div class="LF-option-inv-desc">'. $description .'</div>';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			}
+	// 		}
 			
-			elseif ( $type == "upload" ) {
+	// 		elseif ( $type == "upload" ) {
 			
-			echo '<div class="lf_admin_core_option_wrap">';
+	// 		echo '<div class="lf_admin_core_option_wrap">';
 			
-			echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
+	// 		echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
 			
-			echo '<div class="lf_admin_core_upload_wrap">';
+	// 		echo '<div class="lf_admin_core_upload_wrap">';
 			
-			echo '<input type="text" name="'. $name .'" id="'. $theid .'" class="lf_admin_core_upload_input" value="'. $the_opt .'" />';
+	// 		echo '<input type="text" name="'. $name .'" id="'. $theid .'" class="lf_admin_core_upload_input" value="'. $the_opt .'" />';
 			
-			echo '<input type="button" id="'. $theid .'_button" class="lf_admin_core_upload_button" value="Upload" />';
+	// 		echo '<input type="button" id="'. $theid .'_button" class="lf_admin_core_upload_button" value="Upload" />';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			echo '<div class="LF-option-inv-desc">'. $description .'</div>';
+	// 		echo '<div class="LF-option-inv-desc">'. $description .'</div>';
 			
-			echo '<img src="'. $the_opt .'" class="lf_admin_core_upload_preview" />';
+	// 		echo '<img src="'. $the_opt .'" class="lf_admin_core_upload_preview" />';
 			
-			echo '</div>';
+	// 		echo '</div>';
 				
-			}
+	// 		}
 			
-			elseif ( $type == "listpost" ) {
+	// 		elseif ( $type == "listpost" ) {
 			
-			$queryargs = array( 'post_type' => $customquery, 'posts_per_page' => '-1' );
-			$querycall = new WP_Query( $queryargs );
+	// 		$queryargs = array( 'post_type' => $customquery, 'posts_per_page' => '-1' );
+	// 		$querycall = new WP_Query( $queryargs );
 			
-			echo '<div class="lf_admin_core_option_wrap">';
+	// 		echo '<div class="lf_admin_core_option_wrap">';
 			
-			echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
+	// 		echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
 			
-			echo '<div class="lf_admin_core_input_wrap" >'; 
+	// 		echo '<div class="lf_admin_core_input_wrap" >'; 
 			
-			echo '<div class="lf_admin_core_input_select_multiple-wrap">';
+	// 		echo '<div class="lf_admin_core_input_select_multiple-wrap">';
 			
-			echo '<select name="'. $name .'" id="'. $theid .'" class="lf_admin_core_input_select_multiple" multiple>';
+	// 		echo '<select name="'. $name .'" id="'. $theid .'" class="lf_admin_core_input_select_multiple" multiple>';
 			
-			while ( $querycall->have_posts() ) : $querycall->the_post(); 
+	// 		while ( $querycall->have_posts() ) : $querycall->the_post(); 
 			
-				echo '<option value="'. get_the_ID() . '" '. selected( $the_opt, get_the_ID() , false ) .' >'. get_the_title() .'</option>'; 
+	// 			echo '<option value="'. get_the_ID() . '" '. selected( $the_opt, get_the_ID() , false ) .' >'. get_the_title() .'</option>'; 
 			
-			endwhile;
+	// 		endwhile;
 			
-			echo '</select>';
+	// 		echo '</select>';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			echo '<div class="LF-option-inv-desc">'. $description .'</div>';
+	// 		echo '<div class="LF-option-inv-desc">'. $description .'</div>';
 			
-			echo '</div>';	
+	// 		echo '</div>';	
 						
-			}
+	// 		}
 			
-			elseif ( $type == "slider" ) { 
+	// 		elseif ( $type == "slider" ) { 
 			
-			echo '<div class="lf_admin_core_option_wrap">';
+	// 		echo '<div class="lf_admin_core_option_wrap">';
 			
-			echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
+	// 		echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
 
 	
-			echo '<div class="lf_admin_core_input_wrap">';
+	// 		echo '<div class="lf_admin_core_input_wrap">';
 	
-				echo '<div class="slider-scaling" id="'. $theid .'" ></div>';
+	// 			echo '<div class="slider-scaling" id="'. $theid .'" ></div>';
 	
-				echo '<input type="text" name="'. $name .'" class="slider-scaling-input" value="'. $the_opt .'" />';
+	// 			echo '<input type="text" name="'. $name .'" class="slider-scaling-input" value="'. $the_opt .'" />';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			echo '<div class="slider-scaling-desc-part">'. $the_opt . $thevalue . '</div>';
+	// 		echo '<div class="slider-scaling-desc-part">'. $the_opt . $thevalue . '</div>';
 
 			
 			
-			echo '<div class="LF-option-inv-desc">'. $description .'</div>';
+	// 		echo '<div class="LF-option-inv-desc">'. $description .'</div>';
 	
-			echo '</div>';
+	// 		echo '</div>';
 			
-			}
+	// 		}
 			
-			elseif ( $type == "text-box" ) {
+	// 		elseif ( $type == "text-box" ) {
 			
-			echo '<div class="lf_admin_core_option_wrap">';
+	// 		echo '<div class="lf_admin_core_option_wrap">';
 			
-			echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
+	// 		echo '<div class="lf_admin_core_option_text">'. $optiontext .' :</div>';
 			
-			echo '<div class="lf_admin_core_input_wrap" >'; 
+	// 		echo '<div class="lf_admin_core_input_wrap" >'; 
 				
-			echo '<textarea name="'. $name .'" id="'. $theid .'" class="lf_admin_core_input" />'. $the_opt .'</textarea>';
+	// 		echo '<textarea name="'. $name .'" id="'. $theid .'" class="lf_admin_core_input" />'. $the_opt .'</textarea>';
 			
-			echo '<div class="LF-option-inv-desc">'. $description .'</div>';
+	// 		echo '<div class="LF-option-inv-desc">'. $description .'</div>';
 			
-			echo '</div>';
+	// 		echo '</div>';
 			
-			echo '</div>';
+	// 		echo '</div>';
 		
-			}
+	// 		}
 			
-			elseif ( $type == "divider" ) { 
+	// 		elseif ( $type == "divider" ) { 
 			
-				echo '<div class="lf_admin_core_option_wrap">';
+	// 			echo '<div class="lf_admin_core_option_wrap">';
 	
-				echo '<h4 style="margin: '. $optionarray .' 55% 0 5%;" class="lf_admin_core_option_divider">'. $name .'</h4>';
+	// 			echo '<h4 style="margin: '. $optionarray .' 55% 0 5%;" class="lf_admin_core_option_divider">'. $name .'</h4>';
 				
-				echo '<div class="LF-option-inv-desc">'. $theid .'</div>';
+	// 			echo '<div class="LF-option-inv-desc">'. $theid .'</div>';
 	
-				echo '</div>';
+	// 			echo '</div>';
 			
-			}
+	// 		}
 			
-	}
+	// }
 
 function liquidflux_admin_setup() { 
 
@@ -313,9 +313,11 @@ include( ADMINPATH . '/Navigation/lf-navigation-func.php' );
 
 // include( FRAMEWORK . '/Shortcodes/add-shortcode.php' );
 
+// add_action('wp_ajax_white_whale_save', 'white_whale_save' );
 
 
-function add_white_whale_options() {
+
+// function add_white_whale_options() {
 
 
 	// add_submenu_page( 	'liquidfluxadmin', 
@@ -328,9 +330,18 @@ function add_white_whale_options() {
 	// register_setting(	'main_options', 	
 	// 					'main_options' ); 
 	
-	$page = new admin('lf-admin', 'lf-admin-td', 'option');
+	// $page = new admin('lf-admin', 'lf-admin-td', 'option');
 
-	$page->body();
+	// $page->body();
+	
+	new admin( 
+		array(
+			'id' => 'lf-admin',
+			'class' => 'lf-admin-td', 
+			'default_type' => 'option',
+			'definition' => FRAMEWORK .'/Definitions/admin.definition.php'
+			));
+	
 	// multi($options);
 	// add_settings_section(
 	// 						'main_options_layouts_section', 	
@@ -378,9 +389,9 @@ function add_white_whale_options() {
 	// 						'lf_theme_opt_section_callback', 	
 	// 						'whitewhale' );
 																																			
-}
+// }
 
-add_action( 'admin_menu', 'add_white_whale_options' );
+// add_action( 'admin_menu', 'add_white_whale_options' );
 
 
 // function admin_style() {  

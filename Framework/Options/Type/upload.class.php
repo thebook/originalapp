@@ -3,26 +3,18 @@
 /**
 * A upload generator
 */
-class generate_upload
+class generate_upload extends alpha_tree_generate_type
 {
-	var $id;
-	var $class;
-	
-	function __construct( $a, $id, $class )
-	{	
-		$this->id    = $id;
-		$this->class = $class;
-		$this->put( $a['name'], $a['array'], $a['saved'] );
-	}
-
-	public function put($name, $array, $saved)
+	public function create($options)
 	{ ?>
 
+	<?php extract($options); ?>
+	
 		<input type="hidden" id="<?php echo "$this->id-$name"; ?>" class="<?php echo $this->class;?>-text" name="<?php echo $array ."[$name]"; ?>" value="<?php echo $saved; ?>">
 
 		<?php if ( $saved != '' ) : ?>
 
-			<img src="<?php echo $saved; ?>" class="<?php echo $this->class; ?>-image" />
+			<img src="<?php echo $saved; ?>" class="lf-uploaded-image" />
 
 		<?php endif; ?>
 			

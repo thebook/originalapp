@@ -3,25 +3,17 @@
 /**
 * A color option generator
 */
-class generate_color
+class generate_color extends alpha_tree_generate_type
 {
-	var $id;
-	var $class;
-	
-	function __construct( $a, $id, $class )
-	{	
-		$this->id    = $id;
-		$this->class = $class;
-		$this->put( $a['name'], $a['array'], $a['saved'] );
-	}
-
-	public function put($name, $array, $saved)
+	public function create($options)
 	{ ?>
 
+	<?php extract($options); ?>
+	
 		<!-- The input -->
 		<input type="hidden" id="<?php echo "$this->id-$name"; ?>" class="<?php echo $this->class;?>-text" name="<?php echo $array ."[$name]"; ?>" value="<?php echo $saved; ?>">
 		<!-- Colorpicker open handle  -->
-		<div style="background-color:<?php echo $saved; ?>;" id="<?php echo "$this->id-$name"; ?>-color" class="colorpicker-open"><span class="colorpicker-handle"></span></div>
+		<div style="background-color:#<?php echo $saved; ?>;" id="<?php echo "$this->id-$name"; ?>-color" class="colorpicker-open"><span class="colorpicker-handle"></span></div>
 		<!-- Initializes the colorpicker instance -->
 		<script>
 			color.color({

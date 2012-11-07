@@ -25,7 +25,7 @@ class register_scripts
 	 */
 	function __construct()
 	{
-		$options = ( include FRAMEWORK .'/Definitions/scripts.return.php' );
+		$options = ( include FRAMEWORK .'/Definitions/scripts.definition.php' );
 
 		foreach ( $options['opt'] as $option ) {
 

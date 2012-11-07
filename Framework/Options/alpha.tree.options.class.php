@@ -1,9 +1,9 @@
 <?php 
 
 /**
-* An options class upon which other classes are extended
+* An options parent class upon which other classes are extended
 */
-class options
+class alpha_tree_options
 {	
 	/**
 	 * An array of paramaters passed though the constructor
@@ -27,24 +27,18 @@ class options
 
 	/**
 	 * The option generating funcitons, this function creates a new class instance coresponding to the "type" paramater
-	 * @param  string $type The options "type" e.g 'select, text, radio'
-	 * @param  string $a    The name of the "array" which holds the option values
-	 * @param  string $n    The specific option "name"
-	 * @param  string $s    The the value to display if the option has no "saved" value 
-	 * @param  array  $ov   If the option is an 'radio' or 'select' we write in the "option values" ( no spaces )
-	 * @param  array  $o    If the option is an 'radio' or 'select' we write in the "option" text
+	 * @param array $passed_options The options which are passed to create the input, each key is treated as a variable because it is extracted
 	 * @return html       A new input option
 	 */
-	public function opt ( $type, $a, $n, $s, $ov, $o )
+	public function opt ( $passed_options )
 	{ 	
+		extract( $passed_options );
 		// Set default value or retrive an old one if exists
-		$s = _default( $this->params['def'], $a, $n, $s );
-		// Consolidate option paramaters into an array
-		$opt = array_combine( array('name', 'array', 'saved', 'options', 'values' ), array( $n, $a, $s, $o, $ov ) );
-		// Create a class basde on type and first name
+		$passed_options['saved'] = _default( $this->params['def'], $array, $name, $saved );
+		// Create a class based on type and first name
 		$class = "generate_" . $type;
 		// Call option by creating new class ( the option is echoed from class construct )
-		new $class( $opt, $this->params['id'], $this->params['class'] );
+		new $class( $passed_options, $this->params['id'], $this->params['class'] );
 	}
 	
 	/**
@@ -55,11 +49,8 @@ class options
 	 * @return js    Calls the reveal.reveal() function
 	 */
 	public function hider($h, $n)
-	{
-		if ( isset( $h ) )
-		{	
-			echo '<script>reveal.reveal( "#'.$this->params['id'].'-'.$h[0].'", "#'.$n.'-hook", '.$h[1].' );</script>';
-		}
+	{	
+		echo '<script>reveal.reveal( "#'.$this->params['id'].'-'.$h[0].'", "#'.$n.'-hook", '.$h[1].' );</script>';
 	}
 }
 

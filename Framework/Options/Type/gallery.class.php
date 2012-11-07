@@ -3,28 +3,20 @@
 /**
 * A gallery generator
 */
-class generate_gallery
+class generate_gallery extends alpha_tree_generate_type
 {
-	var $id;
-	var $class;
-	
-	function __construct( $a, $id, $class )
-	{	
-		$this->id    = $id;
-		$this->class = $class;
-		$this->put( $a['name'], $a['array'], $a['saved'] );
-	}
-
-	public function put($name, $array, $saved)
+	public function create($options)
 	{ ?>
 
+	<?php extract($options); ?>
+	
 		<input type="hidden" id="<?php echo "$this->id-$name"; ?>" class="<?php echo $this->class;?>-text" name="<?php echo $array ."[$name]"; ?>" value="<?php echo $saved; ?>">
 
 		<?php if ( $saved != '' ) : ?>
 
 				<?php foreach ( $saved as $key => $v ) : ?>
 			
-				<span class="<?php echo $this->class; ?>-image-removeable">
+				<span class="lf-removable-image">
 				
 				<input id="<?php echo "$this->id-$name"; ?>" type="hidden" name="<?php echo $array."[$name][$key]"; ?>" value="<?php echo $v; ?>">
 				
