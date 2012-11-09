@@ -241,7 +241,7 @@
 						});
 				}).change();
 		}
-	}
+	};
 
 	ajax = { 
 
@@ -270,6 +270,36 @@
 							}
 						});
 					},
+
+		loadmore : function (opt) { 
+
+				$('#' + opt.button ).on('click',
+					function () { 
+
+						var button = $(this);
+						var button_old_text = button.text();
+							button.text('Loading...');
+
+						$.ajax({
+				 			data     : { data : opt.data },
+				 			url      : opt.link,
+				 			dataType : "html",
+				 			error    : function () { 	
+								$.jGrowl( "There seems to have been an issue loading, please try again", { header: "Could not load", sticky: true });				 				
+								button.val(button_old_text);
+				 			},
+				 			success  : function ( response, status ) {
+
+								button.before( response );
+
+				 				$.jGrowl(opt.message.text, { header: opt.message.header, life: 5000 });
+
+				 				( opt.hide ? button.remove() : button.text(button_old_text) );
+				 			}
+				 		});
+					});
+
+		},
 
 		save : function (opt) { 
 			

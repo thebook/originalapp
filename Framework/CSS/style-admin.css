@@ -548,6 +548,60 @@
 .lf-admin-post-meta-table .lf-removable-image img:hover {
   opacity: 0.15;
 }
+/* line 109, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-texture-radio {
+  width: 22%;
+  height: 40px;
+  display: inline-block;
+  float: left;
+  margin: 10px 1.5%  10px 1.5%;
+}
+/* line 117, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-texture-radio .lf-admin-post-meta-td-texture-image {
+  display: inline-block;
+  float: left;
+  width: 82%;
+  height: 40px;
+  margin: 0 0 0 8%;
+}
+/* line 126, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-texture-radio input {
+  width: 10%;
+  display: inline-block;
+  float: left;
+}
+/* line 134, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-load-more {
+  width: 80%;
+  padding: 4px 10%;
+  margin: 15px 0;
+  background-color: #eee;
+  text-align: center;
+  float: left;
+  color: #999;
+  font-size: 12px;
+  line-height: 12px;
+  font-style: italic;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  cursor: pointer;
+}
+/* line 150, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-load-more:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 155, sass/style-admin.scss */
+.lf-admin-post-meta-table .lf-admin-post-meta-td-load-more:active {
+  -webkit-box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
+  -moz-box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
+  box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
 /* line 73, sass/Imports/_mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider {
   width: 43%;
@@ -696,6 +750,60 @@
 .lf-admin-table .lf-removable-image img:hover {
   opacity: 0.15;
 }
+/* line 109, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-texture-radio {
+  width: 22%;
+  height: 40px;
+  display: inline-block;
+  float: left;
+  margin: 10px 1.5%  10px 1.5%;
+}
+/* line 117, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-texture-radio .lf-admin-td-texture-image {
+  display: inline-block;
+  float: left;
+  width: 82%;
+  height: 40px;
+  margin: 0 0 0 8%;
+}
+/* line 126, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-texture-radio input {
+  width: 10%;
+  display: inline-block;
+  float: left;
+}
+/* line 134, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-load-more {
+  width: 80%;
+  padding: 4px 10%;
+  margin: 15px 0;
+  background-color: #eee;
+  text-align: center;
+  float: left;
+  color: #999;
+  font-size: 12px;
+  line-height: 12px;
+  font-style: italic;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  cursor: pointer;
+}
+/* line 150, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-load-more:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 155, sass/style-admin.scss */
+.lf-admin-table .lf-admin-td-load-more:active {
+  -webkit-box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
+  -moz-box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
+  box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
 /* line 73, sass/Imports/_mixins.scss */
 .lf-admin-table .lf-admin-td-slider {
   width: 43%;
@@ -767,7 +875,7 @@
   background-color: #dfdfdf;
 }
 
-/* line 139, sass/style-admin.scss */
+/* line 192, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body {
   background-color: #f5f5f5;
   float: left;
@@ -779,21 +887,21 @@
   -o-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
 }
-/* line 148, sass/style-admin.scss */
+/* line 201, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .nav {
   width: 20%;
   float: left;
   margin: 30px 0 20px;
 }
-/* line 154, sass/style-admin.scss */
+/* line 207, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .nav ul {
   margin: 0 0 10px;
 }
-/* line 158, sass/style-admin.scss */
+/* line 211, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .nav ul li {
   margin: 0;
 }
-/* line 162, sass/style-admin.scss */
+/* line 215, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .nav ul li a {
   border-left: 1px solid   #dfdfdf;
   border-top: 1px solid    #dfdfdf;
@@ -812,7 +920,7 @@
   -moz-box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
   box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 175, sass/style-admin.scss */
+/* line 228, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .nav ul li a.open-page {
   position: relative;
   left: 2px;
@@ -821,7 +929,7 @@
   border-color: #dfdfdf;
   background-color: #f5f5f5;
 }
-/* line 189, sass/style-admin.scss */
+/* line 242, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .holder {
   width: 79%;
   float: left;
@@ -838,14 +946,14 @@
   box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
   padding: 20px 0 10px;
 }
-/* line 200, sass/style-admin.scss */
+/* line 253, sass/style-admin.scss */
 .lf-admin-form .lf-admin-body .holder .content {
   width: 97.5%;
   padding-left: 2.5%;
   float: left;
   margin: 0 0 20px;
 }
-/* line 211, sass/style-admin.scss */
+/* line 264, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header {
   width: 95%;
   float: left;
@@ -859,35 +967,35 @@
   -o-border-radius: 15px 15px 0 0;
   border-radius: 15px 15px 0 0;
 }
-/* line 221, sass/style-admin.scss */
+/* line 274, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap {
   width: 80%;
   float: left;
   display: inline-block;
 }
-/* line 227, sass/style-admin.scss */
+/* line 280, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap ul {
   clear: both;
 }
-/* line 231, sass/style-admin.scss */
+/* line 284, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap ul li {
   display: inline;
   float: left;
 }
-/* line 238, sass/style-admin.scss */
+/* line 291, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap span {
   float: left;
   margin: 24px 0 20px 10px;
   vertical-align: baseline;
 }
-/* line 245, sass/style-admin.scss */
+/* line 298, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap h1 {
   font-size: 24px;
   margin: 20px 0;
   display: inline;
   float: left;
 }
-/* line 253, sass/style-admin.scss */
+/* line 306, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header img {
   display: inline-block;
   float: right;
@@ -900,7 +1008,7 @@
   -o-transition: all 400ms;
   transition: all 400ms false;
 }
-/* line 261, sass/style-admin.scss */
+/* line 314, sass/style-admin.scss */
 .lf-admin-form .lf-admin-header img:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;
@@ -910,7 +1018,7 @@
   -o-transition: all 400ms;
   transition: all 400ms false;
 }
-/* line 269, sass/style-admin.scss */
+/* line 322, sass/style-admin.scss */
 .lf-admin-form .lf-admin-save {
   width: 95%;
   padding: 10px 2.5%;
@@ -918,7 +1026,7 @@
   float: left;
   background-color: #363636;
 }
-/* line 277, sass/style-admin.scss */
+/* line 330, sass/style-admin.scss */
 .lf-admin-form .lf-admin-save .lf-admin-button {
   -moz-box-sizing: content-box;
   border-radius: 11px 11px 11px 11px;

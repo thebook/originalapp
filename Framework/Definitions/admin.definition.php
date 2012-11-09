@@ -444,7 +444,19 @@
 																	'description' => 'The website background color',
 																	'array'       => 'main_options',
 																	'name'        => 'background_color',
-																	'saved'       => 'F5EEB7' )) )
+																	'saved'       => 'F5EEB7' )) ),
+														// Background Texture 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'texture',
+																	'title'       => 'Background Texture',
+																	'description' => 'The texture of your background, if you use a texture the background color wont show',
+																	'array'       => 'main_options',
+																	'name'        => 'background_texture',
+																	'saved'       => '',
+																	'textures_to_show' => 3 )) )
 
 
 														)))

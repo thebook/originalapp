@@ -1,6 +1,5 @@
 <?php 
 
-define('TEXTDOMAIN', 'liquidflux');
 define('ADMINPATH', TEMPLATEPATH . '/Admin' );
 define('FRAMEWORK', TEMPLATEPATH . '/Framework' );
 define('FRAMEWORKURI', get_template_directory_uri() . '/Framework' );
@@ -154,60 +153,6 @@ function liquid_navigation () {
 }
 
 add_action('init', 'liquid_navigation');
-								
-															
-// function liquidflux_script_reg () { 
-															
-// 	wp_deregister_script ('jquery');
-																
-// 	wp_register_script (
-// 						'jquery', 
-// 						COREURI . '/Js/jquery.js', 
-// 						array(), 
-// 						'1.7.1', 
-// 						true );
-						
-// 	wp_register_script ('j-ease', 
-// 						COREURI . '/Js/jquery.easing.min.js', 
-// 						array( 'jquery' ), 
-// 						'1.3', 
-// 						true );
-
-// 	wp_register_script ('jplayer', 
-// 						COREURI . '/Js/jquery.jplayer.min.js', 
-// 						array( 'jquery' ), 
-// 						'2.2', 
-// 						true );
-						
-// 	wp_register_script ( 'lf-functions',
-// 						COREURI . '/Js/lf-functions.js',
-// 						array( 'jquery', 'j-ease' ),
-// 						'1',
-// 						true );
-
-// 	wp_register_script ( 'slimbox',
-// 						COREURI . '/Js/slimbox2.js',
-// 						array( 'jquery' ),
-// 						'2.0',
-// 						true );
-	
-// 	wp_register_script( 'flexslider', 
-// 						FRAMEWORKURI . '/Slider/scripts/flexslider-min.js',
-// 						array( 'jquery', 'j-ease' ),
-// 						'2.1',
-// 						true );
-
-// 	wp_enqueue_script  ('lf-functions');
-
-// 	wp_enqueue_script  ('jplayer');
-
-// 	wp_enqueue_script  ('slimbox');
-
-// 	wp_enqueue_script  ('flexslider');
-																																								
-// }
-
-// add_action('wp_enqueue_scripts', 'liquidflux_script_reg');
 
 add_theme_support( 'post-thumbnails' );
 

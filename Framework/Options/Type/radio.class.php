@@ -21,8 +21,6 @@ class generate_radio extends alpha_tree_generate_type
 			</label>
 
 			<?php endforeach; ?>
-		
-		</select>
 
 <?php }
 }

@@ -7,7 +7,12 @@
 
 get_header();
 
-the_one_function();
+// $layout = new layouts( 
+// 	array(
+// 		'definition_array_path' => FRAMEWORK .'/Definitions/templates.definition.php' 
+// 	 ));
+// $order = array('header');
+// // $layout->manifest($order);
 
 get_footer();
 
