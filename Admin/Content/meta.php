@@ -656,8 +656,8 @@ $meta = array(
 															'main_meta',
 															'general_slider_type',
 															'full',
-															array('full', 'onebox' ),
-															array('Full width', 'Slider & text box' ) ) ), 												
+															array('full-width', 'regular' ),
+															array('Full width', 'Regular Width(960px)' ) ) ), 												
 												// Text box 
 												array(
 													'f' => 'lf_meta_opt',

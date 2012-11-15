@@ -1,61 +1,48 @@
-<?php
 
-$meta = get_post_meta( $post->ID, 'main_meta', true );
 
-?>
+<?php $meta = get_post_meta( $post->ID, 'main_meta', true ); ?>
 
 <article id="post-<?php the_ID(); ?>" >
 	
 	<?php if ( isset($meta['post_image_format_img_upload']) ) : ?>
 
-	<?php if ( $meta['post_image_format_lightbox'] == 'show' ) { echo '<div class="lf-featured-icon-wrap"><a href="'.$meta['post_image_format_img_upload'].'" rel="lightbox" />'; } ?>
-	
-	<img class="lf-post-format-img" title="<?php the_title(); ?>" src="<?php echo $meta['post_image_format_img_upload']; ?>" />
-
-	<?php if ( $meta['post_image_format_lightbox'] == 'show' ) { echo '</a></div>'; } ?>
-	
-	<span class="lf-post-format-img-link">
+		<?php if ( $meta['post_image_format_lightbox'] == 'show' ) { echo '<div class="lf-featured-icon-wrap"><a href="'.$meta['post_image_format_img_upload'].'" rel="lightbox" />'; } ?>
 		
-		By : 
-<?php
+		<img class="lf-post-format-img" title="<?php the_title(); ?>" src="<?php echo $meta['post_image_format_img_upload']; ?>" />
 
-	if ( isset( $meta['post_image_format_credit'] ) ) {
-	
-		if ( lf_whitespace( $meta['post_image_format_credit'] ) ) { 
-	
-			if ( isset( $meta['post_image_format_credit_link'] ) ) {
-			
-				if ( lf_whitespace( $meta['post_image_format_credit_link'] ) ) {
-					
-					echo '<a title="Author Link" href="'. $meta['post_image_format_credit_link'] .'" >';
-					
-					echo $meta['post_image_format_credit'];
-					
-					echo '</a>';
-				
-				}
-				
-				else { 
-				
-					echo $meta['post_image_format_credit'];
-				
-				}
-					
-			}
-
-			else { 
-			
-				echo $meta['post_image_format_credit']; 
-			
-			}
+		<?php if ( $meta['post_image_format_lightbox'] == 'show' ) { echo '</a></div>'; } ?>
 		
-		}
-		
-	}
+		<span class="lf-post-format-img-link">
+			
+			By : 
 
-?>
-	
-	</span>
+				<?php if ( isset( $meta['post_image_format_credit'] ) and lf_whitespace( $meta['post_image_format_credit'] ) ) : ?>
+					
+					<?php if ( isset( $meta['post_image_format_credit_link'] ) ) : ?>
+					
+						<?php if ( lf_whitespace( $meta['post_image_format_credit_link'] ) ) : ?>
+							
+							<a title="Author Link" href="<?php echo $meta['post_image_format_credit_link']; ?>" >
+							
+								<?php echo $meta['post_image_format_credit']; ?>
+							
+							</a>
+						
+						<?php else : ?> 
+						
+							<?php echo $meta['post_image_format_credit']; ?>
+						
+						<?php endif; ?>
+
+					<?php else : ?>
+					
+						<?php echo $meta['post_image_format_credit']; ?>
+					
+					<?php endif; ?>
+					
+				<?php endif; ?>
+		
+		</span>
 	
 	<?php endif; ?>
 	

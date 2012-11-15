@@ -41,7 +41,7 @@ class register_scripts
 	 */
 	public function register_admin_scripts()
 	{
-		$this->_register_and_call($this->sorted_scripts['admin']['script']);
+		( isset($this->sorted_scripts['admin']['script']) ) and $this->_register_and_call($this->sorted_scripts['admin']['script']);
 	}
 
 	/**
@@ -50,7 +50,7 @@ class register_scripts
 	 */
 	public function register_admin_styles()
 	{
-		$this->_register_and_call($this->sorted_scripts['admin']['style']);
+		( isset($this->sorted_scripts['admin']['style']) ) and $this->_register_and_call($this->sorted_scripts['admin']['style']);
 	}
 
 	/**
@@ -59,7 +59,7 @@ class register_scripts
 	 */
 	public function register_public_scripts()
 	{
-		$this->_register_and_call($this->sorted_scripts['public']['script']);
+		( isset($this->sorted_scripts['public']['script']) ) and $this->_register_and_call($this->sorted_scripts['public']['script']);
 	}
 
 	/**
@@ -68,7 +68,7 @@ class register_scripts
 	 */
 	public function register_public_styles()
 	{
-		$this->_register_and_call($this->sorted_scripts['public']['style']);
+		( isset($this->sorted_scripts['public']['style']) ) and $this->_register_and_call($this->sorted_scripts['public']['style']);
 	}
 
 	/**

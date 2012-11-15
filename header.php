@@ -1,10 +1,4 @@
-<?php 
-/* 
-	@package WordPress
-	@subpackage White_Whale
-	@since White Whale 1.0
-*/
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 
 <head>
@@ -13,23 +7,18 @@
 	
 	<title><?php wp_title(''); ?></title>
 
+	<!-- SEO stuff hooked onto this -->
 	<?php lf_head_hook(); ?>
 
-<?php 
-
-	lf_font_style( 'print', '', '', 'main_options', 'header_title_font' ); 
-	lf_font_style( 'print', '', '', 'main_options', 'posttitle_font_choice' ); 
-	lf_font_style( 'print', '', '', 'main_options', 'body_font_choice' ); 
-	lf_font_style( 'print', '', '', 'main_options', 'body_header_font_choice' ); 
-	lf_font_style( 'print', '', '', 'main_options', 'slider_text_font' );  
-	
-?>
+	<!-- Font insertion here -->
 	
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" />
 	
 	<meta name="viewport" content="width=device-width; initial-scale=0.1; maximum-scale=0.1; user-scalable=0;" />
 	
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+
+	<style type="text/css"><?php include FRAMEWORK .'/CSS/style-core.php'; ?></style>
 		
 	<!-- this creates the html5 elements in IE browsers below version 9 -->
 	<!--[if lt IE 9]>
@@ -40,4 +29,4 @@
 
 </head>
 <body>
-<div id="lf-core-main-body-wrap">
+<div class="liquidflux-wrap-everything">

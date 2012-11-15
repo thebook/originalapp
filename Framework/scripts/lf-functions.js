@@ -229,8 +229,10 @@
 /**
  * Inits the toggles and tabs
  */
-$(document).ready( 
-	function() {
-		toggle.tog('.tog-lf');
-		tab.tabs('.tab-wrap-lf');
-});
+!function ($) { 
+	$(document).ready( 
+		function() {
+			toggle.tog('.tog-lf');
+			tab.tabs('.tab-wrap-lf');
+	});
+}(jQuery);

@@ -6,6 +6,18 @@
 				'form_action' => 'white_whale_save',
 				'opt' => 
 					array(
+						// Create Menu page
+						array(
+							'f' => 'add_menu_page',
+							'o' => 
+								array(
+									'LiquidFlux Setup',
+									'White Whale', 		
+									'administrator', 	
+									'liquidfluxadmin', 
+									'',		
+									'', 
+									'3' ) ),
 						// Create Submenu page 
 						array(
 							'f' => 'add_submenu_page',
@@ -31,26 +43,97 @@
 								array(
 									array( 
 										'id' => 'navigation',
-										'title' => __('Navigation', 'liquidflux'),
+										'title' => __('Navigation Style', 'liquidflux'),
 										'page'  => 'whitewhale',
-										'desc'  => __('Configure the options of your menu bars and breadcrumbs', 'liquidflux'),
+										'desc'  => __('Change the style of your menu bars and breadcrumbs', 'liquidflux'),
 										'options' => 
 											array( 
 												'opt' => 
 													array(
-														// Breadcrumbs 
+														// Menu Background 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Background',
+																	'description' => 'Set the background color of your menu bars',
+																	'array'       => 'main_options',
+																	'name'        => 'menu_background',
+																	'saved'       => '000000' )) ),
+														            
+														// Menu Text color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Text Color',
+																	'description' => 'Set the color of your menu text',
+																	'array'       => 'main_options',
+																	'name'        => 'menu_text_color',
+																	'saved'       => 'ffffff' )) ),
+														// Menu Hover color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Hover Color',
+																	'description' => 'Set the color your menu buttons turn when hovered over',
+																	'array'       => 'main_options',
+																	'name'        => 'menu_hover_color',
+																	'saved'       => 'bf3e2a' )) ),	
+														// Menu Font  
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'font',
+																	'title'       => 'Text Font',
+																	'description' => 'Set the font of your menu text',
+																	'array'       => 'main_options',
+																	'name'        => 'menu_text_font',
+																	'saved'       => 'Arial' )) ),
+														// Menu Text Size 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'slider',
+																	'title'       => 'Text Size',
+																	'description' => 'Set the size of your menu text',
+																	'array'       => 'main_options',
+																	'name'        => 'menu_text_size',
+																	'saved'       => '12',
+															        'min'         => '10',
+																	'max'         => '36'  )) ),
+														// Menu Text style 
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(  
 																array(
 																	'type'        => 'radio',
-																	'title'       => 'Use Breadcrumbs',
-																	'description' => 'Breacrumbs show the user which page they are currently',
+																	'title'       => 'Text Style',
+																	'description' => 'Set the style of your menu button text',
 																	'array'       => 'main_options',
-																	'name'        => 'breadcrumbs',
-																	'saved'       => 'none',
-															        'options'     => array('Use', 'Dont Use'),
-																	'values'      => array('use', 'none')  )) )
+																	'name'        => 'menu_text_style',
+																	'saved'       => 'normal',
+															        'options'     => array('Normal', 'Italic'),
+																	'values'      => array('normal', 'italic')  )) ),
+														// Menu Text weight 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'radio',
+																	'title'       => 'Text Weight',
+																	'description' => 'Set the weight of your menu button text',
+																	'array'       => 'main_options',
+																	'name'        => 'menu_text_weight',
+																	'saved'       => 'bold',
+															        'options'     => array('Normal', 'Bold'),
+																	'values'      => array('normal', 'bold')  )) )
 													)))
 												)),
 						// Header style
@@ -72,14 +155,14 @@
 															'f' => array( $this, 'create'),
 															'o' => array(  
 																array(
-																	'type'        => 'select',
-																	'title'       => 'Title Choice',
-																	'description' => 'Chose how your site title will look like',
+																	'type'        => 'radio',
+																	'title'       => 'Show Title',
+																	'description' => 'Chose to show or hide your title, the search engines will still see your title',
 																	'array'       => 'main_options',
-																	'name'        => 'title_choice',
-																	'saved'       => 'titleandlogo',
-															        'options'     => array('Title', 'Title & Logo', 'Logo', 'None'),
-																	'values'      => array('title', 'titleandlogo', 'logo', 'none')  )) ),
+																	'name'        => 'show_title',
+																	'saved'       => 'inline-block',
+															        'options'     => array('Show', 'Hide'),
+																	'values'      => array('inline-block', 'none')  )) ),
 														// Title font 
 														array(
 															'f' => array( $this, 'create'),
@@ -141,6 +224,19 @@
 																	'array'       => 'main_options',
 																	'name'        => 'title_color',
 																	'saved'       => '4e4340' )) ),
+														// Show Logo 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'radio',
+																	'title'       => 'Show Logo',
+																	'description' => 'Chose to show your logo, or not display it',
+																	'array'       => 'main_options',
+																	'name'        => 'show_logo',
+																	'saved'       => 'inline-block',
+															        'options'     => array('Show', 'Hide'),
+																	'values'      => array('inline-block', 'none')  )) ),
 														// Logo  
 														array(
 															'f' => array( $this, 'create'),
@@ -158,38 +254,25 @@
 															'o' => array(  
 																array(
 																	'type'        => 'slider',
-																	'title'       => 'Logo Size',
-																	'description' => 'The size of your logo',
+																	'title'       => 'Logo Height',
+																	'description' => 'Specify the height of your logo its width will scale accordingly',
 																	'array'       => 'main_options',
 																	'name'        => 'logo_size',
 																	'saved'       => '32',
 															        'min'         => '10',
-																	'max'         => '90'  )) ),
-														// Header height 
-														array(
-															'f' => array( $this, 'create'),
-															'o' => array(  
-																array(
-																	'type'        => 'slider',
-																	'title'       => 'Header Height',
-																	'description' => 'Set the height of your header',
-																	'array'       => 'main_options',
-																	'name'        => 'header_height',
-																	'saved'       => '50',
-															        'min'         => '50',
-																	'max'         => '500'  )) )
+																	'max'         => '140'  )) )
 																)))
 															)),
-						// Content
+						// Post Formats
 						array( 
 							'f' => array($this, 'pop'),
 							'o'	=>	
 								array(
 									array( 
-										'id' => 'content_style',
-										'title' => __('Content Style', 'liquidflux'),
+										'id' => 'post_formats_style',
+										'title' => __('Post Formats Style', 'liquidflux'),
 										'page'  => 'whitewhale',
-										'desc'  => __('Configure the style of your text content.', 'liquidflux'),
+										'desc'  => __('Configure the style of your post formats', 'liquidflux'),
 										'options' => 
 											array( 
 												'opt' => 
@@ -231,41 +314,86 @@
 																	'saved'       => 'normal',
 															        'options'     => array('Normal', 'Italic'),
 																	'values'      => array('normal', 'italic')  )) ),
-														// Post title color 
+														// Post title weight 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'radio',
+																	'title'       => 'Post Title Weight',
+																	'description' => 'Set the text weight of your post title',
+																	'array'       => 'main_options',
+																	'name'        => 'post_title_weight',
+																	'saved'       => 'normal',
+															        'options'     => array('Normal', 'Bold'),
+																	'values'      => array('normal', 'bold')  )) ),
+														// Post Title Color
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(  
 																array(
 																	'type'        => 'color',
-																	'title'       => 'Post Title Color',
-																	'description' => 'Set yout post title color',
+																	'title'       => 'Post Title Text Color',
+																	'description' => 'Set the text color of the top box',
 																	'array'       => 'main_options',
 																	'name'        => 'post_title_color',
-																	'saved'       => '000000' )) ),
-														// Meta text color 
+																	'saved'       => 'ffffff' )) ),
+														// Post title Meta text color 
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(  
 																array(
 																	'type'        => 'color',
-																	'title'       => 'Post Meta Color',
-																	'description' => 'Chose the color of your post meta',
+																	'title'       => 'Post Title Meta Color',
+																	'description' => 'Chose the color of your post title meta',
 																	'array'       => 'main_options',
-																	'name'        => 'post_meta_color',
+																	'name'        => 'post_title_meta_color',
 																	'saved'       => '000000' )) ),
-														// Meta text size 
+														// Post Title Box background
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(  
 																array(
-																	'type'        => 'slider',
-																	'title'       => 'Post Meta Size',
-																	'description' => 'Set post meta size',
+																	'type'        => 'color',
+																	'title'       => 'Post Title Box Background',
+																	'description' => 'The box which sits at the top of your post, it holds the post title, but can hold different things depending on post format (it is not present in every post format)',
 																	'array'       => 'main_options',
-																	'name'        => 'post_meta_size',
-																	'saved'       => '12',
-															        'min'         => '8',
-																	'max'         => '24'  )) ),
+																	'name'        => 'post_title_background',
+																	'saved'       => '222222' )) ),
+														// Post Title box texture
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'texture',
+																	'title'       => 'Post Title Box Texture',
+																	'description' => 'Set the box texture, if the texture is set to "none" then the background color will be visible',
+																	'array'       => 'main_options',
+																	'name'        => 'post_title_texture',
+																	'saved'       => 'none',
+																	'textures_to_show' => 3 )) ),
+														// Text box background
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Text Box Background',
+																	'description' => 'Set the background color of the text box of your posts, this box holds the body text',
+																	'array'       => 'main_options',
+																	'name'        => 'post_background',
+																	'saved'       => 'ffffff' )) ),														
+														// Body text color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Post Text Color',
+																	'description' => 'The color of your body text (90% of your writting)',
+																	'array'       => 'main_options',
+																	'name'        => 'post_text_color',
+																	'saved'       => '222222' )) ),
 														// Text highlight color 
 														array(
 															'f' => array( $this, 'create'),
@@ -277,17 +405,19 @@
 																	'array'       => 'main_options',
 																	'name'        => 'post_highlight_color',
 																	'saved'       => 'B6D9AC'  )) ),
-														// Body text font 
+														// General Meta text size 
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(  
 																array(
-																	'type'        => 'font',
-																	'title'       => 'Post Text Font',
-																	'description' => 'Set the font of your body text',
+																	'type'        => 'slider',
+																	'title'       => 'General Meta Size',
+																	'description' => 'The size of both the post title and body meta',
 																	'array'       => 'main_options',
-																	'name'        => 'post_text_font',
-																	'saved'       => 'arial' )) ),
+																	'name'        => 'post_meta_size',
+																	'saved'       => '14',
+															        'min'         => '10',
+																	'max'         => '36'  )) ),
 														// Body text size 
 														array(
 															'f' => array( $this, 'create'),
@@ -301,32 +431,80 @@
 																	'saved'       => '14',
 																	'min'         => '10',
 																	'max'         => '32' )) ),
-														// Body text style 
+														// Body text font 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'font',
+																	'title'       => 'Post Text Font',
+																	'description' => 'Set the font of your body text',
+																	'array'       => 'main_options',
+																	'name'        => 'post_text_font',
+																	'saved'       => 'arial' )) ),
+														// Meta text color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Post Meta Color',
+																	'description' => 'Chose the color of your body post meta',
+																	'array'       => 'main_options',
+																	'name'        => 'post_meta_color',
+																	'saved'       => '000000' )) ),
+														// Inner post title  
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'slider',
+																	'title'       => 'Inner Post Title Size',
+																	'description' => 'This inner post title shows up in post formats that are not the standard one, it is ussaly a less noticable title',
+																	'array'       => 'main_options',
+																	'name'        => 'inner_post_title_size',
+																	'saved'       => '12',
+															        'min'         => '10',
+																	'max'         => '30'  )) ),
+														// Inner post title style 
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(  
 																array(
 																	'type'        => 'radio',
-																	'title'       => 'Post Text Style',
-																	'description' => 'Set the style of the body text',
+																	'title'       => 'Inner Post Title Style',
+																	'description' => 'Set the inner post title style',
 																	'array'       => 'main_options',
-																	'name'        => 'post_text_style',
-																	'saved'       => 'normal',
+																	'name'        => 'inner_post_title_style',
+																	'saved'       => 'italic',
 															        'options'     => array('Normal', 'Italic'),
 																	'values'      => array('normal', 'italic')  )) ),
-														// Body text weight 
+														// Inner post title weight 
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(  
 																array(
 																	'type'        => 'radio',
-																	'title'       => 'Post Text Weight',
-																	'description' => 'Chose the weight of the body text',
+																	'title'       => 'Inner Post Title Weight',
+																	'description' => 'Set the inner post title weight',
 																	'array'       => 'main_options',
-																	'name'        => 'post_text_weight',
+																	'name'        => 'inner_post_title_weight',
 																	'saved'       => 'normal',
 															        'options'     => array('Normal', 'Bold'),
 																	'values'      => array('normal', 'bold')  )) ),
+														// Inner post title underline 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'radio',
+																	'title'       => 'Inner Post Title Decoration',
+																	'description' => 'Set the decoration of your inner post title',
+																	'array'       => 'main_options',
+																	'name'        => 'inner_post_title_decoration',
+																	'saved'       => 'underline',
+															        'options'     => array('Normal', 'Underline', 'Overline', 'Line Though'),
+																	'values'      => array('normal', 'underline', 'overline', 'line-through')  )) ),
 														// Body header font 
 														array(
 															'f' => array( $this, 'create'),
@@ -364,17 +542,56 @@
 																	'saved'       => 'normal',
 															        'options'     => array('Normal', 'Bold'),
 																	'values'      => array('normal', 'bold')  )) ),
-														// Body text color 
+
+												)))
+											)),
+						// Content
+						array( 
+							'f' => array($this, 'pop'),
+							'o'	=>	
+								array(
+									array( 
+										'id' => 'general_style',
+										'title' => __('General Style', 'liquidflux'),
+										'page'  => 'whitewhale',
+										'desc'  => __('Configure the style of your text content.', 'liquidflux'),
+										'options' => 
+											array( 
+												'opt' => 
+													array(														
+														// Player background color 
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(  
 																array(
 																	'type'        => 'color',
-																	'title'       => 'Post Text Color',
-																	'description' => 'The color of your body text (90% of your writting)',
+																	'title'       => 'Player Background',
+																	'description' => 'Set the backgroun color of your media player',
 																	'array'       => 'main_options',
-																	'name'        => 'post_text_color',
+																	'name'        => 'player_background',
 																	'saved'       => '000000' )) ),
+														// Player highlight color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Player Highlight',
+																	'description' => 'Set the highlight color of your player',
+																	'array'       => 'main_options',
+																	'name'        => 'player_highlight',
+																	'saved'       => '44382d' )) ),
+														// Player button color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Player Buttons Color',
+																	'description' => 'Set the color of your players buttons',
+																	'array'       => 'main_options',
+																	'name'        => 'player_text',
+																	'saved'       => 'ffffff' )) ),
 														// Read more color 
 														array(
 															'f' => array( $this, 'create'),
@@ -457,11 +674,110 @@
 																	'name'        => 'background_texture',
 																	'saved'       => '',
 																	'textures_to_show' => 3 )) )
+														))),
+													)),
+						// Slider
+						array( 
+							'f' => array( $this, 'pop'),
+							'o'	=>	
+								array(
+									array( 
+										'id' => 'slider_style',
+										'title' => __('Slider Style', 'liquidflux'),
+										'page'  => 'whitewhale',
+										'desc'  => __('Change the color scheme of your sliders', 'liquidflux'),
+										'options' => 
+											array( 
+												'opt' => 
+													array(
+														// Slider background color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Slider Background',
+																	'description' => 'Set the color of your slider backgrounds ( not visible in full-width mode )',
+																	'array'       => 'main_options',
+																	'name'        => 'slider_background',
+																	'saved'       => 'ffffff' )) ),
+														// Slider handle color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Arrow Color',
+																	'description' => 'Set the color of the slider arrows',
+																	'array'       => 'main_options',
+																	'name'        => 'slider_arrow_color',
+																	'saved'       => 'ffffff' )) ),	
+														// Slider text box color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Text Box Color',
+																	'description' => 'Set the color of the text boxes which appear for captions and featured posts',
+																	'array'       => 'main_options',
+																	'name'        => 'slider_text_box_color',
+																	'saved'       => 'ffffff' )) ),
+														// Slider text color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Text Color',
+																	'description' => 'Set the text color of your captions and featured post excerpts',
+																	'array'       => 'main_options',
+																	'name'        => 'slider_text_color',
+																	'saved'       => '222222' )) ),
+														// Slider caption size 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'slider',
+																	'title'       => 'Caption Size',
+																	'description' => 'Set the size of your slider caption and post titles',
+																	'array'       => 'main_options',
+																	'name'        => 'slider_caption_size',
+																	'saved'       => '24',
+															        'min'         => '10',
+																	'max'         => '42'  )) ),
+														// Slider caption style 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'radio',
+																	'title'       => 'Caption Style',
+																	'description' => 'Set the style of your captions and post titles',
+																	'array'       => 'main_options',
+																	'name'        => 'slider_caption_style',
+																	'saved'       => 'italic',
+															        'options'     => array('Normal', 'Italic'),
+																	'values'      => array('norma', 'italic')  )) ),
+														// Slider caption weight 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'radio',
+																	'title'       => 'Caption Weight',
+																	'description' => 'Set the weight of your captions and post titles',
+																	'array'       => 'main_options',
+																	'name'        => 'slider_caption_weight',
+																	'saved'       => 'normal',
+															        'options'     => array('Normal', 'Bold'),
+																	'values'      => array('normal', 'bold')  )) )
 
-
-														)))
-													))
-												));
+													)))
+												))
+				));
+						
 	
 
 ?>

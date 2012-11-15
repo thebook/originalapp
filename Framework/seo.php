@@ -5,7 +5,7 @@
  * Function checks if well known seo plugins are being used( this list can be expanded  )
  * @return bol Returns false if none of the plugins are being used, true otherwise.
  */
-function lf_other_use_seo() {
+function are_other_seo_plugins_being_used () {
 
 	include_once( ABSPATH .'wp-admin/includes/plugin.php' );
 	
@@ -28,7 +28,7 @@ function lf_title_seo( $title ) {
 
 	$name = ' | ' . get_bloginfo( 'name' );
 
-	if ( $post and !lf_other_use_seo() ) {
+	if ( $post and !are_other_seo_plugins_being_used() ) {
 
 		$id = ( ( is_home() or is_archive() or is_search() ) ? get_option( 'page_for_posts' ) :  $post->ID );
 
@@ -63,7 +63,7 @@ function lf_desc_seo() {
 
 	global $post;
 
-	if ( $post and !lf_other_use_seo() ) {
+	if ( $post and !are_other_seo_plugins_being_used() ) {
 
 		$id = ( ( is_home() or is_archive() or is_search() ) ? get_option( 'page_for_posts' ) :  $post->ID );
 
@@ -99,7 +99,7 @@ function lf_key_seo() {
 
 	global $post;
 
-	if ( $post and !lf_other_use_seo() ) {
+	if ( $post and !are_other_seo_plugins_being_used() ) {
 
 		$id = ( ( is_home() or is_archive() or is_search() ) ? get_option( 'page_for_posts' ) :  $post->ID );
 
@@ -127,7 +127,7 @@ function lf_meta_seo() {
 
 	global $post;
 
-	if ( $post and !lf_other_use_seo() ) {
+	if ( $post and !are_other_seo_plugins_being_used() ) {
 
 		$id = ( ( is_home() or is_archive() or is_search() ) ? get_option( 'page_for_posts' ) :  $post->ID );
 

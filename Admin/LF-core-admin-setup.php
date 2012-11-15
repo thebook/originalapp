@@ -1,28 +1,14 @@
 <?php
 
-function liquidflux_admin_setup() { 
+// include( ADMINPATH . '/Content/lf-content-func.php' );
 
-	add_menu_page(	'LiquidFlux Setup',
-					'White Whale', 		
-					'administrator', 	
-					'liquidfluxadmin', 
-					'',		
-					'' . ADMINURI . '/assets/Images/menulogo.png', 
-					'3');				
-					
-}
-add_action( 'admin_menu', 'liquidflux_admin_setup');
+// include( ADMINPATH . '/Content/lf-post-formats-func.php' );
 
+// include( ADMINPATH . '/Content/lf-widgets-func.php' );
 
-include( ADMINPATH . '/Content/lf-content-func.php' );
+// include( ADMINPATH . '/Content/lf-homepage-func.php' );
 
-include( ADMINPATH . '/Content/lf-post-formats-func.php' );
-
-include( ADMINPATH . '/Content/lf-widgets-func.php' );
-
-include( ADMINPATH . '/Content/lf-homepage-func.php' );
-
-include( ADMINPATH . '/Content/meta.php' ); 
+// include( ADMINPATH . '/Content/meta.php' ); 
 
 
 include( FRAMEWORK . '/utilities.php' );
@@ -33,39 +19,42 @@ include( FRAMEWORK . '/sidebar.php' );
 
 include( FRAMEWORK . '/paged.class.php' ); 
 
-include( FRAMEWORK . '/Content/post-meta.php' ); 
 
-include( FRAMEWORK . '/Content/featured-image.php' ); 
 
-include( FRAMEWORK . '/Content/post-text.php' ); 
 
-include( FRAMEWORK . '/Content/title.php' ); 
+include( FRAMEWORK . '/Content/branch.meta.helper.class.php' ); 
+
+include( FRAMEWORK . '/Content/branch.featured.helper.class.php' ); 
+
+include( FRAMEWORK . '/Content/produce.helper.php' ); 
+
+
+
+
 
 include( FRAMEWORK . '/Shortcodes/include.php' );
-
-include( FRAMEWORK . '/Slider/slide.php' );
-
-include( FRAMEWORK . '/Slider/modify.class.php' );
 
 include( FRAMEWORK . '/Options/include.php' );
 
 include( FRAMEWORK . '/register_scripts.class.php' );
 
-include( FRAMEWORK . '/admin-page.php' );
-
 include( FRAMEWORK . '/rewrites.php' );
 
-include( FRAMEWORK . '/layout.class.php' );
+include FRAMEWORK . '/layout.class.php';
+
+include FRAMEWORK . '/jplayer.class.php';
+
+include FRAMEWORK . '/Templates/include.php';
 
 new register_scripts;
 
 
 
-include( ADMINPATH . '/Footer/lf-footer-func.php' );
+// include( ADMINPATH . '/Footer/lf-footer-func.php' );
 
-include( ADMINPATH . '/Header/lf-header-func.php' );
+// include( ADMINPATH . '/Header/lf-header-func.php' );
 
-include( ADMINPATH . '/Navigation/lf-navigation-func.php' ); 
+// include( ADMINPATH . '/Navigation/lf-navigation-func.php' ); 
 
 
 //include( ADMINPATH . '/Slider/lf-slider-func.php' ); // post error
@@ -104,142 +93,21 @@ include( ADMINPATH . '/Navigation/lf-navigation-func.php' );
 			'default_type' => 'option',
 			'definition' => FRAMEWORK .'/Definitions/admin.definition.php'
 			));
-	
-	// multi($options);
-	// add_settings_section(
-	// 						'main_options_layouts_section', 	
-	// 						'Layouts', 
-	// 						'main_options_layouts_callback', 	
-	// 						'whitewhale' ); 
-													
-	// add_settings_section(	'main_options_header_section', 	
-	// 						'Header', 	
-	// 						'lf_header_section_callback', 	
-	// 						'whitewhale' ); 
-							
-	// add_settings_section(	'main_options_navigation_section', 	
-	// 						'Navigation', 	
-	// 						'lf_navigation_section_callback', 	
-	// 						'whitewhale' ); 
-							
-	// add_settings_section(	'main_options_slider_section', 	
-	// 						'Slider', 	
-	// 						'lf_slider_section_callback', 	
-	// 						'whitewhale' ); 
-							
-	// add_settings_section(	'main_options_content_section', 	
-	// 						'Content', 	
-	// 						'lf_content_section_callback', 	
-	// 						'whitewhale' );
-							
-	// add_settings_section(	'main_options_footer_section', 	
-	// 						'Footer', 	
-	// 						'lf_footer_section_callback', 	
-	// 						'whitewhale' ); 
-							
-	// add_settings_section(	'main_options_portfolio_section', 	
-	// 						'Portfolio', 	
-	// 						'lf_portfolio_section_callback', 	
-	// 						'whitewhale' ); 
-							
-	// add_settings_section(	'main_options_not_found_section', 	
-	// 						'404', 	
-	// 						'lf_not_found_section_callback', 	
-	// 						'whitewhale' );
-							
-	// add_settings_section(	'main_options_theme_opt_section', 	
-	// 						'Updates', 	
-	// 						'lf_theme_opt_section_callback', 	
-	// 						'whitewhale' );
-																																			
-// }
 
-// add_action( 'admin_menu', 'add_white_whale_options' );
+	new meta(
+		array( 
+			'id' => 'lf-post-meta',
+			'class' => 'lf-admin-post-meta-td',
+			'default_type' => 'meta', 
+			'definition' => FRAMEWORK .'/Definitions/meta_boxes.definition.php'
+			));
 
-
-// function admin_style() {  
-	
-// 	global $pagenow, $post_type;
-		
-// 	if (  $pagenow == 'admin.php' ) {
-	
-// 		lf_font_style( 'admin-head' );
-		
-// 	}
-	
-// 	if (  $pagenow == 'admin.php' 
-// 		  || $pagenow == 'post-new.php' && $post_type == 'lf_slide'
-// 		  || $pagenow == 'post.php'     && $post_type == 'lf_slide'
-// 		  || $pagenow == 'post.php'     && $post_type == 'page' 
-// 		  || $pagenow == 'post-new.php' && $post_type == 'page'
-// 		  || $pagenow == 'post.php'     && $post_type == 'post' 
-// 		  || $pagenow == 'post-new.php' && $post_type == 'post' ) {
-	
-// 		wp_enqueue_style( 'lf-admin-style',
-// 						  ADMINURI . '/assets/admin-style.css',
-// 						  '',
-// 						  '1.0' );
-						  
-// 		wp_enqueue_style( 'thickbox' );
-	
-// 	}
-								
-// }
-	
-// add_action( 'admin_head', 'admin_style' );
-	
-
-// function lf_admin_js_ui() {
-
-// 	global $pagenow, $post_type;
-		
-// 	if (  $pagenow == 'admin.php' ) {
-			
-// 		wp_enqueue_script( 'admin-js-ui',  
-// 						   trailingslashit( get_template_directory_uri() ) . '/Admin/assets/admin-ui.js', 
-// 						   array( 
-// 								'jquery-ui-tabs', 
-// 								'jquery-ui-sortable', 
-// 								'jquery-ui-slider', 
-// 								'thickbox', 
-// 								'media-upload' ), 
-// 						   '0.1', 
-// 						   false );
-						   
-// 	}
-	
-// 	if ( $pagenow == 'post.php' && $post_type == 'post' or $post_type == 'lf_slide' || 
-// 		 $pagenow == 'post-new.php' && $post_type == 'post' or $post_type == 'lf_slide' ) {
-		  
-// 		wp_enqueue_script( 
-// 						'admin-js-ui',  
-// 						trailingslashit( get_template_directory_uri() ) . '/Admin/assets/post-ui.js', 
-// 						array('thickbox', 'media-upload'), 
-// 						'0.1', 
-// 						false );
-
-// 		wp_enqueue_script(
-// 						'clone-js',
-// 						trailingslashit( get_template_directory_uri() ) . 'Framework/Slider/scripts/remove.js', 
-// 						'',
-// 						'1',
-// 						false );
-
-// 		}
-	
-// 	if (  $pagenow == 'admin.php'
-// 		|| $pagenow == 'widgets.php' ) {
-			
-// 		wp_enqueue_script( 'color-picker', 
-// 						   trailingslashit( get_template_directory_uri() ) . '/Admin/assets/colorpicker/colorPicker.js', 
-// 						   '', 
-// 						   '9.1', 
-// 						   false );		
-
-// 	}
-			
-// }
-	
-// 	add_action( 'admin_enqueue_scripts', 'lf_admin_js_ui' );
+	new leaf_slide(
+		array(
+			'id' => 'lf-post-meta',
+			'class' => 'lf-admin-post-meta-td',
+			'default_type' => 'meta', 
+			'definition' => FRAMEWORK .'/Definitions/slider.definition.php'
+			));
 	
 ?>

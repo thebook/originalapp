@@ -16,28 +16,24 @@ $poster = ( $show == 'show' ? $pos : '' );
 		
 	<?php if ( $meta['post_audio_format_text'] == 'text' )  : ?>
 	
-	<div class="lf-post-img-text-wrap">
-		
-	<div class="lf-core-content-body-text">
-		
-		<h3 class="lf-post-format-media-title"> 
+		<div class="lf-post-img-text-wrap">
+			
+			<div class="lf-core-content-body-text">
 				
-			<?php lf_title(); ?> 
-					
-		</h3>
-				
-		<?php lf_content();?>
-																																		
-	</div>
-	
-	</div>
+				<h3 class="lf-post-format-media-title"> 
+						
+					<?php lf_title(); ?> 
+							
+				</h3>
+						
+				<?php lf_content();?>
+																																				
+			</div>
+		
+		</div>
 	
 	<?php endif; ?>
 	
 	<?php lf_cat_single(); ?>
 	
-	
 </article>
-
-
-

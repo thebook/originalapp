@@ -3,36 +3,29 @@
 /**
 * Layout generating class
 */
-class layouts
+class layout
 {
 	var $template_list = array();
 
-	function __construct($options) {
-		
-		$definition = ( include $options['definition_array_path'] );
-		multi($definition);	
+	function __construct($template_manifestation_order) {
+
+		$this->manifest($template_manifestation_order);
 	}
 
-	protected function get_template($name)
+	protected function get_template($template_definition)
 	{
-		$passed_params;
-		include $this->template_list[$name]['template_path'];
-	}
+		extract( $template_definition );
 
-	public function define_template($template_definition_array)
-	{	
-		extract($template_definition_array);
-
-		( !isset( $this->template_list[$name] ) ) and $this->template_list[$name]['template_path'] = $template_path;												
+		$template_name = "template_$name";
+		new $template_name($template_params); 
 	}
 
 	public function manifest($template_manifestation_order)
 	{
-		foreach ($template_manifestation_order as $template_name) {
-			$this->get_template($template_name);
+		foreach ($template_manifestation_order as $template_definition) {
+			$this->get_template($template_definition);
 		}
 	}
-
 	
 }
 

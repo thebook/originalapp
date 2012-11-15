@@ -40,7 +40,7 @@
 										'arg'  => 
 											array(
 												'jGrowl',  
-												trailingslashit( get_template_directory_uri() ) . '/Framework/scripts/jgrowl.min.js', 
+												SCRIPTS .'/jgrowl.min.js', 
 												array('jquery'), 
 												'1.25', 
 												false ),
@@ -58,7 +58,7 @@
 										'arg'  => 
 											array(
 												'post-ui',  
-												trailingslashit( get_template_directory_uri() ) . '/Framework/scripts/post-ui.js', 
+												SCRIPTS .'/post-ui.js', 
 												array(
 													'thickbox', 
 													'media-upload',
@@ -69,7 +69,9 @@
 										'conditional' => 
 											array(
 												array( false, 'admin.php'),
-												array( true,  'lf_slide' )),
+												array( true,  'lf_slide' ),
+												array( true,  'post' )
+												),
 										'enqueue' => true 
 											))),
 						// Colorpicker
@@ -83,7 +85,7 @@
 										'arg'  => 
 											array(
 												'lf-color-picker',  
-												trailingslashit( get_template_directory_uri() ) . '/Framework/scripts/colorpicker.js', 
+												SCRIPTS .'/colorpicker.js', 
 												array('jquery'), 
 												'1.16', 
 												false ),
@@ -103,31 +105,13 @@
 										'arg'  => 
 											array(
 												'clone-js',
-												trailingslashit( get_template_directory_uri() ) . 'Framework/Slider/scripts/remove.js', 
+												SCRIPTS .'/remove.js', 
 												'',
 												'1',
 												false ),
 										'conditional' => array( array( true,  'lf_slide' )), 
 										'enqueue' => true
-										))),
-						// our own jquery
-						array(
-							'f' => array( $this, 'sort'),
-							'o' =>
-								array(
-									array(
-										'side' => 'public',
-										'type' => 'script',
-										'arg'  => 
-											array(
-												'jquery', 
-												FRAMEWORKURI . '/scripts/jquery.js', 
-												array(), 
-												'1.7.1', 
-												true ),
-										'conditional' => false,
-										'enqueue' => false
-										))),
+										))),						
 						// functions for pages
 						array(
 							'f' => array( $this, 'sort'),
@@ -139,7 +123,7 @@
 										'arg'  => 
 											array(
 												'lf-functions',
-												FRAMEWORKURI . '/scripts/lf-functions.js',
+												SCRIPTS .'/lf-functions.js',
 												array( 'jquery', 'j-ease' ),
 												'1',
 												true  ),
@@ -157,11 +141,11 @@
 										'arg'  => 
 											array(
 												'j-ease', 
-												FRAMEWORKURI . '/scripts/jquery.easing.min.js', 
+												SCRIPTS .'/jquery.easing.min.js', 
 												array( 'jquery' ), 
 												'1.3', 
 												true ),
-										'enqueue' => false,
+										'enqueue' => true,
 										'conditional' => false
 										))),
 						// j player
@@ -175,7 +159,7 @@
 										'arg'  => 
 											array(
 												'jplayer', 
-												COREURI . '/Js/jquery.jplayer.min.js', 
+												SCRIPTS .'/jquery.jplayer.min.js', 
 												array( 'jquery' ), 
 												'2.2', 
 												true ),
@@ -193,7 +177,7 @@
 										'arg'  => 
 											array(
 												'slimbox',
-												FRAMEWORKURI . '/scripts/slimbox2.js',
+												SCRIPTS .'/slimbox2.js',
 												array( 'jquery' ),
 												'2.0',
 												true ),
@@ -211,25 +195,10 @@
 										'arg'  => 
 											array(
 												'flexslider', 
-												FRAMEWORKURI . '/Slider/scripts/flexslider-min.js',
+												SCRIPTS .'/flexslider-min.js',
 												array( 'jquery', 'j-ease' ),
 												'2.1',
 												true ),
-										'conditional' => false, 
-										'enqueue' => true
-										))),
-						// public style
-						array(
-							'f' => array( $this, 'sort'),
-							'o' =>
-								array(
-									array(
-										'side' => 'public',
-										'type' => 'style',
-										'arg'  => 
-											array(
-												'lfstyle', 
-												FRAMEWORKURI . '/CSS/style-core.css' ),
 										'conditional' => false, 
 										'enqueue' => true
 										)))

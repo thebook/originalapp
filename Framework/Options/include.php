@@ -21,9 +21,13 @@
 	
 	include 'alpha.tree.options.class.php';
 
+	include 'branch.page.options.class.php';
+
+	include 'branch.meta.options.class.php';
+
 	include 'meta.class.php';
 
-	include 'branch.page.options.class.php';
+	include 'leaf.slider.class.php';
 
 	include 'admin.class.php';
 

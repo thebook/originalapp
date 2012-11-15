@@ -1,96 +1,52 @@
 <?php 
 
-define('ADMINPATH', TEMPLATEPATH . '/Admin' );
-define('FRAMEWORK', TEMPLATEPATH . '/Framework' );
+define('FRAMEWORK',    TEMPLATEPATH . '/Framework' );
 define('FRAMEWORKURI', get_template_directory_uri() . '/Framework' );
-define('ADMINURI', get_template_directory_uri(). '/Admin');
-define('LAYOUTPATH', TEMPLATEPATH. '/Layout');
-define('LAYOUTURI',  get_template_directory_uri(). '/Layout');
-define('JSPATH', get_template_directory_uri() . '/Js');
-define( 'COREPATH', TEMPLATEPATH . '/Core' );
-define( 'COREURI', get_template_directory_uri() . '/Core' );
+define('SCRIPTS', get_template_directory_uri() . '/Framework/scripts');
 
 
-function lf_theme_update() { 
+include FRAMEWORK . '/include.php'; 
 
-	$main_opt = get_option( 'main_options' );
-	 
-	if ( isset( $main_opt['input_envanto_user_name'], $main_opt['input_envanto_key'] ) ) {
+include FRAMEWORK . '/Helpers/include.php';
+
+include FRAMEWORK . '/Shortcodes/include.php';
+
+include FRAMEWORK . '/Options/include.php';
+
+include FRAMEWORK . '/Templates/include.php';
+
+new register_scripts;
 	
-		include_once( ADMINPATH . '/Update/class-envato-wordpress-theme-upgrader.php' );
-		
-		$update = new Envato_WordPress_Theme_Upgrader( $main_opt['input_envanto_user_name'], $main_opt['input_envanto_key'] );
-		
-		$update->check_for_theme_update(); 
-		
-		$update->upgrade_theme();
-				
-	}
-	
-}
+new admin( 
+	array(
+		'id' => 'lf-admin',
+		'class' => 'lf-admin-td', 
+		'default_type' => 'option',
+		'definition' => FRAMEWORK .'/Definitions/admin.definition.php'
+		));
 
-add_action('admin_init', 'lf_theme_update' ); 
+new meta(
+	array( 
+		'id' => 'lf-post-meta',
+		'class' => 'lf-admin-post-meta-td',
+		'default_type' => 'meta', 
+		'definition' => FRAMEWORK .'/Definitions/meta_boxes.definition.php'
+		));
 
-function lf_whitespace( $string ) { 
-	
-		if ( $string == '' ) { 
-		
-			return false;
-		
-		}
-		
-		elseif ( ctype_space( $string ) ) {
-		
-			return false;
-		
-		}
-		
-		else { 
-		
-			return true;
-		
-		}
-	
-}
-
-function lf_theme_opt_section_callback() {
-
-	echo '<div class="form-table">';
-	
-	lf_create_option( 
-		'text',
-		'main_options[input_envanto_user_name]',
-		'input_envanto_user_name_opt',
-		'main_options',
-		'input_envanto_user_name',
-		'<p>This is your envanto marketplace user name. In this case it should be the themeforest user name which you use to log into themeforest in order to purchase items.</p> 
-		<p>Note: if you have several themforest accounts you should use the account name of the account with which you have bought this theme.</p>',
-		'Input Marketplace Username' );
-		
-	lf_create_option( 
-		'text',
-		'main_options[input_envanto_key]',
-		'input_envanto_key_opt',
-		'main_options',
-		'input_envanto_key',
-		'<p>Enterthe secret key which you generate for your account.</p>
-		<p>To generate the secret key, log into your themeforest account, go to <b>"My Settings"</b>; underneath your avatar in <b>"My Settings"</b> section you will see a list of sub sections with small icons to the left of them.</p>
-		<p>At the very bottom of this list you will see a sub section with a key icon, which is called <b>"API Keys"</b>. Click on this sub section, then you will see a new view show up, with a button which says <b>"Generate Api Key"</b>, click this button to generate your key.</p>
-		<p>After your key is generated copy and paste it into this input field and click save. </p>',
-		'Input Your Secret Key' );
-	
-	echo '</div>';
-
-}
+new leaf_slide(
+	array(
+		'id' => 'lf-post-meta',
+		'class' => 'lf-admin-post-meta-td',
+		'default_type' => 'meta', 
+		'definition' => FRAMEWORK .'/Definitions/slider.definition.php'
+		));
 
 
 function liquidflux_comments ($comment, $args, $depth) {	
 	
 	$GLOBALS['comment'] = $comment; 
 	
-	extract( $args, EXTR_SKIP );
-	
-?>
+	extract( $args, EXTR_SKIP ); ?>
    			
 	<li class="lf-comment-article-wrap <?php echo $depth; ?>">	
 			
@@ -120,13 +76,10 @@ function liquidflux_comments ($comment, $args, $depth) {
 				
 				<span class="lf-comment-links-wrap">
 					&#183; 
-<?php 
-
-					comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => $args['reply_text'] )));
+				
+				<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => $args['reply_text'] ))); ?>
 					
-					edit_comment_link( __('c'),'  ','');
-					
-?>
+				<?php edit_comment_link( __('c'),'  ',''); ?>
 	
 				</span>
 							
@@ -142,85 +95,6 @@ function liquidflux_comments ($comment, $args, $depth) {
 		
 	</div>
 	
-
-	
 <?php	}	
-
-function liquid_navigation () { 
-
-	register_nav_menu ('true_navigation', 'True Navigation');
-
-}
-
-add_action('init', 'liquid_navigation');
-
-add_theme_support( 'post-thumbnails' );
-
-add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'quote', 'video', 'audio', 'link' ) );
-
-
-function force_send($args){	
-
-	$args['send'] = true; 
-	
-	return $args;
-	
-}
-
-add_filter( 'get_media_item_args', 'force_send' );
-
-
-// function lf_add_styles () { 
-	
-// 	//wp_enqueue_style( 'core-style', COREURI . '/core-css.css' );
-	
-// 	wp_enqueue_style( 'lfstyle', COREURI . '/sass/style-core.css' );
-	
-// 	wp_enqueue_style( 'core-style-media-queries', COREURI . '/core-css-media-queries.css' );
-
-// }
-
-// add_action( 'wp_enqueue_scripts', 'lf_add_styles' );
-
-
-include( LAYOUTPATH . '/layouts-core.php');
-include( LAYOUTPATH . '/layouts-core-admin.php');
-include( ADMINPATH . '/lf-editable-style-setup.php' );
-include( ADMINPATH . '/LF-core-admin-setup.php');
-include( 'layouts-registration.php' );
-
-
-function lf_arragment( $postid ) { 
-						
-	global $the_one_array;
-						
-	$order 			= layout_finder( 'main_options', 'main_meta', $postid, 'chosen_layout', 'layouts' );
-	$neworder 		= array();
-	$count_one  	= count( $the_one_array );
-	$count_two 		= count( $order );
-	
-	
-	
-	if ( $order != null ) {
-						
-	foreach ( $order as $value ) { 
-						
-		$trimvalue = trim( $value ); array_push( $neworder, $trimvalue ); 
-							
-	}
-	
-	$neworder = array_flip($neworder);
-	
-	ksort( $neworder );
-	
-	}
-						
-	if ( $order != null && $count_one == $count_two ) {
-						
-		$the_one_array 	= array_combine( $neworder, $the_one_array  );  
-						
-	}
-							
-} 
 
 ?>

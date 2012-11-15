@@ -1,3 +1,24 @@
+@mixin player( $type : 'play' ) { 
+
+    @if $type == 'mute' { 
+        display: inline;
+        float: left;
+        line-height: $marg_v;
+        margin: $marg_v 0.5% $marg_v 0.5%;
+        width: $marg_h;
+    }
+    @else { 
+        display: block;
+        width: 20%;
+        height: 21px;
+        padding: $marg_v 30% $marg_v 50%; 
+    }
+    text-decoration: none;
+    font-size: 14px;
+    @include single-text-shadow( 1px, 1px, 0, rgba( 0, 0, 0, 0.1 ) );
+    color: #fff;
+}
+
 @mixin wp_button($color) { 
 
     $hover-border-color: #666;

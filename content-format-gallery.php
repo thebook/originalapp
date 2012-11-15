@@ -1,58 +1,51 @@
-<?php
 
-$meta = get_post_meta( $post->ID, 'main_meta', true );
-
-?>
+<?php $meta = get_post_meta( $post->ID, 'main_meta', true ); ?>
 
 <article id="post-<?php the_ID(); ?>" >
 	
 	
-<?php 
-		
-	$gallery = ( isset( $meta['post_gallery_format_upload'] ) ? $meta['post_gallery_format_upload'] : '' );
+	<?php $gallery = ( isset( $meta['post_gallery_format_upload'] ) ? $meta['post_gallery_format_upload'] : '' ); ?>
 	
-	if ( $gallery != '' ) {
+	<?php if ( $gallery != '' ) : ?>
 	
-		echo '<div id="lf-gallery-slider-'. $post->ID .'" class="lf-post-format-gallery">';
+		<div id="lf-gallery-slider-<?php echo $post->ID; ?>" class="lf-post-format-gallery">
 	
-	
-		echo '<img   src="'. current( $gallery ) .'" class="lf-post-format-img" />'; 
+			<img src="<?php echo current( $gallery ); ?>" class="lf-post-format-img" />
 		
-		array_shift( $gallery );
+			<?php array_shift( $gallery ); ?>
 		
-		foreach ( $gallery as $value ) { 
-			
-			echo '<img style="display:none;" src="'. $value .'" class="lf-post-format-img" />';
-			
-		}
+			<?php foreach ( $gallery as $value ) : ?>
+				
+				<img style="display:none;" src="<?php echo $value; ?>" class="lf-post-format-img" />
+				
+			<?php endif; ?>
 		
-		echo '<script>$( window ).load( function () {  use.slider( "'. $meta['post_gallery_format_effect'].'", "#lf-gallery-slider-'. $post->ID .'" ); } );</script>';
+			<script>$( window ).load( function () {  use.slider( "<?php echo $meta['post_gallery_format_effect']; ?>", "#lf-gallery-slider-<?php echo $post->ID; ?>" ); } );</script>
 
-		echo '</div>';
+		</div>
 	
-	}
-	
-?>
+	<?php endif; ?>
+
 	
 	<?php if ( $meta['post_gallery_format_text'] == 'text' )  : ?>
 	
-	<span class="post-arrow"></span>
-	
-	<div class="lf-post-img-text-wrap">
-			
-	<div class="lf-core-content-body-text">
+		<span class="post-arrow"></span>
 		
-		<h3 class="lf-post-format-media-title"> 
+		<div class="lf-post-img-text-wrap">
 				
-			<?php lf_title(); ?> 
-					
-		</h3>
+			<div class="lf-core-content-body-text">
 				
-		<?php lf_content();?>
-																																		
-	</div>
-	
-	</div>
+				<h3 class="lf-post-format-media-title"> 
+						
+					<?php lf_title(); ?> 
+							
+				</h3>
+						
+				<?php lf_content();?>
+																																				
+			</div>
+		
+		</div>
 	
 	<?php endif; ?>
 	

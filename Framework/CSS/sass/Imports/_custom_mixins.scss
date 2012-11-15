@@ -1,0 +1,10 @@
+
+@mixin lf_garident( $background, $highlight ) {
+	background: $highlight;
+	background: -moz-linear-gradient(top,  $highlight 0%, $background 7%, $background 93%, $highlight 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$highlight), color-stop(7%,$background), color-stop(93%,$background), color-stop(100%,$highlight));
+	background: -webkit-linear-gradient(top,  $highlight 0%,$background 7%,$background 93%,$highlight 100%);
+	background: -o-linear-gradient(top,  $highlight 0%,$background 7%,$background 93%,$highlight 100%);
+	background: -ms-linear-gradient(top,  $highlight 0%,$background 7%,$background 93%,$highlight 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$highlight', endColorstr='$highlight',GradientType=0 );
+}
