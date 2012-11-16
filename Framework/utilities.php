@@ -56,6 +56,16 @@ function changer($array) {
 
 }
 
+function lf_comment_edit_link () 
+{ ?>
+	<?php global $comment; ?>
+
+	<?php if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) : ?>
+
+		<a class="lf-comment-edit" href="<?php echo get_edit_comment_link( $comment->comment_ID); ?>" title="Edit your comment"></a>
+
+	<?php endif; ?>
+<?php }
 
 function include_fol($fol) {
 

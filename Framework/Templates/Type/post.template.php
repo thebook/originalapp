@@ -24,7 +24,7 @@ class template_post_formats extends branch_content
 			<?php endwhile; ?>	
 			
 <?php }
-	
+
 	protected function _standard()
 	{ ?>
 

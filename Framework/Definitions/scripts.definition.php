@@ -124,7 +124,7 @@
 											array(
 												'lf-functions',
 												SCRIPTS .'/lf-functions.js',
-												array( 'jquery', 'j-ease' ),
+												array( 'jquery', 'j-ease', 'reply' ),
 												'1',
 												true  ),
 										'conditional' => false,
@@ -146,6 +146,24 @@
 												'1.3', 
 												true ),
 										'enqueue' => true,
+										'conditional' => false
+										))),
+						// The comments reply script
+						array(
+							'f' => array( $this, 'sort'),
+							'o' =>
+								array(
+									array(
+										'side' => 'public',
+										'type' => 'script',
+										'arg'  => 
+											array(
+												'reply', 
+												SCRIPTS .'/comments.reply.js', 
+												array(), 
+												'1.0', 
+												true ),
+										'enqueue' => false,
 										'conditional' => false
 										))),
 						// j player

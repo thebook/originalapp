@@ -25,6 +25,12 @@ class alpha_tree_template
 	{
 		$this->template_paramaters['admin_option'] = get_option('main_options');
 	}
+
+	protected function _init_post_object ()		
+	{
+		global $post;
+		$this->template_paramaters['post_object'] = $post;
+	}
 }
 
 ?>

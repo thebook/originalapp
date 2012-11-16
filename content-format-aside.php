@@ -1,1 +1,0 @@
-<article id="post-<?php the_ID(); ?>" >																	<div class="lf-post-img-text-wrap">			<div class="lf-core-content-body-text">				<h3 class="lf-post-format-media-title"> 								<?php lf_title(); ?> 								</h3>																									<?php lf_content();?>																</div>		</div>		<?php lf_cat_single(); ?>	</article>

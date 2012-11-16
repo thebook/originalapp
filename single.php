@@ -80,6 +80,9 @@ $manifest_array = array(
 											'params' => 'lf-content-default-single-widget-area' ),
 										array(
 											'name' => 'author_box',
+											'params' => '' ),
+										array(
+											'name' => 'comments',
 											'params' => '' ) 
 										))),
 

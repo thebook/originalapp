@@ -97,7 +97,12 @@ class branch_content extends alpha_tree_template
 			
 		<?php endif; ?>		
 <?php }
-
+	
+	protected function _comments ()
+	{
+		comments_template();
+	}
+	
 	protected function _inner_sidebar ($sidebar_name)
 	{
 		dynamic_sidebar($sidebar_name);
