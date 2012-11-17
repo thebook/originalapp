@@ -21,7 +21,7 @@ class template_comments extends branch_content
 		
 		<?php if ( post_password_required( $this->template_paramaters['post_object']->ID ) ) : ?>
 				
-			<p><?php _e('Sorry, but a password is required to see the comments', 'liquidflux');?></p>
+			<p> <?php _e('Sorry, but a password is required to see the comments', 'liquidflux');?></p>
 			
 			<?php echo get_the_password_form(); ?>
 		
@@ -31,34 +31,24 @@ class template_comments extends branch_content
 	
 <?php }
 
-	protected function _generate_disclaimer_and_comments ($disclaimer_message)
+	protected function _generate_disclaimer_and_comments ($disclaimer_messages)
 	{ ?>
-							
-		<?php if ( have_comments()) : ?>
-			
-			<p class="lf-comment-header-counter">
-									
-				<?php echo get_comments_number( $this->template_paramaters['post_object']->ID ); ?>
-								
-			</p>
-											
-			<p class="lf-comment-header-text">
-				
-				<?php echo $disclaimer_message; ?>
-				
-			</p>
-			
-			<?php wp_list_comments(array( 'callback' => array($this, '_single_comment_generator' ) )); ?>
 		
-		<?php elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+		<p class="lf-comment-header-counter"> <?php echo get_comments_number( $this->template_paramaters['post_object']->ID ); ?></p>
 		
-			<p><?php _e('So sorry but comments are closed', 'liquidflux');?></p>
-			
+		<?php if ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+		
+			<p class="lf-comment-header-text"><?php echo $disclaimer_messages['comments_are_closed_message']; ?></p>
+		
+		<?php elseif ( have_comments()) : ?>
+		
+			<p class="lf-comment-header-text"><?php echo $disclaimer_messages['comments_message']; ?></p>
+		
+			<?php wp_list_comments(array( 'callback' => array($this, '_single_comment_generator' ) )); ?>	
+		
 		<?php else : ?>
-		
-			<p class="lf-comment-header-counter"> 0</p>
-				
-			<p class="lf-comment-header-text"> There are no commetns at the momment, be the first to leave a comment</p>
+			
+			<p class="lf-comment-header-text"><?php echo $disclaimer_messages['no_comments_message']; ?></p>
 		
 		<?php endif; ?>
 		
@@ -73,55 +63,60 @@ class template_comments extends branch_content
    			
 		<li class="lf-comment-article <?php echo $current_depth; ?>" id="comment-of-the-number-<?php comment_ID(); ?>"> 
 				
-			<div class="lf-comment-avatar">
-										
-				<?php echo get_avatar( $comment_id, '40' ); ?>
-																										
-			</div>	
-			
-			<address class="lf-author">
-
-				<?php echo comment_author_link(); ?>
+			<div class="lf-comment-inner-wrap">
 				
-			</address>
-													
-			<time class="lf-comment-date" datetime="<?php echo $comment_publish_date; ?>" pubdate>
-												
-				<?php echo $comment_publish_date; ?>
-												
-			</time>
-									 						
-			<span class="lf-reply" title="Reply to this comment">
-
-				<?php comment_reply_link(array( 'depth' => $current_depth, 'max_depth' => 5, 'reply_text' => 'Reply', 'respond_id' => 'lf-comment-form-wrap' ), $comment_id ); ?>
-			
-			</span>
-				
-			<?php lf_comment_edit_link(); ?>
-							
-			<div id="comment-<?php comment_ID(); ?>" class="lf-comment-text">
-																					
-				<?php comment_text(); ?>
+				<div class="lf-comment-avatar">
+											
+					<?php echo get_avatar( $comment_id, '40' ); ?>
 																											
-			</div>
+				</div>	
+				
+				<address class="lf-author">
+
+					<?php echo comment_author_link(); ?>
+					
+				</address>
+														
+				<time class="lf-comment-date" datetime="<?php echo $comment_publish_date; ?>" pubdate>
+													
+					<?php echo $comment_publish_date; ?>
+													
+				</time>
+				
+				<?php if ( $current_depth < 5 ) : ?>
+										 						
+					<span class="lf-reply" title="Reply to this comment">
+
+						<?php comment_reply_link(array( 'depth' => $current_depth, 'max_depth' => 5, 'reply_text' => 'Reply', 'respond_id' => 'lf-comment-form-wrap' ), $comment_id ); ?>
+					
+					</span>
+				
+				<?php endif; ?>
+					
+				<?php lf_comment_edit_link(); ?>
+								
+				<div id="comment-<?php comment_ID(); ?>" class="lf-comment-text">
+																						
+					<?php comment_text(); ?>
+																												
+				</div>
 			
+			</div>
+				
 		<!-- </li> a closing li tag would go here, but is ommited since wordpress comments close themselves  -->
 <?php }
 	
-	protected function _generate_comment_form ()
+	protected function _generate_comment_form ($form_params)
 	{ ?>
-		<div id="lf-comment-form-wrap" class="lf-comment-form-wrap">	
-		
-<?php 
-		comment_form( 
-			array( 
-				
-				'comment_notes_after' => '',
-				'comment_notes_before' => '',
-				'title_reply' => 'Leave A Comment.',
-				'comment_field' => '<textarea id="comment" class="lf-comment-form-textarea" name="comment" aria-required="true" rows="10" cols="80"></textarea>' ) ); 			
-?>		
-		</div>	
+		<div id="lf-comment-form-wrap" class="lf-comment-form-wrap"><?php 
+			comment_form( 
+				array( 		
+					'comment_notes_after'  => '',
+					'comment_notes_before' => '',
+					'title_reply'          => "{$form_params['title']}",
+					'comment_field'        => '<textarea id="comment" class="lf-comment-form-textarea" name="comment" aria-required="true" rows="10" cols="80"></textarea>' 
+					)); 			
+	  ?></div>	
 <?php }
 }
 

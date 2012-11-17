@@ -19,6 +19,21 @@ get_header();
 // 	return $chosen_layout = $saved_layouts['saved_layouts'][$layout_name];
 // }
 
+
+new helper_video('
+<iframe 
+	src="http://player.vimeo.com/video/53044322?badge=0" 
+	width="500" 
+	height="281" 
+	frameborder="0" 
+	webkitAllowFullScreen 
+	mozallowfullscreen 
+	allowFullScreen>
+</iframe> 
+
+<p><a href="http://vimeo.com/52728056">Life Is Born (from All.I.Can)</a> from <a href="http://vimeo.com/sherpascinema">Sherpas Cinema</a> on <a href="http://vimeo.com">Vimeo</a>.</p>');
+
+
 $manifest_array = array(
 		array(
 			'name' => 'header',
@@ -88,13 +103,9 @@ $manifest_array = array(
 
 					array(
 						'name' => 'sidebar',
-						'params' => 'first-sidebar'
-						),array(
-						'name' => 'sidebar',
-						'params' => 'first-sidebar'
-						),array(
-						'name' => 'sidebar',
-						'params' => 'first-sidebar'
+						'params' => array( 
+							'name_of_sidebar_to_get' => 'first-sidebar',
+							'sidebar_size' => 'third' )
 						)
 								)),
 		array(

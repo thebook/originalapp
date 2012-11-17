@@ -1,0 +1,69 @@
+//
+//
+//
+//	Author box
+//	
+//	
+//	
+
+.lf-article-author-inner-wrap-box { 
+
+	display: block;
+	float: left;
+	margin: 0 0 28px;
+	@include pie-clearfix;
+	
+	.lf-article-author-text-wrap {
+		
+		@include pie-clearfix;
+		width: 50%;	
+		display: inline-block;
+		float: right;
+		padding: 28px 21px;
+		background: $post_title_background $post_title_texture;
+		@include single-box-shadow;
+	}
+	
+	.lf-author-img { 
+		
+		// border: 1px solid $post_background; 
+		display: inline-block;
+		background: $post_image_hover_color url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/open.png") 50% 50% no-repeat;
+		float: left;
+		height: 45px;
+		width: 45px;
+		margin-left: 7px;
+		cursor: pointer;
+
+		img { 
+			
+			height: 45px;
+			width: 45px;
+			vertical-align: middle;	
+			@include single-transition( 400ms, all );			
+
+			&:hover { 
+				@include opacity( 0.2);
+				@include single-transition( 400ms, all );			
+			}
+		}
+
+	}
+
+	p { 
+		margin-left: 70px;
+		color:       $post_title_color;
+		font-size:   $post_text_size;
+		line-height: $post_text_line_height;
+		font-family: $post_text_font;	
+	}
+	
+	h3 { 
+		@extend p;
+		margin-bottom: 7px;
+		color:       $post_title_meta_color;
+		font-family: $post_title_font;
+		font-style:  $post_title_style;
+		font-weight: $post_title_weight;
+	}
+}

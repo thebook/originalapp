@@ -24,7 +24,7 @@
 			
 			// main append, css 
 			id.css({ 'display' : 'block', 'overflow' : 'hidden', 'height' : height });
-			img.wrapAll( subwrap ).css({'width' : width, 'display' : 'inline' }  );
+			img.wrapAll( subwrap ).css({'width' : width, 'display' : 'block' }  );
 			subwrap = img.parent();
 			if ( type == 'fade' ) { img.css({ 'display' : 'block', 'position' : 'absolute', 'z-index' : '0', 'cursor' : 'pointer' } ); }
 			

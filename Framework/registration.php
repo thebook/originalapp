@@ -1,5 +1,19 @@
 <?php 
 
+function liquidflux_init_sidebars () 
+{
+	register_sidebar( 
+		array(
+			'name' 			=> __( 'First Sidebar', 'liquidflux' ),
+			'id' 			=> 'lf-content-sidebar-first',
+			'before_widget' => '<div id="%1$s" class="liquidflux-widget %2$s">',
+			'after_widget' 	=> '</div>',
+			'before_title' 	=> '<h3>',
+			'after_title' 	=> '</h3>', ) );
+}
+
+add_action( "widgets_init", 'liquidflux_init_sidebars' );
+
 add_theme_support( 'post-thumbnails' );
 
 add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'quote', 'video', 'audio', 'link' ) );

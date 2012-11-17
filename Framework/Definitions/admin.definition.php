@@ -542,6 +542,17 @@
 																	'saved'       => 'normal',
 															        'options'     => array('Normal', 'Bold'),
 																	'values'      => array('normal', 'bold')  )) ),
+														// Image hover color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Image Hover Color',
+																	'description' => 'The background color of an image that can be opened as a light box ( can be seen when hovered over )',
+																	'array'       => 'main_options',
+																	'name'        => 'post_image_hover_color',
+																	'saved'       => 'bf3e2a' )) ),
 
 												)))
 											)),
@@ -591,66 +602,7 @@
 																	'description' => 'Set the color of your players buttons',
 																	'array'       => 'main_options',
 																	'name'        => 'player_text',
-																	'saved'       => 'ffffff' )) ),
-														// Read more color 
-														array(
-															'f' => array( $this, 'create'),
-															'o' => array(  
-																array(
-																	'type'        => 'color',
-																	'title'       => 'Read More Color',
-																	'description' => 'Set the color of your read more text',
-																	'array'       => 'main_options',
-																	'name'        => 'post_readmore_color',
-																	'saved'       => '79BAA0' )) ),
-														// Read more text 
-														array(
-															'f' => array( $this, 'create'),
-															'o' => array(  
-																array(
-																	'type'        => 'text',
-																	'title'       => 'Read More Text',
-																	'description' => 'Custom text for the read more link',
-																	'array'       => 'main_options',
-																	'name'        => 'post_readmore_text',
-																	'saved'       => 'Continue Reading' )) ),
-														// Widget title size 
-														array(
-															'f' => array( $this, 'create'),
-															'o' => array(  
-																array(
-																	'type'        => 'slider',
-																	'title'       => 'Widget Title Size',
-																	'description' => 'The widget title font size',
-																	'array'       => 'main_options',
-																	'name'        => 'widget_title_size',
-																	'saved'       => '14',
-															        'min'         => '10',
-																	'max'         => '36'  )) ),
-														// Widget title style 
-														array(
-															'f' => array( $this, 'create'),
-															'o' => array(  
-																array(
-																	'type'        => 'radio',
-																	'title'       => 'Widget Title Style',
-																	'description' => 'Chose the widget title style',
-																	'array'       => 'main_options',
-																	'name'        => 'widget_title_style',
-																	'saved'       => 'italic',
-															        'options'     => array('Normal', 'Italic'),
-																	'values'      => array('normal', 'italic')  )) ),
-														// Widget title color 
-														array(
-															'f' => array( $this, 'create'),
-															'o' => array(  
-																array(
-																	'type'        => 'color',
-																	'title'       => 'Widget Title Color',
-																	'description' => 'Set the color of your widget title',
-																	'array'       => 'main_options',
-																	'name'        => 'widget_title_color',
-																	'saved'       => '4e4340' )) ),
+																	'saved'       => 'ffffff' )) ),																											
 														// Background color 
 														array(
 															'f' => array( $this, 'create'),
@@ -775,9 +727,227 @@
 																	'values'      => array('normal', 'bold')  )) )
 
 													)))
-												))
-				));
-						
-	
+												)),
+						// Comments style
+						array( 
+							'f' => array( $this, 'pop'),
+							'o'	=>	
+								array(
+									array( 
+										'id' => 'comments_settings',
+										'title' => __('Comments Style', 'liquidflux'),
+										'page'  => 'whitewhale',
+										'desc'  => __('Set up your comments look and semantics', 'liquidflux'),
+										'options' => 
+											array( 
+												'opt' => 
+													array(
+														// Comments text color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Comments Text Color',
+																	'description' => 'Set the text color of your comments',
+																	'array'       => 'main_options',
+																	'name'        => 'comments_text_color',
+																	'saved'       => '222222' )) ),
+														// Comments highlight color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Highlight Color',
+																	'description' => 'The highlight color are the border colors of your comments',
+																	'array'       => 'main_options',
+																	'name'        => 'comments_highlight',
+																	'saved'       => 'ffffff' )) ),
+														// Comments header size 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'slider',
+																	'title'       => 'Header Text Size',
+																	'description' => 'Your comments header shows the number of comments and a message',
+																	'array'       => 'main_options',
+																	'name'        => 'comments_header_size',
+																	'saved'       => '16',
+															        'min'         => '10',
+																	'max'         => '36'  )) ),
+														// Comment form header size 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'slider',
+																	'title'       => 'Form Title Size',
+																	'description' => 'The title size of your comment form ',
+																	'array'       => 'main_options',
+																	'name'        => 'comment_form_title_size',
+																	'saved'       => '24',
+															        'min'         => '10',
+																	'max'         => '42'  )) ),
+														// Comment form header text 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'text',
+																	'title'       => 'Form Title Text',
+																	'description' => 'Set what the title of your comment form says',
+																	'array'       => 'main_options',
+																	'name'        => 'comment_form_title_text',
+																	'saved'       => 'Leave A Comment' )) ),
+														// Comment header text 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'text',
+																	'title'       => 'Leave A Comment Message',
+																	'description' => 'The leave a comment message for when there are already posted comments',
+																	'array'       => 'main_options',
+																	'name'        => 'comment_header_text',
+																	'saved'       => 'Leave a comment' )) ),
+														// No comment message 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'text',
+																	'title'       => 'No Comments Message',
+																	'description' => 'What the comment header says when there are no comments yet',
+																	'array'       => 'main_options',
+																	'name'        => 'comment_header_no_comment_text',
+																	'saved'       => 'No comments yet, be the first!' )) ),
+														// Closed comments message  
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'text',
+																	'title'       => 'Closed Comments Message',
+																	'description' => 'What the comment header says when the comments are closed',
+																	'array'       => 'main_options',
+																	'name'        => 'comment_header_closed_comments',
+																	'saved'       => 'Sorry but comments are closed' )) )
+															)))
+														)),
+						// Widgets Style
+						array( 
+							'f' => array( $this, 'pop'),
+							'o'	=>	
+								array(
+									array( 
+										'id' => 'widget_style',
+										'title' => __('Widget Style', 'liquidflux'),
+										'page'  => 'whitewhale',
+										'desc'  => __('Set up your comments look and semantics', 'liquidflux'),
+										'options' => 
+											array( 
+												'opt' => 
+													array(
+														// Title size 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'slider',
+																	'title'       => 'Title Size',
+																	'description' => 'Set the size of your widget titles',
+																	'array'       => 'main_options',
+																	'name'        => 'widget_title_size',
+																	'saved'       => '14',
+															        'min'         => '10',
+																	'max'         => '30'  )) ),
+														// Title font 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'font',
+																	'title'       => 'Title Font',
+																	'description' => 'Set the font of your widget titles',
+																	'array'       => 'main_options',
+																	'name'        => 'widget_title_font',
+																	'saved'       => 'Arial' )) ),
+														// Title style 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'radio',
+																	'title'       => 'Title Style',
+																	'description' => 'Set the style of your widget titles',
+																	'array'       => 'main_options',
+																	'name'        => 'widget_title_style',
+																	'saved'       => 'italic',
+															        'options'     => array('Normal', 'Italic'),
+																	'values'      => array('normal', 'italic')  )) ),
+														// Title weight 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'radio',
+																	'title'       => 'Title Weight',
+																	'description' => 'Set the weight of your widget titles',
+																	'array'       => 'main_options',
+																	'name'        => 'widget_title_weight',
+																	'saved'       => 'normal',
+															        'options'     => array('Normal', 'Bold'),
+																	'values'      => array('normal', 'bold')  )) ),
+														// Widget box color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Widget Color',
+																	'description' => 'The color of the widget boxes',
+																	'array'       => 'main_options',
+																	'name'        => 'widget_background',
+																	'saved'       => 'ffffff' )) ),
+														// Widget text color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Text Color',
+																	'description' => 'The color of the widgets text',
+																	'array'       => 'main_options',
+																	'name'        => 'widget_color',
+																	'saved'       => '222222' )) ),
+														// Widget text highlight color 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Highlight color',
+																	'description' => 'The color of the links in the widget text',
+																	'array'       => 'main_options',
+																	'name'        => 'widget_highlight',
+																	'saved'       => 'bf3e2a' )) ),
+														// Widget text size 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'slider',
+																	'title'       => 'Text Size',
+																	'description' => 'The size of the widget body text',
+																	'array'       => 'main_options',
+																	'name'        => 'widget_text_size',
+																	'saved'       => '12',
+															        'min'         => '10',
+																	'max'         => '22'  )) )
 
+														)))
+													))
+												));
 ?>

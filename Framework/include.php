@@ -18,4 +18,6 @@ include FRAMEWORK . '/jplayer.class.php';
 
 include FRAMEWORK . '/register_scripts.class.php';
 
+include FRAMEWORK . '/embed.class.php';
+
 ?>

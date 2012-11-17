@@ -2,21 +2,22 @@
  $default-box-shadow-v-offset: 1px;
  $default-box-shadow-blur: 1px;
 
- @mixin arrows { 
-	@include opacity( 0.8 );
-	position: relative;
-	vertical-align: middle;
-	top: 50%;
-	margin: 0 0 -40px;
-	z-index: 10;
-	color: #ffffff; 	
-}
-
  @import "Imports/import";
 
  @include global-reset;
 
  @include lffontface;
+
+ a { 
+
+	color: inherit;
+	text-decoration: none;
+
+	&:hover {
+
+		text-decoration: underline;
+	}
+}
 
  $w : 960px;
  $cp: 0 9px;
@@ -25,16 +26,8 @@
 
 
 $post_meta_size: #{"<?php echo $o['post_meta_size'] . 'px'; ?>"};
-
-$post_text_style: #{"<?php echo $o['post_text_style']; ?>"};
-$post_text_weight: #{"<?php echo $o['post_text_weight']; ?>"};
-
-
 $post_readmore_color: #{"<?php echo $o['post_readmore_color']; ?>"};
 $post_readmore_text: #{"<?php echo $o['post_readmore_text']; ?>"};
-$widget_title_size: #{"<?php echo $o['widget_title_size']; ?>"};
-$widget_title_style: #{"<?php echo $o['widget_title_style']; ?>"};
-$widget_title_color: #{"<?php echo $o['widget_title_color']; ?>"};
 $background_color: #{"<?php echo '#' . $o['background_color']; ?>"};
 $background_texture: #{"<?php echo $o['background_texture']; ?>"};
 $post_title_background: #{"<?php echo '#' . $o['post_title_background']; ?>"};
@@ -72,13 +65,6 @@ $prefix2: lf;
 
 }
 
-#footer,
-.hunprec,
-.lf-header-main-wrap { 
-
-	width: 100%;
-
-}
 
 //
 //
@@ -188,98 +174,6 @@ $prefix2: lf;
 //
 //
 //
-//
-//	Content
-//	
-//	
-//	
-
-.#{$prefix}-content { 
-	
-	width: $w;
-	margin: auto;
-	@include pie-clearfix;
-
-	.#{$prefix}-post-full { 
-
-		@include pie-clearfix;
-
-		article {
-			display: block;
-			float: left;		
-			width: 100%;
-			margin: 42px 0 28px;
-		}
-	}
-
-	.#{$prefix}-post-third { 
-
-		@extend .#{$prefix}-post-full;
-		width: 619px;
-		display: inline-block;
-		float: left;
-
-		article { 
-
-			display: inline-block;
-			width: 622px;
-		}
-	}
-
-	.#{$prefix}-aside { 
-
-		display: block;
-		float: left;
-		width: 320px;
-		margin: 42px 0 0;
-		@include pie-clearfix;
-
-		.#{$prefix}-widget { 
-			
-			@include pie-clearfix;
-			display: block;
-			padding: 21px;
-			margin: 0 21px 42px;
-			background-color: #fff;
-			font-size: 12px;
-
-			h3 { 
-
-			    margin: 0 0 14px;
-			    font-size: 12px;
-			    font-family: Georgia;
-			}
-
-			ul {
-
-				margin: 0 0 0 7px;
-			}
-
-			input, p, ul {
-
-				font-size: inherit;
-			}
-		}
-	}
-
-	.#{$prefix}-aside-half {
-
-		@extend .#{$prefix}-aside;
-
-		width: 480px;
-	}
-
-	.#{$prefix}-aside-quarter {
-
-		@extend .#{$prefix}-aside;
-
-		width: 240px;
-	}
-}
-
-//
-//
-//
 //	Post Title box
 //	
 //	
@@ -382,7 +276,6 @@ $inner_post_title_style: #{"<?php echo $o['inner_post_title_style']; ?>"};
 $inner_post_title_size: #{"<?php echo $o['inner_post_title_size'] . 'px' ; ?>"};
 $inner_post_title_decoration: #{"<?php echo $o['inner_post_title_decoration']; ?>"};
 $post_background: #{"<?php echo '#' . $o['post_background']; ?>"};
-$post_texture: #{"<?php echo $o['post_texture']; ?>"};
 $post_highlight_color: #{"<?php echo '#' . $o['post_highlight_color']; ?>"};
 $post_text_font: #{"<?php echo $o['post_text_font']; ?>"};
 $post_text_size: #{"<?php echo $o['post_text_size'] . 'px'; ?>"};
@@ -500,6 +393,175 @@ $post_h3_size: #{"<?php echo ( $o['post_text_size'] * 1.5 ) . 'px'; ?>"};
 	}
 }
 
+//
+//
+//
+//	Widget 
+//	
+//	
+
+$widget_text_size: #{"<?php echo $o['widget_text_size'] . 'px'; ?>"};
+$widget_text_line_height: #{"<?php echo ( $o['widget_text_size'] + 4 ) . 'px'; ?>"};
+$widget_background: #{"<?php echo '#' . $o['widget_background']; ?>"};
+$widget_color: #{"<?php echo '#' . $o['widget_color']; ?>"};
+$widget_title_size: #{"<?php echo $o['widget_title_size'] . 'px' ; ?>"};
+$widget_title_font: #{"<?php echo $o['widget_title_font']; ?>"};
+$widget_title_style: #{"<?php echo $o['widget_title_style']; ?>"};
+$widget_title_weight: #{"<?php echo $o['widget_title_weight']; ?>"};
+$widget_highlight: #{"<?php echo '#' . $o['widget_highlight']; ?>"};
+
+.#{$prefix}-widget { 
+			
+	@include pie-clearfix;
+	@include single-box-shadow;
+	display: block;
+	padding: 21px;
+	margin: 0 21px 42px;
+	background-color: $widget_background;
+	color: $widget_color;
+	font-size: $widget_text_size;
+	line-height: $widget_text_line_height;
+	font-family: $post_text_font;
+
+	h3 { 
+
+	    margin: 0 0 14px;
+	    font-size: 12px;
+	    color: inherit;
+	    font-family: $widget_title_font;
+	    font-size: $widget_title_size;
+	    line-height: $widget_title_size;
+	    font-style: $widget_title_style;
+	    font-weight: $widget_title_weight;
+	}
+
+	p {
+		color: inherit;
+		font-family: inherit;
+		font-size: inherit;	
+		line-height: inherit;
+		@include pie-clearfix;
+	}
+
+	div { 
+
+		@extend p;
+	}
+
+	ul {
+		@extend p;
+		li { 
+
+			margin: 0 0 7px;
+		}
+	}
+
+	a { 
+		@extend p;
+		color: $widget_highlight;
+	}
+
+	.#{$prefix}-widget-button { 
+
+		color: $widget_background;
+		background: $widget_color;
+		padding: 7px;
+		display: block;
+
+		&:hover { 
+
+			text-decoration: underline;
+		}
+	}
+
+	.#{$prefix}-widget-field { 
+
+		@extend .#{$prefix}-widget-button;
+		margin: 7px 0;
+		border: none;
+
+		&:hover { 
+
+			text-decoration: none;
+		}
+	}
+
+	input[type="text"] { 
+
+		@extend .#{$prefix}-widget-field;
+	}
+
+}
+
+//
+//
+//
+//
+//	Content
+//	
+//	
+//	
+
+.#{$prefix}-content { 
+	
+	width: $w;
+	margin: auto;
+	@include pie-clearfix;
+
+	.#{$prefix}-post-full { 
+
+		@include pie-clearfix;
+
+		article {
+			display: block;
+			float: left;		
+			width: 100%;
+			margin: 42px 0 28px;
+		}
+	}
+
+	.#{$prefix}-post-third { 
+
+		@extend .#{$prefix}-post-full;
+		width: 619px;
+		display: inline-block;
+		float: left;
+
+		article { 
+
+			display: inline-block;
+			width: 622px;
+		}
+	}
+
+	.#{$prefix}-aside-third { 
+
+		display: block;
+		float: left;
+		width: 320px;
+		margin: 42px 0 0;
+		@include pie-clearfix;
+
+		.#{$prefix}-widget { 
+			
+			@extend .#{$prefix}-widget;
+		}
+	}
+
+	.#{$prefix}-aside-half {
+
+		@extend .#{$prefix}-aside-third;
+
+		width: 480px;
+	}
+
+	.#{$prefix}-aside-quarter {
+
+		@extend .#{$prefix}-aside-third;
+
+		width: 240px;
+	}
+}
 
 //
 //
@@ -572,14 +634,6 @@ $post_h3_size: #{"<?php echo ( $o['post_text_size'] * 1.5 ) . 'px'; ?>"};
 			color: inherit;
 			font-size: $post_text-size;
 			line-height: $post_text_line_height;
-
-			a { 
-				color: inherit;
-
-				&:hover { 
-					text-decoration: none;
-				}
-			}
 		}
 		
 		.lf-post-format-quote-author { 
@@ -653,7 +707,15 @@ $post_h3_size: #{"<?php echo ( $o['post_text_size'] * 1.5 ) . 'px'; ?>"};
 	}
 }
 
-// Body Meta
+
+//
+//
+//
+//	Body meta 
+//
+//
+//
+
 .lf-meta-text-tags {
 
 	display: inline;
@@ -670,6 +732,219 @@ $post_h3_size: #{"<?php echo ( $o['post_text_size'] * 1.5 ) . 'px'; ?>"};
 		color: inherit;
 		text-decoration: none;
 	}
+	
+	.lf-meta-edit { 
+
+		margin-left: 12px;
+		
+		.post-edit-link { 
+
+			&:hover { 
+
+				text-decoration: none;
+			}
+			&:before { 
+
+				content: "5"
+			}
+		}
+	}
+}
+
+//
+//
+//
+//	Comments
+//	
+//	
+//	
+
+$comments_text_color: #{"<?php echo '#' . $o['comments_text_color']; ?>"};
+$comments_header_size: #{"<?php echo $o['comments_header_size'] . 'px'; ?>"};
+$comments_highlight: #{"<?php echo '#' . $o['comments_highlight']; ?>"};
+
+.lf-comments-wrap { 
+
+	display: block;
+	font-family: $post_text_font;
+
+	.lf-comment-header-text { 
+
+		display: inline-block;
+		font-family: $post_text_font;
+		background-color: $post_background;
+		color: $post_text_color;
+		padding: 21px;
+		margin: 0 14px 14px 0;
+		font-size: $comments_header_size;
+		line-height: $comments_header_size;
+		height: $comments_header_size;
+		@include single-box-shadow;
+		
+	}
+
+	.lf-comment-header-counter { 
+
+		@extend .lf-comment-header-text;
+		vertical-align: bottom;
+
+		&:before { 
+
+			content: "(";
+			margin-left: 7px;
+		}
+	}
+
+
+	.lf-comment-article { 
+
+		display: block;
+		clear: both;
+		font-family: inherit;
+		color: $comments_text_color;
+		margin: 14px 0;
+		padding: 21px;
+		border-bottom: 3px solid $comments_highlight;
+		@include single-box-shadow( rgba(0,0,0, 0.1), 1px, 1px, 5px, 1px, inset );
+		@include border-radius( 5px 5px 0 0);
+		@include pie-clearfix;
+
+		.lf-comment-inner-wrap { 
+
+			clear: both;
+			display: block;
+		}
+
+		.children { 
+
+			display: inline-block;
+			margin: 7px 0 28px 20px;
+			border-left: 1px solid $comments_highlight;
+			position: relative;
+			@include pie-clearfix;
+
+			.lf-comment-article {
+
+				margin-left: 0px;
+				padding: 0;
+				border-bottom: none;
+				display: inline-block;
+				@include single-box-shadow(none);
+				@include border-radius( 0);
+
+				.lf-comment-inner-wrap { 
+
+					display: inline-block;
+					padding: 28px;
+					border-bottom: 3px solid $comments_highlight;
+					margin-left: 14px;
+					padding: 21px;
+					@include single-box-shadow( rgba(0,0,0, 0.1), 1px, 1px, 5px, 1px, inset );
+					@include border-radius( 5px 5px 0 0);
+				}
+
+				&:before { 
+					border-bottom: 1px solid $comments_highlight;
+					content: " ";
+					display: block;
+					float: left;
+					position: relative;
+					top: 40px;
+					width: 14px;
+				}
+
+				.children { 
+
+					margin: 14px 0 28px 68px;
+				}
+			}
+		}
+
+		.lf-comment-text { 
+		
+			width: 100%;
+			display: block;
+			float: left;
+			margin-top: 14px;
+
+			p { 
+
+				margin: 0 0 17px;
+			}
+		}
+
+		.lf-comment-avatar { 
+
+			display: inline;
+			float: left;
+			margin: 0 14px 0 0;
+			
+			img { 
+
+				vertical-align: middle;
+				@include border-radius( 40px);
+				@include single-box-shadow( rgba(0,0,0, 0.2), 1px, 1px 2px);
+			}
+		}
+		
+		.lf-reply { 
+
+			margin: 0 7px;
+			display: inline;
+			float: left;
+
+			a { 
+				cursor: pointer;
+				color: inherit;
+				text-decoration: none;
+
+				&:hover { 
+
+					text-decoration: underline;
+				}
+			}
+
+			&:before { 
+
+				content: "o";
+				margin: 0 3px 0 0;
+			}
+		}
+		
+		.lf-author { 
+		
+			@extend .lf-reply;
+			&:before {
+
+				content: "1";
+			}	
+		}
+		
+		.lf-comment-date { 
+
+			@extend .lf-reply;
+			&:before {
+
+				content: "2";
+			}
+		}
+
+		.lf-comment-edit { 
+
+			@extend .lf-reply;
+			color: inherit;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			&:before {
+
+				content: "7";
+			}
+		}
+	}
 }
 
 //
@@ -681,6 +956,7 @@ $post_h3_size: #{"<?php echo ( $o['post_text_size'] * 1.5 ) . 'px'; ?>"};
 //	
 //	
 $form: lf-comment;
+$comment_form_title_size: #{"<?php echo $o['comment_form_title_size'] . 'px'; ?>"};
 
 .#{$form}-form-wrap { 
 
@@ -691,8 +967,9 @@ $form: lf-comment;
 	h3 { 
 
 		float: left;
-		font-size: 24px;
-		line-height: 24px;
+		font-size: $comment_form_title_size;
+		line-height: $comment_form_title_size;
+		color: $comments_text_color;
 		margin: 17px;
 		clear:both;
 
@@ -707,6 +984,9 @@ $form: lf-comment;
 		display: block;
 		float: left;
 		width: 100%;
+		font-size: $post_text_size;
+		line-height: $post_text_size;
+		font-family: $post_text_font;
 		@include pie-clearfix;
 
 		.comment-form-author { 
@@ -717,12 +997,10 @@ $form: lf-comment;
 			margin: 7px 0;
 
 			label { 
-				font-size: 14px;
-				line-height: 14px;
-				font-family: Georgia;
 				margin: 7px 7px 0;
 				width: 58px;
 				float: left;
+				color: $comments_text_color;
 				display: inline;
 
 				&:after { 
@@ -738,13 +1016,15 @@ $form: lf-comment;
 				@extend label;
 				width: 250px;
 				padding: 6px;
-				border: 1px solid #fff;
+				border: 1px solid $post_background;
+				background-color: $post_background;
+				color: $post_text_color;
 				margin: 0;
 				@include single-box-shadow();
 
 				&:focus { 
 
-					border: 1px solid #222;
+					border: 1px solid $post_text_color;
 				}
 			}
 		}
@@ -758,16 +1038,23 @@ $form: lf-comment;
 		
 		.#{$form}-form-textarea { 
 		
+			
 			display: block;
 			float: left;
+			clear: both;
+			font-family: inherit;
+			font-size: inherit;
+			color: $post_text_color;
+			background-color: $post_background;
+			font-height: $post_text_line_height;
 		    margin: 7px 0 7px ( 58px + 14px );
 		    padding: 14px;
-		    border: 1px solid #fff;
+		    border: 1px solid $post_background;
 		    @include single-box-shadow();
 
 		    &:focus { 
 
-		    	border: 1px solid #222;
+		    	border: 1px solid $post_text_color;
 		    }
 		}
 
@@ -775,8 +1062,10 @@ $form: lf-comment;
 
 			display: block;
 			float: left;
+			clear: both;
 		    margin: 7px 0 14px ( 58px + 14px );
 			padding: 0;
+			color: $comments_text_color;
 
 			a { 
 
@@ -793,8 +1082,8 @@ $form: lf-comment;
 				float: left;
 				padding: 7px;
 				margin: 7px 0 7px ( 58px + 14px );
-				background-color: #222;
-				color: #fff;
+				background-color: $post_text_color;
+				color: $post_background;
 				font-size: 14px;
 				line-height: 14px;
 				font-family: Georgia;
@@ -975,96 +1264,6 @@ $slider_caption_weight: #{"<?php echo $o['slider_caption_weight']; ?>"};
 	}
 }
 
-
-
-
-/*
-*
-*
-*	content bodies
-*
-*
- */
-// Full width post wrapper
-
-
-// Third width post wrapper
-
-
-/* aside */
-
-
-
-// .lf-core-content-aside-widget-h3 { 
-
-//     margin: 1.5rem 0;
-//     text-align: right;
-
-// }
-
-// .lf-widget-field {
-
-//     width: 70%;
-//     margin: 0 5% 12px;
-//     padding: 6px 12px;
-//     color: #444444;
-// 	background-color: #FFFFFF;
-//     border: medium none;
-// 	@include single-box-shadow();
-// }
-
-#searchform { 
-
-	.lf-button {
-		margin: 0 0 12px 5%;
-	}
-}
-
-/* meta & post title */
-.lf-meta-edit { 
-
-	margin-left: 12px;
-}
-
-.post-edit-link { 
-
-	&:hover { 
-
-		text-decoration: none;
-	}
-	&:before { 
-
-		content: "5"
-	}
-}
-
-
-
-.lf-bookmark-meta { 
-
-	margin: 0 12px 0 0;
-}
-
-
-/* button -to be changed */
-.lf-button {
-	
-	@include block( l );
-	cursor: pointer;
-	padding: 5px 12px;
-	text-decoration: none;	
-	border: none;
-	margin: 0 0 12px;
-	-webkit-border-radius: 4px;
-    border-radius: 4px;	
-
-    a:hover {
-
-	text-decoration: none;
-	
-	}	
-}
-
 //
 //
 //
@@ -1100,7 +1299,17 @@ $slider_caption_weight: #{"<?php echo $o['slider_caption_weight']; ?>"};
 	}
 }
 
-$image_hover_color: #444;
+
+//
+//
+//
+//
+//	Featured image with lightbox 
+//	
+//	
+//	
+
+$post_image_hover_color: #{"<?php echo '#' . $o['post_image_hover_color']; ?>"};
 
 .lf-featured-icon-wrap { 
 
@@ -1110,7 +1319,7 @@ $image_hover_color: #444;
 	float: left;
 	position: relative;
 	vertical-align: middle;
-	background: $image_hover_color url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/open.png") 50% 50% no-repeat;
+	background: $post_image_hover_color url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/open.png") 50% 50% no-repeat;
 	z-index: 1;
 
 	img { 
@@ -1130,83 +1339,75 @@ $image_hover_color: #444;
 }
 
 
+//
+//
+//
+//	Gallery
+//	
+//	
+//	
 
-/* // // Milacilous */
-.lf-core-content-text-entry { 
-	
-	overflow: hidden;
-	margin: 36px 0 6px;
-}
-
-.lf-post-format-text-entry {
-
-	overflow: hidden;
-	margin: 8px 0 0;
-
-}
+.lf-post-format-gallery { 
 
 
+	.lf-post-format-gallery-dot { 
 
-
-/* // // Gallery */
-.lf-post-format-gallery-dot { 
-
-	position: absolute;
-	margin: -39px 28px 0;
-	cursor: pointer;
-	z-index: 1;
-	color: #fff;
-}
-
-.post-format-gallery-dot { 
-
-	margin: 0 5px 0 0;
-
-	&:hover { 
-		@include opacity( 1 );
-	}
-
-	&:before { 
-
-		content: "#";
-		font-size: 12px;
-		color: #fff;
-	}
-}
-
-.post-format-right-arrow { 
-
-	float: right;
-	@include arrows();
-
-	&:hover { 
-
-		@include opacity( 1 );
-	}
-	
-	&:before {
-
-		content: "9";
-		font-size: 50px;
+		position: absolute;
+		margin: -39px 28px 0;
 		cursor: pointer;
+		z-index: 1;
+		color: $post_background;
+		
+		.post-format-gallery-dot { 
+
+			margin: 0 5px 0 0;
+
+			&:hover { 
+				@include opacity( 1 );
+			}
+
+			&:before { 
+
+				content: "#";
+				font-size: 12px;
+				color: $post_background;
+			}
+		}
 	}
-}
 
-.post-format-left-arrow { 
-	
-	float: left;
-	@include arrows();
 
-	&:hover { 
+	.post-format-right-arrow { 
 
-		@include opacity( 1 );
+			float: right;
+			@include opacity( 0.8 );
+			position: relative;
+			vertical-align: middle;
+			top: 50%;
+			margin: 0 0 -40px;
+			z-index: 10;
+			color: $post_background; 	
+
+			&:hover { 
+
+				@include opacity( 1 );
+			}
+			
+			&:before {
+
+				content: "9";
+				font-size: 50px;
+				cursor: pointer;
+			}
 	}
 
-	&:before { 
+	.post-format-left-arrow { 
+			
+			@extend .post-format-right-arrow;
+			float: left;
 
-		content: "8";
-		font-size: 50px;
-		cursor: pointer;	
+			&:before { 
+				content: "8";
+			}
 	}
 }
 
@@ -1396,99 +1597,79 @@ $player_text: #{"<?php echo '#' . $o['player_text']; ?>"};
 }
 
 
-
-
-
-
-
-/* author box */
-.lf-article-author-wrap { 
-
-	margin: 28px 0 12px;
-
-}
+//
+//
+//
+//	Author box
+//	
+//	
+//	
 
 .lf-article-author-inner-wrap-box { 
 
-	width: 50%;
-	@include block( r );
-}
-
-.lf-article-author-img-wrap { 
-	
-	height: auto;
-	width: 10.5%;
-    @include block( r, ib );
-	padding: 1%;
-    margin: 6px 2% 0 0;	
-
-    img { 
-    	width: 100%;
-		height: auto;
-    }
-}
-
-.lf-article-author-text-wrap {
-	
-	width: 75.5%;
-	@include block( r, ib );
-	padding: 12px 5%;
-	background-color: #fff;
-	background-image:  url("http://localhost:36792/wp-content/themes/WhiteWhale/Core/Images/textures/striped_lens.png");
-}
-
-.lf-article-author-box-text {
-
-	width: 100%;
-	float: right;
-}
-
-.lf-article-author-box-h3 {
-
-	margin: 6px 0;
-}
-
-/* uttility, should be added to each style */
-.lf-core-content-post-format-head-wrap,
-.lf-article-author-wrap,
-.lf-comments-wrap,
-.lf-comment-full-header-wrap,
-.lf-comment-full-wrap,
-.lf-comment-article-avatar-wrap,
-.lf-comment-article-inner { 
-
 	display: block;
 	float: left;
-}
-
-.lf-shortcode-img-wrap img,
-.lf-header-background-image,
-.lf-slider-slide-cont img   { 
-
-	width: 100%;
-	height: auto;
-} /* prob out of place, each feature should be moved to specific */
-
-
-/* Article Widget */
-.lf-article-widget-wrap { 
+	margin: 0 0 28px;
+	@include pie-clearfix;
 	
-	width: 43%;
-	@include block( r );
-	padding: 15px 2.5% 24px;
-	margin: 0 2% 24px 0;
-	background-color: #fff;
-}
-
-.lf-article-widget-name { 
+	.lf-article-author-text-wrap {
+		
+		@include pie-clearfix;
+		width: 50%;	
+		display: inline-block;
+		float: right;
+		padding: 28px 21px;
+		background: $post_title_background $post_title_texture;
+		@include single-box-shadow;
+	}
 	
-	font-size: 12px;
-	line-height: 12px;
-	margin: 6px 0 18px;
+	.lf-author-img { 
+		
+		// border: 1px solid $post_background; 
+		display: inline-block;
+		background: $post_image_hover_color url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/open.png") 50% 50% no-repeat;
+		float: left;
+		height: 45px;
+		width: 45px;
+		margin-left: 7px;
+		cursor: pointer;
+
+		img { 
+			
+			height: 45px;
+			width: 45px;
+			vertical-align: middle;	
+			@include single-transition( 400ms, all );			
+
+			&:hover { 
+				@include opacity( 0.2);
+				@include single-transition( 400ms, all );			
+			}
+		}
+
+	}
+
+	p { 
+		margin-left: 70px;
+		color: $post_title_color;
+		font-size: $post_text_size;
+		line-height: $post_text_line_height;
+		font-family: $post_text_font;	
+	}
+	
+	h3 { 
+		@extend p;
+		margin-bottom: 7px;
+		color: $post_title_meta_color;
+		font-family: $post_title_font;
+		font-style: $post_title_style;
+		font-weight: $post_title_weight;
+	}
 }
 
 
-/* navigation */ 
+
+
 
 /* // Pagnation // */
 .lf-pagnation {
@@ -1509,813 +1690,198 @@ $player_text: #{"<?php echo '#' . $o['player_text']; ?>"};
 	margin: 0 6px;
 }
 
-// .longnav-dropdown { 
 
-// 	width: 90%;
-// 	margin: 0 5%;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /* portfolio and featured image lightbox - all to be adjusted */
+
+// .lf-featured-image-opt {
+
+// 	width: 100%;
+// 	display: none;
+// 	float: left;
+// 	position: relative;
+// 	text-align: center;
+// 	margin: -48px 0 0;
+// 	background-color: transparent;
+// 	cursor: pointer;
+// 	@include opacity( 0 );
+// 	z-index: 3;
+
+// 	&:hover { 
+// 		opacity: 1;
+// 	}
+	
+// }
+
+// .lf-featured-image-opt-lightbox { 
+
+// 	width: 100%;
+// 	@include block( l );
+// 	position: relative;
+// 	text-align: center;
+// 	margin: -54px 0 0;
+// 	background-color: transparent;
+// 	cursor: pointer;
+// 	z-index: 3;
+// }
+
+// .lf-featured-image-opt-square-small { 
+
+// 	height: 18px;
+// 	width: 18px;
+// 	display: inline-block;
+// 	margin: 3px;
+// 	border-width: 3px;
+// 	border-style: solid;
+// 	border-color: #fff;
+// 	@include border-radius( 50px, 50px );
+// }
+
+// .lf-featured-image-opt-square-big { 
+
+// 	height: 30px;
+// 	width: 30px;
+// 	display: inline-block;
+// 	cursor: pointer;
+// 	border-width: 3px;
+// 	border-style: solid;
+// 	border-color: #fff;
+// 	@include border-radius( 50px, 50px );
+// }
+
+// .lf-featured-image-lightboxed {
+
+// 	height: 85%;
+// 	width: 85%;
+// 	@include block( l );
+// 	position: fixed;
+// 	top: 2.5%;
+// 	left: 5%;
+// 	padding: 2.5%;
+// 	text-align: center;
+// 	z-index: 25;
+
+// 	img {
+// 		height: 100%;
+// 		width: auto;
+// 		z-index: 25;
+// 		@include opacity(1);
+// 		@include single-box-shadow();
+// 	}
 // }
 
 
-/* footer */
+// .lf-portfolio-piece-wrap {
 
-.lf-footer-shadow { 
+// 	width: 100%;
+// 	@include block( l );
+// }
 
-    height: 23px;
-	width: 100%;
-    @include block( l );
-    margin: -23px 0 0;
-    position: relative;
-    z-index: 2;
-	background: url("./Includes/Images/footershadow.png") no-repeat scroll center center transparent;
-}
+// .lf-portfolio-dimension-quarter,
+// .lf-portfolio-dimension-half,
+// .lf-portfolio-dimension-third {
 
-.lf-footer { 
+// 	@include block( l, ib );
+// 	min-height: 24px;	
+// }
 
-	width: 95%;
-	@include block( l );
-	padding: 0 2.5%;
+// .lf-portfolio-dimension-quarter {
 
-    .lf-button {
+// 	width: 22%;
+// 	padding: 0 1.5%;
+// }
 
-		margin: 0 6px 0 0;
-	}
-}
+// .lf-portfolio-dimension-half { 
 
-.lf-footer-wrap {
+// 	width: 47%;
+// 	padding: 0 1.5%;
+// }
 
-	@include block( l );
-}
+// .lf-portfolio-dimension-third {
 
-.lf-footer-widget { 
-	
-	width: 90%;
-	@include block( l, ib );
-	margin: 24px 0;
-	padding: 12px 5%;
-}
+// 	width: 30%;
+// 	padding: 0 1.65%;
+// }
 
-.lf-footer-widget-h3 { 
+// .lf-portfolio-posttitle {
 
-	margin: 12px 0;
-}
+// 	margin: 24px 0 12px;
+// }
 
-.lf-footer-widget-one { 
+// .lf-portfolio-posttitle a:hover  {
 
-	width: 25%;
-	@include block( l, ib );
-}
+// 	text-decoration: none;
+// 	border-bottom { 
+// 		width: 4px;
+// 		style: solid;
+// 	}
+// }
 
-.lf-footer-widget-two {
+// .lf-portfolio-desc {
 
-	width: 50%;
-	@include block( l, ib );
-}
+// 	width: 100%;
+// 	padding: 24px 0;
+// }
 
-.lf-footer-widget-three {
+// .lf-portfolio-filter-bar {
 
-	width: 33.3%;
-	@include block( l, ib );
-}
+// 	width: 95%;
+// 	margin: 0 0 24px;
+//     padding: 0 2.5%;
+// }
 
-.lf-footer-widget-four {
+// .lf-portfolio-filter-text,
+// .lf-portfolio-filter-text-info {
 
-	width: 100%;
-	@include block( l, ib );
-}
+// 	display: inline-block;
+//     font-size: 0.75rem;
+// 	cursor: pointer;
+//     padding: 6px 12px;
+// }
+
+// .lf-portfolio-filter-text,
+// .lf-portfolio-filter-text-info,
+// .lf-portfolio-filter-text:hover,
+// .lf-portfolio-filter-text-info:hover  {
+
+// 	@include single-transition( all, 700ms );
+// }
+
+// .lf-portfolio-filter-text-info {
+
+// 	font-style: italic;
+// }
+
+
+// .lf-portfolio-filter-hidden {
+
+// 	display: none;
+// }
+
+
+
 
 
 //
 //
 //
-//	Comments
+//	Advert widgets
 //	
 //	
 //	
-
-.lf-comments-wrap { 
-
-	display: block;
-	font-family: $post_text_font;
-
-	.lf-comment-header-text { 
-
-		display: inline-block;
-		font-family: inherit;
-		background-color: $post_background;
-		color: $post_text_color;
-		padding: 21px;
-		margin: 0 14px 14px 0;
-		font-size: 18px;
-		line-height: 18px;
-		height: 18px;
-		@include single-box-shadow;
-		
-	}
-
-	.lf-comment-header-counter { 
-
-		@extend .lf-comment-header-text;
-
-		&:before { 
-
-			content: "(";
-			margin-left: 7px;
-		}
-	}
-
-
-	.lf-comment-article { 
-
-		display: block;
-		clear: both;
-		font-family: inherit;
-		margin: 14px 0;
-		padding: 21px;
-		// border-bottom: 2px solid #fff;
-		@include single-box-shadow( rgba(0,0,0, 0.1), 1px, 1px, 5px, 1px, inset );
-		@include border-radius( 5px 5px 0 0);
-		@include pie-clearfix;
-
-		.children { 
-
-			display: block;
-			float: left;
-			margin: 14px 0 27px 14px;
-			border-left: 1px solid #222;
-			position: relative;
-
-			&:before { 
-				
-				border-bottom: 1px solid #222;
-				content: "";
-				position: absolute;
-				top: 28px;
-				width: 21px;
-			}
-
-			li {
-
-				margin-left: 28px;
-			}
-		}
-
-		.lf-comment-text { 
-		
-			width: 100%;
-			display: block;
-			float: left;
-			margin-top: 14px;
-
-			p { 
-
-				margin: 0 0 17px;
-			}
-		}
-
-		.lf-comment-avatar { 
-
-			display: inline;
-			float: left;
-			margin: 0 14px 0 0;
-			
-			img { 
-
-				vertical-align: middle;
-				@include border-radius( 40px);
-				@include single-box-shadow( rgba(0,0,0, 0.2), 1px, 1px 2px);
-			}
-		}
-		
-		.lf-reply { 
-
-			margin: 0 7px;
-			display: inline;
-			float: left;
-
-			a { 
-				cursor: pointer;
-				color: inherit;
-				text-decoration: none;
-
-				&:hover { 
-
-					text-decoration: underline;
-				}
-			}
-
-			&:before { 
-
-				content: "o";
-				margin: 0 3px 0 0;
-			}
-		}
-		
-		.lf-author { 
-		
-			@extend .lf-reply;
-			&:before {
-
-				content: "1";
-			}	
-		}
-		
-		.lf-comment-date { 
-
-			@extend .lf-reply;
-			&:before {
-
-				content: "2";
-			}
-		}
-
-		.lf-comment-edit { 
-
-			@extend .lf-reply;
-			color: inherit;
-			text-decoration: none;
-
-			&:hover {
-				text-decoration: underline;
-			}
-
-			&:before {
-
-				content: "7";
-			}
-		}
-	}
-}
-
-
-
-
-
-/* pages - will need to be altered */
-.lf-core-content-three-page-left,
-.lf-core-content-three-page-right {
-
-	display: inline-block;
-    float: left;
-    width: 654px;
-
-}
-.lf-core-content-two-page-left,
-.lf-core-content-two-page-right {
-
-	width: 420px;
-	display: inline-block;
-	float: left;	
-}
-
-.lf-core-content-one-page-left,
-.lf-core-content-one-page-right {
-
-	width: 210px;
-	display: inline-block;
-	float: left;
-	padding: 0 12px 0 12px;
-	
-}
-
-.lf-core-content-three-page-left,
-.lf-core-content-two-page-left {
-
-	border-left-style: solid;
-    border-width: 6px;
-    margin: 0 0 0 6px;
-    padding: 0 12px 0 24px;
-
-}
-
-.lf-core-content-three-page-right,
-.lf-core-content-two-page-right {
-
-	border-right-style: solid;
-    border-width: 6px;
-    margin: 0 6px 0 0;
-    padding: 0 24px 0 12px;
-
-}
-
-
-
-
-//  Lightbox 
-
-#lbOverlay {
-	position: fixed;
-	z-index: 9999;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #000;
-	cursor: pointer;
-}
-
-#lbCenter, #lbBottomContainer {
-	position: absolute;
-	z-index: 9999;
-	overflow: hidden;
-	background-color: #fff;
-}
-
-.lbLoading {
-	background: #fff url(./Includes/Images/loading.gif) no-repeat center;
-}
-
-#lbImage {
-	position: absolute;
-	left: 0;
-	top: 0;
-	border: 10px solid #fff;
-	background-repeat: no-repeat;
-}
-
-#lbPrevLink, #lbNextLink {
-	display: block;
-	position: absolute;
-	top: 0;
-	width: 50%;
-	outline: none;
-}
-
-#lbPrevLink {
-	left: 0;
-}
-
-#lbPrevLink:hover {
-	
-}
-
-#lbNextLink {
-	right: 0;
-}
-
-#lbNextLink:hover {
-	
-}
-
-#lbBottom {
-
-	font-size: 11px;
-	color: inherit;
-	line-height: 1.4em;
-	text-align: left;
-	padding: 5px 10px 10px 10px;
-
-}
-
-#lbCloseLink {
-	display: block;
-	float: right;
-	text-decoration: none;
-	vertical-align: baseline;
-	color: inherit;
-	&:before { 
-		font-size: 20px;
-		line-height: 20px;
-		content: "k";
-	}
-}
-
-#lbCaption, #lbNumber {
-	margin:0  71px 0 7px;
-}
-
-#lbCaption {
-	font-style: italic;
-}
-
-
-/* portfolio and featured image lightbox - all to be adjusted */
-
-.lf-featured-image-opt {
-
-	width: 100%;
-	display: none;
-	float: left;
-	position: relative;
-	text-align: center;
-	margin: -48px 0 0;
-	background-color: transparent;
-	cursor: pointer;
-	@include opacity( 0 );
-	z-index: 3;
-
-	&:hover { 
-		opacity: 1;
-	}
-	
-}
-
-.lf-featured-image-opt-lightbox { 
-
-	width: 100%;
-	@include block( l );
-	position: relative;
-	text-align: center;
-	margin: -54px 0 0;
-	background-color: transparent;
-	cursor: pointer;
-	z-index: 3;
-}
-
-.lf-featured-image-opt-square-small { 
-
-	height: 18px;
-	width: 18px;
-	display: inline-block;
-	margin: 3px;
-	border-width: 3px;
-	border-style: solid;
-	border-color: #fff;
-	@include border-radius( 50px, 50px );
-}
-
-.lf-featured-image-opt-square-big { 
-
-	height: 30px;
-	width: 30px;
-	display: inline-block;
-	cursor: pointer;
-	border-width: 3px;
-	border-style: solid;
-	border-color: #fff;
-	@include border-radius( 50px, 50px );
-}
-
-.lf-featured-image-lightboxed {
-
-	height: 85%;
-	width: 85%;
-	@include block( l );
-	position: fixed;
-	top: 2.5%;
-	left: 5%;
-	padding: 2.5%;
-	text-align: center;
-	z-index: 25;
-
-	img {
-		height: 100%;
-		width: auto;
-		z-index: 25;
-		@include opacity(1);
-		@include single-box-shadow();
-	}
-}
-
-
-.lf-portfolio-piece-wrap {
-
-	width: 100%;
-	@include block( l );
-}
-
-.lf-portfolio-dimension-quarter,
-.lf-portfolio-dimension-half,
-.lf-portfolio-dimension-third {
-
-	@include block( l, ib );
-	min-height: 24px;	
-}
-
-.lf-portfolio-dimension-quarter {
-
-	width: 22%;
-	padding: 0 1.5%;
-}
-
-.lf-portfolio-dimension-half { 
-
-	width: 47%;
-	padding: 0 1.5%;
-}
-
-.lf-portfolio-dimension-third {
-
-	width: 30%;
-	padding: 0 1.65%;
-}
-
-.lf-portfolio-posttitle {
-
-	margin: 24px 0 12px;
-}
-
-.lf-portfolio-posttitle a:hover  {
-
-	text-decoration: none;
-	border-bottom { 
-		width: 4px;
-		style: solid;
-	}
-}
-
-.lf-portfolio-desc {
-
-	width: 100%;
-	padding: 24px 0;
-}
-
-.lf-portfolio-filter-bar {
-
-	width: 95%;
-	margin: 0 0 24px;
-    padding: 0 2.5%;
-}
-
-.lf-portfolio-filter-text,
-.lf-portfolio-filter-text-info {
-
-	display: inline-block;
-    font-size: 0.75rem;
-	cursor: pointer;
-    padding: 6px 12px;
-}
-
-.lf-portfolio-filter-text,
-.lf-portfolio-filter-text-info,
-.lf-portfolio-filter-text:hover,
-.lf-portfolio-filter-text-info:hover  {
-
-	@include single-transition( all, 700ms );
-}
-
-.lf-portfolio-filter-text-info {
-
-	font-style: italic;
-}
-
-
-.lf-portfolio-filter-hidden {
-
-	display: none;
-}
-
-/* shortcodes */
-
-// - only video styles kept from original */
-.lf-shortcode-video-wrap { 
-	
-	height: 0;
-	position: relative;
-	overflow: hidden;
-
-	iframe, object, embed { 
-		height: 100%;
-		width: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-}
-
-.lf-youtube-video {
-
-	width: 100%;
-	@include block( l  );
-}
-
-// buttons
-@mixin but( $c1, $s, $t, $name ) {
-	
-	$shade  : darken( $s, 15% );
-	$border : darken( $s, 25% );
-	$gari   : linear-gradient( $c1, $s, $shade );
-	$hover  : linear-gradient( $c1, lighten($s, 2%), lighten($shade, 2%) );
-	
-	.lf-shortcode-button-medium-#{$name} {
-		color: $t;
-		padding: 14px;
-		margin: 0 7px;
-		border: 1px solid $border;
-		text-decoration: none;
-		@include single-box-shadow( rgba( 0, 0, 0, 0.2 ), 0px, 2px, 3px, 0 );
-		@include background($gari);
-		@include border-radius( 5px);
-		@include single-box-shadow( rgba( 0, 0, 0, 1), 1px 1px 2px 0px );
-
-		&:hover { 
-			@include background($hover);
-		}
-	}
-
-	.lf-shortcode-button-large-#{$name} { 
-		
-		@extend .lf-shortcode-button-medium-#{$name};
-		padding: 21px 28px;
-	}
-
-	.lf-shortcode-button-small-#{$name} { 
-		
-		@extend .lf-shortcode-button-medium-#{$name};
-		padding: 7px 14px;
-	}
-}
-
-// Default Button
-@include but( top, #fff,    #222, 'default' );
-// Pink Button
-@include but( top, #ea577e, #fff, pink );
-// Yellow Button
-@include but( top, #FFD573, #fff, yellow );
-// Blue Button
-@include but( top, #A7DBD8, #fff, blue );
-// Red Button
-@include but( top, #F25E5E, #fff, red );
-// Green Button
-@include but( top, #7BBD82, #fff, green );
-// Black Button
-@include but( top, #242424, #fff, black );
-// Gray Button
-@include but( top, #e5e5e5, #222, gray );
-
-// Alert boxes 
-@mixin alert( $col, $name ) {
-
-	$color : lighten( $col, 12% );
-	$bor   : darken(  $col, 20% );
-	$t     : darken(  $col, 40% );
-
-	.alert-box-#{$name} {
-
-		color: $t;
-		padding: 14px;
-		margin: 0 0 17px;
-		border-bottom : 1px solid $col;
-		border-top : 1px solid $col;
-		background-color: $color;
-		clear: both;
-		@include single-box-shadow( rgba( 0, 0, 0, 0.2 ), 0px, 2px, 3px, 0 );
-	}
-}
-
-// Red 
-@include alert( #F25E5E, red );
-// Gray
-@include alert( #e5e5e5, gray );
-// Yellow
-@include alert( #FFD573, yellow );
-// Blue
-@include alert( #A7DBD8, blue );
-// Green
-@include alert( #7BBD82, green );
-
-// Columns
-@mixin columns( $number, $name ) {
-
-	$si : ( ( 100% - ( 5% * ( $number - 1) ) ) / $number );
-
-	.lf-column-size-standard-#{$name} { 
-
-		width: $si;
-		display: inline;
-		float: left;
-		margin: 0 5% 34px 0;
-	}
-	.lf-column-size-last-#{$name} { 
-
-		@extend .lf-column-size-standard-#{$name};
-		margin: 0 0 43px;
-	}
-}
-
-// Half 
-@include columns( 2, half );
-// Third
-@include columns( 3, third );
-// Quarter
-@include columns( 4, quarter );
-// Sixth 
-@include columns( 6, sixth );
-
-// Toggle 
-
-$tcol : lighten( #e7e7e7, 5% );
-
-.tog-lf { 
-	width: 100%;
-	float: left;
-	margin: 28px 0 0;
-	@include single-box-shadow(0 1px 1px rgba(0, 0, 0, 0.1) );
-
-	.tog-lf-ti { 
-
-		width: 93%;
-		display: block;
-		float: left;
-		padding: 14px 4.5% 14px 2.5%;
-		border: 1px solid darken( $tcol, 1% );
-		background-color: $tcol;
-		@include border-radius( 2px);
-		cursor: pointer;
-
-		&:hover { 
-			border: 1px solid darken( $tcol, 5% );
-		}
-	}
-
-	.tog-lf-c { 
-
-		margin: 1px 14px 0 0;
-		height: 16px;
-		float: left;
-	}
-
-	.lf-tog-p { 
-		padding: 21px 2.5%;
-		float: left;
-		overflow: hidden;
-		border-bottom: 1px solid darken( $tcol, 1% );
-		border-left  : 1px solid darken( $tcol, 1% );
-		border-right : 1px solid darken( $tcol, 1% );
-
-	}
-}
-
-// Tab 
-
-.tab-wrap-lf { 
-
-	width: 100%;
-	float: left;
-	margin: 28px 0 0;
-
-	.tab-head-lf { 
-		
-		width: 100%;
-		float: none;
-		list-style-type: none;
-		margin: 0;
-		@include pie-clearfix;
-
-		li {
-			display: inline;
-			float: left;
-			position: relative;
-			z-index: 5;
-			margin-bottom: -1px;
-
-		}
-
-		.tab-chosen-li-lf { 
-
-
-			a {	
-				padding-top: 15px;
-				margin: 1px 5px 0 0;
-				background-color: #fff;
-				border-top: 1px solid darken( $tcol, 5% );
-				border-right: 1px solid darken( $tcol, 5% );
-				border-left: 1px solid darken( $tcol, 5% );
-				@include border-radius( 2px 2px 0 0);
-			}
-		}
-
-		a { 
-			display: block;
-			padding: 14px 21px;
-			margin: 1px 5px 0 0;
-			border-top   : 1px solid darken( $tcol, 1% );
-			border-left  : 1px solid darken( $tcol, 1% );
-			border-right : 1px solid darken( $tcol, 1% );
-			overflow: hidden;
-			text-decoration: none;
-			color: inherit;		
-			background-color: $tcol;
-			cursor: pointer;
-
-
-			&:hover { 
-				border-top: 1px solid darken( $tcol, 5% );
-				border-right: 1px solid darken( $tcol, 5% );
-				border-left: 1px solid darken( $tcol, 5% );
-			}
-		}
-	}
-
-
-	.tab-box-lf { 
-
-		width: 95%;
-		padding: 21px 2.5%;
-		border: 1px solid darken( $tcol, 1% );	
-	}
-
-}
-
-.tab-close-lf { 
-
-	left: -10000px;
-	position: absolute;
-}
-
-
-
-
-/* advert styles */
 .lf-resp-aside-wrap { 
 
 	@include block( l, ib );

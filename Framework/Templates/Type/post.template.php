@@ -319,6 +319,8 @@ class template_post_formats extends branch_content
 	protected function _gallery()
 	{ ?>
 
+		<?php global $post; ?>
+
 		<?php $post_meta    = $this->template_paramaters['post_meta']; ?> 
 
 		<?php $post_helpers = $this->template_paramaters['post_helpers']; ?>
@@ -342,11 +344,13 @@ class template_post_formats extends branch_content
 					<?php endforeach; ?>
 				
 					<script>
-						$( window ).load( function () {  
-							use.slider( 
-								"<?php echo $post_meta['post_gallery_format_effect']; ?>", 
-								"#lf-gallery-slider-<?php echo $post->ID; ?>" ); 
-							});
+						!function ($) { 
+							$( window ).load( function () {  
+								use.slider( 
+									"<?php echo $post_meta['post_gallery_format_effect']; ?>", 
+									"#lf-gallery-slider-<?php echo $post->ID; ?>" ); 
+								});
+						}(jQuery);
 					</script>
 
 				</div>

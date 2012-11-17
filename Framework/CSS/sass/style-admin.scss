@@ -85,13 +85,15 @@
 		    border: 7px solid #dfdfdf;
 		    cursor: pointer;
 		    vertical-align: middle;
+		    clear: none;
 		}
 
 		.lf-removable-image { 
 
-			@extend .#{$m}-td-image;
+			@extend .lf-uploaded-image;
+			display: inline-block;
 			float: left;
-	    	background: url("./Includes/images/minus.png") no-repeat scroll 50% 50% #999;
+	    	background: url("./Includes/Images/minus.png") no-repeat scroll 50% 50% #999;
 
 	    	img { 
 
@@ -104,6 +106,14 @@
 			    	opacity: 0.15;
 			    }
 	    	}
+		}
+
+		.#{$m}-td-button-wrap { 
+
+			width: 50%;
+			margin: 10px 10px 10px 35%;
+			float: left;
+			display: block;
 		}
 
 		.#{$m}-td-texture-radio {

@@ -25,11 +25,11 @@ class branch_content extends alpha_tree_template
 		</div>
 <?php }
 
-	protected function _sidebar ($sidebar_name)
+	protected function _sidebar ($sidebar_paramaters)
 	{ ?>
-		<aside class="liquidflux-aside">
+		<aside class="liquidflux-aside-<?php echo $sidebar_paramaters['sidebar_size']; ?>">
 			
-			<?php dynamic_sidebar($sidebar_name); ?>
+			<?php dynamic_sidebar($sidebar_paramaters['name_of_sidebar_to_get']); ?>
 
 		</aside>
 	<?php }
@@ -72,26 +72,27 @@ class branch_content extends alpha_tree_template
 			<div class="lf-article-author-inner-wrap-box">
 									
 				<div class="lf-article-author-text-wrap">
+
+					<div class="lf-author-img">
 										
-					<h3 class="lf-article-author-box-h3">
-												
-						<?php the_author_meta('user_url'); ?>
+						<a href="<?php the_author_meta('user_url'); ?>">
+
+							<?php echo get_avatar( get_the_author_meta('user_email') );?>
+
+						</a>
+											
+					</div>
+										
+					<h3>
+						
+						<a href="<?php the_author_meta('user_url'); ?>"><?php the_author_meta('display_name'); ?></a>
 											
 					</h3>									
 										
-					<p class="lf-article-author-box-text" >
-												
-						<?php the_author_meta('description'); ?>
-													
-					</p>
-
+					<p><?php the_author_meta('description'); ?></p>
+					
 				</div>
 										
-				<div class="lf-article-author-img-wrap">
-									
-					<?php echo get_avatar( get_the_author_meta('user_email') );?>
-										
-				</div>
 						
 			</div>
 			

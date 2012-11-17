@@ -1,6 +1,11 @@
+// Include Compass
 @import "compass/utilities";
 @import "compass/typography";
 @import "compass/css3";
-@import "mixins";
-@import "navigation";
-@import "custom_mixins";
+// Include Mixins
+@import "mixins/mixins.mixins";
+@import "mixins/navigation.mixins";
+@import "mixins/garident.mixins";
+// Include Parts
+@import "parts/shortcodes";
+@import "parts/lightbox";
