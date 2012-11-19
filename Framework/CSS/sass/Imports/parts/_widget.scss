@@ -1,0 +1,102 @@
+//
+//
+//
+//	Widget 
+//	
+//	
+
+@import "./compass/utilities";
+@import "./compass/css3";
+
+$widget_text_size: #{"<?php echo $o['widget_text_size'] . 'px'; ?>"};
+$widget_text_line_height: #{"<?php echo ( $o['widget_text_size'] + 4 ) . 'px'; ?>"};
+$widget_background: #{"<?php echo '#' . $o['widget_background']; ?>"};
+$widget_color: #{"<?php echo '#' . $o['widget_color']; ?>"};
+$widget_title_size: #{"<?php echo $o['widget_title_size'] . 'px' ; ?>"};
+$widget_title_font: #{"<?php echo $o['widget_title_font']; ?>"};
+$widget_title_style: #{"<?php echo $o['widget_title_style']; ?>"};
+$widget_title_weight: #{"<?php echo $o['widget_title_weight']; ?>"};
+$widget_highlight: #{"<?php echo '#' . $o['widget_highlight']; ?>"};
+$prefix: liquidflux;
+
+.#{$prefix}-widget { 
+			
+	@include pie-clearfix;
+	@include single-box-shadow;
+	display: block;
+	padding: 21px;
+	margin: 0 21px 42px;
+	background-color: $widget_background;
+	color: $widget_color;
+	font-size: $widget_text_size;
+	line-height: $widget_text_line_height;
+	font-family: $post_text_font;
+
+	h3 { 
+
+	    margin: 0 0 14px;
+	    font-size: 12px;
+	    color: inherit;
+	    font-family: $widget_title_font;
+	    font-size: $widget_title_size;
+	    line-height: $widget_title_size;
+	    font-style: $widget_title_style;
+	    font-weight: $widget_title_weight;
+	}
+
+	p {
+		color: inherit;
+		font-family: inherit;
+		font-size: inherit;	
+		line-height: inherit;
+		@include pie-clearfix;
+	}
+
+	div { 
+
+		@extend p;
+	}
+
+	ul {
+		@extend p;
+		li { 
+
+			margin: 0 0 7px;
+		}
+	}
+
+	a { 
+		@extend p;
+		color: $widget_highlight;
+	}
+
+	.#{$prefix}-widget-button { 
+
+		color: $widget_background;
+		background: $widget_color;
+		padding: 7px;
+		display: block;
+
+		&:hover { 
+
+			text-decoration: underline;
+		}
+	}
+
+	.#{$prefix}-widget-field { 
+
+		@extend .#{$prefix}-widget-button;
+		margin: 7px 0;
+		border: none;
+
+		&:hover { 
+
+			text-decoration: none;
+		}
+	}
+
+	input[type="text"] { 
+
+		@extend .#{$prefix}-widget-field;
+	}
+}

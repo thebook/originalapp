@@ -1,0 +1,114 @@
+//
+//
+//
+//	Body meta 
+//
+//
+//
+
+@import "./compass/utilities";
+@import "./compass/css3";
+
+$post_image_hover_color: #{"<?php echo '#' . $o['post_image_hover_color']; ?>"};
+$post_meta_size: #{"<?php echo $o['post_meta_size'] . 'px'; ?>"};
+$post_meta_color: #{"<?php echo '#' . $o['post_meta_color']; ?>"};
+$post_background: #{"<?php echo '#' . $o['post_background']; ?>"};
+
+.lf-meta-text-tags {
+
+	display: inline;
+	float: right;
+	padding: 21px 21px;
+	margin: 21px 0 21px 14px;
+	font-family: $post_text_font;
+	font-size: $post_meta_size;
+	line-height: $post_meta_size;
+	color: $post_meta_color;
+	background-color: $post_background;
+
+	a { 
+		color: inherit;
+		text-decoration: none;
+	}
+	
+	.lf-meta-edit { 
+
+		margin-left: 12px;
+		
+		.post-edit-link { 
+
+			&:hover { 
+
+				text-decoration: none;
+			}
+			&:before { 
+
+				content: "5"
+			}
+		}
+	}
+}
+
+//
+//
+//
+//	Featured Image
+//	
+//	
+//	
+//	
+.lf-featured-image {
+
+	width: 240px;
+	display: inline;
+	float: left;
+	padding: 14px;
+	margin: 21px 21px 21px 0px;
+	background-color: $post_background;
+
+	a {
+		width: 100%;
+		display: block;
+		float: left;
+		vertical-align: middle;
+		position: relative;
+		z-index: 2;
+	}
+
+	img { 
+		height: auto;
+		width: 100%;
+		vertical-align: middle;
+		position: relative;
+		cursor: pointer;
+	}
+}
+
+
+
+.lf-featured-icon-wrap { 
+
+	width: 100%;
+	height: 100%;
+	display: block;
+	float: left;
+	position: relative;
+	vertical-align: middle;
+	background: $post_image_hover_color url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/open.png") 50% 50% no-repeat;
+	z-index: 1;
+
+	img { 
+
+		@include single-transition( all, 400ms );
+
+		&:hover { 
+			@include opacity( 0.2);
+			@include single-transition( all, 400ms );
+		}
+	}
+
+	.lf-post-format-img {
+
+		@extend img;
+	}
+}
