@@ -93,7 +93,7 @@ class template_post_formats extends branch_content
 			<!-- Video player -->
 			<?php if ( $embed !== '' ) : ?>
 
-				<?php lf_video_format_embed( $embed, $h ); ?>
+				<?php new helper_video( $embed, $h ); ?>
 				
 			<?php elseif ( $ogv !== '' or $m4v !== '' ) : ?>
 				

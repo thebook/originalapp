@@ -3,7 +3,7 @@
 /**
 * A helper class for the post meta fields
 */
-class helper_post_meta
+class helper_post_meta extends helper_time
 {
 	
 	protected function _show_publish_date_author_and_comment_number_of_post () 

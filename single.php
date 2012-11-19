@@ -20,20 +20,6 @@ get_header();
 // }
 
 
-new helper_video('
-<iframe 
-	src="http://player.vimeo.com/video/53044322?badge=0" 
-	width="500" 
-	height="281" 
-	frameborder="0" 
-	webkitAllowFullScreen 
-	mozallowfullscreen 
-	allowFullScreen>
-</iframe> 
-
-<p><a href="http://vimeo.com/52728056">Life Is Born (from All.I.Can)</a> from <a href="http://vimeo.com/sherpascinema">Sherpas Cinema</a> on <a href="http://vimeo.com">Vimeo</a>.</p>');
-
-
 $manifest_array = array(
 		array(
 			'name' => 'header',

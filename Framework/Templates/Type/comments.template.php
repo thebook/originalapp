@@ -8,12 +8,15 @@ class template_comments extends branch_content
 	function __construct($template_paramaters) 
 	{ ?>
 		<?php $this->_init_post_object(); ?>
+
+		<?php $this->_init_helpers(); ?>
 		
 		<div class="lf-comments-wrap">	
 			
 			<?php $this->_get_every_template_part_and_pass_paramaters($template_paramaters); ?>
 			
 		</div>
+
 <?php }
 
 	public function _check_if_comments_are_password_protected ()
@@ -59,45 +62,68 @@ class template_comments extends branch_content
 		
 		<?php $GLOBALS['comment'] = $comment_id; ?>
 		
-		<?php $comment_publish_date = get_comment_date('d/m/Y') .' | '. get_comment_time(); ?>
+		<?php $comment_publish_date = get_comment_date('j/n/Y/G/i/s'); ?>
+
+		<?php $gravatar = $this->_check_what_type_comment_id_is_and_make_an_email_string($comment_id); ?>
    			
 		<li class="lf-comment-article <?php echo $current_depth; ?>" id="comment-of-the-number-<?php comment_ID(); ?>"> 
 				
-			<div class="lf-comment-inner-wrap">
+			<div class="comment">
 				
-				<div class="lf-comment-avatar">
+				<div 	id="lf-gravatar-<?php comment_ID(); ?>" 
+						onmouseover=""
+					 	class="lf-comment-avatar">
 											
-					<?php echo get_avatar( $comment_id, '40' ); ?>
-																											
+					<?php echo get_avatar( $comment_id, '36' ); ?>
+					
+					<div style="display: none;" class="lf-hovercard hovercard-for-<?php echo $gravatar; ?>">
+						<span class="post-hover-arrow"></span>
+					</div>
+
+					<script>
+						!function ($) { 
+							$(document).ready( 
+								function () {
+									comment.gravatar_hovercard({
+										hash_link : '<?php echo $gravatar; ?>', 
+										id        : 'lf-gravatar-<?php comment_ID(); ?>'
+									});
+								});
+						}(jQuery);
+					</script>	
+
 				</div>	
+
 				
 				<address class="lf-author">
 
 					<?php echo comment_author_link(); ?>
 					
 				</address>
+
+				<?php if ( $current_depth > 1 ) : ?>
+
+					<span class="lf-reply"></span>
+
+				<?php endif; ?>
 														
 				<time class="lf-comment-date" datetime="<?php echo $comment_publish_date; ?>" pubdate>
 													
-					<?php echo $comment_publish_date; ?>
+					&middot; <?php $this->template_paramaters['post_helpers']->how_many_days_ago($comment_publish_date); ?>
 													
 				</time>
-				
-				<?php if ( $current_depth < 5 ) : ?>
-										 						
-					<span class="lf-reply" title="Reply to this comment">
-
-						<?php comment_reply_link(array( 'depth' => $current_depth, 'max_depth' => 5, 'reply_text' => 'Reply', 'respond_id' => 'lf-comment-form-wrap' ), $comment_id ); ?>
-					
-					</span>
-				
-				<?php endif; ?>
-					
-				<?php lf_comment_edit_link(); ?>
-								
+										 												
 				<div id="comment-<?php comment_ID(); ?>" class="lf-comment-text">
 																						
 					<?php comment_text(); ?>
+
+					<p class="lf-comment-options">
+						
+						<?php comment_reply_link(array( 'depth' => $current_depth, 'max_depth' => 5, 'reply_text' => 'Reply', 'respond_id' => 'lf-comment-form-wrap' ), $comment_id ); ?>
+
+						<?php lf_comment_edit_link(''); ?>
+
+					</p>
 																												
 				</div>
 			
@@ -118,6 +144,39 @@ class template_comments extends branch_content
 					)); 			
 	  ?></div>	
 <?php }
+
+	protected function _check_what_type_comment_id_is_and_make_an_email_string ($comment_id)
+	{
+		
+		if ( is_numeric($comment_id) ) :
+
+			$get_user = get_userdata((int)$comment_id);
+
+			($get_user) and $email = $get_user->user_email;
+		 
+		elseif ( is_object($comment_id) ) :
+		
+
+		    if ( !empty($comment_id->user_id) ) :
+		    
+		        $get_user = get_userdata((int)$comment_id->user_id);
+		        
+		        ( $get_user ) and $email = $get_user->user_email;
+		                    
+		    elseif ( !empty($comment_id->comment_author_email) ) :
+		        
+		        $email = $comment_id->comment_author_email;
+		    
+		    endif;
+
+		else :
+
+			$email = $comment_id;
+
+		endif; 
+		
+		return md5( strtolower( trim($email) ) );
+	}
 }
 
 ?>		

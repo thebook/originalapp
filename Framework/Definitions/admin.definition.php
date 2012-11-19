@@ -760,10 +760,21 @@
 																array(
 																	'type'        => 'color',
 																	'title'       => 'Highlight Color',
-																	'description' => 'The highlight color are the border colors of your comments',
+																	'description' => 'Sets the color of your commenters names',
 																	'array'       => 'main_options',
 																	'name'        => 'comments_highlight',
-																	'saved'       => 'ffffff' )) ),
+																	'saved'       => 'bf3e2a' )) ),
+														// Comments second highlihgt color  
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Second Highlight',
+																	'description' => 'Sets the color of your comments meta and borders',
+																	'array'       => 'main_options',
+																	'name'        => 'comments_highlight_two',
+																	'saved'       => '444444' )) ),
 														// Comments header size 
 														array(
 															'f' => array( $this, 'create'),
@@ -790,6 +801,19 @@
 																	'saved'       => '24',
 															        'min'         => '10',
 																	'max'         => '42'  )) ),
+														// Commetns text size 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'slider',
+																	'title'       => 'Comments Text Size',
+																	'description' => 'The size of your comments body text',
+																	'array'       => 'main_options',
+																	'name'        => 'comments_text_size',
+																	'saved'       => '16',
+															        'min'         => '10',
+																	'max'         => '36'  )) ),
 														// Comment form header text 
 														array(
 															'f' => array( $this, 'create'),

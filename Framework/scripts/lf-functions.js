@@ -223,7 +223,43 @@
 					tab.tab( this );		
 				});
 		}
+	},
+
+	comment = { 
+
+		profiles : [],
+		gravatar_hovercard : function (options) {
+
+			var profile_array = this.profiles;
+			var profile_hash  = options.hash_link;
+			var avatar		  = $('#' + options.id);
+			var hovercard     = avatar.children('.lf-hovercard');
+			
+			avatar.on('hover',
+				function () { 
+					if ( $.inArray(profile_hash , profile_array ) === -1 ) {
+						$.getScript('http://www.gravatar.com/' + profile_hash  + '.json?callback=comment.append');
+						profile_array.push(profile_hash );
+						console.log('adding to array');
+
+					}
+					
+					hovercard.css({'display' : 'block'});
+				}
+			);
+		},
+
+		append : function (hovercard) { 
+
+			var profile   = hovercard.entry[0];
+			var hovercard = $('.hovercard-for-' + profile.requestHash );
+			var profile_about = profile.aboutMe.substr(0,80)+(this.length>80?'&hellip;':'...');
+
+			hovercard.append('<a href="'+ profile.profileUrl +'"><img src="'+ profile.thumbnailUrl +'"></a>');
+			hovercard.append('<div><header><a href="'+ profile.profileUrl +'"><h3>'+ profile.displayName +'</h3></a></header><p>'+ profile_about +'</p><footer><a href="">More</a></footer></div></div>');
+		}
 	};
+
 })(jQuery);
 
 /**

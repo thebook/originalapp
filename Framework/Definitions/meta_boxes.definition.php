@@ -437,12 +437,14 @@
 														'f' => array( $this, 'create'),
 														'o' => array(
 															array(
-																'type' => 'text',
+																'type' => 'slider',
 																'title' => 'Embed Height',
-																'description' => 'Height of your embeded video, the default is 500px',
+																'description' => 'Height of your embeded video',
 																'array' => 'main_meta',
 																'name' => 'post_video_format_height',
-																'saved' => '')) ),
+																'saved' => '500',
+																'min'   => '250',
+																'max'   => '700')) ),
 													array(
 														'f' => array( $this, 'create'),
 														'o' => array(
