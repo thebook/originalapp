@@ -1,5 +1,8 @@
 # Ignore basic things like pngs, and sass caches
 *.png 
-.sass-cache/
-/Framework/CSS/sass/imports/compass
-/Framework/CSS/Includes
+*.scss
+*.gif
+*.eot
+*.svg
+*.ttf
+*woff
