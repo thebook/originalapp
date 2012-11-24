@@ -347,3 +347,190 @@ $a: lf-admin;
 }
 
 @include jgrowl( #fff, #222 );
+
+
+
+//
+//
+//
+//	Layout create
+//	
+//	
+//	
+
+.layout-builder { 
+
+	display: none;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	overflow: visible;
+	z-index: 500000;
+	background: #fff;
+
+	iframe { 
+		height: 100%;
+		width: 100%;
+	}
+}
+
+.close-layout-button { 
+
+	position: fixed;
+	z-index: 500001;
+	display: none;
+	padding: 3px 8px;
+	line-height: 15px;
+	top: 90%;
+	left: 20px;
+	@include single-transition( opacity 0.4s );
+}
+
+.layout-builder-options-box { 
+
+	@include pie-clearfix;
+	width: 45%;
+	display: block;
+	padding: 2.5%;
+	left: 25%;
+	position: absolute;
+	z-index: 500002;
+	background: #f5f5f5;
+	@include border-radius( 5px 5px 0px 0px);
+	@include single-box-shadow( rgba(0,0,0, 0.2), -1px, 1px, 3px );
+
+	table { 
+
+		border-collapse: collapse;
+    	clear: both;
+    	@include pie-clearfix;
+    	font-size: 12px;
+    	font-family: Arial;
+
+    	span { 
+    		font-weight: normal;
+    		text-align: left;
+    		text-shadow: 0 1px 0 #FFFFFF;
+    	}
+
+    	select { 
+
+    		background-color: #FFFFFF;
+    		border-color: #DFDFDF;
+    		border-radius: 3px 3px 3px 3px;
+    		border-style: solid;
+    		border-width: 1px;
+    		line-height: 15px;
+    		padding: 2px
+    	}
+
+    	input[type="text"] { 
+    		@extend select;
+    	}
+
+    	textarea { 
+    		@extend select;
+    	}
+	}
+}
+
+@include table-data('layout-builder-options', 10px 10px 10px 0, 10px);
+
+.layout_builder_button { 
+
+	float: right;
+	display: block;
+	font-family: sans-serif;
+	text-align: start;
+	height: 15px;
+	margin: 10px 10px;
+	line-height: 15px;
+    padding: 3px 8px;
+    background: url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/white-grad.png") repeat-x scroll left top #F2F2F2;
+    text-shadow: 0 1px 0 #FFFFFF;
+    color: #464646;
+    border: 1px solid #bbb;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: none;
+    -moz-box-sizing: content-box;
+    @include border-radius(11px);
+
+		&:hover { 
+			border-color: #666;
+			color: #000;
+		}
+
+		&:active { 
+			background: url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/white-grad-active.png") repeat-x;
+		}
+}
+
+.layout-builder-options { 
+
+	@include pie-clearfix;	
+	height: 100%;
+	width: 20%;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #f5f5f5;
+	font-family: Georgia;
+
+	.layout-builder-save-options { 
+
+		@include pie-clearfix;
+		display: block;
+		border-bottom: 1px solid #dfdfdf;
+		padding: 20px 10px;
+		
+		button { 
+			@extend .layout_builder_button;	
+			margin: 0 10px 0 0;		
+			float: left;
+		}
+	}
+
+
+	ul { 
+
+		display: block; 
+		width: 100%;
+		float: left;
+		padding: 0;
+		margin: 0px;
+
+		li { 
+			
+			border-top: 1px solid #fff;
+			border-bottom: 1px solid #dfdfdf;
+			margin: 0px;
+			padding: 10px 20px;
+			cursor: pointer;
+			@include background( linear-gradient( top, #f5f5f5, #eeeeee ));
+
+			&:hover { 
+				@include background( linear-gradient( top, #808080, #6d6d6d ));
+				color: #fff;
+			}
+		}
+	}
+}
+
+.layout-builder-canvas { 
+
+	width: 80%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 20%;
+	z-index: 1;
+	@include single-box-shadow( rgba(0,0,0, 0.1), 2px, 0, 5px, 3px);
+}
+
+

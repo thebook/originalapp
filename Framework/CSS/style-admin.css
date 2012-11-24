@@ -1,10 +1,10 @@
-/* line 11, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 11, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-video-wrap {
   height: 0;
   position: relative;
   overflow: hidden;
 }
-/* line 17, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 17, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-video-wrap iframe, .lf-shortcode-video-wrap object, .lf-shortcode-video-wrap embed {
   height: 100%;
   width: 100%;
@@ -13,14 +13,14 @@
   left: 0;
 }
 
-/* line 26, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 26, sass/Imports/parts/_shortcodes.scss */
 .lf-youtube-video {
   width: 100%;
   float: left;
   display: block;
 }
 
-/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-default, .lf-shortcode-button-large-default, .lf-shortcode-button-small-default {
   color: #222222;
   padding: 14px;
@@ -45,7 +45,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-default:hover, .lf-shortcode-button-large-default:hover, .lf-shortcode-button-small-default:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dedede));
   background: -webkit-linear-gradient(top, #ffffff, #dedede);
@@ -55,17 +55,17 @@
   background: linear-gradient(top, #ffffff, #dedede);
 }
 
-/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-default {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-default {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-pink, .lf-shortcode-button-large-pink, .lf-shortcode-button-small-pink {
   color: white;
   padding: 14px;
@@ -90,7 +90,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-pink:hover, .lf-shortcode-button-large-pink:hover, .lf-shortcode-button-small-pink:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eb6085), color-stop(100%, #e21c51));
   background: -webkit-linear-gradient(top, #eb6085, #e21c51);
@@ -100,17 +100,17 @@
   background: linear-gradient(top, #eb6085, #e21c51);
 }
 
-/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-pink {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-pink {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-yellow, .lf-shortcode-button-large-yellow, .lf-shortcode-button-small-yellow {
   color: white;
   padding: 14px;
@@ -135,7 +135,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-yellow:hover, .lf-shortcode-button-large-yellow:hover, .lf-shortcode-button-small-yellow:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffd87d), color-stop(100%, #ffc131));
   background: -webkit-linear-gradient(top, #ffd87d, #ffc131);
@@ -145,17 +145,17 @@
   background: linear-gradient(top, #ffd87d, #ffc131);
 }
 
-/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-yellow {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-yellow {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-blue, .lf-shortcode-button-large-blue, .lf-shortcode-button-small-blue {
   color: white;
   padding: 14px;
@@ -180,7 +180,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-blue:hover, .lf-shortcode-button-large-blue:hover, .lf-shortcode-button-small-blue:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aededb), color-stop(100%, #78c8c3));
   background: -webkit-linear-gradient(top, #aededb, #78c8c3);
@@ -190,17 +190,17 @@
   background: linear-gradient(top, #aededb, #78c8c3);
 }
 
-/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-blue {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-blue {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-red, .lf-shortcode-button-large-red, .lf-shortcode-button-small-red {
   color: white;
   padding: 14px;
@@ -225,7 +225,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-red:hover, .lf-shortcode-button-large-red:hover, .lf-shortcode-button-small-red:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f36767), color-stop(100%, #ed2121));
   background: -webkit-linear-gradient(top, #f36767, #ed2121);
@@ -235,17 +235,17 @@
   background: linear-gradient(top, #f36767, #ed2121);
 }
 
-/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-red {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-red {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-green, .lf-shortcode-button-large-green, .lf-shortcode-button-small-green {
   color: white;
   padding: 14px;
@@ -270,7 +270,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-green:hover, .lf-shortcode-button-large-green:hover, .lf-shortcode-button-small-green:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #82c088), color-stop(100%, #52a45b));
   background: -webkit-linear-gradient(top, #82c088, #52a45b);
@@ -280,17 +280,17 @@
   background: linear-gradient(top, #82c088, #52a45b);
 }
 
-/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-green {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-green {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-black, .lf-shortcode-button-large-black, .lf-shortcode-button-small-black {
   color: white;
   padding: 14px;
@@ -315,7 +315,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-black:hover, .lf-shortcode-button-large-black:hover, .lf-shortcode-button-small-black:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #292929), color-stop(100%, #050505));
   background: -webkit-linear-gradient(top, #292929, #050505);
@@ -325,17 +325,17 @@
   background: linear-gradient(top, #292929, #050505);
 }
 
-/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-black {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-black {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-gray, .lf-shortcode-button-large-gray, .lf-shortcode-button-small-gray {
   color: #222222;
   padding: 14px;
@@ -360,7 +360,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-gray:hover, .lf-shortcode-button-large-gray:hover, .lf-shortcode-button-small-gray:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eaeaea), color-stop(100%, #c4c4c4));
   background: -webkit-linear-gradient(top, #eaeaea, #c4c4c4);
@@ -370,17 +370,17 @@
   background: linear-gradient(top, #eaeaea, #c4c4c4);
 }
 
-/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-gray {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-gray {
   padding: 7px 14px;
 }
 
-/* line 93, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 93, sass/Imports/parts/_shortcodes.scss */
 .alert-box-red {
   color: #7a0a0a;
   padding: 14px;
@@ -394,7 +394,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 93, sass/Imports/parts/_shortcodes.scss */
 .alert-box-gray {
   color: #7f7f7f;
   padding: 14px;
@@ -408,7 +408,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 93, sass/Imports/parts/_shortcodes.scss */
 .alert-box-yellow {
   color: #a67400;
   padding: 14px;
@@ -422,7 +422,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 93, sass/Imports/parts/_shortcodes.scss */
 .alert-box-blue {
   color: #35817d;
   padding: 14px;
@@ -436,7 +436,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 93, sass/Imports/parts/_shortcodes.scss */
 .alert-box-green {
   color: #244828;
   padding: 14px;
@@ -450,7 +450,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 122, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 122, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-half, .lf-column-size-last-half {
   width: 47.5%;
   display: inline;
@@ -458,12 +458,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 129, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-half {
   margin: 0 0 43px;
 }
 
-/* line 122, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 122, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-third, .lf-column-size-last-third {
   width: 30%;
   display: inline;
@@ -471,12 +471,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 129, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-third {
   margin: 0 0 43px;
 }
 
-/* line 122, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 122, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-quarter, .lf-column-size-last-quarter {
   width: 21.25%;
   display: inline;
@@ -484,12 +484,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 129, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-quarter {
   margin: 0 0 43px;
 }
 
-/* line 122, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 122, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-sixth, .lf-column-size-last-sixth {
   width: 12.5%;
   display: inline;
@@ -497,12 +497,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 129, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-sixth {
   margin: 0 0 43px;
 }
 
-/* line 149, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 149, sass/Imports/parts/_shortcodes.scss */
 .tog-lf {
   width: 100%;
   float: left;
@@ -511,7 +511,7 @@
   -moz-box-shadow: 0px 0px 5px 0 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 5px 0 1px 1px rgba(0, 0, 0, 0.1);
 }
-/* line 155, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 155, sass/Imports/parts/_shortcodes.scss */
 .tog-lf .tog-lf-ti {
   width: 93%;
   display: block;
@@ -526,17 +526,17 @@
   border-radius: 2px;
   cursor: pointer;
 }
-/* line 166, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 166, sass/Imports/parts/_shortcodes.scss */
 .tog-lf .tog-lf-ti:hover {
   border: 1px solid #e7e7e7;
 }
-/* line 171, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 171, sass/Imports/parts/_shortcodes.scss */
 .tog-lf .tog-lf-c {
   margin: 1px 14px 0 0;
   height: 16px;
   float: left;
 }
-/* line 178, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 178, sass/Imports/parts/_shortcodes.scss */
 .tog-lf .lf-tog-p {
   padding: 21px 2.5%;
   float: left;
@@ -546,13 +546,13 @@
   border-right: 1px solid #f1f1f1;
 }
 
-/* line 191, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 191, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf {
   width: 100%;
   float: left;
   margin: 28px 0 0;
 }
-/* line 197, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 197, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf {
   width: 100%;
   float: none;
@@ -560,13 +560,13 @@
   margin: 0;
   *zoom: 1;
 }
-/* line 38, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .tab-wrap-lf .tab-head-lf:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 205, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 205, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf li {
   display: inline;
   float: left;
@@ -574,7 +574,7 @@
   z-index: 5;
   margin-bottom: -1px;
 }
-/* line 217, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 217, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf .tab-chosen-li-lf a {
   padding-top: 15px;
   margin: 1px 5px 0 0;
@@ -588,7 +588,7 @@
   -o-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
 }
-/* line 228, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 228, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf a {
   display: block;
   padding: 14px 21px;
@@ -602,31 +602,31 @@
   background-color: #f4f4f4;
   cursor: pointer;
 }
-/* line 242, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 242, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf a:hover {
   border-top: 1px solid #e7e7e7;
   border-right: 1px solid #e7e7e7;
   border-left: 1px solid #e7e7e7;
 }
-/* line 251, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 251, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-box-lf {
   width: 95%;
   padding: 21px 2.5%;
   border: 1px solid #f1f1f1;
 }
 
-/* line 260, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 260, sass/Imports/parts/_shortcodes.scss */
 .tab-close-lf {
   left: -10000px;
   position: absolute;
 }
 
-/* line 12, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 12, sass/Imports/parts/_lightbox.scss */
 .lbLoading {
   background: <?php echo '#' . $o['post_background']; ?> url(wp-content/themes/WhiteWhale/Framework/CSS/Includes/Images/loading.gif) no-repeat center;
 }
 
-/* line 16, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 16, sass/Imports/parts/_lightbox.scss */
 #lbOverlay {
   position: fixed;
   z-index: 9999;
@@ -638,14 +638,14 @@
   cursor: pointer;
 }
 
-/* line 27, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 27, sass/Imports/parts/_lightbox.scss */
 #lbCenter, #lbBottomContainer {
   position: absolute;
   z-index: 9999;
   overflow: hidden;
   background-color: <?php echo '#' . $o['post_background']; ?>;
 }
-/* line 33, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 33, sass/Imports/parts/_lightbox.scss */
 #lbCenter #lbImage, #lbBottomContainer #lbImage {
   position: absolute;
   left: 0;
@@ -653,7 +653,7 @@
   border: 10px solid <?php echo '#' . $o['post_background']; ?>;
   background-repeat: no-repeat;
 }
-/* line 41, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 41, sass/Imports/parts/_lightbox.scss */
 #lbCenter #lbPrevLink, #lbBottomContainer #lbPrevLink, #lbCenter #lbNextLink, #lbBottomContainer #lbCenter #lbNextLink, #lbCenter #lbBottomContainer #lbNextLink, #lbCenter #lbBottomContainer #lbNextLink, #lbBottomContainer #lbCenter #lbNextLink, #lbBottomContainer #lbNextLink {
   display: block;
   position: absolute;
@@ -662,12 +662,12 @@
   outline: none;
   left: 0;
 }
-/* line 50, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 50, sass/Imports/parts/_lightbox.scss */
 #lbCenter #lbNextLink, #lbBottomContainer #lbNextLink {
   right: 0;
 }
 
-/* line 59, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 59, sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom {
   font-size: 11px;
   color: inherit;
@@ -675,7 +675,7 @@
   text-align: left;
   padding: 5px 10px 10px 10px;
 }
-/* line 67, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 67, sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbCloseLink {
   display: block;
   float: right;
@@ -683,22 +683,22 @@
   vertical-align: baseline;
   color: inherit;
 }
-/* line 73, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 73, sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbCloseLink:before {
   font-size: 20px;
   line-height: 20px;
   content: "k";
 }
-/* line 80, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 80, sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbNumber, #lbBottomContainer #lbBottom #lbCaption {
   margin: 0  71px 0 7px;
 }
-/* line 84, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 84, sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbCaption {
   font-style: italic;
 }
 
-/* line 358, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 358, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker-open {
   width: 22px;
   height: 22px;
@@ -714,7 +714,7 @@
   background-color: transparent;
   cursor: pointer;
 }
-/* line 368, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 368, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker-open .colorpicker-handle {
   width: 8.8px;
   height: 8.8px;
@@ -722,7 +722,7 @@
   background: #363636;
 }
 
-/* line 376, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 376, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker {
   width: 390px;
   height: 180px;
@@ -742,7 +742,7 @@
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 390, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 390, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_color {
   width: 150px;
   height: 150px;
@@ -753,7 +753,7 @@
   overflow: hidden;
   cursor: crosshair;
 }
-/* line 401, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 401, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_color div {
   position: absolute;
   top: 0;
@@ -762,7 +762,7 @@
   height: 150px;
   background: url(../CSS/Includes/Images/colorpicker_overlay.png);
 }
-/* line 409, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 409, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_color div div {
   position: absolute;
   top: 0;
@@ -779,7 +779,7 @@
   -o-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 425, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 425, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hue {
   position: absolute;
   top: 15px;
@@ -789,7 +789,7 @@
   cursor: n-resize;
   background: url(../CSS/Includes/Images/hue.png) repeat-x;
 }
-/* line 434, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 434, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hue div {
   position: absolute;
   width: 8px;
@@ -803,7 +803,7 @@
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
 }
-/* line 449, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 449, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_new_color {
   position: absolute;
   width: 70px;
@@ -812,7 +812,7 @@
   top: 15px;
   background: #f00;
 }
-/* line 458, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 458, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_current_color {
   position: absolute;
   width: 70px;
@@ -821,7 +821,7 @@
   top: 15px;
   background: #fff;
 }
-/* line 303, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 303, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -829,12 +829,12 @@
   position: absolute;
   color: #999;
 }
-/* line 310, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 310, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r {
   top: 57px;
   left: 213px;
 }
-/* line 314, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 314, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r span {
   display: inline-block;
   float: right;
@@ -846,7 +846,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 326, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 326, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r input {
   width: 35px;
   display: inline-block;
@@ -864,7 +864,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 340, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r:before {
   content: "r:";
   width: 10px;
@@ -872,7 +872,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 303, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 303, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -880,12 +880,12 @@
   position: absolute;
   color: #999;
 }
-/* line 310, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 310, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g {
   top: 87px;
   left: 213px;
 }
-/* line 314, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 314, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g span {
   display: inline-block;
   float: right;
@@ -897,7 +897,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 326, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 326, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g input {
   width: 35px;
   display: inline-block;
@@ -915,7 +915,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 340, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g:before {
   content: "g:";
   width: 10px;
@@ -923,7 +923,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 303, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 303, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -931,12 +931,12 @@
   position: absolute;
   color: #999;
 }
-/* line 310, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 310, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b {
   top: 117px;
   left: 213px;
 }
-/* line 314, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 314, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b span {
   display: inline-block;
   float: right;
@@ -948,7 +948,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 326, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 326, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b input {
   width: 35px;
   display: inline-block;
@@ -966,7 +966,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 340, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b:before {
   content: "b:";
   width: 10px;
@@ -974,7 +974,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 303, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 303, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -982,12 +982,12 @@
   position: absolute;
   color: #999;
 }
-/* line 310, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 310, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h {
   top: 57px;
   left: 303px;
 }
-/* line 314, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 314, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h span {
   display: inline-block;
   float: right;
@@ -999,7 +999,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 326, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 326, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h input {
   width: 35px;
   display: inline-block;
@@ -1017,7 +1017,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 340, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h:before {
   content: "h:";
   width: 10px;
@@ -1025,7 +1025,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 303, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 303, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1033,12 +1033,12 @@
   position: absolute;
   color: #999;
 }
-/* line 310, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 310, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s {
   top: 87px;
   left: 303px;
 }
-/* line 314, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 314, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s span {
   display: inline-block;
   float: right;
@@ -1050,7 +1050,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 326, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 326, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s input {
   width: 35px;
   display: inline-block;
@@ -1068,7 +1068,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 340, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s:before {
   content: "s:";
   width: 10px;
@@ -1076,7 +1076,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 303, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 303, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1084,12 +1084,12 @@
   position: absolute;
   color: #999;
 }
-/* line 310, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 310, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b {
   top: 117px;
   left: 303px;
 }
-/* line 314, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 314, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b span {
   display: inline-block;
   float: right;
@@ -1101,7 +1101,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 326, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 326, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b input {
   width: 35px;
   display: inline-block;
@@ -1119,7 +1119,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 340, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b:before {
   content: "b:";
   width: 10px;
@@ -1127,7 +1127,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 475, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 475, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hex {
   position: absolute;
   width: 70px;
@@ -1135,7 +1135,7 @@
   left: 213px;
   top: 147px;
 }
-/* line 482, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 482, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hex input {
   margin: 0;
   padding: 2px;
@@ -1151,7 +1151,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 495, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 495, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_submit {
   position: absolute;
   width: 62px;
@@ -1166,7 +1166,7 @@
   top: 147px;
   overflow: hidden;
 }
-/* line 509, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 509, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_submit:before {
   content: "Use Color";
 }
@@ -1224,7 +1224,7 @@
   border-radius: 0px;
 }
 /* line 79, sass/style-admin.scss */
-.lf-admin-post-meta-table .lf-uploaded-image, .lf-admin-post-meta-table .lf-removable-image, .lf-admin-post-meta-table .lf-admin-table .lf-removable-image, .lf-admin-table .lf-admin-post-meta-table .lf-removable-image {
+.lf-admin-post-meta-table .lf-uploaded-image, .lf-admin-post-meta-table .lf-removable-image, .lf-admin-post-meta-table .lf-admin-table .lf-removable-image, .lf-admin-table .lf-admin-post-meta-table .lf-removable-image, .lf-admin-post-meta-table .layout-builder-options-table .lf-removable-image, .layout-builder-options-table .lf-admin-post-meta-table .lf-removable-image {
   width: 23.5%;
   height: auto;
   display: inline;
@@ -1312,7 +1312,7 @@
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 94, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 94, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider {
   width: 43%;
   height: 10px;
@@ -1331,7 +1331,7 @@
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
-/* line 108, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 108, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider .ui-slider-handle {
   width: 16px;
   height: 16px;
@@ -1354,7 +1354,7 @@
   background: -ms-linear-gradient(top, #f5f5f5, #eeeeee);
   background: linear-gradient(top, #f5f5f5, #eeeeee);
 }
-/* line 123, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 123, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider .ui-slider-range {
   height: 10px;
   -webkit-border-radius: 5px;
@@ -1366,17 +1366,17 @@
   position: absolute;
   z-index: 1;
 }
-/* line 133, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 133, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider-min, .lf-admin-post-meta-table .lf-admin-post-meta-td-slider-equal, .lf-admin-post-meta-table .lf-admin-post-meta-td-slider-value {
   float: left;
   clear: none;
   margin: 4px 0 0 5px;
 }
-/* line 139, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 139, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider-equal {
   margin: 4px 0;
 }
-/* line 145, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 145, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider-value {
   margin-left: 15px;
   padding: 0 10px;
@@ -1436,7 +1436,7 @@
   border-radius: 0px;
 }
 /* line 79, sass/style-admin.scss */
-.lf-admin-table .lf-uploaded-image, .lf-admin-table .lf-admin-post-meta-table .lf-removable-image, .lf-admin-post-meta-table .lf-admin-table .lf-removable-image, .lf-admin-table .lf-removable-image {
+.lf-admin-table .lf-uploaded-image, .lf-admin-table .lf-admin-post-meta-table .lf-removable-image, .lf-admin-post-meta-table .lf-admin-table .lf-removable-image, .lf-admin-table .lf-removable-image, .lf-admin-table .layout-builder-options-table .lf-removable-image, .layout-builder-options-table .lf-admin-table .lf-removable-image {
   width: 23.5%;
   height: auto;
   display: inline;
@@ -1524,7 +1524,7 @@
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 94, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 94, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider {
   width: 43%;
   height: 10px;
@@ -1543,7 +1543,7 @@
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
-/* line 108, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 108, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider .ui-slider-handle {
   width: 16px;
   height: 16px;
@@ -1566,7 +1566,7 @@
   background: -ms-linear-gradient(top, #f5f5f5, #eeeeee);
   background: linear-gradient(top, #f5f5f5, #eeeeee);
 }
-/* line 123, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 123, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider .ui-slider-range {
   height: 10px;
   -webkit-border-radius: 5px;
@@ -1578,17 +1578,17 @@
   position: absolute;
   z-index: 1;
 }
-/* line 133, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 133, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider-min, .lf-admin-table .lf-admin-td-slider-equal, .lf-admin-table .lf-admin-td-slider-value {
   float: left;
   clear: none;
   margin: 4px 0 0 5px;
 }
-/* line 139, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 139, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider-equal {
   margin: 4px 0;
 }
-/* line 145, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 145, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider-value {
   margin-left: 15px;
   padding: 0 10px;
@@ -1763,50 +1763,50 @@
   padding: 5px 15px;
   margin-right: 10px;
 }
-/* line 54, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 54, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-form .lf-admin-save .lf-admin-button:hover {
   border-color: black;
 }
-/* line 58, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 58, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-form .lf-admin-save .lf-admin-button:active {
   background: #282828;
   border-color: #282828;
 }
 
-/* line 201, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 201, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl {
   position: absolute;
 }
 
-/* line 205, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 205, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl {
   position: fixed;
 }
-/* line 208, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 208, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl .highlight {
   font-weight: normal;
 }
-/* line 212, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 212, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.top-left {
   left: 0px;
   top: 40px;
 }
-/* line 217, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 217, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.top-right {
   right: 0px;
   top: 40px;
 }
-/* line 222, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 222, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.bottom-left {
   left: 0px;
   bottom: 0px;
 }
-/* line 227, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 227, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.bottom-right {
   right: 0px;
   bottom: 0px;
 }
-/* line 232, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 232, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.center {
   top: 0px;
   width: 50%;
@@ -1814,13 +1814,13 @@ body > div.jGrowl.jGrowl.center {
 }
 
 /** Cross Browser Styling **/
-/* line 246, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 246, sass/Imports/mixins/_mixins.mixins.scss */
 .center div .jGrowl-notification, .center div .jGrowl-closer {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 258, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 258, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification, .center div.jGrowl div.jGrowl-closer, div.jGrowl div.jGrowl-closer {
   zoom: 1;
   width: 235px;
@@ -1837,12 +1837,12 @@ div.jGrowl div.jGrowl-notification, .center div.jGrowl div.jGrowl-closer, div.jG
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 271, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 271, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification div.jGrowl-header, .center div.jGrowl div.jGrowl-closer div.jGrowl-header, div.jGrowl div.jGrowl-closer div.jGrowl-header {
   font-weight: bold;
   font-size: .85em;
 }
-/* line 276, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 276, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification div.jGrowl-close, .center div.jGrowl div.jGrowl-closer div.jGrowl-close, div.jGrowl div.jGrowl-closer div.jGrowl-close {
   z-index: 99;
   float: right;
@@ -1850,12 +1850,12 @@ div.jGrowl div.jGrowl-notification div.jGrowl-close, .center div.jGrowl div.jGro
   font-size: 1em;
   cursor: pointer;
 }
-/* line 284, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 284, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification:hover, .center div.jGrowl div.jGrowl-closer:hover, div.jGrowl div.jGrowl-closer:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
 }
-/* line 289, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 289, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-closer {
   min-height: 10px;
   padding-top: 4px;
@@ -1863,4 +1863,424 @@ div.jGrowl div.jGrowl-closer {
   cursor: pointer;
   font-weight: bold;
   text-align: center;
+}
+
+/* line 361, sass/style-admin.scss */
+.layout-builder {
+  display: none;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: visible;
+  z-index: 500000;
+  background: #fff;
+}
+/* line 374, sass/style-admin.scss */
+.layout-builder iframe {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 380, sass/style-admin.scss */
+.close-layout-button {
+  position: fixed;
+  z-index: 500001;
+  display: none;
+  padding: 3px 8px;
+  line-height: 15px;
+  top: 90%;
+  left: 20px;
+  -webkit-transition: opacity 0.4s 1s;
+  -moz-transition: opacity 0.4s 1s;
+  -ms-transition: opacity 0.4s 1s;
+  -o-transition: opacity 0.4s 1s;
+  transition: opacity 0.4s 1s false;
+}
+
+/* line 392, sass/style-admin.scss */
+.layout-builder-options-box {
+  *zoom: 1;
+  width: 45%;
+  display: block;
+  padding: 2.5%;
+  left: 25%;
+  position: absolute;
+  z-index: 500002;
+  background: #f5f5f5;
+  -webkit-border-radius: 5px 5px 0px 0px;
+  -moz-border-radius: 5px 5px 0px 0px;
+  -ms-border-radius: 5px 5px 0px 0px;
+  -o-border-radius: 5px 5px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
+  -webkit-box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+/* line 38, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.layout-builder-options-box:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 405, sass/style-admin.scss */
+.layout-builder-options-box table {
+  border-collapse: collapse;
+  clear: both;
+  *zoom: 1;
+  font-size: 12px;
+  font-family: Arial;
+}
+/* line 38, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.layout-builder-options-box table:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 413, sass/style-admin.scss */
+.layout-builder-options-box table span {
+  font-weight: normal;
+  text-align: left;
+  text-shadow: 0 1px 0 #FFFFFF;
+}
+/* line 419, sass/style-admin.scss */
+.layout-builder-options-box table select, .layout-builder-options-box table input[type="text"], .layout-builder-options-box table textarea {
+  background-color: #FFFFFF;
+  border-color: #DFDFDF;
+  border-radius: 3px 3px 3px 3px;
+  border-style: solid;
+  border-width: 1px;
+  line-height: 15px;
+  padding: 2px;
+}
+
+/* line 17, sass/style-admin.scss */
+.layout-builder-options-table tr {
+  border-top: 1px solid #eee;
+}
+/* line 21, sass/style-admin.scss */
+.layout-builder-options-table th {
+  width: 25%;
+  padding: 10px 10px 10px 0;
+}
+/* line 27, sass/style-admin.scss */
+.layout-builder-options-table td {
+  padding: 10px 10px 10px 0;
+}
+/* line 32, sass/style-admin.scss */
+.layout-builder-options-table strong {
+  float: left;
+}
+/* line 37, sass/style-admin.scss */
+.layout-builder-options-table span {
+  float: left;
+  clear: both;
+  margin: 10px 0 0;
+  color: #999;
+}
+/* line 45, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-select, .layout-builder-options-table .layout-builder-options-td-text, .layout-builder-options-table .layout-builder-options-td-font {
+  width: 97%;
+  margin: 0 2% 0 0;
+}
+/* line 56, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-radio-label {
+  margin: 0 12px 0 0;
+}
+/* line 60, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-radio-label .admin-radio {
+  margin: 1px 6px 0 0;
+}
+/* line 66, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-font {
+  height: 75px;
+  font-size: 25px;
+  line-height: 30px;
+  padding: 25px 5px 5px;
+  margin: 20px 0;
+  background: #eee;
+  border: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+/* line 79, sass/style-admin.scss */
+.layout-builder-options-table .lf-uploaded-image, .layout-builder-options-table .lf-admin-post-meta-table .lf-removable-image, .lf-admin-post-meta-table .layout-builder-options-table .lf-removable-image, .layout-builder-options-table .lf-admin-table .lf-removable-image, .lf-admin-table .layout-builder-options-table .lf-removable-image, .layout-builder-options-table .lf-removable-image {
+  width: 23.5%;
+  height: auto;
+  display: inline;
+  margin: 7px 3.35% 7px 0;
+  border: 7px solid #dfdfdf;
+  cursor: pointer;
+  vertical-align: middle;
+  clear: none;
+}
+/* line 91, sass/style-admin.scss */
+.layout-builder-options-table .lf-removable-image {
+  display: inline-block;
+  float: left;
+  background: url("./Includes/Images/minus.png") no-repeat scroll 50% 50% #999999;
+}
+/* line 98, sass/style-admin.scss */
+.layout-builder-options-table .lf-removable-image img {
+  height: auto;
+  width: 100%;
+  vertical-align: middle;
+}
+/* line 105, sass/style-admin.scss */
+.layout-builder-options-table .lf-removable-image img:hover {
+  opacity: 0.15;
+}
+/* line 111, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-button-wrap {
+  width: 50%;
+  margin: 10px 10px 10px 35%;
+  float: left;
+  display: block;
+}
+/* line 119, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-texture-radio {
+  width: 22%;
+  height: 40px;
+  display: inline-block;
+  float: left;
+  margin: 10px 1.5%  10px 1.5%;
+}
+/* line 127, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-texture-radio .layout-builder-options-td-texture-image {
+  display: inline-block;
+  float: left;
+  width: 82%;
+  height: 40px;
+  margin: 0 0 0 8%;
+}
+/* line 136, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-texture-radio input {
+  width: 10%;
+  display: inline-block;
+  float: left;
+}
+/* line 144, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-load-more {
+  width: 80%;
+  padding: 4px 10%;
+  margin: 15px 0;
+  background-color: #eee;
+  text-align: center;
+  float: left;
+  color: #999;
+  font-size: 12px;
+  line-height: 12px;
+  font-style: italic;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  cursor: pointer;
+}
+/* line 160, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-load-more:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 165, sass/style-admin.scss */
+.layout-builder-options-table .layout-builder-options-td-load-more:active {
+  margin-top: 16px;
+  -webkit-box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
+  -moz-box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
+  box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+/* line 94, sass/Imports/mixins/_mixins.mixins.scss */
+.layout-builder-options-table .layout-builder-options-td-slider {
+  width: 43%;
+  height: 10px;
+  background-color: #eeeeee;
+  position: relative;
+  display: inline;
+  float: left;
+  margin: 11px 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+/* line 108, sass/Imports/mixins/_mixins.mixins.scss */
+.layout-builder-options-table .layout-builder-options-td-slider .ui-slider-handle {
+  width: 16px;
+  height: 16px;
+  margin: -5px 0 0 -8px;
+  border: 1px solid #eeeeee;
+  position: absolute;
+  z-index: 2;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f5f5f5), color-stop(100%, #eeeeee));
+  background: -webkit-linear-gradient(top, #f5f5f5, #eeeeee);
+  background: -moz-linear-gradient(top, #f5f5f5, #eeeeee);
+  background: -o-linear-gradient(top, #f5f5f5, #eeeeee);
+  background: -ms-linear-gradient(top, #f5f5f5, #eeeeee);
+  background: linear-gradient(top, #f5f5f5, #eeeeee);
+}
+/* line 123, sass/Imports/mixins/_mixins.mixins.scss */
+.layout-builder-options-table .layout-builder-options-td-slider .ui-slider-range {
+  height: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #363636;
+  position: absolute;
+  z-index: 1;
+}
+/* line 133, sass/Imports/mixins/_mixins.mixins.scss */
+.layout-builder-options-table .layout-builder-options-td-slider-min, .layout-builder-options-table .layout-builder-options-td-slider-equal, .layout-builder-options-table .layout-builder-options-td-slider-value {
+  float: left;
+  clear: none;
+  margin: 4px 0 0 5px;
+}
+/* line 139, sass/Imports/mixins/_mixins.mixins.scss */
+.layout-builder-options-table .layout-builder-options-td-slider-equal {
+  margin: 4px 0;
+}
+/* line 145, sass/Imports/mixins/_mixins.mixins.scss */
+.layout-builder-options-table .layout-builder-options-td-slider-value {
+  margin-left: 15px;
+  padding: 0 10px;
+  background-color: #dfdfdf;
+}
+
+/* line 442, sass/style-admin.scss */
+.layout_builder_button, .layout-builder-options .layout-builder-save-options button {
+  float: right;
+  display: block;
+  font-family: sans-serif;
+  text-align: start;
+  height: 15px;
+  margin: 10px 10px;
+  line-height: 15px;
+  padding: 3px 8px;
+  background: url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/white-grad.png") repeat-x scroll left top #f2f2f2;
+  text-shadow: 0 1px 0 #FFFFFF;
+  color: #464646;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: none;
+  -moz-box-sizing: content-box;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  -ms-border-radius: 11px;
+  -o-border-radius: 11px;
+  border-radius: 11px;
+}
+/* line 462, sass/style-admin.scss */
+.layout_builder_button:hover, .layout-builder-options .layout-builder-save-options button:hover {
+  border-color: #666;
+  color: #000;
+}
+/* line 467, sass/style-admin.scss */
+.layout_builder_button:active, .layout-builder-options .layout-builder-save-options button:active {
+  background: url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/white-grad-active.png") repeat-x;
+}
+
+/* line 472, sass/style-admin.scss */
+.layout-builder-options {
+  *zoom: 1;
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #f5f5f5;
+  font-family: Georgia;
+}
+/* line 38, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.layout-builder-options:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 485, sass/style-admin.scss */
+.layout-builder-options .layout-builder-save-options {
+  *zoom: 1;
+  display: block;
+  border-bottom: 1px solid #dfdfdf;
+  padding: 20px 10px;
+}
+/* line 38, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.layout-builder-options .layout-builder-save-options:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 492, sass/style-admin.scss */
+.layout-builder-options .layout-builder-save-options button {
+  margin: 0 10px 0 0;
+  float: left;
+}
+/* line 500, sass/style-admin.scss */
+.layout-builder-options ul {
+  display: block;
+  width: 100%;
+  float: left;
+  padding: 0;
+  margin: 0px;
+}
+/* line 508, sass/style-admin.scss */
+.layout-builder-options ul li {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #dfdfdf;
+  margin: 0px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f5f5f5), color-stop(100%, #eeeeee));
+  background: -webkit-linear-gradient(top, #f5f5f5, #eeeeee);
+  background: -moz-linear-gradient(top, #f5f5f5, #eeeeee);
+  background: -o-linear-gradient(top, #f5f5f5, #eeeeee);
+  background: -ms-linear-gradient(top, #f5f5f5, #eeeeee);
+  background: linear-gradient(top, #f5f5f5, #eeeeee);
+}
+/* line 517, sass/style-admin.scss */
+.layout-builder-options ul li:hover {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #808080), color-stop(100%, #6d6d6d));
+  background: -webkit-linear-gradient(top, #808080, #6d6d6d);
+  background: -moz-linear-gradient(top, #808080, #6d6d6d);
+  background: -o-linear-gradient(top, #808080, #6d6d6d);
+  background: -ms-linear-gradient(top, #808080, #6d6d6d);
+  background: linear-gradient(top, #808080, #6d6d6d);
+  color: #fff;
+}
+
+/* line 525, sass/style-admin.scss */
+.layout-builder-canvas {
+  width: 80%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 20%;
+  z-index: 1;
+  -webkit-box-shadow: 2px 0 3px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 2px 0 3px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 0 3px 3px rgba(0, 0, 0, 0.1);
 }

@@ -1,10 +1,10 @@
-/* line 11, sass/Imports/parts/_shortcodes.scss */
+/* line 11, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-video-wrap {
   height: 0;
   position: relative;
   overflow: hidden;
 }
-/* line 17, sass/Imports/parts/_shortcodes.scss */
+/* line 17, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-video-wrap iframe, .lf-shortcode-video-wrap object, .lf-shortcode-video-wrap embed {
   height: 100%;
   width: 100%;
@@ -13,14 +13,14 @@
   left: 0;
 }
 
-/* line 26, sass/Imports/parts/_shortcodes.scss */
+/* line 26, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-youtube-video {
   width: 100%;
   float: left;
   display: block;
 }
 
-/* line 40, sass/Imports/parts/_shortcodes.scss */
+/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-default, .lf-shortcode-button-large-default, .lf-shortcode-button-small-default {
   color: #222222;
   padding: 14px;
@@ -45,7 +45,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 51, sass/Imports/parts/_shortcodes.scss */
+/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-default:hover, .lf-shortcode-button-large-default:hover, .lf-shortcode-button-small-default:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dedede));
   background: -webkit-linear-gradient(top, #ffffff, #dedede);
@@ -55,17 +55,17 @@
   background: linear-gradient(top, #ffffff, #dedede);
 }
 
-/* line 56, sass/Imports/parts/_shortcodes.scss */
+/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-default {
   padding: 21px 28px;
 }
 
-/* line 62, sass/Imports/parts/_shortcodes.scss */
+/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-default {
   padding: 7px 14px;
 }
 
-/* line 40, sass/Imports/parts/_shortcodes.scss */
+/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-pink, .lf-shortcode-button-large-pink, .lf-shortcode-button-small-pink {
   color: white;
   padding: 14px;
@@ -90,7 +90,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 51, sass/Imports/parts/_shortcodes.scss */
+/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-pink:hover, .lf-shortcode-button-large-pink:hover, .lf-shortcode-button-small-pink:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eb6085), color-stop(100%, #e21c51));
   background: -webkit-linear-gradient(top, #eb6085, #e21c51);
@@ -100,17 +100,17 @@
   background: linear-gradient(top, #eb6085, #e21c51);
 }
 
-/* line 56, sass/Imports/parts/_shortcodes.scss */
+/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-pink {
   padding: 21px 28px;
 }
 
-/* line 62, sass/Imports/parts/_shortcodes.scss */
+/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-pink {
   padding: 7px 14px;
 }
 
-/* line 40, sass/Imports/parts/_shortcodes.scss */
+/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-yellow, .lf-shortcode-button-large-yellow, .lf-shortcode-button-small-yellow {
   color: white;
   padding: 14px;
@@ -135,7 +135,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 51, sass/Imports/parts/_shortcodes.scss */
+/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-yellow:hover, .lf-shortcode-button-large-yellow:hover, .lf-shortcode-button-small-yellow:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffd87d), color-stop(100%, #ffc131));
   background: -webkit-linear-gradient(top, #ffd87d, #ffc131);
@@ -145,17 +145,17 @@
   background: linear-gradient(top, #ffd87d, #ffc131);
 }
 
-/* line 56, sass/Imports/parts/_shortcodes.scss */
+/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-yellow {
   padding: 21px 28px;
 }
 
-/* line 62, sass/Imports/parts/_shortcodes.scss */
+/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-yellow {
   padding: 7px 14px;
 }
 
-/* line 40, sass/Imports/parts/_shortcodes.scss */
+/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-blue, .lf-shortcode-button-large-blue, .lf-shortcode-button-small-blue {
   color: white;
   padding: 14px;
@@ -180,7 +180,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 51, sass/Imports/parts/_shortcodes.scss */
+/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-blue:hover, .lf-shortcode-button-large-blue:hover, .lf-shortcode-button-small-blue:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aededb), color-stop(100%, #78c8c3));
   background: -webkit-linear-gradient(top, #aededb, #78c8c3);
@@ -190,17 +190,17 @@
   background: linear-gradient(top, #aededb, #78c8c3);
 }
 
-/* line 56, sass/Imports/parts/_shortcodes.scss */
+/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-blue {
   padding: 21px 28px;
 }
 
-/* line 62, sass/Imports/parts/_shortcodes.scss */
+/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-blue {
   padding: 7px 14px;
 }
 
-/* line 40, sass/Imports/parts/_shortcodes.scss */
+/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-red, .lf-shortcode-button-large-red, .lf-shortcode-button-small-red {
   color: white;
   padding: 14px;
@@ -225,7 +225,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 51, sass/Imports/parts/_shortcodes.scss */
+/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-red:hover, .lf-shortcode-button-large-red:hover, .lf-shortcode-button-small-red:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f36767), color-stop(100%, #ed2121));
   background: -webkit-linear-gradient(top, #f36767, #ed2121);
@@ -235,17 +235,17 @@
   background: linear-gradient(top, #f36767, #ed2121);
 }
 
-/* line 56, sass/Imports/parts/_shortcodes.scss */
+/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-red {
   padding: 21px 28px;
 }
 
-/* line 62, sass/Imports/parts/_shortcodes.scss */
+/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-red {
   padding: 7px 14px;
 }
 
-/* line 40, sass/Imports/parts/_shortcodes.scss */
+/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-green, .lf-shortcode-button-large-green, .lf-shortcode-button-small-green {
   color: white;
   padding: 14px;
@@ -270,7 +270,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 51, sass/Imports/parts/_shortcodes.scss */
+/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-green:hover, .lf-shortcode-button-large-green:hover, .lf-shortcode-button-small-green:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #82c088), color-stop(100%, #52a45b));
   background: -webkit-linear-gradient(top, #82c088, #52a45b);
@@ -280,17 +280,17 @@
   background: linear-gradient(top, #82c088, #52a45b);
 }
 
-/* line 56, sass/Imports/parts/_shortcodes.scss */
+/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-green {
   padding: 21px 28px;
 }
 
-/* line 62, sass/Imports/parts/_shortcodes.scss */
+/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-green {
   padding: 7px 14px;
 }
 
-/* line 40, sass/Imports/parts/_shortcodes.scss */
+/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-black, .lf-shortcode-button-large-black, .lf-shortcode-button-small-black {
   color: white;
   padding: 14px;
@@ -315,7 +315,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 51, sass/Imports/parts/_shortcodes.scss */
+/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-black:hover, .lf-shortcode-button-large-black:hover, .lf-shortcode-button-small-black:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #292929), color-stop(100%, #050505));
   background: -webkit-linear-gradient(top, #292929, #050505);
@@ -325,17 +325,17 @@
   background: linear-gradient(top, #292929, #050505);
 }
 
-/* line 56, sass/Imports/parts/_shortcodes.scss */
+/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-black {
   padding: 21px 28px;
 }
 
-/* line 62, sass/Imports/parts/_shortcodes.scss */
+/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-black {
   padding: 7px 14px;
 }
 
-/* line 40, sass/Imports/parts/_shortcodes.scss */
+/* line 40, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-gray, .lf-shortcode-button-large-gray, .lf-shortcode-button-small-gray {
   color: #222222;
   padding: 14px;
@@ -360,7 +360,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 1px 1px black;
   box-shadow: 1px 1px 2px 0px 1px 1px black;
 }
-/* line 51, sass/Imports/parts/_shortcodes.scss */
+/* line 51, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-gray:hover, .lf-shortcode-button-large-gray:hover, .lf-shortcode-button-small-gray:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eaeaea), color-stop(100%, #c4c4c4));
   background: -webkit-linear-gradient(top, #eaeaea, #c4c4c4);
@@ -370,17 +370,17 @@
   background: linear-gradient(top, #eaeaea, #c4c4c4);
 }
 
-/* line 56, sass/Imports/parts/_shortcodes.scss */
+/* line 56, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-gray {
   padding: 21px 28px;
 }
 
-/* line 62, sass/Imports/parts/_shortcodes.scss */
+/* line 62, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-gray {
   padding: 7px 14px;
 }
 
-/* line 93, sass/Imports/parts/_shortcodes.scss */
+/* line 93, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .alert-box-red {
   color: #7a0a0a;
   padding: 14px;
@@ -394,7 +394,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, sass/Imports/parts/_shortcodes.scss */
+/* line 93, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .alert-box-gray {
   color: #7f7f7f;
   padding: 14px;
@@ -408,7 +408,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, sass/Imports/parts/_shortcodes.scss */
+/* line 93, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .alert-box-yellow {
   color: #a67400;
   padding: 14px;
@@ -422,7 +422,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, sass/Imports/parts/_shortcodes.scss */
+/* line 93, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .alert-box-blue {
   color: #35817d;
   padding: 14px;
@@ -436,7 +436,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, sass/Imports/parts/_shortcodes.scss */
+/* line 93, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .alert-box-green {
   color: #244828;
   padding: 14px;
@@ -450,7 +450,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 122, sass/Imports/parts/_shortcodes.scss */
+/* line 122, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-half, .lf-column-size-last-half {
   width: 47.5%;
   display: inline;
@@ -458,12 +458,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, sass/Imports/parts/_shortcodes.scss */
+/* line 129, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-half {
   margin: 0 0 43px;
 }
 
-/* line 122, sass/Imports/parts/_shortcodes.scss */
+/* line 122, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-third, .lf-column-size-last-third {
   width: 30%;
   display: inline;
@@ -471,12 +471,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, sass/Imports/parts/_shortcodes.scss */
+/* line 129, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-third {
   margin: 0 0 43px;
 }
 
-/* line 122, sass/Imports/parts/_shortcodes.scss */
+/* line 122, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-quarter, .lf-column-size-last-quarter {
   width: 21.25%;
   display: inline;
@@ -484,12 +484,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, sass/Imports/parts/_shortcodes.scss */
+/* line 129, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-quarter {
   margin: 0 0 43px;
 }
 
-/* line 122, sass/Imports/parts/_shortcodes.scss */
+/* line 122, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-sixth, .lf-column-size-last-sixth {
   width: 12.5%;
   display: inline;
@@ -497,12 +497,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, sass/Imports/parts/_shortcodes.scss */
+/* line 129, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-sixth {
   margin: 0 0 43px;
 }
 
-/* line 149, sass/Imports/parts/_shortcodes.scss */
+/* line 149, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tog-lf {
   width: 100%;
   float: left;
@@ -511,7 +511,7 @@
   -moz-box-shadow: 0px 1px 1px 0 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 1px 0 1px 1px rgba(0, 0, 0, 0.1);
 }
-/* line 155, sass/Imports/parts/_shortcodes.scss */
+/* line 155, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tog-lf .tog-lf-ti {
   width: 93%;
   display: block;
@@ -526,17 +526,17 @@
   border-radius: 2px;
   cursor: pointer;
 }
-/* line 166, sass/Imports/parts/_shortcodes.scss */
+/* line 166, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tog-lf .tog-lf-ti:hover {
   border: 1px solid #e7e7e7;
 }
-/* line 171, sass/Imports/parts/_shortcodes.scss */
+/* line 171, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tog-lf .tog-lf-c {
   margin: 1px 14px 0 0;
   height: 16px;
   float: left;
 }
-/* line 178, sass/Imports/parts/_shortcodes.scss */
+/* line 178, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tog-lf .lf-tog-p {
   padding: 21px 2.5%;
   float: left;
@@ -546,13 +546,13 @@
   border-right: 1px solid #f1f1f1;
 }
 
-/* line 191, sass/Imports/parts/_shortcodes.scss */
+/* line 191, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf {
   width: 100%;
   float: left;
   margin: 28px 0 0;
 }
-/* line 197, sass/Imports/parts/_shortcodes.scss */
+/* line 197, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf {
   width: 100%;
   float: none;
@@ -560,13 +560,13 @@
   margin: 0;
   *zoom: 1;
 }
-/* line 38, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .tab-wrap-lf .tab-head-lf:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 205, sass/Imports/parts/_shortcodes.scss */
+/* line 205, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf li {
   display: inline;
   float: left;
@@ -574,7 +574,7 @@
   z-index: 5;
   margin-bottom: -1px;
 }
-/* line 217, sass/Imports/parts/_shortcodes.scss */
+/* line 217, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf .tab-chosen-li-lf a {
   padding-top: 15px;
   margin: 1px 5px 0 0;
@@ -588,7 +588,7 @@
   -o-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
 }
-/* line 228, sass/Imports/parts/_shortcodes.scss */
+/* line 228, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf a {
   display: block;
   padding: 14px 21px;
@@ -602,31 +602,31 @@
   background-color: #f4f4f4;
   cursor: pointer;
 }
-/* line 242, sass/Imports/parts/_shortcodes.scss */
+/* line 242, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf a:hover {
   border-top: 1px solid #e7e7e7;
   border-right: 1px solid #e7e7e7;
   border-left: 1px solid #e7e7e7;
 }
-/* line 251, sass/Imports/parts/_shortcodes.scss */
+/* line 251, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-box-lf {
   width: 95%;
   padding: 21px 2.5%;
   border: 1px solid #f1f1f1;
 }
 
-/* line 260, sass/Imports/parts/_shortcodes.scss */
+/* line 260, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
 .tab-close-lf {
   left: -10000px;
   position: absolute;
 }
 
-/* line 12, sass/Imports/parts/_lightbox.scss */
+/* line 12, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 .lbLoading {
   background: <?php echo '#' . $o['post_background']; ?> url(wp-content/themes/WhiteWhale/Framework/CSS/Includes/Images/loading.gif) no-repeat center;
 }
 
-/* line 16, sass/Imports/parts/_lightbox.scss */
+/* line 16, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 #lbOverlay {
   position: fixed;
   z-index: 9999;
@@ -638,14 +638,14 @@
   cursor: pointer;
 }
 
-/* line 27, sass/Imports/parts/_lightbox.scss */
+/* line 27, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 #lbCenter, #lbBottomContainer {
   position: absolute;
   z-index: 9999;
   overflow: hidden;
   background-color: <?php echo '#' . $o['post_background']; ?>;
 }
-/* line 33, sass/Imports/parts/_lightbox.scss */
+/* line 33, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 #lbCenter #lbImage, #lbBottomContainer #lbImage {
   position: absolute;
   left: 0;
@@ -653,7 +653,7 @@
   border: 10px solid <?php echo '#' . $o['post_background']; ?>;
   background-repeat: no-repeat;
 }
-/* line 41, sass/Imports/parts/_lightbox.scss */
+/* line 41, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 #lbCenter #lbPrevLink, #lbBottomContainer #lbPrevLink, #lbCenter #lbNextLink, #lbBottomContainer #lbCenter #lbNextLink, #lbCenter #lbBottomContainer #lbNextLink, #lbCenter #lbBottomContainer #lbNextLink, #lbBottomContainer #lbCenter #lbNextLink, #lbBottomContainer #lbNextLink {
   display: block;
   position: absolute;
@@ -662,12 +662,12 @@
   outline: none;
   left: 0;
 }
-/* line 50, sass/Imports/parts/_lightbox.scss */
+/* line 50, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 #lbCenter #lbNextLink, #lbBottomContainer #lbNextLink {
   right: 0;
 }
 
-/* line 59, sass/Imports/parts/_lightbox.scss */
+/* line 59, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom {
   font-size: 11px;
   color: inherit;
@@ -675,7 +675,7 @@
   text-align: left;
   padding: 5px 10px 10px 10px;
 }
-/* line 67, sass/Imports/parts/_lightbox.scss */
+/* line 67, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbCloseLink {
   display: block;
   float: right;
@@ -683,22 +683,22 @@
   vertical-align: baseline;
   color: inherit;
 }
-/* line 73, sass/Imports/parts/_lightbox.scss */
+/* line 73, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbCloseLink:before {
   font-size: 20px;
   line-height: 20px;
   content: "k";
 }
-/* line 80, sass/Imports/parts/_lightbox.scss */
+/* line 80, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbNumber, #lbBottomContainer #lbBottom #lbCaption {
   margin: 0  71px 0 7px;
 }
-/* line 84, sass/Imports/parts/_lightbox.scss */
+/* line 84, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbCaption {
   font-style: italic;
 }
 
-/* line 17, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, .lf-comments-wrap .lf-comment-article .lf-hovercard footer, span, applet, object, iframe,
 h1,
 .lf-post-img-text-wrap .lf-core-content-body-text h2,
@@ -725,45 +725,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 20, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 20, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 body {
   line-height: 1;
 }
 
-/* line 22, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul, .lf-post-img-text-wrap .lf-core-content-body-text ol {
   list-style: none;
 }
 
-/* line 24, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 26, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 28, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 101, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 101, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 30, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img, a .lf-featured-icon-wrap .lf-post-format-img, .lf-featured-icon-wrap a .lf-post-format-img {
   border: none;
 }
 
-/* line 114, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 114, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -782,7 +782,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* Uses data attributes to insert icons */
-/* line 171, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 171, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
 [data-icon]:before {
   font-family: 'lftastic';
   content: attr(data-icon);
@@ -792,14 +792,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* Allows icons to be assigned via "post-" class */
-/* line 182, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 182, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
 [class^="post-"]:before, [class^="lf-"]:before {
   font-family: 'lftastic';
   font-style: normal;
   font-weight: normal;
 }
 
-/* line 190, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 190, C:/Users/Cikica.Stefan-PC/Documents/WpTest/WordPress7/wp-content/themes/WhiteWhale/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
 [class^="jp-"]:before, [id^="lb"]:before {
   font-family: 'lftastic';
   font-style: normal;
@@ -822,7 +822,7 @@ a:hover {
   background: <?php echo '#' . $o['background_color']; ?> <?php echo $o['background_texture']; ?>;
   *zoom: 1;
 }
-/* line 38, ../../../../../../../../../../Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, C:/Program Files/Scout/vendor/gems/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .liquidflux-wrap-everything:after {
   content: "";
   display: table;
@@ -2490,33 +2490,33 @@ a:hover {
 }
 
 /* // Pagnation // */
-/* line 118, sass/style-core.scss */
+/* line 122, sass/style-core.scss */
 .lf-pagnation {
   margin: 0 0 12px;
   float: left;
   display: block;
 }
 
-/* line 124, sass/style-core.scss */
+/* line 128, sass/style-core.scss */
 .lf-pagnation-nav {
   float: left;
   display: inline-block;
 }
 
-/* line 130, sass/style-core.scss */
+/* line 134, sass/style-core.scss */
 .lf-pagnation-num,
 .lf-pagnation-num-current {
   padding: 6px;
   margin: 0 6px;
 }
 
-/* line 145, sass/style-core.scss */
+/* line 149, sass/style-core.scss */
 .lf-resp-aside-wrap {
   float: left;
   display: inline-block;
 }
 
-/* line 150, sass/style-core.scss */
+/* line 154, sass/style-core.scss */
 .lf-resp-widget-area {
   width: 85.5%;
   float: left;
@@ -2524,14 +2524,14 @@ a:hover {
   padding: 0 5.25% 0 9.25%;
 }
 
-/* line 157, sass/style-core.scss */
+/* line 161, sass/style-core.scss */
 .lf-test-ad {
   height: 250px;
   width: 100%;
   background-color: #000;
 }
 
-/* line 164, sass/style-core.scss */
+/* line 168, sass/style-core.scss */
 .lf-ad-widget-dummy-ad {
   width: 70%;
   height: 10px;
@@ -2540,7 +2540,7 @@ a:hover {
   background-color: #ff3f3f;
 }
 
-/* line 173, sass/style-core.scss */
+/* line 177, sass/style-core.scss */
 .lf-ad-widget-dummy-ad-inner {
   width: 100%;
   height: 10px;
@@ -2548,7 +2548,7 @@ a:hover {
   background-color: #ff3f4c;
 }
 
-/* line 181, sass/style-core.scss */
+/* line 185, sass/style-core.scss */
 .lf-ad-widget-link-ad {
   width: 100%;
   height: 24px;
@@ -2556,14 +2556,14 @@ a:hover {
   background-color: #ff3f4c;
 }
 
-/* line 189, sass/style-core.scss */
+/* line 193, sass/style-core.scss */
 .lf-header-ad-wrap {
   display: block;
   margin: 24px 0;
   z-index: 5;
 }
 
-/* line 196, sass/style-core.scss */
+/* line 200, sass/style-core.scss */
 .lf-header-leaderboard-ad {
   height: 90px;
   width: 728px;
@@ -2572,7 +2572,7 @@ a:hover {
   background-color: #000;
 }
 
-/* line 205, sass/style-core.scss */
+/* line 209, sass/style-core.scss */
 .lf-header-banner-ad {
   height: 60px;
   width: 468px;

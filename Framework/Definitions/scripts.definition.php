@@ -29,6 +29,26 @@
 												array( true,  'post' ) ),
 										'enqueue' => true 
 											))),
+						// Admin style
+						array(
+							'f' => array( $this, 'sort'),
+							'o' =>
+								array(
+									array(
+										'side' => 'admin',
+										'type' => 'script',
+										'arg'  => 
+											array(
+												'layout',
+												FRAMEWORKURI .'/scripts/layout.js',
+												array('jquery'),
+												'1.0' ),
+										'conditional' => array(
+											array( true,  'page' ),
+											array( true,  'post' )
+											),
+										'enqueue' => false
+											))),
 						// admin js
 						array(
 							'f' => array( $this, 'sort'),
@@ -63,7 +83,8 @@
 													'thickbox', 
 													'media-upload',
 													'jGrowl',
-													'jquery-ui-slider'), 
+													'jquery-ui-slider',
+													'layout'), 
 												'1.0', 
 												false ),
 										'conditional' => 

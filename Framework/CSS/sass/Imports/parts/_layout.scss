@@ -1,0 +1,78 @@
+//
+//
+//
+//	Layout builder
+//	
+//	
+
+@import "./compass/utilities";
+@import "./compass/css3";
+
+
+.layout-builder-options { 
+
+	@include pie-clearfix;	
+	height: 100%;
+	width: 300px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #f5f5f5;
+	font-family: Georgia;
+
+	.layout-builder-save-options { 
+
+		@include pie-clearfix;
+		display: block;
+		border-bottom: 1px solid #dfdfdf;
+		padding: 42px 10px 20px;
+		
+		button { 
+
+			background: url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/white-grad.png") repeat-x;
+			display: inline;
+			float: left;
+			margin-right: 10px;
+			padding: 3px 10px;
+			font-size: 12px;
+			line-height: 13px;
+			cursor: pointer;
+			color: #464646;
+			border: 1px solid #bbb;
+			@include border-radius(11px);
+
+			&:hover { 
+				border-color: #666666;
+			}
+
+			&:active { 
+				background: url("/wp-content/themes/WhiteWhale/Framework/CSS/Includes/images/white-grad-active.png") repeat-x;
+			}
+		}
+	}
+
+
+	ul { 
+
+		display: block; 
+		width: 100%;
+		float: left;
+
+		li { 
+			
+			border-top: 1px solid #fff;
+			border-bottom: 1px solid #dfdfdf;
+			padding: 10px 20px;
+			cursor: pointer;
+			@include background( linear-gradient( top, #f5f5f5, #eeeeee ));
+
+			&:hover { 
+				@include background( linear-gradient( top, #808080, #6d6d6d ));
+				color: #fff;
+			}
+		}
+	}
+
+}

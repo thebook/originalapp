@@ -64,7 +64,7 @@ class template_comments extends branch_content
 		
 		<?php $comment_publish_date = get_comment_date('j/n/Y/G/i/s'); ?>
 
-		<?php $gravatar = $this->_check_what_type_comment_id_is_and_make_an_email_string($comment_id); ?>
+		<?php //$gravatar = $this->_check_what_type_comment_id_is_and_make_an_email_string($comment_id); ?>
    			
 		<li class="lf-comment-article <?php echo $current_depth; ?>" id="comment-of-the-number-<?php comment_ID(); ?>"> 
 				
@@ -76,20 +76,20 @@ class template_comments extends branch_content
 											
 					<?php echo get_avatar( $comment_id, '36' ); ?>
 					
-					<div style="display: none;" class="lf-hovercard hovercard-for-<?php echo $gravatar; ?>">
+					<div style="display: none;" class="lf-hovercard hovercard-for-<?php //echo $gravatar; ?>">
 						<span class="post-hover-arrow"></span>
 					</div>
 
 					<script>
-						!function ($) { 
-							$(document).ready( 
-								function () {
-									comment.gravatar_hovercard({
-										hash_link : '<?php echo $gravatar; ?>', 
-										id        : 'lf-gravatar-<?php comment_ID(); ?>'
-									});
-								});
-						}(jQuery);
+						// !function ($) { 
+						// 	$(document).ready( 
+						// 		function () {
+						// 			comment.gravatar_hovercard({
+						// 				hash_link : '<?php echo $gravatar; ?>', 
+						// 				id        : 'lf-gravatar-<?php comment_ID(); ?>'
+						// 			});
+						// 		});
+						// }(jQuery);
 					</script>	
 
 				</div>	

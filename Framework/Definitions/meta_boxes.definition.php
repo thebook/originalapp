@@ -35,6 +35,18 @@
 														'f' => 'scripter',
 														'o' => array( 'reveal.radio_reveal("#post-formats-select", ["gallery", "image", "quote", "link", "video", "audio" ], ["#gallery_format_meta", "#image_format_meta", "#quote_format_meta", "#link_format_meta", "#video_format_meta", "#audio_format_meta"]);' )
 															),
+													// Layout builder 
+													array(
+														'f' => array( $this, 'create'),
+														'o' => array(  
+															array(
+																'type'        => 'layout_button',
+																'title'       => 'Create Layout',
+																'description' => 'Create a layout for you post, by entering the layout builder',
+																'array'       => 'main_meta',
+																'name'        => 'post_layout',
+																'saved'       => '',
+														        'button_name' => 'Create Layout' )) ),
 													array(
 														'f' => array( $this, 'create'),
 														'o' => array(
