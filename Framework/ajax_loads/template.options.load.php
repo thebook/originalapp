@@ -42,9 +42,9 @@
 
 			</table>
 
-			<button id="options_box_insert" class="layout_builder_button">Insert</button>
+			<a id="options_box_insert" class="button">Insert</a>
 
-			<button id="options_box_cancel" class="layout_builder_button">Cancel</button>
+			<a id="options_box_cancel" class="button">Cancel</a>
 
 		</div>
 

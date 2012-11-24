@@ -17,9 +17,9 @@ class template_layout_creator extends alpha_tree_template
 		
 		<div class="layout-builder-save-options">
 			
-			<button id="layout-builder-save-layout">Save</button>
+			<a id="layout-builder-save-layout" class="button">Save</a>
 			
-			<button id="layout-builder-use">Use</button>
+			<a id="layout-builder-use" class="button">Use</a>
 
 		</div>
 
@@ -27,41 +27,16 @@ class template_layout_creator extends alpha_tree_template
 	
 	protected function _generate_builder_head ()
 	{ ?>
-		
-	<!DOCTYPE html>
-	<html <?php language_attributes(); ?>>
 
-	<head>
-		
-		<meta http-equiv="Content-Typse" content="<?php bloginfo('html_type'); ?>" charset="<?php bloginfo( 'charset' ); ?>" />
-		
-		<title><?php wp_title(''); ?></title>
-
-		<!-- SEO stuff hooked onto this -->
-		<?php lf_head_hook(); ?>
+	<div class="layout_builder_head">
 
 		<!-- Font insertion here -->
-		
-		<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" />
-		
-		<meta name="viewport" content="width=device-width; initial-scale=0.1; maximum-scale=0.1; user-scalable=0;" />
-		
-		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
 		<style type="text/css"><?php include FRAMEWORK .'/CSS/style-core.php'; ?></style>
 			
-		<!-- this creates the html5 elements in IE browsers below version 9 -->
-		<!--[if lt IE 9]>
-		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-			
 		<?php wp_head(); ?>
 
-		<style> <?php echo include FRAMEWORK .'/CSS/style-admin.css'; ?></style>
-
-		<script><?php echo include FRAMEWORK .'/scripts/layout.js'; ?></script>	
-
-	</head>
+	</div>
 
 <?php }
 
@@ -97,12 +72,8 @@ class template_layout_creator extends alpha_tree_template
 
 	protected function _body ($options_to_build)
 	{ ?>
-		<!DOCTYPE html>
-		<html lang="en-US" dir="ltr">
-				
-			<?php $this->_generate_builder_head();?>
 
-			<body>
+			<div class="layout_builder_body">
 
 				<div class="layout-builder-options">
 
@@ -118,17 +89,20 @@ class template_layout_creator extends alpha_tree_template
 
 				</div>
 
-			</body>
-
-		</html>
+			</div class="layout_builder_body">
 
 <?php }
 
 	protected function _generate_body ($options_to_build = null)
 	{?>
-		<div class="liquidflux-wrap-everything">
+		<iframe>
 
-		</div>
+			<?php get_header(); ?>
+
+			<?php get_footer(); ?>
+
+		</iframe>
+
 		<!-- This is where it should get previous saved options and manifest a layout from them -->
 <?php }
 }

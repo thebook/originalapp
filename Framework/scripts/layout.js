@@ -30,7 +30,7 @@
 
 			$('#' + passed.bind_event_to ).on('click', 
 				function (click_event) { 
-				
+					
 					var clicked = $(click_event.target);
 
 					if ( clicked.is(passed.element_to_respond_to_when_clicked) ) {
@@ -39,7 +39,7 @@
 
 						 	template_name        = clicked.attr('id');
 						 	ajax_path            = ( clicked.attr('class') == 'has_options' ? passed.options_ajax_path : passed.template_ajax_path );
-						 	element_to_append_to = ( clicked.attr('class') == 'has_options' ? 'body' : passed.element_to_append_to );
+						 	element_to_append_to = ( clicked.attr('class') == 'has_options' ? '.layout_builder_body' : passed.element_to_append_to );
 
 						    layout_builder.ajax_get_template_and_manifest({
 						    	template_paramaters  : { template_data : template_name },
@@ -78,6 +78,8 @@
 							name_prefix_to_remove : passed.name_prefix_to_remove
 						});
 
+						template_paramaters = JSON.parse(template_paramaters);
+						
 						the_class.ajax_get_template_and_manifest({
 							template_paramaters  : { template_data : template_paramaters },
 						    ajax_url             : passed.ajax_path,
@@ -111,7 +113,7 @@
 
 			var generated_array = '"'+ opt.paramaters_name +'":{';
 
-				$('select, input').each(	
+				$('.layout-builder-options-box select, .layout-builder-options-box input').each(	
 					function () {
 						var dhis, selected_value, selected_name;
 

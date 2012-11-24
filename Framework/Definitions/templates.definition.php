@@ -1,7 +1,7 @@
 <?php 
 
 	return array(
-			'sidebar' =>
+			'slide' =>
 				array(
 					// If template has template parts in it we move put them under "template_parts" and define as original
 					'template_parts' => 
@@ -16,22 +16,12 @@
 						array(
 							// Sidebar Size 
 							array(
-								'type'        => 'select',
-								'title'       => 'Sidebar Size',
-								'description' => 'Set the width of the sidebar',
-								'array'       => 'main_meta',
-								'name'        => 'sidebar_size',
-								'saved'       => 'third',
-							    'options'     => array('Half', 'Third', 'Quarter'),
-								'values'      => array('half', 'third', 'quarter')  ),
-							// Sidebar Size (should be a select later on )
-							array(
 								'type'        => 'text',
-								'title'       => 'Sidebar Size',
-								'description' => 'Set the width of the sidebar',
+								'title'       => 'Chose slide',
+								'description' => 'Chose your slider to show',
 								'array'       => 'main_meta',
-								'name'        => 'name_of_sidebar_to_get',
-								'saved'       => 'white-whale-default-sidebar' )
+								'name'        => 'template_params',
+								'saved'       => '638'  ),
 							)
 					),
 		);
