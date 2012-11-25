@@ -149,21 +149,36 @@
 
 		close_layout_builder_window : function (opt) { 
 				
-			$('#' + opt.id ).on('click',
-				
-				function () { 					
-				$(this).fadeOut(200, 
-					
-					function () { 							
-					$('#' + opt.box_to_close ).fadeOut(500,
-						
+			$( opt.id ).on('click',				
+				function () { 									
+						 				
+					$( opt.box_to_close ).fadeOut(500,						
 						function () {
 						$(this).empty();
 						$('body').removeClass('full-overlay-active');
 					});							
 				});
-			});
 		},
+
+		close_options_sidebar : function (passed) { 
+
+			var canvas_to_expand, button, button_arrow;
+
+				canvas_to_expand = $(passed.canvas_to_expand);
+				button  		 = $(passed.id);
+				button_arrow     = button.children();
+			// var next_to_reduce   = canvas_to_expand.prev().children().not('.layout-builder-save-options');
+
+			button.toggle(
+				function () { 		
+					canvas_to_expand.animate({'margin-left' : '0'}, 200);
+					button_arrow.css({'background-position' : '0 -108px'});
+				},
+				function () {
+					canvas_to_expand.animate({'margin-left' : '20%'}, 200);
+					button_arrow.css({'background-position' : '0 -72px'});
+				});
+		}
 	};
 
 	iframe_writer = {

@@ -16,20 +16,12 @@ class generate_layout_button extends alpha_tree_generate_type
 
 		<div id="<?php echo "$this->id-$name"; ?>-layout" class="layout-builder"></div>
 
-		<div id="<?php echo "$this->id-$name"; ?>-layout-close" class="close-layout-button button">Close</div>
-
 		<script>
-
 			layout_builder.portal({
 					id            : '<?php echo "$this->id-$name"; ?>',
 					ajax_path     : '<?php echo FRAMEWORKURI; ?>/ajax_loads/template.load.php',
 					template_name : { "name":"layout_creator"}
 				});
-
-			layout_builder.close_layout_builder_window({
-				id : '<?php echo "$this->id-$name"; ?>-layout-close',
-				box_to_close : '<?php echo "$this->id-$name"; ?>-layout'
-			});
 
 		</script>
 

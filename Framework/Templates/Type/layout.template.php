@@ -15,13 +15,24 @@ class template_layout_creator extends alpha_tree_template
 	protected function _generate_save_cancel_and_use_options ()
 	{?>
 		
-		<div class="layout-builder-save-options">
+		<div class="layout-builder-info-box">
 			
-			<a id="layout-builder-save-layout" class="button">Save</a>
-			
-			<a id="layout-builder-use" class="button">Use</a>
+			<span>Layout Builder for</span>
+
+			<strong>White Whale</strong>
 
 		</div>
+
+		<script>
+			layout_builder.close_layout_builder_window({
+				id : '#layout-builder-layout-close',
+				box_to_close : '.layout-builder'
+			});
+			layout_builder.close_options_sidebar({
+				id : '.layout-builder-colapse-button',
+				canvas_to_expand : '.layout_builder_body'
+			});
+		</script>
 
 <?php }
 	
@@ -56,6 +67,20 @@ class template_layout_creator extends alpha_tree_template
 
 				<?php $this->_generate_template_part_options($options_to_build); ?>
 
+			</div>
+
+			<div class="layout-builder-save-options">
+			
+				<a id="layout-builder-layout-close" class="button">Close</a>
+
+				<a class="layout-builder-colapse-button button-secondary">
+					
+					<span class="layout-builder-colapse-arrow"></span>
+				
+				</a>
+				
+			<!-- <a id="layout-builder-save-layout" class="button">Save</a><a id="layout-builder-use" class="button">Use</a> -->
+				
 			</div>
 
 			<div  class="layout-builder-canvas">
