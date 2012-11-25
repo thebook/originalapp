@@ -6,9 +6,9 @@
 class template_slide
 {	
 	
-	function __construct($slider_id)
+	function __construct($template_params)
 	{	
-		$meta = get_post_meta( $slider_id, 'main_meta', true ); 
+		$meta = get_post_meta( $template_params['slide_id'], 'main_meta', true ); 
 		$this->_manifest( $meta );
 	}
 
@@ -16,8 +16,9 @@ class template_slide
 	{ ?>			
 		<script>
 			!function ($) { 
-				$(window).load( 
+				$(document).ready( 
 					function () {
+						alert("stuff");		
 						$('#lf-slide-hook').flexslider({
 
 							animation: "slide",
@@ -34,14 +35,15 @@ class template_slide
 							start : function (slider) { 
 							
 								var t = $('#lf-slide-hook');
-								// console.log( slider );
+								
 								t.css('opacity', '0');
 								$('.lf-slider-background').removeClass('lf-slider-loading');
 								t.animate({'opacity' : '1'}, 700 );
 							}
-						});			
+						});	
 					});
 			}(jQuery);
+
 		</script>
 
 <?php }

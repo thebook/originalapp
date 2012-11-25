@@ -21,7 +21,8 @@
 						layout_builder.ajax_get_template_and_manifest({
 							template_paramaters  : { template_data : passed.template_name },
 							ajax_url             : passed.ajax_path,
-							element_to_append_to : '#' + passed.id + '-layout' 
+							element_to_append_to : '#' + passed.id + '-layout',
+							is_using_iframe 	 : false 
 						});	
 					});
 		},
@@ -35,29 +36,45 @@
 
 					if ( clicked.is(passed.element_to_respond_to_when_clicked) ) {
 
-						var template_name, ajax_path, element_to_append_to;
+						var template_name, ajax_path, element_to_append_to, is_using_iframe, has_options_box;
 
+							has_options_box		 = clicked.attr('class') == 'has_options';
+						 	ajax_path            = ( has_options_box ? passed.options_ajax_path : passed.template_ajax_path );
+						 	element_to_append_to = ( has_options_box ? '.layout_builder_body' : passed.element_to_append_to );
+						 	is_using_iframe      = ( has_options_box ? false : true );
 						 	template_name        = clicked.attr('id');
-						 	ajax_path            = ( clicked.attr('class') == 'has_options' ? passed.options_ajax_path : passed.template_ajax_path );
-						 	element_to_append_to = ( clicked.attr('class') == 'has_options' ? '.layout_builder_body' : passed.element_to_append_to );
 
+						 	//
+						 	//	Make Aajx Request
 						    layout_builder.ajax_get_template_and_manifest({
-						    	template_paramaters  : { template_data : template_name },
+						    	template_paramaters  : { template_data : { "name" : template_name } },
 						    	ajax_url             : ajax_path,
-						    	element_to_append_to : element_to_append_to 
+						    	element_to_append_to : element_to_append_to,
+						    	is_using_iframe 	 : is_using_iframe
 						    });						   
 						}					
 					});
 		},
 
 		ajax_get_template_and_manifest : function (passed) { 
-
+			// console.log("inside ajax_get_template_and_manifest : the vlaue is :" +passed.element_to_append_to );
 			$.ajax({
 				data     : passed.template_paramaters,
 				url      : passed.ajax_url,
 				dataType : "html",
 				success  : function ( response ) {
-					$(passed.element_to_append_to).append( response );
+					
+					if ( passed.is_using_iframe ) {
+						
+						iframe_writer.open_iframe_and_append_string({
+							iframe_id         : passed.element_to_append_to,
+							element_to_append : response
+						});
+					}
+					else {	
+
+						$(passed.element_to_append_to).append( response );					
+					}
 				}
 			});
 		},
@@ -83,7 +100,8 @@
 						the_class.ajax_get_template_and_manifest({
 							template_paramaters  : { template_data : template_paramaters },
 						    ajax_url             : passed.ajax_path,
-						    element_to_append_to : passed.element_to_append_to
+						    element_to_append_to : passed.element_to_append_to,
+						    is_using_iframe		 : passed.is_using_iframe
 							});
 
 						$(this).parent().fadeOut(100, function () { $(this).empty().remove(); });
@@ -115,24 +133,16 @@
 
 				$('.layout-builder-options-box select, .layout-builder-options-box input').each(	
 					function () {
+						
 						var dhis, selected_value, selected_name;
 
-							dhis 		  = $(this);
-							selected_name = dhis.attr('name').replace(/[\[\]']+/g,'').replace(opt.name_prefix_to_remove, '');
-
-							if ( dhis.is('select') ) {
-
-								selected_value = dhis.children('[selected]').attr('value');					
-							}
-							else if ( dhis.is('input[type="text"]') ) {
-
-								selected_value = dhis.attr('value');
-							}
-
+							dhis 		     = $(this);
+							selected_name    = dhis.attr('name').replace(/[\[\]']+/g,'').replace(opt.name_prefix_to_remove, '');
+							selected_value   = dhis.attr('value');
 							generated_array += '"'+ selected_name +'":"'+ selected_value +'",';
 						});
 
-						generated_array  = generated_array.slice( 0, -1 );
+						generated_array = generated_array.slice( 0, -1 );
 
 						return generated_array += '}';
 		},
@@ -153,6 +163,17 @@
 					});							
 				});
 			});
-		}
+		},
 	};
+
+	iframe_writer = {
+
+		open_iframe_and_append_string : function (passed) { 
+			
+			var iframe = document.getElementById(passed.iframe_id);
+				iframe = $(iframe.contentWindow.document);
+				
+				iframe.find('.liquidflux-wrap-everything').append(passed.element_to_append);			
+		}
+	}
 }(jQuery);

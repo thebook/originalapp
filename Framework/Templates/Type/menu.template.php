@@ -6,13 +6,15 @@
 class template_menu extends alpha_tree_template
 {
 	
-	function __construct($params)
+	function __construct($params = null)
 	{ ?>
 		<div class="liquidflux-menu-wrap">
 
 			<div class="liquidflux-menu-holder">
 
-				<?php $this->_get_every_template_part_and_pass_paramaters($params['template_parts_to_get']); ?>
+				<?php //$this->_get_every_template_part_and_pass_paramaters($params['template_parts_to_get']); ?>
+
+				<?php $this->_navigation($params); ?>
 
 			</div>
 

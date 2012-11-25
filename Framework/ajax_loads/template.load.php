@@ -12,6 +12,15 @@
 
 	$template_name = "template_{$get_the_template_data['name']}";
 
-	new $template_name;
+	if ( isset($get_the_template_data['params']) ) : 
+
+		new $template_name($get_the_template_data['params']);
+
+	else : 
+
+		new $template_name;
+
+	endif;
+
 
 ?>

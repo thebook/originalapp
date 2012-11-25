@@ -25,21 +25,6 @@ class template_layout_creator extends alpha_tree_template
 
 <?php }
 	
-	protected function _generate_builder_head ()
-	{ ?>
-
-	<div class="layout_builder_head">
-
-		<!-- Font insertion here -->
-
-		<style type="text/css"><?php include FRAMEWORK .'/CSS/style-core.php'; ?></style>
-			
-		<?php wp_head(); ?>
-
-	</div>
-
-<?php }
-
 	protected function _generate_template_part_options ($options_to_build)
 	{ ?>
 		<ul id="layout-builder-template-generators">
@@ -58,53 +43,50 @@ class template_layout_creator extends alpha_tree_template
 
 		</ul>
 
-		<script>
-			layout_builder.get_template_name_and_generate({
-				bind_event_to                      : "layout-builder-template-generators",
-				element_to_respond_to_when_clicked : 'li',
-				element_to_append_to			   : "#layout-builder-drop-in",
-				options_ajax_path                  : "<?php echo FRAMEWORKURI .'/ajax_loads/template.options.load.php'; ?>",
-				template_ajax_path				   : "<?php echo FRAMEWORKURI .'/ajax_loads/template.load.php'; ?>"
-			});
-		</script>
-
 <?php }
 
 	protected function _body ($options_to_build)
 	{ ?>
 
-			<div class="layout_builder_body">
+		<div class="layout_builder_body">
 
-				<div class="layout-builder-options">
+			<div class="layout-builder-options">
 
-					<?php $this->_generate_save_cancel_and_use_options(); ?>
+				<?php $this->_generate_save_cancel_and_use_options(); ?>
 
-					<?php $this->_generate_template_part_options($options_to_build); ?>
+				<?php $this->_generate_template_part_options($options_to_build); ?>
 
-				</div>
+			</div>
 
-				<div id="layout-builder-drop-in" class="layout-builder-canvas">
+			<div  class="layout-builder-canvas">
 
-					<?php $this->_generate_body(); ?>
+				<?php $this->_generate_layout_builder_insert_iframe(); ?>
 
-				</div>
+			</div>
 
-			</div class="layout_builder_body">
+			<script>
+				layout_builder.get_template_name_and_generate({
+					bind_event_to                      : "layout-builder-template-generators",
+					element_to_respond_to_when_clicked : 'li',
+					element_to_append_to			   : "layout-builder-drop-in",
+					options_ajax_path                  : "<?php echo FRAMEWORKURI .'/ajax_loads/template.options.load.php'; ?>",
+					template_ajax_path				   : "<?php echo FRAMEWORKURI .'/ajax_loads/template.load.php'; ?>"
+				});
+			</script>
+
+		</div class="layout_builder_body">
 
 <?php }
 
-	protected function _generate_body ($options_to_build = null)
+	protected function _generate_layout_builder_insert_iframe ($options_to_build = null)
 	{?>
-		<iframe>
 
-			<?php get_header(); ?>
-
-			<?php get_footer(); ?>
+		<iframe id="layout-builder-drop-in" src="<?php echo FRAMEWORKURI .'/layout.builder.php?' ?>" >
 
 		</iframe>
 
-		<!-- This is where it should get previous saved options and manifest a layout from them -->
 <?php }
+
 }
 
 ?>

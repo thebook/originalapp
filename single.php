@@ -21,6 +21,7 @@ get_header();
 
 
 $manifest_array = array(
+		// header
 		array(
 			'name' => 'header',
 			'template_params' => array(
@@ -43,25 +44,20 @@ $manifest_array = array(
 							)
 						)
 			)),
+		// Slide
 		array(
 			'name' => 'slide',
-			'template_params' => 638 ),
+			'template_params' => array(
+				'slide_id' => 638
+				) ),
+		// Menu
 		array(
 			'name' => 'menu',
 			'template_params' => array(
-				'background_color' => '000',
-				'color' => 'fff',
-				'template_parts_to_get' => 
-					array(
-						array(
-							'name' => 'navigation',
-							'params' => 
-								array( 
-									'id' => '11',
-									'navigation_size' => 'thick',
-									 ))
-							)
+				'id' => '11',
+				'navigation_size' => 'thick'
 						)),
+		// Post formats
 		array(
 			'name' => 'post_formats',
 			'template_params' => 
@@ -94,22 +90,23 @@ $manifest_array = array(
 							'sidebar_size' => 'third' )
 						)
 								)),
-		array(
-			'name' => 'menu',
-			'template_params' => array(
-				'background_color' => '000',
-				'color' => 'fff',
-				'template_parts_to_get' => 
-					array(
-						array(
-							'name' => 'navigation',
-							'params' => 
-								array( 
-									'id' => '11',
-									'navigation_size' => 'thin',
-									 ))
-							)
-						))
+		// Menu
+		// array(
+		// 	'name' => 'menu',
+		// 	'template_params' => array(
+		// 		'background_color' => '000',
+		// 		'color' => 'fff',
+		// 		'template_parts_to_get' => 
+		// 			array(
+		// 				array(
+		// 					'name' => 'navigation',
+		// 					'params' => 
+		// 						array( 
+		// 							'id' => '11',
+		// 							'navigation_size' => 'thin',
+		// 							 ))
+		// 					)
+		// 				))
 		 );
 
 new layout($manifest_array);

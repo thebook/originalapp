@@ -10,7 +10,7 @@
 
 	$template_definition = ( include FRAMEWORK .'/Definitions/templates.definition.php' );
 
-	$template_definition = $template_definition[$get_the_template_name];
+	$template_definition = $template_definition[$get_the_template_name['name']];
 
 ?>	
 	<?php if ( isset( $template_definition['options']) ) : ?>
@@ -55,11 +55,12 @@
 						layout_builder.take_options_box_values_and_manifest_a_template({
 							insert_button_id	  : "options_box_insert",
 							cancel_button_id	  : "options_box_cancel",
-							template_name         : '<?php echo $get_the_template_name; ?>',
+							template_name         : '<?php echo $get_the_template_name["name"]; ?>',
 							paramaters_name       : "params",
 							name_prefix_to_remove : "main_meta",
 							ajax_path 			  : "<?php echo FRAMEWORKURI .'/ajax_loads/template.load.php'; ?>",
-							element_to_append_to  : ".liquidflux-wrap-everything"
+							element_to_append_to  : "layout-builder-drop-in",
+							is_using_iframe 	  : true
 						});
 					});
 			}(jQuery);

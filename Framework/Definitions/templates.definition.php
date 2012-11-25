@@ -20,10 +20,36 @@
 								'title'       => 'Chose slide',
 								'description' => 'Chose your slider to show',
 								'array'       => 'main_meta',
-								'name'        => 'template_params',
+								'name'        => 'slide_id',
 								'saved'       => '638'  ),
 							)
 					),
+			'menu' =>
+				array(
+					'template_parts' => 
+						array(),
+					'options' => 
+						array(
+							// Menu 
+							array(								 
+								'type'        => 'text',
+								'title'       => 'Chose Menu',
+								'description' => 'Set which menu you wish to display',
+								'array'       => 'main_meta',
+								'name'        => 'id',
+								'saved'       => '' ),
+							// Navigation size 
+							array(
+								'type'        => 'select',
+								'title'       => 'Thickness',
+								'description' => 'Set the thickness of your menu',
+								'array'       => 'main_meta',
+								'name'        => 'navigation_size',
+								'saved'       => '',
+								'options'     => array('Thin', 'Medium', 'Thick'),
+								'values'      => array('thin', 'medium', 'thick') ),
+						),
+					)
 		);
 
 ?>
