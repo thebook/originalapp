@@ -12,15 +12,22 @@
 
 	$template_name = "template_{$get_the_template_data['name']}";
 
-	if ( isset($get_the_template_data['params']) ) : 
-
-		new $template_name($get_the_template_data['params']);
-
-	else : 
-
-		new $template_name;
-
-	endif;
-
-
 ?>
+	<div class="layoutbuilder-option-wrap">
+
+			<span class="layoutbuilder-close-button"></span>
+			<span class="layoutbuilder-edit"></span>
+		
+		<?php if ( isset($get_the_template_data['params']) ) : ?>
+
+			<?php new $template_name($get_the_template_data['params']); ?>
+
+		<?php else : ?>
+
+			<?php new $template_name; ?>
+
+		<?php endif; ?>
+	
+	</div>
+
+	<script>console.log("added");</script>

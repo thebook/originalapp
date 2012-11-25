@@ -167,7 +167,6 @@
 				canvas_to_expand = $(passed.canvas_to_expand);
 				button  		 = $(passed.id);
 				button_arrow     = button.children();
-			// var next_to_reduce   = canvas_to_expand.prev().children().not('.layout-builder-save-options');
 
 			button.toggle(
 				function () { 		
