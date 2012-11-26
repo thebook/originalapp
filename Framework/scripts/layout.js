@@ -2,6 +2,20 @@
 
 	layout_builder = {
 
+		klass : this,
+
+		controls : { 
+
+			empty_and_remove_parent_and_self : function (passed) { 
+
+				var button = $(passed.id);
+				button.on('click',
+					function () { 
+						button.parent().empty().remove();
+					});
+			}
+		},
+
 		portal : function (passed) { 
 
 			var create_layout_button, layout_window, template_to_load, template_paramaters;
@@ -27,48 +41,84 @@
 					});
 		},
 
+		/**
+		 * Opens a options box for an already inserted template, if inserted it then wipes the inserted tempalte, which 
+		 * is within a wrapper and then inserts the new modified version
+		 * @param  {array}  passed 							An array of all the otions
+		 * @param  {string} passed.bind_event_to  			The button id or class to which the event is bound 
+		 * @param  {string} passed.ajax_path 				The path to the ajax file which will generate the options box
+		 * @param  {string} passed.template_name 			The name of the template for which to generate options for
+		 * @param  {string} passed.element_to_append_to		What element to append the options box to
+		 * @param  {string} passed.template_id				The id of the currently inserted template wrapper, this is used 
+		 *                                        			so that the options box knows what currently inserted tempalte 
+		 *                                        			to replace
+		 * @return {ajax request}
+		 */
+		open_options_box_for_an_inserted_template : function (passed) { 
+			
+			var button, element_to_append_to, iframe;
+			
+				iframe = iframe_writer.get_iframe('layout-builder-drop-in');
+				button = iframe.find(passed.bind_event_to);
+				
+			button.on('click',
+				function () {
+					
+					layout_builder.ajax_get_template_and_manifest({
+							template_paramaters  : { template_data : { "name" : passed.template_name, "element_to_append_to" : passed.template_id,  "replace_old_template" : true } },
+							ajax_url             : passed.ajax_path,
+							element_to_append_to : passed.element_to_append_to,
+							is_using_iframe 	 : false
+						});	
+				});
+		},
+
 		get_template_name_and_generate : function (passed) { 
 
+			var clicked, template_name, ajax_path, element_to_append_to, is_using_iframe, has_options_box, iframe_id;
+
 			$('#' + passed.bind_event_to ).on('click', 
+				
 				function (click_event) { 
-					
-					var clicked = $(click_event.target);
+										
+					clicked = $(click_event.target);
 
 					if ( clicked.is(passed.element_to_respond_to_when_clicked) ) {
 
-						var template_name, ajax_path, element_to_append_to, is_using_iframe, has_options_box;
+						passed.iframe_id     = passed.iframe_id || null;
+						has_options_box		 = clicked.attr('class') == 'has_options';
+						ajax_path            = ( has_options_box ? passed.options_ajax_path : passed.template_ajax_path );
+						element_to_append_to = ( has_options_box ? '.layout_builder_body' : passed.element_to_append_to );
+						iframe_id 			 = passed.iframe_id;
+						is_using_iframe      = ( has_options_box ? false : true );
+						template_name        = clicked.attr('id');
 
-							has_options_box		 = clicked.attr('class') == 'has_options';
-						 	ajax_path            = ( has_options_box ? passed.options_ajax_path : passed.template_ajax_path );
-						 	element_to_append_to = ( has_options_box ? '.layout_builder_body' : passed.element_to_append_to );
-						 	is_using_iframe      = ( has_options_box ? false : true );
-						 	template_name        = clicked.attr('id');
-
-						 	//
-						 	//	Make Aajx Request
-						    layout_builder.ajax_get_template_and_manifest({
-						    	template_paramaters  : { template_data : { "name" : template_name } },
-						    	ajax_url             : ajax_path,
-						    	element_to_append_to : element_to_append_to,
-						    	is_using_iframe 	 : is_using_iframe
-						    });						   
-						}					
-					});
+						//
+						//	Make Aajx Request
+						layout_builder.ajax_get_template_and_manifest({
+							template_paramaters  : { template_data : { "name" : template_name, "element_to_append_to" : passed.element_to_append_to, "replace_old_template" : false } },
+							ajax_url             : ajax_path,
+							element_to_append_to : element_to_append_to,
+							is_using_iframe 	 : is_using_iframe
+						});						   
+					}					
+				});
 		},
 
 		ajax_get_template_and_manifest : function (passed) { 
-			// console.log("inside ajax_get_template_and_manifest : the vlaue is :" +passed.element_to_append_to );
+
 			$.ajax({
 				data     : passed.template_paramaters,
 				url      : passed.ajax_url,
 				dataType : "html",
-				success  : function ( response ) {
+				success  : function ( response ) {					
 					
 					if ( passed.is_using_iframe ) {
 						
 						iframe_writer.open_iframe_and_append_string({
-							iframe_id         : passed.element_to_append_to,
-							element_to_append : response
+							iframe_id            : passed.iframe_id,
+							element_to_append_to : passed.element_to_append_to,
+							element_to_append    : response
 						});
 					}
 					else {	
@@ -79,73 +129,109 @@
 			});
 		},
 
-		take_options_box_values_and_manifest_a_template : function (passed) { 
-			var insert_button, the_class, cancel_button;
+		branch_option_box : { 
 
-				insert_button = $('#'+ passed.insert_button_id );
-				cancel_button = $('#'+ passed.cancel_button_id );
-				the_class     = this;
+			take_options_box_values_and_manifest_a_template : function (passed) { 
 				
-				insert_button.on('click', 
-					function () {
+				var parent_class, template_paramaters, tree_class;
+										
+					parent_class  = this;
+					tree_class 	  = layout_builder;
+					
+					$( passed.insert_button_id ).on('click', 
+						function () {
 
-						template_paramaters = the_class.create_a_json_array_to_be_passed_for_template_generation({
-							template_name         : passed.template_name,        
-							paramaters_name       : passed.paramaters_name,      
-							name_prefix_to_remove : passed.name_prefix_to_remove
+							template_paramaters = parent_class.create_a_json_array_to_be_passed_for_template_generation({
+								template_name         : passed.template_name,        
+								paramaters_name       : passed.paramaters_name,      
+								name_prefix_to_remove : passed.name_prefix_to_remove
+							});							
+							
+							if ( passed.replace_old_template ) {
+							
+								parent_class.replace_old_template({
+									template_paramaters  : { template_data : template_paramaters },
+									ajax_url             : passed.ajax_path,
+									element_to_append_to : passed.element_to_append_to,
+									iframe_id 			 : passed.iframe_id,
+								});
+							} 
+							else {
+								tree_class.ajax_get_template_and_manifest({
+									template_paramaters  : { template_data : template_paramaters },
+								    ajax_url             : passed.ajax_path,
+								    element_to_append_to : passed.element_to_append_to,
+								    iframe_id 			 : passed.iframe_id,
+								    is_using_iframe		 : passed.is_using_iframe
+								});
+							}
+
+							$(this).parent().fadeOut(100, function () { $(this).empty().remove(); });
 						});
 
-						template_paramaters = JSON.parse(template_paramaters);
+					$( passed.cancel_button_id ).on('click', 
+						function () {
+							$(this).parent().fadeOut(100, function () { $(this).empty().remove(); });
+						});
+			},
+
+			replace_old_template : function (passed) { 
+
+				$.ajax({
+					data     : passed.template_paramaters,
+					url      : passed.ajax_url,
+					dataType : "html",
+					success  : function ( response ) {
 						
-						the_class.ajax_get_template_and_manifest({
-							template_paramaters  : { template_data : template_paramaters },
-						    ajax_url             : passed.ajax_path,
-						    element_to_append_to : passed.element_to_append_to,
-						    is_using_iframe		 : passed.is_using_iframe
+						iframe       = iframe_writer.get_iframe(passed.iframe_id);
+						old_template = iframe.find(passed.element_to_append_to);							
+
+						old_template
+							.fadeOut(200)
+							.after(response)
+							.empty()
+							.remove();
+					}
+				});
+			},
+
+			create_a_json_array_to_be_passed_for_template_generation : function (opt) { 
+						
+				var paramaters_array, whole_array;
+
+					paramaters_array = this.take_values_from_inputs_and_create_an_array({
+						paramaters_name       : opt.paramaters_name,
+						name_prefix_to_remove : opt.name_prefix_to_remove
+					});
+					
+					whole_array = '{"name":"'+ opt.template_name +'",'+ paramaters_array +'}';
+					whole_array = JSON.parse(whole_array);
+
+					return whole_array;
+			},
+
+			take_values_from_inputs_and_create_an_array : function (opt) { 
+
+				var generated_array = '"'+ opt.paramaters_name +'":{';
+
+					$('.layout-builder-options-box select, .layout-builder-options-box input').each(	
+						function () {
+							
+							var dhis, selected_value, selected_name;
+
+								dhis 		     = $(this);
+								selected_name    = dhis.attr('name').replace(/[\[\]']+/g,'').replace(opt.name_prefix_to_remove, '');
+								selected_value   = dhis.attr('value');
+								generated_array += '"'+ selected_name +'":"'+ selected_value +'",';
 							});
 
-						$(this).parent().fadeOut(100, function () { $(this).empty().remove(); });
-					});
+							generated_array = generated_array.slice( 0, -1 );
 
-				cancel_button.on('click', 
-					function () {
-						$(this).parent().fadeOut(100, function () { $(this).empty().remove(); });
-					});
+							return generated_array += '}';
+			},
+
 		},
 
-		create_a_json_array_to_be_passed_for_template_generation : function (opt) { 
-					
-			var paramaters_array, whole_array;
-
-				paramaters_array = this.take_values_from_inputs_and_create_an_array({
-					paramaters_name       : opt.paramaters_name,
-					name_prefix_to_remove : opt.name_prefix_to_remove
-				});
-				
-				whole_array = '{"name":"'+ opt.template_name +'",'+ paramaters_array +'}';
-
-				return whole_array;
-		},
-
-		take_values_from_inputs_and_create_an_array : function (opt) { 
-
-			var generated_array = '"'+ opt.paramaters_name +'":{';
-
-				$('.layout-builder-options-box select, .layout-builder-options-box input').each(	
-					function () {
-						
-						var dhis, selected_value, selected_name;
-
-							dhis 		     = $(this);
-							selected_name    = dhis.attr('name').replace(/[\[\]']+/g,'').replace(opt.name_prefix_to_remove, '');
-							selected_value   = dhis.attr('value');
-							generated_array += '"'+ selected_name +'":"'+ selected_value +'",';
-						});
-
-						generated_array = generated_array.slice( 0, -1 );
-
-						return generated_array += '}';
-		},
 
 		close_layout_builder_window : function (opt) { 
 				
@@ -184,10 +270,16 @@
 
 		open_iframe_and_append_string : function (passed) { 
 			
-			var iframe = document.getElementById(passed.iframe_id);
-				iframe = $(iframe.contentWindow.document);
+			var iframe = this.get_iframe(passed.iframe_id);
 				
-				iframe.find('.liquidflux-wrap-everything').append(passed.element_to_append);			
+				iframe.find(passed.element_to_append_to).append(passed.element_to_append);			
+		}, 
+
+		get_iframe : function (iframe_id) {
+
+			iframe = document.getElementById(iframe_id);
+			iframe = $(iframe.contentWindow.document);
+			return iframe;
 		}
 	}
 }(jQuery);

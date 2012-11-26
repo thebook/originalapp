@@ -93,7 +93,8 @@ class template_layout_creator extends alpha_tree_template
 				layout_builder.get_template_name_and_generate({
 					bind_event_to                      : "layout-builder-template-generators",
 					element_to_respond_to_when_clicked : 'li',
-					element_to_append_to			   : "layout-builder-drop-in",
+					iframe_id						   : "layout-builder-drop-in",
+					element_to_append_to			   : ".liquidflux-wrap-everything",
 					options_ajax_path                  : "<?php echo FRAMEWORKURI .'/ajax_loads/template.options.load.php'; ?>",
 					template_ajax_path				   : "<?php echo FRAMEWORKURI .'/ajax_loads/template.load.php'; ?>"
 				});

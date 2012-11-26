@@ -1,6 +1,9 @@
 <?php 
+	
+	//	This loads the options box which allows the user to customize the template
+	//	layout and then inserts the template inside
 
-	$get_the_template_name = $_GET['template_data'];
+	$get_the_template_data = $_GET['template_data'];
 	
 	// Get current file path
 	$p  = explode( 'wp-content', __FILE__ );
@@ -10,7 +13,7 @@
 
 	$template_definition = ( include FRAMEWORK .'/Definitions/templates.definition.php' );
 
-	$template_definition = $template_definition[$get_the_template_name['name']];
+	$template_definition = $template_definition[$get_the_template_data['name']];
 
 ?>	
 	<?php if ( isset( $template_definition['options']) ) : ?>
@@ -49,21 +52,22 @@
 		</div>
 
 		<script>
-			!function ($) {
-				$(document).ready(
-					function () { 
-						layout_builder.take_options_box_values_and_manifest_a_template({
-							insert_button_id	  : "options_box_insert",
-							cancel_button_id	  : "options_box_cancel",
-							template_name         : '<?php echo $get_the_template_name["name"]; ?>',
-							paramaters_name       : "params",
-							name_prefix_to_remove : "main_meta",
-							ajax_path 			  : "<?php echo FRAMEWORKURI .'/ajax_loads/template.load.php'; ?>",
-							element_to_append_to  : "layout-builder-drop-in",
-							is_using_iframe 	  : true
-						});
-					});
-			}(jQuery);
+			
+			layout_builder
+			.branch_option_box
+			.take_options_box_values_and_manifest_a_template({
+				insert_button_id	  : "#options_box_insert",
+				cancel_button_id	  : "#options_box_cancel",
+				template_name         : '<?php echo $get_the_template_data["name"]; ?>',
+				paramaters_name       : "params",
+				name_prefix_to_remove : "main_meta",
+				ajax_path 			  : "<?php echo FRAMEWORKURI .'/ajax_loads/template.load.php'; ?>",
+				iframe_id			  : "layout-builder-drop-in",
+				element_to_append_to  : "<?php echo $get_the_template_data['element_to_append_to']; ?>",
+				is_using_iframe 	  : true,
+				replace_old_template  : <?php echo $get_the_template_data['replace_old_template']; ?>
+			});
+	
 		</script>
 
 	<?php endif; ?>
