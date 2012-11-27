@@ -20,7 +20,7 @@ class generate_layout_button extends alpha_tree_generate_type
 			layout_builder.portal({
 					id            : '<?php echo "$this->id-$name"; ?>',
 					ajax_path     : '<?php echo FRAMEWORKURI; ?>/ajax_loads/template.load.php',
-					template_name : { "name":"layout_creator"}
+					template_name : { "name":"layout_creator", "not_a_template_part" : true }
 				});
 
 		</script>

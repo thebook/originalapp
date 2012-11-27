@@ -41,37 +41,7 @@
 					});
 		},
 
-		/**
-		 * Opens a options box for an already inserted template, if inserted it then wipes the inserted tempalte, which 
-		 * is within a wrapper and then inserts the new modified version
-		 * @param  {array}  passed 							An array of all the otions
-		 * @param  {string} passed.bind_event_to  			The button id or class to which the event is bound 
-		 * @param  {string} passed.ajax_path 				The path to the ajax file which will generate the options box
-		 * @param  {string} passed.template_name 			The name of the template for which to generate options for
-		 * @param  {string} passed.element_to_append_to		What element to append the options box to
-		 * @param  {string} passed.template_id				The id of the currently inserted template wrapper, this is used 
-		 *                                        			so that the options box knows what currently inserted tempalte 
-		 *                                        			to replace
-		 * @return {ajax request}
-		 */
-		open_options_box_for_an_inserted_template : function (passed) { 
-			
-			var button, element_to_append_to, iframe;
-			
-				iframe = iframe_writer.get_iframe('layout-builder-drop-in');
-				button = iframe.find(passed.bind_event_to);
-				
-			button.on('click',
-				function () {
-					
-					layout_builder.ajax_get_template_and_manifest({
-							template_paramaters  : { template_data : { "name" : passed.template_name, "element_to_append_to" : passed.template_id,  "replace_old_template" : true } },
-							ajax_url             : passed.ajax_path,
-							element_to_append_to : passed.element_to_append_to,
-							is_using_iframe 	 : false
-						});	
-				});
-		},
+		
 
 		get_template_name_and_generate : function (passed) { 
 
@@ -129,8 +99,99 @@
 			});
 		},
 
+		branch_move_around : { 
+
+			show_drop_fields_on_click : function (passed) { 
+
+				var _the_class    = this,
+					_get_iframe   = iframe_writer.get_iframe(passed.iframe),
+					_bind_to 	  = _get_iframe.find(passed.bind_to),
+					_get_template = $(_bind_to).parents(passed.class_for_templates);
+					
+				_bind_to
+				.toggle(
+					function () {
+
+						drop_fields_open = true;
+
+						_the_class
+						.iterate_over_templates_and_add_a_visible_field({
+							class_for_templates : passed.class_for_templates,
+							template_to_exclude : _get_template,
+							iframe 				: _get_iframe
+						});
+					},
+					function () {
+
+						drop_fields_open = false;
+
+						_the_class.remove_visible_drop_fields(_get_template);
+					});
+			},
+
+			iterate_over_templates_and_add_a_visible_field : function (passed) {
+
+				var _the_class = this;
+
+				passed.iframe
+				.find(passed.class_for_templates)
+				.not(passed.template_to_exclude)
+				.each( 
+					function () {
+						_the_class.add_a_visible_drop_field(this);						
+				});
+			},
+
+			add_a_visible_drop_field : function (element) { 
+
+				$(element)
+				// .before('<div class="layoutbuilder-empty-field"></div>')
+				.after('<div class="layoutbuilder-empty-field"></div>');
+			},
+
+			remove_visible_drop_fields : function (element) { 
+
+				$(element)
+				.parent()
+				.find('.layoutbuilder-empty-field')
+				.remove();	
+			}
+		},
+
 		branch_option_box : { 
 
+			/**
+			 * Opens a options box for an already inserted template, if inserted it then wipes the inserted tempalte, which 
+			 * is within a wrapper and then inserts the new modified version
+			 * @param  {array}  passed 							An array of all the otions
+			 * @param  {string} passed.bind_event_to  			The button id or class to which the event is bound 
+			 * @param  {string} passed.ajax_path 				The path to the ajax file which will generate the options box
+			 * @param  {string} passed.template_name 			The name of the template for which to generate options for
+			 * @param  {string} passed.element_to_append_to		What element to append the options box to
+			 * @param  {string} passed.template_id				The id of the currently inserted template wrapper, this is used 
+			 *                                        			so that the options box knows what currently inserted tempalte 
+			 *                                        			to replace
+			 * @return {ajax request}
+			 */
+			open_options_box_for_an_inserted_template : function (passed) { 
+				
+				var button, element_to_append_to, iframe;
+				
+					iframe = iframe_writer.get_iframe('layout-builder-drop-in');
+					button = iframe.find(passed.bind_event_to);
+					
+					console.log("bind open inserted template");
+				button.on('click',
+					function () {
+						layout_builder.ajax_get_template_and_manifest({
+								template_paramaters  : { template_data : { "name" : passed.template_name, "element_to_append_to" : passed.template_id,  "replace_old_template" : true } },
+								ajax_url             : passed.ajax_path,
+								element_to_append_to : passed.element_to_append_to,
+								is_using_iframe 	 : false
+							});	
+					});
+			},
+			
 			take_options_box_values_and_manifest_a_template : function (passed) { 
 				
 				var parent_class, template_paramaters, tree_class;
@@ -277,8 +338,9 @@
 
 		get_iframe : function (iframe_id) {
 
-			iframe = document.getElementById(iframe_id);
-			iframe = $(iframe.contentWindow.document);
+			var	iframe = document.getElementById(iframe_id);
+				iframe = $(iframe.contentWindow.document);
+
 			return iframe;
 		}
 	}
