@@ -99,37 +99,71 @@
 			});
 		},
 
+		move_templates : function (passed) { 
+
+
+		},
+
 		branch_move_around : { 
 
 			show_drop_fields_on_click : function (passed) { 
 
-				var _the_class    = this,
-					_get_iframe   = iframe_writer.get_iframe(passed.iframe),
-					_bind_to 	  = _get_iframe.find(passed.bind_to),
-					_get_template = $(_bind_to).parents(passed.class_for_templates);
-					
+				var _the_class    		 = this,
+					_get_iframe   		 = iframe_writer.get_iframe(passed.iframe),
+					_bind_to 	  		 = _get_iframe.find(passed.bind_to),
+					_get_template 		 = $(_bind_to).parents(passed.class_for_templates),
+					_change_move_buttons = _the_class._hide_show_move_buttons;
+
 				_bind_to
 				.toggle(
-					function () {
+					// Show insert fields
+					function () {										
 
-						drop_fields_open = true;
+						_change_move_buttons.set_up({
+								iframe       : passed.iframe,
+								move_buttons : '.layoutbuilder-move-button',
+								bind_to 	 : passed.bind_to
+							});
+						
+						_change_move_buttons.manifest('none', 'Dont Move');						
 
 						_the_class
-						.iterate_over_templates_and_add_a_visible_field({
+						._iterate_over_templates_and_add_a_visible_field({
 							class_for_templates : passed.class_for_templates,
 							template_to_exclude : _get_template,
 							iframe 				: _get_iframe
 						});
 					},
+					// Hide insert fields
 					function () {
-
-						drop_fields_open = false;
+						
+						_change_move_buttons.manifest('block', 'Move');					
 
 						_the_class.remove_visible_drop_fields(_get_template);
+						
 					});
 			},
 
-			iterate_over_templates_and_add_a_visible_field : function (passed) {
+			_hide_show_move_buttons : {
+
+			 	set_up : function (passed) { 
+
+			 		var _get_iframe           = iframe_writer.get_iframe(passed.iframe);
+					 	this._buttons_to_hide = 
+						 		_get_iframe
+								.find(passed.move_buttons)
+								.parent()
+								.not(passed.bind_to);
+						this._clicked_button  = _get_iframe.find(passed.bind_to).children();
+			 	},
+
+			 	manifest : function (display_state, text_to_display) { 
+			 		this._buttons_to_hide.css('display', display_state);
+			 		this._clicked_button.text(text_to_display);
+			 	}
+			},
+
+			_iterate_over_templates_and_add_a_visible_field : function (passed) {
 
 				var _the_class = this;
 
@@ -146,7 +180,7 @@
 
 				$(element)
 				// .before('<div class="layoutbuilder-empty-field"></div>')
-				.after('<div class="layoutbuilder-empty-field"></div>');
+				.after('<div class="layoutbuilder-empty-field"><span>Move template here</span></div>');
 			},
 
 			remove_visible_drop_fields : function (element) { 
