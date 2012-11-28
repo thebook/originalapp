@@ -99,50 +99,49 @@
 			});
 		},
 
-		move_templates : function (passed) { 
+		produce : { 
 
+			move : { 
 
-		},
+				create : function (passed) { 
 
-		branch_move_around : { 
+						this.prototype 		 = layout_builder.branch_move_around;
+					
+					var _klass    		 	 = this.prototype,
+						_get_iframe   		 = iframe_writer.get_iframe(passed.iframe),
+						_bind_to 	  		 = _get_iframe.find(passed.bind_to),
+						_get_template 		 = $(_bind_to).parents(passed.class_for_templates),
+						_change_move_buttons = _klass._hide_show_move_buttons;
 
-			show_drop_fields_on_click : function (passed) { 
+					_bind_to
+					.toggle(
+						function () {										
 
-				var _the_class    		 = this,
-					_get_iframe   		 = iframe_writer.get_iframe(passed.iframe),
-					_bind_to 	  		 = _get_iframe.find(passed.bind_to),
-					_get_template 		 = $(_bind_to).parents(passed.class_for_templates),
-					_change_move_buttons = _the_class._hide_show_move_buttons;
-
-				_bind_to
-				.toggle(
-					// Show insert fields
-					function () {										
-
-						_change_move_buttons.set_up({
+							_change_move_buttons.set_up({
 								iframe       : passed.iframe,
 								move_buttons : '.layoutbuilder-move-button',
 								bind_to 	 : passed.bind_to
 							});
-						
-						_change_move_buttons.manifest('none', 'Dont Move');						
+							
+							_change_move_buttons.manifest('none', 'Dont Move');						
 
-						_the_class
-						._iterate_over_templates_and_add_a_visible_field({
-							class_for_templates : passed.class_for_templates,
-							template_to_exclude : _get_template,
-							iframe 				: _get_iframe
+							_klass
+							._iterate_over_templates_and_add_a_visible_field({
+								class_for_templates : passed.class_for_templates,
+								template_to_exclude : _get_template,
+								iframe 				: _get_iframe
+							});
+						},
+						function () {
+							
+							_change_move_buttons.manifest('block', 'Move');					
+							_klass._remove_visible_drop_fields(_get_template);					
 						});
-					},
-					// Hide insert fields
-					function () {
-						
-						_change_move_buttons.manifest('block', 'Move');					
+					}
+				},
+		},
 
-						_the_class.remove_visible_drop_fields(_get_template);
-						
-					});
-			},
+		branch_move_around : { 
 
 			_hide_show_move_buttons : {
 
@@ -172,23 +171,60 @@
 				.not(passed.template_to_exclude)
 				.each( 
 					function () {
-						_the_class.add_a_visible_drop_field(this);						
+						_the_class._add_a_visible_drop_field({
+							element : this, 
+							iframe 	: passed.iframe,
+							template_to_move : passed.template_to_exclude
+						});						
 				});
 			},
 
-			add_a_visible_drop_field : function (element) { 
+			_add_a_visible_drop_field : function (passed) { 
 
-				$(element)
-				// .before('<div class="layoutbuilder-empty-field"></div>')
-				.after('<div class="layoutbuilder-empty-field"><span>Move template here</span></div>');
+					$('<div class="layoutbuilder-empty-field"><span>Move template here</span></div>')
+					.css({'opacity' : '0'})
+					.insertAfter(passed.element);
+
+				var insert_fields = passed.iframe.find('.layoutbuilder-empty-field');
+					
+					insert_fields.animate({'opacity' : '1'}, 400);
+
+					this._move_template_to_clicked_area({
+						template_to_move : passed.template_to_move,
+						insert_fields    : insert_fields,
+						iframe 			 : passed.iframe
+					});
 			},
 
-			remove_visible_drop_fields : function (element) { 
+			_remove_visible_drop_fields : function (element) { 
 
 				$(element)
 				.parent()
 				.find('.layoutbuilder-empty-field')
-				.remove();	
+				.animate(
+					{'opacity' : '0'}, 
+					400,
+					function () {
+						$(this).remove();
+					});			
+			},
+
+			_move_template_to_clicked_area : function (passed) { 
+
+				var klass = this;
+
+				$(passed.insert_fields)
+				.on('click',
+					function () {
+
+						var clone = passed.template_to_move.clone(true);
+
+							$(passed.template_to_move).empty().remove();
+
+						    clone.insertBefore(this);	
+
+						    klass._remove_visible_drop_fields(this);
+					});
 			}
 		},
 

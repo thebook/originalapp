@@ -55,9 +55,7 @@
 			<span><!-- <ul><li>Template 1</li><li>Template 2</li></ul> --></span>
 
 			<script>
-				layout_builder
-				.branch_move_around
-				.show_drop_fields_on_click({
+				layout_builder.produce.move.create({
 					iframe				: 'layout-builder-drop-in',
 					bind_to 			: '#<?php echo $template_id; ?>-move',
 					class_for_templates : '.layoutbuilder-option-wrap'
