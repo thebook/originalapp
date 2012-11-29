@@ -16,7 +16,7 @@
 
 ?> 
 
-	<div id="<?php echo $template_id; ?>" class="layoutbuilder-option-wrap">
+	<div id="<?php echo $template_id; ?>" class="layoutbuilder-option-wrap drag">
 
 		<?php if ( isset($get_the_template_data['params']) && !isset($get_template_data['not_template_part']) ) : ?>
 
@@ -53,14 +53,6 @@
 			<span id="<?php echo $template_id; ?>-move"><a class="layoutbuilder-move-button" title="Move template">Move</a></span>
 
 			<span><!-- <ul><li>Template 1</li><li>Template 2</li></ul> --></span>
-
-			<script>
-				layout_builder.produce.move.create({
-					iframe				: 'layout-builder-drop-in',
-					bind_to 			: '#<?php echo $template_id; ?>-move',
-					class_for_templates : '.layoutbuilder-option-wrap'
-				});	
-			</script>
 
 			<script>console.log("normal template");</script>
 

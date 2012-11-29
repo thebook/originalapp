@@ -108,10 +108,23 @@ class template_layout_creator extends alpha_tree_template
 	protected function _generate_layout_builder_insert_iframe ($options_to_build = null)
 	{?>
 
-		<div style="display:none;" class="layoutbuiler-iframe-overlay"></div>
-		<iframe id="layout-builder-drop-in" src="<?php echo FRAMEWORKURI .'/layout.builder.php?' ?>" >
+		
+		<iframe onmousemove="return false;" id="layout-builder-drop-in" src="<?php echo FRAMEWORKURI .'/layout.builder.php?' ?>" >
 
 		</iframe>
+
+		<script>
+			!function ($) { 
+				$('#layout-builder-drop-in').load(
+					function () { 
+						layout_builder
+						.branch_move_around
+						._drag({
+							iframe_id : 'layout-builder-drop-in'
+						});
+					});
+			}(jQuery);
+		</script>
 
 <?php }
 

@@ -209,22 +209,76 @@
 					});			
 			},
 
-			_move_template_to_clicked_area : function (passed) { 
+			_drag : function (passed) { 
 
-				var klass = this;
+				this._init_move(passed);
 
-				$(passed.insert_fields)
-				.on('click',
-					function () {
+				// .on('mouseup',
+				// function (up_event) {
+				// 	console.log(up_event);
+				// });
 
-						var clone = passed.template_to_move.clone(true);
+			},
 
-							$(passed.template_to_move).empty().remove();
+			_init_move : function (passed) { 
 
-						    clone.insertBefore(this);	
+				var klass, iframe;
+					klass  = this;
+					iframe = iframe_writer.get_iframe(passed.iframe_id);
 
-						    klass._remove_visible_drop_fields(this);
+					iframe
+					.on('mousedown', 
+						'.drag',
+					function (down_event) { 
+						// console.log(this);
+						
+						klass._moving({
+							move   : this,
+							iframe : iframe
+						});						
+					})
+			},
+
+			_moving : function (passed) { 
+
+				var klass, moving_template;
+					klass 			= this;
+					moving_template = $(passed.move);
+				
+				moving_template
+				.css('position','absolute')
+				
+				passed.iframe
+				.on('mousemove',
+				function (move_event) { 
+
+					moving_template
+					.css({
+						top    : move_event.pageY,
+						left   : move_event.pageX
 					});
+				})
+				.on('mouseup',
+				function (up_event) { 
+					
+					klass._stop({
+						moving_template : moving_template,
+						iframe 			: $(this)
+					});
+				});
+
+			},
+
+			_stop : function (passed) { 
+
+				passed.moving_template
+				.css({ position : 'static'});
+
+				passed.iframe
+				.off('mouseup')
+				.off('mousemove');
+
+				console.log("cleaned up");
 			}
 		},
 

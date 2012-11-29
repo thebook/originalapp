@@ -49,7 +49,7 @@
 											),
 										'enqueue' => false
 											))),
-						// admin js
+						// jGrowl
 						array(
 							'f' => array( $this, 'sort'),
 							'o' =>
@@ -84,7 +84,8 @@
 													'media-upload',
 													'jGrowl',
 													'jquery-ui-slider',
-													'layout'), 
+													'layout',
+													'live-drag'), 
 												'1.0', 
 												false ),
 										'conditional' => 
@@ -133,6 +134,42 @@
 										'conditional' => array( array( true,  'lf_slide' )), 
 										'enqueue' => true
 										))),						
+						//  drag event live extra script
+						array(
+							'f' => array( $this, 'sort'),
+							'o' =>
+								array(
+									array(
+										'side' => 'admin',
+										'type' => 'script',
+										'arg'  => 
+											array(
+												'live-drag',
+												SCRIPTS .'/jquery.event.drag.live.js',
+												array( 'jquery', 'drag'),
+												'2.2',
+												true  ),
+										'conditional' => false,
+										'enqueue' => false
+										))),
+						// drag event plugin
+						array(
+							'f' => array( $this, 'sort'),
+							'o' =>
+								array(
+									array(
+										'side' => 'admin',
+										'type' => 'script',
+										'arg'  => 
+											array(
+												'drag',
+												SCRIPTS .'/jquery.event.drag.js',
+												array( 'jquery'),
+												'2.2',
+												true  ),
+										'conditional' => false,
+										'enqueue' => false
+										))),
 						// functions for pages
 						array(
 							'f' => array( $this, 'sort'),
