@@ -213,10 +213,7 @@
 
 				this._init_move(passed);
 
-				// .on('mouseup',
-				// function (up_event) {
-				// 	console.log(up_event);
-				// });
+				
 
 			},
 
@@ -229,33 +226,42 @@
 					iframe
 					.on('mousedown', 
 						'.drag',
-					function (down_event) { 
-						// console.log(this);
+					function (down_event) { 						
 						
 						klass._moving({
-							move   : this,
-							iframe : iframe
+							move       : this,
+							iframe     : iframe,
+							down_event : down_event
 						});						
+						
+						klass._drop_creation({ 
+							template : this 
+						});
 					})
 			},
 
 			_moving : function (passed) { 
 
-				var klass, moving_template;
-					klass 			= this;
-					moving_template = $(passed.move);
-				
+				var klass, moving_template, current_mouse;
+					klass 			   		 = this;
+					moving_template    		 = $(passed.move);					
+					// current_mouse.horizontal = passed.down_event.pageX;							
+					// current_mouse.vertical   = passed.down_event.pageY;							
+
 				moving_template
-				.css('position','absolute')
+				.css({ 
+					position : 'absolute',
+					width    : moving_template.css('width')
+				})
 				
 				passed.iframe
 				.on('mousemove',
 				function (move_event) { 
-
+					console.log(move_event);
 					moving_template
 					.css({
-						top    : move_event.pageY,
-						left   : move_event.pageX
+						top    : move_event.offsetY,
+						left   : move_event.offsetX
 					});
 				})
 				.on('mouseup',
@@ -269,10 +275,33 @@
 
 			},
 
+			_drop_creation : function (passed) { 
+
+				var templates = $(passed.template).parent().children().not(passed.template);
+					
+					templates
+					.on(
+						'mouseenter',
+					function (_enter_event) { 
+						console.log(_enter_event);						
+					})
+					.on( 
+						'mouseleave',
+					function (_leave_event) { 
+						console.log(_leave_event);
+					});
+			},
+
 			_stop : function (passed) { 
 
 				passed.moving_template
-				.css({ position : 'static'});
+				.css({ 
+					position : 'static',
+					width    : 'auto'
+				})
+				.parent().children()
+				.off('mouseenter')
+				.off('mouseleave');
 
 				passed.iframe
 				.off('mouseup')
