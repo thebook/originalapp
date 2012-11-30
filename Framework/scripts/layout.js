@@ -242,30 +242,45 @@
 
 			_moving : function (passed) { 
 
-				var klass, moving_template, current_mouse;
-					klass 			   		 = this;
-					moving_template    		 = $(passed.move);					
-					// current_mouse 	=  {
-					// 	horizontal : passed.down_event.pageX,
-					// 	vertical   : passed.down_event.pageY
-					// };
-					current_mouse.horizontal = passed.down_event.pageX;
-					current_mouse.vertical   = passed.down_event.pageY;
-					console.log(current_mouse);
+				var klass, moving_template, current_mouse, initial_template_styling;
+					klass 			 = this;
+					moving_template  = $(passed.move);					
+					initial_position =  {
+						mouse_left    	: passed.down_event.pageX,
+						mouse_top   	: passed.down_event.pageY,
+						template_offset : moving_template.offset()
+					};
+					initial_template_styling  = { 
+						width  : moving_template.css('width'),
+						height : moving_template.css('height')
+					};		
+				
+				console.log(initial_position);
+
+				$('<div class="initial_drop_position_holder drop_spot"></div>')
+				.css({
+					width  : initial_template_styling.width,
+					height : initial_template_styling.height
+				})
+				.insertAfter(moving_template);
+
 				moving_template
 				.css({ 
 					position : 'absolute',
-					width    : moving_template.css('width')
+					width    : initial_template_styling.width
 				})
 				
 				passed.iframe
 				.on('mousemove',
 				function (move_event) { 
-					console.log(move_event);
+					var move_left_by, move_top_by;
+						move_left_by = ( move_event.pageX + initial_position.template_offset.left) - initial_position.mouse_left;
+						move_top_by  = ( move_event.pageY + initial_position.template_offset.top ) - initial_position.mouse_top;
+
 					moving_template
 					.css({
-						top    : move_event.offsetY,
-						left   : move_event.offsetX
+						top    : move_top_by,
+						left   : move_left_by
 					});
 				})
 				.on('mouseup',
@@ -283,16 +298,17 @@
 
 				var templates = $(passed.template).parent().children().not(passed.template);
 					
+					console.log(templates);
 					templates
 					.on(
 						'mouseenter',
 					function (_enter_event) { 
-						console.log(_enter_event);						
+						// console.log(_enter_event);						
 					})
 					.on( 
 						'mouseleave',
 					function (_leave_event) { 
-						console.log(_leave_event);
+						// console.log(_leave_event);
 					});
 			},
 
@@ -301,7 +317,9 @@
 				passed.moving_template
 				.css({ 
 					position : 'static',
-					width    : 'auto'
+					width    : 'auto',
+					top 	 : 'auto',
+					left 	 : 'auto'
 				})
 				.parent().children()
 				.off('mouseenter')
@@ -310,6 +328,8 @@
 				passed.iframe
 				.off('mouseup')
 				.off('mousemove');
+				// .find('.drop_spot')
+				// .remove();
 
 				console.log("cleaned up");
 			}
