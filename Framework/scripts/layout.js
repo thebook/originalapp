@@ -245,9 +245,13 @@
 				var klass, moving_template, current_mouse;
 					klass 			   		 = this;
 					moving_template    		 = $(passed.move);					
-					// current_mouse.horizontal = passed.down_event.pageX;							
-					// current_mouse.vertical   = passed.down_event.pageY;							
-
+					// current_mouse 	=  {
+					// 	horizontal : passed.down_event.pageX,
+					// 	vertical   : passed.down_event.pageY
+					// };
+					current_mouse.horizontal = passed.down_event.pageX;
+					current_mouse.vertical   = passed.down_event.pageY;
+					console.log(current_mouse);
 				moving_template
 				.css({ 
 					position : 'absolute',
