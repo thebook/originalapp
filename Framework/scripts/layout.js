@@ -232,7 +232,7 @@
 							down_event : down_event
 						});						
 						
-						// klass._drop_creation({ 
+						// klass._create_drop_field_next_to_hovered_template({ 
 						// 	template : this 
 						// });
 					})
@@ -279,10 +279,11 @@
 					var move_left_by  = ( move_event.pageX + initial_position.template_offset.left) - initial_position.mouse_left;
 						move_top_by   = ( move_event.pageY + initial_position.template_offset.top ) - initial_position.mouse_top;									
 
-					klass._drop_creation({
+					klass._create_drop_field_next_to_hovered_template({
 						position_of_other_templates : position_of_other_templates,
-						move_event : move_event,
-						iframe 	   : this
+						move_event 					: move_event,
+						iframe 	   					: this,
+						initial_template_style 		: initial_template_styling
 					});				
 
 					moving_template
@@ -303,7 +304,7 @@
 
 			},
 
-			_drop_creation : function (passed) { 
+			_create_drop_field_next_to_hovered_template : function (passed) { 
 
 
 				var	hovered_template = 
@@ -332,18 +333,12 @@
 
 						$('<div class="drop_spot"></div>')
 						.css({
-						 	width : '100%', 
-						 	height : '50px'
+						 	width  : passed.initial_template_style.width, 
+						 	height : passed.initial_template_style.height
 						})
 						.insertAfter( mouse_overed_template );
-
-						console.log("drop spot appended, other cleand out");
+												
 					}
-											
-					// console.log("the hovered over id is : "+ hovered_template[0].id +";");
-
-					// $('#'+ hovering_over[0].id )
-					// .after('<div class="drop_spot"></div>');
 				}
 			},
 
