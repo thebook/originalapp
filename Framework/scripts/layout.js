@@ -213,8 +213,6 @@
 
 				this._init_move(passed);
 
-				
-
 			},
 
 			_init_move : function (passed) { 
@@ -242,25 +240,29 @@
 
 			_moving : function (passed) { 
 
-				var klass, moving_template, current_mouse, initial_template_styling;
-					klass 			 = this;
-					moving_template  = $(passed.move);					
-					initial_position =  {
-						mouse_left    	: passed.down_event.pageX,
-						mouse_top   	: passed.down_event.pageY,
-						template_offset : moving_template.offset()
-					};
-					initial_template_styling  = { 
-						width  : moving_template.css('width'),
-						height : moving_template.css('height')
-					};		
-				
-				console.log(initial_position);
+				var klass, moving_template, position_of_other_templates, other_templates,
+					initial_position = new Object, initial_template_styling = new Object;
 
-				$('<div class="initial_drop_position_holder drop_spot"></div>')
+					klass 			 				 = this;
+					moving_template  				 = $(passed.move);	
+					other_templates 				 = moving_template.parent().children().not("#"+ moving_template.attr('id') +", .drop_spot");
+					
+					initial_position.mouse_left      = passed.down_event.pageX;
+					initial_position.mouse_top   	 = passed.down_event.pageY;
+					initial_position.template_offset = moving_template.offset();					
+					
+					initial_template_styling.width   = moving_template.css('width');
+					initial_template_styling.height  = moving_template.css('height');
+					
+					position_of_other_templates		 = klass._get_positions_of_all_other_templates_apart_from_draged_one(other_templates);
+
+					console.log(other_templates);
+					console.log(position_of_other_templates);
+
+				$('<div class="drop_spot"></div>')
 				.css({
-					width  : initial_template_styling.width,
-					height : initial_template_styling.height
+					width     : initial_template_styling.width,
+					height    : initial_template_styling.height
 				})
 				.insertAfter(moving_template);
 
@@ -279,8 +281,9 @@
 
 					moving_template
 					.css({
-						top    : move_top_by,
-						left   : move_left_by
+						top     : move_top_by,
+						left    : move_left_by,
+						zIndex  : 0
 					});
 				})
 				.on('mouseup',
@@ -296,40 +299,66 @@
 
 			_drop_creation : function (passed) { 
 
-				var templates = $(passed.template).parent().children().not(passed.template);
+				// var templates, klass, position_of_tempaltes;
+				// 	klass 				  = this;
+				// 	templates             = $(passed.template).parent().children().not("#"+ $(passed.template).attr('id') +", .drop_spot");
+				// 	position_of_templates = klass._get_positions({ templates : templates });
+
+					// console.log(position_of_templates);
+
+					// templates				
+					// .on(
+					// 	'mouseenter',
+					// function (_enter_event) { 					
+						
+					// 	$('<div class="drop_spot"></div>')
+					// 	.css({ 
+					// 		width     : '100%', 
+					// 		height    : '50px',
+					// 		visiblity : 'invisible'
+					// 	})
+					// 	.insertBefore(this);
+					// })
+					// .on( 
+					// 	'mouseleave',
+					// function (_leave_event) { 
+					// 	// console.log(_leave_event);
+					// });
+			},
+
+			_get_positions_of_all_other_templates_apart_from_draged_one : function (other_templates) { 
+
+				var template_positions = new Array;
+
+				other_templates
+				.each( 
+					function () { 
+					var offset 		= $(this).offset(),
+						template_id = $(this).attr('id');
 					
-					console.log(templates);
-					templates
-					.on(
-						'mouseenter',
-					function (_enter_event) { 
-						// console.log(_enter_event);						
-					})
-					.on( 
-						'mouseleave',
-					function (_leave_event) { 
-						// console.log(_leave_event);
+					template_positions.push({ 
+						left : offset.left,
+						top  : offset.top, 
+						id   : template_id 
 					});
+				});
+
+				return template_positions;
 			},
 
 			_stop : function (passed) { 
 
 				passed.moving_template
-				.css({ 
-					position : 'static',
-					width    : 'auto',
-					top 	 : 'auto',
-					left 	 : 'auto'
-				})
+				.removeAttr('style')				
 				.parent().children()
 				.off('mouseenter')
 				.off('mouseleave');
 
 				passed.iframe
 				.off('mouseup')
-				.off('mousemove');
-				// .find('.drop_spot')
-				// .remove();
+				.off('mousemove')
+				.find('.drop_spot')
+				.remove();
 
 				console.log("cleaned up");
 			}

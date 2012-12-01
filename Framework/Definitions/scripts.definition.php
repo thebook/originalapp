@@ -84,8 +84,7 @@
 													'media-upload',
 													'jGrowl',
 													'jquery-ui-slider',
-													'layout',
-													'live-drag'), 
+													'layout'), 
 												'1.0', 
 												false ),
 										'conditional' => 
@@ -132,60 +131,6 @@
 												'1',
 												false ),
 										'conditional' => array( array( true,  'lf_slide' )), 
-										'enqueue' => true
-										))),						
-						//  drag event live extra script
-						array(
-							'f' => array( $this, 'sort'),
-							'o' =>
-								array(
-									array(
-										'side' => 'admin',
-										'type' => 'script',
-										'arg'  => 
-											array(
-												'live-drag',
-												SCRIPTS .'/jquery.event.drag.live.js',
-												array( 'jquery', 'drag'),
-												'2.2',
-												true  ),
-										'conditional' => false,
-										'enqueue' => false
-										))),
-						// drag event plugin
-						array(
-							'f' => array( $this, 'sort'),
-							'o' =>
-								array(
-									array(
-										'side' => 'admin',
-										'type' => 'script',
-										'arg'  => 
-											array(
-												'drag',
-												SCRIPTS .'/jquery.event.drag.js',
-												array( 'jquery'),
-												'2.2',
-												true  ),
-										'conditional' => false,
-										'enqueue' => false
-										))),
-						// functions for pages
-						array(
-							'f' => array( $this, 'sort'),
-							'o' =>
-								array(
-									array(
-										'side' => 'public',
-										'type' => 'script',
-										'arg'  => 
-											array(
-												'lf-functions',
-												SCRIPTS .'/lf-functions.js',
-												array( 'jquery', 'j-ease', 'reply' ),
-												'1',
-												true  ),
-										'conditional' => false,
 										'enqueue' => true
 										))),
 						// easing plugin for jquery, ( for animations )
