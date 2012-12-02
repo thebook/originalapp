@@ -23,17 +23,6 @@ class template_layout_creator extends alpha_tree_template
 
 		</div>
 
-		<script>
-			layout_builder.close_layout_builder_window({
-				id : '#layout-builder-layout-close',
-				box_to_close : '.layout-builder'
-			});
-			layout_builder.close_options_sidebar({
-				id : '.layout-builder-colapse-button',
-				canvas_to_expand : '.layout_builder_body'
-			});
-		</script>
-
 <?php }
 	
 	protected function _generate_template_part_options ($options_to_build)
@@ -74,9 +63,7 @@ class template_layout_creator extends alpha_tree_template
 				<a id="layout-builder-layout-close" class="button">Close</a>
 
 				<a class="layout-builder-colapse-button button-secondary">
-					
-					<span class="layout-builder-colapse-arrow"></span>
-				
+					<span id="layout-builder-colapse" class="layout-builder-colapse-arrow"></span>
 				</a>
 				
 			<!-- <a id="layout-builder-save-layout" class="button">Save</a><a id="layout-builder-use" class="button">Use</a> -->
@@ -89,17 +76,7 @@ class template_layout_creator extends alpha_tree_template
 
 			</div>
 
-			<script>
-				layout_builder
-				.get_template_name_and_generate({
-					bind_event_to                      : "layout-builder-template-generators",
-					element_to_respond_to_when_clicked : 'li',
-					iframe_id						   : "layout-builder-drop-in",
-					element_to_append_to			   : ".liquidflux-wrap-everything",
-					options_ajax_path                  : "<?php echo FRAMEWORKURI .'/ajax_loads/template.options.load.php'; ?>",
-					template_ajax_path				   : "<?php echo FRAMEWORKURI .'/ajax_loads/template.load.php'; ?>"
-				});
-			</script>
+			<?php $this->_scripts(); ?>
 
 		</div class="layout_builder_body">
 
@@ -107,33 +84,57 @@ class template_layout_creator extends alpha_tree_template
 
 	protected function _generate_layout_builder_insert_iframe ($options_to_build = null)
 	{?>
-
 		
 		<iframe onmousemove="return false;" id="layout-builder-drop-in" src="<?php echo FRAMEWORKURI .'/layout.builder.php?' ?>" >
 
 		</iframe>
 
+<?php }
+
+	protected function _scripts ()
+	{ ?>
 		<script>
 			!function ($) { 
-				$('#layout-builder-drop-in').load(
-					function () { 
-						
-						layout_builder
-						.branch
-						.make_templates_draggable_inside_iframe
-						.init({
-							iframe_id : 'layout-builder-drop-in'
-						});					
-						
-						layout_builder
-						.bind_template_remove_button_response_to_iframe({
-							iframe_id : 'layout-builder-drop-in'
-						});			
+				$('#layout-builder-drop-in')
+				.load(
+				function () { 
+
+					layout_builder
+					.branch.builder_interactions
+					.init({
+						builder_get : '.layout_builder_body'
 					});
+					
+					// Click event on builder
+					layout_builder
+					.get_template_name_and_generate({
+						bind_event_to                      : "layout-builder-template-generators",
+						element_to_respond_to_when_clicked : 'li',
+						iframe_id						   : "layout-builder-drop-in",
+						element_to_append_to			   : ".liquidflux-wrap-everything",
+						options_ajax_path                  : "<?php echo FRAMEWORKURI .'/ajax_loads/template.options.load.php'; ?>",
+						template_ajax_path				   : "<?php echo FRAMEWORKURI .'/ajax_loads/template.load.php'; ?>"
+					});
+						
+
+					// Click event on iframe
+					layout_builder
+					.branch
+					.make_templates_draggable_inside_iframe
+					.init({
+						iframe_id : 'layout-builder-drop-in'
+					});					
+					
+					// Click event on iframe 
+					layout_builder
+					.bind_template_remove_button_response_to_iframe({
+						iframe_id : 'layout-builder-drop-in'
+					});			
+				});
 			}(jQuery);
 		</script>
 
-<?php }
+	<?php }
 
 }
 

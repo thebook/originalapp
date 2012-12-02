@@ -30,7 +30,7 @@
 
 			<script>
 				layout_builder
-				.branch_option_box
+				.branch.option_box
 				.open_options_box_for_an_inserted_template({
 					bind_event_to		 : "#<?php echo $get_the_template_data['name'] . $template_id; ?>",
 					element_to_append_to : ".layout_builder_body",
