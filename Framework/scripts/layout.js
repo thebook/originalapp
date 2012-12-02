@@ -277,6 +277,7 @@
 					klass
 					._create_drop_field_next_to_hovered_template({
 						position_of_other_templates : position_of_other_templates,
+						moving_template 			: moving_template,
 						move_event 					: move_event,
 						iframe 	   					: this,
 						initial_template_style 		: initial_template_styling
@@ -305,7 +306,8 @@
 			_create_drop_field_next_to_hovered_template : function (passed) { 
 
 
-				var	hovered_template = 
+				var	moving_template_parent = passed.moving_template.parent(),
+					hovered_template = 
 					passed.position_of_other_templates
 					.filter( 
 						function (template) { 					
@@ -314,21 +316,12 @@
 							     passed.move_event.pageY >= template.top  && 
 							     passed.move_event.pageY < ( template.top + 40 ) );
 						}),
-					do_we_append_to_first_template = function () {
+					is_dragged_template_at_the_top = function () {
+							
+							var parent_offset = moving_template_parent.offset();
 
-						var first_template = passed.position_of_other_templates[0];
-
-							console.log(passed.move_event);
-							console.log(first_template);
-							// if ( passed.move_event.pageX <= first_template.left &&
-							// 	 passed.move_event.pageY <= first_template.top ) { 
-							// 	console.log("is true");
-							// 	return true;
-							// }
-							// else {
-							// 	console.log("is false");
-							// 	return false;
-							// }
+							return ( passed.move_event.pageY <= parent_offset.top ? true : false );
+								
 					};
 
 				if ( hovered_template.length !== 0 ) { 
@@ -354,7 +347,20 @@
 												
 					}
 				}
-				console.log(do_we_append_to_first_template);
+				else if ( is_dragged_template_at_the_top() && moving_template_parent.children('.drop_spot').length > 0  ) { 
+											
+						moving_template_parent
+						.children('.drop_spot')
+						.remove();
+
+						$('<div class="drop_spot"></div>')
+						.css({
+						 	width  : passed.initial_template_style.width, 
+						 	height : passed.initial_template_style.height
+						})
+						.prependTo( moving_template_parent );
+				}
+				
 			},
 
 			_get_positions_of_all_other_templates_apart_from_draged_one : function (other_templates) { 
