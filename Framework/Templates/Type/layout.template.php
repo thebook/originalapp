@@ -117,11 +117,18 @@ class template_layout_creator extends alpha_tree_template
 			!function ($) { 
 				$('#layout-builder-drop-in').load(
 					function () { 
+						
 						layout_builder
-						.branch_move_around
-						._drag({
+						.branch
+						.make_templates_draggable_inside_iframe
+						.init({
 							iframe_id : 'layout-builder-drop-in'
 						});					
+						
+						layout_builder
+						.bind_template_remove_button_response_to_iframe({
+							iframe_id : 'layout-builder-drop-in'
+						});			
 					});
 			}(jQuery);
 		</script>

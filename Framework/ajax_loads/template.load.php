@@ -48,9 +48,7 @@
 
 		<?php if ( empty($get_the_template_data['not_a_template_part']) ) : ?>
 	
-			<span><a class="layoutbuilder-close-button" title="Remove part">Close</a></span>
-
-			<span id="<?php echo $template_id; ?>-move"><a class="layoutbuilder-move-button" title="Move template">Move</a></span>
+			<span class="layoutbuilder_template_close_button"><a title="Remove part">Close</a></span>			
 
 			<span><!-- <ul><li>Template 1</li><li>Template 2</li></ul> --></span>
 

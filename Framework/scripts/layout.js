@@ -40,9 +40,7 @@
 						});	
 					});
 		},
-
 		
-
 		get_template_name_and_generate : function (passed) { 
 
 			var clicked, template_name, ajax_path, element_to_append_to, is_using_iframe, has_options_box, iframe_id;
@@ -99,321 +97,210 @@
 			});
 		},
 
-		produce : { 
+		bind_template_remove_button_response_to_iframe : function (passed) { 
 
-			move : { 
-
-				create : function (passed) { 
-
-						this.prototype 		 = layout_builder.branch_move_around;
+			var iframe = iframe_writer.get_iframe(passed.iframe_id);
+				
+				iframe
+				.on('click',
+					'.layoutbuilder_template_close_button',
+				function () { 
 					
-					var _klass    		 	 = this.prototype,
-						_get_iframe   		 = iframe_writer.get_iframe(passed.iframe),
-						_bind_to 	  		 = _get_iframe.find(passed.bind_to),
-						_get_template 		 = $(_bind_to).parents(passed.class_for_templates),
-						_change_move_buttons = _klass._hide_show_move_buttons;
+					$(this)
+					.parent()
+					.fadeOut(400, function () {
 
-					_bind_to
-					.toggle(
-						function () {										
-
-							_change_move_buttons.set_up({
-								iframe       : passed.iframe,
-								move_buttons : '.layoutbuilder-move-button',
-								bind_to 	 : passed.bind_to
-							});
-							
-							_change_move_buttons.manifest('none', 'Dont Move');						
-
-							_klass
-							._iterate_over_templates_and_add_a_visible_field({
-								class_for_templates : passed.class_for_templates,
-								template_to_exclude : _get_template,
-								iframe 				: _get_iframe
-							});
-						},
-						function () {
-							
-							_change_move_buttons.manifest('block', 'Move');					
-							_klass._remove_visible_drop_fields(_get_template);					
-						});
-					}
-				},
+						$(this).empty().remove();
+					});
+				});
 		},
 
-		branch_move_around : { 
+		branch : { 
 
-			_hide_show_move_buttons : {
+			make_templates_draggable_inside_iframe : { 
 
-			 	set_up : function (passed) { 
+				init : function (passed) { 
 
-			 		var _get_iframe           = iframe_writer.get_iframe(passed.iframe);
-					 	this._buttons_to_hide = 
-						 		_get_iframe
-								.find(passed.move_buttons)
-								.parent()
-								.not(passed.bind_to);
-						this._clicked_button  = _get_iframe.find(passed.bind_to).children();
-			 	},
+					var klass, iframe;
+						klass  = this;
+						iframe = iframe_writer.get_iframe(passed.iframe_id);
 
-			 	manifest : function (display_state, text_to_display) { 
-			 		this._buttons_to_hide.css('display', display_state);
-			 		this._clicked_button.text(text_to_display);
-			 	}
-			},
+						iframe
+						.on('mousedown', 
+							'.drag',
+						function (down_event) { 						
+							
+							klass
+							._start_dragging_template({
+								move         : this,							
+								iframe       : iframe,
+								down_event   : down_event
+							});																	
+						})
+				},
+			
+				_start_dragging_template : function (passed) { 
 
-			_iterate_over_templates_and_add_a_visible_field : function (passed) {
+					var klass, moving_template, position_of_other_templates, other_templates,
+						initial_position = new Object, initial_template_styling = new Object;
 
-				var _the_class = this;
-
-				passed.iframe
-				.find(passed.class_for_templates)
-				.not(passed.template_to_exclude)
-				.each( 
-					function () {
-						_the_class._add_a_visible_drop_field({
-							element : this, 
-							iframe 	: passed.iframe,
-							template_to_move : passed.template_to_exclude
-						});						
-				});
-			},
-
-			_add_a_visible_drop_field : function (passed) { 
-
-					$('<div class="layoutbuilder-empty-field"><span>Move template here</span></div>')
-					.css({'opacity' : '0'})
-					.insertAfter(passed.element);
-
-				var insert_fields = passed.iframe.find('.layoutbuilder-empty-field');
-					
-					insert_fields.animate({'opacity' : '1'}, 400);
-
-					this._move_template_to_clicked_area({
-						template_to_move : passed.template_to_move,
-						insert_fields    : insert_fields,
-						iframe 			 : passed.iframe
-					});
-			},
-
-			_remove_visible_drop_fields : function (element) { 
-
-				$(element)
-				.parent()
-				.find('.layoutbuilder-empty-field')
-				.animate(
-					{'opacity' : '0'}, 
-					400,
-					function () {
-						$(this).remove();
-					});			
-			},
-
-			_drag : function (passed) { 
-
-				this._init_move(passed);
-
-			},
-
-			_init_move : function (passed) { 
-
-				var klass, iframe;
-					klass  = this;
-					iframe = iframe_writer.get_iframe(passed.iframe_id);
-
-					iframe
-					.on('mousedown', 
-						'.drag',
-					function (down_event) { 						
+						klass 			 				 = this;
+						moving_template  				 = $(passed.move);	
+						other_templates 				 = moving_template.parent().children().not("#"+ moving_template.attr('id') +", .drop_spot");
 						
-						klass
-						._start_dragging_template({
-							move         : this,							
-							iframe       : iframe,
-							down_event   : down_event
-						});																	
+						initial_position.mouse_left      = passed.down_event.pageX;
+						initial_position.mouse_top   	 = passed.down_event.pageY;
+						initial_position.template_offset = moving_template.offset();					
+						
+						initial_template_styling.width   = moving_template.css('width');
+						initial_template_styling.height  = moving_template.css('height');
+						
+						position_of_other_templates		 = klass._get_positions_of_all_other_templates_apart_from_draged_one(other_templates);
+
+					$('<div class="drop_spot"></div>')
+					.css({
+						width     : initial_template_styling.width,
+						height    : initial_template_styling.height
 					})
-			},
-		
-
-			_start_dragging_template : function (passed) { 
-
-				var klass, moving_template, position_of_other_templates, other_templates,
-					initial_position = new Object, initial_template_styling = new Object;
-
-					klass 			 				 = this;
-					moving_template  				 = $(passed.move);	
-					other_templates 				 = moving_template.parent().children().not("#"+ moving_template.attr('id') +", .drop_spot");
-					
-					initial_position.mouse_left      = passed.down_event.pageX;
-					initial_position.mouse_top   	 = passed.down_event.pageY;
-					initial_position.template_offset = moving_template.offset();					
-					
-					initial_template_styling.width   = moving_template.css('width');
-					initial_template_styling.height  = moving_template.css('height');
-					
-					position_of_other_templates		 = klass._get_positions_of_all_other_templates_apart_from_draged_one(other_templates);
-
-				$('<div class="drop_spot"></div>')
-				.css({
-					width     : initial_template_styling.width,
-					height    : initial_template_styling.height
-				})
-				.insertAfter(moving_template);
-
-				moving_template
-				.css({ 
-					position : 'absolute',
-					width    : initial_template_styling.width
-				});
-				
-				passed.iframe
-				.on('mousemove',
-				function (move_event) { 
-					
-					var move_left_by  = ( move_event.pageX + initial_position.template_offset.left) - initial_position.mouse_left,
-						move_top_by   = ( move_event.pageY + initial_position.template_offset.top ) - initial_position.mouse_top;
-
-					klass
-					._create_drop_field_next_to_hovered_template({
-						position_of_other_templates : position_of_other_templates,
-						moving_template 			: moving_template,
-						move_event 					: move_event,
-						iframe 	   					: this,
-						initial_template_style 		: initial_template_styling
-					});				
+					.insertAfter(moving_template);
 
 					moving_template
-					.css({
-						top     : move_top_by,
-						left    : move_left_by,
-						zIndex  : 10
+					.css({ 
+						position : 'absolute',
+						width    : initial_template_styling.width
 					});
-				})
-				.on('mouseup',
-				function (up_event) { 
 					
-					klass
-					._drop_the_draged_template_into_position_and_clean_up({
-						moving_template : moving_template,
-						iframe 			: $(this)
-					});
-				});
-
-			},
-
-
-			_create_drop_field_next_to_hovered_template : function (passed) { 
-
-
-				var	moving_template_parent = passed.moving_template.parent(),
-					hovered_template = 
-					passed.position_of_other_templates
-					.filter( 
-						function (template) { 					
-
-						return ( passed.move_event.pageX >= template.left && 
-							     passed.move_event.pageY >= template.top  && 
-							     passed.move_event.pageY < ( template.top + 40 ) );
-						}),
-					is_dragged_template_at_the_top = function () {
-							
-							var parent_offset = moving_template_parent.offset();
-
-							return ( passed.move_event.pageY <= parent_offset.top ? true : false );
-								
-					};
-
-				if ( hovered_template.length !== 0 ) { 
-
-					var mouse_overed_template, does_template_have_drop_spot_after;
-
-						mouse_overed_template 		 = $(passed.iframe).find('#'+ hovered_template[0].id );
-						does_template_have_drop_spot = mouse_overed_template.next().hasClass('drop_spot');
-
-					if (!does_template_have_drop_spot) {
+					passed.iframe
+					.on('mousemove',
+					function (move_event) { 
 						
-						mouse_overed_template
-						.parent()
-						.children('.drop_spot')
-						.remove();
+						var move_left_by  = ( move_event.pageX + initial_position.template_offset.left) - initial_position.mouse_left,
+							move_top_by   = ( move_event.pageY + initial_position.template_offset.top ) - initial_position.mouse_top;
 
-						$('<div class="drop_spot"></div>')
+						klass
+						._create_drop_field_next_to_hovered_template({
+							position_of_other_templates : position_of_other_templates,
+							moving_template 			: moving_template,
+							move_event 					: move_event,
+							iframe 	   					: this,
+							initial_template_style 		: initial_template_styling
+						});				
+
+						moving_template
 						.css({
-						 	width  : passed.initial_template_style.width, 
-						 	height : passed.initial_template_style.height
-						})
-						.insertAfter( mouse_overed_template );
-												
-					}
-				}
-				else if ( is_dragged_template_at_the_top() && moving_template_parent.children('.drop_spot').length > 0  ) { 
-											
-						moving_template_parent
-						.children('.drop_spot')
-						.remove();
-
-						$('<div class="drop_spot"></div>')
-						.css({
-						 	width  : passed.initial_template_style.width, 
-						 	height : passed.initial_template_style.height
-						})
-						.prependTo( moving_template_parent );
-				}
-				
-			},
-
-			_get_positions_of_all_other_templates_apart_from_draged_one : function (other_templates) { 
-
-				var template_positions = new Array;
-
-				other_templates
-				.each( 
-					function () { 
-					var offset 		= $(this).offset(),
-						template_id = $(this).attr('id');
-					
-					template_positions.push({ 
-						left : offset.left,
-						top  : offset.top, 
-						id   : template_id 
+							top     : move_top_by,
+							left    : move_left_by,
+							zIndex  : 10
+						});
+					})
+					.on('mouseup',
+					function (up_event) { 
+						
+						klass
+						._drop_the_draged_template_into_position_and_clean_up({
+							moving_template : moving_template,
+							iframe 			: $(this)
+						});
 					});
-				});
+				},
 
-				return template_positions;
-			},
+				_create_drop_field_next_to_hovered_template : function (passed) { 
 
-			_drop_the_draged_template_into_position_and_clean_up : function (passed) { 
-				
-				passed.moving_template
-				.removeAttr('style');				
-										
-				passed.iframe
-				.off('mouseup')
-				.off('mousemove')
-				.find('.drop_spot')
-				.before(passed.moving_template)
-				.remove();
 
-				console.log("cleaned up");
+					var	moving_template_parent = passed.moving_template.parent(),
+						hovered_template = 
+						passed.position_of_other_templates
+						.filter( 
+							function (template) { 					
+
+							return ( passed.move_event.pageX >= template.left && 
+								     passed.move_event.pageY >= template.top  && 
+								     passed.move_event.pageY < ( template.top + 40 ) );
+							}),
+						is_dragged_template_at_the_top = function () {
+								
+								var parent_offset = moving_template_parent.offset();
+
+								return ( passed.move_event.pageY <= parent_offset.top ? true : false );								
+						};
+
+					if ( hovered_template.length !== 0 ) { 
+
+						var mouse_overed_template, does_template_have_drop_spot_after;
+
+							mouse_overed_template 		 = $(passed.iframe).find('#'+ hovered_template[0].id );
+							does_template_have_drop_spot = mouse_overed_template.next().hasClass('drop_spot');
+
+						if (!does_template_have_drop_spot) {
+							
+							mouse_overed_template
+							.parent()
+							.children('.drop_spot')
+							.remove();
+
+							$('<div class="drop_spot"></div>')
+							.css({
+							 	width  : passed.initial_template_style.width, 
+							 	height : passed.initial_template_style.height
+							})
+							.insertAfter( mouse_overed_template );
+													
+						}
+					}
+					else if ( is_dragged_template_at_the_top() && moving_template_parent.children('.drop_spot').length > 0  ) { 
+												
+							moving_template_parent
+							.children('.drop_spot')
+							.remove();
+
+							$('<div class="drop_spot"></div>')
+							.css({
+							 	width  : passed.initial_template_style.width, 
+							 	height : passed.initial_template_style.height
+							})
+							.prependTo( moving_template_parent );
+					}					
+				},
+
+				_get_positions_of_all_other_templates_apart_from_draged_one : function (other_templates) { 
+
+					var template_positions = new Array;
+
+					other_templates
+					.each( 
+						function () { 
+						var offset 		= $(this).offset(),
+							template_id = $(this).attr('id');
+						
+						template_positions.push({ 
+							left : offset.left,
+							top  : offset.top, 
+							id   : template_id 
+						});
+					});
+
+					return template_positions;
+				},
+
+				_drop_the_draged_template_into_position_and_clean_up : function (passed) { 
+					
+					passed.moving_template
+					.removeAttr('style');				
+											
+					passed.iframe
+					.off('mouseup')
+					.off('mousemove')
+					.find('.drop_spot')
+					.before(passed.moving_template)
+					.remove();
+
+					console.log("cleaned up");
+				}
 			}
 		},
 
 		branch_option_box : { 
-
-			/**
-			 * Opens a options box for an already inserted template, if inserted it then wipes the inserted tempalte, which 
-			 * is within a wrapper and then inserts the new modified version
-			 * @param  {array}  passed 							An array of all the otions
-			 * @param  {string} passed.bind_event_to  			The button id or class to which the event is bound 
-			 * @param  {string} passed.ajax_path 				The path to the ajax file which will generate the options box
-			 * @param  {string} passed.template_name 			The name of the template for which to generate options for
-			 * @param  {string} passed.element_to_append_to		What element to append the options box to
-			 * @param  {string} passed.template_id				The id of the currently inserted template wrapper, this is used 
-			 *                                        			so that the options box knows what currently inserted tempalte 
-			 *                                        			to replace
-			 * @return {ajax request}
-			 */
+			
 			open_options_box_for_an_inserted_template : function (passed) { 
 				
 				var button, element_to_append_to, iframe;
