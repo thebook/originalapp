@@ -121,7 +121,7 @@ class template_layout_creator extends alpha_tree_template
 						.branch_move_around
 						._drag({
 							iframe_id : 'layout-builder-drop-in'
-						});
+						});					
 					});
 			}(jQuery);
 		</script>

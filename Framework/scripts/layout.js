@@ -226,19 +226,17 @@
 						'.drag',
 					function (down_event) { 						
 						
-						klass._moving({
-							move       : this,
-							iframe     : iframe,
-							down_event : down_event
-						});						
-						
-						// klass._create_drop_field_next_to_hovered_template({ 
-						// 	template : this 
-						// });
+						klass
+						._start_dragging_template({
+							move         : this,							
+							iframe       : iframe,
+							down_event   : down_event
+						});																	
 					})
 			},
+		
 
-			_moving : function (passed) { 
+			_start_dragging_template : function (passed) { 
 
 				var klass, moving_template, position_of_other_templates, other_templates,
 					initial_position = new Object, initial_template_styling = new Object;
@@ -256,9 +254,6 @@
 					
 					position_of_other_templates		 = klass._get_positions_of_all_other_templates_apart_from_draged_one(other_templates);
 
-				// console.log(other_templates);
-				// console.log(position_of_other_templates);
-
 				$('<div class="drop_spot"></div>')
 				.css({
 					width     : initial_template_styling.width,
@@ -270,16 +265,17 @@
 				.css({ 
 					position : 'absolute',
 					width    : initial_template_styling.width
-				})
+				});
 				
 				passed.iframe
 				.on('mousemove',
 				function (move_event) { 
 					
-					var move_left_by  = ( move_event.pageX + initial_position.template_offset.left) - initial_position.mouse_left;
-						move_top_by   = ( move_event.pageY + initial_position.template_offset.top ) - initial_position.mouse_top;									
+					var move_left_by  = ( move_event.pageX + initial_position.template_offset.left) - initial_position.mouse_left,
+						move_top_by   = ( move_event.pageY + initial_position.template_offset.top ) - initial_position.mouse_top;
 
-					klass._create_drop_field_next_to_hovered_template({
+					klass
+					._create_drop_field_next_to_hovered_template({
 						position_of_other_templates : position_of_other_templates,
 						move_event 					: move_event,
 						iframe 	   					: this,
@@ -296,7 +292,8 @@
 				.on('mouseup',
 				function (up_event) { 
 					
-					klass._stop({
+					klass
+					._drop_the_draged_template_into_position_and_clean_up({
 						moving_template : moving_template,
 						iframe 			: $(this)
 					});
@@ -304,18 +301,35 @@
 
 			},
 
+
 			_create_drop_field_next_to_hovered_template : function (passed) { 
 
 
 				var	hovered_template = 
-						passed.position_of_other_templates
-						.filter( 
-							function (template) { 					
+					passed.position_of_other_templates
+					.filter( 
+						function (template) { 					
 
-							return ( passed.move_event.pageX >= template.left && 
-								     passed.move_event.pageY >= template.top  && 
-								     passed.move_event.pageY < ( template.top + 40 ) );
-						});
+						return ( passed.move_event.pageX >= template.left && 
+							     passed.move_event.pageY >= template.top  && 
+							     passed.move_event.pageY < ( template.top + 40 ) );
+						}),
+					do_we_append_to_first_template = function () {
+
+						var first_template = passed.position_of_other_templates[0];
+
+							console.log(passed.move_event);
+							console.log(first_template);
+							// if ( passed.move_event.pageX <= first_template.left &&
+							// 	 passed.move_event.pageY <= first_template.top ) { 
+							// 	console.log("is true");
+							// 	return true;
+							// }
+							// else {
+							// 	console.log("is false");
+							// 	return false;
+							// }
+					};
 
 				if ( hovered_template.length !== 0 ) { 
 
@@ -340,6 +354,7 @@
 												
 					}
 				}
+				console.log(do_we_append_to_first_template);
 			},
 
 			_get_positions_of_all_other_templates_apart_from_draged_one : function (other_templates) { 
@@ -362,18 +377,16 @@
 				return template_positions;
 			},
 
-			_stop : function (passed) { 
-
+			_drop_the_draged_template_into_position_and_clean_up : function (passed) { 
+				
 				passed.moving_template
-				.removeAttr('style')				
-				.parent().children()
-				.off('mouseenter')
-				.off('mouseleave');
-
+				.removeAttr('style');				
+										
 				passed.iframe
 				.off('mouseup')
 				.off('mousemove')
 				.find('.drop_spot')
+				.before(passed.moving_template)
 				.remove();
 
 				console.log("cleaned up");
@@ -566,4 +579,26 @@
 			return iframe;
 		}
 	}
+
+	// liquidflux = { 
+
+	// 	module_propreties : { 
+
+
+	// 	},
+
+	//  	submodule : function (object_to_submodule, parent_context, stuff_to_add) { 
+
+	//  		var submoduled = 
+	//  			object_to_submodule.prototype = {
+
+	//  			variables : {},
+	//  			parent    : parent_context,
+	//  			self      : object_to_submodule,
+	//  			tree      : stuff_to_add
+	//  		};
+
+	//  		return submoduled;
+	//  	}
+	// }
 }(jQuery);
