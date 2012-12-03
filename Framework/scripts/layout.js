@@ -1,6 +1,57 @@
 !function ($) { 
 
 	layout_builder = {
+
+		leaf : { 
+
+			templates : function (passed) { 
+
+				var iframe = iframe_writer.get_iframe(passed.id_of_iframe_to_append_to); 
+
+				iframe
+				.on(
+					'mousedown', 
+					'.drag',
+				function (down_event) { 						
+					
+					layout_builder
+					.branch
+					.drag
+					._start_dragging_template({
+						move         : this,							
+						iframe       : iframe,
+						down_event   : down_event
+					});																	
+				})
+				.on(
+					'click',
+					'.layoutbuilder_template_close_button',
+				function () { 
+					
+					$(this)
+					.parent()
+					.fadeOut(400, function () {
+
+						$(this).empty().remove();
+					});
+				})
+				.on(
+					'click',
+					'.layoutbuilder_edit',
+				function () {
+
+					layout_builder
+					.branch
+					.option_box
+					._bind_editing_for_inserted_templates({
+						button   : this,
+						ajax_url : passed.ajax_url
+					});
+
+				});
+
+			}
+		},
 		
 		branch : { 
 
@@ -61,28 +112,8 @@
 				}
 			},
 
-			make_templates_draggable_inside_iframe : { 
+			drag : { 
 
-				init : function (passed) { 
-
-					var klass, iframe;
-						klass  = this;
-						iframe = iframe_writer.get_iframe(passed.iframe_id);
-
-						iframe
-						.on('mousedown', 
-							'.drag',
-						function (down_event) { 						
-							
-							klass
-							._start_dragging_template({
-								move         : this,							
-								iframe       : iframe,
-								down_event   : down_event
-							});																	
-						})
-				},
-			
 				_start_dragging_template : function (passed) { 
 
 					var klass, moving_template, position_of_other_templates, other_templates,
@@ -243,26 +274,53 @@
 			},
 			
 			option_box : { 
-				
-				open_options_box_for_an_inserted_template : function (passed) { 
+								
+				_bind_editing_for_inserted_templates : function (passed) {
 					
-					var button, element_to_append_to, iframe;
+					var template = $(passed.button).parents('.layoutbuilder-option-wrap'),
+						data     = {
+							"name" 				   : template.data("template-name"), 
+							"element_to_append_to" : "#"+ template.attr('id'),  
+							"replace_old_template" : true 									
+						};
 					
-						iframe = iframe_writer.get_iframe('layout-builder-drop-in');
-						button = iframe.find(passed.bind_event_to);
-						
-						console.log("bind open inserted template");
-					button.on(
-						'click',
-					function () {
-						layout_builder.ajax_get_template_and_manifest({
-								template_paramaters  : { template_data : { "name" : passed.template_name, "element_to_append_to" : passed.template_id,  "replace_old_template" : true } },
-								ajax_url             : passed.ajax_path,
-								element_to_append_to : passed.element_to_append_to,
-								is_using_iframe 	 : false
-							});	
-					});
+					layout_builder.ajax_get_template_and_manifest({
+						template_paramaters  : { template_data : data },
+						ajax_url             : passed.ajax_url,
+						element_to_append_to : '.layout_builder_body',
+						is_using_iframe 	 : false
+					});	
 				},
+
+				// passed.bind_event_to
+				// passed.element_to_append_to
+				// passed.template_id
+				// passed.ajax_path
+				// passed.template_name
+				// open_options_box_for_an_inserted_template : function (passed) { 
+					
+				// 	var button, element_to_append_to, iframe;
+					
+				// 		iframe = iframe_writer.get_iframe('layout-builder-drop-in');
+				// 		button = iframe.find(passed.bind_event_to);
+						
+				// 		console.log("bind open inserted template");
+				// 	button.on(
+				// 		'click',
+				// 	function () {
+				// 		layout_builder.ajax_get_template_and_manifest({
+				// 				template_paramaters  : { 
+				// 					template_data : { 
+				// 						"name" 				   : passed.template_name, 
+				// 						"element_to_append_to" : passed.template_id,  
+				// 						"replace_old_template" : true 
+				// 					} },
+				// 				ajax_url             : passed.ajax_path,
+				// 				element_to_append_to : passed.element_to_append_to,
+				// 				is_using_iframe 	 : false
+				// 			});	
+				// 	});
+				// },
 				
 				take_options_box_values_and_manifest_a_template : function (passed) { 
 					
@@ -444,24 +502,6 @@
 					}
 				}
 			});
-		},
-
-		bind_template_remove_button_response_to_iframe : function (passed) { 
-
-			var iframe = iframe_writer.get_iframe(passed.iframe_id);
-				
-				iframe
-				.on('click',
-					'.layoutbuilder_template_close_button',
-				function () { 
-					
-					$(this)
-					.parent()
-					.fadeOut(400, function () {
-
-						$(this).empty().remove();
-					});
-				});
 		}
 
 	};

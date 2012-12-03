@@ -99,12 +99,21 @@ class template_layout_creator extends alpha_tree_template
 				.load(
 				function () { 
 
+					// Click on builder
 					layout_builder
 					.branch.builder_interactions
 					.init({
 						builder_get : '.layout_builder_body'
 					});
 					
+								
+					layout_builder
+					.leaf
+					.templates({
+						id_of_iframe_to_append_to : 'layout-builder-drop-in',
+						ajax_url : "<?php echo FRAMEWORKURI .'/ajax_loads/template.options.load.php'; ?>"
+						});
+
 					// Click event on builder
 					layout_builder
 					.get_template_name_and_generate({
@@ -117,19 +126,7 @@ class template_layout_creator extends alpha_tree_template
 					});
 						
 
-					// Click event on iframe
-					layout_builder
-					.branch
-					.make_templates_draggable_inside_iframe
-					.init({
-						iframe_id : 'layout-builder-drop-in'
-					});					
-					
-					// Click event on iframe 
-					layout_builder
-					.bind_template_remove_button_response_to_iframe({
-						iframe_id : 'layout-builder-drop-in'
-					});			
+											
 				});
 			}(jQuery);
 		</script>

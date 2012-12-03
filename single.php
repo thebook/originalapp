@@ -81,15 +81,15 @@ $manifest_array = array(
 										array(
 											'name' => 'comments',
 											'params' => '' ) 
-										))),
-
+										))
+					),
 					array(
 						'name' => 'sidebar',
 						'params' => array( 
 							'name_of_sidebar_to_get' => 'first-sidebar',
 							'sidebar_size' => 'third' )
-						)
-								)),
+					)
+		)),
 		// Menu
 		// array(
 		// 	'name' => 'menu',

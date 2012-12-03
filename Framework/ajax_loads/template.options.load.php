@@ -54,7 +54,8 @@
 		<script>
 			
 			layout_builder
-			.branch.option_box
+			.branch
+			.option_box
 			.take_options_box_values_and_manifest_a_template({
 				insert_button_id	  : "#options_box_insert",
 				cancel_button_id	  : "#options_box_cancel",

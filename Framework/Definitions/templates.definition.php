@@ -10,8 +10,7 @@
 								array(
 									'options' => array(
 										array(),
-									)) ),
-					// If it has simple options we put them under "template_parts"
+									)) ),					
 					'options' => 
 						array(
 							// Sidebar Size 
@@ -24,6 +23,14 @@
 								'saved'       => '638'  ),
 							)
 					),
+			// 'header' => 
+			// 	array(
+			// 		'template_parts' => array(),
+			// 		'default' => array(
+
+			// 		),
+			// 		'options' => array()
+			// ),
 			'menu' =>
 				array(
 					'template_parts' => 
