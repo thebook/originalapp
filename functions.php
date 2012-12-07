@@ -3,8 +3,11 @@
 define('FRAMEWORK',    TEMPLATEPATH . '/Framework' );
 define('FRAMEWORKURI', get_template_directory_uri() . '/Framework' );
 define('SCRIPTS', get_template_directory_uri() . '/Framework/scripts');
+define('BOOK', TEMPLATEPATH . '/Book' );
 
 $global_admin_options_white_whale = get_option('main_options');
+
+include BOOK .'/include.php';
 
 include FRAMEWORK . '/include.php'; 
 

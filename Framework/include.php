@@ -20,6 +20,8 @@ include FRAMEWORK . '/register_scripts.class.php';
 
 include FRAMEWORK . '/embed.class.php';
 
+include FRAMEWORK . '/table_create.class.php';
+
 //include FRAMEWORK . '/gravatar.class.php';
 
 ?>
