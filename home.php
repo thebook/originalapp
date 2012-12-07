@@ -7,7 +7,37 @@
 
 get_header();
 
-	new database_table;
+	new database_table(
+		array(
+			'table_name' => 'test_stuff2',
+			'do_we_update' => 'no',
+			'fields' => array(
+				array(
+					'field_name' => 'fiesdald1',
+					'field_input_type' => 'just_year'
+					),
+				array(
+					'field_name' => 'fielasdd2',
+					'field_input_type' => 'smalltext'
+					),
+				array(
+					'field_name' => 'fieldasd3',
+					'field_input_type' => 'smalltext'
+					),			
+				array(
+					'field_input_type' => 'url'
+					),
+				array(
+					'field_name' => 'field5',
+					'field_input_type' => 'regular_number'
+					)
+				// array(
+				// 	'field_name' => 'anothertypeoffield',
+				// 	'field_input_type' => 'small_number'
+				// 	)			
+				)
+			)
+		);
 
 
 	// $opt = get_option('homepage_options');
