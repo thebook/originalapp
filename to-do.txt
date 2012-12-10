@@ -1,3 +1,4 @@
+
 * data of every user
 	+ email
 	+ adress
@@ -8,6 +9,12 @@
 	+ ip
 	+ course(opt)
 	+ year of study(opt)
+	* pages 
+		+ Add remove user field pages
+		+ all the users overview
+		+ particular user overview 
+		+ users profile 
+		+ maybe anyticis 
 
 
 * overview of books in stock,
