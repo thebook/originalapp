@@ -10,8 +10,8 @@
 	+ course(opt)
 	+ year of study(opt)
 	* pages 
-		+ Add remove user field pages
 		+ all the users overview
+		+ Add remove user field pages
 		+ particular user overview 
 		+ users profile 
 		+ maybe anyticis 
