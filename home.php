@@ -6,38 +6,37 @@
 */ 
 
 get_header();
+	
+	$table_creator = new database_table_creator;
 
-	new database_table(
+	$table_creator->drop_column_from_table(
 		array(
-			'table_name' => 'test_stuff2',
-			'do_we_update' => 'no',
-			'fields' => array(
+			'table_name'  => 'table_name',
+			'field_name' => 'column'
+			));
+
+	$table_creator->add_column_to_table(
+		array(
+			'table_name'  => 'table',
+			'field_array' => 
 				array(
-					'field_name' => 'fiesdald1',
-					'field_input_type' => 'just_year'
-					),
-				array(
-					'field_name' => 'fielasdd2',
+					'field_name'       => 'field',
 					'field_input_type' => 'smalltext'
-					),
-				array(
-					'field_name' => 'fieldasd3',
-					'field_input_type' => 'smalltext'
-					),			
-				array(
-					'field_input_type' => 'url'
-					),
-				array(
-					'field_name' => 'field5',
-					'field_input_type' => 'regular_number'
 					)
-				// array(
-				// 	'field_name' => 'anothertypeoffield',
-				// 	'field_input_type' => 'small_number'
-				// 	)			
-				)
 			)
 		);
+
+	// $table_creator->check_if_table_exists_if_not_create_one(
+	// 	array(
+	// 		'table_name' => 'test_stuff2',
+	// 		'do_we_update' => 'no',
+	// 		'fields' => array(
+	// 			array(
+	// 				'field_name' => 'fiesdald1',
+	// 				'field_input_type' => 'just_year'
+	// 				)
+	// 			)
+	// 		));
 
 
 	// $opt = get_option('homepage_options');

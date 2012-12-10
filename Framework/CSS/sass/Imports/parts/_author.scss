@@ -1,0 +1,72 @@
+
+//
+//
+//
+//	Author box
+//	
+//	
+//	
+
+@import "./compass/utilities";
+@import "./compass/css3";
+
+$post_title_background: #{"<?php echo '#' . $o['post_title_background']; ?>"};
+$post_title_texture: #{"<?php echo $o['post_title_texture']; ?>"};
+$post_title_color: #{"<?php echo '#' . $o['post_title_color']; ?>"};
+$post_title_font: #{"<?php echo $o['post_title_font']; ?>"};
+$post_title_style: #{"<?php echo $o['post_title_style']; ?>"};
+$post_title_weight: #{"<?php echo $o['post_title_weight']; ?>"};
+
+$post_title_meta_color: #{"<?php echo '#' . $o['post_title_meta_color']; ?>"};
+$post_text_font: #{"<?php echo $o['post_text_font']; ?>"};
+$post_text_size: #{"<?php echo $o['post_text_size'] . 'px'; ?>"};
+$post_text_line_height: #{"<?php echo ( $o['post_text_size'] + 8 ) . 'px'; ?>"};
+
+.lf-article-author-inner-wrap-box { 
+
+	display: block;
+	float: left;
+	margin: 0 0 28px;
+	@include pie-clearfix;
+	
+	.lf-article-author-text-wrap {
+		
+		@include pie-clearfix;
+		width: 50%;	
+		display: inline-block;
+		float: right;
+		padding: 28px 21px;
+		background: $post_title_background $post_title_texture;
+		@include single-box-shadow;
+	}
+	
+	
+	img { 
+		
+		display: inline-block;
+		float: left;
+		height: 45px;
+		width: 45px;
+		margin-left: 7px;
+		cursor: pointer;
+		@include single-transition( 400ms, all );			
+
+	}
+
+	p { 
+		margin-left: 70px;
+		color: $post_title_color;
+		font-size: $post_text_size;
+		line-height: $post_text_line_height;
+		font-family: $post_text_font;	
+	}
+	
+	h3 { 
+		@extend p;
+		margin-bottom: 7px;
+		color: $post_title_meta_color;
+		font-family: $post_title_font;
+		font-style: $post_title_style;
+		font-weight: $post_title_weight;
+	}
+}

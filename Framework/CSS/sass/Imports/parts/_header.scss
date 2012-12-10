@@ -1,0 +1,78 @@
+//
+//
+//
+//	Header
+//	
+//	
+//	
+
+@import "./compass/utilities";
+@import "./compass/css3";
+
+$w: 960px;
+$show_title: #{"<?php echo $o['show_title']; ?>"};
+$show_logo: #{"<?php echo $o['show_logo']; ?>"};
+$title_font: #{"<?php echo $o['title_font']; ?>"};
+$title_style: #{"<?php echo $o['title_style']; ?>"};
+$title_weight: #{"<?php echo $o['title_weight']; ?>"};
+$title_size: #{"<?php echo $o['title_size'] .'px'; ?>"};
+$title_color: #{"<?php echo $o['title_color']; ?>"};
+$logo_size: #{"<?php echo $o['logo_size'] .'px'; ?>"};
+
+.#{$prefix}-header { 
+
+	width : $w;
+	margin: 0 auto;
+	clear: both;
+	padding: 21px 0;
+	@include pie-clearfix;
+
+	.#{$prefix}-header-title {
+
+		display: $show_title;
+		float: left;
+
+		h1 { 
+			font-family: $title_font;
+			font-style: $title_style;
+			font-weight: $title_weight;
+			font-size: $title_size;
+			line-height: $title_size;
+			color: $title_color;
+
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+		}
+	}
+	
+	.#{$prefix}-header-logo {
+
+		display: $show_logo;
+		float: left;
+		margin: 0 14px;
+
+		img { 
+			height: $logo_size;
+			width: auto;
+		}
+	}
+	
+	.#{$prefix}-header-ad-banner {
+
+		display:inline-block;
+		float: left;
+		margin: 0 14px;
+		width: 468px;
+		height: 60px;
+	}
+
+	.#{$prefix}-header-ad-leaderboard {
+
+		@extend .#{$prefix}-header-ad-banner;
+		width: 728px;
+		height: 90px;
+	}
+
+}

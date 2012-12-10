@@ -1,0 +1,405 @@
+//
+//
+//
+//	Comments
+//	
+//	
+//	
+
+@import "./compass/utilities";
+@import "./compass/css3";
+
+$form: lf-comment;
+$comments_text_color: #{"<?php echo '#' . $o['comments_text_color']; ?>"};
+$comments_header_size: #{"<?php echo $o['comments_header_size'] . 'px'; ?>"};
+$post_background: #{"<?php echo '#' . $o['post_background']; ?>"};
+$post_text_font: #{"<?php echo $o['post_text_font']; ?>"};
+$post_text_color: #{"<?php echo '#' . $o['post_text_color']; ?>"};
+$comment_form_title_size: #{"<?php echo $o['comment_form_title_size'] . 'px'; ?>"};
+$post_text_line_height: #{"<?php echo ( $o['comments_text_size'] + 8 ) . 'px'; ?>"};
+
+$comments_text_size: #{"<?php echo $o['comments_text_size'] . 'px'; ?>"};
+$comments_meta_size: #{"<?php echo ( $o['comments_text_size'] - 4 ) . 'px'; ?>"};
+$comments_highlight: #{"<?php echo '#' . $o['comments_highlight']; ?>"};
+$comments_highlight_2: #{"<?php echo '#' . $o['comments_highlight_two']; ?>"};
+
+$post_background: #{"<?php echo '#' . $o['post_background']; ?>"};
+$post_text_color: #{"<?php echo '#' . $o['post_text_color']; ?>"};
+$post_text_size: #{"<?php echo $o['post_text_size'] . 'px'; ?>"};
+
+.lf-comments-wrap { 
+
+	display: block;
+	font-family: $post_text_font;
+
+	.lf-comment-header-text { 
+
+		display: inline-block;
+		font-family: $post_text_font;
+		background-color: $post_background;
+		color: $post_text_color;
+		padding: 21px;
+		margin: 0 14px 14px 0;
+		font-size: $comments_header_size;
+		line-height: $comments_header_size;
+		height: $comments_header_size;
+		@include single-box-shadow;
+		
+	}
+
+	.lf-comment-header-counter { 
+
+		@extend .lf-comment-header-text;
+		vertical-align: bottom;
+
+		&:before { 
+
+			content: "(";
+			margin-left: 7px;
+		}
+	}
+
+
+	.lf-comment-article { 
+
+		@include pie-clearfix;
+		display: block;
+		clear: both;
+		font-family: inherit;
+		margin: 7px 0 0;
+		color: $comments_text_color;
+		border-top: 1px solid $comments_highlight_2;
+
+		.comment { 
+
+			@include pie-clearfix;
+			clear: both;
+			display: inline-block;
+			padding: 14px 14px 14px 0;
+
+			.lf-comment-text { 
+				
+				width: 100%;
+				display: block;
+				float: left;
+
+				p { 
+
+					@include pie-clearfix;
+					display: block;
+					margin: 0 0 14px 56px;
+				}
+
+				.lf-comment-options {
+
+					@include pie-clearfix;
+					display: block;
+					margin: 0 0 0 56px;;
+
+					.comment-reply-link { 
+						
+						display: inline;
+						float: left;
+						font-weight: normal;
+						font-size: $comments_meta_size;
+						color: $comments_highlight_2;
+						margin: 0 7px 0 0;
+					}
+
+					.lf-comment-edit { 
+
+						@extend .comment-reply-link;
+						margin: 0px;
+						&:before {
+
+							margin:0 0 0 7px;
+							content: "7";
+						}
+					}
+				}
+			}
+
+			.lf-comment-avatar { 
+
+				display: inline;
+				float: left;
+				margin: 0 14px 0 0;
+				
+				img { 
+
+					vertical-align: middle;
+					@include border-radius( 3px);				
+				}
+			}
+			
+			
+			.lf-author { 
+				
+				margin:0 0 0 7px;
+				display: inline;
+				float: left;
+				font-weight: bold;
+				font-size: $comments_meta_size;
+				line-height: $comments_text_size;
+				color: $comments_highlight;
+			}
+		
+			
+			.lf-comment-date { 
+
+				@extend .lf-author;
+				margin: 0 0 0 3px;
+				font-weight: normal;
+				color: $comments_highlight_2;
+			}
+			
+
+			.lf-reply { 
+				
+				@extend .lf-comment-date;
+				margin:0 0 0 7px;
+				&:before { 
+					content: "o";
+					margin: 0 3px 0 0;
+				}
+			}
+			
+		}
+
+		.children { 
+
+			@include pie-clearfix;
+			display: block;
+			clear: both;
+			margin-left: 56px;
+		}
+
+		.lf-hovercard { 
+			width:  320px;
+			padding: 14px;
+			position: absolute;
+			background: $post_background;
+			color: $post_text_color; 
+			font-family: $post_text_font;
+			font-size: $post_text_size;
+			line-height: $post_text_line_height;
+			@include pie-clearfix;
+			@include single-box-shadow;
+
+			.post-hover-arrow { 
+
+				width: 100%;
+				float: left;
+				margin: -35px 0 0 -7px;
+				// display: relative;
+				&:before { 
+					color: $post_background;
+					content: "^";
+		    		font-size: 21px;
+		    		line-height: 21px;
+		    	}
+		    }
+
+			a { 
+				display: inline;
+				float: left;
+				margin-right: 14px;
+				@include pie-clearfix;
+				img { 
+
+					&:hover { 
+						@include opacity(0.8);
+					}
+				}
+			}
+
+			header { 
+				display: inline;
+				h3 {
+					font-weight: bold;
+					display: inline;
+				}
+			}
+
+			div { 
+
+				width: 206px;
+				display: inline;
+				float: left;
+			}
+
+			p { 
+				display: inline;
+				float: left;
+				clear:both;
+				margin: 7px 0;
+			}
+
+			footer {
+				@extend div;
+				a { 					
+					padding: 7px;
+					background: $post_text_color;
+					color: $post_background;
+					line-height: $post_text_size;
+				}
+			}
+		}
+
+	}
+}
+
+
+//
+//
+//
+//	Comment Form
+//	
+//	
+//	
+//	
+
+
+.#{$form}-form-wrap { 
+
+	display: block;
+	@include pie-clearfix;
+	margin: 28px 0 0;
+
+	h3 { 
+
+		float: left;
+		font-size: $comment_form_title_size;
+		line-height: $comment_form_title_size;
+		color: $comments_text_color;
+		margin: 17px;
+		clear:both;
+
+		a { 
+
+			color: inherit;
+		}
+	}
+
+	form {
+		
+		display: block;
+		float: left;
+		width: 100%;
+		font-size: $comments_text_size;
+		line-height: $comments_text_size;
+		font-family: $post_text_font;
+		@include pie-clearfix;
+
+		.comment-form-author { 
+
+			width: 100%;
+			float: left;
+			display: block;
+			margin: 7px 0;
+
+			label { 
+				margin: 7px 7px 0;
+				width: 58px;
+				float: left;
+				color: $comments_text_color;
+				display: inline;
+
+				&:after { 
+					content: " :";
+				}
+			}
+
+			.required { 
+				display: none;
+			}
+
+			input { 
+				@extend label;
+				width: 250px;
+				padding: 6px;
+				border: 1px solid $post_background;
+				background-color: $post_background;
+				color: $post_text_color;
+				margin: 0;
+				@include single-box-shadow();
+
+				&:focus { 
+
+					border: 1px solid $post_text_color;
+				}
+			}
+		}
+
+		.comment-form-email { 
+			@extend .comment-form-author;
+		}
+		.comment-form-url { 
+			@extend .comment-form-author;
+		}
+		
+		.#{$form}-form-textarea { 
+		
+			
+			display: block;
+			float: left;
+			clear: both;
+			font-family: inherit;
+			font-size: inherit;
+			color: $post_text_color;
+			background-color: $post_background;
+			font-height: $post_text_line_height;
+		    margin: 7px 0 7px ( 58px + 14px );
+		    padding: 14px;
+		    border: 1px solid $post_background;
+		    @include single-box-shadow();
+
+		    &:focus { 
+
+		    	border: 1px solid $post_text_color;
+		    }
+		}
+
+		.logged-in-as { 
+
+			display: block;
+			float: left;
+			clear: both;
+		    margin: 7px 0 14px ( 58px + 14px );
+			padding: 0;
+			color: $comments_text_color;
+
+			a { 
+
+				color: inherit;
+			}
+		}
+
+		.form-submit { 
+
+			display: block; 
+
+			input {
+				clear: both;
+				float: left;
+				padding: 7px;
+				margin: 7px 0 7px ( 58px + 14px );
+				background-color: $post_text_color;
+				color: $post_background;
+				font-size: 14px;
+				line-height: 14px;
+				font-family: Georgia;
+				cursor: pointer;
+				border: none;
+
+				&:hover { 
+
+					text-decoration: underline;
+				}
+			}
+
+		}
+
+	}
+
+}

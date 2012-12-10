@@ -1,0 +1,89 @@
+//
+//  
+//    
+//      
+// Lightbox 
+// 
+// 
+// 
+
+$post_background: #{"<?php echo '#' . $o['post_background']; ?>"};
+
+.lbLoading {
+	background: $post_background url(wp-content/themes/WhiteWhale/Framework/CSS/Includes/Images/loading.gif) no-repeat center;
+}
+
+#lbOverlay {
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	cursor: pointer;
+}
+
+#lbCenter {
+	position: absolute;
+	z-index: 9999;
+	overflow: hidden;
+	background-color: $post_background;
+
+		#lbImage {
+			position: absolute;
+			left: 0;
+			top: 0;
+			border: 10px solid $post_background;
+			background-repeat: no-repeat;
+		}
+
+		#lbPrevLink {
+			display: block;
+			position: absolute;
+			top: 0;
+			width: 50%;
+			outline: none;
+			left: 0;
+		}
+
+		#lbNextLink {
+			@extend #lbPrevLink;
+			right: 0;
+		}
+}
+
+#lbBottomContainer { 
+
+	@extend #lbCenter;
+	#lbBottom {
+
+		font-size: 11px;
+		color: inherit;
+		line-height: 1.4em;
+		text-align: left;
+		padding: 5px 10px 10px 10px;
+
+		#lbCloseLink {
+			display: block;
+			float: right;
+			text-decoration: none;
+			vertical-align: baseline;
+			color: inherit;
+			&:before { 
+				font-size: 20px;
+				line-height: 20px;
+				content: "k";
+			}
+		}
+
+		#lbNumber {
+			margin:0  71px 0 7px;
+		}
+
+		#lbCaption {
+			@extend #lbNumber;
+			font-style: italic;
+		}
+	}
+}

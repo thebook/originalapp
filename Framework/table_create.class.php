@@ -6,27 +6,12 @@
 * 	to-do add a add column func, and a drop column func
 * 	make interface first
 */
-class database_table
+class database_table_creator
 {
 
-	function __construct($passed_creation_paramaters)
+	function __construct()
 	{
-		global $wpdb;
-
-		$is_the_table_not_in_the_database = ( $wpdb->query("SHOW TABLES LIKE '$wpdb->prefix{$passed_creation_paramaters['table_name']}'") !== 1 );
-		$is_table_set_to_be_updated       = ( $passed_creation_paramaters['do_we_update'] === 'yes'  );
-
-		if ( $is_the_table_not_in_the_database ) { 
-
-			echo "The table is not in the database and so we procced bzz a pub pop bebop";
-
-			echo $this->_create_table($passed_creation_paramaters);
-		}	
-		else { 
-			echo "the table is in database";
-		}
-
-
+		
 	}
 
 	// public function _check_if_table_exists_if_not_create ($passed_creation_paramaters)
@@ -45,6 +30,24 @@ class database_table
 	// 	}
 	// }
 
+	public function check_if_table_exists_if_not_create_one ($passed_creation_paramaters)
+	{
+		global $wpdb;
+
+		$is_the_table_not_in_the_database = ( $wpdb->query("SHOW TABLES LIKE '$wpdb->prefix{$passed_creation_paramaters['table_name']}'") !== 1 );
+		$is_table_set_to_be_updated       = ( $passed_creation_paramaters['do_we_update'] === 'yes'  );
+
+		if ( $is_the_table_not_in_the_database ) { 
+
+			echo "The table is not in the database and so we procced bzz a pub pop bebop";
+
+			echo $this->_create_table($passed_creation_paramaters);
+		}	
+		else { 
+			echo "the table is in database";
+		}
+	}
+
 	protected function _create_table ($table_creation_paramaters)
 	{	
 		require_once ABSPATH .'/wp-admin/includes/upgrade.php'; 
@@ -59,10 +62,37 @@ class database_table
 			". $this->_convert_table_fields_into_database_field_statements($table_creation_paramaters['fields']) ."
 			PRIMARY KEY (id)
 			)";
-		
-		echo $string_to_insert_into_mysql_query;
 
 		dbDelta($string_to_insert_into_mysql_query);
+	}
+
+	public function add_column_to_table ($paramaters)
+	{
+		global $wpdb;
+
+		$field_to_add = $this->_convert_table_field_choices_into_database_field_statement($paramaters['field_array']);
+
+		echo "ALTER TABLE $wpdb->prefix{$paramaters['table_name']}
+			ADD $field_to_add
+			";
+
+		// $wpdb->query("
+		// 	ALTER TABLE {$paramaters['table_name']}
+		// 	ADD {$paramaters['column_name']} $character_type
+		// 	");
+	}
+
+	public function drop_column_from_table ($paramaters)
+	{
+		global $wpdb;
+
+		echo "ALTER TABLE $wpdb->prefix{$paramaters['table_name']}
+		DROP COLUMN {$paramaters['field_name']}";
+
+		// $wpdb->query("
+		// 	ALTER TABLE {$paramaters['table_name']}
+		// 	DROP COLUMN {$paramaters['column_name']}
+		// 	");
 	}
 
 	protected function _convert_table_fields_into_database_field_statements ($fields_array)
@@ -76,9 +106,9 @@ class database_table
 		return $return_string;
 	}
 
-	protected function _convert_table_field_choices_into_database_field_statement ($the_field)
+	protected function _convert_table_field_choices_into_database_field_statement ($the_field_array)
 	{
-		extract($the_field);
+		extract($the_field_array);
 
 		$field_string = strtolower($field_name) ." ";
 
