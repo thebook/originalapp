@@ -83,12 +83,12 @@ class branch_admin extends alpha_tree_options
 					<!-- Name . Version -->
 					<div class="<?php echo $this->params['id']; ?>-header-wrap">	
 						<!-- Title -->
-						<h1><?php echo "White Whale"; // get theme name and any other modules ?></h1>
+						<h1><?php echo $config['title']; // get theme name and any other modules ?></h1>
 						<!-- Version  -->
-						<span class="<?php echo $this->params['id']; ?>-label">.Version One</span>
+						<span class="<?php echo $this->params['id']; ?>-label"><?php echo $config['sub_title']; ?></span>
 					</div>
 					<!-- Logo -->
-					<a href="http://www.cikica.com" title="Go to cikica">
+					<a href="http://www.recyclabook.co.uk" title="">
 						<!-- Image -->
 						<img  class="<?php echo $this->params['id']; ?>-image" src="<?php echo FRAMEWORKURI .'/CSS/Includes/Images/login-logo.png';?>"/>
 					</a>

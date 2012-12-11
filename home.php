@@ -8,29 +8,35 @@
 get_header();
 	
 
-	$table_creator = new database_table_creator;
+	$table_creator = new table_creator;
 	
-	$table_name = "test_table";
+	$table_name = "whale_users";
 
-	$table_creator->check_if_table_exists_if_not_create_one(
-		array(
-			'table_name' => $table_name,
-			'do_we_update' => 'no',
-			'fields' => array(
-				array(
-					'field_name' => 'fiesdald1',
-					'field_input_type' => 'just_year'
-					)
-				)
-			));
+	// $table_creator->check_if_table_exists_if_not_create_one(
+	// 	array(
+	// 		'table_name' => $table_name,
+	// 		'fields' => array(
+	// 			array(
+	// 				'field_name' => 'fiesdald1',
+	// 				'field_input_type' => 'just_year'
+	// 				)
+	// 			)
+	// 		));
 
-	$table_creator->rename_column_in_table(
-		array(
-			'table_name' 	   => $table_name,
-			'field_name' 	   => 'value',
-			'field_input_type' => 'smalltext',
-			'old_name'   	   => 'the_new_field_name'
-			));
+	// $table_creator->add_row_to_table(
+	// 	$table_name, 
+	// 	array('first_name' => 'some value', 'second_name' => '4545')
+	// );
+
+	echo $table_creator->check_if_value_is_in_column('whale_users', 'first_name', 'some valuess');
+
+	// $table_creator->rename_column_in_table(
+	// 	array(
+	// 		'table_name' 	   => $table_name,
+	// 		'field_name' 	   => 'value',
+	// 		'field_input_type' => 'smalltext',
+	// 		'old_name'   	   => 'the_new_field_name'
+	// 		));
 
 	// $table_creator->remove_column_from_table(
 	// 	array(

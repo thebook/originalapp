@@ -6,41 +6,49 @@
 * 	to-do add a add column func, and a drop column func
 * 	make interface first
 */
-class database_table_creator
+class table_creator
 {
-
-	function __construct()
-	{
-		
-	}
-
-	// public function _check_if_table_exists_if_not_create ($passed_creation_paramaters)
-	// {
-	// 	global $wpdb;
-
-	// 	$is_the_table_not_in_the_database = ( $wpdb->query("SHOW TABLES LIKE '$wpdb->prefix{$passed_creation_paramaters['table_name']}'") !== 1 );
-	// 	$is_table_set_to_be_updated       = ( $passed_creation_paramaters['do_we_update'] === 'yes'  );
-
-	// 	if ( $is_the_table_not_in_the_database or $is_table_set_to_be_updated ) { 
-
-	// 		echo "The table is not in the database and so we procced bzz a pub pop bebop";
-	// 	}
-	// 	else {
-	// 		echo "the table is in the database escape now";
-	// 	}
-	// }
 
 	public function check_if_table_exists_if_not_create_one ($passed_creation_paramaters)
 	{
 		global $wpdb;
 
 		$is_the_table_not_in_the_database = ( $wpdb->query("SHOW TABLES LIKE '$wpdb->prefix{$passed_creation_paramaters['table_name']}'") !== 1 );
-		$is_table_set_to_be_updated       = ( $passed_creation_paramaters['do_we_update'] === 'yes'  );
 
 		if ( $is_the_table_not_in_the_database ) { 
 
 			$this->_create_table($passed_creation_paramaters);
 		}	
+	}
+
+	public function create_reference_and_information_table ($passed_creation_paramaters)
+	{
+		if ( $this->params->does_table_exist($passed_creation_paramaters['table_name']) &&
+			 $this->params->does_table_exist($passed_creation_paramaters['table_name']."_reference") ) {
+
+			// 
+			// Create a refrence table
+			$this->_create_table(
+				array(
+					'table_name' => $passed_creation_paramaters['table_name']."_reference",
+					'fields'     => $passed_creation_paramaters['reference_fields']
+			));
+
+			// 
+			// Create a information table
+			$this->_create_table(
+				array(
+					'table_name' => $passed_creation_paramaters['table_name'],
+					'fields'     => $passed_creation_paramaters['fields']
+			));
+		}
+	}
+
+	public function does_table_exist ($table_name)
+	{
+		global $wpdb;
+
+		return ( $wpdb->query("SHOW TABLES LIKE '$wpdb->prefix$table_name'") !== 1 ? true : false );
 	}
 
 	protected function _create_table ($table_creation_paramaters)
@@ -56,9 +64,38 @@ class database_table_creator
 			PRIMARY KEY (id)
 			)";
 			
-		// echo $string_to_insert_into_mysql_query;
+		echo $string_to_insert_into_mysql_query;
 
 		dbDelta($string_to_insert_into_mysql_query);
+	}
+
+	public function check_if_value_is_in_column ($table, $column, $value)
+	{
+		global $wpdb;
+
+		return ( $wpdb->query("SELECT `$column` FROM `$wpdb->prefix$table` WHERE `$column` = '$value'") === 1 ? true : false );
+	}
+
+	public function add_row_to_table ($table_name, $to_insert)
+	{
+		global $wpdb;
+		
+		$format = $this->_take_each_string_and_return_format_array_for_row_insertion($to_insert);
+
+		$wpdb->insert( $wpdb->prefix.$table_name, $to_insert, $format );
+	}
+
+	protected function _take_each_string_and_return_format_array_for_row_insertion ($strings_to_be_checked)
+	{
+		$return_array = array();
+
+		foreach ( $strings_to_be_checked as $check_string ) : 
+			
+			$return_array[] = ( ctype_digit($check_string) ? '%d' : '%s' );
+
+		endforeach;
+
+		return $return_array;
 	}
 
 	public function does_column_exist ($table_name, $column_name)
@@ -118,7 +155,7 @@ class database_table_creator
 		$return_string = '';
 
 		foreach ($fields_array as $table_field) {
-			$return_string .= $this->_convert_table_field_choices_into_database_field_statement($table_field).",";
+			$return_string .= $this->_convert_table_field_choices_into_database_field_statement($table_field).", ";
 		}
 
 		return $return_string;
@@ -131,6 +168,8 @@ class database_table_creator
 		$field_string = strtolower($field_name) ." ";
 
 		switch ($field_input_type) {
+			
+			case 'post_code':
 			case 'smalltext':
 				$field_string .= "TINYTEXT NOT NULL";
 			break;

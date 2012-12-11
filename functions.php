@@ -45,10 +45,9 @@ new leaf_slide(
 		'definition' => FRAMEWORK .'/Definitions/slider.definition.php'
 		));
 
-new users(
+$users = new users( 
 	array(
 		'definition' => FRAMEWORK .'/Definitions/users.definition.php'
-		)
-	);
+		));
 
 ?>

@@ -1,4 +1,3 @@
-
 * data of every user
 	+ email
 	+ adress
@@ -11,7 +10,16 @@
 	+ year of study(opt)
 	* pages 
 		+ all the users overview
-		+ Add remove user field pages
+		+ Add remove user field page
+			* features 
+			+ tick for unique field
+			+ field requirment
+			+ field character type
+			+ field name
+			+ field descrition(?) optional
+			+ field incorect description
+		* add, remove buttons
+
 		+ particular user overview 
 		+ users profile 
 		+ maybe anyticis 
