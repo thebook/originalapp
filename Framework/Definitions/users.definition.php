@@ -13,10 +13,7 @@
 									array(
 										'table_name'    				   => 'whale_users',
 										'options_to_save_unique_fields_to' => 'main_options',
-										'unique_options' 				   =>
-											array(
-												'email'
-											),
+										'unique_options' 				   =>  array( 'email' ),
 										'fields' => 
 											array(
 												array(

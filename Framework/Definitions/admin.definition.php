@@ -26,7 +26,7 @@
 							'o' => 
 								array(
 									'liquidfluxadmin',
-									'White Whale Admin',
+									'Admin',
 									'Theme Options',
 									'manage_options',
 									'whitewhale',
@@ -57,12 +57,31 @@
 															'f' => array( $this, 'create'),
 															'o' => array(  
 																array(
-																	'type'        => 'color',
-																	'title'       => 'Background',
-																	'description' => 'Set the background color of your menu bars',
+																	'type'        => 'user',
+																	'title'       => 'Profile Managment',
+																	'description' => 'Manage what fields users have to fill in',
 																	'array'       => 'main_options',
-																	'name'        => 'menu_background',
-																	'saved'       => '000000' )) ),										
+																	'name'        => 'user_profile',
+																	'saved'       => 
+																		array(
+																			array(
+																				'name'           => 'Some sName',
+																				'description'    => 'Description',
+																				'not_unique'     => 'The Text for not unique',
+																				'character_type' => 'some_value',
+																				'unique'         => 'yes',
+																				'required' 		 => 'yes'
+																			),
+																			array(
+																				'name'           => 'Some Name',
+																				'description'    => 'Description',
+																				'not_unique'     => 'The Text for not unique',
+																				'character_type' => 'some_value',
+																				'unique'         => 'yes',
+																				'required' 		 => 'yes'
+																			)
+																		)
+																	 )) ),										
 													)))
 												))
 							));

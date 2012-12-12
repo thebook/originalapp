@@ -127,10 +127,13 @@
 											array(
 												'clone-js',
 												SCRIPTS .'/remove.js', 
-												'',
+												array('jquery'),
 												'1',
 												false ),
-										'conditional' => array( array( true,  'lf_slide' )), 
+										'conditional' => array( 
+											array( true, 'lf_slide' ),
+											array( false, 'admin.php' )
+											), 
 										'enqueue' => true
 										))),
 						// easing plugin for jquery, ( for animations )

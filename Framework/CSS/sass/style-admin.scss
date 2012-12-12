@@ -76,6 +76,43 @@
 			@include border-radius( 0px);
 		}
 
+		.#{$m}-td-profile_managment { 
+
+			@include pie-clearfix;
+			margin: 0 0 20px;
+			padding: 0 0 10px;
+			border-bottom: 1px solid #eee;
+		}
+
+		.#{$m}-td-checkbox-wrap { 
+
+			margin: 15px 0 0 7px;
+			display: block;
+			float: left;
+			
+			input[type="checkbox"] { 
+
+				margin: 3px 5px 3px 0;
+				float: left;
+			}
+
+			.#{$m}-td-checkbox-label { 
+
+				@extend span;
+				margin: 0 10px 0 0;
+				clear: none;
+			}
+		}
+
+		.#{$m}-td-profile_button { 
+
+			@extend .#{$m}-td-load-more;
+			width: auto!important;
+			padding: 4px 20px !important;
+			margin: 5px 10px 15px 0 !important;
+			border: none;
+		}
+
 		.lf-uploaded-image { 
 
 			width: 23.5%;

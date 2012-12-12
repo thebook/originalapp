@@ -99,9 +99,9 @@ class leaf_slide extends meta
 
 		<tr>
 			<td>
-				<input onclick="javascript:remove.c('<?php echo get_template_directory_uri() .$ajax_box_url; ?>')" type="button" value="Add Slide" class="lf-admin-post-meta-td-button">
+				<input onclick="javascript:remove.c('<?php echo get_template_directory_uri() .$ajax_box_url; ?>')" type="button" value="Add Slide" class="lf-admin-post-meta-td-button button">
 		
-				<input onclick="javascript:remove.remove('slide');" type="button" value="Remove" id="<?php echo $remove_id; ?>" class="lf-admin-post-meta-td-button">
+				<input onclick="javascript:remove.remove('slide');" type="button" value="Remove" id="<?php echo $remove_id; ?>" class="lf-admin-post-meta-td-button button">
 			</td>
 		</tr>
 

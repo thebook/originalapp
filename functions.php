@@ -3,6 +3,7 @@
 define('FRAMEWORK',    TEMPLATEPATH . '/Framework' );
 define('FRAMEWORKURI', get_template_directory_uri() . '/Framework' );
 define('SCRIPTS', get_template_directory_uri() . '/Framework/scripts');
+define('AJAXLOADS', FRAMEWORKURI .'/ajax_loads/ajax_loader.php' );
 define('BOOK', TEMPLATEPATH . '/Book' );
 
 $global_admin_options_white_whale = get_option('main_options');

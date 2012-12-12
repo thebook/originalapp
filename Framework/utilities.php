@@ -25,6 +25,16 @@ function include_fol($fol) {
 
 }
 
+function option_spitter ( $array_of_options, $saved_value ) 
+{?>
+
+	<?php foreach ( $array_of_options  as $option ) : ?>
+
+		<option <?php checked( $saved_value, $option['value'], true ); ?> value="<?php echo $option['value']; ?>"><?php echo $option['name']; ?></option>
+
+	<?php endforeach; ?>
+
+<?php }            
 
 function lf_whitespace( $string ) { 
 	

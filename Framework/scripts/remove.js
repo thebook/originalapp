@@ -41,14 +41,16 @@ remove = {
 	 * @param  {string} u The string of the php file which generates the html
 	 * @return {html}   A meta box 
 	 */
-	c : function ( u ) {
+	c : function ( u, to ) {
+
+		var to = to || null;
 
 		++this.i;
 		this.check();
 
 		$.ajax({
 
- 			data     : { index : this.i },
+ 			data     : { index : this.i, template_options : to },
  			url      : u,
  			dataType : "html",
  			success  : function ( a ) {

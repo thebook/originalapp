@@ -12,13 +12,13 @@
 		+ all the users overview
 		+ Add remove user field page
 			* features 
-			+ tick for unique field
-			+ field requirment
-			+ field character type
-			+ field name
-			+ field descrition(?) optional
-			+ field incorect description
-		* add, remove buttons
+				+ tick for unique field
+				+ field requirment
+				+ field character type
+				+ field name
+				+ field descrition(?) optional
+				+ field incorect description
+				+ add, remove buttons
 
 		+ particular user overview 
 		+ users profile 
