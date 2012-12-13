@@ -24,11 +24,10 @@ clone = {
 
 		this.current_index = $( passed.count_element_id ).text();
 
-		this.bind_add_and_remove_events_to_buttons(passed);
+		this.bind_add_and_remove_events_to_buttons(passed);		
 
 		this.check();
 
-		console.log(this.current_index);
 	},
 
 	/**
@@ -66,8 +65,8 @@ clone = {
 	 */
 	check : function () { 
 
-		this.index_input.val( this.i );
-		( this.current_index < 2 ) ? this.remove_button.css('display', 'none') : this.remove_button.css('display', 'inline');
+		this.index_input.val( this.current_index );
+		( this.current_index < 1 ) ? this.remove_button.css('display', 'none') : this.remove_button.css('display', 'inline');
 	},
 
 	/**

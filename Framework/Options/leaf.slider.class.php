@@ -106,7 +106,7 @@ class leaf_slide extends meta
 		</tr>
 
 		<input type="hidden" name="main_meta[<?php echo $slide_counter_name; ?>]" id="<?php echo $slide_counter_name; ?>" value="<?php echo $current_slide_count; ?>">
-
+		
 		<p style="display: none;" id="<?php echo $slide_counter_name; ?>-counter"><?php echo $current_slide_count; ?></p>
 
 		<script>remove.index('#<?php echo $slide_counter_name; ?>', '#<?php echo $remove_id; ?>');</script>

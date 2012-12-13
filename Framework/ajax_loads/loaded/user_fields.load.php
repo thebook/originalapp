@@ -8,6 +8,8 @@
 	
 	$index = $_GET['index'];
 
+	$input_name = $array ."[$name][field][$index]";
+
 	$list_of_character_type_options = 
 		array(
 			array( 'name' => 'Post Code', 				'value' => 'post_code' ),
@@ -36,24 +38,24 @@
 			<input type ="text" 
 				   id   ="<?php echo "$id-$name"; ?>_field_name"
 			       class="<?php echo $class;?>-text"
-			       name ="<?php echo $array ."[$name][$index]"; ?>[name]"
+			       name ="<?php echo $input_name; ?>[name]"
 			       value="">
 
 			<!-- Field description -->
 			<span>Field Description</span>
-			<textarea name ="<?php echo $array ."[$name][$index]"; ?>[description]" 
+			<textarea name ="<?php echo $input_name; ?>[description]" 
 					  id   ="<?php echo "$id-$name"; ?>_field_desc"
 					  class="<?php echo $class;?>-text"></textarea>
 			
 			<!-- Incorect input -->
 			<span>Incorect Input Text</span>
-			<textarea name ="<?php echo $array ."[$name][$index]"; ?>[not_unique]" 
+			<textarea name ="<?php echo $input_name; ?>[not_unique]" 
 					  id   ="<?php echo "$id-$name"; ?>_incorect_field"
 					  class="<?php echo $class;?>-text"></textarea>
 
 			<!-- Type of input to expect -->
 			<span>Type of input expected</span>
-			<select name ="<?php echo $array ."[$name][$index]"; ?>[character_type]" 
+			<select name ="<?php echo $input_name; ?>[character_type]" 
 					id   ="<?php echo "$id-$name"; ?>_character_type"
 				    class="<?php echo "$class";?>-select">
 
@@ -66,20 +68,20 @@
 				
 				<!-- Is unique -->
 				<input type ="checkbox" 
-				       name ="<?php echo $array ."[$name][$index]"; ?>[unique]" 
-				       id   ="<?php echo "$id-$name"; ?>_unique"
+				       name ="<?php echo $input_name; ?>[unique]" 
+				       id   ="<?php echo "$id-$name"; ?>_unique<?php echo $index; ?>"
 				       value="yes">
 
-				<label for="<?php echo "$id-$name"; ?>_unique" class="<?php echo "$class";?>-checkbox-label">Is Unique?</label>
+				<label for="<?php echo "$id-$name"; ?>_unique<?php echo $index; ?>" class="<?php echo "$class";?>-checkbox-label">Is Unique?</label>
 				
 				<!-- Is required field -->
 				<input type="checkbox" 
-				       name="<?php echo $array ."[$name][$index]"; ?>[required]" 
+				       name="<?php echo $input_name; ?>[required]" 
 				       class="<?php echo "$class";?>-checkbox" 
-				       id="<?php echo "$id-$name"; ?>_required"
+				       id="<?php echo "$id-$name"; ?>_required<?php echo $index; ?>"
 				       value="yes">
 
-				<label for="<?php echo "$id-$name"; ?>_required" class="<?php echo "$class";?>-checkbox-label">Is Required?</label>
+				<label for="<?php echo "$id-$name"; ?>_required<?php echo $index; ?>" class="<?php echo "$class";?>-checkbox-label">Is Required?</label>
 
 			</div>
 

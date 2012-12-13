@@ -64,23 +64,25 @@
 																	'name'        => 'user_profile',
 																	'saved'       => 
 																		array(
-																			array(
-																				'name'           => 'Some sName',
-																				'description'    => 'Description',
-																				'not_unique'     => 'The Text for not unique',
-																				'character_type' => 'some_value',
-																				'unique'         => 'yes',
-																				'required' 		 => 'yes'
-																			),
-																			array(
-																				'name'           => 'Some Name',
-																				'description'    => 'Description',
-																				'not_unique'     => 'The Text for not unique',
-																				'character_type' => 'some_value',
-																				'unique'         => 'yes',
-																				'required' 		 => 'yes'
-																			)
-																		)
+																			'field_counter' => 1,
+																			'field' => 
+																				array(
+																					array(
+																						'name'           => 'Some sName',
+																						'description'    => 'Description',
+																						'not_unique'     => 'The Text for not unique',
+																						'character_type' => 'some_value',
+																						'unique'         => 'yes',
+																						'required' 		 => 'yes'
+																					),
+																					array(
+																						'name'           => 'Some Name',
+																						'description'    => 'Description',
+																						'not_unique'     => 'The Text for not unique',
+																						'character_type' => 'some_value',
+																						'unique'         => 'yes',
+																						'required' 		 => 'yes'
+																					)))
 																	 )) ),										
 													)))
 												))

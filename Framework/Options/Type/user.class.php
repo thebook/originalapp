@@ -12,7 +12,7 @@ class generate_user extends alpha_tree_generate_type
 		
 		<?php $main_options = get_option( $array ); ?>
 
-		<?php $current_field_count = ( isset( $main_options[$name]["field_counter"] ) ? $main_options[$name]["field_counter"] : 1 ); ?>
+		<?php $current_field_count = ( isset( $main_options[$name]['field_counter'] ) ? $main_options[$name]['field_counter'] : $saved['field_counter'] ); ?>
 
 <?php 
 
@@ -37,18 +37,15 @@ class generate_user extends alpha_tree_generate_type
 
 		<!-- The counter, input keeps count of the number of fields saved, 
 			 the paragrapth tag keeps the current added count -->
-		<input type="hidden" 
-			   id="<?php echo "$this->id-$name"; ?>_field_counter" 
-			   name="<?php echo "$this->id-$name"; ?>[field_counter]" 
-			   value="<?php echo $current_field_count; ?>">
+		<input type="hidden" id="<?php echo "$this->id-$name"; ?>_field_counter" name="<?php echo $array ."[$name]"; ?>[field_counter]" value="<?php echo $current_field_count; ?>">
 		
 		<p style="display: none;" id="<?php echo "$this->id-$name"; ?>_field_counter-counter"><?php echo $current_field_count; ?></p>
 
-		<div id="liquidflux_buttons">
-			
+		<div id="liquidflux_buttons">			
+
 			<!-- Add button -->
 			<input type="button" class="<?php echo $this->class; ?>-profile_button clone" value="Add Field">
-		
+
 			<!-- Remove Button -->
 			<input id="liquidflux_manager_remove" type="button" class="<?php echo $this->class; ?>-profile_button unclone" value="Remove Field">
 
@@ -56,7 +53,6 @@ class generate_user extends alpha_tree_generate_type
 
 		<!-- Sets the current index for the add script -->
 		<script>
-			// remove.index('#profile_managment_counter', '#manage_profile_remove_id');
 
 			clone.init({
 				index_input_field            : '#<?php echo "$this->id-$name"; ?>_field_counter',
@@ -74,40 +70,41 @@ class generate_user extends alpha_tree_generate_type
 	protected function _generate_field_options ($array, $name, $saved, $current_field_count)
 	{ ?>
 
-		<?php for ( $index=0; $index < $current_field_count; $index++ ) : ?>
+		<?php for ( $index=0; $index <= $current_field_count; $index++ ) : ?>
 
-			<div id="profile_managment" class="<?php echo $this->class;?>-profile_managment profile_managment_field">
+			<?php $input_name = $array."[$name][field][$index]" ?>
+			
+			<div id="profile_managment" class="<?php echo $this->class;?>-profile_managment profile_managment_field<?php echo $index; ?>">
 
-				<strong>Field : <?php echo $saved[$index]['name'] ?></strong>
+				<strong>Field : <?php echo $saved['field'][$index]['name'] ?></strong>
 
 				<!-- Field name -->
 				<span>Field Name</span>
 				<input type ="text" 
 					   id   ="<?php echo "$this->id-$name"; ?>_field_name"
 				       class="<?php echo $this->class;?>-text"
-				       name ="<?php echo $array ."[$name][$index]"; ?>[name]"
-				       value="<?php echo $saved[$index]["name"]; ?>">
+				       name ="<?php echo $input_name; ?>[name]"
+				       value="<?php echo $saved['field'][$index]["name"]; ?>">
 
 				<!-- Field description -->
 				<span>Field Description</span>
-				<textarea name ="<?php echo $array ."[$name][$index]"; ?>[description]" 
+				<textarea name ="<?php echo $input_name; ?>[description]" 
 						  id   ="<?php echo "$this->id-$name"; ?>_field_desc"
-						  class="<?php echo $this->class;?>-text"><?php echo $saved[$index]["description"]; ?></textarea>
+						  class="<?php echo $this->class;?>-text"><?php echo $saved['field'][$index]["description"]; ?></textarea>
 				
 				<!-- Incorect input -->
 				<span>Incorect Input Text</span>
-				<textarea name ="<?php echo $array ."[$name][$index]"; ?>[not_unique]" 
+				<textarea name ="<?php echo $input_name; ?>[not_unique]" 
 						  id   ="<?php echo "$this->id-$name"; ?>_incorect_field"
-						  class="<?php echo $this->class;?>-text"><?php echo $saved[$index]["not_unique"]; ?></textarea>
+						  class="<?php echo $this->class;?>-text"><?php echo $saved['field'][$index]["not_unique"]; ?></textarea>
 
 				<!-- Type of input to expect -->
 				<span>Type of input expected</span>
-				<select name ="<?php echo $array ."[$name][$index]"; ?>[character_type]" 
+				<select name ="<?php echo $input_name; ?>[character_type]" 
 						id   ="<?php echo "$this->id-$name"; ?>_character_type"
 					    class="<?php echo "$this->class";?>-select">
 
-					    <?php 
-					    option_spitter(
+					<?php option_spitter(
 					    	array(
 					    		array( 'name' => 'Post Code', 				'value' => 'post_code' ),
 					    		array( 'name' => 'Small Text', 				'value' => 'smalltext' ),
@@ -123,7 +120,7 @@ class generate_user extends alpha_tree_generate_type
 					    		array( 'name' => 'Small Number(1-100)',     'value' => 'small_number' ),
 					    		array( 'name' => 'Medium Number(1-100000)', 'value' => 'medium_number' ),
 					    		array( 'name' => 'Huge Number(100000+)',    'value' => 'huge_number' )), 
-					    	$saved[$index]['character_type']
+					    	$saved['field'][$index]['character_type']
 					    ); ?>
 
 				</select>
@@ -133,22 +130,22 @@ class generate_user extends alpha_tree_generate_type
 					
 					<!-- Is unique -->
 					<input type ="checkbox" 
-					       name ="<?php echo $array ."[$name][$index]"; ?>[unique]" 
-					       id   ="<?php echo "$this->id-$name"; ?>_unique"
+					       name ="<?php echo $input_name; ?>[unique]" 
+					       id   ="<?php echo "$this->id-$name"; ?>_unique_<?php echo $index; ?>"
 					       value="yes"
-					       <?php checked( $saved[$index]["unique"], "yes", true ); ?>>
+					       <?php checked( $saved['field'][$index]["unique"], "yes", true ); ?>>
 
-					<label for="<?php echo "$this->id-$name"; ?>_unique" class="<?php echo "$this->class";?>-checkbox-label">Is Unique?</label>
+					<label for="<?php echo "$this->id-$name"; ?>_unique<?php echo $index; ?>" class="<?php echo "$this->class";?>-checkbox-label">Is Unique?</label>
 					
 					<!-- Is required field -->
 					<input type="checkbox" 
-					       name="<?php echo $array ."[$name][$index]"; ?>[required]" 
+					       name="<?php echo $input_name; ?>[required]" 
 					       class="<?php echo "$this->class";?>-checkbox" 
-					       id="<?php echo "$this->id-$name"; ?>_required"
+					       id="<?php echo "$this->id-$name"; ?>_required<?php echo $index; ?>"
 					       value="yes"
-					       <?php checked( $saved[$index]["required"], "yes", true ); ?>>
+					       <?php checked( $saved['field'][$index]["required"], "yes", true ); ?>>
 
-					<label for="<?php echo "$this->id-$name"; ?>_required" class="<?php echo "$this->class";?>-checkbox-label">Is Required?</label>
+					<label for="<?php echo "$this->id-$name"; ?>_required<?php echo $index; ?>" class="<?php echo "$this->class";?>-checkbox-label">Is Required?</label>
 
 				</div>
 
@@ -157,5 +154,5 @@ class generate_user extends alpha_tree_generate_type
 		<?php endfor; ?>
 <?php }
 }
-
+	
 ?>
