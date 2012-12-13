@@ -21,10 +21,13 @@ class generate_user extends alpha_tree_generate_type
 				'name'    => 'user_fields', 
 				'options' => 
 					array( 
+						'class' => $this->class,
 						'array' => $array, 
 						'name'  => $name, 
 						'saved' => $saved, 
-						'current_field_count' => $current_field_count )); 
+						'id'    => $this->id, 
+						'current_field_count' => $current_field_count
+					)); 
 
 
 ?>
@@ -34,17 +37,37 @@ class generate_user extends alpha_tree_generate_type
 
 		<!-- The counter, input keeps count of the number of fields saved, 
 			 the paragrapth tag keeps the current added count -->
-		<input type="hidden" name="<?php echo "$this->id-$name"; ?>[field_counter]" id="profile_managment_counter" value="<?php echo $current_field_count; ?>">
+		<input type="hidden" 
+			   id="<?php echo "$this->id-$name"; ?>_field_counter" 
+			   name="<?php echo "$this->id-$name"; ?>[field_counter]" 
+			   value="<?php echo $current_field_count; ?>">
+		
 		<p style="display: none;" id="<?php echo "$this->id-$name"; ?>_field_counter-counter"><?php echo $current_field_count; ?></p>
 
-		<!-- Add button -->
-		<input type="button" onclick="javascript:remove.c('<?php echo AJAXLOADS ?>', '' );" class="<?php echo $this->class; ?>-profile_button" value="Add Field">
-	
-		<!-- Remove Button -->
-		<input id="manage_profile_remove_id" type="button" onclick="javascript:remove.remove('profile_managment');" class="<?php echo $this->class; ?>-profile_button" value="Remove Field">
+		<div id="liquidflux_buttons">
+			
+			<!-- Add button -->
+			<input type="button" class="<?php echo $this->class; ?>-profile_button clone" value="Add Field">
+		
+			<!-- Remove Button -->
+			<input id="liquidflux_manager_remove" type="button" class="<?php echo $this->class; ?>-profile_button unclone" value="Remove Field">
+
+		</div>
 
 		<!-- Sets the current index for the add script -->
-		<script>remove.index('#profile_managment_counter', '#manage_profile_remove_id');</script>
+		<script>
+			// remove.index('#profile_managment_counter', '#manage_profile_remove_id');
+
+			clone.init({
+				index_input_field            : '#<?php echo "$this->id-$name"; ?>_field_counter',
+				count_element_id             : '#<?php echo "$this->id-$name"; ?>_field_counter-counter',
+				remove_id			         : '#liquidflux_manager_remove',
+				class_of_elements_to_remove  : '.profile_managment_field',
+				path_to_element_to_load      : '<?php echo AJAXLOADS ?>',
+				element_to_be_loaded_options : <?php echo json_encode($array_to_be_passed_in_ajax_get); ?>,
+				parent 						 : '#liquidflux_buttons'
+			});
+		</script>
 
 <?php }
 
@@ -53,7 +76,7 @@ class generate_user extends alpha_tree_generate_type
 
 		<?php for ( $index=0; $index < $current_field_count; $index++ ) : ?>
 
-			<div id="profile_managment" class="<?php echo $this->class;?>-profile_managment">
+			<div id="profile_managment" class="<?php echo $this->class;?>-profile_managment profile_managment_field">
 
 				<strong>Field : <?php echo $saved[$index]['name'] ?></strong>
 

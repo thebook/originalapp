@@ -115,7 +115,7 @@
 												array( false, 'admin.php')),
 										'enqueue' => true 
 											))),
-						// clone js, cloning for the slider
+						// remove js, cloning for the slider
 						array(
 							'f' => array( $this, 'sort'),
 							'o' =>
@@ -131,7 +131,26 @@
 												'1',
 												false ),
 										'conditional' => array( 
-											array( true, 'lf_slide' ),
+											array( true, 'lf_slide' )
+											), 
+										'enqueue' => true
+										))),
+						// remove js, cloning for the slider
+						array(
+							'f' => array( $this, 'sort'),
+							'o' =>
+								array(
+									array(
+										'side' => 'admin',
+										'type' => 'script',
+										'arg'  => 
+											array(
+												'load-js',
+												SCRIPTS .'/load.js', 
+												array('jquery'),
+												'1.1',
+												false ),
+										'conditional' => array( 
 											array( false, 'admin.php' )
 											), 
 										'enqueue' => true
