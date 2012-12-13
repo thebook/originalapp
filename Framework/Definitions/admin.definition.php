@@ -83,8 +83,69 @@
 																						'unique'         => 'yes',
 																						'required' 		 => 'yes'
 																					)))
-																	 )) ),										
+																))),
+													)))
+												)),
+						// Page setups
+						array( 
+							'f' => array( $this, 'pop'),
+							'o'	=>	
+								array(
+									array( 
+										'id' => 'page_choices',
+										'title' => __('Page Choices', 'liquidflux'),
+										'page'  => 'whitewhale',
+										'desc'  => __('Setup up the page layout choices for default pages', 'liquidflux'),
+										'options' => 
+											array( 
+												'opt' => 
+													array(
+														// Home Page
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(  
+																array(
+																	'type'        => 'text',
+																	'title'       => 'Home',
+																	'description' => 'Chose which page to set as home',
+																	'array'       => 'main_options',
+																	'name'        => 'home_page',
+																	'saved'       => '' )) ),
+														// Archive page
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'text',
+																	'title'       => 'Archive',
+																	'description' => 'Archive pages display post under certain categories and tags',
+																	'array'       => 'main_options',
+																	'name'        => 'archive_page',
+																	'saved'       => '' )) ),
+														// Search
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'text',
+																	'title'       => 'Search',
+																	'description' => 'Your search page displays results of anything a visitor may search for',
+																	'array'       => 'main_options',
+																	'name'        => 'search_page',
+																	'saved'       => '' )) ),
+														// not found page
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'text',
+																	'title'       => 'Not Found',
+																	'description' => 'This page will show up whenever a visitor searches for something which does not exists',
+																	'array'       => 'main_options',
+																	'name'        => '404_page',
+																	'saved'       => '' )) ),
+
 													)))
 												))
-							));
+				));
 ?>

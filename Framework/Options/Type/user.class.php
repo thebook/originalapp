@@ -24,7 +24,6 @@ class generate_user extends alpha_tree_generate_type
 						'class' => $this->class,
 						'array' => $array, 
 						'name'  => $name, 
-						'saved' => $saved, 
 						'id'    => $this->id, 
 						'current_field_count' => $current_field_count
 					)); 
@@ -53,7 +52,6 @@ class generate_user extends alpha_tree_generate_type
 
 		<!-- Sets the current index for the add script -->
 		<script>
-
 			clone.init({
 				index_input_field            : '#<?php echo "$this->id-$name"; ?>_field_counter',
 				count_element_id             : '#<?php echo "$this->id-$name"; ?>_field_counter-counter',

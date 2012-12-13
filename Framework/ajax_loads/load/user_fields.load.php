@@ -4,7 +4,7 @@
  * and exports them to be used to create an input field option
  */
 	
-	extract($loader_paramaters['options']);
+	extract($_GET['template_options']['options']);
 	
 	$index = $_GET['index'];
 

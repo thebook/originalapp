@@ -85,6 +85,9 @@ clone = {
 		$('<div class="loading_div">Loading...</div>').css({ width : "100%", padding: "10px 0", clear : "both", textAlign : "center" })
 		.insertBefore( element_to_append_to );
 
+		console.log(this.current_index);
+		console.log(passed_ajax_options);
+
 		$.ajax({
 
  			data     : { index : this.current_index, template_options : passed_ajax_options },
