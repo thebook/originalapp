@@ -1,7 +1,11 @@
 (function($) { 
 
 
-
+/**
+ * Class add new elements when the add button is clicked before the add and remove buttons via an ajax call
+ * and removes the added when the remove button is clicked
+ * @type {Object}
+ */
 clone = {
 
 	/**
@@ -77,16 +81,11 @@ clone = {
 	 */
 	clone : function ( url, passed_ajax_options, element_to_append_to ) {
 
-		// var passed_ajax_options = passed_ajax_options || null;
-
 		++this.current_index;
 		this.check();
 
 		$('<div class="loading_div">Loading...</div>').css({ width : "100%", padding: "10px 0", clear : "both", textAlign : "center" })
 		.insertBefore( element_to_append_to );
-
-		console.log(this.current_index);
-		console.log(passed_ajax_options);
 
 		$.ajax({
 
@@ -117,8 +116,6 @@ clone = {
 		--this.current_index;
 		this.check();
 	}
-
-
 };
 
 })(jQuery);

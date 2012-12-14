@@ -24,26 +24,39 @@
 		+ users profile 
 		+ maybe anyticis 
 
+* book filter ( maybe for later )?
+* overview of books in stock ( find out about isbn ),
+	* details
+		+ author,
+		+ thumb
+		+ out of print date
+		+ isbn
+		+ weight(?)
+		+ who sold it
+		+ book stacking ( unless coniditon is exactly same )( amazon condition ratin )
 
-* overview of books in stock,
+* books custom post type,
+
 * deliveries pending, * enevelopes to post to
 	+ days ealpsed since request and user id attached to request
 	+ coloring ( system, colors them more alertier the long the period of time elapses ) 
 	+ send them reminders automaticly
 	+ how much we quoted them,
 	( or maybe we dont have them promises us that they are sending ? ) 
+	
 * ticking system
-* books custom post type,
+
 * general analytics
 	+ books bought,
 	+ books sold,
+	+ (book filter)
+* analytics integration
 
 * general settings
 	+ enter budget
 	+ price precentages set
 	+ other general stuff
 
-* analytics integration
 * advertising script, 
 * front page * browse books on sale
 	+ quote giver

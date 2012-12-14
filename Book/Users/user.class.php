@@ -11,8 +11,61 @@ class users extends alpha_tree_users
 		$this->params['manifestation']  = ( include $paramaters['definition'] );
 		$this->params['creator']        = new table_creator;		
 
+		$this->init_table_and_alterations_if_created( $this->params['manifestation']['init_table'] );
 		add_action('admin_menu', array($this, 'create_page') );
 	}
+
+	public function init_table_and_alterations_if_created ($paramaters)
+	{
+		$table 					 	= new table_creator;
+		$main_options 				= get_option($paramaters['options_array']);
+		$saved_user_fields          = $main_options['user_profile']['field'];
+		$table_name 				= $paramaters['table_name'];
+		$this->params['table_name'] = $paramaters['table_name'];
+
+		// var_export( $saved_user_fields );
+		// $this->params['unique_options'] = ( isset($main_options['unique_options']) ? $main_options['unique_options'] : $main_options['unique_options'] );
+
+		if ( !$table->does_table_exist( $paramaters['table_name'] ) ) : 
+
+			echo "table does not exist";
+			// $table->_create_table(
+			// 	array(
+			// 		'table_name' => $paramaters['table_name'],
+			// 		'fields'     => $paramaters['default_fields'] ));
+		else : 
+			foreach ( $profile_fields as $field ) : 
+
+				$field_name       = preg_replace('/\s\s+/', '_', $field['name']);
+
+				if ( $table->does_column_exist( $paramaters['table_name'], $field_name ) ) { 
+
+					( $table->get_column_information( $table_name, $field_name, 'DATA_TYPE' ) == $field['character_type'] )
+					and  
+				}
+
+				else {
+
+					$column_insertion = array( 'field_name' => $field_name, 'field_input_type' => $field['character_type'] );
+
+					$table->add_column_to_table( $paramaters['table_name'], $column_insertion );
+				}
+
+				# does field exists
+				# 	if does check if it has changed
+				# 	# if it has do nothing
+				# if dosent add it
+
+			endforeach;
+
+		endif;
+	}
+
+
+
+
+
+
 
 	public function create_page ()
 	{

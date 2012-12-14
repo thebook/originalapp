@@ -12,6 +12,8 @@ get_header();
 	
 	$table_name = "whale_users";
 
+	var_export($table_creator->get_column_information($table_name, 'first_name', 'DATA_TYPE'));
+
 	// $table_creator->check_if_table_exists_if_not_create_one(
 	// 	array(
 	// 		'table_name' => $table_name,

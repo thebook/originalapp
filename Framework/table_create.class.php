@@ -8,7 +8,13 @@
 */
 class table_creator
 {
-
+	/**
+	 * Used to init a table for a data storing purpose, if the table exists a new one wont be created,
+	 * the table name is prefixed with "wp_" or any other prefix if it has been changed
+	 * @param  array $passed_creation_paramaters An array of paramaters contains "table name",and other paramaters 
+	 *                                           which are passed to the $this->_create_table() function
+	 * @return mysql query                             Inserts a new table in the database if sucessfull
+	 */
 	public function check_if_table_exists_if_not_create_one ($passed_creation_paramaters)
 	{
 		global $wpdb;
@@ -21,6 +27,12 @@ class table_creator
 		}	
 	}
 
+	/**
+	 * Creates two tables, one for storing a name(or any other indeifier ) along with a id and the other for storing 
+	 * extra data for that name(or indeifier) and maping them between
+	 * @param  array $passed_creation_paramaters Array of paramaters contaning "table name and reference fields"
+	 * @return mysql query Creates two new tables one with the after fix of "reference"
+	 */
 	public function create_reference_and_information_table ($passed_creation_paramaters)
 	{
 		if ( $this->params->does_table_exist($passed_creation_paramaters['table_name']) &&
@@ -44,14 +56,27 @@ class table_creator
 		}
 	}
 
+	/**
+	 * Performs a mysql search for a table like the one searched and returns true or false if found
+	 * this is mainly a helper function
+	 * @param  string $table_name The name of the table searched for, this will always be prefixed
+	 * @return boolean Returns true if there is a table false if not
+	 */
 	public function does_table_exist ($table_name)
 	{
 		global $wpdb;
 
-		return ( $wpdb->query("SHOW TABLES LIKE '$wpdb->prefix$table_name'") !== 1 ? true : false );
+		return ( $wpdb->query("SHOW TABLES LIKE '$wpdb->prefix$table_name'") === 1 ? true : false );
 	}
 
-	protected function _create_table ($table_creation_paramaters)
+	/**
+	 * Creates a table in the current wordpress directory using the dbDelta inbuild wordpresss function
+	 * the table name is prefixed and has a primary key of an id, every time, the 'fields' keys are converted
+	 * into proper mysql strins by the $this->_convert_table_fields_into_database_field_statements() method	
+	 * @param  array $table_creation_paramaters An array of paramaters, including "table name and fields definitions"
+	 * @return mysql query 						Inserts a new table into the current wordpress database
+	 */
+	public function _create_table ($table_creation_paramaters)
 	{	
 		require_once ABSPATH .'/wp-admin/includes/upgrade.php'; 
 		
@@ -63,12 +88,18 @@ class table_creator
 			". $this->_convert_table_fields_into_database_field_statements($table_creation_paramaters['fields']) ."
 			PRIMARY KEY (id)
 			)";
-			
-		echo $string_to_insert_into_mysql_query;
 
 		dbDelta($string_to_insert_into_mysql_query);
 	}
 
+	/**
+	 * Performs a check if a certain value is within a specific column; this is used if a certain column
+	 * is not allowed to have duplicates ( email, user name )
+	 * @param  string $table  The name of the table in which to look
+	 * @param  string $column the name of the column which to search
+	 * @param  string $value  The value to search for 
+	 * @return boolean        If the searched for value is found returns true if not returns false
+	 */
 	public function check_if_value_is_in_column ($table, $column, $value)
 	{
 		global $wpdb;
@@ -76,6 +107,11 @@ class table_creator
 		return ( $wpdb->query("SELECT `$column` FROM `$wpdb->prefix$table` WHERE `$column` = '$value'") === 1 ? true : false );
 	}
 
+	/**
+	 * Inserts a row to a table and takes care of the formating
+	 * @param string $table_name The name of the table ( is prefixed once inisde )
+	 * @param array  $to_insert  An array of values to insert, the keys are column names and the values well the values 
+	 */
 	public function add_row_to_table ($table_name, $to_insert)
 	{
 		global $wpdb;
@@ -85,6 +121,12 @@ class table_creator
 		$wpdb->insert( $wpdb->prefix.$table_name, $to_insert, $format );
 	}
 
+	/**
+	 * Takes an array of strings and checks if they are digits or strings and returns a %d for didigs and 
+	 * %s for string for the wpdb->insert() function format
+	 * @param  array $strings_to_be_checked An array of the strings to be checked
+	 * @return array 						Retuns an array of %d or %s for formating 
+	 */
 	protected function _take_each_string_and_return_format_array_for_row_insertion ($strings_to_be_checked)
 	{
 		$return_array = array();
@@ -98,6 +140,12 @@ class table_creator
 		return $return_array;
 	}
 
+	/**
+	 * Checks if a column exits, usefull for checking before adding new columns
+	 * @param  string $table_name  The name of the table ( is prefixed inside )
+	 * @param  string $column_name The name of the column to search for 
+	 * @return boolean              Retuns true if column is found fasle if not
+	 */
 	public function does_column_exist ($table_name, $column_name)
 	{
 		global $wpdb;
@@ -107,6 +155,10 @@ class table_creator
 		return ( $try_to_show_fieldname_column === 1 ? true : false );
 	}
 
+	/**
+	 * Checks if a column exits and if not it adds it to the table
+	 * @param array $paramaters An array of paramaters to be passed has "table name and field name" for column
+	 */
 	public function add_column_to_table ($paramaters)
 	{
 		if ( !$this->does_column_exist($paramaters['table_name'], $paramaters['field_name']) ) { 
@@ -123,6 +175,10 @@ class table_creator
 		}
 	}
 
+	/**
+	 * Checks if a colmn exisits and removes it if it does
+	 * @param  array $paramaters An array of paramaters has "table name and field name" 
+	 */
 	public function remove_column_from_table ($paramaters)
 	{
 		if ( $this->does_column_exist($paramaters['table_name'], $paramaters['field_name']) ) { 
@@ -133,6 +189,11 @@ class table_creator
 		}
 	}
 
+	/**
+	 * Checks if the column with the name to be changed exists and if a column with the new name does not 
+	 * exists then if creates a new column in the table 
+	 * @param  array $paramaters An array of paramaters has "old name, new name and the new input type"
+	 */
 	public function rename_column_in_table ($paramaters)
 	{
 		if (  $this->does_column_exist($paramaters['table_name'], $paramaters['old_name']) &&
@@ -150,6 +211,28 @@ class table_creator
 		}
 	}
 
+	/**
+	 * Gets the infomration of a column, as per the information_schema.column table in mysql and returns it 
+	 * @param  string $table_name     The name of the table in which to look
+	 * @param  string $column_name    The name of the column to get the information for
+	 * @param  string $what_to_select What type of information to get 
+	 * @return string 				  Returns the requested information
+	 */
+	public function get_column_information ($table_name, $column_name, $what_to_select)
+	{
+		global $wpdb;
+
+		$results = $wpdb->get_results("SELECT $what_to_select FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '$wpdb->prefix$table_name' AND COLUMN_NAME = '$column_name'", ARRAY_A);
+		
+		return $results[0][$what_to_select];
+	}
+
+	/**
+	 * Takes an array of field names and field input types and returns a mysql string for inserting them into the 
+	 * a mysql query ( table insertion )
+	 * @param  array $fields_array An array of arrays containign "field name and field input type"
+	 * @return string              Mysql string
+	 */
 	protected function _convert_table_fields_into_database_field_statements ($fields_array)
 	{	
 		$return_string = '';
@@ -161,6 +244,13 @@ class table_creator
 		return $return_string;
 	}
 
+	/**
+	 * Takes a an array conaining a "field name" and "field input type" and convers the field input type 
+	 * into a coresponding mysql data type, and appends it  to the field name therefore creating a mysql string
+	 * for inserting a column
+	 * @param  array $the_field_array An array containing "field name" and "field input type"
+	 * @return string                 A mysql inseriton string
+	 */
 	protected function _convert_table_field_choices_into_database_field_statement ($the_field_array)
 	{
 		extract($the_field_array);

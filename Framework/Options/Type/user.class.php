@@ -15,7 +15,6 @@ class generate_user extends alpha_tree_generate_type
 		<?php $current_field_count = ( isset( $main_options[$name]['field_counter'] ) ? $main_options[$name]['field_counter'] : $saved['field_counter'] ); ?>
 
 <?php 
-
 		$array_to_be_passed_in_ajax_get = 
 			array( 
 				'name'    => 'user_fields', 
@@ -27,8 +26,6 @@ class generate_user extends alpha_tree_generate_type
 						'id'    => $this->id, 
 						'current_field_count' => $current_field_count
 					)); 
-
-
 ?>
 
 		<!-- Create all of the saved fields or default ones -->
@@ -50,8 +47,9 @@ class generate_user extends alpha_tree_generate_type
 
 		</div>
 
-		<!-- Sets the current index for the add script -->
 		<script>
+			// 
+			// Inits the cloning script
 			clone.init({
 				index_input_field            : '#<?php echo "$this->id-$name"; ?>_field_counter',
 				count_element_id             : '#<?php echo "$this->id-$name"; ?>_field_counter-counter',

@@ -4,29 +4,25 @@
 				'options' => 'user_options',
 				'page_name' => 'whaleusers',
 				'form_action' => 'users_save',
+				'init_table' => 
+					array(
+						'table_name'     => 'whale_users',
+						'options_array'  => 'main_options',
+						'unique_options' =>  array( 'email' ),
+						'default_fields' => 
+							array(
+								array(
+									'field_name'       => 'first_name',
+									'field_input_type' => 'smalltext' ),
+								array(
+									'field_name'       => 'second_name',
+									'field_input_type' => 'smalltext' ),
+								array(
+									'field_name'       => 'e_mail',
+									'field_input_type' => 'email' )
+							)),
 				'opt' => 
 					array(
-						array(
-							'f' => array($this, 'create_and_init_database_table_and_columns'),
-							'o' => 
-								array(
-									array(
-										'table_name'    				   => 'whale_users',
-										'options_to_save_unique_fields_to' => 'main_options',
-										'unique_options' 				   =>  array( 'email' ),
-										'fields' => 
-											array(
-												array(
-													'field_name'       => 'first_name',
-													'field_input_type' => 'smalltext' ),
-												array(
-													'field_name'       => 'second_name',
-													'field_input_type' => 'smalltext' ),
-												array(
-													'field_name'       => 'e_mail',
-													'field_input_type' => 'email' )
-											))
-									)),
 						// Create Menu page
 						array(
 							'f' => 'add_menu_page',
