@@ -19,7 +19,7 @@ class users extends alpha_tree_users
 	{
 		$table 					 	= new table_creator;
 		$main_options 				= get_option($paramaters['options_array']);
-		$saved_user_fields          = $main_options['user_profile']['field'];
+		$profile_fields             = $main_options['user_profile']['field'];
 		$table_name 				= $paramaters['table_name'];
 		$this->params['table_name'] = $paramaters['table_name'];
 
@@ -34,22 +34,27 @@ class users extends alpha_tree_users
 			// 		'table_name' => $paramaters['table_name'],
 			// 		'fields'     => $paramaters['default_fields'] ));
 		else : 
+
 			foreach ( $profile_fields as $field ) : 
 
-				$field_name       = preg_replace('/\s\s+/', '_', $field['name']);
+				$field_name = str_replace(' ', '_', strtolower(trim($field['name'])));
 
+				// echo "Character type : {$field['character_type']},  Field name : $field_name; ";
+				// echo $field_name;
+				
+				echo $field['character_type'];
+							
 				if ( $table->does_column_exist( $paramaters['table_name'], $field_name ) ) { 
-
-					( $table->get_column_information( $table_name, $field_name, 'DATA_TYPE' ) == $field['character_type'] )
-					and  
+					
+					// echo $field['character_type'];
 				}
 
-				else {
+				// else {
 
-					$column_insertion = array( 'field_name' => $field_name, 'field_input_type' => $field['character_type'] );
+				// 	$column_insertion = array( 'field_name' => $field_name, 'field_input_type' => $field['character_type'] );
 
-					$table->add_column_to_table( $paramaters['table_name'], $column_insertion );
-				}
+				// 	$table->add_column_to_table( $paramaters['table_name'], $column_insertion );
+				// }
 
 				# does field exists
 				# 	if does check if it has changed

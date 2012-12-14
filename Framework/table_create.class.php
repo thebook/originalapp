@@ -310,6 +310,11 @@ class table_creator
 		return $field_string;
 	}
 
+	public function convert_field_choice_into_statement ()
+	{
+		
+	}
+
 }
 
 ?>
