@@ -291,7 +291,7 @@ class table_creator
 			break;
 
 			case 'the_date' :
-				$field_string .= "DATE DEAULT '". date('Y') ."' NOT NULL";
+				$field_string .= "DATE DEFAULT '". date('Y') ."' NOT NULL";
 			break;
 
 			case 'just_time' : 
@@ -308,7 +308,8 @@ class table_creator
 		 		$field_string .= "DECIMAL NOT NULL";
 		 	break;
 
-		 	case 'small_number' : 
+		 	case 'small_number'  :
+		 	case 'medium_number' : 
 		 		$field_string .= "TINYINT NOT NULL";
 		 	break;
 
@@ -342,15 +343,15 @@ class table_creator
 			break;
 
 			case 'just_year' : 
-				$field_string = "YEAR DEFAULT";
+				$field_string = "YEAR";
 			break;
 
 			case 'the_date' :
-				$field_string = "DATE DEAULT";
+				$field_string = "DATE DEFAULT '". date('Y') ."' NOT NULL";
 			break;
 
 			case 'just_time' : 
-				$field_string = "TIME DEFAULT";
+				$field_string = "TIME";
 			break;
 
 			case 'url'   :

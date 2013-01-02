@@ -44,9 +44,11 @@ class users extends alpha_tree_users
 
 			foreach ( $profile_fields as $field ) : 
 
-				$field_name 			= str_replace(' ', '_', strtolower(trim($field['name'])));			
+				$old_field_name         = (isset($field['old_name'])? str_replace(' ', '_', strtolower(trim($field['old_name']))) : false );
+				$field_name 			= str_replace(' ', '_', strtolower(trim($field['name'])));		
 				$profile_fields_names[] = $field_name;
-							
+						
+				// Change data type of column
 				if ( $table->does_column_exist( $paramaters['table_name'], $field_name ) ) { 
 					
 					$current_data_type = strtolower($table->convert_field_choice_into_statement($field['character_type']));
@@ -57,34 +59,25 @@ class users extends alpha_tree_users
 
 					endif;
 				}
+				// Rename column
+				elseif ( $old_field_name !== false and $table->does_column_exist( $paramaters['table_name'], $old_field_name ) ) { 
+					
+					$table->rename_column_in_table(
+						array(
+							'table_name' 	   => $paramaters['table_name'],
+							'old_name'   	   => $old_field_name,
+							'field_name'   	   => $field_name,
+							'field_input_type' => $field['character_type']
+						));
+				}
 				else {		
-
+					echo $field['character_type'];
 					$column_insertion = array('table_name' => $paramaters['table_name'], 'field_name' => $field_name, 'field_input_type' => $field['character_type'] );
 
 					$table->add_column_to_table( $column_insertion );
-				}
-
-				echo $field['old_name'];
+				}				
 
 			endforeach;
-
-			foreach ( $columns_in_the_table as $column ) { 
-
-				if ( $column['COLUMN_NAME'] !== 'id' and in_array( $column['COLUMN_NAME'], $profile_fields_names) === false ) {
-
-					$table->remove_column_from_table(
-						array(
-							'table_name' => $paramaters['table_name'],
-							'field_name' => $column['COLUMN_NAME']
-						));
-				}
-			}
-
-				# does field exists
-				# 	if does check if it has changed
-				# 	# if it has do nothing
-				# if dosent add it
-
 
 		endif;
 	}
