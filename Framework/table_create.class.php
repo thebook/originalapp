@@ -234,6 +234,13 @@ class table_creator
 		$wpdb->query("ALTER TABLE $wpdb->prefix{$table_name} MODIFY $column_name $new_data_type");
 	}
 
+	public function show_all_columns_in_a_table ($table_name)
+	{
+		global $wpdb;
+
+		return $wpdb->get_results("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name='$wpdb->prefix$table_name'", ARRAY_A );
+	}
+
 	/**
 	 * Takes an array of field names and field input types and returns a mysql string for inserting them into the 
 	 * a mysql query ( table insertion )

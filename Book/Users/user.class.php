@@ -15,28 +15,37 @@ class users extends alpha_tree_users
 		add_action('admin_menu', array($this, 'create_page') );
 	}
 
+	/**
+	 * Creates a table if not is created an inits its default field array other wise takes the current saved array and 
+	 * alters the database fields 	
+	 * @param  [type] $paramaters [description]
+	 * @return [type]             [description]
+	 */
 	public function init_table_and_alterations_if_created ($paramaters)
 	{
 		$table 					 	= new table_creator;
 		$main_options 				= get_option($paramaters['options_array']);
 		$profile_fields             = $main_options['user_profile']['field'];
-		$table_name 				= $paramaters['table_name'];
+		$profile_fields_names	    = array();
+		$database_column_names      = array();
+		$columns_in_the_table 		= $table->show_all_columns_in_a_table($paramaters['table_name']);
 		$this->params['table_name'] = $paramaters['table_name'];		
 
 		// $this->params['unique_options'] = ( isset($main_options['unique_options']) ? $main_options['unique_options'] : $main_options['unique_options'] );
 
 		if ( !$table->does_table_exist( $paramaters['table_name'] ) ) : 
 
-			echo "table does not exist";
-			// $table->_create_table(
-			// 	array(
-			// 		'table_name' => $paramaters['table_name'],
-			// 		'fields'     => $paramaters['default_fields'] ));
+			$table->_create_table(
+				array(
+					'table_name' => $paramaters['table_name'],
+					'fields'     => $paramaters['default_fields'] ));
+
 		else : 
 
 			foreach ( $profile_fields as $field ) : 
 
-				$field_name = str_replace(' ', '_', strtolower(trim($field['name'])));			
+				$field_name 			= str_replace(' ', '_', strtolower(trim($field['name'])));			
+				$profile_fields_names[] = $field_name;
 							
 				if ( $table->does_column_exist( $paramaters['table_name'], $field_name ) ) { 
 					
@@ -47,9 +56,7 @@ class users extends alpha_tree_users
 						$table->change_data_type_of_column($paramaters['table_name'], $field_name, $current_data_type );
 
 					endif;
-
 				}
-
 				else {		
 
 					$column_insertion = array('table_name' => $paramaters['table_name'], 'field_name' => $field_name, 'field_input_type' => $field['character_type'] );
@@ -57,12 +64,27 @@ class users extends alpha_tree_users
 					$table->add_column_to_table( $column_insertion );
 				}
 
+				echo $field['old_name'];
+
+			endforeach;
+
+			foreach ( $columns_in_the_table as $column ) { 
+
+				if ( $column['COLUMN_NAME'] !== 'id' and in_array( $column['COLUMN_NAME'], $profile_fields_names) === false ) {
+
+					$table->remove_column_from_table(
+						array(
+							'table_name' => $paramaters['table_name'],
+							'field_name' => $column['COLUMN_NAME']
+						));
+				}
+			}
+
 				# does field exists
 				# 	if does check if it has changed
 				# 	# if it has do nothing
 				# if dosent add it
 
-			endforeach;
 
 		endif;
 	}

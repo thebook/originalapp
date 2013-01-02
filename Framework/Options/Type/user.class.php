@@ -80,8 +80,13 @@ class generate_user extends alpha_tree_generate_type
 					   id   ="<?php echo "$this->id-$name"; ?>_field_name"
 				       class="<?php echo $this->class;?>-text"
 				       name ="<?php echo $input_name; ?>[name]"
-				       value="<?php echo $saved['field'][$index]["name"]; ?>">
+				       value="<?php echo $saved['field'][$index]['name']; ?>">
 
+				<!-- Saves the old name for refrence purposes -->
+				<input type  ="hidden" 
+					   name  ="<?php echo $input_name; ?>[old_name]" 
+					   value ="<?php echo $saved['field'][$index]['name']; ?>">
+					   
 				<!-- Field description -->
 				<span>Field Description</span>
 				<textarea name ="<?php echo $input_name; ?>[description]" 
