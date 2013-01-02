@@ -227,6 +227,13 @@ class table_creator
 		return $results[0][$what_to_select];
 	}
 
+	public function change_data_type_of_column ($table_name, $column_name, $new_data_type)
+	{
+		global $wpdb;
+
+		$wpdb->query("ALTER TABLE $wpdb->prefix{$table_name} MODIFY $column_name $new_data_type");
+	}
+
 	/**
 	 * Takes an array of field names and field input types and returns a mysql string for inserting them into the 
 	 * a mysql query ( table insertion )
@@ -269,7 +276,7 @@ class table_creator
 			break;
 
 			case 'alot_of_text' : 
-				$field_string .= "LONGTEXT NOT NULL,";
+				$field_string .= "LONGTEXT NOT NULL";
 			break;
 
 			case 'just_year' : 
@@ -310,9 +317,59 @@ class table_creator
 		return $field_string;
 	}
 
-	public function convert_field_choice_into_statement ()
+	public function convert_field_choice_into_statement ($field_input_type)
 	{
-		
+		switch ($field_input_type) {
+			
+			case 'post_code':
+			case 'smalltext':
+				$field_string = "TINYTEXT";
+			break;
+			
+			case 'medium_text' : 
+				$field_string = "TEXT";
+			break;
+
+			case 'alot_of_text' : 
+				$field_string = "LONGTEXT";
+			break;
+
+			case 'just_year' : 
+				$field_string = "YEAR DEFAULT";
+			break;
+
+			case 'the_date' :
+				$field_string = "DATE DEAULT";
+			break;
+
+			case 'just_time' : 
+				$field_string = "TIME DEFAULT";
+			break;
+
+			case 'url'   :
+			case 'email' : 
+				$field_string = "VARCHAR";
+			break;
+
+		 	case 'money'   : 
+		 	case 'decimal' :
+		 		$field_string = "DECIMAL";
+		 	break;
+
+		 	case 'small_number' : 
+		 		$field_string = "TINYINT";
+		 	break;
+
+		 	case 'regular_number' : 
+		 		$field_string = "MEDIUMINT";
+		 	break;
+
+		 	case 'huge_number' : 
+		 		$field_string = "INT";
+		 	break;
+		}
+
+		return $field_string;
 	}
 
 }

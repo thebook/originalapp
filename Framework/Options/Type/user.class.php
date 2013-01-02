@@ -129,7 +129,8 @@ class generate_user extends alpha_tree_generate_type
 					       name ="<?php echo $input_name; ?>[unique]" 
 					       id   ="<?php echo "$this->id-$name"; ?>_unique_<?php echo $index; ?>"
 					       value="yes"
-					       <?php checked( $saved['field'][$index]["unique"], "yes", true ); ?>>
+					       <?php ( isset($saved['field'][$index]["unique"]) ) and checked( $saved['field'][$index]["unique"], "yes", true ); ?>>
+
 
 					<label for="<?php echo "$this->id-$name"; ?>_unique<?php echo $index; ?>" class="<?php echo "$this->class";?>-checkbox-label">Is Unique?</label>
 					
@@ -139,7 +140,7 @@ class generate_user extends alpha_tree_generate_type
 					       class="<?php echo "$this->class";?>-checkbox" 
 					       id="<?php echo "$this->id-$name"; ?>_required<?php echo $index; ?>"
 					       value="yes"
-					       <?php checked( $saved['field'][$index]["required"], "yes", true ); ?>>
+					       <?php isset($saved['field'][$index]["required"]) and checked( $saved['field'][$index]["required"], "yes", true ); ?>>
 
 					<label for="<?php echo "$this->id-$name"; ?>_required<?php echo $index; ?>" class="<?php echo "$this->class";?>-checkbox-label">Is Required?</label>
 

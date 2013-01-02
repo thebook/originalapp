@@ -11,7 +11,7 @@ get_header();
 	$table_creator = new table_creator;
 	
 	$table_name = "whale_users";
-
+	
 	// var_export($table_creator->get_column_information($table_name, 'first_name', 'DATA_TYPE'));
 
 	// $table_creator->check_if_table_exists_if_not_create_one(
@@ -30,7 +30,7 @@ get_header();
 	// 	array('first_name' => 'some value', 'second_name' => '4545')
 	// );
 
-	echo $table_creator->check_if_value_is_in_column('whale_users', 'first_name', 'some valuess');
+	// echo $table_creator->check_if_value_is_in_column('whale_users', 'first_name', 'some valuess');
 
 	// $table_creator->rename_column_in_table(
 	// 	array(

@@ -21,9 +21,8 @@ class users extends alpha_tree_users
 		$main_options 				= get_option($paramaters['options_array']);
 		$profile_fields             = $main_options['user_profile']['field'];
 		$table_name 				= $paramaters['table_name'];
-		$this->params['table_name'] = $paramaters['table_name'];
+		$this->params['table_name'] = $paramaters['table_name'];		
 
-		// var_export( $saved_user_fields );
 		// $this->params['unique_options'] = ( isset($main_options['unique_options']) ? $main_options['unique_options'] : $main_options['unique_options'] );
 
 		if ( !$table->does_table_exist( $paramaters['table_name'] ) ) : 
@@ -37,24 +36,26 @@ class users extends alpha_tree_users
 
 			foreach ( $profile_fields as $field ) : 
 
-				$field_name = str_replace(' ', '_', strtolower(trim($field['name'])));
-
-				// echo "Character type : {$field['character_type']},  Field name : $field_name; ";
-				// echo $field_name;
-				
-				echo $field['character_type'];
+				$field_name = str_replace(' ', '_', strtolower(trim($field['name'])));			
 							
 				if ( $table->does_column_exist( $paramaters['table_name'], $field_name ) ) { 
 					
-					// echo $field['character_type'];
+					$current_data_type = strtolower($table->convert_field_choice_into_statement($field['character_type']));
+
+					if (  $current_data_type !== $table->get_column_information($paramaters['table_name'], $field_name, 'DATA_TYPE') ) :
+
+						$table->change_data_type_of_column($paramaters['table_name'], $field_name, $current_data_type );
+
+					endif;
+
 				}
 
-				// else {
+				else {		
 
-				// 	$column_insertion = array( 'field_name' => $field_name, 'field_input_type' => $field['character_type'] );
+					$column_insertion = array('table_name' => $paramaters['table_name'], 'field_name' => $field_name, 'field_input_type' => $field['character_type'] );
 
-				// 	$table->add_column_to_table( $paramaters['table_name'], $column_insertion );
-				// }
+					$table->add_column_to_table( $column_insertion );
+				}
 
 				# does field exists
 				# 	if does check if it has changed
@@ -65,12 +66,6 @@ class users extends alpha_tree_users
 
 		endif;
 	}
-
-
-
-
-
-
 
 	public function create_page ()
 	{
