@@ -72,11 +72,12 @@ class branch_users_style extends alpha_tree_users
 			</form>
 		</div>
 
-<?php 
+<?php }
 
 	public function profile_managment ()
 	{
-		
+		# get all the rows and then find their coresponding array and spit		
+
 	}
 }
 

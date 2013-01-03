@@ -15,12 +15,27 @@
 							array(
 								array(
 									'field_name'       => 'first_name',
+									'description'      => 'Description for first name',
+									'unique'           => 'false',
+									'required'         => 'true',
 									'field_input_type' => 'smalltext' ),
 								array(
 									'field_name'       => 'second_name',
+									'description'      => 'Description for second name',
+									'unique'           => 'false',
+									'required'         => 'true',
+									'field_input_type' => 'smalltext' ),
+								array(
+									'field_name'       => 'user_name',
+									'description'      => 'Description for user name',
+									'unique'           => 'true',
+									'required'         => 'true',
 									'field_input_type' => 'smalltext' ),
 								array(
 									'field_name'       => 'e_mail',
+									'description'      => 'Description for second name',
+									'unique'           => 'true',
+									'required'         => 'true',
 									'field_input_type' => 'email' )
 							)),
 				'opt' => 

@@ -20,22 +20,28 @@ class branch_users_database extends branch_users_style
 		extract($this->params['manifestation']['create_table']);
 
 			$creator = new table_creator;
+			$table_of_fields_name = "{$name}_fields_data";
 			$does_table_exist = $creator->does_table_exist($name);
+			$does_table_of_fields_exist = $creator->does_table_exist($table_of_fields_name);
 
-			if ( !$does_table_exist ) : 
+			if ( !$does_table_exist and !$does_table_of_fields_exist ) : 
 				
-				$this->create_table(array('table_name' => $name, 'fields' => $default_setup ));
+				$creator->_create_table(array('table_name' => $name, 'fields' => $default_setup ));
+				$creator->_create_table(array('table_name' => $table_of_fields_name, 'fields' => $default_setup ));
 
 			else : 
 
-				$this->change_table_columns_based_on_saved_options();
+				$this->change_table_columns_based_on_saved_options($name);
 
 			endif;
 	}
 
-	public function change_table_columns_based_on_saved_options ()
+	public function change_table_columns_based_on_saved_options ($name)
 	{
+		$creator = new table_creator;
 
+		echo "Table is created";
+		// var_export($creator->show_all_columns_in_a_table($name));
 		// echo "column changes";
 	}
 
