@@ -8,8 +8,6 @@ define('BOOK', TEMPLATEPATH . '/Book' );
 
 $global_admin_options_white_whale = get_option('main_options');
 
-include BOOK .'/include.php';
-
 include FRAMEWORK . '/include.php'; 
 
 include FRAMEWORK . '/Helpers/include.php';
@@ -19,6 +17,8 @@ include FRAMEWORK . '/Shortcodes/include.php';
 include FRAMEWORK . '/Options/include.php';
 
 include FRAMEWORK . '/Templates/include.php';
+
+include BOOK .'/include.php';
 
 new register_scripts;
 	
@@ -46,8 +46,11 @@ new leaf_slide(
 		'definition' => FRAMEWORK .'/Definitions/slider.definition.php'
 		));
 
-$users = new users( 
+new branch_users_database( 
 	array(
+		'id' => 'lf-users',
+		'class' => 'lf-user-meta',
+		'default_type' => 'option',
 		'definition' => FRAMEWORK .'/Definitions/users.definition.php'
 		));
 

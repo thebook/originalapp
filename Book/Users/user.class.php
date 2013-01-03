@@ -3,21 +3,44 @@
 /**
 * Clas responsible for generating user interface
 */
-class users extends alpha_tree_users 
+class branch_users_database extends branch_users_style
 {
 
-	function __construct($paramaters)
-	{
-		$this->params['manifestation']  = ( include $paramaters['definition'] );
-		$this->params['creator']        = new table_creator;		
+	function __construct($options) { 
 
-		$this->init_table_and_alterations_if_created( $this->params['manifestation']['init_table'] );
-		add_action('admin_menu', array($this, 'create_page') );
+		parent::__construct($options);
+
+		$this->_table_create();
+
+	}
+
+
+	protected function _table_create ()
+	{
+		extract($this->params['manifestation']['create_table']);
+
+			$creator = new table_creator;
+			$does_table_exist = $creator->does_table_exist($name);
+
+			if ( !$does_table_exist ) : 
+				
+				$this->create_table(array('table_name' => $name, 'fields' => $default_setup ));
+
+			else : 
+
+				$this->change_table_columns_based_on_saved_options();
+
+			endif;
+	}
+
+	public function change_table_columns_based_on_saved_options ()
+	{
+
+		// echo "column changes";
 	}
 
 	/**
-	 * Creates a table if not is created an inits its default field array other wise takes the current saved array and 
-	 * alters the database fields 	
+	 * Method should be seperated into many different methods 
 	 * @param  [type] $paramaters [description]
 	 * @return [type]             [description]
 	 */
@@ -31,8 +54,7 @@ class users extends alpha_tree_users
 		$columns_in_the_table 		= $table->show_all_columns_in_a_table($paramaters['table_name']);
 		$this->params['table_name'] = $paramaters['table_name'];		
 
-		// $this->params['unique_options'] = ( isset($main_options['unique_options']) ? $main_options['unique_options'] : $main_options['unique_options'] );
-
+		// Create  table
 		if ( !$table->does_table_exist( $paramaters['table_name'] ) ) : 
 
 			$table->_create_table(
@@ -40,6 +62,7 @@ class users extends alpha_tree_users
 					'table_name' => $paramaters['table_name'],
 					'fields'     => $paramaters['default_fields'] ));
 
+		// Update table
 		else : 
 
 			foreach ( $profile_fields as $field ) : 
@@ -70,6 +93,7 @@ class users extends alpha_tree_users
 							'field_input_type' => $field['character_type']
 						));
 				}
+				// Add new column
 				else {		
 					echo $field['character_type'];
 					$column_insertion = array('table_name' => $paramaters['table_name'], 'field_name' => $field_name, 'field_input_type' => $field['character_type'] );
@@ -82,17 +106,24 @@ class users extends alpha_tree_users
 		endif;
 	}
 
+	/**
+	 * Creates the page which was defined, perhaps wait and replace wiht branch_admin one or 
+	 */
 	public function create_page ()
 	{
 		multi($this->params['manifestation']);
 	}
 
+	/**
+	 * Register the user and pass paramaters into a row, the paramaters would probably fill each row or avoid some 
+	 * ( could use improvment potentualy ) 
+	 * @param  array $user_information An array of user information, values and which columns to enter them in
+	 */
 	public function register_user ($user_information)
 	{
 		$this->params['creator']->add_row_to_table( $this->params['table_name'], $user_information );
 	}
-	
-	
+
 	public function check_if_input_field_value_is_unqiue ($input_name, $input_value)
 	{
 		if ( in_array($input_name, $this->params['unique_options'] ) ) {
@@ -109,18 +140,24 @@ class users extends alpha_tree_users
 		}
 	}
 
-	public function create_and_init_database_table_and_columns ($paramaters)
-	{
-		$main_options					= $paramaters['options_to_save_unique_fields_to'];
-		$this->params['table_name']     = $paramaters['table_name'];
-		$this->params['unique_options'] = ( isset($main_options['unique_options']) ? $main_options['unique_options'] : $main_options['unique_options'] );
 
-		$this->params['creator']->check_if_table_exists_if_not_create_one(
-			array(
-				'table_name' => $paramaters['table_name'],
-				'fields'     => $paramaters['fields']
-			));
-	}
+
+	/**
+	 * This one might be a better way of doing it 
+	 */
+
+	// public function create_and_init_database_table_and_columns ($paramaters)
+	// {
+	// 	$main_options					= $paramaters['options_to_save_unique_fields_to'];
+	// 	$this->params['table_name']     = $paramaters['table_name'];
+	// 	$this->params['unique_options'] = ( isset($main_options['unique_options']) ? $main_options['unique_options'] : $main_options['unique_options'] );
+
+	// 	$this->params['creator']->check_if_table_exists_if_not_create_one(
+	// 		array(
+	// 			'table_name' => $paramaters['table_name'],
+	// 			'fields'     => $paramaters['fields']
+	// 		));
+	// }
 }
 
 ?>

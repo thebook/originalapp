@@ -4,12 +4,14 @@
 				'options' => 'user_options',
 				'page_name' => 'whaleusers',
 				'form_action' => 'users_save',
-				'init_table' => 
+				'title' => 'Profile Managment',
+				'sub_title' => '',
+				'create_table' => 
 					array(
-						'table_name'     => 'whale_users',
+						'name'     => 'whale_users',
 						'options_array'  => 'main_options',
 						'unique_options' =>  array( 'email' ),
-						'default_fields' => 
+						'default_setup' => 
 							array(
 								array(
 									'field_name'       => 'first_name',
@@ -29,12 +31,23 @@
 							'o' => 
 								array(
 									'Manage Users',
-									'Book Users', 		
+									'Members', 		
 									'administrator', 	
 									'whaleusers', 
 									'',		
 									'', 
 									'27' ) ),						
+						// Create Submenu page 
+						array(
+							'f' => 'add_submenu_page',
+							'o' => 
+								array(
+									'whaleusers',			// parent page
+									'User Fields', 			// Title title
+									'Settings User Fields', // Menu title
+									'manage_options',  		// premission necessary
+									'whaleusers',			// slug
+									array( $this, 'profile_page' ) ) ),
 						// Create Submenu page 
 						array(
 							'f' => 'add_submenu_page',

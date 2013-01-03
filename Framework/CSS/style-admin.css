@@ -1649,7 +1649,7 @@
   background-color: #dfdfdf;
 }
 
-/* line 239, sass/style-admin.scss */
+/* line 6, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body {
   background-color: #f5f5f5;
   float: left;
@@ -1661,21 +1661,21 @@
   -o-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
 }
-/* line 248, sass/style-admin.scss */
+/* line 15, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .nav {
   width: 20%;
   float: left;
   margin: 30px 0 20px;
 }
-/* line 254, sass/style-admin.scss */
+/* line 21, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .nav ul {
   margin: 0 0 10px;
 }
-/* line 258, sass/style-admin.scss */
+/* line 25, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .nav ul li {
   margin: 0;
 }
-/* line 262, sass/style-admin.scss */
+/* line 29, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .nav ul li a {
   border-left: 1px solid   #dfdfdf;
   border-top: 1px solid    #dfdfdf;
@@ -1694,7 +1694,7 @@
   -moz-box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
   box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 275, sass/style-admin.scss */
+/* line 42, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .nav ul li a.open-page {
   position: relative;
   left: 2px;
@@ -1703,7 +1703,7 @@
   border-color: #dfdfdf;
   background-color: #f5f5f5;
 }
-/* line 289, sass/style-admin.scss */
+/* line 56, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .holder {
   width: 79%;
   float: left;
@@ -1720,14 +1720,14 @@
   box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
   padding: 20px 0 10px;
 }
-/* line 300, sass/style-admin.scss */
+/* line 67, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .holder .content {
   width: 97.5%;
   padding-left: 2.5%;
   float: left;
   margin: 0 0 20px;
 }
-/* line 311, sass/style-admin.scss */
+/* line 78, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header {
   width: 95%;
   float: left;
@@ -1741,35 +1741,35 @@
   -o-border-radius: 15px 15px 0 0;
   border-radius: 15px 15px 0 0;
 }
-/* line 321, sass/style-admin.scss */
+/* line 88, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap {
   width: 80%;
   float: left;
   display: inline-block;
 }
-/* line 327, sass/style-admin.scss */
+/* line 94, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap ul {
   clear: both;
 }
-/* line 331, sass/style-admin.scss */
+/* line 98, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap ul li {
   display: inline;
   float: left;
 }
-/* line 338, sass/style-admin.scss */
+/* line 105, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap span, .lf-admin-form .lf-admin-header .lf-admin-header-wrap .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-form .lf-admin-header .lf-admin-header-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-form .lf-admin-header .lf-admin-header-wrap .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-form .lf-admin-header .lf-admin-header-wrap .lf-admin-td-checkbox-label, .lf-admin-form .lf-admin-header .lf-admin-header-wrap .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .lf-admin-form .lf-admin-header .lf-admin-header-wrap .layout-builder-options-td-checkbox-label {
   float: left;
   margin: 24px 0 20px 10px;
   vertical-align: baseline;
 }
-/* line 345, sass/style-admin.scss */
+/* line 112, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap h1 {
   font-size: 24px;
   margin: 20px 0;
   display: inline;
   float: left;
 }
-/* line 353, sass/style-admin.scss */
+/* line 120, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header img {
   display: inline-block;
   float: right;
@@ -1782,7 +1782,7 @@
   -o-transition: all 400ms;
   transition: all 400ms false;
 }
-/* line 361, sass/style-admin.scss */
+/* line 128, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header img:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;
@@ -1792,7 +1792,7 @@
   -o-transition: all 400ms;
   transition: all 400ms false;
 }
-/* line 369, sass/style-admin.scss */
+/* line 136, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-save {
   width: 95%;
   padding: 10px 2.5%;
@@ -1800,7 +1800,7 @@
   float: left;
   background-color: #363636;
 }
-/* line 377, sass/style-admin.scss */
+/* line 144, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-save .lf-admin-button {
   -moz-box-sizing: content-box;
   border-radius: 11px 11px 11px 11px;
@@ -1823,6 +1823,184 @@
 }
 /* line 58, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-form .lf-admin-save .lf-admin-button:active {
+  background: #282828;
+  border-color: #282828;
+}
+
+/* line 6, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-body {
+  background-color: #f5f5f5;
+  float: left;
+  width: 95%;
+  padding: 0 2.5% 50px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  -o-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+/* line 15, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-body .nav {
+  width: 20%;
+  float: left;
+  margin: 30px 0 20px;
+}
+/* line 21, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-body .nav ul {
+  margin: 0 0 10px;
+}
+/* line 25, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-body .nav ul li {
+  margin: 0;
+}
+/* line 29, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-body .nav ul li a {
+  border-left: 1px solid   #dfdfdf;
+  border-top: 1px solid    #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  -webkit-border-radius: 7px 0 0 7px;
+  -moz-border-radius: 7px 0 0 7px;
+  -ms-border-radius: 7px 0 0 7px;
+  -o-border-radius: 7px 0 0 7px;
+  border-radius: 7px 0 0 7px;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background-color: #f1f1f1;
+  -webkit-box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+/* line 42, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-body .nav ul li a.open-page {
+  position: relative;
+  left: 2px;
+  padding-right: 8px;
+  margin: -5px 0 -2px;
+  border-color: #dfdfdf;
+  background-color: #f5f5f5;
+}
+/* line 56, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-body .holder {
+  width: 79%;
+  float: left;
+  border-left: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -ms-border-radius: 0 0 5px 5px;
+  -o-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+  -webkit-box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
+  -moz-box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
+  box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
+  padding: 20px 0 10px;
+}
+/* line 67, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-body .holder .content {
+  width: 97.5%;
+  padding-left: 2.5%;
+  float: left;
+  margin: 0 0 20px;
+}
+/* line 78, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-header {
+  width: 95%;
+  float: left;
+  background-color: #222;
+  color: #fff;
+  padding: 20px 2.5%;
+  margin: 20px 0 0;
+  -webkit-border-radius: 15px 15px 0 0;
+  -moz-border-radius: 15px 15px 0 0;
+  -ms-border-radius: 15px 15px 0 0;
+  -o-border-radius: 15px 15px 0 0;
+  border-radius: 15px 15px 0 0;
+}
+/* line 88, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-header .lf-users-header-wrap {
+  width: 80%;
+  float: left;
+  display: inline-block;
+}
+/* line 94, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-header .lf-users-header-wrap ul {
+  clear: both;
+}
+/* line 98, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-header .lf-users-header-wrap ul li {
+  display: inline;
+  float: left;
+}
+/* line 105, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-header .lf-users-header-wrap span, .lf-users-form .lf-users-header .lf-users-header-wrap .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-users-form .lf-users-header .lf-users-header-wrap .lf-admin-post-meta-td-checkbox-label, .lf-users-form .lf-users-header .lf-users-header-wrap .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .lf-users-form .lf-users-header .lf-users-header-wrap .lf-admin-td-checkbox-label, .lf-users-form .lf-users-header .lf-users-header-wrap .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .lf-users-form .lf-users-header .lf-users-header-wrap .layout-builder-options-td-checkbox-label {
+  float: left;
+  margin: 24px 0 20px 10px;
+  vertical-align: baseline;
+}
+/* line 112, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-header .lf-users-header-wrap h1 {
+  font-size: 24px;
+  margin: 20px 0;
+  display: inline;
+  float: left;
+}
+/* line 120, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-header img {
+  display: inline-block;
+  float: right;
+  width: 8%;
+  padding: 10px 2.5% 0;
+  height: auto;
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -ms-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms false;
+}
+/* line 128, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-header img:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -ms-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms false;
+}
+/* line 136, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-save {
+  width: 95%;
+  padding: 10px 2.5%;
+  clear: both;
+  float: left;
+  background-color: #363636;
+}
+/* line 144, sass/Imports/mixins/_adminstyle.scss */
+.lf-users-form .lf-users-save .lf-users-button {
+  -moz-box-sizing: content-box;
+  border-radius: 11px 11px 11px 11px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 13px;
+  padding: 3px 8px;
+  text-decoration: none;
+  border-color: #282828;
+  color: white;
+  background: #404040;
+  padding: 5px 15px;
+  margin-right: 10px;
+}
+/* line 54, sass/Imports/mixins/_mixins.mixins.scss */
+.lf-users-form .lf-users-save .lf-users-button:hover {
+  border-color: black;
+}
+/* line 58, sass/Imports/mixins/_mixins.mixins.scss */
+.lf-users-form .lf-users-save .lf-users-button:active {
   background: #282828;
   border-color: #282828;
 }
@@ -1919,7 +2097,7 @@ div.jGrowl div.jGrowl-closer {
   text-align: center;
 }
 
-/* line 398, sass/style-admin.scss */
+/* line 249, sass/style-admin.scss */
 .layout-builder {
   display: none;
   height: 100%;
@@ -1932,13 +2110,13 @@ div.jGrowl div.jGrowl-closer {
   z-index: 500000;
   background: #fff;
 }
-/* line 411, sass/style-admin.scss */
+/* line 262, sass/style-admin.scss */
 .layout-builder iframe, .layout-builder .layoutbuiler-iframe-overlay {
   height: 100%;
   width: 100%;
   z-index: 1;
 }
-/* line 417, sass/style-admin.scss */
+/* line 268, sass/style-admin.scss */
 .layout-builder .layoutbuiler-iframe-overlay {
   position: absolute;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
@@ -1946,7 +2124,7 @@ div.jGrowl div.jGrowl-closer {
   z-index: 1;
 }
 
-/* line 425, sass/style-admin.scss */
+/* line 276, sass/style-admin.scss */
 .layout_builder_body {
   *zoom: 1;
   margin-left: 20%;
@@ -1968,7 +2146,7 @@ div.jGrowl div.jGrowl-closer {
   clear: both;
 }
 
-/* line 441, sass/style-admin.scss */
+/* line 292, sass/style-admin.scss */
 .layout-builder-options-box {
   *zoom: 1;
   width: 45%;
@@ -1994,11 +2172,11 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 455, sass/style-admin.scss */
+/* line 306, sass/style-admin.scss */
 .layout-builder-options-box table {
   margin: 0 0 10px;
 }
-/* line 460, sass/style-admin.scss */
+/* line 311, sass/style-admin.scss */
 .layout-builder-options-box .button {
   margin: 10px 10px 0 0;
   float: right;
@@ -2251,7 +2429,7 @@ div.jGrowl div.jGrowl-closer {
   background-color: #dfdfdf;
 }
 
-/* line 468, sass/style-admin.scss */
+/* line 319, sass/style-admin.scss */
 .layout-builder-options {
   *zoom: 1;
   height: 100%;
@@ -2271,7 +2449,7 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 482, sass/style-admin.scss */
+/* line 333, sass/style-admin.scss */
 .layout-builder-options .layout-builder-info-box {
   *zoom: 1;
   padding: 15px 20px;
@@ -2286,7 +2464,7 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 491, sass/style-admin.scss */
+/* line 342, sass/style-admin.scss */
 .layout-builder-options .layout-builder-info-box span, .layout-builder-options .layout-builder-info-box .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .layout-builder-options .layout-builder-info-box .lf-admin-post-meta-td-checkbox-label, .layout-builder-options .layout-builder-info-box .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .layout-builder-options .layout-builder-info-box .lf-admin-td-checkbox-label, .layout-builder-options .layout-builder-info-box .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options .layout-builder-info-box .layout-builder-options-td-checkbox-label {
   color: #999;
   font-size: 13px;
@@ -2296,7 +2474,7 @@ div.jGrowl div.jGrowl-closer {
   float: left;
   clear: both;
 }
-/* line 501, sass/style-admin.scss */
+/* line 352, sass/style-admin.scss */
 .layout-builder-options .layout-builder-info-box strong {
   display: block;
   float: left;
@@ -2307,7 +2485,7 @@ div.jGrowl div.jGrowl-closer {
   text-shadow: 0 1px 0 #FFFFFF;
   clear: both;
 }
-/* line 514, sass/style-admin.scss */
+/* line 365, sass/style-admin.scss */
 .layout-builder-options ul {
   bottom: 100px;
   top: 80px;
@@ -2318,7 +2496,7 @@ div.jGrowl div.jGrowl-closer {
   right: 0;
   z-index: 1;
 }
-/* line 525, sass/style-admin.scss */
+/* line 376, sass/style-admin.scss */
 .layout-builder-options ul li {
   *zoom: 1;
   font-size: 15px;
@@ -2342,12 +2520,12 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 539, sass/style-admin.scss */
+/* line 390, sass/style-admin.scss */
 .layout-builder-options ul li span, .layout-builder-options ul li .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .layout-builder-options ul li .lf-admin-post-meta-td-checkbox-label, .layout-builder-options ul li .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .layout-builder-options ul li .lf-admin-td-checkbox-label, .layout-builder-options ul li .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options ul li .layout-builder-options-td-checkbox-label {
   margin: 0px;
   color: inherit;
 }
-/* line 544, sass/style-admin.scss */
+/* line 395, sass/style-admin.scss */
 .layout-builder-options ul li:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #808080), color-stop(100%, #6d6d6d));
   background: -webkit-linear-gradient(top, #808080, #6d6d6d);
@@ -2358,7 +2536,7 @@ div.jGrowl div.jGrowl-closer {
   text-shadow: 0 -1px 0 #333333;
 }
 
-/* line 553, sass/style-admin.scss */
+/* line 404, sass/style-admin.scss */
 .layout-builder-save-options {
   *zoom: 1;
   position: absolute;
@@ -2375,7 +2553,7 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 564, sass/style-admin.scss */
+/* line 415, sass/style-admin.scss */
 .layout-builder-save-options .layout-builder-colapse-button {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -2386,7 +2564,7 @@ div.jGrowl div.jGrowl-closer {
   width: 19px;
   padding: 0;
 }
-/* line 571, sass/style-admin.scss */
+/* line 422, sass/style-admin.scss */
 .layout-builder-save-options .layout-builder-colapse-button .layout-builder-colapse-arrow {
   background: url("./Includes/Images/arrows.png") no-repeat scroll 0 -72px;
   display: block;
@@ -2396,7 +2574,7 @@ div.jGrowl div.jGrowl-closer {
   position: absolute;
   width: 15px;
 }
-/* line 582, sass/style-admin.scss */
+/* line 433, sass/style-admin.scss */
 .layout-builder-save-options a {
   float: left;
   display: inline-block;
@@ -2410,7 +2588,7 @@ div.jGrowl div.jGrowl-closer {
   clear: both;
 }
 
-/* line 593, sass/style-admin.scss */
+/* line 444, sass/style-admin.scss */
 .layout-builder-canvas {
   position: absolute;
   float: left;

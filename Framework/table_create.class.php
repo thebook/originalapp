@@ -262,6 +262,7 @@ class table_creator
 	 * Takes a an array conaining a "field name" and "field input type" and convers the field input type 
 	 * into a coresponding mysql data type, and appends it  to the field name therefore creating a mysql string
 	 * for inserting a column
+	 * Inspect usability on each type, if is correct
 	 * @param  array $the_field_array An array containing "field name" and "field input type"
 	 * @return string                 A mysql inseriton string
 	 */
