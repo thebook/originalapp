@@ -26,23 +26,97 @@ class branch_users_database extends branch_users_style
 
 			if ( !$does_table_exist and !$does_table_of_fields_exist ) : 
 				
-				$creator->_create_table(array('table_name' => $name, 'fields' => $default_setup ));
-				$creator->_create_table(array('table_name' => $table_of_fields_name, 'fields' => $default_setup ));
+				/**
+				 * Set up the field refrence table
+				 */
+				$creator->create_table(
+					array(
+						'table_name'  => $table_of_fields_name, 
+						'primary_key' => false,
+						'fields'      => $define_data_type_array 
+					));
 
-			else : 
+				foreach ( $default_setup as $field ) : $creator->add_row_to_table($table_of_fields_name, $field); endforeach;
 
-				$this->change_table_columns_based_on_saved_options($name);
+			endif; 
 
-			endif;
+			$this->change_table_columns_based_on_saved_options($name);
+
 	}
 
 	public function change_table_columns_based_on_saved_options ($name)
 	{
 		$creator = new table_creator;
 
-		echo "Table is created";
-		// var_export($creator->show_all_columns_in_a_table($name));
-		// echo "column changes";
+		echo "update the user columns";
+		// echo $creator->create_table(
+		// 	array(
+		// 		'table_name'  => 'whale_users_ss',
+		// 		'primary_key' => 'id',
+		// 		'field_statements' => 
+		// 			array(					
+		// 				array(
+		// 					'column_name' => 'name_something_else',
+		// 					'data_type'   => 'VARCHAR',
+		// 					'auto_increment' => false
+		// 				),
+		// 				array(
+		// 					'column_name' => 'id',
+		// 					'data_type'   => 'INT',
+		// 					'auto_increment' => true
+		// 				),
+		// 				array(
+		// 					'column_name' => 'name_1',
+		// 					'data_type'   => 'TEXT',
+		// 					'auto_increment' => false
+		// 				),
+		// 				array(
+		// 					'column_name' => 'namef',
+		// 					'data_type'   => 'TINYTEXT',
+		// 					'auto_increment' => false
+		// 				),
+		// 				array(
+		// 					'column_name' => 'nameff',
+		// 					'data_type'   => 'LONGTEXT',
+		// 					'auto_increment' => false
+		// 				),
+		// 				array(
+		// 					'column_name' => 'nameffsgd',
+		// 					'data_type'   => 'YEAR',
+		// 					'auto_increment' => false
+		// 				),
+		// 				array(
+		// 					'column_name' => 'nameffsg',
+		// 					'data_type'   => 'DATE',
+		// 					'auto_increment' => false
+		// 				),
+		// 				array(
+		// 					'column_name' => 'nameffsf',
+		// 					'data_type'   => 'TIME',
+		// 					'auto_increment' => false
+		// 				),
+		// 				array(
+		// 					'column_name' => 'nameffb',
+		// 					'data_type'   => 'DECIMAL',
+		// 					'auto_increment' => false
+		// 				),
+		// 				array(
+		// 					'column_name' => 'nameffbv',
+		// 					'data_type'   => 'TINYINT',
+		// 					'auto_increment' => false
+		// 				),
+		// 				array(
+		// 					'column_name' => 'nameffbvv',
+		// 					'data_type'   => 'MEDIUMINT',
+		// 					'auto_increment' => false
+		// 				),
+		// 				array(
+		// 					'column_name' => 'nameffbvvv',
+		// 					'data_type'   => 'INT',
+		// 					'auto_increment' => false
+		// 				)
+		// 			)));
+		
 	}
 
 	/**

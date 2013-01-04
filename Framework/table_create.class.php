@@ -19,15 +19,16 @@ class table_creator
 	{
 		global $wpdb;
 
-		$is_the_table_not_in_the_database = ( $wpdb->query("SHOW TABLES LIKE '$wpdb->prefix{$passed_creation_paramaters['table_name']}'") !== 1 );
+		$is_the_table_not_in_the_database = $this->does_table_exist($passed_creation_paramaters['table_name']);
 
 		if ( $is_the_table_not_in_the_database ) { 
 
-			$this->_create_table($passed_creation_paramaters);
+			$this->create_table($passed_creation_paramaters);
 		}	
 	}
 
 	/**
+	 * Unecessary ? 
 	 * Creates two tables, one for storing a name(or any other indeifier ) along with a id and the other for storing 
 	 * extra data for that name(or indeifier) and maping them between
 	 * @param  array $passed_creation_paramaters Array of paramaters contaning "table name and reference fields"
@@ -93,6 +94,52 @@ class table_creator
 	}
 
 	/**
+	 * [create_table description]
+	 * @param  [type] $paramaters [description]
+	 * @return [type]             [description]
+	 */
+	public function create_table ($paramaters)
+	{
+		require_once ABSPATH .'/wp-admin/includes/upgrade.php'; 
+
+		global $wpdb; 
+
+		extract($paramaters);
+
+		$primary_key = ($primary_key? "PRIMARY KEY ($primary_key), " : null );
+
+		$create_table_query = "
+		CREATE TABLE $wpdb->prefix{$table_name} (" 
+		. $primary_key
+		. $this->_convert_fields_into_types($fields) 
+		. ")";
+		
+		dbDelta($create_table_query);
+		// return $create_table_query;
+	}
+
+	public function _convert_fields_into_types ($fields_to_convert)
+	{	
+		$field_numbers = count($fields_to_convert);
+		$return_value  = '';
+
+		foreach ( $fields_to_convert as $field ) : 
+
+			extract($field);
+
+				$auto_increment = ( $auto_increment? 'AUTO_INCREMENT' : '' );
+				$punctuation    = ( $field_numbers > 1 ? ',' : '' );
+				$unique 		= ( $unique? 'UNIQUE' : '' );
+				$field_numbers--;				
+
+				$return_value .= strtolower($column_name) . " $data_type $unique NOT NULL $auto_increment $punctuation ";
+
+		endforeach;
+
+		return $return_value;
+	}
+
+	/**
 	 * Performs a check if a certain value is within a specific column; this is used if a certain column
 	 * is not allowed to have duplicates ( email, user name )
 	 * @param  string $table  The name of the table in which to look
@@ -118,7 +165,7 @@ class table_creator
 		
 		$format = $this->_take_each_string_and_return_format_array_for_row_insertion($to_insert);
 
-		$wpdb->insert( $wpdb->prefix.$table_name, $to_insert, $format );
+		$wpdb->insert( "$wpdb->prefix$table_name", $to_insert, $format );
 	}
 
 	/**
@@ -325,62 +372,6 @@ class table_creator
 
 		return $field_string;
 	}
-
-	public function convert_field_choice_into_statement ($field_input_type)
-	{
-		switch ($field_input_type) {
-			
-			case 'post_code':
-			case 'smalltext':
-				$field_string = "TINYTEXT";
-			break;
-			
-			case 'medium_text' : 
-				$field_string = "TEXT";
-			break;
-
-			case 'alot_of_text' : 
-				$field_string = "LONGTEXT";
-			break;
-
-			case 'just_year' : 
-				$field_string = "YEAR";
-			break;
-
-			case 'the_date' :
-				$field_string = "DATE DEFAULT '". date('Y') ."' NOT NULL";
-			break;
-
-			case 'just_time' : 
-				$field_string = "TIME";
-			break;
-
-			case 'url'   :
-			case 'email' : 
-				$field_string = "VARCHAR";
-			break;
-
-		 	case 'money'   : 
-		 	case 'decimal' :
-		 		$field_string = "DECIMAL";
-		 	break;
-
-		 	case 'small_number' : 
-		 		$field_string = "TINYINT";
-		 	break;
-
-		 	case 'regular_number' : 
-		 		$field_string = "MEDIUMINT";
-		 	break;
-
-		 	case 'huge_number' : 
-		 		$field_string = "INT";
-		 	break;
-		}
-
-		return $field_string;
-	}
-
 }
 
 ?>

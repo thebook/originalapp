@@ -10,32 +10,74 @@
 					array(
 						'name'     => 'whale_users',
 						'options_array'  => 'main_options',
-						'unique_options' =>  array( 'email' ),
+						'define_data_type_array' => 
+							array(
+								array(
+									'column_name' => 'field_name',
+									'data_type'   => 'VARCHAR(100)',
+									'auto_increment' => false,
+									'unique' => true,
+								),
+								array(
+									'column_name' => 'description',
+									'data_type'   => 'TEXT',
+									'auto_increment' => false,
+									'unique' => false,
+								),
+								array(
+									'column_name' => 'field_input_type',
+									'data_type'   => 'TINYTEXT',
+									'auto_increment' => false,
+									'unique' => false,
+								),					
+								array(
+									'column_name' => 'help_them_along',
+									'data_type'   => 'TEXT',
+									'auto_increment' => false,
+									'unique' => false,
+								),
+								array(
+									'column_name' => 'is_unique',
+									'data_type'   => 'TINYINT',
+									'auto_increment' => false,
+									'unique' => false,
+								),
+								array(
+									'column_name' => 'required',
+									'data_type'   => 'TINYINT',
+									'auto_increment' => false,
+									'unique' => false,
+								)
+							),
 						'default_setup' => 
 							array(
 								array(
 									'field_name'       => 'first_name',
 									'description'      => 'Description for first name',
-									'unique'           => 'false',
-									'required'         => 'true',
+									'help_them_along'  => 'This be help for first name',
+									'is_unique'        => 0,									
+									'required'         => 1,
 									'field_input_type' => 'smalltext' ),
 								array(
 									'field_name'       => 'second_name',
 									'description'      => 'Description for second name',
-									'unique'           => 'false',
-									'required'         => 'true',
+									'help_them_along'  => 'This be help for second name',
+									'is_unique'        => 0,
+									'required'         => 1,
 									'field_input_type' => 'smalltext' ),
 								array(
 									'field_name'       => 'user_name',
 									'description'      => 'Description for user name',
-									'unique'           => 'true',
-									'required'         => 'true',
+									'help_them_along'  => 'Help for user name',
+									'is_unique'        => 1,
+									'required'         => 1,
 									'field_input_type' => 'smalltext' ),
 								array(
 									'field_name'       => 'e_mail',
 									'description'      => 'Description for second name',
-									'unique'           => 'true',
-									'required'         => 'true',
+									'help_them_along'  => 'This be help for email',
+									'is_unique'        => 1,
+									'required'         => 1,
 									'field_input_type' => 'email' )
 							)),
 				'opt' => 
