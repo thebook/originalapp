@@ -113,30 +113,36 @@ class table_creator
 		. $primary_key
 		. $this->_convert_fields_into_types($fields) 
 		. ")";
-		
+				
 		dbDelta($create_table_query);
 		// return $create_table_query;
 	}
 
-	public function _convert_fields_into_types ($fields_to_convert)
+	protected function _convert_fields_into_types ($fields_to_convert)
 	{	
 		$field_numbers = count($fields_to_convert);
 		$return_value  = '';
 
 		foreach ( $fields_to_convert as $field ) : 
 
-			extract($field);
-
-				$auto_increment = ( $auto_increment? 'AUTO_INCREMENT' : '' );
-				$punctuation    = ( $field_numbers > 1 ? ',' : '' );
-				$unique 		= ( $unique? 'UNIQUE' : '' );
-				$field_numbers--;				
-
-				$return_value .= strtolower($column_name) . " $data_type $unique NOT NULL $auto_increment $punctuation ";
+			$return_value .= $this->_convert_field_into_type($field, $field_numbers);
+			$field_numbers--;	
 
 		endforeach;
 
 		return $return_value;
+	}
+
+
+	protected function  _convert_field_into_type ($field, $field_numbers = 1 )
+	{				
+		extract($field);
+
+			$auto_increment = ( $auto_increment? 'AUTO_INCREMENT' : '' );
+			$punctuation    = ( $field_numbers > 1 ? ',' : '' );
+			$unique 		= ( $unique? 'UNIQUE' : '' );			
+;
+			return strtolower($column_name) . " $data_type $unique NOT NULL $auto_increment $punctuation ";
 	}
 
 	/**
@@ -166,6 +172,13 @@ class table_creator
 		$format = $this->_take_each_string_and_return_format_array_for_row_insertion($to_insert);
 
 		$wpdb->insert( "$wpdb->prefix$table_name", $to_insert, $format );
+	}
+
+	public function get_all_rows_from_table ($name)
+	{
+		global $wpdb;
+
+		return $wpdb->get_results("SELECT * FROM $wpdb->prefix$name", ARRAY_A );
 	}
 
 	/**
@@ -208,15 +221,17 @@ class table_creator
 	 */
 	public function add_column_to_table ($paramaters)
 	{
-		if ( !$this->does_column_exist($paramaters['table_name'], $paramaters['field_name']) ) { 
+		if ( !$this->does_column_exist($paramaters['table_name'], $paramaters['column_name']) ) { 
 			
 			global $wpdb;
 			
-			$field_to_be_inserted = $this->_convert_table_field_choices_into_database_field_statement(
-				array(
-					'field_name'       => $paramaters['field_name'], 
-					'field_input_type' => $paramaters['field_input_type'] 
-					));
+			// $field_to_be_inserted = $this->_convert_table_field_choices_into_database_field_statement(
+			// 	array(
+			// 		'field_name'       => $paramaters['field_name'], 
+			// 		'field_input_type' => $paramaters['field_input_type'] 
+			// 		));
+			
+			$field_to_be_inserted = $this->_convert_field_into_type($paramaters);
 
 			$wpdb->query("ALTER TABLE $wpdb->prefix{$paramaters['table_name']} ADD $field_to_be_inserted"); 
 		}
@@ -303,74 +318,6 @@ class table_creator
 		}
 
 		return $return_string;
-	}
-
-	/**
-	 * Takes a an array conaining a "field name" and "field input type" and convers the field input type 
-	 * into a coresponding mysql data type, and appends it  to the field name therefore creating a mysql string
-	 * for inserting a column
-	 * Inspect usability on each type, if is correct
-	 * @param  array $the_field_array An array containing "field name" and "field input type"
-	 * @return string                 A mysql inseriton string
-	 */
-	protected function _convert_table_field_choices_into_database_field_statement ($the_field_array)
-	{
-		extract($the_field_array);
-
-		$field_string = strtolower($field_name) ." ";
-
-		switch ($field_input_type) {
-			
-			case 'post_code':
-			case 'smalltext':
-				$field_string .= "TINYTEXT NOT NULL";
-			break;
-			
-			case 'medium_text' : 
-				$field_string .= "TEXT NOT NULL";
-			break;
-
-			case 'alot_of_text' : 
-				$field_string .= "LONGTEXT NOT NULL";
-			break;
-
-			case 'just_year' : 
-				$field_string .= "YEAR DEFAULT '". date('Y') ."' NOT NULL";
-			break;
-
-			case 'the_date' :
-				$field_string .= "DATE DEFAULT '". date('Y') ."' NOT NULL";
-			break;
-
-			case 'just_time' : 
-				$field_string .= "TIME DEFAULT '". date("H:i:s") ."' NOT NULL";
-			break;
-
-			case 'url'   :
-			case 'email' : 
-				$field_string .= "VARCHAR(120) DEFAULT '' NOT NULL";
-			break;
-
-		 	case 'money'   : 
-		 	case 'decimal' :
-		 		$field_string .= "DECIMAL NOT NULL";
-		 	break;
-
-		 	case 'small_number'  :
-		 	case 'medium_number' : 
-		 		$field_string .= "TINYINT NOT NULL";
-		 	break;
-
-		 	case 'regular_number' : 
-		 		$field_string .= "MEDIUMINT NOT NULL";
-		 	break;
-
-		 	case 'huge_number' : 
-		 		$field_string .= "INT NOT NULL";
-		 	break;
-		}
-
-		return $field_string;
 	}
 }
 

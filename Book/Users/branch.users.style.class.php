@@ -51,7 +51,7 @@ class branch_users_style extends alpha_tree_users
 				<!-- Body -->
 				<div class="<?php echo $this->params['id']; ?>-body">
 
-
+					<?php $this->profile_managment($config['create_table']['name']); ?>
 
 				</div>
 
@@ -73,12 +73,29 @@ class branch_users_style extends alpha_tree_users
 		</div>
 
 <?php }
+	
+	# get all the rows and then find their coresponding array and spit		
+	public function profile_managment ($table_name)
+	{ ?> 
 
-	public function profile_managment ()
-	{
-		# get all the rows and then find their coresponding array and spit		
+		<?php $creator = new table_creator; ?>
 
-	}
+		<?php $fields_to_display = $creator->get_all_rows_from_table($table_name .'_fields_data'); ?>
+
+		<?php var_export($fields_to_display); ?>
+
+		<?php foreach ( $fields_to_display as $field ) : ?>
+
+			<div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+
+
+		<?php endforeach; ?>
+
+<?php }
 }
 
 ?>
