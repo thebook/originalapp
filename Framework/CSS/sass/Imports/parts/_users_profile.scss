@@ -1,0 +1,71 @@
+.users_profile_box {
+
+
+	width: 45%;
+	padding: 20px 1.5%;
+	margin: 20px 1%;
+	// background: #eee;
+	display: inline-block;
+	float: left;
+	@include border-radius( 5px 5px 0 0 );
+	
+	.user_profile_box_field { 
+
+		clear: both;
+		marign: 5px 0;
+		
+		.user_profile_desc { 
+
+			width: 100%;
+			clear: both;
+			float: left;
+			margin: 10px 0;
+			
+			strong { 
+				float: left;
+				margin: 0 0 5px;
+			}
+
+			span { 
+				clear: both;
+				float: left;
+				font-style: italic;			
+				color: #999;
+			}			
+		}
+
+		.user_profile_input { 
+			@extend .user_profile_desc;
+			
+			input, textarea, select { 
+
+				width: 100%;			
+			}
+		}		
+	}
+
+	.profile_button { 
+
+		@include single-box-shadow( rgba(0, 0, 0, 0.1), 1px, 1px, 1px );
+		background-color: #EEEEEE;
+		color: #999999;
+		cursor: pointer;
+		float: left;
+		font-size: 12px;
+		font-style: italic;
+		line-height: 12px;
+		margin: 15px 0;
+		opacity: 0.8;
+		padding: 4px 12px;
+		text-align: center;
+		border: none;
+		width: auto;
+		
+		&:active { 
+
+			@include single-box-shadow( rgba(128, 128, 128, 0.1), 1px, 1px, 1px, 0px, inset ); 
+		    margin-top: 16px;
+		    opacity: 1;
+		}
+	}
+} 

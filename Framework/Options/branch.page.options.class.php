@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
 * A branch which inits all admin page classes e.g( they have an admin page to be manipulated ) and create and save options

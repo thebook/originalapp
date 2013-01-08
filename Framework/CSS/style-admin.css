@@ -2603,3 +2603,72 @@ div.jGrowl div.jGrowl-closer {
   -moz-box-shadow: 2px 0 5px 3px rgba(0, 0, 0, 0.1);
   box-shadow: 2px 0 5px 3px rgba(0, 0, 0, 0.1);
 }
+
+/* line 1, sass/Imports/parts/_users_profile.scss */
+.users_profile_box {
+  width: 45%;
+  padding: 20px 1.5%;
+  margin: 20px 1%;
+  display: inline-block;
+  float: left;
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  -ms-border-radius: 5px 5px 0 0;
+  -o-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+/* line 12, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field {
+  clear: both;
+  marign: 5px 0;
+}
+/* line 17, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field .user_profile_desc, .users_profile_box .user_profile_box_field .user_profile_input {
+  width: 100%;
+  clear: both;
+  float: left;
+  margin: 10px 0;
+}
+/* line 24, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field .user_profile_desc strong, .users_profile_box .user_profile_box_field .user_profile_input strong {
+  float: left;
+  margin: 0 0 5px;
+}
+/* line 29, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field .user_profile_desc span, .users_profile_box .user_profile_box_field .user_profile_input span, .users_profile_box .user_profile_box_field .user_profile_desc .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .users_profile_box .user_profile_box_field .user_profile_desc .lf-admin-post-meta-td-checkbox-label, .users_profile_box .user_profile_box_field .user_profile_input .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .users_profile_box .user_profile_box_field .user_profile_input .lf-admin-post-meta-td-checkbox-label, .users_profile_box .user_profile_box_field .user_profile_desc .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .users_profile_box .user_profile_box_field .user_profile_desc .lf-admin-td-checkbox-label, .users_profile_box .user_profile_box_field .user_profile_input .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .users_profile_box .user_profile_box_field .user_profile_input .lf-admin-td-checkbox-label, .users_profile_box .user_profile_box_field .user_profile_desc .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .users_profile_box .user_profile_box_field .user_profile_desc .layout-builder-options-td-checkbox-label, .users_profile_box .user_profile_box_field .user_profile_input .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .users_profile_box .user_profile_box_field .user_profile_input .layout-builder-options-td-checkbox-label {
+  clear: both;
+  float: left;
+  font-style: italic;
+  color: #999;
+}
+/* line 40, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field .user_profile_input input, .users_profile_box .user_profile_box_field .user_profile_input textarea, .users_profile_box .user_profile_box_field .user_profile_input select {
+  width: 100%;
+}
+/* line 47, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .profile_button {
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  background-color: #EEEEEE;
+  color: #999999;
+  cursor: pointer;
+  float: left;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 12px;
+  margin: 15px 0;
+  opacity: 0.8;
+  padding: 4px 12px;
+  text-align: center;
+  border: none;
+  width: auto;
+}
+/* line 64, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .profile_button:active {
+  -webkit-box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
+  -moz-box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
+  box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
+  margin-top: 16px;
+  opacity: 1;
+}
