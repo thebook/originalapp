@@ -53,6 +53,9 @@ class branch_users_style extends alpha_tree_users
 
 					<?php $this->profile_managment($config['create_table']['name']); ?>
 
+					<input data-function-to-call="add_new_field_input" data-ajax-template="<?php echo AJAXLOADS; ?>" type="button" value="Add Field">
+					<input type="button" value="Remove Field">
+
 				</div>
 
 				<script>
@@ -68,6 +71,12 @@ class branch_users_style extends alpha_tree_users
 						nonce  : "<?php echo wp_create_nonce($this->params['class']);?>",
 						nonce_name: "<?php echo $this->params['id'];?>_nonce"
 					});
+
+					lf_users.init(".<?php echo $this->params['id']; ?>-body");
+					lf_users.create_global_variable('ajax_path', 'ze path');
+					lf_users.create_global_variable('path', 'path');
+					console.log(lf_users.global);
+
 				</script>
 			</form>
 		</div>
@@ -78,24 +87,21 @@ class branch_users_style extends alpha_tree_users
 	public function profile_managment ($table_name)
 	{  	
 		$creator = new table_creator;
-
-		$fields_to_display = $creator->get_all_rows_from_table($table_name .'_fields_data');
-		$prefix = 'lf_users';
-		$user_options = $this->params['manifestation']['options'];
+		$fields_to_display = $creator->get_all_rows_from_table($table_name .'_fields_data');		
 		
 		foreach ( $fields_to_display as $key => $field ) : 
 
-			$this->_field_option_box($field);
+			$this->_field_option_box($key, $field);
 
 		endforeach; 
 
  	}
 
- 	protected function _field_option_box ($field)
+ 	protected function _field_option_box ($key, $field)
  	{ ?>
 
  		<?php 
-
+ 			$user_options = $this->params['manifestation']['options'];
  			$data_types_for_conversion_into_options = 
 				array(
 					array( 
@@ -237,10 +243,12 @@ class branch_users_style extends alpha_tree_users
 				</div>
 			</div>
 
-			<input type="button" value="Remove Field" class="profile_button">
+			<input data-function-to-call="" type="button" value="Remove Field" class="profile_button">
 			
 		</div>
 <?php }
+
+
 }
 
 ?>

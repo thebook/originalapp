@@ -11,6 +11,12 @@ function lf_comment_edit_link ( $text )
 	<?php endif; ?>
 <?php }
 
+
+function timestamp () { 
+
+	return time('YmdHis');
+}
+
 function include_fol($fol) {
 
 	$folder = new DirectoryIterator($fol);

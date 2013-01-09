@@ -115,6 +115,41 @@
 												array( false, 'admin.php')),
 										'enqueue' => true 
 											))),
+						// users js init
+						array(
+							'f' => array( $this, 'sort'),
+							'o' =>
+								array(
+									array(
+										'side' => 'admin',
+										'type' => 'script',
+										'arg'  => 
+											array(
+												'lf_users',
+												SCRIPTS .'/init.users.js', 
+												array('jquery'),
+												'1',
+												false ),
+										'conditional' => false,
+										'enqueue' => true
+										))),
+						array(
+							'f' => array( $this, 'sort'),
+							'o' =>
+								array(
+									array(
+										'side' => 'admin',
+										'type' => 'script',
+										'arg'  => 
+											array(
+												'lf_users_adder',
+												SCRIPTS .'/adder.users.js', 
+												array('jquery'),
+												'1',
+												false ),
+										'conditional' => false,
+										'enqueue' => true
+										))),
 						// remove js, cloning for the slider
 						array(
 							'f' => array( $this, 'sort'),
