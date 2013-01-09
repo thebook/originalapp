@@ -1,10 +1,11 @@
-
-
-<?php $key = timestamp(); ?>
-
-<?php $user_options = ''; ?>
-
 <?php 
+
+	$key = timestamp(); 
+
+	$user_options = $_GET['template_options']['user_options']; 
+
+	$field = ( isset($_GET['template_options']['field'])? $_GET['template_options']['field'] : array('field_name' => '', 'description' => '', 'help_them_along' => '', 'field_input_type' => '', 'is_unique' => '', 'required' => '' ) );
+
 	$data_types_for_conversion_into_options = 
 		array(
 			array( 
@@ -49,6 +50,7 @@
 			array( 
 				'name' => 'Huge Number(100000+)',    
 				'value' => 'huge_number' ));	
+
 ?>
 
 <div class="users_profile_box">

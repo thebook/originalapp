@@ -2,20 +2,17 @@ var lf_users = (function ($, lf_users) {
 
 	lf_users.add_new_field_input = function (current_click, event) { 
 
-		current_click.template_path = current_click.element.attr('data-ajax-template');
-		
-		console.log(current_click.template_path);
-		
-		$.get({
-			url : current_click.element.attr('data-ajax-template'),
-			data : { template_options : { name : "user", user_options : "" } },
+		$.ajax({
+			type : 'GET',
+			url : this.global.loader_path,
+			data : { template_options : { name : "user", user_options : this.global.user_options } },
 			dataType : 'html',
 			sucess : function (response) { 
 
 			}
 		});
-
-		console.log(current_click);
+		console.log(this.global.loader_path);
+		console.log(this.global.user_options);
 	};
 
 	return lf_users;
