@@ -2611,55 +2611,65 @@ div.jGrowl div.jGrowl-closer {
   margin: 20px 1%;
   display: inline-block;
   float: left;
-  -webkit-border-radius: 5px 5px 0 0;
-  -moz-border-radius: 5px 5px 0 0;
-  -ms-border-radius: 5px 5px 0 0;
-  -o-border-radius: 5px 5px 0 0;
-  border-radius: 5px 5px 0 0;
 }
-/* line 12, sass/Imports/parts/_users_profile.scss */
-.users_profile_box .user_profile_box_field_split {
+/* line 10, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_toggle {
+  background: #EEE;
+  color: #999;
+  width: 97%;
+  display: block;
+  float: left;
+  text-align: center;
+  margin: 0 0 10px;
+  padding: 20px 1.5%;
+  clear: both;
+}
+/* line 23, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field_inner {
+  display: block;
+  float: left;
+  width: 100%;
+}
+/* line 29, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field_inner .user_profile_box_field_split {
   width: 100%;
   float: left;
   display: block;
 }
-/* line 18, sass/Imports/parts/_users_profile.scss */
-.users_profile_box .user_profile_box_field_split .user_profile_box_field {
+/* line 35, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field {
   marign: 5px 0;
   float: left;
   display: inline-block;
   width: 47%;
   margin: 10px 1.5%;
 }
-/* line 26, sass/Imports/parts/_users_profile.scss */
-.users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_desc, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input {
+/* line 43, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input {
   width: 100%;
   clear: both;
   float: left;
   margin: 10px 0;
 }
-/* line 33, sass/Imports/parts/_users_profile.scss */
-.users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_desc strong, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input strong {
+/* line 50, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc strong, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input strong {
   float: left;
   margin: 0 0 5px;
 }
-/* line 38, sass/Imports/parts/_users_profile.scss */
-.users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_desc span, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input span, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-post-meta-td-checkbox-label, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-post-meta-td-checkbox-label, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-td-checkbox-label, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-td-checkbox-label, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_desc .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_desc .layout-builder-options-td-checkbox-label, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input .layout-builder-options-td-checkbox-label {
+/* line 55, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc span, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input span, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-post-meta-td-checkbox-label, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-post-meta-td-checkbox-label, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-td-checkbox-label, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-td-checkbox-label, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .layout-builder-options-td-checkbox-label, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .layout-builder-options-td-checkbox-label {
   clear: both;
   float: left;
   font-style: italic;
   color: #999;
 }
-/* line 49, sass/Imports/parts/_users_profile.scss */
-.users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input input, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input textarea, .users_profile_box .user_profile_box_field_split .user_profile_box_field .user_profile_input select {
+/* line 66, sass/Imports/parts/_users_profile.scss */
+.users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input input, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input textarea, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input select {
   width: 100%;
 }
 
-/* line 58, sass/Imports/parts/_users_profile.scss */
-.profile_button, .user_profile_box_minimize {
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+/* line 76, sass/Imports/parts/_users_profile.scss */
+.profile_button, .user_profile_box_minimize, .user_profile_box_remove {
   background-color: #EEEEEE;
   color: #999999;
   cursor: pointer;
@@ -2673,19 +2683,27 @@ div.jGrowl div.jGrowl-closer {
   text-align: center;
   border: none;
   width: auto;
+  display: block;
 }
-/* line 75, sass/Imports/parts/_users_profile.scss */
-.profile_button:active, .user_profile_box_minimize:active {
+/* line 94, sass/Imports/parts/_users_profile.scss */
+.profile_button:active, .user_profile_box_minimize:active, .user_profile_box_remove:active {
   -webkit-box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
   -moz-box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
   box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
   opacity: 1;
 }
 
-/* line 82, sass/Imports/parts/_users_profile.scss */
-.user_profile_box_minimize {
+/* line 101, sass/Imports/parts/_users_profile.scss */
+.user_profile_box_minimize, .user_profile_box_remove {
   float: right;
-  margin: 3px 1.5%;
+  margin: 0px 3px 0;
   line-height: 25px;
-  font-size: 25px;
+  height: 30px;
+  font-size: 22px;
+}
+
+/* line 111, sass/Imports/parts/_users_profile.scss */
+.user_profile_box_remove {
+  font-size: 12px;
+  margin: 0px 0px 0px 3px;
 }

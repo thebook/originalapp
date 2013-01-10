@@ -74,8 +74,11 @@ class branch_users_style extends alpha_tree_users
 					lf_users.init(".<?php echo $this->params['id']; ?>-body");
 					lf_users.create_global_variable("loader_path", "<?php echo AJAXLOADS; ?>");
 					lf_users.create_global_variable("user_options", "<?php echo $config['options']?>");
-					lf_users.create_global_variable("user_field_box_class", ".users_profile_box");
-					console.log(lf_users.global);
+					lf_users.create_global_variable("user_field_inner_box", ".user_profile_box_field_inner");
+					// console.log(lf_users.global);
+					alpha.mover();
+					// console.log(alpha);
+					// console.log(alpha.mover.prototype);
 
 				</script>
 			</form>

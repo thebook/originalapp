@@ -10,8 +10,7 @@ var lf_users = (function ($, lf_users) {
 			data : { template_options : { name : "user", user_options : this.global.user_options } },
 			dataType : 'html',
 			success : function (response) { 
-				// $(lf_users.global.user_field_box_class).last().after(response);
-				// current_click.element.before(response);	
+
 				$(response).css('opacity', '0').insertBefore(current_click.element).animate({ opacity : '1'}, 400);
 				current_click.element.val("Add Field");
 			}
@@ -21,7 +20,9 @@ var lf_users = (function ($, lf_users) {
 
 	lf_users.remove_field = function (current_click, event) { 
 
-		current_click.element.parent().fadeOut(400, function () { $(this).empty().remove();});
+		if (confirm("Are you sure you want to remove this field?")) { 
+			current_click.element.parent().fadeOut(400, function () { $(this).empty().remove();});
+		}
 	}
 
 	return lf_users;
