@@ -1,13 +1,13 @@
-var lf_users = (function ( lf_users, $ ) {
+var alpha = (function ( alpha, $ ) {
 
-	lf_users.toggle_user_field = function ( current_click, event ) { 
+	alpha.toggle_user_field = function ( current_click ) { 
 
-		var close_box = current_click.element.nextAll(this.global.user_field_inner_box);
+		var close_box = current_click.element.nextAll(current_click.instructions.user_field_inner_box);
 
 		if ( current_click.element.hasClass('open') ) {
 
 			current_click.element.removeClass('open').addClass('close') 
-			close_box.css({ display : "none"}).before('<div class="user_profile_toggle">Drag me, drag me</div>');
+			close_box.css({ display : "none"}).before('<div data-function-to-call="mover" class="user_profile_toggle">Drag me, drag me</div>');
 		}
 		else { 
 
@@ -17,8 +17,6 @@ var lf_users = (function ( lf_users, $ ) {
 		}
 	};
 
-	
+	return alpha;
 
-	return lf_users;
-
-})(lf_users || {}, jQuery );
+})(alpha || {}, jQuery );

@@ -30,7 +30,7 @@
 	<input data-function-to-call="remove_field" class="user_profile_box_remove" type="button" value="Remove">
 
 	<!-- Minimise field button -->
-	<input data-function-to-call="toggle_user_field" class="user_profile_box_minimize open" type="button" value="-">
+	<input data-function-to-call="toggle_user_field" data-function-instructions="{ 'user_field_inner_box' : '.user_profile_box_field_inner' }" class="user_profile_box_minimize open" type="button" value="-">
 
 	<div class="user_profile_box_field_inner">
 

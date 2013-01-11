@@ -1,13 +1,13 @@
-var lf_users = (function ($, lf_users) {
+var alpha = (function ($, alpha) {
 
-	lf_users.add_new_field_input = function (current_click, event) { 
+	alpha.add_new_field_input = function (current_click) { 
 
 		current_click.element.val("Loading...")
 
 		$.ajax({
 			type : 'GET',
-			url : this.global.loader_path,
-			data : { template_options : { name : "user", user_options : this.global.user_options } },
+			url : current_click.instructions.ajax_path,
+			data : { template_options : { name : "user", user_options : current_click.instructions.user_options } },
 			dataType : 'html',
 			success : function (response) { 
 
@@ -18,13 +18,14 @@ var lf_users = (function ($, lf_users) {
 
 	};
 
-	lf_users.remove_field = function (current_click, event) { 
+	alpha.remove_field = function (current_click) { 
 
-		if (confirm("Are you sure you want to remove this field?")) { 
+		if (current_click.the_event.type === 'click' && confirm("Are you sure you want to remove this field?")) { 
+
 			current_click.element.parent().fadeOut(400, function () { $(this).empty().remove();});
 		}
 	}
 
-	return lf_users;
+	return alpha;
 
-})(jQuery, lf_users || {} );
+})(jQuery, alpha || {} );

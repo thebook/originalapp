@@ -53,7 +53,7 @@ class branch_users_style extends alpha_tree_users
 
 					<?php $this->profile_managment($config['create_table']['name']); ?>
 
-					<input data-function-to-call="add_new_field_input" class="profile_button" type="button" value="Add Field">
+					<input data-function-instructions="{ 'ajax_path' : '<?php echo AJAXLOADS; ?>', 'user_options' : '<?php echo $config['options']?>' }" data-function-to-call="add_new_field_input" class="profile_button" type="button" value="Add Field">
 
 				</div>
 
@@ -70,15 +70,11 @@ class branch_users_style extends alpha_tree_users
 						nonce  : "<?php echo wp_create_nonce($this->params['class']);?>",
 						nonce_name: "<?php echo $this->params['id'];?>_nonce"
 					});
-
-					lf_users.init(".<?php echo $this->params['id']; ?>-body");
-					lf_users.create_global_variable("loader_path", "<?php echo AJAXLOADS; ?>");
-					lf_users.create_global_variable("user_options", "<?php echo $config['options']?>");
-					lf_users.create_global_variable("user_field_inner_box", ".user_profile_box_field_inner");
-					// console.log(lf_users.global);
-					alpha.mover();
-					// console.log(alpha);
-					// console.log(alpha.mover.prototype);
+					
+					alpha.track_events_on_this(".<?php echo $this->params['id']; ?>-body", "click");
+					alpha.create_instruction_variable("mover", "elements_to_move_to", ".users_profile_box");
+					// alpha.track_events_on_this.prototype.hibrenate(["toggle_user_field", "remove_field"]);
+					// alpha.track_events_on_this.prototype.hibrenate(["stuff", "stuffady"]);
 
 				</script>
 			</form>
