@@ -23,19 +23,40 @@ var alpha = (function ( alpha, $ ) {
     			self.offset.left   = Math.round(self.offset.left);
     			self.offset.top    = Math.round(self.offset.top);
     			self.padding_left  = Math.round($(this).css("padding-left").replace("px", "") );
-    			self.padding_right = Math.round($(this).css("padding-right").replace("px", ""));
+    			self.padding_top   = Math.round($(this).css("padding-top").replace("px", ""));
 				self.left_side     = ((event.pageX - self.offset.left ) - self.padding_left < 0 );
 				self.right_side    = ((event.pageX - self.offset.left ) - self.padding_left > self.width );
-    			self.horizontal_padding = ( self.padding_left + self.padding_right );
+				self.top_side      = ((event.pageY - self.offset.top  ) - self.padding_top  < 0 );
+				self.bottom_side   = ((event.pageY - self.offset.top  ) - self.padding_top  > self.height );
 				
 
     		// console.log(self.width - (event.pageX - self.offset.left));
     		// console.log(self);
-    		console.log(self.left_side);
-    		console.log(self.right_side);
+    		// console.log(self.left_side);
+    		// console.log(self.right_side);
+    		// console.log(self.top_side);
+    		// console.log(self.bottom_side);
+    		
+    		//* Resolve conflict between two contradictories 
+    		if ( self.bottom_side ) { 
+
+    			console.log("bottom");
+    		}
+    		if ( self.top_side ) { 
+
+    			console.log("top");
+    		}
+    		if ( self.right_side ) { 
+
+    			console.log("right");
+    		}
+    		if ( self.left_side ) { 
+
+    			console.log("left");
+    		}
     		// console.log(self);
     		// console.log(self);
-    		// console.log((event.pageX - self.offset.left ) - self.padding_left);
+    		// console.log((event.pageY - self.offset.top  ) - self.padding_top);
     		// console.log(self.right_side);
     		// console.log(event.pageX - self.offset.left);
     		// console.log(self.height);
