@@ -73,8 +73,7 @@ class branch_users_style extends alpha_tree_users
 					
 					alpha.track_events_on_this(".<?php echo $this->params['id']; ?>-body", "click");
 					alpha.create_instruction_variable("mover", "elements_to_move_to", ".users_profile_box");
-					// alpha.track_events_on_this.prototype.hibrenate(["toggle_user_field", "remove_field"]);
-					// alpha.track_events_on_this.prototype.hibrenate(["stuff", "stuffady"]);
+					
 
 				</script>
 			</form>

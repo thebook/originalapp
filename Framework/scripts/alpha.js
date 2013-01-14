@@ -61,8 +61,9 @@ var alpha = (function ( alpha, $ ) {
 		alpha[instruction_name].instructions[variable_name] = alpha[instruction_name].instructions[variable_name] || variable_value;
 	};
 
-	alpha.detect_side = function (event, element) { 
+	alpha.detect_side = function (event, element, detection_side) { 
 
+		detection_side  = detection_side || 1;
     	var self        = new Object;
             self.parent = new Object;
             self.is     = new Object;
@@ -86,15 +87,12 @@ var alpha = (function ( alpha, $ ) {
     		self.margin_bottom  = Math.round(self.element.css("margin-bottom").replace("px", ""));
             self.full_width     = ( self.width + self.padding_left + self.padding_right + self.margin_right + self.margin_left );
             self.full_height    = ( self.height + self.padding_top + self.padding_bottom + self.margin_right + self.margin_left );
-			self.left_side      = ((event.pageX - self.offset.left ) - self.padding_left < 0 );
-			self.right_side     = ((event.pageX - self.offset.left ) - self.padding_left > self.width );
-			self.top_side       = ((event.pageY - self.offset.top  ) - self.padding_top  < 0 );
-			self.bottom_side    = ((event.pageY - self.offset.top  ) - self.padding_top  > self.height );
+			self.left_side      = ((event.pageX - self.offset.left ) - self.padding_left < 0 + ( self.width / detection_side ));
+			self.right_side     = ((event.pageX - self.offset.left ) - self.padding_left > self.width - ( self.width / detection_side ) );
+			self.top_side       = ((event.pageY - self.offset.top  ) - self.padding_top  < 0 + ( self.height / detection_side ) );
+			self.bottom_side    = ((event.pageY - self.offset.top  ) - self.padding_top  > self.height - ( self.height / detection_side ) );
             self.is.as_wide_as_parent = ( self.full_width  > self.parent.width  - 5 );
 			self.is.as_tall_as_parent = ( self.full_height > self.parent.height - 10 );
-			
-
-
 
             return self; 		
     };

@@ -7,7 +7,7 @@ var alpha = (function ( alpha, $ ) {
 		if ( current_click.element.hasClass('open') ) {
 
 			current_click.element.removeClass('open').addClass('close') 
-			close_box.css({ display : "none"}).before('<div data-function-to-call="mover" class="user_profile_toggle">Drag me, drag me</div>');
+			close_box.css({ display : "none"}).before('<div data-function-to-call="mover" class="user_profile_toggle">'+ current_click.instructions.what_to_say +'</div>');
 		}
 		else { 
 
