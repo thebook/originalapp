@@ -3,70 +3,33 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.mover = function (wake) { 
 
-		var wake_parent = wake.element.parent(), 
-			hibrenation_list = ["mover", "add_new_field_input", "remove_field"];
+		var wake_parent, to_hibrenate;  
+            wake_parent  = wake.element.parent();
+			to_hibrenate = ["mover", "add_new_field_input", "remove_field"];
 
-			alpha.track_events_on_this.prototype.hibrenate(hibrenation_list);
+			alpha.track_events_on_this.prototype.hibrenate(to_hibrenate);
 
-			this.prototype.detect_side($(this.instructions.elements_to_move_to).not(wake_parent));
-
+            this.prototype.handle_sides($(this.instructions.elements_to_move_to).not(wake_parent));
 	};
 
-    alpha.mover.prototype.detect_side = function (instructions_to_detect) { 
+    alpha.mover.prototype.handle_sides = function (elements_to_detect) { 
 
-    	instructions_to_detect.on('mousemove', function (event) { 
+        elements_to_detect.on('mousemove', function (event) { 
 
-    		var self = new Object;
-    			self.height        = Math.round($(this).height()),
-    			self.width         = Math.round($(this).width() );
-    			self.offset        = $(this).offset();
-    			self.offset.left   = Math.round(self.offset.left);
-    			self.offset.top    = Math.round(self.offset.top);
-    			self.padding_left  = Math.round($(this).css("padding-left").replace("px", "") );
-    			self.padding_top   = Math.round($(this).css("padding-top").replace("px", ""));
-				self.left_side     = ((event.pageX - self.offset.left ) - self.padding_left < 0 );
-				self.right_side    = ((event.pageX - self.offset.left ) - self.padding_left > self.width );
-				self.top_side      = ((event.pageY - self.offset.top  ) - self.padding_top  < 0 );
-				self.bottom_side   = ((event.pageY - self.offset.top  ) - self.padding_top  > self.height );
-				
+            var self = alpha.detect_side(event, this);
 
-    		// console.log(self.width - (event.pageX - self.offset.left));
-    		// console.log(self);
-    		// console.log(self.left_side);
-    		// console.log(self.right_side);
-    		// console.log(self.top_side);
-    		// console.log(self.bottom_side);
-    		
-    		//* Resolve conflict between two contradictories 
-    		if ( self.bottom_side ) { 
+            ( self.top_side? self.element.css("border-top", "2px solid #0060a2") : self.element.css("border-top", "none") );
+            
+            ( self.bottom_side? self.element.css("border-bottom", "2px solid #0060a2") : self.element.css("border-bottom", "none") );
 
-    			console.log("bottom");
-    		}
-    		if ( self.top_side ) { 
 
-    			console.log("top");
-    		}
-    		if ( self.right_side ) { 
 
-    			console.log("right");
-    		}
-    		if ( self.left_side ) { 
+        })
+        .on('mouseleave', function (event) { 
 
-    			console.log("left");
-    		}
-    		// console.log(self);
-    		// console.log(self);
-    		// console.log((event.pageY - self.offset.top  ) - self.padding_top);
-    		// console.log(self.right_side);
-    		// console.log(event.pageX - self.offset.left);
-    		// console.log(self.height);
-    		// console.log(self.width);
-    		// console.log(self.width - ( event.pageX - self.offset.left));
-    		// slef.is_on_the_left = (self.width - ( event.pageX - self.offset.left)) )
-    		// console.log(event.pageX - self.offset.left);
-    		// console.log(event.pageY - self.offset.top );
-    		
-    	});
+           $(this).css("border", "none"); 
+
+        });
     };
 
 	return alpha;
