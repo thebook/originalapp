@@ -6,10 +6,43 @@
 class branch_users_style extends alpha_tree_users
 {
 
+	public function save ()
+	{
+		$this->_not_allowed();
+
+		$option_name         = $this->params['manifestation']['options'];
+		$current_option      = array();
+		$response['error']   = false;
+		$response['header']  = __('Saved', 'liquidflux');
+		$response['message'] = __('Your settings have been saved', 'liquidflux');
+		$field_number 		 = 0;
+		$to_be_saved_option  = $_POST[$option_name];
+		
+		foreach ($to_be_saved_option as $key => $value) :
+			
+			$current_option[$field_number] = $value;
+
+			$field_number++;
+
+			# check if field exsits in the database if it does do not enter into array or database & send report for that one
+			# Check if row name exists 
+				# Add the row to table regardless position
+
+		endforeach;
+
+		# Get the database and puts it in 
+
+		var_export($current_option);
+
+		exit;
+	}
+
 	public function profile_page ()
 	{ ?>
 
 		<?php $config = $this->params['manifestation']; ?>
+
+		<?php var_export(get_option($config['options']));?>
 
 		<div>
 			<form id="<?php echo $this->params['id'];?>" 
@@ -81,7 +114,7 @@ class branch_users_style extends alpha_tree_users
 
 <?php }
 	
-	# get all the rows and then find their coresponding array and spit		
+	
 	public function profile_managment ($table_name)
 	{  	
 		$creator = new table_creator;
