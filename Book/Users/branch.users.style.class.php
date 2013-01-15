@@ -35,7 +35,7 @@ class branch_users_style extends alpha_tree_users
 
 				if (!$creator->check_if_value_is_in_column($reference_table, 'field_name', $field['field_name']) and !empty($field['field_name'])) :
 
-					// $creator->add_row_to_table($reference_table, $field);
+					$creator->add_row_to_table($reference_table, $field);
 					
 					$current_option[$field_number] = $field;
 					
@@ -44,7 +44,7 @@ class branch_users_style extends alpha_tree_users
 				else : 
 					if ( !empty($field['field_name']) ) { 
 
-						// $creator->update_row($reference_table, $field, 'field_name', $field['field_name']);
+						$creator->update_row($reference_table, $field, 'field_name', $field['field_name']);
 						
 						$response['message'] .=  "<p class=\"seperate_notications\">Oke field <strong>$original_field_name</strong> has been <span style=\"text-decoration:underline;\">updated</span> as you wished.</p>";
 
@@ -71,9 +71,9 @@ class branch_users_style extends alpha_tree_users
 
 		endforeach;
 
-		// echo json_encode($response);
+		update_option($option_name, $current_option );
 
-		var_export($current_option);
+		echo json_encode($response);
 
 		exit;
 	}
@@ -82,8 +82,6 @@ class branch_users_style extends alpha_tree_users
 	{ ?>
 
 		<?php $config = $this->params['manifestation']; ?>
-
-		<?php var_export(get_option($config['options']));?>
 
 		<div>
 			<form id="<?php echo $this->params['id'];?>" 
@@ -159,7 +157,8 @@ class branch_users_style extends alpha_tree_users
 	public function profile_managment ($table_name)
 	{  	
 		$creator = new table_creator;
-		$fields_to_display = $creator->get_all_rows_from_table($table_name .'_fields_data');		
+		$options = get_option($this->params['manifestation']['options']);
+		$fields_to_display = (empty($options)? $creator->get_all_rows_from_table($table_name .'_fields_data') : $options );
 		
 		foreach ( $fields_to_display as $key => $field ) : 
 
