@@ -10,27 +10,68 @@ class branch_users_style extends alpha_tree_users
 	{
 		$this->_not_allowed();
 
-		$option_name         = $this->params['manifestation']['options'];
-		$current_option      = array();
-		$response['error']   = false;
-		$response['header']  = __('Saved', 'liquidflux');
-		$response['message'] = __('Your settings have been saved', 'liquidflux');
-		$field_number 		 = 0;
-		$to_be_saved_option  = $_POST[$option_name];
-		
-		foreach ($to_be_saved_option as $key => $value) :
+		$option_name        = $this->params['manifestation']['options'];
+		$current_option     = array();
+		$response['error']  = false;
+		$response['header'] = 'Report';
+		$response['message']= '';
+		$field_number 		= 0;
+		$creator            = new table_creator;
+		$to_be_saved_option = $_POST[$option_name];
+		$reference_table    = $this->params['manifestation']['create_table']['name'] .'_fields_data';	
+		$names_of_fields_which_have_been_saved = array();
+	
+		# check for duplicates
+
+		foreach ($to_be_saved_option as $key => $field) :
 			
-			$current_option[$field_number] = $value;
+			$original_field_name  = $field['field_name'];
+
+			$field['field_name']  = strtolower(str_replace(' ', '_', trim($field['field_name'])));
+
+			$has_field_been_saved = (in_array($field['field_name'], $names_of_fields_which_have_been_saved)? true : false );
+
+			if ( !$has_field_been_saved ) : 
+
+				if (!$creator->check_if_value_is_in_column($reference_table, 'field_name', $field['field_name']) and !empty($field['field_name'])) :
+
+					// $creator->add_row_to_table($reference_table, $field);
+					
+					$current_option[$field_number] = $field;
+					
+					$response['message'] .=  "<p class=\"seperate_notications\">Oke field <strong>$original_field_name</strong> has been <span style=\"text-decoration:underline;\">saved</span> as you wished.</p>";
+
+				else : 
+					if ( !empty($field['field_name']) ) { 
+
+						// $creator->update_row($reference_table, $field, 'field_name', $field['field_name']);
+						
+						$response['message'] .=  "<p class=\"seperate_notications\">Oke field <strong>$original_field_name</strong> has been <span style=\"text-decoration:underline;\">updated</span> as you wished.</p>";
+
+						$current_option[$field_number] = $field;
+					}
+					else { 
+						$response['message'] .=  '<p class=\"seperate_notications\">Umm field number <strong>'. ( $field_number + 1 ) .'</strong> does not have a name as such <span style="text-decoration:underline;">it can\'t be saved</span>, i am so sorry.</p>';
+					}
+
+				endif;			
+
+				$names_of_fields_which_have_been_saved[] = $field['field_name'];
+
+			else : 
+
+				$order_of_duplicate_field = array_keys($names_of_fields_which_have_been_saved, $field['field_name']);
+				$order_of_duplicate_field = $order_of_duplicate_field[0] + 1;
+
+				$response['message'] .= "<p class=\"seperate_notications\">Looks like field <strong>option ". ( $field_number + 1 ) ."'s</strong> name : <strong>\"$original_field_name\"</strong> is a <span style=\"text-decoration:underline;\">duplicate</span> of option number <strong>$order_of_duplicate_field</strong>, different capitalization of words still counts as a duplicate.</p>";
+
+			endif;
 
 			$field_number++;
 
-			# check if field exsits in the database if it does do not enter into array or database & send report for that one
-			# Check if row name exists 
-				# Add the row to table regardless position
-
 		endforeach;
 
-		# Get the database and puts it in 
+		// echo json_encode($response);
 
 		var_export($current_option);
 

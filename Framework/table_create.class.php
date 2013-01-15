@@ -181,6 +181,26 @@ class table_creator
 		return $wpdb->get_results("SELECT * FROM $wpdb->prefix$name", ARRAY_A );
 	}
 
+	public function update_row ($table_name, $column_and_value_array_update, $where_column, $where_value)
+	{
+		global $wpdb;
+
+		$update = '';
+		$on_field_number = 0;
+		$field_count  = count($column_and_value_array_update);
+
+		foreach ( $column_and_value_array_update as $column_name => $update_value ) : 
+
+			$on_field_number++;
+
+			$update .= "$column_name = '$update_value'";
+			( $on_field_number < $field_count ) and $update .= ', ';
+
+		endforeach;
+
+		$wpdb->query("UPDATE $wpdb->prefix$table_name set $update where $where_column = '$where_value' ");
+	}
+
 	/**
 	 * Takes an array of strings and checks if they are digits or strings and returns a %d for didigs and 
 	 * %s for string for the wpdb->insert() function format

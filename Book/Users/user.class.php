@@ -21,11 +21,11 @@ class branch_users_database extends branch_users_style
 			$creator = new table_creator;
 			$table_of_fields_name = "{$name}_fields_data";
 			$does_table_exist = $creator->does_table_exist($name);
-			$does_table_of_fields_exist = $creator->does_table_exist($table_of_fields_name);
+			$does_table_of_fields_exist = $creator->does_table_exist($table_of_fields_name);			
 
 			if ( !$does_table_exist and !$does_table_of_fields_exist ) : 
 				
-				 $creator->create_table(
+				$creator->create_table(
 				 	array(
 				 		'table_name' => $name,
 				 		'primary_key' => 'id',
@@ -127,8 +127,6 @@ class branch_users_database extends branch_users_style
 
 		return $data_type;
 	}
-
-
 
 
 	/**

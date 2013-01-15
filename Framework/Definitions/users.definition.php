@@ -8,7 +8,7 @@
 				'sub_title' => '',
 				'create_table' => 
 					array(
-						'name'     => 'whale_users',
+						'name' => 'whale_users',
 						'options_array'  => 'main_options',
 						'define_data_type_array' => 
 							array(

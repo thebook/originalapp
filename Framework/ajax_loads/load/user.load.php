@@ -44,7 +44,7 @@
 				</div>
 				
 				<div class="user_profile_input">
-					<input type="text" name="<?php echo $user_options ."[$key]"; ?>[field_name]" value="<?php echo $field['field_name']; ?>">
+					<input type="text" name="<?php echo $user_options ."[$key]"; ?>[field_name]" value="<?php echo ucwords(str_replace('_', ' ', $field['field_name'])); ?>">
 				</div>
 			</div>
 
