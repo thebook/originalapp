@@ -31,6 +31,33 @@ function include_fol($fol) {
 
 }
 
+
+function multi_dimensional_key_search ( $array_to_search, $value_to_search_for )  
+{ 
+
+	$track = array();
+
+	foreach ($array_to_search as $key => $value) {
+	
+		if ( is_array($value) ) { 
+
+			$track[$key] = multi_dimensional_key_search($value, $value_to_search_for);
+
+			foreach ( $track[$key] as $return_key => $return_value ) { 
+
+				$track[$return_key] = $return_value;
+			}
+			unset($track[$key]);
+		}
+		else { 
+
+			( $value == $value_to_search_for ) and $track[$key] = $value;
+		}
+	}
+
+	return $track;
+}
+
 function option_spitter ( $array_of_options, $saved_value ) 
 {?>
 

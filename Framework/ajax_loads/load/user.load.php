@@ -132,6 +132,8 @@
 				</div>
 			</div>
 
+			<input type="hidden" name="<?php echo $user_options . "[$key]";?>[old_name]" value="<?php echo $field['field_name']; ?>">
+			
 		</div>
 	</div>
 </div>
