@@ -31,6 +31,19 @@ function include_fol($fol) {
 
 }
 
+function filter_multi_array_value_into_single ($array, $value_to_look_for_in_multi_arrays ) { 
+
+	$return = array();
+
+	foreach ( $array as $key => $array_holding_the_wanted_value ) : 
+
+		$return[] = $array_holding_the_wanted_value[$value_to_look_for_in_multi_arrays];
+
+	endforeach;
+
+	return $return;
+}
+
 
 function multi_dimensional_key_search ( $array_to_search, $value_to_search_for )  
 { 

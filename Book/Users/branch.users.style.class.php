@@ -48,7 +48,7 @@ class branch_users_style extends alpha_tree_users
 
 					else : 
 
-						$creator->update_row($reference_table, $field, 'field_name', $old_field_name);						
+						// $creator->update_row($reference_table, $field, 'field_name', $old_field_name);						
 
 						$response['message'] .= "<p class=\"seperate_notications\">Lets see <strong>$normal_old_name</strong> has been <span style=\"text-decoration:underline;\">renamed</span> into <strong>$original_field_name</strong> and <span style=\"text-decoration:underline;\">updated</span> as you wished.</p>";
 
@@ -56,7 +56,7 @@ class branch_users_style extends alpha_tree_users
 
 				elseif ($is_the_field_added) :
 
-					$creator->add_row_to_table($reference_table, $field);
+					// $creator->add_row_to_table($reference_table, $field);
 					
 					$current_option[$field_number] = $field;
 					
@@ -68,7 +68,7 @@ class branch_users_style extends alpha_tree_users
 
 				elseif ($has_field_been_saved) : 
 
-					$creator->update_row($reference_table, $field, 'field_name', $field['field_name']);
+					// $creator->update_row($reference_table, $field, 'field_name', $field['field_name']);
 						
 					$response['message'] .= "<p class=\"seperate_notications\">Oke field <strong>$original_field_name</strong> has been <span style=\"text-decoration:underline;\">updated</span> as you wished.</p>";
 
@@ -95,8 +95,22 @@ class branch_users_style extends alpha_tree_users
 
 		endforeach;
 
-		update_option($option_name, $current_option);
+		$saved_field_names = filter_multi_array_value_into_single($current_option, 'field_name');
+		$row_fields        = filter_multi_array_value_into_single($creator->get_all_rows_from_table($reference_table), 'field_name');
+		$fields_to_remove  = (array_diff($row_fields, $saved_field_names));
+		
+		if (!empty($fields_to_remove)) :
 
+			foreach ( $fields_to_remove as $field_to_remove ) :
+
+				$creator->delete_row($reference_table, 'field_name', $field_to_remove);
+				$orignal_field_to_remove = ucwords(str_replace('_', ' ', $field_to_remove));
+				$response['message'] .= "<p class=\"seperate_notications\">Right'o <strong>$orignal_field_to_remove</strong> has been <span style=\"text-decoration:underline;\">removed</span> from the fields.</p>";
+
+			endforeach;
+		endif;
+
+		update_option($option_name, $current_option);
 		echo json_encode($response);
 
 		exit;

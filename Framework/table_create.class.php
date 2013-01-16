@@ -201,6 +201,13 @@ class table_creator
 		$wpdb->query("UPDATE $wpdb->prefix$table_name set $update where $where_column = '$where_value' ");
 	}
 
+	public function delete_row ($table_name, $where_column, $where_value)
+	{
+		global $wpdb;
+
+		$wpdb->query("DELETE FROM $wpdb->prefix$table_name WHERE $where_column = '$where_value'");
+	}
+
 	/**
 	 * Takes an array of strings and checks if they are digits or strings and returns a %d for didigs and 
 	 * %s for string for the wpdb->insert() function format
@@ -307,6 +314,16 @@ class table_creator
 		$results = $wpdb->get_results("SELECT $what_to_select FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '$wpdb->prefix$table_name' AND COLUMN_NAME = '$column_name'", ARRAY_A);
 		
 		return $results[0][$what_to_select];
+	}
+
+	public function get_all_column_information ($table_name, $what_to_select)
+	{
+		global $wpdb;
+
+		$results = $wpdb->get_results("SELECT $what_to_select FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '$wpdb->prefix$table_name'", ARRAY_A);		
+		$results = filter_multi_array_value_into_single($results, $what_to_select);
+
+		return $results;
 	}
 
 	public function change_data_type_of_column ($table_name, $column_name, $new_data_type)

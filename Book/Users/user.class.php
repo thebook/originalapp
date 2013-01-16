@@ -56,7 +56,7 @@ class branch_users_database extends branch_users_style
 	{
 		$creator = new table_creator;	
 
-		$field_rows = $creator->get_all_rows_from_table($table_of_fields_name);
+		$field_rows = $creator->get_all_rows_from_table($table_of_fields_name);		
 
 		foreach ($field_rows as $row ) { 
 
@@ -70,6 +70,30 @@ class branch_users_database extends branch_users_style
 
 			$creator->add_column_to_table($column_to_be_created);
 		}
+		
+		$this->_remove_columns($name, $field_rows);
+	}
+
+	protected function _remove_columns ($table_name, $field_rows)
+	{
+		$creator           = new table_creator;
+		$column_names      = $creator->get_all_column_information($table_name, 'COLUMN_NAME');
+		$field_names       = filter_multi_array_value_into_single($field_rows, 'field_name');
+		$columns_to_remove = array_diff($column_names, $field_names);
+		unset($columns_to_remove[0]);
+		
+		if (!empty($columns_to_remove)) : 
+
+			foreach ($columns_to_remove as $key => $column_name ) :
+
+				$creator->remove_column_from_table(
+					array(
+						'table_name' => $table_name, 
+						'field_name' => $column_name
+				));
+			endforeach;
+
+		endif;
 	}
 
 	protected function _convert_field_input_types_into_data_type ($field_input_type)
