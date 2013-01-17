@@ -280,8 +280,6 @@ class branch_users_style extends alpha_tree_users
 
 			</div>
 
-			<!-- <div class="user_edit_commands"><input type="button" value="+"></div> -->
-
 		</div>
 
 <?php }
@@ -303,6 +301,7 @@ class branch_users_style extends alpha_tree_users
 				<span data-function-to-call="toggle_hide"  data-function-instructions="{ 'parent_of_the_element' : '.profile_display_user', 'element_to_hide' : '.full_user_display' }" class="small_user_toggle">-</span>
 				<span data-function-to-call="edit_user" class="small_user_edit">Edit</span>
 			</div>
+
 		</div>
 <?php }
 }

@@ -58,6 +58,11 @@
 				}
 			}
 
+			.small_user_save { 
+
+				@extend .small_user_edit;
+			}
+
 			.small_user_toggle { 
 
 				@extend .small_user_edit;
