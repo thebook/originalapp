@@ -18,13 +18,15 @@ class branch_users_style extends alpha_tree_users
 		$field_number 		= 0;
 		$creator            = new table_creator;
 		$to_be_saved_option = $_POST[$option_name];
+		$saved_options      = get_option($option_name);
 		$reference_table    = $this->params['manifestation']['create_table']['name'] .'_fields_data';	
 		$names_of_fields_which_have_been_saved = array();
+		$fields_renamed	    = array();
 
 		foreach ($to_be_saved_option as $key => $field) :
 			
 			$original_field_name      = $field['field_name'];
-			$old_field_name           = $field['old_name'];
+			$old_field_name           = (isset($saved_options[$key]['old_name'])? $saved_options[$key]['old_name'] : $field['old_name'] );
 			$normal_old_name          = ucwords(str_replace('_', ' ',$old_field_name));
 			$current_field_number     = ( $field_number + 1 );
 			$field['field_name']      = strtolower(str_replace(' ', '_', trim($field['field_name'])));
@@ -48,7 +50,14 @@ class branch_users_style extends alpha_tree_users
 
 					else : 
 
-						// $creator->update_row($reference_table, $field, 'field_name', $old_field_name);						
+						
+						$creator->update_row($reference_table, $field, 'field_name', $old_field_name);
+
+						$fields_renamed[] = $old_field_name;
+
+						$field['old_name'] = $field['field_name'];
+
+						$current_option[$field_number] = $field;						
 
 						$response['message'] .= "<p class=\"seperate_notications\">Lets see <strong>$normal_old_name</strong> has been <span style=\"text-decoration:underline;\">renamed</span> into <strong>$original_field_name</strong> and <span style=\"text-decoration:underline;\">updated</span> as you wished.</p>";
 
@@ -56,21 +65,28 @@ class branch_users_style extends alpha_tree_users
 
 				elseif ($is_the_field_added) :
 
-					// $creator->add_row_to_table($reference_table, $field);
+				
+					$creator->add_row_to_table($reference_table, $field);
 					
+					$field['old_name'] = $field['field_name'];
+
 					$current_option[$field_number] = $field;
 					
 					$response['message'] .= "<p class=\"seperate_notications\">Oke field <strong>$original_field_name</strong> has been <span style=\"text-decoration:underline;\">added</span> as you wished.</p>";
+				
 
 				elseif ($is_name_field_empty) : 
-
+		
 					$response['message'] .= "<p class=\"seperate_notications\">Umm field number <strong> $current_field_number </strong> does not have a name as such <span style=\"text-decoration:underline;\">it can't be saved</span>, i am so sorry.</p>";
-
+				
 				elseif ($has_field_been_saved) : 
 
-					// $creator->update_row($reference_table, $field, 'field_name', $field['field_name']);
+
+					$creator->update_row($reference_table, $field, 'field_name', $field['field_name']);
 						
 					$response['message'] .= "<p class=\"seperate_notications\">Oke field <strong>$original_field_name</strong> has been <span style=\"text-decoration:underline;\">updated</span> as you wished.</p>";
+
+					$field['old_name'] = $field['field_name'];
 
 					$current_option[$field_number] = $field;
 
@@ -96,6 +112,7 @@ class branch_users_style extends alpha_tree_users
 		endforeach;
 
 		$saved_field_names = filter_multi_array_value_into_single($current_option, 'field_name');
+		$saved_field_names = array_merge($saved_field_names, $fields_renamed);
 		$row_fields        = filter_multi_array_value_into_single($creator->get_all_rows_from_table($reference_table), 'field_name');
 		$fields_to_remove  = (array_diff($row_fields, $saved_field_names));
 		
