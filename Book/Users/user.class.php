@@ -153,6 +153,8 @@ class branch_users_database extends branch_users_style
 	}
 
 
+
+
 	/**
 	 * May be obsolete 
 	 * Creates the page which was defined, perhaps wait and replace wiht branch_admin one or 

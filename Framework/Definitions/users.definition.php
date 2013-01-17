@@ -115,7 +115,7 @@
 									'See users', 	    // Menu title
 									'manage_options',  	// premission necessary
 									'checkoutusers',	// slug
-									array( $this, 'see_users_page' ) ) ),
+									array( $this, 'display_users_page' ) ) ),
 						// Register settings array 
 						array(
 							'f' => 'register_setting',

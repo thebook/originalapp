@@ -135,7 +135,6 @@ class branch_users_style extends alpha_tree_users
 
 	public function profile_page ()
 	{ ?>
-
 		<?php $config = $this->params['manifestation']; ?>
 
 		<div>
@@ -205,9 +204,7 @@ class branch_users_style extends alpha_tree_users
 				</script>
 			</form>
 		</div>
-
 <?php }
-	
 	
 	public function profile_managment ($table_name)
 	{  	
@@ -236,6 +233,78 @@ class branch_users_style extends alpha_tree_users
 
 			require ( FRAMEWORK ."/ajax_loads/load/user.load.php");
 	}
+
+	public function display_users_page ()
+	{ ?>
+		
+		<div class="display_users_page_wrap"><?php $this->display_users(); ?></div>
+
+		<script>
+			alpha.track_events_on_this(".display_users_page_wrap", "click");
+		</script>
+
+<?php }
+
+	public function display_users ()
+	{
+		$creator   = new table_creator;
+		$all_users = $creator->get_all_rows_from_table($this->params['users_table']);
+		
+		foreach ($all_users as $key => $user) {			
+			$this->_display_user($user);
+		}
+	}
+
+	protected function _display_user ($information_of_the_user)
+	{ ?> 
+
+		<div class="profile_display_user">	
+
+			<?php $this->_display_summary($information_of_the_user); ?>		
+
+			<?php unset($information_of_the_user['id']); ?>
+			
+			<div class="full_user_display">
+				
+				<?php foreach ( $information_of_the_user as $field_name => $field_value ) : ?>
+
+					<div class="personal_field">
+
+						<h6 class="personal_field_name"><?php echo ucwords(str_replace('_', ' ', $field_name )); ?> : </h6>
+
+						<p class="personal_field_text"><?php echo $field_value; ?></p>
+
+					</div>
+
+				<?php endforeach; ?>
+
+			</div>
+
+			<!-- <div class="user_edit_commands"><input type="button" value="+"></div> -->
+
+		</div>
+
+<?php }
+
+	protected function _display_summary ($information_of_the_user)
+	{ ?>
+
+		<div class="small_user_display">
+				
+			<div class="small_user_field">
+				
+				<div class="small_user_field_name">User Id : </div>
+
+				<div class="small_user_field_value"><?php echo $information_of_the_user['id']; ?></div>
+
+			</div>
+
+			<div class="small_user_controls">
+				<span data-function-to-call="toggle_hide"  data-function-instructions="{ 'parent_of_the_element' : '.profile_display_user', 'element_to_hide' : '.full_user_display' }" class="small_user_toggle">-</span>
+				<span data-function-to-call="edit_user" class="small_user_edit">Edit</span>
+			</div>
+		</div>
+<?php }
 }
 
 ?>
