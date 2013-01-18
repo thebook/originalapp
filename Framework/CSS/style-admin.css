@@ -2847,5 +2847,24 @@ div.jGrowl div.jGrowl-closer {
 }
 /* line 132, sass/Imports/parts/_users.scss */
 .search_users_wrap .search_users {
-  width: 500px;
+  width: 100%;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  padding: 10px 1%;
+  font-size: 12px;
+  font-weight: bold;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  border-color: #dfdfdf;
+}
+/* line 142, sass/Imports/parts/_users.scss */
+.search_users_wrap .search_users:focus {
+  -webkit-box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  border-color: #999;
 }

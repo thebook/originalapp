@@ -131,7 +131,18 @@
 
 	.search_users { 
 
-		width: 500px;
+		width: 100%;
+		@include border-radius( 0px);
+		padding: 10px 1%;
+		font-size: 12px;
+		font-weight: bold;
+		@include single-box-shadow(rgba(0,0,0, 0.1), 1px, 1px, 1px);
+		border-color: #dfdfdf;
+		
+		&:focus { 
 
+			@include single-box-shadow(rgba(0,0,0, 0.1), 1px, 1px, 0px);
+			border-color: #999;
+		}
 	}
 }
