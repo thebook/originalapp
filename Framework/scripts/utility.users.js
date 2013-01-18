@@ -39,6 +39,20 @@ var alpha = (function ( alpha, $ ) {
 			}
 	};
 
+
+	alpha.ajax_save = function ( json, callback ) { 
+
+		$.post(
+			ajaxurl,
+			json,
+			function (response) { 
+				$.jGrowl(response.message, { speed: 400, sticky: true, header: response.header});
+				if (typeof callback === 'function' ) { callback(response); }
+			},
+			'json'
+		);
+	};
+
 	return alpha;
 
 })(alpha || {}, jQuery );

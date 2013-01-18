@@ -6,6 +6,27 @@
 class branch_users_style extends alpha_tree_users
 {
 
+	function __construct($creation_paramaters) 
+	{
+		parent::__construct($creation_paramaters);
+		add_action("wp_ajax_save_user_field", array( $this, 'save_user_field' ));
+	}
+
+	public function save_user_field ()
+	{
+		$update  = $_POST['update_information'];
+				   unset($update['user_id']);
+		$id      = $_POST['update_information']['user_id'];
+		$creator = new table_creator;
+		$creator->update_row($this->params['manifestation']['create_table']['name'], $update, 'id', $id );
+
+		$response['header']  = 'Done';
+		$response['message'] = "User with the id of \"<strong>$id</strong>\" has been edited.";
+
+		echo json_encode($response);
+		exit;
+	}
+
 	public function save ()
 	{
 		$this->_not_allowed();
@@ -217,7 +238,6 @@ class branch_users_style extends alpha_tree_users
 			$this->_field_option_box($key, $field);
 
 		endforeach; 
-
  	}
 
  	protected function _field_option_box ($key, $field)
@@ -242,7 +262,6 @@ class branch_users_style extends alpha_tree_users
 		<script>
 			alpha.track_events_on_this(".display_users_page_wrap", "click");
 		</script>
-
 <?php }
 
 	public function display_users ()
@@ -293,13 +312,13 @@ class branch_users_style extends alpha_tree_users
 				
 				<div class="small_user_field_name">User Id : </div>
 
-				<div class="small_user_field_value"><?php echo $information_of_the_user['id']; ?></div>
+				<div class="small_user_field_value user_id"><?php echo $information_of_the_user['id']; ?></div>
 
 			</div>
 
 			<div class="small_user_controls">
 				<span data-function-to-call="toggle_hide"  data-function-instructions="{ 'parent_of_the_element' : '.profile_display_user', 'element_to_hide' : '.full_user_display' }" class="small_user_toggle">-</span>
-				<span data-function-to-call="edit_user" class="small_user_edit">Edit</span>
+				<span data-function-to-call="edit_user" data-function-instructions="{ 'user_id' : <?php echo $information_of_the_user['id']; ?> }" class="small_user_edit">Edit</span>
 			</div>
 
 		</div>
