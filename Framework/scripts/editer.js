@@ -70,7 +70,7 @@ var alpha = (function ( alpha, $ ) {
 
 		change_fields.each(
 		function () {
-			var field_name  = $.trim($(this).find(name_text).text().trim().replace(':', '')).replace(' ', '_').toLowerCase(),
+			var field_name  = $.trim($(this).find(name_text).text().trim().replace(':', '')).replace(' ', '_', 'g').toLowerCase(),
 				value_text  = $(this).find(text_text);
 				field_value = value_text.text();
 

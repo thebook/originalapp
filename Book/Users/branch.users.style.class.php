@@ -288,7 +288,7 @@ class branch_users_style extends alpha_tree_users
 		
 		<div class="search_users_wrap">
 			
-			<input type="text" data-function-to-call="filter_search" data-function-instructions="{'what_to_filter' : '.profile_display_user'}" class="search_users">
+			<input type="text" data-function-to-call="filter_search" data-function-instructions="{'what_to_filter' : '.profile_display_user', 'filter_by' : 'data_type'}" class="search_users">
 
 		</div>
 
@@ -340,8 +340,8 @@ class branch_users_style extends alpha_tree_users
 		$filter = 'data-filter="';
 
 		foreach ( $information_of_the_user as $field_name => $field_value ) :
-			
-			$filter .= "$field_value ";
+			$field_name = str_replace('_', ' ', $field_name);
+			$filter .= "$field_name :: $field_value ";
 
 		endforeach;
 
