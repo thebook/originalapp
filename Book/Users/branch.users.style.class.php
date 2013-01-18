@@ -10,6 +10,7 @@ class branch_users_style extends alpha_tree_users
 	{
 		parent::__construct($creation_paramaters);
 		add_action("wp_ajax_save_user_field", array( $this, 'save_user_field' ));
+		add_action("wp_ajax_remove_user", array( $this, 'user_remove' ));
 	}
 
 	public function save_user_field ()
@@ -22,6 +23,19 @@ class branch_users_style extends alpha_tree_users
 
 		$response['header']  = 'Done';
 		$response['message'] = "User with the id of \"<strong>$id</strong>\" has been edited.";
+
+		echo json_encode($response);
+		exit;
+	}
+
+
+	public function user_remove ()
+	{
+		$creator = new table_creator;
+		$user    = $_POST['user'];
+		$creator->delete_row($this->params['manifestation']['create_table']['name'], 'id', $user );
+		$response['header']  = 'User Remove';
+		$response['message'] = "User of the id <strong>\"$user\"</strong> has been deleted";
 
 		echo json_encode($response);
 		exit;
@@ -256,12 +270,30 @@ class branch_users_style extends alpha_tree_users
 
 	public function display_users_page ()
 	{ ?>
+
+		<?php $this->_filter_users(); ?>
 		
 		<div class="display_users_page_wrap"><?php $this->display_users(); ?></div>
 
 		<script>
+			
 			alpha.track_events_on_this(".display_users_page_wrap", "click");
+
 		</script>
+
+<?php }
+
+	protected function _filter_users ()
+	{ ?> 
+		
+		<div class="search_users_wrap">
+			
+			<input type="text" data-function-to-call="filter_search" data-function-instructions="{'what_to_filter' : '.profile_display_user'}" class="search_users">
+
+		</div>
+
+		<script>alpha.track_events_on_this(".search_users", 'keypress');</script>
+
 <?php }
 
 	public function display_users ()
@@ -277,7 +309,7 @@ class branch_users_style extends alpha_tree_users
 	protected function _display_user ($information_of_the_user)
 	{ ?> 
 
-		<div class="profile_display_user">	
+		<div class="profile_display_user" <?php $this->_display_filter($information_of_the_user); ?>>	
 
 			<?php $this->_display_summary($information_of_the_user); ?>		
 
@@ -303,6 +335,22 @@ class branch_users_style extends alpha_tree_users
 
 <?php }
 
+	protected function _display_filter ($information_of_the_user)
+	{
+		$filter = 'data-filter="';
+
+		foreach ( $information_of_the_user as $field_name => $field_value ) :
+			
+			$filter .= "$field_value ";
+
+		endforeach;
+
+		$filter .= '"';
+
+		echo $filter;
+
+	}
+
 	protected function _display_summary ($information_of_the_user)
 	{ ?>
 
@@ -323,6 +371,7 @@ class branch_users_style extends alpha_tree_users
 
 		</div>
 <?php }
+
 }
 
 ?>

@@ -210,6 +210,23 @@
 										'type' => 'script',
 										'arg'  => 
 											array(
+												'alpha.search',
+												SCRIPTS .'/search.alpha.js',
+												array('jquery'),
+												'1',
+												false ),
+										'conditional' => false,
+										'enqueue' => true
+										))),
+						array(
+							'f' => array( $this, 'sort'),
+							'o' =>
+								array(
+									array(
+										'side' => 'admin',
+										'type' => 'script',
+										'arg'  => 
+											array(
 												'alpha',
 												SCRIPTS .'/alpha.js', 
 												array('jquery'),

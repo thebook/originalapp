@@ -40,7 +40,7 @@ var alpha = (function ( alpha, $ ) {
 	};
 
 
-	alpha.ajax_save = function ( json, callback ) { 
+	alpha.ajax_push = function ( json, callback ) { 
 
 		$.post(
 			ajaxurl,

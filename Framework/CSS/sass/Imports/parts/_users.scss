@@ -63,6 +63,11 @@
 				@extend .small_user_edit;
 			}
 
+			.small_user_remove { 
+
+				@extend .small_user_edit;
+			}
+
 			.small_user_toggle { 
 
 				@extend .small_user_edit;
@@ -114,6 +119,19 @@
 				}
 			}
 		}
+
+	}
+}
+
+.search_users_wrap { 
+	
+	width: 98%;
+	margin: 40px 2% 20px 0;
+
+
+	.search_users { 
+
+		width: 500px;
 
 	}
 }

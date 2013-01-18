@@ -11,13 +11,20 @@ var alpha = (function ( alpha, $ ) {
 			current_click.element.removeClass('in_edit').text('Edit');
 			parent.find('.personal_field_editor').remove();
 			parent.find('.small_user_save').fadeOut(400, function () { $(this).remove(); });
+			parent.find('.small_user_remove').fadeOut(400, function () { $(this).remove(); });
 			parent.find('.personal_field_text').css({ display : "inline-block" });
 		}
 		else { 
 
+			$('<span class="small_user_remove">Remove</span>').bind('click',
+			function () { 
+				myself.remove_user_field($(this), parent, current_click.instructions.user_id);
+			})
+			.insertAfter(current_click.element);
+
 			$('<span class="small_user_save">Save</span>').bind('click', 
 			function () { 	
-				myself.change_user_field(change_field, $(this), current_click.element, current_click.instructions.user_id );
+				myself.change_user_field(change_field, $(this), current_click.element, parent.find('.small_user_remove'), current_click.instructions.user_id );
 			})
 			.insertAfter(current_click.element);
 
@@ -26,14 +33,28 @@ var alpha = (function ( alpha, $ ) {
 		}
 	};
 
-	alpha.edit_user.prototype.change_user_field = function (change_field, save_button, edit_button, user_data_id) { 
+	alpha.edit_user.prototype.remove_user_field = function (remove_button, parent_element, user_id) { 
+
+		if (confirm("Are you sure you want to remove this user?")) { 
+			
+			remove_button.text("Removing...");
+			alpha.ajax_push(
+				{ action : 'remove_user', user : user_id },
+				function () { 
+					parent_element.fadeOut(400, function () { $(this).remove(); });
+				}
+			);
+		}			
+	};
+
+	alpha.edit_user.prototype.change_user_field = function (change_field, save_button, edit_button, remove_button, user_data_id) { 
 
 		var updated_user_information         = this.change_input_values_into_json(change_field, '.personal_field_editor');
 			updated_user_information.user_id = user_data_id;
 
 			save_button.text('Saving...');
 			
-			alpha.ajax_save(
+			alpha.ajax_push(
 				{ action : 'save_user_field', update_information : updated_user_information },
 				function () { 
 					save_button.fadeOut(400, function () { $(this).remove(); });
@@ -42,6 +63,7 @@ var alpha = (function ( alpha, $ ) {
 
 			this.change_input_into_text(change_field, '.personal_field_text', '.personal_field_editor');
 			edit_button.removeClass('in_edit').text('Edit');
+			remove_button.fadeOut(400, function () { $(this).remove(); });
 	};
 
 	alpha.edit_user.prototype.change_text_into_input = function (change_fields, name_text, text_text) { 
