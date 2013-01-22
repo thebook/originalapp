@@ -20,6 +20,8 @@ include FRAMEWORK . '/Templates/include.php';
 
 include BOOK .'/include.php';
 
+include FRAMEWORK .'/Apis/include.php';
+
 new register_scripts;
 	
 new admin( 
@@ -60,6 +62,15 @@ $books = new books(
 		'class'        => 'lf-admin-post-meta-td',
 		'default_type' => 'meta', 
 		'definition'   => FRAMEWORK .'/Definitions/book.definition.php'
+	));
+
+$amazon = new amazon(
+	array(
+		'ajax_handler_function' => 'amazon',
+		'amazon_access_key'    => 'AKIAJUAOUYTIWMMCXY6Q',
+		'amazon_secret_key'    => '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',
+		'amazon_associates_id' => 'recyc-21',
+		'region'               => 'co.uk'
 	));
 
 ?>

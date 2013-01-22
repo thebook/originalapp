@@ -131,6 +131,17 @@
 																'min'         => '100',
 																'max'         => '7000',
 																'value'       => ' g' )) ),
+													// Amazon Search 
+													array(
+														'f' => array( $this, 'create'),
+														'o' => array(
+															array(
+																'type'        => 'amazon_list',
+																'title'       => 'Amazon',
+																'description' => 'Search for a book in from amazon and fill in the fields',
+																'array'       => 'main_meta',
+																'name'        => 'book_amazon',
+																'saved'       => '' )) ),
 								))))
 							)));	
 
