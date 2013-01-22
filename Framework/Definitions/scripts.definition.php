@@ -25,6 +25,7 @@
 											array(
 												array( false, 'admin.php'),
 												array( true,  'lf_slide' ),
+												array( true,  'books' ),
 												array( true,  'page' ),
 												array( true,  'post' ) ),
 										'enqueue' => true 
@@ -91,6 +92,7 @@
 											array(
 												array( false, 'admin.php'),
 												array( true,  'lf_slide' ),
+												array( true,  'books' ),
 												array( true,  'post' )
 												),
 										'enqueue' => true 

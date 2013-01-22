@@ -31,5 +31,7 @@
 
 	include 'admin.class.php';
 
+	include 'book.class.php';
+
 
 ?>

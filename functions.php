@@ -54,4 +54,12 @@ new branch_users_database(
 		'definition' => FRAMEWORK .'/Definitions/users.definition.php'
 		));
 
+$books = new books(
+	array(
+		'id'           => 'lf-post-meta',
+		'class'        => 'lf-admin-post-meta-td',
+		'default_type' => 'meta', 
+		'definition'   => FRAMEWORK .'/Definitions/book.definition.php'
+	));
+
 ?>
