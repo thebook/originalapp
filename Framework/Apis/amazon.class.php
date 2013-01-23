@@ -19,13 +19,19 @@ class amazon extends alpha_tree_api
 	public function create ()
 	{
 		$paramaters        = $_POST['paramaters'];	
+		// Get search function
 		$search            = "_search_for_{$paramaters['search_for']}_by_{$paramaters['search_by']}";
+		// Get filter function 
 		$filter_by         = "_filter_{$paramaters['search_for']}_by_{$paramaters['filter_name']}";
+		// Get search parmaters
 		$search_paramaters = $this->{$search}($paramaters['typed']);
+		// Get response 
 		$response          = $this->_make_the_call($search_paramaters);
+		// Filter Response
 		$response          = $this->{$filter_by}($response);
 
 		echo json_encode($response);
+
 		exit;
 	}
 
@@ -51,10 +57,52 @@ class amazon extends alpha_tree_api
 	    $response   = curl_exec($curl_request);
 
 	   	return $amazon_xml = simplexml_load_string($response);
+	}
 
-	   	// $json = $this->_selling_book_filter_and_encode($amazon_xml);
+	protected function _search_for_books_by_keywords ($search_words)
+	{
+		return array(
+			'Operation'     => 'ItemSearch',
+			'Keywords'      => "$search_words",
+			'SearchIndex'   => 'Books',
+			'ResponseGroup' => 'Offers, ItemAttributes, Images',
+			'Condition'     => 'Used'
+		);
+	}
 
-	   	// echo $json;
+	protected function _search_for_books_by_isbn ($search_number)
+	{
+		
+	}
+
+	protected function _filter_books_by_tiny ($xml)
+	{
+		$return_array = array();
+
+		foreach ($xml->Items->Item as $item => $attributes) : 
+			
+			$return_array[] = 
+				array(
+					'item_links'         => $attributes->ItemLinks,
+					'image'              => $attributes->MediumImage,
+					'image_sets'         => $attributes->ImageSet,
+					'author'             => $attributes->ItemAttributes->Author,
+					'binding'            => $attributes->ItemAttributes->Binding,
+					'ISBN'               => $attributes->ItemAttributes->ISBN,
+					'dimensions'         => $attributes->ItemAttributes->ItemDimensions,
+					'price'              => $attributes->ItemAttributes->ListPrice,
+					'number_in_stock'    => $attributes->ItemAttributes->NumberOfItems,
+					'pages'              => $attributes->ItemAttributes->NumberOfPages,
+					'package_dimensions' => $attributes->ItemAttributes->PackageDimensions,
+					'title'              => $attributes->ItemAttributes->Title,
+					'lowest_new_price'   => $attributes->OfferSummary->LowestNewPrice,
+					'lowest_used_price'  => $attributes->OfferSummary->LowestUsedPrice,
+					'ASIN' 				 => $attributes->ASIN
+				);
+
+		endforeach;
+
+		return (array)$return_array;
 	}
 
 	protected function _insert_credentials ($array_to_insert_credentials_in)
@@ -100,47 +148,6 @@ class amazon extends alpha_tree_api
 		endforeach;
 
 		return implode('&', $sorting_array );
-	}
-
-	protected function _search_for_books_by_keywords ($search_words)
-	{
-		return array(
-			'Operation'     => 'ItemSearch',
-			'Keywords'      => "$search_words",
-			'SearchIndex'   => 'Books',
-			'ResponseGroup' => 'Offers, ItemAttributes, Images',
-			'Condition'     => 'Used'
-		);
-	}
-
-	protected function _filter_books_by_tiny ($xml)
-	{
-		$return_array = array();
-
-		foreach ($xml->Items->Item as $item => $attributes) : 
-			
-			$return_array[] = 
-				array(
-					'item_links'         => $attributes->ItemLinks,
-					'image'              => $attributes->SmallImage,
-					'image_sets'         => $attributes->ImageSet,
-					'author'             => $attributes->ItemAttributes->Author,
-					'binding'            => $attributes->ItemAttributes->Binding,
-					'ISBN'               => $attributes->ItemAttributes->ISBN,
-					'dimenstions'        => $attributes->ItemAttributes->ItemDimensions,
-					'price'              => $attributes->ItemAttributes->ListPrice,
-					'number_in_stock'    => $attributes->ItemAttributes->NumberOfItems,
-					'pages'              => $attributes->ItemAttributes->NumberOfPages,
-					'package_dimensions' => $attributes->ItemAttributes->PackageDimensions,
-					'title'              => $attributes->ItemAttributes->Title,
-					'lowest_new_price'   => $attributes->OfferSummary->LowestNewPrice,
-					'lowest_used_price'  => $attributes->OfferSummary->LowestUsedPrice,
-					'ASIN' 				 => $attributes->ASIN
-				);
-
-		endforeach;
-
-		return (array)$return_array;
 	}
 }
 
