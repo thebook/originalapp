@@ -6,7 +6,7 @@ $name : book_display;
 	clear: both;
 	display: block;
 	margin: 10px 0;
-	padding: 10px 0;
+	padding: 20px 0 10px;
 	border-bottom: 1px solid #eee;
 	@include pie-clearfix;
 	
@@ -32,8 +32,7 @@ $name : book_display;
 
 		.#{$name}_title { 
 
-			// font-weight: bold;
-			font-size: 14px;
+			font-size: 15px;
 			margin: 10px 0; 
 			color: #222;
 			clear: both;

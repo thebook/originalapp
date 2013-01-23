@@ -717,12 +717,12 @@
 }
 /* line 33, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_details_cover .book_display_title {
-  font-size: 14px;
+  font-size: 15px;
   margin: 10px 0;
   color: #222;
   clear: both;
 }
-/* line 42, sass/Imports/admin/_amazon.scss */
+/* line 41, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_details_cover .book_display_author, .book_display_cover .book_display_details_cover .book_display_binding, .book_display_cover .book_display_details_cover .book_display_rrp, .book_display_cover .book_display_details_cover .book_display_lowest, .book_display_cover .book_display_details_cover .book_display_isbn, .book_display_cover .book_display_details_cover .book_display_weight, .book_display_cover .book_display_details_cover .book_display_dimensions {
   font-style: italic;
   color: #999;
@@ -730,13 +730,13 @@
   font-size: 12px;
   clear: both;
 }
-/* line 51, sass/Imports/admin/_amazon.scss */
+/* line 50, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_details_cover .book_display_binding, .book_display_cover .book_display_details_cover .book_display_rrp, .book_display_cover .book_display_details_cover .book_display_lowest, .book_display_cover .book_display_details_cover .book_display_isbn, .book_display_cover .book_display_details_cover .book_display_weight, .book_display_cover .book_display_details_cover .book_display_dimensions {
   color: #222;
   margin: 5px;
   font-style: normal;
 }
-/* line 59, sass/Imports/admin/_amazon.scss */
+/* line 58, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_details_cover .book_display_rrp, .book_display_cover .book_display_details_cover .book_display_lowest, .book_display_cover .book_display_details_cover .book_display_isbn, .book_display_cover .book_display_details_cover .book_display_weight, .book_display_cover .book_display_details_cover .book_display_dimensions {
   font-weight: bold;
 }

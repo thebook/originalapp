@@ -12,6 +12,40 @@
 						'o'	=>	
 							array(
 								array( 
+									'id' => 'book_settings_amazon_search',
+									'desc'=> 'Search for various books in amazon and list them as the current bok',
+									'title' => __('Amazon Search', 'liquidflux'),
+									'post_type' => 'books',
+									'context' => 'normal',
+									'priority' => 'low',
+									'options' => 
+										array( 
+											'opt' => 
+												array(
+													// Nonce Field
+													array(
+														'f' => 'wp_nonce_field',
+														'o' => array(
+																	basename(__FILE__), 
+																	'lf-meta-nonce' )),
+													// Amazon Search 
+													array(
+														'f' => array( $this, 'create'),
+														'o' => array(
+															array(
+																'type'        => 'amazon_list',
+																'title'       => 'Amazon',
+																'description' => 'Search for a book in from amazon and fill in the fields',
+																'array'       => 'main_meta',
+																'name'        => 'book_amazon',
+																'saved'       => '' )) )
+													))))),
+					// Post Settings 
+					array( 
+						'f' => array( $this, 'pop' ),
+						'o'	=>	
+							array(
+								array( 
 									'id' => 'book_settings_meta_bok',
 									'desc'=> 'Set the propeties of the book, you wish to add here',
 									'title' => __('Book Properties', 'liquidflux'),
@@ -62,16 +96,27 @@
 																'array'       => 'main_meta',
 																'name'        => 'book_author',
 																'saved'       => '' )) ),
+													// // description
+													// array(
+													// 	'f' => array( $this, 'create'),
+													// 	'o' => array(
+													// 		array(
+													// 			'type'        => 'textarea',
+													// 			'title'       => 'Description',
+													// 			'description' => 'The description of the book, synospis, print date, how many pages (so forth)',
+													// 			'array'       => 'main_meta',
+													// 			'name'        => 'book_descrpiton',
+													// 			'saved'       => '' )) ),
 													// description
 													array(
 														'f' => array( $this, 'create'),
 														'o' => array(
 															array(
-																'type'        => 'textarea',
-																'title'       => 'Description',
-																'description' => 'The description of the book, synospis, print date, how many pages (so forth)',
+																'type'        => 'text',
+																'title'       => 'Binding',
+																'description' => 'The binding of the book, i.e( paperback, hardcover )',
 																'array'       => 'main_meta',
-																'name'        => 'book_descrpiton',
+																'name'        => 'book_binding',
 																'saved'       => '' )) ),
 													// ISBN
 													array(
@@ -130,18 +175,7 @@
 																'saved'       => '',
 																'min'         => '100',
 																'max'         => '7000',
-																'value'       => ' g' )) ),
-													// Amazon Search 
-													array(
-														'f' => array( $this, 'create'),
-														'o' => array(
-															array(
-																'type'        => 'amazon_list',
-																'title'       => 'Amazon',
-																'description' => 'Search for a book in from amazon and fill in the fields',
-																'array'       => 'main_meta',
-																'name'        => 'book_amazon',
-																'saved'       => '' )) ),
+																'value'       => ' g' )) ),													
 								))))
 							)));	
 
