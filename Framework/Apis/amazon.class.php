@@ -14,68 +14,48 @@ class amazon extends alpha_tree_api
 		$this->paramaters['secret_key']     = $params['amazon_secret_key'];
 		$this->paramaters['associates_id']  = $params['amazon_associates_id'];
 		$this->paramaters['amazon_host']    = 'ecs.amazonaws.'. $this->_set_country_domain($params['region']);
-		$this->create();
 	}
 
 	public function create ()
 	{
-		// $paramaters = $_POST['paramaters'];	
-		$paramaters = $this->_item_search();
-		$this->_make_the_call($paramaters);
+		$paramaters        = $_POST['paramaters'];	
+		$search            = "_search_for_{$paramaters['search_for']}_by_{$paramaters['search_by']}";
+		$filter_by         = "_filter_{$paramaters['search_for']}_by_{$paramaters['filter_name']}";
+		$search_paramaters = $this->{$search}($paramaters['typed']);
+		$response          = $this->_make_the_call($search_paramaters);
+		$response          = $this->{$filter_by}($response);
 
-		// exit;
+		echo json_encode($response);
+		exit;
 	}
 
 	protected function _make_the_call ($paramaters)
 	{
-		$paramaters = $this->_insert_credentials($paramaters);
-
+		$paramaters     = $this->_insert_credentials($paramaters);
 		ksort($paramaters);
-
 		$paramaters     = $this->_convert_array_into_url_paramaters($paramaters);
 		$hash_signature = $this->_create_signature($paramaters);
 		$request_url    = "http://{$this->paramaters['amazon_host']}/onca/xml?$paramaters&Signature=$hash_signature";
 			
-		$this->_curl_call($request_url);
-
-	}
-
-	protected function _item_search ()
-	{
-		return array(
-			'Operation' => 'ItemSearch',
-			'SearchIndex' => 'All',
-			'Keywords' => 'Wuthering'
-		);
+		return $this->_curl_call($request_url);
 	}
 
 	protected function _curl_call ($request)
 	{
-		$ch = curl_init();
-	    curl_setopt($ch, CURLOPT_URL, $request);
-	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-	    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		$curl_request = curl_init();
+	    curl_setopt($curl_request, CURLOPT_URL, $request);
+	    curl_setopt($curl_request, CURLOPT_RETURNTRANSFER, 1);
+	    curl_setopt($curl_request, CURLOPT_TIMEOUT, 15);
+	    curl_setopt($curl_request, CURLOPT_SSL_VERIFYHOST, 0);
 
-	    $response = curl_exec($ch);
+	    $response   = curl_exec($curl_request);
 
-	    
-	  	// $response = rawurldecode($response);
-	    // echo $response;
-	    $amazon_xml = simplexml_load_string($response);
-	    var_export($amazon_xml->OperationRequest->Arguments);
+	   	return $amazon_xml = simplexml_load_string($response);
 
-	//     if ( $response !== false ) { 
+	   	// $json = $this->_selling_book_filter_and_encode($amazon_xml);
 
-	//     	$parse_xml = simplexml_load_string($response);
-
- //        	echo (($parse_xml === false) ? "false" : $parse_xml);
-	//     }
-	//     else { 
-	//     	echo "false";
-	//     }
+	   	// echo $json;
 	}
-
 
 	protected function _insert_credentials ($array_to_insert_credentials_in)
 	{
@@ -120,6 +100,47 @@ class amazon extends alpha_tree_api
 		endforeach;
 
 		return implode('&', $sorting_array );
+	}
+
+	protected function _search_for_books_by_keywords ($search_words)
+	{
+		return array(
+			'Operation'     => 'ItemSearch',
+			'Keywords'      => "$search_words",
+			'SearchIndex'   => 'Books',
+			'ResponseGroup' => 'Offers, ItemAttributes, Images',
+			'Condition'     => 'Used'
+		);
+	}
+
+	protected function _filter_books_by_tiny ($xml)
+	{
+		$return_array = array();
+
+		foreach ($xml->Items->Item as $item => $attributes) : 
+			
+			$return_array[] = 
+				array(
+					'item_links'         => $attributes->ItemLinks,
+					'image'              => $attributes->SmallImage,
+					'image_sets'         => $attributes->ImageSet,
+					'author'             => $attributes->ItemAttributes->Author,
+					'binding'            => $attributes->ItemAttributes->Binding,
+					'ISBN'               => $attributes->ItemAttributes->ISBN,
+					'dimenstions'        => $attributes->ItemAttributes->ItemDimensions,
+					'price'              => $attributes->ItemAttributes->ListPrice,
+					'number_in_stock'    => $attributes->ItemAttributes->NumberOfItems,
+					'pages'              => $attributes->ItemAttributes->NumberOfPages,
+					'package_dimensions' => $attributes->ItemAttributes->PackageDimensions,
+					'title'              => $attributes->ItemAttributes->Title,
+					'lowest_new_price'   => $attributes->OfferSummary->LowestNewPrice,
+					'lowest_used_price'  => $attributes->OfferSummary->LowestUsedPrice,
+					'ASIN' 				 => $attributes->ASIN
+				);
+
+		endforeach;
+
+		return (array)$return_array;
 	}
 }
 

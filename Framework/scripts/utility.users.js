@@ -53,6 +53,11 @@ var alpha = (function ( alpha, $ ) {
 		);
 	};
 
+	alpha._is_number = function (number) { 
+
+  		return !isNaN(parseFloat(number)) && isFinite(number);
+	};
+
 	return alpha;
 
 })(alpha || {}, jQuery );

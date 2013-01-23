@@ -53,6 +53,12 @@
 			@extend .#{$m}-td-select;		
 		}
 
+		.#{$m}-td-search-text { 
+
+			@extend .#{$m}-td-select;		
+			width: 70%;
+		}
+
 		.#{$m}-td-radio-label { 
 
 			margin: 0 12px 0 0;
