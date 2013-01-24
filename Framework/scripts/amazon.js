@@ -6,36 +6,28 @@ var alpha = (function ( alpha, $ ) {
 			search_by   = (alpha._is_number(typed_value)? current_click.instructions.numerical_search : 'keywords' ),
 			klass       = this.prototype;
 
+		current_click.element.val('Searching...');
 		$('.book_display_hold').fadeOut(400, function () {$(this).empty().remove()});
 
 		$.post(
 			ajaxurl,
-			{ 
-				action     : 'amazon', 
-				paramaters : { 
-					typed       : typed_value, 
-					search_by   : search_by, 
-					search_for  : current_click.instructions.search_for, 
-					filter_name : current_click.instructions.filter_by  
-			}},
+			{ action : 'amazon', paramaters : { typed : typed_value, search_by : search_by, search_for : current_click.instructions.search_for, filter_name : current_click.instructions.filter_by }},
 			function (response) { 
 				klass.display_books(response, current_click.element, current_click.instructions.id);
+				current_click.element.val('Search');
 			},
-			'json'
-		);
+			'json');
 	};
 
 	alpha.amazon.prototype.display_books = function (items_to_display, element, post_id) { 
 
 		var books_to_display = this.return_books(items_to_display),
-			klass = this;
+			prototype = this;
 
 			$('<div class="book_display_hold"></div>').css({ opacity : 0 }).insertAfter(element);
-
 			$.each(books_to_display, 
 			function (book_key, book) { 
-
-				klass.display_book(book, post_id); 
+				prototype.display_book(book, post_id); 
 			});
 
 			$('.book_display_hold').animate({ opacity : 1 }, 400);
@@ -43,36 +35,42 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.amazon.prototype.display_book = function (book, post_id) { 
 
-		var book_json_data, displayed_book;
+		var button, book_string = new String, prototype = this;
 
-		book_json_data  = '{\'id\' : \''+ post_id +'\', \'title\' : \''+ book.title +'\', \'author\' : \''+ book.author +'\', \'binding\' : \''+ book.binding +'\', \'lowest\' : \''+ book.lowest +'\', \'price\' : \''+ book.price +'\', \'isbn\' : \''+ book.isbn +'\', \'weight\' : \''+ book.weight +'\', \'dimensions\' : \''+ book.dimensions +'\', \'image\' : \''+ book.image +'\'}';
-		book.image      = (book.image !== undefined? '<div class="book_display_image"><img src="'+ book.image +'"></div>' : '');
-		book.lowest     = book.lowest/100;
-		book.price      = book.price/100;
-		book.dimensions = ( book.length !== undefined? '<div class="book_display_dimensions"> Dimensions : '+ book.length  +'x'+ book.width +'x'+ book.height +'</div>' : '');
-		
-		displayed_book =
-			'<div class="book_display_cover">'+                    book.image +
-			'<div class="book_display_details_cover">'+
-			'<div class="book_display_title">'+                    book.title   +'</div>'+
-			'<div class="book_display_author">'+                   book.author  +'</div>'+
-			'<div class="book_display_binding">'+                  book.binding +'</div>'+
-			'<div class="book_display_lowest"> Lowest Price : £'+  book.lowest  +'</div>'+
-			'<div class="book_display_rrp"> Retail Price : £'   +  book.price   +'</div>'+
-			'<div class="book_display_isbn"> ISBN : '+             book.isbn    +'</div>'+
-			'<div class="book_display_weight"> Weight : '+         book.weight  +'g</div>'+
-																   book.dimensions +
-			'<div data-function-to-call="add_book_to_database" data-function-instructions="'+ book_json_data +'" class="book_display_add_button button">Model After This Book</div>'+
-			'</div></div>';
-					
-		$('.book_display_hold').prepend(displayed_book);
+			book_string += '<div class="book_display_cover">';
+			book_string += (book.image !== undefined? '<div class="book_display_image"><img src="'+ book.image +'"></div>' : '');
+			book_string += '<div class="book_display_details_cover">';
+			book_string += '<div class="book_display_title">'+   book.title +'</div>';
+			book_string += '<div class="book_display_author">'+  book.author +'</div>';
+			book_string += '<div class="book_display_binding">'+ book.binding +'</div>';
+			book_string += '<div class="book_display_lowest"> Lowest Price : £'+ (book.lowest/100) +'</div>';
+			book_string += '<div class="book_display_rrp"> Retail Price : £'+ (book.price/100) +'</div>';
+			book_string += '<div class="book_display_isbn"> ISBN : '+ book.isbn +'</div>';
+			book_string += '<div class="book_display_weight"> Weight : '+ book.weight +'g</div>';
+			book_string += ( book.length !== undefined? '<div class="book_display_dimensions"> Dimensions : '+ book.length  +'x'+ book.width +'x'+ book.height +'</div>' : '');
+			book_string += '</div></div>';
+
+			button = 
+			$('<div class="book_display_add_button button">Model On This Book</div>')
+			.bind('click', 
+			function () { 
+				console.log(book);
+				book.id = post_id;
+				prototype.add_book(book);
+			});
+			
+			$(book_string)
+			.children('.book_display_details_cover')
+			.append(button)
+			.parent()
+			.appendTo('.book_display_hold');
 	};
 
-	alpha.add_book_to_database = function (current_click) { 
+	alpha.amazon.prototype.add_book = function (book) { 
 
 		$.post(
 			ajaxurl,
-			{ action : 'add_book', book: current_click.instructions },
+			{ action : 'add_book', book: book },
 			function (response) { 
 				$('.book_display_hold').fadeOut(400, function () {$(this).empty().remove()});
 				location.reload(true);

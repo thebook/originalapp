@@ -72,7 +72,14 @@ class amazon extends alpha_tree_api
 
 	protected function _search_for_books_by_isbn ($search_number)
 	{
-		
+		return array(
+			'Operation'     => 'ItemLookup', 
+			'IdType'        => 'ISBN',
+			'ItemId'        => "$search_number",
+			'SearchIndex'   => 'Books',
+			'ResponseGroup' => 'Offers, ItemAttributes, Images',
+			'Condition'     => 'Used'
+		);
 	}
 
 	protected function _filter_books_by_tiny ($xml)

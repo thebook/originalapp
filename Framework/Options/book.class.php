@@ -25,8 +25,8 @@ class books extends meta
 					'book_isbn'           => $isbn,
 					'book_cheapest_price' => $lowest,
 					'book_retail'         => $price,
-					'book_dimensions'     => $dimensions,
-					'book_weight'         => $weight,
+					'book_dimensions'     => (isset($dimensions)? $dimensions : ' '),
+					'book_weight'         => (isset($weight)? $weight : ' '),
 					'book_binding'        => $binding );
 
 			$book_post_update = 
@@ -73,4 +73,4 @@ class books extends meta
 	}
 }
 
-?>		
+?>
