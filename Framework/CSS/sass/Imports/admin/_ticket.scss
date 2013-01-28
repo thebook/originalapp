@@ -1,0 +1,46 @@
+
+.ticket_box { 
+
+	display: block;
+	padding: 10px 20px;
+	@include pie-clearfix;
+	
+
+	.ticket_information_row {
+
+		display: inline-block;
+		float: left;		
+		padding: 25px;
+		
+		.ticket_information_type { 
+
+			font-size: 12px;
+			line-height: 12px;
+			font-weight: bold;
+			text-align: center;
+			margin: 0 0 15px;
+		}
+
+		.ticket_information { 
+
+			maring: 15px 0 0;
+
+			.ticket_pending { 
+
+				@include border-radius(25px);
+				margin: 0 15px;
+				float: left;
+				width:  40px;
+				height: 40px;
+				background: #CB4D4D;
+			}
+
+			.ticket_not_pending { 
+
+				@extend .ticket_pending;
+				background: #34B27D; 
+			}
+		}
+	}
+
+}

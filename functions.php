@@ -22,6 +22,8 @@ include BOOK .'/include.php';
 
 include FRAMEWORK .'/Apis/include.php';
 
+include FRAMEWORK . '/Ticketing/include.php';
+
 new register_scripts;
 	
 new admin( 
@@ -72,5 +74,18 @@ $amazon = new amazon(
 		'amazon_associates_id' => 'recyc-21',
 		'region'               => 'co.uk'
 	));
+
+new branch_ticket_books_bought( FRAMEWORK .'/Definitions/ticket.definition.php');
+
+// $ticketing->alter_ticket(
+// 	1,
+// 	array(
+// 		'date_created'        => date('y-m-d'), 
+// 		'pending_or_complete' => 0,
+// 		'by_user'             => '2234',
+// 		'quoted_price'        => '9',
+// 		'books_ordered'       => array('stuff', 'stufedy' )
+// 	));
+
 
 ?>

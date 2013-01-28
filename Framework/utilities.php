@@ -1,5 +1,19 @@
 <?php 
 
+function reverse_string_at_points ( $point_to_reverse_at, $string_to_reverse ) { 
+
+	$broken_string     = array_reverse(explode($point_to_reverse_at, $string_to_reverse ));
+	$string_to_reverse = '';
+
+	foreach ( $broken_string as $part ) : 
+
+		$string_to_reverse .= $part . $point_to_reverse_at;
+
+	endforeach;
+
+	return $string_to_reverse = trim( $string_to_reverse, '-');
+}
+
 function lf_comment_edit_link ( $text ) 
 { ?>
 	<?php global $comment; ?>

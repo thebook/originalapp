@@ -101,7 +101,7 @@
 								array(
 									'whaleusers',			// parent page
 									'User Fields', 			// Title title
-									'Settings User Fields', // Menu title
+									'Field	 Settings', // Menu title
 									'manage_options',  		// premission necessary
 									'whaleusers',			// slug
 									array( $this, 'profile_page' ) ) ),
@@ -112,7 +112,7 @@
 								array(
 									'whaleusers',		// parent page
 									'Checkout Users', 	// Title title
-									'See users', 	    // Menu title
+									'See Users', 	    // Menu title
 									'manage_options',  	// premission necessary
 									'checkoutusers',	// slug
 									array( $this, 'display_users_page' ) ) ),

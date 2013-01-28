@@ -10,6 +10,7 @@
 
 @import "Imports/import";
 @import "Imports/admin/amazon";
+@import "Imports/admin/ticket";
 
 @mixin table-data($m, $padding : 10px, $desc : 5px) { 
 

@@ -21,7 +21,7 @@ class table_creator
 
 		$is_the_table_not_in_the_database = $this->does_table_exist($passed_creation_paramaters['table_name']);
 
-		if ( $is_the_table_not_in_the_database ) { 
+		if ( !$is_the_table_not_in_the_database ) { 
 
 			$this->create_table($passed_creation_paramaters);
 		}	
@@ -94,9 +94,9 @@ class table_creator
 	}
 
 	/**
-	 * [create_table description]
-	 * @param  [type] $paramaters [description]
-	 * @return [type]             [description]
+	 * A more improved version of table create without the default if, perhaps the old table create should be removed 
+	 * @param  array $paramaters An array of creation paramaters
+	 * @return mysql             A query creating the table
 	 */
 	public function create_table ($paramaters)
 	{
@@ -115,7 +115,6 @@ class table_creator
 		. ")";
 				
 		dbDelta($create_table_query);
-		// return $create_table_query;
 	}
 
 	protected function _convert_fields_into_types ($fields_to_convert)

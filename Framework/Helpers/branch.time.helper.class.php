@@ -48,9 +48,9 @@ class helper_time
 		return $how_much_time_has_passed . $format; 
 	}
 
-	public function calculate_total_number_of_days ($inputed_date)
+	public function calculate_total_number_of_days ($inputed_date, $explode_at = '/')
 	{
-		$inputed_date = explode( '/', $inputed_date );
+		$inputed_date = explode( $explode_at, $inputed_date );
 
 		return ( 
 			  	$inputed_date[2]*365    + 

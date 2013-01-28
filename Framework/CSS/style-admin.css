@@ -687,7 +687,7 @@
   clear: both;
   display: block;
   margin: 10px 0;
-  padding: 10px 0;
+  padding: 20px 0 10px;
   border-bottom: 1px solid #eee;
   *zoom: 1;
 }
@@ -739,6 +739,54 @@
 /* line 58, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_details_cover .book_display_rrp, .book_display_cover .book_display_details_cover .book_display_lowest, .book_display_cover .book_display_details_cover .book_display_isbn, .book_display_cover .book_display_details_cover .book_display_weight, .book_display_cover .book_display_details_cover .book_display_dimensions {
   font-weight: bold;
+}
+
+/* line 2, sass/Imports/admin/_ticket.scss */
+.ticket_box {
+  display: block;
+  padding: 10px 20px;
+  *zoom: 1;
+}
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.ticket_box:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 9, sass/Imports/admin/_ticket.scss */
+.ticket_box .ticket_information_row {
+  display: inline-block;
+  float: left;
+  padding: 25px;
+}
+/* line 15, sass/Imports/admin/_ticket.scss */
+.ticket_box .ticket_information_row .ticket_information_type {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 15px;
+}
+/* line 24, sass/Imports/admin/_ticket.scss */
+.ticket_box .ticket_information_row .ticket_information {
+  maring: 15px 0 0;
+}
+/* line 28, sass/Imports/admin/_ticket.scss */
+.ticket_box .ticket_information_row .ticket_information .ticket_pending, .ticket_box .ticket_information_row .ticket_information .ticket_not_pending {
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  border-radius: 25px;
+  margin: 0 15px;
+  float: left;
+  width: 40px;
+  height: 40px;
+  background: #CB4D4D;
+}
+/* line 38, sass/Imports/admin/_ticket.scss */
+.ticket_box .ticket_information_row .ticket_information .ticket_not_pending {
+  background: #34B27D;
 }
 
 /* line 371, sass/Imports/mixins/_mixins.mixins.scss */
@@ -1214,48 +1262,48 @@
   content: "Use Color";
 }
 
-/* line 18, sass/style-admin.scss */
+/* line 19, sass/style-admin.scss */
 .lf-admin-post-meta-table tr {
   border-top: 1px solid #eee;
 }
-/* line 22, sass/style-admin.scss */
+/* line 23, sass/style-admin.scss */
 .lf-admin-post-meta-table th {
   width: 25%;
   padding: 10px;
 }
-/* line 28, sass/style-admin.scss */
+/* line 29, sass/style-admin.scss */
 .lf-admin-post-meta-table td {
   padding: 10px;
 }
-/* line 33, sass/style-admin.scss */
+/* line 34, sass/style-admin.scss */
 .lf-admin-post-meta-table strong {
   float: left;
 }
-/* line 38, sass/style-admin.scss */
+/* line 39, sass/style-admin.scss */
 .lf-admin-post-meta-table span, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-post-meta-table .lf-admin-td-checkbox-label, .lf-admin-post-meta-table .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .lf-admin-post-meta-table .layout-builder-options-td-checkbox-label {
   float: left;
   clear: both;
   margin: 5px 0 0;
   color: #999;
 }
-/* line 46, sass/style-admin.scss */
+/* line 47, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-select, .lf-admin-post-meta-table .lf-admin-post-meta-td-text, .lf-admin-post-meta-table .lf-admin-post-meta-td-search-text, .lf-admin-post-meta-table .lf-admin-post-meta-td-font {
   width: 97%;
   margin: 0 2% 0 0;
 }
-/* line 57, sass/style-admin.scss */
+/* line 58, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-search-text {
   width: 70%;
 }
-/* line 63, sass/style-admin.scss */
+/* line 64, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-radio-label {
   margin: 0 12px 0 0;
 }
-/* line 67, sass/style-admin.scss */
+/* line 68, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-radio-label .admin-radio {
   margin: 1px 6px 0 0;
 }
-/* line 73, sass/style-admin.scss */
+/* line 74, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-font {
   height: 75px;
   font-size: 25px;
@@ -1270,7 +1318,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 86, sass/style-admin.scss */
+/* line 87, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-profile_managment {
   *zoom: 1;
   margin: 0 0 20px;
@@ -1283,30 +1331,30 @@
   display: table;
   clear: both;
 }
-/* line 94, sass/style-admin.scss */
+/* line 95, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap {
   margin: 15px 0 0 7px;
   display: block;
   float: left;
 }
-/* line 100, sass/style-admin.scss */
+/* line 101, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap input[type="checkbox"] {
   margin: 3px 5px 3px 0;
   float: left;
 }
-/* line 106, sass/style-admin.scss */
+/* line 107, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label {
   margin: 0 10px 0 0;
   clear: none;
 }
-/* line 114, sass/style-admin.scss */
+/* line 115, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-profile_button {
   width: auto!important;
   padding: 4px 20px !important;
   margin: 5px 10px 15px 0 !important;
   border: none;
 }
-/* line 123, sass/style-admin.scss */
+/* line 124, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-uploaded-image, .lf-admin-post-meta-table .lf-removable-image, .lf-admin-post-meta-table .lf-admin-table .lf-removable-image, .lf-admin-table .lf-admin-post-meta-table .lf-removable-image, .lf-admin-post-meta-table .layout-builder-options-table .lf-removable-image, .layout-builder-options-table .lf-admin-post-meta-table .lf-removable-image {
   width: 23.5%;
   height: auto;
@@ -1317,30 +1365,30 @@
   vertical-align: middle;
   clear: none;
 }
-/* line 135, sass/style-admin.scss */
+/* line 136, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-removable-image {
   display: inline-block;
   float: left;
   background: url("./Includes/Images/minus.png") no-repeat scroll 50% 50% #999999;
 }
-/* line 142, sass/style-admin.scss */
+/* line 143, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-removable-image img {
   height: auto;
   width: 100%;
   vertical-align: middle;
 }
-/* line 149, sass/style-admin.scss */
+/* line 150, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-removable-image img:hover {
   opacity: 0.15;
 }
-/* line 155, sass/style-admin.scss */
+/* line 156, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-button-wrap {
   width: 50%;
   margin: 10px 10px 10px 35%;
   float: left;
   display: block;
 }
-/* line 163, sass/style-admin.scss */
+/* line 164, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-texture-radio {
   width: 22%;
   height: 40px;
@@ -1348,7 +1396,7 @@
   float: left;
   margin: 10px 1.5%  10px 1.5%;
 }
-/* line 171, sass/style-admin.scss */
+/* line 172, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-texture-radio .lf-admin-post-meta-td-texture-image {
   display: inline-block;
   float: left;
@@ -1356,13 +1404,13 @@
   height: 40px;
   margin: 0 0 0 8%;
 }
-/* line 180, sass/style-admin.scss */
+/* line 181, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-texture-radio input {
   width: 10%;
   display: inline-block;
   float: left;
 }
-/* line 188, sass/style-admin.scss */
+/* line 189, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-load-more, .lf-admin-post-meta-table .lf-admin-post-meta-td-profile_button {
   width: 80%;
   padding: 4px 10%;
@@ -1381,12 +1429,12 @@
   opacity: 0.8;
   cursor: pointer;
 }
-/* line 204, sass/style-admin.scss */
+/* line 205, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-load-more:hover, .lf-admin-post-meta-table .lf-admin-post-meta-td-profile_button:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 209, sass/style-admin.scss */
+/* line 210, sass/style-admin.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-load-more:active, .lf-admin-post-meta-table .lf-admin-post-meta-td-profile_button:active {
   margin-top: 16px;
   -webkit-box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
@@ -1465,48 +1513,48 @@
   background-color: #dfdfdf;
 }
 
-/* line 18, sass/style-admin.scss */
+/* line 19, sass/style-admin.scss */
 .lf-admin-table tr {
   border-top: 1px solid #eee;
 }
-/* line 22, sass/style-admin.scss */
+/* line 23, sass/style-admin.scss */
 .lf-admin-table th {
   width: 25%;
   padding: 20px 20px 20px 0;
 }
-/* line 28, sass/style-admin.scss */
+/* line 29, sass/style-admin.scss */
 .lf-admin-table td {
   padding: 20px 20px 20px 0;
 }
-/* line 33, sass/style-admin.scss */
+/* line 34, sass/style-admin.scss */
 .lf-admin-table strong {
   float: left;
 }
-/* line 38, sass/style-admin.scss */
+/* line 39, sass/style-admin.scss */
 .lf-admin-table span, .lf-admin-table .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-table .lf-admin-post-meta-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .lf-admin-table .layout-builder-options-td-checkbox-label {
   float: left;
   clear: both;
   margin: 10px 0 0;
   color: #999;
 }
-/* line 46, sass/style-admin.scss */
+/* line 47, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-select, .lf-admin-table .lf-admin-td-text, .lf-admin-table .lf-admin-td-search-text, .lf-admin-table .lf-admin-td-font {
   width: 97%;
   margin: 0 2% 0 0;
 }
-/* line 57, sass/style-admin.scss */
+/* line 58, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-search-text {
   width: 70%;
 }
-/* line 63, sass/style-admin.scss */
+/* line 64, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-radio-label {
   margin: 0 12px 0 0;
 }
-/* line 67, sass/style-admin.scss */
+/* line 68, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-radio-label .admin-radio {
   margin: 1px 6px 0 0;
 }
-/* line 73, sass/style-admin.scss */
+/* line 74, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-font {
   height: 75px;
   font-size: 25px;
@@ -1521,7 +1569,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 86, sass/style-admin.scss */
+/* line 87, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-profile_managment {
   *zoom: 1;
   margin: 0 0 20px;
@@ -1534,30 +1582,30 @@
   display: table;
   clear: both;
 }
-/* line 94, sass/style-admin.scss */
+/* line 95, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-checkbox-wrap {
   margin: 15px 0 0 7px;
   display: block;
   float: left;
 }
-/* line 100, sass/style-admin.scss */
+/* line 101, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-checkbox-wrap input[type="checkbox"] {
   margin: 3px 5px 3px 0;
   float: left;
 }
-/* line 106, sass/style-admin.scss */
+/* line 107, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label {
   margin: 0 10px 0 0;
   clear: none;
 }
-/* line 114, sass/style-admin.scss */
+/* line 115, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-profile_button {
   width: auto!important;
   padding: 4px 20px !important;
   margin: 5px 10px 15px 0 !important;
   border: none;
 }
-/* line 123, sass/style-admin.scss */
+/* line 124, sass/style-admin.scss */
 .lf-admin-table .lf-uploaded-image, .lf-admin-table .lf-admin-post-meta-table .lf-removable-image, .lf-admin-post-meta-table .lf-admin-table .lf-removable-image, .lf-admin-table .lf-removable-image, .lf-admin-table .layout-builder-options-table .lf-removable-image, .layout-builder-options-table .lf-admin-table .lf-removable-image {
   width: 23.5%;
   height: auto;
@@ -1568,30 +1616,30 @@
   vertical-align: middle;
   clear: none;
 }
-/* line 135, sass/style-admin.scss */
+/* line 136, sass/style-admin.scss */
 .lf-admin-table .lf-removable-image {
   display: inline-block;
   float: left;
   background: url("./Includes/Images/minus.png") no-repeat scroll 50% 50% #999999;
 }
-/* line 142, sass/style-admin.scss */
+/* line 143, sass/style-admin.scss */
 .lf-admin-table .lf-removable-image img {
   height: auto;
   width: 100%;
   vertical-align: middle;
 }
-/* line 149, sass/style-admin.scss */
+/* line 150, sass/style-admin.scss */
 .lf-admin-table .lf-removable-image img:hover {
   opacity: 0.15;
 }
-/* line 155, sass/style-admin.scss */
+/* line 156, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-button-wrap {
   width: 50%;
   margin: 10px 10px 10px 35%;
   float: left;
   display: block;
 }
-/* line 163, sass/style-admin.scss */
+/* line 164, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-texture-radio {
   width: 22%;
   height: 40px;
@@ -1599,7 +1647,7 @@
   float: left;
   margin: 10px 1.5%  10px 1.5%;
 }
-/* line 171, sass/style-admin.scss */
+/* line 172, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-texture-radio .lf-admin-td-texture-image {
   display: inline-block;
   float: left;
@@ -1607,13 +1655,13 @@
   height: 40px;
   margin: 0 0 0 8%;
 }
-/* line 180, sass/style-admin.scss */
+/* line 181, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-texture-radio input {
   width: 10%;
   display: inline-block;
   float: left;
 }
-/* line 188, sass/style-admin.scss */
+/* line 189, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-load-more, .lf-admin-table .lf-admin-td-profile_button {
   width: 80%;
   padding: 4px 10%;
@@ -1632,12 +1680,12 @@
   opacity: 0.8;
   cursor: pointer;
 }
-/* line 204, sass/style-admin.scss */
+/* line 205, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-load-more:hover, .lf-admin-table .lf-admin-td-profile_button:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 209, sass/style-admin.scss */
+/* line 210, sass/style-admin.scss */
 .lf-admin-table .lf-admin-td-load-more:active, .lf-admin-table .lf-admin-td-profile_button:active {
   margin-top: 16px;
   -webkit-box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
@@ -2173,7 +2221,7 @@ div.jGrowl div.jGrowl-closer {
   text-align: center;
 }
 
-/* line 256, sass/style-admin.scss */
+/* line 257, sass/style-admin.scss */
 .layout-builder {
   display: none;
   height: 100%;
@@ -2186,13 +2234,13 @@ div.jGrowl div.jGrowl-closer {
   z-index: 500000;
   background: #fff;
 }
-/* line 269, sass/style-admin.scss */
+/* line 270, sass/style-admin.scss */
 .layout-builder iframe, .layout-builder .layoutbuiler-iframe-overlay {
   height: 100%;
   width: 100%;
   z-index: 1;
 }
-/* line 275, sass/style-admin.scss */
+/* line 276, sass/style-admin.scss */
 .layout-builder .layoutbuiler-iframe-overlay {
   position: absolute;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
@@ -2200,7 +2248,7 @@ div.jGrowl div.jGrowl-closer {
   z-index: 1;
 }
 
-/* line 283, sass/style-admin.scss */
+/* line 284, sass/style-admin.scss */
 .layout_builder_body {
   *zoom: 1;
   margin-left: 20%;
@@ -2222,7 +2270,7 @@ div.jGrowl div.jGrowl-closer {
   clear: both;
 }
 
-/* line 299, sass/style-admin.scss */
+/* line 300, sass/style-admin.scss */
 .layout-builder-options-box {
   *zoom: 1;
   width: 45%;
@@ -2248,58 +2296,58 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 313, sass/style-admin.scss */
+/* line 314, sass/style-admin.scss */
 .layout-builder-options-box table {
   margin: 0 0 10px;
 }
-/* line 318, sass/style-admin.scss */
+/* line 319, sass/style-admin.scss */
 .layout-builder-options-box .button {
   margin: 10px 10px 0 0;
   float: right;
 }
 
-/* line 18, sass/style-admin.scss */
+/* line 19, sass/style-admin.scss */
 .layout-builder-options-table tr {
   border-top: 1px solid #eee;
 }
-/* line 22, sass/style-admin.scss */
+/* line 23, sass/style-admin.scss */
 .layout-builder-options-table th {
   width: 25%;
   padding: 10px 10px 10px 0;
 }
-/* line 28, sass/style-admin.scss */
+/* line 29, sass/style-admin.scss */
 .layout-builder-options-table td {
   padding: 10px 10px 10px 0;
 }
-/* line 33, sass/style-admin.scss */
+/* line 34, sass/style-admin.scss */
 .layout-builder-options-table strong {
   float: left;
 }
-/* line 38, sass/style-admin.scss */
+/* line 39, sass/style-admin.scss */
 .layout-builder-options-table span, .layout-builder-options-table .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .layout-builder-options-table .lf-admin-post-meta-td-checkbox-label, .layout-builder-options-table .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .layout-builder-options-table .lf-admin-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label {
   float: left;
   clear: both;
   margin: 10px 0 0;
   color: #999;
 }
-/* line 46, sass/style-admin.scss */
+/* line 47, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-select, .layout-builder-options-table .layout-builder-options-td-text, .layout-builder-options-table .layout-builder-options-td-search-text, .layout-builder-options-table .layout-builder-options-td-font {
   width: 97%;
   margin: 0 2% 0 0;
 }
-/* line 57, sass/style-admin.scss */
+/* line 58, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-search-text {
   width: 70%;
 }
-/* line 63, sass/style-admin.scss */
+/* line 64, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-radio-label {
   margin: 0 12px 0 0;
 }
-/* line 67, sass/style-admin.scss */
+/* line 68, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-radio-label .admin-radio {
   margin: 1px 6px 0 0;
 }
-/* line 73, sass/style-admin.scss */
+/* line 74, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-font {
   height: 75px;
   font-size: 25px;
@@ -2314,7 +2362,7 @@ div.jGrowl div.jGrowl-closer {
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 86, sass/style-admin.scss */
+/* line 87, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-profile_managment {
   *zoom: 1;
   margin: 0 0 20px;
@@ -2327,30 +2375,30 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 94, sass/style-admin.scss */
+/* line 95, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-checkbox-wrap {
   margin: 15px 0 0 7px;
   display: block;
   float: left;
 }
-/* line 100, sass/style-admin.scss */
+/* line 101, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-checkbox-wrap input[type="checkbox"] {
   margin: 3px 5px 3px 0;
   float: left;
 }
-/* line 106, sass/style-admin.scss */
+/* line 107, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label {
   margin: 0 10px 0 0;
   clear: none;
 }
-/* line 114, sass/style-admin.scss */
+/* line 115, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-profile_button {
   width: auto!important;
   padding: 4px 20px !important;
   margin: 5px 10px 15px 0 !important;
   border: none;
 }
-/* line 123, sass/style-admin.scss */
+/* line 124, sass/style-admin.scss */
 .layout-builder-options-table .lf-uploaded-image, .layout-builder-options-table .lf-admin-post-meta-table .lf-removable-image, .lf-admin-post-meta-table .layout-builder-options-table .lf-removable-image, .layout-builder-options-table .lf-admin-table .lf-removable-image, .lf-admin-table .layout-builder-options-table .lf-removable-image, .layout-builder-options-table .lf-removable-image {
   width: 23.5%;
   height: auto;
@@ -2361,30 +2409,30 @@ div.jGrowl div.jGrowl-closer {
   vertical-align: middle;
   clear: none;
 }
-/* line 135, sass/style-admin.scss */
+/* line 136, sass/style-admin.scss */
 .layout-builder-options-table .lf-removable-image {
   display: inline-block;
   float: left;
   background: url("./Includes/Images/minus.png") no-repeat scroll 50% 50% #999999;
 }
-/* line 142, sass/style-admin.scss */
+/* line 143, sass/style-admin.scss */
 .layout-builder-options-table .lf-removable-image img {
   height: auto;
   width: 100%;
   vertical-align: middle;
 }
-/* line 149, sass/style-admin.scss */
+/* line 150, sass/style-admin.scss */
 .layout-builder-options-table .lf-removable-image img:hover {
   opacity: 0.15;
 }
-/* line 155, sass/style-admin.scss */
+/* line 156, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-button-wrap {
   width: 50%;
   margin: 10px 10px 10px 35%;
   float: left;
   display: block;
 }
-/* line 163, sass/style-admin.scss */
+/* line 164, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-texture-radio {
   width: 22%;
   height: 40px;
@@ -2392,7 +2440,7 @@ div.jGrowl div.jGrowl-closer {
   float: left;
   margin: 10px 1.5%  10px 1.5%;
 }
-/* line 171, sass/style-admin.scss */
+/* line 172, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-texture-radio .layout-builder-options-td-texture-image {
   display: inline-block;
   float: left;
@@ -2400,13 +2448,13 @@ div.jGrowl div.jGrowl-closer {
   height: 40px;
   margin: 0 0 0 8%;
 }
-/* line 180, sass/style-admin.scss */
+/* line 181, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-texture-radio input {
   width: 10%;
   display: inline-block;
   float: left;
 }
-/* line 188, sass/style-admin.scss */
+/* line 189, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-load-more, .layout-builder-options-table .layout-builder-options-td-profile_button {
   width: 80%;
   padding: 4px 10%;
@@ -2425,12 +2473,12 @@ div.jGrowl div.jGrowl-closer {
   opacity: 0.8;
   cursor: pointer;
 }
-/* line 204, sass/style-admin.scss */
+/* line 205, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-load-more:hover, .layout-builder-options-table .layout-builder-options-td-profile_button:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 209, sass/style-admin.scss */
+/* line 210, sass/style-admin.scss */
 .layout-builder-options-table .layout-builder-options-td-load-more:active, .layout-builder-options-table .layout-builder-options-td-profile_button:active {
   margin-top: 16px;
   -webkit-box-shadow: inset 1px 1px 1px rgba(128, 128, 128, 0.1);
@@ -2509,7 +2557,7 @@ div.jGrowl div.jGrowl-closer {
   background-color: #dfdfdf;
 }
 
-/* line 326, sass/style-admin.scss */
+/* line 327, sass/style-admin.scss */
 .layout-builder-options {
   *zoom: 1;
   height: 100%;
@@ -2529,7 +2577,7 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 340, sass/style-admin.scss */
+/* line 341, sass/style-admin.scss */
 .layout-builder-options .layout-builder-info-box {
   *zoom: 1;
   padding: 15px 20px;
@@ -2544,7 +2592,7 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 349, sass/style-admin.scss */
+/* line 350, sass/style-admin.scss */
 .layout-builder-options .layout-builder-info-box span, .layout-builder-options .layout-builder-info-box .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .layout-builder-options .layout-builder-info-box .lf-admin-post-meta-td-checkbox-label, .layout-builder-options .layout-builder-info-box .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .layout-builder-options .layout-builder-info-box .lf-admin-td-checkbox-label, .layout-builder-options .layout-builder-info-box .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options .layout-builder-info-box .layout-builder-options-td-checkbox-label {
   color: #999;
   font-size: 13px;
@@ -2554,7 +2602,7 @@ div.jGrowl div.jGrowl-closer {
   float: left;
   clear: both;
 }
-/* line 359, sass/style-admin.scss */
+/* line 360, sass/style-admin.scss */
 .layout-builder-options .layout-builder-info-box strong {
   display: block;
   float: left;
@@ -2565,7 +2613,7 @@ div.jGrowl div.jGrowl-closer {
   text-shadow: 0 1px 0 #FFFFFF;
   clear: both;
 }
-/* line 372, sass/style-admin.scss */
+/* line 373, sass/style-admin.scss */
 .layout-builder-options ul {
   bottom: 100px;
   top: 80px;
@@ -2576,7 +2624,7 @@ div.jGrowl div.jGrowl-closer {
   right: 0;
   z-index: 1;
 }
-/* line 383, sass/style-admin.scss */
+/* line 384, sass/style-admin.scss */
 .layout-builder-options ul li {
   *zoom: 1;
   font-size: 15px;
@@ -2600,12 +2648,12 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 397, sass/style-admin.scss */
+/* line 398, sass/style-admin.scss */
 .layout-builder-options ul li span, .layout-builder-options ul li .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .layout-builder-options ul li .lf-admin-post-meta-td-checkbox-label, .layout-builder-options ul li .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .layout-builder-options ul li .lf-admin-td-checkbox-label, .layout-builder-options ul li .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options ul li .layout-builder-options-td-checkbox-label {
   margin: 0px;
   color: inherit;
 }
-/* line 402, sass/style-admin.scss */
+/* line 403, sass/style-admin.scss */
 .layout-builder-options ul li:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #808080), color-stop(100%, #6d6d6d));
   background: -webkit-linear-gradient(top, #808080, #6d6d6d);
@@ -2616,7 +2664,7 @@ div.jGrowl div.jGrowl-closer {
   text-shadow: 0 -1px 0 #333333;
 }
 
-/* line 411, sass/style-admin.scss */
+/* line 412, sass/style-admin.scss */
 .layout-builder-save-options {
   *zoom: 1;
   position: absolute;
@@ -2633,7 +2681,7 @@ div.jGrowl div.jGrowl-closer {
   display: table;
   clear: both;
 }
-/* line 422, sass/style-admin.scss */
+/* line 423, sass/style-admin.scss */
 .layout-builder-save-options .layout-builder-colapse-button {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -2644,7 +2692,7 @@ div.jGrowl div.jGrowl-closer {
   width: 19px;
   padding: 0;
 }
-/* line 429, sass/style-admin.scss */
+/* line 430, sass/style-admin.scss */
 .layout-builder-save-options .layout-builder-colapse-button .layout-builder-colapse-arrow {
   background: url("./Includes/Images/arrows.png") no-repeat scroll 0 -72px;
   display: block;
@@ -2654,7 +2702,7 @@ div.jGrowl div.jGrowl-closer {
   position: absolute;
   width: 15px;
 }
-/* line 440, sass/style-admin.scss */
+/* line 441, sass/style-admin.scss */
 .layout-builder-save-options a {
   float: left;
   display: inline-block;
@@ -2668,7 +2716,7 @@ div.jGrowl div.jGrowl-closer {
   clear: both;
 }
 
-/* line 451, sass/style-admin.scss */
+/* line 452, sass/style-admin.scss */
 .layout-builder-canvas {
   position: absolute;
   float: left;

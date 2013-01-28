@@ -164,50 +164,5 @@ class branch_users_database extends branch_users_style
 		multi($this->params['manifestation']);
 	}
 
-	/**
-	 * Register the user and pass paramaters into a row, the paramaters would probably fill each row or avoid some 
-	 * ( could use improvment potentualy ) 
-	 * @param  array $user_information An array of user information, values and which columns to enter them in
-	 */
-	public function register_user ($user_information)
-	{
-		$this->params['creator']->add_row_to_table( $this->params['table_name'], $user_information );
-	}
-
-	public function check_if_input_field_value_is_unqiue ($input_name, $input_value)
-	{
-		if ( in_array($input_name, $this->params['unique_options'] ) ) {
-
-			if ( !$this->params['creator']->check_if_value_is_in_column( $this->params['table_name'], $input_name, $input_value ) ) {
-
-				return $input_value;
-			}
-
-			else { 
-
-				return "The $input_value is already in use by somone else";
-			}
-		}
-	}
-
-
-
-	/**
-	 * This one might be a better way of doing it 
-	 */
-
-	// public function create_and_init_database_table_and_columns ($paramaters)
-	// {
-	// 	$main_options					= $paramaters['options_to_save_unique_fields_to'];
-	// 	$this->params['table_name']     = $paramaters['table_name'];
-	// 	$this->params['unique_options'] = ( isset($main_options['unique_options']) ? $main_options['unique_options'] : $main_options['unique_options'] );
-
-	// 	$this->params['creator']->check_if_table_exists_if_not_create_one(
-	// 		array(
-	// 			'table_name' => $paramaters['table_name'],
-	// 			'fields'     => $paramaters['fields']
-	// 		));
-	// }
 }
-
 ?>
