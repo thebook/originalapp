@@ -9,72 +9,163 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 	public function page ()
 	{ ?> 
 
-		<?php $tickets = $this->get_all_tickets(); ?>
+		<?php $this->_initialise_tickets(); ?>
 
-		<?php foreach ($tickets as $ticket_name => $ticket): ?>
+		<div class="tickets">
+
+			<div class="tickets_tabs">
+				
+				<?php foreach ($this->paramaters['tickets'] as $ticket_type => $tickets ): ?>
+
+					<div class="ticket_tab"><?php echo ucwords(str_replace('_', ' ', $ticket_type )); ?></div>
+
+				<?php endforeach ?>
+
+			</div>
+
+			<div class="ticket_overall_wrap">
+
+				<?php foreach ($this->paramaters['tickets'] as $ticket): ?>
+					
+					<?php $this->_display_tickets($ticket); ?>
+
+				<?php endforeach; ?>
+
+			</div>
 			
-			<?php $this->_ticket($ticket); ?>
-
-		<?php endforeach; ?>
+		</div>
 
 <?php }
 
-	protected function _get_how_many_days_is_expected_to_last ($expected_date)
+	protected function _initialise_tickets ()
 	{
-		$time = new helper_time;
-		return round($time->calculate_total_number_of_days($expected_date, '-')) - round($time->calculate_total_number_of_days(date('d-m-Y'), '-'));
+		$tickets = $this->get_all_tickets();
+		$this->paramaters['tickets']['all']     = $this->_display_all_tickets($tickets);
+		$this->paramaters['tickets']['pending'] = $this->_display_pending_tickets($tickets);
+		$this->paramaters['tickets']['complete']= $this->_display_complete_tickets($tickets);
+	}
+
+	protected function _display_all_tickets ($tickets)
+	{		
+		$time 			  = new helper_time;
+		$formated_tickets = array();
+
+		foreach ($tickets as $ticket) :
+
+			$formated_tickets[] = $this->_format_ticket($ticket, $time);
+
+		endforeach;
+
+		return $formated_tickets;
+	}
+
+	protected function _display_pending_tickets ($tickets)
+	{
+		$time 			  = new helper_time;
+		$formated_tickets = array();
+
+		foreach ($tickets as $ticket ) : 
+			
+			if ( $ticket['pending_or_complete'] === 1 ) : 
+
+				$formated_tickets[] = $this->_format_ticket($ticket, $time);
+
+			endif;
+
+		endforeach;
+
+		return $formated_tickets;
+	}
+
+	protected function _display_complete_tickets ($tickets)
+	{
+		$time 			  = new helper_time;
+		$formated_tickets = array();
+
+		foreach ($tickets as $ticket ) : 
+			
+			if ( $ticket['pending_or_complete'] === 0 ) : 
+
+				$formated_tickets[] = $this->_format_ticket($ticket, $time);
+
+			endif;
+
+		endforeach;
+
+		return $formated_tickets;
+	}
+
+	protected function _format_ticket ($ticket, $time)
+	{
+		return array(
+			array(
+				'name'  => 'Ticket ID',
+				'value' => $ticket['ticket_id'] ),
+			array(
+				'name'  => 'Pending',
+				'value' => ( $ticket['pending_or_complete'] === 1? '<div class="ticket_pending"></div>' : '<div class="ticket_not_pending"></div>' ) ),
+			array(
+				'name'  => 'Started On',
+				'value' => $ticket['date_created'] ),
+			array(
+				'name'  => 'Days Left Till Expire',
+				'value' => ( round($time->calculate_total_number_of_days(reverse_string_at_points('-', $ticket['date_expected']), '-')) - round($time->calculate_total_number_of_days(date('d-m-Y'), '-')) ) ),
+			array(
+				'name'  => 'Created By',
+				'value' =>  "User Id: {$ticket['by_user']}<div class=\"ticket_user_info\"></div>" ),
+			array(
+				'name'  => 'Books Expected',
+				'value' => '' ));
+	}
+
+	protected function _display_tickets ($tickets)
+	{
+		foreach ($tickets as $ticket) {
+			$this->_ticket($ticket);
+		}
 	}
 
 	protected function _ticket ($ticket)
 	{ ?>
-		
-		<?php $time = new helper_time; ?>
-
-		<?php $days_left_to_expected_deliver = $this->_get_how_many_days_is_expected_to_last(reverse_string_at_points('-', $ticket['date_expected'])); ?>
 
 		<div class="ticket_box">
-			
 
-			<div class="ticket_information_row">
+			<div class="ticket_information_row_button">
 
-				<div class="ticket_information_type">Ticket ID</div>
-				<div class="ticket_information"><?php echo $ticket['ticket_id']; ?></div>				
+				<div class="button">Update Ticket</div>
+
 			</div>
 
-			<div class="ticket_information_row">
+			<?php foreach ( $ticket as $ticket_column ): ?>
+						
+				<div class="ticket_information_row">
 
-				<div class="ticket_information_type">Pending        </div>
-				<div class="ticket_information"><?php echo ( $ticket['pending_or_complete'] === 1? '<div class="ticket_pending"></div>' : '<div class="ticket_not_pending"></div>' ); ?></div>
-			</div>
-			
-			<div class="ticket_information_row">
+					<div class="ticket_information_type"><?php echo $ticket_column['name']; ?></div>
 
-				<div class="ticket_information_type">Start Date</div>
-				<div class="ticket_information"><?php echo $ticket['date_created']; ?>       </div>
-			</div>
+					<div class="ticket_information"><?php echo $ticket_column['value']; ?></div>
 
-			<div class="ticket_information_row">
+				</div>
 
-				<div class="ticket_information_type">Days Left</div>
-				<div class="ticket_information"><?php echo $days_left_to_expected_deliver; ?></div>
-			</div>
+			<?php endforeach; ?>
 
-			<div class="ticket_information_row">
-					<div class="ticket_information_type">Created By</div>
-				<div class="ticket_information"><?php echo $ticket['by_user']; ?></div>
-			</div>
+		</div>
 
-			<div class="ticket_information_row">
+<?php }
 
-				<div class="ticket_information_type">Quoted Price</div>
-				<div class="ticket_information"><?php echo $ticket['quoted_price']; ?></div>
-			</div>
+	protected function _get_user_attached_to_ticket ($user_id)
+	{ ?> 
+		<?php global $user; ?>
 
-			<div class="ticket_information_row">
+		<?php $user_info = $user->get_user('id', $user_id ); ?>
+		
+		<div class="user_info">
 
-				<div class="ticket_information_type">Books Expected</div>
-				<div class="ticket_information"></div>
-			</div>
+			<?php foreach ($user_info as $field_name => $field_value): ?>
+
+				<div class="user_field"><?php echo ucwords(str_replace('_', ' ', $field_name )); ?>  </div>
+				<div class="user_info"> <?php echo $field_value; ?> </div>
+
+			<?php endforeach ?>
 
 		</div>
 

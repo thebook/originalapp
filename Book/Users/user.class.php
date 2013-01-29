@@ -152,6 +152,13 @@ class branch_users_database extends branch_users_style
 		return $data_type;
 	}
 
+	public function get_user ($column_to_get_by, $value_to_get_by)
+	{
+		$creator = new table_creator;
+
+		return $creator->get_row($this->params['manifestation']['create_table']['name'], $column_to_get_by, $value_to_get_by );
+	}
+
 
 
 

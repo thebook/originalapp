@@ -1,8 +1,40 @@
 
+.tickets_tabs { 
+
+	display: block;
+	margin: 20px 0 20px 20px;
+	@include pie-clearfix; 
+	
+	.ticket_tab { 
+
+		background: #eee;
+		color: #999;  
+		margin: 5px 5px 0;
+		padding: 15px;
+		font-style: italic;
+		font-size: 12px;
+		display: inline-block;
+		float: left;
+		opacity: 0.8;
+		cursor: pointer;
+		
+		&:active { 
+
+			@include single-box-shadow(rgba(128, 128, 128, 0.1), 1px, 1px, 1px, 0, inset );
+			opacity: 1;
+		}		
+	}
+}
+
 .ticket_box { 
 
 	display: block;
 	padding: 10px 20px;
+	margin: 0 20px 20px; 
+	background: #eee;
+	clear: both;
+	@include border-radius(5px 5px 1px 1px); 
+	@include single-box-shadow(rgba(0,0,0, 0.1), 1px, 1px, 1px );
 	@include pie-clearfix;
 	
 
@@ -10,7 +42,16 @@
 
 		display: inline-block;
 		float: left;		
-		padding: 25px;
+		margin: 15px 0;
+		width: 14%;
+		
+		.button { 
+
+			margin: 10px;
+			display: block;
+			clear: both;
+			text-align: center;
+		}
 		
 		.ticket_information_type { 
 
@@ -18,20 +59,44 @@
 			line-height: 12px;
 			font-weight: bold;
 			text-align: center;
-			margin: 0 0 15px;
+			margin: 0 0 15px 0;
+			padding: 5px 25px
 		}
 
 		.ticket_information { 
 
 			maring: 15px 0 0;
+			padding: 0 25px;
+			text-align: center;
+			
+			.ticket_user_info { 
+
+				display: block;
+				float: left;
+				height: 3px;
+				width: 100%;
+				margin: 10px 0 0;
+				background: #2478A8; 
+				opacity: 0.8;
+				cursor: pointer;
+				
+				&:hover { 
+
+					opacity: 1;
+				}
+
+				&:active { 
+
+					margin: 12px 0 0;
+				}
+			}
 
 			.ticket_pending { 
 
 				@include border-radius(25px);
-				margin: 0 15px;
-				float: left;
-				width:  40px;
-				height: 40px;
+				margin: 0 auto; 				
+				width:  35px;
+				height: 35px;
 				background: #CB4D4D;
 			}
 
@@ -42,5 +107,11 @@
 			}
 		}
 	}
+
+	.ticket_information_row_button { 
+
+		@extend .ticket_information_row; 
+		width: 10%;
+	} 
 
 }

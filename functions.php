@@ -50,7 +50,7 @@ new leaf_slide(
 		'definition' => FRAMEWORK .'/Definitions/slider.definition.php'
 		));
 
-new branch_users_database( 
+$user = new branch_users_database( 
 	array(
 		'id' => 'lf-users',
 		'class' => 'lf-user-meta',

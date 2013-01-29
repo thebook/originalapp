@@ -207,6 +207,15 @@ class table_creator
 		$wpdb->query("DELETE FROM $wpdb->prefix$table_name WHERE $where_column = '$where_value'");
 	}
 
+	public function get_row ($table_name, $where_column, $where_value)
+	{
+		global $wpdb;
+
+		$result	= $wpdb->get_results("SELECT * FROM $wpdb->prefix$table_name WHERE $where_column = '$where_value'", ARRAY_A);
+
+		return $result[0];
+	}
+
 	/**
 	 * Takes an array of strings and checks if they are digits or strings and returns a %d for didigs and 
 	 * %s for string for the wpdb->insert() function format
