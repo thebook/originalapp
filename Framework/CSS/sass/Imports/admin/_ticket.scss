@@ -1,4 +1,113 @@
 
+.ticket_create_ticket { 
+
+	width: 95%;
+	padding: 0px 2.5%; 
+	display: block;
+	float: left;
+	margin: 10px 0 20px;
+
+	.ticket_search { 
+
+		width: 30%;
+		padding: 5px 1.5%;
+		display: inline-block;
+		float: right;
+
+		.ticket_input { 
+
+			padding: 5px; 
+			background: #FFF;
+			@include border-radius(0px);
+		}
+	}
+
+	.ticket_book { 
+
+		width: 30%;
+		padding: 5px 1.5%;
+		display: inline-block;
+		float: right;
+
+		.ticket_book_thumbnail { 
+
+
+		}
+	}
+
+	.ticket_basket {
+
+		width: 30%;
+		padding: 5px 1.5%;
+		display: inline-block;
+		float: right;
+		
+		.ticket_basket_book { 
+
+			margin: 0 0 15px 0; 
+			float: left;
+			display: block;
+			
+			.ticket_basket_book_name { 
+
+				background: #eee;
+				padding: 5px;
+				float: left;
+				margin: 0 3px 3px;
+			}
+
+			.ticket_basket_remove_button { 
+
+				padding: 5px 5px 3px;
+				font-size: 10px;
+				font-weight: bold; 
+				line-height: 16px; 
+				float: left;
+				border-bottom: 2px solid #000;
+				margin: 0 0 3px 5px;
+				cursor: pointer;
+				
+				&:active { 
+
+					margin-top: 2px;
+				}
+			}
+		}
+
+		.ticket_button { 
+
+			clear: both;
+			margin-left: 0px;
+		}
+	}
+}
+
+.ticket_button { 
+
+	background: #eee;
+	color: #999;  
+	margin: 5px 5px 0;
+	padding: 10px 15px;
+	font-style: italic;
+	font-size: 12px;
+	display: inline-block;
+	float: left;
+	cursor: pointer;
+		
+	&:active { 
+
+		@include single-box-shadow(rgba(128, 128, 128, 0.1), 1px, 1px, 1px, 0, inset );
+	}	
+}
+
+.create_ticket_button { 
+
+	@extend .ticket_button; 
+	float: right;
+	margin: 20px 50px; 
+	clear: both;
+}
+
 .tickets_tabs { 
 
 	display: block;
@@ -7,22 +116,14 @@
 	
 	.ticket_tab { 
 
-		background: #eee;
-		color: #999;  
-		margin: 5px 5px 0;
+		@extend .ticket_button;	
 		padding: 15px;
-		font-style: italic;
-		font-size: 12px;
-		display: inline-block;
-		float: left;
 		opacity: 0.8;
-		cursor: pointer;
 		
 		&:active { 
 
-			@include single-box-shadow(rgba(128, 128, 128, 0.1), 1px, 1px, 1px, 0, inset );
 			opacity: 1;
-		}		
+		}
 	}
 }
 

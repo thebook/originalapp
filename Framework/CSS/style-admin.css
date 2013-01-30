@@ -742,6 +742,105 @@
 }
 
 /* line 2, sass/Imports/admin/_ticket.scss */
+.ticket_create_ticket {
+  width: 95%;
+  padding: 0px 2.5%;
+  display: block;
+  float: left;
+  margin: 10px 0 20px;
+}
+/* line 10, sass/Imports/admin/_ticket.scss */
+.ticket_create_ticket .ticket_search {
+  width: 30%;
+  padding: 5px 1.5%;
+  display: inline-block;
+  float: right;
+}
+/* line 17, sass/Imports/admin/_ticket.scss */
+.ticket_create_ticket .ticket_search .ticket_input {
+  padding: 5px;
+  background: #FFF;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+/* line 25, sass/Imports/admin/_ticket.scss */
+.ticket_create_ticket .ticket_book {
+  width: 30%;
+  padding: 5px 1.5%;
+  display: inline-block;
+  float: right;
+}
+/* line 38, sass/Imports/admin/_ticket.scss */
+.ticket_create_ticket .ticket_basket {
+  width: 30%;
+  padding: 5px 1.5%;
+  display: inline-block;
+  float: right;
+}
+/* line 45, sass/Imports/admin/_ticket.scss */
+.ticket_create_ticket .ticket_basket .ticket_basket_book {
+  margin: 0 0 15px 0;
+  float: left;
+  display: block;
+}
+/* line 51, sass/Imports/admin/_ticket.scss */
+.ticket_create_ticket .ticket_basket .ticket_basket_book .ticket_basket_book_name {
+  background: #eee;
+  padding: 5px;
+  float: left;
+  margin: 0 3px 3px;
+}
+/* line 59, sass/Imports/admin/_ticket.scss */
+.ticket_create_ticket .ticket_basket .ticket_basket_book .ticket_basket_remove_button {
+  padding: 5px 5px 3px;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 16px;
+  float: left;
+  border-bottom: 2px solid #000;
+  margin: 0 0 3px 5px;
+  cursor: pointer;
+}
+/* line 70, sass/Imports/admin/_ticket.scss */
+.ticket_create_ticket .ticket_basket .ticket_basket_book .ticket_basket_remove_button:active {
+  margin-top: 2px;
+}
+/* line 77, sass/Imports/admin/_ticket.scss */
+.ticket_create_ticket .ticket_basket .ticket_button, .ticket_create_ticket .ticket_basket .create_ticket_button, .ticket_create_ticket .ticket_basket .tickets_tabs .ticket_tab, .tickets_tabs .ticket_create_ticket .ticket_basket .ticket_tab {
+  clear: both;
+  margin-left: 0px;
+}
+
+/* line 85, sass/Imports/admin/_ticket.scss */
+.ticket_button, .create_ticket_button, .tickets_tabs .ticket_tab {
+  background: #eee;
+  color: #999;
+  margin: 5px 5px 0;
+  padding: 10px 15px;
+  font-style: italic;
+  font-size: 12px;
+  display: inline-block;
+  float: left;
+  cursor: pointer;
+}
+/* line 97, sass/Imports/admin/_ticket.scss */
+.ticket_button:active, .create_ticket_button:active, .tickets_tabs .ticket_tab:active {
+  -webkit-box-shadow: inset 1px 1px 1px 0 rgba(128, 128, 128, 0.1);
+  -moz-box-shadow: inset 1px 1px 1px 0 rgba(128, 128, 128, 0.1);
+  box-shadow: inset 1px 1px 1px 0 rgba(128, 128, 128, 0.1);
+}
+
+/* line 103, sass/Imports/admin/_ticket.scss */
+.create_ticket_button {
+  float: right;
+  margin: 20px 50px;
+  clear: both;
+}
+
+/* line 111, sass/Imports/admin/_ticket.scss */
 .tickets_tabs {
   display: block;
   margin: 20px 0 20px 20px;
@@ -753,28 +852,17 @@
   display: table;
   clear: both;
 }
-/* line 8, sass/Imports/admin/_ticket.scss */
+/* line 117, sass/Imports/admin/_ticket.scss */
 .tickets_tabs .ticket_tab {
-  background: #eee;
-  color: #999;
-  margin: 5px 5px 0;
   padding: 15px;
-  font-style: italic;
-  font-size: 12px;
-  display: inline-block;
-  float: left;
   opacity: 0.8;
-  cursor: pointer;
 }
-/* line 21, sass/Imports/admin/_ticket.scss */
+/* line 123, sass/Imports/admin/_ticket.scss */
 .tickets_tabs .ticket_tab:active {
-  -webkit-box-shadow: inset 1px 1px 1px 0 rgba(128, 128, 128, 0.1);
-  -moz-box-shadow: inset 1px 1px 1px 0 rgba(128, 128, 128, 0.1);
-  box-shadow: inset 1px 1px 1px 0 rgba(128, 128, 128, 0.1);
   opacity: 1;
 }
 
-/* line 29, sass/Imports/admin/_ticket.scss */
+/* line 130, sass/Imports/admin/_ticket.scss */
 .ticket_box {
   display: block;
   padding: 10px 20px;
@@ -797,21 +885,21 @@
   display: table;
   clear: both;
 }
-/* line 41, sass/Imports/admin/_ticket.scss */
+/* line 142, sass/Imports/admin/_ticket.scss */
 .ticket_box .ticket_information_row, .ticket_box .ticket_information_row_button {
   display: inline-block;
   float: left;
   margin: 15px 0;
   width: 14%;
 }
-/* line 48, sass/Imports/admin/_ticket.scss */
+/* line 149, sass/Imports/admin/_ticket.scss */
 .ticket_box .ticket_information_row .button, .ticket_box .ticket_information_row_button .button {
   margin: 10px;
   display: block;
   clear: both;
   text-align: center;
 }
-/* line 56, sass/Imports/admin/_ticket.scss */
+/* line 157, sass/Imports/admin/_ticket.scss */
 .ticket_box .ticket_information_row .ticket_information_type, .ticket_box .ticket_information_row_button .ticket_information_type {
   font-size: 12px;
   line-height: 12px;
@@ -820,13 +908,13 @@
   margin: 0 0 15px 0;
   padding: 5px 25px;
 }
-/* line 66, sass/Imports/admin/_ticket.scss */
+/* line 167, sass/Imports/admin/_ticket.scss */
 .ticket_box .ticket_information_row .ticket_information, .ticket_box .ticket_information_row_button .ticket_information {
   maring: 15px 0 0;
   padding: 0 25px;
   text-align: center;
 }
-/* line 72, sass/Imports/admin/_ticket.scss */
+/* line 173, sass/Imports/admin/_ticket.scss */
 .ticket_box .ticket_information_row .ticket_information .ticket_user_info, .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info {
   display: block;
   float: left;
@@ -837,15 +925,15 @@
   opacity: 0.8;
   cursor: pointer;
 }
-/* line 83, sass/Imports/admin/_ticket.scss */
+/* line 184, sass/Imports/admin/_ticket.scss */
 .ticket_box .ticket_information_row .ticket_information .ticket_user_info:hover, .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info:hover {
   opacity: 1;
 }
-/* line 88, sass/Imports/admin/_ticket.scss */
+/* line 189, sass/Imports/admin/_ticket.scss */
 .ticket_box .ticket_information_row .ticket_information .ticket_user_info:active, .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info:active {
   margin: 12px 0 0;
 }
-/* line 94, sass/Imports/admin/_ticket.scss */
+/* line 195, sass/Imports/admin/_ticket.scss */
 .ticket_box .ticket_information_row .ticket_information .ticket_pending, .ticket_box .ticket_information_row_button .ticket_information .ticket_pending, .ticket_box .ticket_information_row .ticket_information .ticket_not_pending, .ticket_box .ticket_information_row_button .ticket_information_row .ticket_information .ticket_not_pending, .ticket_box .ticket_information_row .ticket_information_row_button .ticket_information .ticket_not_pending, .ticket_box .ticket_information_row .ticket_information_row_button .ticket_information .ticket_not_pending, .ticket_box .ticket_information_row_button .ticket_information_row .ticket_information .ticket_not_pending, .ticket_box .ticket_information_row_button .ticket_information .ticket_not_pending {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
@@ -857,11 +945,11 @@
   height: 35px;
   background: #CB4D4D;
 }
-/* line 103, sass/Imports/admin/_ticket.scss */
+/* line 204, sass/Imports/admin/_ticket.scss */
 .ticket_box .ticket_information_row .ticket_information .ticket_not_pending, .ticket_box .ticket_information_row_button .ticket_information .ticket_not_pending {
   background: #34B27D;
 }
-/* line 111, sass/Imports/admin/_ticket.scss */
+/* line 212, sass/Imports/admin/_ticket.scss */
 .ticket_box .ticket_information_row_button {
   width: 10%;
 }

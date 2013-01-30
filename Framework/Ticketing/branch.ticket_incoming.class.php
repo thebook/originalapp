@@ -5,11 +5,56 @@
 */
 class branch_ticket_books_bought extends alpha_tree_ticket
 {
+	protected function _ticket_creation_element ()
+	{ ?>
+		
+		<div class="create_ticket_button">Create Ticket</div>
+		
+		<div class="ticket_create_ticket">
+			
+			<div class="ticket_search">
+				<input type="text" class="ticket_input">
+				<div class="button">Search</div>
+			</div>
+
+			<div class="ticket_book">
+				<div class="ticket_book_thumbnail"></div>
+				<div class="ticket_book_name">Title</div>
+				<div class="ticket_book_author">Author</div>
+				<div class="ticket_book_isbn">213213</div>
+				<div class="ticket_button">Add Book</div>
+			</div>
+
+			<div class="ticket_basket">
+				
+				<div class="ticket_basket_book">
+					<span class="ticket_basket_book_name">Book Name: <strong>The extremly long name of the long extremity,</strong></span>
+					<span class="ticket_basket_book_name">ISBN: <strong>294356656,</strong></span>
+					<span class="ticket_basket_book_name">£ <strong>90.00</strong></span>
+					<span class="ticket_basket_remove_button">Remove Book</span>					
+				</div>
+
+				<div class="ticket_basket_book">
+					<span class="ticket_basket_book_name">Book Name: <strong>The,</strong></span>
+					<span class="ticket_basket_book_name">ISBN: <strong>294356656,</strong></span>
+					<span class="ticket_basket_book_name">£ <strong>90.00</strong></span>
+					<span class="ticket_basket_remove_button">Remove Book</span>					
+				</div>
+
+				<div class="ticket_button">Complete Ticket</div>
+			</div>
+
+		</div>
+
+
+<?php }
 
 	public function page ()
 	{ ?> 
 
 		<?php $this->_initialise_tickets(); ?>
+
+		<?php $this->_ticket_creation_element(); ?>
 
 		<div class="tickets">
 
