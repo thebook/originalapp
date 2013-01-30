@@ -1,11 +1,46 @@
 
+.ticket_labels_guide { 
+
+	display: inline-block;
+	float: left;
+	margin: 20px 5px 20px 50px;
+
+	.ticket_label_guide { 
+
+		margin: 0 15px 0 0;
+		float: left;
+		display: inline-block;
+		
+		.ticket_circle { 
+
+			width: 20px;
+			height: 20px;
+			background: red;  
+			display: inline-block;
+			@include border-radius(25px);
+			float: left;
+			margin: 0 5px 0 0;
+		}
+
+		.ticket_label_description { 
+
+			margin: 4px 0 4px 5px;
+			float: left;
+			font-size: 12px; 
+			line-height: 12px; 
+			font-style: italic;
+		}
+	}
+}
+
 .ticket_create_ticket { 
 
 	width: 95%;
-	padding: 0px 2.5%; 
+	padding: 0 0 20px;
 	display: block;
 	float: left;
-	margin: 10px 0 20px;
+	margin: 10px 2.5% 20px;
+	border-bottom: 2px solid #000;
 
 	.ticket_search { 
 
@@ -14,11 +49,36 @@
 		display: inline-block;
 		float: right;
 
+		.ticket_search_label { 
+
+			margin: 0 0 10px;
+			font-size: 12px;
+			font-weight: bold;
+			float: left;
+			display: block; 
+		}
+
 		.ticket_input { 
 
-			padding: 5px; 
+			width: 98%;
+			padding: 5px 1%;
 			background: #FFF;
 			@include border-radius(0px);
+		}
+
+		.ticket_button { 
+
+			width: 95%;
+			clear: both;
+			padding: 5px 2.5%;
+			text-align: center;
+			opacity: 0.8;
+			margin: 10px 0;
+			
+			&:active { 
+
+				opacity: 1;
+			}
 		}
 	}
 
@@ -26,12 +86,59 @@
 
 		width: 30%;
 		padding: 5px 1.5%;
-		display: inline-block;
+		display: inline-block;		
 		float: right;
 
 		.ticket_book_thumbnail { 
 
+			width: 45%;
+			float: left;
+			
+			img { 
 
+				width: 100%;
+				height: auto;
+			}
+		}
+
+		.ticket_book_details { 
+			width: 50%;
+			margin-left: 5%;
+			float: left;
+			
+			.ticket_book_detail { 
+
+				display: block;
+				float: left;
+				clear: both;
+				margin: 0 0 10px;
+			}
+
+			.ticket_quoted_ammount { 
+
+				@extend .ticket_book_detail;
+				margin: 10px 0;
+				
+				.we_quote {
+
+					background: #eee;
+					color: #999;
+					padding: 3px;
+					margin-right: 5px; 
+					font-style: italic;
+				} 
+
+				.quote { 
+
+					font-size: 18px;
+					font-weight: bold;
+				}
+			}
+
+			.ticket_button { 
+
+				margin: 10px 0 20px 0;
+			}
 		}
 	}
 
@@ -104,8 +211,8 @@
 
 	@extend .ticket_button; 
 	float: right;
+	display: inline-block;
 	margin: 20px 50px; 
-	clear: both;
 }
 
 .tickets_tabs { 

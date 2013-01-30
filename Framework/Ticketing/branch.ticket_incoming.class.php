@@ -7,26 +7,43 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 {
 	protected function _ticket_creation_element ()
 	{ ?>
+
+		<div class="ticket_labels_guide">
+			
+			<span class="ticket_label_guide"><span class="ticket_circle"></span><span class="ticket_label_description">= Pending,</span></span>
+			<span class="ticket_label_guide"><span class="ticket_circle"></span><span class="ticket_label_description">= Pending</span></span>
+		</div>
 		
 		<div class="create_ticket_button">Create Ticket</div>
 		
 		<div class="ticket_create_ticket">
 			
 			<div class="ticket_search">
+				<span class="ticket_search_label">Search for book by ISBN : </span>
 				<input type="text" class="ticket_input">
-				<div class="button">Search</div>
+				<div class="ticket_button">Search</div>
 			</div>
 
 			<div class="ticket_book">
-				<div class="ticket_book_thumbnail"></div>
-				<div class="ticket_book_name">Title</div>
-				<div class="ticket_book_author">Author</div>
-				<div class="ticket_book_isbn">213213</div>
-				<div class="ticket_button">Add Book</div>
+				<div class="ticket_book_thumbnail">
+					<img src="http://blogs.slj.com/afuse8production/files/2012/06/Hobbit9.jpg" alt="">
+				</div>
+
+				<div class="ticket_book_details">
+					<span class="ticket_book_detail">Title: <strong>Some title</strong></span>
+					<span class="ticket_book_detail">Author: <strong>Some author</strong></span>
+					<span class="ticket_book_detail">ISBN: <strong>2321321</strong></span>
+					
+					<div class="ticket_quoted_ammount"><span class="we_quote">We Quote</span><span class="quote">£10.99</span></div>
+					<div class="ticket_button">Add Book</div>
+				</div>
 			</div>
 
 			<div class="ticket_basket">
-				
+				<div class="ticket_basket_book">
+					<span class="ticket_basket_book_name"><strong>£ 90.00</strong></span>
+				</div>
+
 				<div class="ticket_basket_book">
 					<span class="ticket_basket_book_name">Book Name: <strong>The extremly long name of the long extremity,</strong></span>
 					<span class="ticket_basket_book_name">ISBN: <strong>294356656,</strong></span>
