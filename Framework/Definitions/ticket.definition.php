@@ -53,6 +53,11 @@ return array(
 			array(
 				// Create Menu page
 				array(
+					'f' => 'add_action',
+					'o' => array('wp_ajax_ticket_admin_creation', array($this, 'ticket_creation_element' ) ) 
+				),
+				// Create Menu page
+				array(
 					'f' => 'add_menu_page',
 					'o' => 
 						array(

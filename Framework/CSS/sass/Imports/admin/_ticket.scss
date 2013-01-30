@@ -88,56 +88,66 @@
 		padding: 5px 1.5%;
 		display: inline-block;		
 		float: right;
+		
+		.ticket_book_wrap {
 
-		.ticket_book_thumbnail { 
-
-			width: 45%;
+			width: 100%;
 			float: left;
-			
-			img { 
+			clear: both;
+			display: block;
+			margin-top: 30px;
 
-				width: 100%;
-				height: auto;
-			}
-		}
+			.ticket_book_thumbnail { 
 
-		.ticket_book_details { 
-			width: 50%;
-			margin-left: 5%;
-			float: left;
-			
-			.ticket_book_detail { 
-
-				display: block;
+				width: 45%;
 				float: left;
-				clear: both;
-				margin: 0 0 10px;
-			}
-
-			.ticket_quoted_ammount { 
-
-				@extend .ticket_book_detail;
-				margin: 10px 0;
 				
-				.we_quote {
+				img { 
 
-					background: #eee;
-					color: #999;
-					padding: 3px;
-					margin-right: 5px; 
-					font-style: italic;
-				} 
-
-				.quote { 
-
-					font-size: 18px;
-					font-weight: bold;
+					width: 100%;
+					height: auto;
 				}
 			}
 
-			.ticket_button { 
+			.ticket_book_details { 
+				width: 50%;
+				margin-left: 5%;
+				float: left;
+				
+				.ticket_book_detail { 
 
-				margin: 10px 0 20px 0;
+					display: block;
+					float: left;
+					clear: both;
+					margin: 0 0 10px;
+				}
+
+				.ticket_quoted_ammount { 
+
+					@extend .ticket_book_detail;
+					margin: 10px 0;
+					
+					.we_quote {
+
+						background: #eee;
+						color: #999;
+						padding: 3px;
+						margin-right: 5px; 
+						font-style: italic;
+					} 
+
+					.quote { 
+
+						font-size: 18px;
+						font-weight: bold;
+					}
+				}
+
+				.ticket_button { 
+
+					margin: 10px 0 20px 0;
+					clear: both;
+				}
 			}
 		}
 	}
@@ -234,92 +244,98 @@
 	}
 }
 
-.ticket_box { 
+.tickets { 
 
 	display: block;
-	padding: 10px 20px;
-	margin: 0 20px 20px; 
-	background: #eee;
 	clear: both;
-	@include border-radius(5px 5px 1px 1px); 
-	@include single-box-shadow(rgba(0,0,0, 0.1), 1px, 1px, 1px );
-	@include pie-clearfix;
-	
 
-	.ticket_information_row {
+	.ticket_box { 
 
-		display: inline-block;
-		float: left;		
-		margin: 15px 0;
-		width: 14%;
+		display: block;
+		padding: 10px 20px;
+		margin: 0 20px 20px; 
+		background: #eee;
+		clear: both;
+		@include border-radius(5px 5px 1px 1px); 
+		@include single-box-shadow(rgba(0,0,0, 0.1), 1px, 1px, 1px );
+		@include pie-clearfix;
 		
-		.button { 
 
-			margin: 10px;
-			display: block;
-			clear: both;
-			text-align: center;
-		}
-		
-		.ticket_information_type { 
+		.ticket_information_row {
 
-			font-size: 12px;
-			line-height: 12px;
-			font-weight: bold;
-			text-align: center;
-			margin: 0 0 15px 0;
-			padding: 5px 25px
-		}
-
-		.ticket_information { 
-
-			maring: 15px 0 0;
-			padding: 0 25px;
-			text-align: center;
+			display: inline-block;
+			float: left;		
+			margin: 15px 0;
+			width: 14%;
 			
-			.ticket_user_info { 
+			.button { 
 
+				margin: 10px;
 				display: block;
-				float: left;
-				height: 3px;
-				width: 100%;
-				margin: 10px 0 0;
-				background: #2478A8; 
-				opacity: 0.8;
-				cursor: pointer;
+				clear: both;
+				text-align: center;
+			}
+			
+			.ticket_information_type { 
+
+				font-size: 12px;
+				line-height: 12px;
+				font-weight: bold;
+				text-align: center;
+				margin: 0 0 15px 0;
+				padding: 5px 25px
+			}
+
+			.ticket_information { 
+
+				maring: 15px 0 0;
+				padding: 0 25px;
+				text-align: center;
 				
-				&:hover { 
+				.ticket_user_info { 
 
-					opacity: 1;
+					display: block;
+					float: left;
+					height: 3px;
+					width: 100%;
+					margin: 10px 0 0;
+					background: #2478A8; 
+					opacity: 0.8;
+					cursor: pointer;
+					
+					&:hover { 
+
+						opacity: 1;
+					}
+
+					&:active { 
+
+						margin: 12px 0 0;
+					}
 				}
 
-				&:active { 
+				.ticket_pending { 
 
-					margin: 12px 0 0;
+					@include border-radius(25px);
+					margin: 0 auto; 				
+					width:  35px;
+					height: 35px;
+					background: #CB4D4D;
 				}
-			}
 
-			.ticket_pending { 
+				.ticket_not_pending { 
 
-				@include border-radius(25px);
-				margin: 0 auto; 				
-				width:  35px;
-				height: 35px;
-				background: #CB4D4D;
-			}
-
-			.ticket_not_pending { 
-
-				@extend .ticket_pending;
-				background: #34B27D; 
+					@extend .ticket_pending;
+					background: #34B27D; 
+				}
 			}
 		}
+
+		.ticket_information_row_button { 
+
+			@extend .ticket_information_row; 
+			width: 10%;
+		} 
+
 	}
-
-	.ticket_information_row_button { 
-
-		@extend .ticket_information_row; 
-		width: 10%;
-	} 
-
 }

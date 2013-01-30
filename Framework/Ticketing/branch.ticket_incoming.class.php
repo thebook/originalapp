@@ -5,37 +5,42 @@
 */
 class branch_ticket_books_bought extends alpha_tree_ticket
 {
-	protected function _ticket_creation_element ()
+	public function ticket_creation_element ()
 	{ ?>
 
-		<div class="ticket_labels_guide">
+		<!-- <div class="ticket_labels_guide">
 			
 			<span class="ticket_label_guide"><span class="ticket_circle"></span><span class="ticket_label_description">= Pending,</span></span>
 			<span class="ticket_label_guide"><span class="ticket_circle"></span><span class="ticket_label_description">= Pending</span></span>
-		</div>
-		
-		<div class="create_ticket_button">Create Ticket</div>
-		
+		</div> -->
+				
 		<div class="ticket_create_ticket">
 			
 			<div class="ticket_search">
-				<span class="ticket_search_label">Search for book by ISBN : </span>
+				
+				<span class="ticket_search_label">Search for book: </span>
+
 				<input type="text" class="ticket_input">
-				<div class="ticket_button">Search</div>
+
+				<div data-function-to-call="search_though_amazon_for_a_book" 
+				     data-function-instructions="{'input' : '.ticket_input', 'numerical_search' : 'isbn', 'book_wrap' : '.ticket_book', 'action' : 'amazon', 'search_for' : 'books', 'filter_by' : 'tiny' }" 
+				     class="ticket_button">Search</div>
 			</div>
 
 			<div class="ticket_book">
-				<div class="ticket_book_thumbnail">
-					<img src="http://blogs.slj.com/afuse8production/files/2012/06/Hobbit9.jpg" alt="">
-				</div>
+				<div class="ticket_book_wrap">
+					<div class="ticket_book_thumbnail">
+						<img src="http://blogs.slj.com/afuse8production/files/2012/06/Hobbit9.jpg" alt="">
+					</div>
 
-				<div class="ticket_book_details">
-					<span class="ticket_book_detail">Title: <strong>Some title</strong></span>
-					<span class="ticket_book_detail">Author: <strong>Some author</strong></span>
-					<span class="ticket_book_detail">ISBN: <strong>2321321</strong></span>
-					
-					<div class="ticket_quoted_ammount"><span class="we_quote">We Quote</span><span class="quote">£10.99</span></div>
-					<div class="ticket_button">Add Book</div>
+					<div class="ticket_book_details">
+						<span class="ticket_book_detail">Title: <strong>Some title</strong></span>
+						<span class="ticket_book_detail">Author: <strong>Some author</strong></span>
+						<span class="ticket_book_detail">ISBN: <strong>2321321</strong></span>
+						
+						<div class="ticket_quoted_ammount"><span class="we_quote">We Quote</span><span class="quote">£10.99</span></div>
+						<div class="ticket_button">Add Book</div>
+					</div>
 				</div>
 			</div>
 
@@ -63,38 +68,45 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 
 		</div>
 
+		<?php exit; ?>
 
 <?php }
 
 	public function page ()
 	{ ?> 
 
-		<?php $this->_initialise_tickets(); ?>
+		<div class="tickets_all">
 
-		<?php $this->_ticket_creation_element(); ?>
+			<div class="create_ticket_button" data-function-to-call="open_ticket_in_admin">Create Ticket</div>
 
-		<div class="tickets">
+			<?php $this->_initialise_tickets(); ?>
 
-			<div class="tickets_tabs">
-				
-				<?php foreach ($this->paramaters['tickets'] as $ticket_type => $tickets ): ?>
+			<div class="tickets">
 
-					<div class="ticket_tab"><?php echo ucwords(str_replace('_', ' ', $ticket_type )); ?></div>
-
-				<?php endforeach ?>
-
-			</div>
-
-			<div class="ticket_overall_wrap">
-
-				<?php foreach ($this->paramaters['tickets'] as $ticket): ?>
+				<div class="tickets_tabs">
 					
-					<?php $this->_display_tickets($ticket); ?>
+					<?php foreach ($this->paramaters['tickets'] as $ticket_type => $tickets ): ?>
 
-				<?php endforeach; ?>
+						<div class="ticket_tab"><?php echo ucwords(str_replace('_', ' ', $ticket_type )); ?></div>
 
+					<?php endforeach ?>
+
+				</div>
+
+				<div class="ticket_overall_wrap">
+
+					<?php foreach ($this->paramaters['tickets'] as $ticket): ?>
+						
+						<?php $this->_display_tickets($ticket); ?>
+
+					<?php endforeach; ?>
+
+				</div>
+				
 			</div>
-			
+
+			<script>alpha.track_events_on_this('.tickets_all', 'click');</script>
+
 		</div>
 
 <?php }
