@@ -5,6 +5,29 @@
 */
 class branch_ticket_books_bought extends alpha_tree_ticket
 {
+	public function prepare_books_ticket ()
+	{
+		$time   = new helper_time;
+		$ticket = 
+			array(
+				'date_created'        => date('d-m-Y'),
+				'date_expected'       => round($time->calculate_total_number_of_days(date('Y/m/d'))),
+				'status' 			  => 'pending',
+				'by_user' 			  => '',
+				'quoted_price'        => $_POST['quote'],
+				'books_ordered'		  => $_POST['books']
+		);
+
+		$this->create_ticket($ticket);
+
+		echo json_encode(
+				array(
+					'message' => 'Your request has been comfirmed, please await more in the future'
+					'header'  => 'Confirmed'
+				);
+		exit;
+	}
+
 	public function ticket_creation_element ()
 	{ ?>
 
@@ -17,53 +40,23 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 		<div class="ticket_create_ticket">
 			
 			<div class="ticket_search">
-				
 				<span class="ticket_search_label">Search for book: </span>
-
 				<input type="text" class="ticket_input">
-
 				<div data-function-to-call="search_though_amazon_for_a_book" 
 				     data-function-instructions="{'input' : '.ticket_input', 'numerical_search' : 'isbn', 'book_wrap' : '.ticket_book', 'action' : 'amazon', 'search_for' : 'books', 'filter_by' : 'tiny' }" 
 				     class="ticket_button">Search</div>
 			</div>
 
-			<div class="ticket_book">
-				<div class="ticket_book_wrap">
-					<div class="ticket_book_thumbnail">
-						<img src="http://blogs.slj.com/afuse8production/files/2012/06/Hobbit9.jpg" alt="">
-					</div>
-
-					<div class="ticket_book_details">
-						<span class="ticket_book_detail">Title: <strong>Some title</strong></span>
-						<span class="ticket_book_detail">Author: <strong>Some author</strong></span>
-						<span class="ticket_book_detail">ISBN: <strong>2321321</strong></span>
-						
-						<div class="ticket_quoted_ammount"><span class="we_quote">We Quote</span><span class="quote">£10.99</span></div>
-						<div class="ticket_button">Add Book</div>
-					</div>
-				</div>
-			</div>
+			<div class="ticket_book"></div>
 
 			<div class="ticket_basket">
-				<div class="ticket_basket_book">
-					<span class="ticket_basket_book_name"><strong>£ 90.00</strong></span>
-				</div>
 
-				<div class="ticket_basket_book">
-					<span class="ticket_basket_book_name">Book Name: <strong>The extremly long name of the long extremity,</strong></span>
-					<span class="ticket_basket_book_name">ISBN: <strong>294356656,</strong></span>
-					<span class="ticket_basket_book_name">£ <strong>90.00</strong></span>
-					<span class="ticket_basket_remove_button">Remove Book</span>					
-				</div>
+				<div class="ticket_basket_book"><span class="ticket_basket_book_name"><strong class="quote">£ 0</strong></span></div>
 
-				<div class="ticket_basket_book">
-					<span class="ticket_basket_book_name">Book Name: <strong>The,</strong></span>
-					<span class="ticket_basket_book_name">ISBN: <strong>294356656,</strong></span>
-					<span class="ticket_basket_book_name">£ <strong>90.00</strong></span>
-					<span class="ticket_basket_remove_button">Remove Book</span>					
-				</div>
+				<div class="basket_hold"></div>
 
-				<div class="ticket_button">Complete Ticket</div>
+				<div data-function-to-call="search_though_amazon_for_a_book.prototype.basket.prototype.complete_ticket" class="ticket_button">Complete Ticket</div>
+
 			</div>
 
 		</div>
@@ -115,8 +108,8 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 	{
 		$tickets = $this->get_all_tickets();
 		$this->paramaters['tickets']['all']     = $this->_display_all_tickets($tickets);
-		$this->paramaters['tickets']['pending'] = $this->_display_pending_tickets($tickets);
-		$this->paramaters['tickets']['complete']= $this->_display_complete_tickets($tickets);
+		$this->paramaters['tickets']['pending'] = $this->_return_specific_tickets('pending', $tickets);
+		$this->paramaters['tickets']['complete']= $this->_return_specific_tickets('complete', $tickets);
 	}
 
 	protected function _display_all_tickets ($tickets)
@@ -133,32 +126,14 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 		return $formated_tickets;
 	}
 
-	protected function _display_pending_tickets ($tickets)
+	protected function _return_specific_tickets ($tickets_status, $tickets)
 	{
 		$time 			  = new helper_time;
 		$formated_tickets = array();
 
 		foreach ($tickets as $ticket ) : 
 			
-			if ( $ticket['pending_or_complete'] === 1 ) : 
-
-				$formated_tickets[] = $this->_format_ticket($ticket, $time);
-
-			endif;
-
-		endforeach;
-
-		return $formated_tickets;
-	}
-
-	protected function _display_complete_tickets ($tickets)
-	{
-		$time 			  = new helper_time;
-		$formated_tickets = array();
-
-		foreach ($tickets as $ticket ) : 
-			
-			if ( $ticket['pending_or_complete'] === 0 ) : 
+			if ( $ticket['status'] === $tickets_status ) : 
 
 				$formated_tickets[] = $this->_format_ticket($ticket, $time);
 
@@ -177,13 +152,13 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 				'value' => $ticket['ticket_id'] ),
 			array(
 				'name'  => 'Pending',
-				'value' => ( $ticket['pending_or_complete'] === 1? '<div class="ticket_pending"></div>' : '<div class="ticket_not_pending"></div>' ) ),
+				'value' => ( $ticket['status'] === 'pending'? '<div class="ticket_pending"></div>' : '<div class="ticket_not_pending"></div>' ) ),
 			array(
 				'name'  => 'Started On',
 				'value' => $ticket['date_created'] ),
 			array(
 				'name'  => 'Days Left Till Expire',
-				'value' => ( round($time->calculate_total_number_of_days(reverse_string_at_points('-', $ticket['date_expected']), '-')) - round($time->calculate_total_number_of_days(date('d-m-Y'), '-')) ) ),
+				'value' => ( $ticket['date_expected'] - round($time->calculate_total_number_of_days(date('d-m-Y'), '-')) )),
 			array(
 				'name'  => 'Created By',
 				'value' =>  "User Id: {$ticket['by_user']}<div class=\"ticket_user_info\"></div>" ),
@@ -206,7 +181,7 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 
 			<div class="ticket_information_row_button">
 
-				<div class="button">Update Ticket</div>
+				<div data-function-to-call="invoke" data-function-instructions="{ 'path' : 'stuff' }" class="button">Update Ticket</div>
 
 			</div>
 

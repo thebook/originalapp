@@ -7,11 +7,12 @@ var alpha = (function ( alpha, $ ) {
 		$(track_events_on)
 		.on(events_to_track, function (event) { 
 
-			var current_click = thought_of_this.create_current_click_object(event);
+			var current_click = thought_of_this.create_current_click_object(event),
+				invoke        = alpha.invoke(current_click.function_call);
 
-			if (current_click.has_a_function_call && typeof alpha[current_click.function_call] === 'function' && !thought_of_this.is_asleep(current_click.function_call) ) { 
-
-				alpha[current_click.function_call].call(alpha[current_click.function_call], current_click);
+			if (current_click.has_a_function_call && typeof invoke === 'function' && !thought_of_this.is_asleep(current_click.function_call) ) { 
+				
+				invoke.call(invoke, current_click);
 			}
 		});
 	};
@@ -30,7 +31,7 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.track_events_on_this.prototype.is_asleep = function (slumberer) { 
 
-		return alpha[slumberer].prototype.sleeping = alpha[slumberer].prototype.sleeping || false;
+		return alpha.invoke(slumberer).prototype.sleeping = alpha.invoke(slumberer).prototype.sleeping || false;
 
 	};
 
@@ -39,7 +40,7 @@ var alpha = (function ( alpha, $ ) {
 		$.each(slumberers, 
 		function (order, slumberer) { 
 
-			alpha[slumberer].prototype.sleeping = true;
+			alpha.invoke(slumberer).prototype.sleeping = true;
 
 		});
 	};
@@ -49,7 +50,7 @@ var alpha = (function ( alpha, $ ) {
 		$.each(slumberers, 
 		function (order, slumberer) { 
 
-			alpha[slumberer].prototype.sleeping = false;
+			alpha.invoke(slumberer).prototype.sleeping = false;
 
 		});		
 	};
@@ -95,6 +96,33 @@ var alpha = (function ( alpha, $ ) {
 			self.is.as_tall_as_parent = ( self.full_height > self.parent.height - 10 );
 
             return self; 		
+    };
+
+    alpha.invoke = function (tree_to_subject_of_invokation) { 
+
+    	if ( tree_to_subject_of_invokation !== undefined ) { 
+	    	var group_of_branches, path_to_return;
+
+	    	subject_to_invoke = alpha;
+	    	tree_to_subject_of_invokation = tree_to_subject_of_invokation.replace(/\[(\w+)\]/g, '.$1');
+	    	tree_to_subject_of_invokation = tree_to_subject_of_invokation.replace(/^\./, '');
+
+	    	group_of_branches = tree_to_subject_of_invokation.split('.');
+
+	    	while ( group_of_branches.length ) { 
+
+	    		var branch_name = group_of_branches.shift();
+
+	    			if ( branch_name in subject_to_invoke ) { 
+	    				subject_to_invoke = subject_to_invoke[branch_name]
+	    			}
+	    			else { 
+	    				return;
+	    			}
+	    	}
+	    	
+	    	return subject_to_invoke;
+	    }
     };
 
 	return alpha;

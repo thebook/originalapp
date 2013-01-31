@@ -19,8 +19,8 @@ return array(
 							'unique'         => false
 						),
 						array(
-							'column_name'    => 'pending_or_complete',
-							'data_type'      => 'INT',
+							'column_name'    => 'status',
+							'data_type'      => 'VARCHAR(100)',
 							'auto_increment' => false,
 							'unique'         => false
 						),
@@ -51,10 +51,15 @@ return array(
 					),
 		'opt' => 
 			array(
-				// Create Menu page
+				// hook in the ticket creation element
 				array(
 					'f' => 'add_action',
 					'o' => array('wp_ajax_ticket_admin_creation', array($this, 'ticket_creation_element' ) ) 
+				),
+				// hook in the ticket addition element
+				array(
+					'f' => 'add_action',
+					'o' => array('wp_ajax_complete_ticket', array($this, 'prepare_books_ticket' ) ) 
 				),
 				// Create Menu page
 				array(
