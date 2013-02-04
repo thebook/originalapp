@@ -38,54 +38,54 @@
 								array(
 									'main_options',
 									'main_options') ),
-						// Navigation
-						array( 
-							'f' => array( $this, 'pop'),
-							'o'	=>	
-								array(
-									array( 
-										'id' => 'profile_managment',
-										'title' => __('Profile Managment', 'liquidflux'),
-										'page'  => 'whitewhale',
-										'desc'  => __('Control which input fields your users have to fill in, which are unique and which mandatory', 'liquidflux'),
-										'options' => 
-											array( 
-												'opt' => 
-													array(
-														// Menu Background 
-														array(
-															'f' => array( $this, 'create'),
-															'o' => array(  
-																array(
-																	'type'        => 'user',
-																	'title'       => 'Profile Managment',
-																	'description' => 'Manage what fields users have to fill in',
-																	'array'       => 'main_options',
-																	'name'        => 'user_profile',
-																	'saved'       => 
-																		array(
-																			'field_counter' => 1,
-																			'field' => 
-																				array(
-																					array(
-																						'name'           => 'Some sName',
-																						'description'    => 'Description',
-																						'not_unique'     => 'The Text for not unique',
-																						'character_type' => 'some_value',
-																						'unique'         => 'yes',
-																						'required' 		 => 'yes'
-																					),
-																					array(
-																						'name'           => 'Some Name',
-																						'description'    => 'Description',
-																						'not_unique'     => 'The Text for not unique',
-																						'character_type' => 'some_value',
-																						'unique'         => 'yes',
-																						'required' 		 => 'yes'
-																					)))
-																))),
-													)))
-												)),
+						// // Navigation
+						// array( 
+						// 	'f' => array( $this, 'pop'),
+						// 	'o'	=>	
+						// 		array(
+						// 			array( 
+						// 				'id' => 'profile_managment',
+						// 				'title' => __('Profile Managment', 'liquidflux'),
+						// 				'page'  => 'whitewhale',
+						// 				'desc'  => __('Control which input fields your users have to fill in, which are unique and which mandatory', 'liquidflux'),
+						// 				'options' => 
+						// 					array( 
+						// 						'opt' => 
+						// 							array(
+						// 								// Menu Background 
+						// 								array(
+						// 									'f' => array( $this, 'create'),
+						// 									'o' => array(  
+						// 										array(
+						// 											'type'        => 'user',
+						// 											'title'       => 'Profile Managment',
+						// 											'description' => 'Manage what fields users have to fill in',
+						// 											'array'       => 'main_options',
+						// 											'name'        => 'user_profile',
+						// 											'saved'       => 
+						// 												array(
+						// 													'field_counter' => 1,
+						// 													'field' => 
+						// 														array(
+						// 															array(
+						// 																'name'           => 'Some sName',
+						// 																'description'    => 'Description',
+						// 																'not_unique'     => 'The Text for not unique',
+						// 																'character_type' => 'some_value',
+						// 																'unique'         => 'yes',
+						// 																'required' 		 => 'yes'
+						// 															),
+						// 															array(
+						// 																'name'           => 'Some Name',
+						// 																'description'    => 'Description',
+						// 																'not_unique'     => 'The Text for not unique',
+						// 																'character_type' => 'some_value',
+						// 																'unique'         => 'yes',
+						// 																'required' 		 => 'yes'
+						// 															)))
+						// 										))),
+						// 							)))
+						// 						)),
 						// Page setups
 						array( 
 							'f' => array( $this, 'pop'),
@@ -93,58 +93,94 @@
 								array(
 									array( 
 										'id' => 'page_choices',
-										'title' => __('Page Choices', 'liquidflux'),
+										'title' => __('Ticketing', 'liquidflux'),
 										'page'  => 'whitewhale',
-										'desc'  => __('Setup up the page layout choices for default pages', 'liquidflux'),
+										'desc'  => __('Set ticketing expiery date and other options', 'liquidflux'),
 										'options' => 
 											array( 
 												'opt' => 
-													array(
-														// Home Page
-														array(
-															'f' => array( $this, 'create'),
-															'o' => array(  
-																array(
-																	'type'        => 'text',
-																	'title'       => 'Home',
-																	'description' => 'Chose which page to set as home',
-																	'array'       => 'main_options',
-																	'name'        => 'home_page',
-																	'saved'       => '' )) ),
-														// Archive page
+													array(																												
+														// Number of days to add to expected deliver
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(
 																array(
-																	'type'        => 'text',
-																	'title'       => 'Archive',
-																	'description' => 'Archive pages display post under certain categories and tags',
+																	'type'        => 'slider',
+																	'title'       => 'Number Of Days To Expected Deliver',
+																	'description' => 'Change how many days you are willing to wait for pedning tickets, till a delivery is considered expired',
 																	'array'       => 'main_options',
-																	'name'        => 'archive_page',
-																	'saved'       => '' )) ),
-														// Search
+																	'name'        => 'expiery_wait',
+																	'saved'       => 10,
+																	'min'         => 1,
+																	'max'   	  => 364,
+																	'value'       => ' day/s',
+																	'step'        => 1 )) ),	
+														// Pending color
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(
 																array(
-																	'type'        => 'text',
-																	'title'       => 'Search',
-																	'description' => 'Your search page displays results of anything a visitor may search for',
+																	'type'        => 'color',
+																	'title'       => 'Pending Color',
+																	'description' => 'Set the label color for pending tickets',
 																	'array'       => 'main_options',
-																	'name'        => 'search_page',
-																	'saved'       => '' )) ),
-														// not found page
+																	'name'        => 'pending_color',
+																	'saved'       => '651709' )) ),
+														// Complete Color
 														array(
 															'f' => array( $this, 'create'),
 															'o' => array(
 																array(
-																	'type'        => 'text',
-																	'title'       => 'Not Found',
-																	'description' => 'This page will show up whenever a visitor searches for something which does not exists',
+																	'type'        => 'color',
+																	'title'       => 'Successful Color',
+																	'description' => 'Set the label color for tickets which were paid for',
 																	'array'       => 'main_options',
-																	'name'        => '404_page',
-																	'saved'       => '' )) ),
-
+																	'name'        => 'complete_color',
+																	'saved'       => '34B27D' )) ),
+														// Waiting for response
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Waiting For Response Color',
+																	'description' => 'Set the label color for tickets which are waiting for a response on the updated state form the user',
+																	'array'       => 'main_options',
+																	'name'        => 'waiting_color',
+																	'saved'       => 'B24734' )) ),
+														// Returned Books
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Returned Color',
+																	'description' => 'Set the label color for tickets whose books have been returned',
+																	'array'       => 'main_options',
+																	'name'        => 'returned_color',
+																	'saved'       => '146543' )) ),
+														// Expired books 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Expired Color',
+																	'description' => 'Set the label color for tickets which have expired',
+																	'array'       => 'main_options',
+																	'name'        => 'expired_color',
+																	'saved'       => '64FEBD' )) ),
+														// Awaiting return 
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Awaiting Return Color',
+																	'description' => 'Set the label color for tickets which are waiting to be returned',
+																	'array'       => 'main_options',
+																	'name'        => 'waiting_return_color',
+																	'saved'       => '35494C' )) ),
 													)))
 												))
 				));

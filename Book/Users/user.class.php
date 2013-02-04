@@ -152,23 +152,17 @@ class branch_users_database extends branch_users_style
 		return $data_type;
 	}
 
+	public function get_users ()
+	{
+		$creator = new table_creator;
+		return $creator->get_all_rows_from_table($this->params['manifestation']['create_table']['name']);
+	}
+
 	public function get_user ($column_to_get_by, $value_to_get_by)
 	{
 		$creator = new table_creator;
 
 		return $creator->get_row($this->params['manifestation']['create_table']['name'], $column_to_get_by, $value_to_get_by );
-	}
-
-
-
-
-	/**
-	 * May be obsolete 
-	 * Creates the page which was defined, perhaps wait and replace wiht branch_admin one or 
-	 */
-	public function create_page ()
-	{
-		multi($this->params['manifestation']);
 	}
 
 }

@@ -17,14 +17,16 @@ var alpha = (function ( alpha, $ ) {
 
 					var response_text = $(response.responseText).css({ opacity : 0 });
 
-					current_click.element
-					.addClass('open_ticket')
-					.text("Cancel Ticket")
-					.after(response_text)
-					.next().animate({ opacity : 1 }, 400 );
+					current_click.element.addClass('open_ticket').text("Cancel Ticket").after(response_text).next().animate({ opacity : 1 }, 400 );
 
-					alpha.search_though_amazon_for_a_book.prototype
-					.basket({ basket : '.ticket_basket', holder : '.basket_hold', quote : '.quote' });
+					alpha.search_though_amazon_for_a_book.prototype.intitialize({ 
+						wrap     : '.ticket_create_ticket',
+						basket   : '.ticket_basket', 
+						holder   : '.basket_hold', 
+						quote    : '.quote',
+						book     : '.ticket_book',
+						complete : '.complete'
+					});
 				},
 				dataType : 'json'
 			});
@@ -38,16 +40,22 @@ var alpha = (function ( alpha, $ ) {
 			search_by    = (alpha._is_number(typed_value)? instructions.numerical_search : 'keywords' ),
 			klass        = this.prototype;
 		
-		current_click.element.text('Searching...');
+			current_click.element.text('Searching...');
 
-		$.post(
-			ajaxurl,
-			{ action : instructions.action, paramaters : { typed : typed_value, search_by : search_by, search_for : instructions.search_for, filter_name : instructions.filter_by }},
-			function (response) { 
-				klass.display(response, instructions.book_wrap);
-				current_click.element.text('Search');
-			},
-			'json');
+			$.post(
+				ajaxurl,
+				{ action : instructions.action, paramaters : { typed : typed_value, search_by : search_by, search_for : instructions.search_for, filter_name : instructions.filter_by }},
+				function (response) { 
+					klass.display(response, instructions.book_wrap);
+					current_click.element.text('Search');
+				},
+				'json');
+	};
+
+	alpha.search_though_amazon_for_a_book.prototype.intitialize = function (passed) { 
+
+		this.basket(passed);
+		this.basket.prototype.hide_or_show_complete_button();
 	};
 
 	alpha.search_though_amazon_for_a_book.prototype.display = function (books, book_wrap) { 
@@ -58,14 +66,8 @@ var alpha = (function ( alpha, $ ) {
 	
 			book_wrap.fadeOut(400,
 			function () {
-				
 				$(this).empty();
-
-					$.each(books_to_display, 
-					function (index, book) {
-						book.manifest(book_wrap);
-					});
-
+				$.each(books_to_display, function (index, book) { book.manifest(book_wrap); });
 				$(this).fadeIn(400);
 			});
 	};	
@@ -92,10 +94,10 @@ var alpha = (function ( alpha, $ ) {
 							'<img src="'+ this.image +'">'+
 						'</div>'+
 						'<div class="ticket_book_details">'+
-							'<span class="ticket_book_detail">Title: <strong>'+  this.title  +'</strong></span>'+
+							'<span class="ticket_book_detail">Title: <strong>' + this.title  +'</strong></span>'+
 							'<span class="ticket_book_detail">Author: <strong>'+ this.author +'</strong></span>'+
-							'<span class="ticket_book_detail">ISBN: <strong>'+   this.isbn   +'</strong></span>'+
-							'<div class="ticket_quoted_ammount"><span class="we_quote">We Quote</span><span class="quote">£'+( this.lowest / 100 ) +'</span></div>'+
+							'<span class="ticket_book_detail">ISBN: <strong>'  + this.isbn   +'</strong></span>'+
+							'<div class="ticket_quoted_ammount"><span class="we_quote">We Quote</span><span class="quote">£'+ ( this.lowest / 100 ) +'</span></div>'+
 						'</div>'+
 						'</div>';
 
@@ -121,44 +123,104 @@ var alpha = (function ( alpha, $ ) {
 		return price_to_cut;
 	};
 
-	alpha.search_though_amazon_for_a_book.prototype.basket = function (elements_of_the_basket) { 
+	alpha.search_though_amazon_for_a_book.prototype.basket = function (elements) { 
 
-		this.basket.prototype.store          = new Object;		
-		this.basket.prototype.quote          = new Number;	
-		this.basket.prototype.element 		 = new Object; 
-		this.basket.prototype.element.basket = $( elements_of_the_basket.basket );
-		this.basket.prototype.element.holder = this.basket.prototype.element.basket.find(elements_of_the_basket.holder);
-		this.basket.prototype.element.quote  = this.basket.prototype.element.basket.find(elements_of_the_basket.quote);
+		this.basket.prototype.store            = new Object;		
+		this.basket.prototype.quote            = new Number;	
+		this.basket.prototype.element 		   = new Object; 
+		this.basket.prototype.element.wrap     = $( elements.wrap ); 
+		this.basket.prototype.element.basket   = this.basket.prototype.element.wrap.find(elements.basket);
+		this.basket.prototype.element.holder   = this.basket.prototype.element.basket.find(elements.holder);
+		this.basket.prototype.element.quote    = this.basket.prototype.element.basket.find(elements.quote);
+		this.basket.prototype.element.book     = this.basket.prototype.element.wrap.find(elements.book); 
+		this.basket.prototype.element.complete = this.basket.prototype.element.wrap.find(elements.complete); 
 
-		this.basket.prototype.complete_ticket = function () { 
 
-			var the_basket = alpha.search_though_amazon_for_a_book.prototype.basket.prototype;
+		this.basket.prototype.hide_or_show_complete_button = function () { 
 
-				var books = new Array;
-					$.each(the_basket.store, 
-						function (id, item) {
+			this.quote > 0? this.element.complete.fadeIn(400) : this.element.complete.fadeOut(400);
+		};
 
-							books.push({  
-								title  : item.title,
-								author : item.author,
-								quote  : item.lowest,
-								isbn   : item.isbn
-							});		
-					});
+		this.basket.prototype.complete_ticket_on_admin_side = function () { 
 
-				if ( the_basket.quote > 0 ) {
+			var basket = alpha.search_though_amazon_for_a_book.prototype.basket.prototype,
+				ticket = new Object;				
+
+				$.get( 
+					ajaxurl, 
+					{ action : 'show_users_for_ticket' },
+					function (users) {
+
+						var select_user_box = basket.select_user(users);
+
+						$(select_user_box)
+						.append('<div data-function-to-call="search_though_amazon_for_a_book.prototype.basket.prototype.create_ticket_from_admin" id="use_user" class="button">Complete</div>')
+						.appendTo(basket.element.wrap);
+					}, 
+					'json');
+		};
+
+		this.basket.prototype.create_ticket_from_admin = function (current_click) { 							
+
+			var basket = alpha.search_though_amazon_for_a_book.prototype.basket.prototype,
+				ticket = {
+					books   : basket.prepare_books_for_ticket(basket.store),
+					by_user : $('.ticket_user').val(),
+					quote   : basket.quote,
+					status  : $('.ticket_set_status').val()
+				};
+
+			$.post(
+				ajaxurl,
+				{ action : 'complete_ticket', ticket : ticket },
+				function (response) {
 					
-					$.post(
-						ajaxurl,
-						{ 
-							action : 'complete_ticket', 
-							quote  : the_basket.quote,
-							books  : books
-						},
-						function () {},
-						'json'
-					);
-				}
+					current_click.element.parent().fadeOut(400, function () { $(this).empty().remove(); });
+					$.jGrowl(response.message, { header : response.header, speed: 400, sticky : true });
+				},
+				'json');
+		};
+
+		this.basket.prototype.prepare_books_for_ticket = function (basket_books) { 
+
+			var books = new Array;
+
+				$.each(basket_books, 
+				function (id, item) {
+					books.push({  
+						title  : item.title,
+						author : item.author,
+						quote  : item.lowest,
+						isbn   : item.isbn
+					});		
+				});
+
+				return books;
+		};
+
+		this.basket.prototype.select_user = function (users) { 
+
+			var select_box = 
+					'<div class="ticket_select_user_box">'+ 
+					'<span>Set Ticket Status</span>'+
+					'<select class="ticket_set_status">'+
+						'<option value="pending">Pending</option>'+
+						'<option value="awaiting_return">Awaiting Return</option>'+
+						'<option value="complete">Complete</option>'+
+						'<option value="returned">Returned Books</option>'+
+						'<option value="expired">Expired</option>'+	
+						'<option value="awaiting_response">Awaiting Response</option>'+	
+					'</select>'+
+					'<span>Assign Ticket To User</span>'+
+					'<select class="ticket_user">';
+
+				$.each(users, 
+				function (key, user) { 
+
+					select_box += '<option value="'+ user.id +'"> User of id : '+ user.id +'</option>';						
+				});
+
+				return select_box += '</select></div>';
 		};
 
 		this.basket.prototype.update  = function (value_to_insert) { 
@@ -168,14 +230,24 @@ var alpha = (function ( alpha, $ ) {
 				this.store[time] = value_to_insert;
 				this.manifest(value_to_insert, time);
 				this.update_quote();
+				this.hide_or_show_complete_button();
+		};
+		
+		this.basket.prototype.remove_item  = function (paramaters) { 
+
+			var basket = alpha.search_though_amazon_for_a_book.prototype.basket.prototype;
+			
+				delete( basket.store[paramaters.instructions.id]);
+				basket.element.holder.find('#'+ paramaters.instructions.id ).fadeOut(400, function () { $(this).empty().remove(); } );
+				basket.update_quote();
+				basket.hide_or_show_complete_button();
 		};
 
 		this.basket.prototype.update_quote = function () { 
 
 			var new_quote = 0; 
 
-				$.each(
-					this.store, 
+				$.each( this.store, 
 				function (item_id, item) { 
 					new_quote = new_quote + parseInt(item.lowest, 10); 
 				}); 
@@ -184,14 +256,6 @@ var alpha = (function ( alpha, $ ) {
 				this.element.quote.text('£ '+ (this.quote / 100 ));
 		};
 
-		this.basket.prototype.remove_item  = function (paramaters) { 
-
-			var basket = alpha.search_though_amazon_for_a_book.prototype.basket.prototype;
-			
-				delete( basket.store[paramaters.instructions.id]);
-				basket.element.holder.find('#'+ paramaters.instructions.id ).fadeOut(400, function () { $(this).empty().remove(); } );
-				basket.update_quote();
-		};
 
 		this.basket.prototype.manifest = function (value_to_insert, id_of_item) { 
 

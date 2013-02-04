@@ -14,7 +14,7 @@ return array(
 						),
 						array(
 							'column_name'    => 'date_expected',
-							'data_type'      => 'DATE',
+							'data_type'      => 'INT',
 							'auto_increment' => false,
 							'unique'         => false
 						),
@@ -60,6 +60,11 @@ return array(
 				array(
 					'f' => 'add_action',
 					'o' => array('wp_ajax_complete_ticket', array($this, 'prepare_books_ticket' ) ) 
+				),
+				// hook into ticket display creation 
+				array(
+					'f' => 'add_action',
+					'o' => array('wp_ajax_show_users_for_ticket', array($this, 'users_for_ticket' ) ) 
 				),
 				// Create Menu page
 				array(

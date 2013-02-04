@@ -168,25 +168,25 @@
 
 			slider : function ( opt ) {
 
-				var input = $('#' + opt.input);
-				var display = input.prev();
+				var input      = $('#' + opt.input);
+				var display    = input.prev();
 				var inputvalue = input.val();
 
-					$('#' + opt.slider ).slider({
-						range: "min",
-						value: [ inputvalue ],
-						min: opt.min,
-						max: opt.max,
-						step: 2,
-						create: function ( event, slider ) {
-							slider.value = inputvalue;
-							display.text(slider.value + opt.value);
-						},
-						slide: function ( event, slider ) {
-							var value = slider.value;
-							input.val(value);
-							display.text(value + opt.value);
-						}
+				$('#' + opt.slider ).slider({
+					range : "min",
+					value : [ inputvalue ],
+					min   : opt.min,
+					max   : opt.max,
+					step  : opt.step,
+					create: function ( event, slider ) {
+						slider.value = inputvalue;
+						display.text(slider.value + opt.value);
+					},
+					slide: function ( event, slider ) {
+						var value = slider.value;
+						input.val(value);
+						display.text(value + opt.value);
+					}
 				});
 			}
 		};

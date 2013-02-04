@@ -1,9 +1,9 @@
-
 .ticket_labels_guide { 
 
 	display: inline-block;
 	float: left;
 	margin: 20px 5px 20px 50px;
+	padding: 10px 0;
 
 	.ticket_label_guide { 
 
@@ -28,8 +28,47 @@
 			float: left;
 			font-size: 12px; 
 			line-height: 12px; 
-			font-style: italic;
+			text-decoration: underline;
 		}
+	}
+}
+
+.ticket_select_user_box { 
+
+	display   : block;
+	float     : left;
+	position  : absolute;
+	width     : 20%;
+	margin    : 20px 38%;
+	padding   : 20px 1%;
+	background: #fff;
+	border: 1px solid #eee;
+	@include border-radius(5px); 
+	@include single-box-shadow( rgba(0,0,0, 0.2), 1px, 1px, 1px );
+	
+	span { 
+
+		display: block;
+		clear: both;
+		font-weight: bold; 
+		margin: 10px 0 5px;
+	}
+
+	select { 
+
+		width: 98%;
+		padding: 3px 1%;
+		margin-bottom: 20px;
+		display: block;
+		clear: both;
+	}
+
+	.button { 
+
+		text-align: center;
+		width: 35%;
+		padding: 0 2.5%;
+		margin: 0 30%;
 	}
 }
 
@@ -201,15 +240,15 @@
 
 .ticket_button { 
 
-	background: #eee;
-	color: #999;  
-	margin: 5px 5px 0;
-	padding: 10px 15px;
-	font-style: italic;
-	font-size: 12px;
-	display: inline-block;
-	float: left;
-	cursor: pointer;
+	background : #eee;
+	color      : #999;  
+	margin     : 5px 5px 0;
+	padding    : 10px 15px;
+	font-style : italic;
+	font-size  : 12px;
+	display    : inline-block;
+	float      : left;
+	cursor     : pointer;
 		
 	&:active { 
 
@@ -220,9 +259,9 @@
 .create_ticket_button { 
 
 	@extend .ticket_button; 
-	float: right;
-	display: inline-block;
-	margin: 20px 50px; 
+	float   : right;
+	display : inline-block;
+	margin  : 20px 50px;
 }
 
 .tickets_tabs { 
