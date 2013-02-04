@@ -1079,6 +1079,32 @@
   text-align: center;
 }
 /* line 344, sass/Imports/admin/_ticket.scss */
+.tickets .ticket_box .ticket_information_row .ticket_information .user_info, .tickets .ticket_box .ticket_information_row_button .ticket_information .user_info {
+  position: absolute;
+  display: block;
+  padding: 20px;
+  background: #eee;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+/* line 352, sass/Imports/admin/_ticket.scss */
+.tickets .ticket_box .ticket_information_row .ticket_information .user_info .user_field, .tickets .ticket_box .ticket_information_row_button .ticket_information .user_info .user_field {
+  clear: left;
+  background: #dfdfdf;
+  color: #999;
+  font-weight: bold;
+  margin: 0 5px 0 0px;
+  float: left;
+  display: inline;
+  text-align: left;
+}
+/* line 364, sass/Imports/admin/_ticket.scss */
+.tickets .ticket_box .ticket_information_row .ticket_information .user_info .user_info_field, .tickets .ticket_box .ticket_information_row_button .ticket_information .user_info .user_info_field {
+  display: inline;
+  float: left;
+}
+/* line 370, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_user_info, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info {
   display: block;
   float: left;
@@ -1089,15 +1115,15 @@
   opacity: 0.8;
   cursor: pointer;
 }
-/* line 355, sass/Imports/admin/_ticket.scss */
+/* line 381, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_user_info:hover, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info:hover {
   opacity: 1;
 }
-/* line 360, sass/Imports/admin/_ticket.scss */
+/* line 386, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_user_info:active, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info:active {
   margin: 12px 0 0;
 }
-/* line 366, sass/Imports/admin/_ticket.scss */
+/* line 392, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_status, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_status {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
@@ -1108,7 +1134,7 @@
   width: 35px;
   height: 35px;
 }
-/* line 376, sass/Imports/admin/_ticket.scss */
+/* line 402, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row_button {
   width: 10%;
 }

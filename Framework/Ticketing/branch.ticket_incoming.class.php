@@ -247,7 +247,7 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 			<?php foreach ($user_info as $field_name => $field_value): ?>
 
 				<div class="user_field"><?php echo ucwords(str_replace('_', ' ', $field_name )); ?>  </div>
-				<div class="user_info"> <?php echo $field_value; ?> </div>
+				<div class="user_info_field"> <?php echo $field_value; ?> </div>
 
 			<?php endforeach ?>
 

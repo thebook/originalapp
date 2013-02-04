@@ -318,16 +318,19 @@ var alpha = (function ( alpha, $ ) {
 
 		if ( current_click.element.hasClass('loaded_user') ) {
 
-			current_click.element.next().fadeOut(400, function () { $(this).empty().remove(); } );
+			current_click.element.removeClass('loaded_user').next().fadeOut(400, function () { $(this).empty().remove(); } );
 		}
 		else { 
+			
+			current_click.element.addClass('loaded_user');
 
 			$.get(
 				ajaxurl,
 				{ action : "get_user_info_for_ticket", id : current_click.instructions.user_id },
 				function (response) { 
 
-					console.log(response);
+					$(response).css({ opacity : 0 }).insertAfter(current_click.element);
+					current_click.element.next().animate({ opacity : 1 }, 400 );
 				},
 				'html');
 		}
