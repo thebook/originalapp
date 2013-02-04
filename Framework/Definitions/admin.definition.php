@@ -124,7 +124,7 @@
 																	'title'       => 'Pending Color',
 																	'description' => 'Set the label color for pending tickets',
 																	'array'       => 'main_options',
-																	'name'        => 'pending_color',
+																	'name'        => 'waiting_arrival_color',
 																	'saved'       => '651709' )) ),
 														// Complete Color
 														array(
@@ -146,7 +146,7 @@
 																	'title'       => 'Waiting For Response Color',
 																	'description' => 'Set the label color for tickets which are waiting for a response on the updated state form the user',
 																	'array'       => 'main_options',
-																	'name'        => 'waiting_color',
+																	'name'        => 'awaiting_response_color',
 																	'saved'       => 'B24734' )) ),
 														// Returned Books
 														array(
@@ -179,7 +179,7 @@
 																	'title'       => 'Awaiting Return Color',
 																	'description' => 'Set the label color for tickets which are waiting to be returned',
 																	'array'       => 'main_options',
-																	'name'        => 'waiting_return_color',
+																	'name'        => 'awaiting_return_color',
 																	'saved'       => '35494C' )) ),
 													)))
 												))

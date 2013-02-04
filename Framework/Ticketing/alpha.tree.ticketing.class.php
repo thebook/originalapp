@@ -10,10 +10,11 @@ abstract class alpha_tree_ticket
 
 	function __construct($ticket_definiton_path) 
 	{
-		$definition = ( include $ticket_definiton_path );
-		multi($definition);
+		$this->paramaters['manifestation'] = ( include $ticket_definiton_path );
 		
-		$this->create_ticketing_table($definition['table_creation']);
+		multi($this->paramaters['manifestation']);
+		
+		$this->create_ticketing_table($this->paramaters['manifestation']['table_creation']);
 	}
 
 	protected function create_ticketing_table ($table_paramaters)

@@ -1,6 +1,15 @@
 <?php 
 
 return array(
+		'ticket_types'   => 
+			array(
+				'waiting_arrival',
+				'complete',
+				'expired',
+				'returned',
+				'awaiting_return',
+				'awaiting_response'
+			),
 		'table_creation' => 
 			array(
 				'table_name' => 'incoming_books',
@@ -65,6 +74,16 @@ return array(
 				array(
 					'f' => 'add_action',
 					'o' => array('wp_ajax_show_users_for_ticket', array($this, 'users_for_ticket' ) ) 
+				),
+				// display tickets for specific type
+				array(
+					'f' => 'add_action',
+					'o' => array('wp_ajax_get_tickets', array($this, 'display_tickets' ) ) 
+				),
+				// get user info for a ticket
+				array(
+					'f' => 'add_action',
+					'o' => array('wp_ajax_get_user_info_for_ticket', array($this, 'get_user_info_of_ticket' ) ) 
 				),
 				// Create Menu page
 				array(

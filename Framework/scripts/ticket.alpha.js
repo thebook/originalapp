@@ -169,13 +169,14 @@ var alpha = (function ( alpha, $ ) {
 					quote   : basket.quote,
 					status  : $('.ticket_set_status').val()
 				};
+			
+			current_click.element.parent().fadeOut(400, function () { $(this).empty().remove(); });
 
 			$.post(
 				ajaxurl,
 				{ action : 'complete_ticket', ticket : ticket },
 				function (response) {
 					
-					current_click.element.parent().fadeOut(400, function () { $(this).empty().remove(); });
 					$.jGrowl(response.message, { header : response.header, speed: 400, sticky : true });
 				},
 				'json');
@@ -204,11 +205,11 @@ var alpha = (function ( alpha, $ ) {
 					'<div class="ticket_select_user_box">'+ 
 					'<span>Set Ticket Status</span>'+
 					'<select class="ticket_set_status">'+
-						'<option value="pending">Pending</option>'+
-						'<option value="awaiting_return">Awaiting Return</option>'+
+						'<option value="waiting_arrival">Waiting Arrival</option>'+
 						'<option value="complete">Complete</option>'+
 						'<option value="returned">Returned Books</option>'+
 						'<option value="expired">Expired</option>'+	
+						'<option value="awaiting_return">Awaiting Return</option>'+
 						'<option value="awaiting_response">Awaiting Response</option>'+	
 					'</select>'+
 					'<span>Assign Ticket To User</span>'+
@@ -266,6 +267,70 @@ var alpha = (function ( alpha, $ ) {
 				'<span data-function-to-call="search_though_amazon_for_a_book.prototype.basket.prototype.remove_item" data-function-instructions="{\'id\':\''+ id_of_item +'\'}" class="ticket_basket_remove_button">Remove Book</span>'+
 			'</div>').appendTo(this.element.holder);
 		};
+	};
+
+	alpha.ticket_tab = function (current_click) { 
+
+		var tickets_to_show = current_click.element.attr('id'),
+			tab 			= $('.ticket_window');
+
+		if ( !current_click.element.hasClass('tickets_loaded') ) {
+
+			current_click.element.addClass('tickets_loaded');
+
+			tab.css({ display : 'none' });
+
+			this.prototype.load(current_click); 
+		}
+		else { 
+
+			tab.css({ display : 'none' });
+			$('#window_of_'+ tickets_to_show).css({ display : 'block' });
+		}
+	};
+
+	alpha.ticket_tab.prototype.load = function (current_click) { 
+
+		var tickets_to_show = current_click.element.attr('id'),
+			old_text 	    = current_click.element.text();
+			
+			current_click.element.text("Loading...");
+
+		$.get(
+			ajaxurl,
+			{ action: 'get_tickets', tickets_to_show : tickets_to_show },
+			function (response) { 
+				
+				var parent = current_click.element.parent();
+
+					current_click.element.text(old_text);
+						parent.after(response);
+
+					if ( parent.attr('id') === 'window_of_'+ tickets_to_show ) { 
+												
+						parent.empty().remove();	
+					}																
+			},
+			'html');
+	};
+
+	alpha.get_ticket_user_info = function (current_click) { 
+
+		if ( current_click.element.hasClass('loaded_user') ) {
+
+			current_click.element.next().fadeOut(400, function () { $(this).empty().remove(); } );
+		}
+		else { 
+
+			$.get(
+				ajaxurl,
+				{ action : "get_user_info_for_ticket", id : current_click.instructions.user_id },
+				function (response) { 
+
+					console.log(response);
+				},
+				'html');
+		}
 	};
 
 	return alpha;

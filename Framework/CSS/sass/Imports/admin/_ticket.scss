@@ -29,6 +29,7 @@
 			font-size: 12px; 
 			line-height: 12px; 
 			text-decoration: underline;
+			
 		}
 	}
 }
@@ -287,6 +288,15 @@
 
 	display: block;
 	clear: both;
+	
+	.ticket_overall_wrap { 
+
+		.ticket_button { 
+
+			float: right;
+			margin: 0 20px 20px 5px;
+		}
+	}
 
 	.ticket_box { 
 
@@ -335,7 +345,7 @@
 
 					display: block;
 					float: left;
-					height: 3px;
+					height: 10px;
 					width: 100%;
 					margin: 10px 0 0;
 					background: #2478A8; 
@@ -353,19 +363,12 @@
 					}
 				}
 
-				.ticket_pending { 
+				.ticket_status { 
 
 					@include border-radius(25px);
 					margin: 0 auto; 				
 					width:  35px;
 					height: 35px;
-					background: #CB4D4D;
-				}
-
-				.ticket_not_pending { 
-
-					@extend .ticket_pending;
-					background: #34B27D; 
 				}
 			}
 		}

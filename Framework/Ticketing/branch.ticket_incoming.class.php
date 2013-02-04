@@ -82,58 +82,32 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 		<div class="tickets_all">
 
 			<div class="ticket_labels_guide">
-				
-				<span class="ticket_label_guide">
-					<span style="background-color: #<?php echo $global_admin_options_white_whale['pending_color']; ?>" class="ticket_circle"></span><span class="ticket_label_description"> : Pending,</span>
-				</span>
 
-				<span class="ticket_label_guide">
-					<span style="background-color: #<?php echo $global_admin_options_white_whale['complete_color']; ?>" class="ticket_circle"></span><span class="ticket_label_description"> : Complete,</span>
-				</span>
+				<?php foreach ($this->paramaters['manifestation']['ticket_types'] as $ticket_type): ?>
+					
+					<span class="ticket_label_guide">
+						<span style="background-color: #<?php echo $global_admin_options_white_whale[$ticket_type.'_color']; ?>" class="ticket_circle"></span><span class="ticket_label_description"> : <?php echo ucwords(str_replace('_', ' ', $ticket_type )); ?>,</span>
+					</span>
 
-				<span class="ticket_label_guide">
-					<span style="background-color: #<?php echo $global_admin_options_white_whale['waiting_color']; ?>" class="ticket_circle"></span><span class="ticket_label_description"> : Waiting For Response,</span>
-				</span>
-
-				<span class="ticket_label_guide">
-					<span style="background-color: #<?php echo $global_admin_options_white_whale['returned_color']; ?>" class="ticket_circle"></span><span class="ticket_label_description"> : Returned,</span>
-				</span>
-
-				<span class="ticket_label_guide">
-					<span style="background-color: #<?php echo $global_admin_options_white_whale['expired_color']; ?>" class="ticket_circle"></span><span class="ticket_label_description"> : Expired,</span>
-				</span>
-
-				<span class="ticket_label_guide">
-					<span style="background-color: #<?php echo $global_admin_options_white_whale['waiting_return_color']; ?>" class="ticket_circle"></span><span class="ticket_label_description"> : Awaiting Return,</span>
-				</span>
+				<?php endforeach; ?>
 				
 			</div>
 
 			<div class="create_ticket_button" data-function-to-call="open_ticket_in_admin">Create Ticket</div>
 
-			<?php $this->_initialise_tickets(); ?>
+			<?php $tickets = $this->get_and_sort_tickets(); ?>
 
 			<div class="tickets">
 
 				<div class="tickets_tabs">
 					
-					<?php foreach ($this->paramaters['tickets'] as $ticket_type => $tickets ): ?>
+					<?php foreach ($tickets as $ticket_type => $ticket ): ?>
 
-						<div class="ticket_tab"><?php echo ucwords(str_replace('_', ' ', $ticket_type )); ?></div>
-
-					<?php endforeach ?>
-
-				</div>
-
-				<div class="ticket_overall_wrap">
-
-					<?php foreach ($this->paramaters['tickets'] as $ticket): ?>
-						
-						<?php $this->_display_tickets($ticket); ?>
+						<div data-function-to-call="ticket_tab" id="<?php echo $ticket_type; ?>" class="ticket_tab"><?php echo ucwords(str_replace('_', ' ', $ticket_type )); ?></div>
 
 					<?php endforeach; ?>
 
-				</div>
+				</div>		
 				
 			</div>
 
@@ -143,13 +117,41 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 
 <?php }
 
-	protected function _initialise_tickets ()
+	public function get_and_sort_tickets ()
 	{
-		$tickets = $this->get_all_tickets();
-		$this->paramaters['tickets']['all']     = $this->_display_all_tickets($tickets);
-		$this->paramaters['tickets']['pending'] = $this->_return_specific_tickets('pending', $tickets);
-		$this->paramaters['tickets']['complete']= $this->_return_specific_tickets('complete', $tickets);
+		$get_tickets    = $this->get_all_tickets();
+		$tickets        = array();
+		$tickets['all'] = $this->_display_all_tickets($get_tickets);
+
+		foreach ($this->paramaters['manifestation']['ticket_types'] as $type) {
+
+			$tickets[$type] = $this->_return_specific_tickets($type, $get_tickets);
+		}
+
+		return $tickets;
 	}
+
+	public function display_tickets ()
+	{ ?>
+
+		<?php $get_tickets = $this->get_and_sort_tickets(); ?>
+
+
+		<div id="window_of_<?php echo $_GET['tickets_to_show']; ?>"class="ticket_overall_wrap ticket_window">
+			
+			<div data-function-to-call="ticket_tab.prototype.load" id="<?php echo $_GET['tickets_to_show']; ?>" class="ticket_button">Reload</div>
+			
+			<?php foreach ($get_tickets[$_GET['tickets_to_show']] as $ticket ): ?>
+				
+				<?php $this->_display_ticket($ticket); ?>
+
+			<?php endforeach; ?>
+
+		</div>
+
+		<?php exit; ?>
+
+<?php }
 
 	protected function _display_all_tickets ($tickets)
 	{		
@@ -184,14 +186,16 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 	}
 
 	protected function _format_ticket ($ticket, $time)
-	{
+	{	
+		global $global_admin_options_white_whale;
+
 		return array(
 			array(
 				'name'  => 'Ticket ID',
 				'value' => $ticket['ticket_id'] ),
 			array(
 				'name'  => 'Status',
-				'value' => ( $ticket['status'] === 'pending'? '<div class="ticket_pending"></div>' : '<div class="ticket_not_pending"></div>' ) ),
+				'value' => "<div style=\"background-color: #". $global_admin_options_white_whale[$ticket['status'].'_color'] .";\" class='ticket_status'></div>" ),
 			array(
 				'name'  => 'Started On',
 				'value' => $ticket['date_created'] ),
@@ -200,20 +204,13 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 				'value' => ( $ticket['date_expected'] - round($time->calculate_total_number_of_days(date('Y-m-d'), '-')) ) . ' days' ),
 			array(
 				'name'  => 'Created By',
-				'value' =>  "User Id: {$ticket['by_user']}<div class=\"ticket_user_info\"></div>" ),
+				'value' =>  "User Id: {$ticket['by_user']}<div data-function-to-call=\"get_ticket_user_info\" data-function-instructions=\"{'user_id': '{$ticket['by_user']}'}\"class=\"ticket_user_info\"></div>" ),
 			array(
 				'name'  => 'Books Expected',
 				'value' => '' ));
 	}
 
-	protected function _display_tickets ($tickets)
-	{
-		foreach ($tickets as $ticket) {
-			$this->_ticket($ticket);
-		}
-	}
-
-	protected function _ticket ($ticket)
+	protected function _display_ticket ($ticket)
 	{ ?>
 
 		<div class="ticket_box">
@@ -221,7 +218,6 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 			<div class="ticket_information_row_button">
 
 				<div data-function-to-call="invoke" data-function-instructions="{ 'path' : 'stuff' }" class="button">Update Ticket</div>
-
 			</div>
 
 			<?php foreach ( $ticket as $ticket_column ): ?>
@@ -240,11 +236,11 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 
 <?php }
 
-	protected function _get_user_attached_to_ticket ($user_id)
+	public function get_user_info_of_ticket ()
 	{ ?> 
 		<?php global $user; ?>
 
-		<?php $user_info = $user->get_user('id', $user_id ); ?>
+		<?php $user_info = $user->get_user('id', $_GET['id'] ); ?>
 		
 		<div class="user_info">
 
@@ -256,6 +252,8 @@ class branch_ticket_books_bought extends alpha_tree_ticket
 			<?php endforeach ?>
 
 		</div>
+
+		<?php exit; ?>
 
 <?php }
 }

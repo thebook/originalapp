@@ -1,10 +1,10 @@
-/* line 11, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 11, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-video-wrap {
   height: 0;
   position: relative;
   overflow: hidden;
 }
-/* line 17, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 17, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-video-wrap iframe, .lf-shortcode-video-wrap .layout-builder .layoutbuiler-iframe-overlay, .layout-builder .lf-shortcode-video-wrap .layoutbuiler-iframe-overlay, .lf-shortcode-video-wrap object, .lf-shortcode-video-wrap embed {
   height: 100%;
   width: 100%;
@@ -13,14 +13,14 @@
   left: 0;
 }
 
-/* line 26, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 26, sass/Imports/parts/_shortcodes.scss */
 .lf-youtube-video {
   width: 100%;
   float: left;
   display: block;
 }
 
-/* line 40, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-default, .lf-shortcode-button-large-default, .lf-shortcode-button-small-default {
   color: #222222;
   padding: 14px;
@@ -44,7 +44,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-default:hover, .lf-shortcode-button-large-default:hover, .lf-shortcode-button-small-default:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dedede));
   background: -webkit-linear-gradient(top, #ffffff, #dedede);
@@ -53,17 +53,17 @@
   background: linear-gradient(top, #ffffff, #dedede);
 }
 
-/* line 56, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-default {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-default {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-pink, .lf-shortcode-button-large-pink, .lf-shortcode-button-small-pink {
   color: white;
   padding: 14px;
@@ -87,7 +87,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-pink:hover, .lf-shortcode-button-large-pink:hover, .lf-shortcode-button-small-pink:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eb6085), color-stop(100%, #e21c51));
   background: -webkit-linear-gradient(top, #eb6085, #e21c51);
@@ -96,17 +96,17 @@
   background: linear-gradient(top, #eb6085, #e21c51);
 }
 
-/* line 56, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-pink {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-pink {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-yellow, .lf-shortcode-button-large-yellow, .lf-shortcode-button-small-yellow {
   color: white;
   padding: 14px;
@@ -130,7 +130,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-yellow:hover, .lf-shortcode-button-large-yellow:hover, .lf-shortcode-button-small-yellow:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffd87d), color-stop(100%, #ffc131));
   background: -webkit-linear-gradient(top, #ffd87d, #ffc131);
@@ -139,17 +139,17 @@
   background: linear-gradient(top, #ffd87d, #ffc131);
 }
 
-/* line 56, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-yellow {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-yellow {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-blue, .lf-shortcode-button-large-blue, .lf-shortcode-button-small-blue {
   color: white;
   padding: 14px;
@@ -173,7 +173,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-blue:hover, .lf-shortcode-button-large-blue:hover, .lf-shortcode-button-small-blue:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aededb), color-stop(100%, #78c8c3));
   background: -webkit-linear-gradient(top, #aededb, #78c8c3);
@@ -182,17 +182,17 @@
   background: linear-gradient(top, #aededb, #78c8c3);
 }
 
-/* line 56, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-blue {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-blue {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-red, .lf-shortcode-button-large-red, .lf-shortcode-button-small-red {
   color: white;
   padding: 14px;
@@ -216,7 +216,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-red:hover, .lf-shortcode-button-large-red:hover, .lf-shortcode-button-small-red:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f36767), color-stop(100%, #ed2121));
   background: -webkit-linear-gradient(top, #f36767, #ed2121);
@@ -225,17 +225,17 @@
   background: linear-gradient(top, #f36767, #ed2121);
 }
 
-/* line 56, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-red {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-red {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-green, .lf-shortcode-button-large-green, .lf-shortcode-button-small-green {
   color: white;
   padding: 14px;
@@ -259,7 +259,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-green:hover, .lf-shortcode-button-large-green:hover, .lf-shortcode-button-small-green:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #82c088), color-stop(100%, #52a45b));
   background: -webkit-linear-gradient(top, #82c088, #52a45b);
@@ -268,17 +268,17 @@
   background: linear-gradient(top, #82c088, #52a45b);
 }
 
-/* line 56, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-green {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-green {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-black, .lf-shortcode-button-large-black, .lf-shortcode-button-small-black {
   color: white;
   padding: 14px;
@@ -302,7 +302,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-black:hover, .lf-shortcode-button-large-black:hover, .lf-shortcode-button-small-black:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #292929), color-stop(100%, #050505));
   background: -webkit-linear-gradient(top, #292929, #050505);
@@ -311,17 +311,17 @@
   background: linear-gradient(top, #292929, #050505);
 }
 
-/* line 56, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-black {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-black {
   padding: 7px 14px;
 }
 
-/* line 40, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 40, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-gray, .lf-shortcode-button-large-gray, .lf-shortcode-button-small-gray {
   color: #222222;
   padding: 14px;
@@ -345,7 +345,7 @@
   -moz-box-shadow: 1px 1px 2px 0px 0px 5px black;
   box-shadow: 1px 1px 2px 0px 0px 5px black;
 }
-/* line 51, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 51, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-medium-gray:hover, .lf-shortcode-button-large-gray:hover, .lf-shortcode-button-small-gray:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eaeaea), color-stop(100%, #c4c4c4));
   background: -webkit-linear-gradient(top, #eaeaea, #c4c4c4);
@@ -354,17 +354,17 @@
   background: linear-gradient(top, #eaeaea, #c4c4c4);
 }
 
-/* line 56, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 56, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-large-gray {
   padding: 21px 28px;
 }
 
-/* line 62, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 62, sass/Imports/parts/_shortcodes.scss */
 .lf-shortcode-button-small-gray {
   padding: 7px 14px;
 }
 
-/* line 93, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 93, sass/Imports/parts/_shortcodes.scss */
 .alert-box-red {
   color: #7a0a0a;
   padding: 14px;
@@ -378,7 +378,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 93, sass/Imports/parts/_shortcodes.scss */
 .alert-box-gray {
   color: #7f7f7f;
   padding: 14px;
@@ -392,7 +392,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 93, sass/Imports/parts/_shortcodes.scss */
 .alert-box-yellow {
   color: #a67400;
   padding: 14px;
@@ -406,7 +406,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 93, sass/Imports/parts/_shortcodes.scss */
 .alert-box-blue {
   color: #35817d;
   padding: 14px;
@@ -420,7 +420,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 93, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 93, sass/Imports/parts/_shortcodes.scss */
 .alert-box-green {
   color: #244828;
   padding: 14px;
@@ -434,7 +434,7 @@
   box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 122, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 122, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-half, .lf-column-size-last-half {
   width: 47.5%;
   display: inline;
@@ -442,12 +442,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 129, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-half {
   margin: 0 0 43px;
 }
 
-/* line 122, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 122, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-third, .lf-column-size-last-third {
   width: 30%;
   display: inline;
@@ -455,12 +455,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 129, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-third {
   margin: 0 0 43px;
 }
 
-/* line 122, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 122, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-quarter, .lf-column-size-last-quarter {
   width: 21.25%;
   display: inline;
@@ -468,12 +468,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 129, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-quarter {
   margin: 0 0 43px;
 }
 
-/* line 122, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 122, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-standard-sixth, .lf-column-size-last-sixth {
   width: 12.5%;
   display: inline;
@@ -481,12 +481,12 @@
   margin: 0 5% 34px 0;
 }
 
-/* line 129, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 129, sass/Imports/parts/_shortcodes.scss */
 .lf-column-size-last-sixth {
   margin: 0 0 43px;
 }
 
-/* line 149, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 149, sass/Imports/parts/_shortcodes.scss */
 .tog-lf {
   width: 100%;
   float: left;
@@ -495,7 +495,7 @@
   -moz-box-shadow: 0px 0px 5px 0 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 5px 0 1px 1px rgba(0, 0, 0, 0.1);
 }
-/* line 155, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 155, sass/Imports/parts/_shortcodes.scss */
 .tog-lf .tog-lf-ti {
   width: 93%;
   display: block;
@@ -510,17 +510,17 @@
   border-radius: 2px;
   cursor: pointer;
 }
-/* line 166, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 166, sass/Imports/parts/_shortcodes.scss */
 .tog-lf .tog-lf-ti:hover {
   border: 1px solid #e7e7e7;
 }
-/* line 171, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 171, sass/Imports/parts/_shortcodes.scss */
 .tog-lf .tog-lf-c {
   margin: 1px 14px 0 0;
   height: 16px;
   float: left;
 }
-/* line 178, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 178, sass/Imports/parts/_shortcodes.scss */
 .tog-lf .lf-tog-p {
   padding: 21px 2.5%;
   float: left;
@@ -530,13 +530,13 @@
   border-right: 1px solid #f1f1f1;
 }
 
-/* line 191, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 191, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf {
   width: 100%;
   float: left;
   margin: 28px 0 0;
 }
-/* line 197, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 197, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf {
   width: 100%;
   float: none;
@@ -544,13 +544,13 @@
   margin: 0;
   *zoom: 1;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .tab-wrap-lf .tab-head-lf:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 205, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 205, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf li {
   display: inline;
   float: left;
@@ -558,7 +558,7 @@
   z-index: 5;
   margin-bottom: -1px;
 }
-/* line 217, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 217, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf .tab-chosen-li-lf a {
   padding-top: 15px;
   margin: 1px 5px 0 0;
@@ -572,7 +572,7 @@
   -o-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
 }
-/* line 228, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 228, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf a {
   display: block;
   padding: 14px 21px;
@@ -586,31 +586,31 @@
   background-color: #f4f4f4;
   cursor: pointer;
 }
-/* line 242, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 242, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-head-lf a:hover {
   border-top: 1px solid #e7e7e7;
   border-right: 1px solid #e7e7e7;
   border-left: 1px solid #e7e7e7;
 }
-/* line 251, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 251, sass/Imports/parts/_shortcodes.scss */
 .tab-wrap-lf .tab-box-lf {
   width: 95%;
   padding: 21px 2.5%;
   border: 1px solid #f1f1f1;
 }
 
-/* line 260, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_shortcodes.scss */
+/* line 260, sass/Imports/parts/_shortcodes.scss */
 .tab-close-lf {
   left: -10000px;
   position: absolute;
 }
 
-/* line 12, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 12, sass/Imports/parts/_lightbox.scss */
 .lbLoading {
   background: <?php echo '#' . $o['post_background']; ?> url(wp-content/themes/WhiteWhale/Framework/CSS/Includes/Images/loading.gif) no-repeat center;
 }
 
-/* line 16, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 16, sass/Imports/parts/_lightbox.scss */
 #lbOverlay {
   position: fixed;
   z-index: 9999;
@@ -622,14 +622,14 @@
   cursor: pointer;
 }
 
-/* line 27, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 27, sass/Imports/parts/_lightbox.scss */
 #lbCenter, #lbBottomContainer {
   position: absolute;
   z-index: 9999;
   overflow: hidden;
   background-color: <?php echo '#' . $o['post_background']; ?>;
 }
-/* line 33, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 33, sass/Imports/parts/_lightbox.scss */
 #lbCenter #lbImage, #lbBottomContainer #lbImage {
   position: absolute;
   left: 0;
@@ -637,7 +637,7 @@
   border: 10px solid <?php echo '#' . $o['post_background']; ?>;
   background-repeat: no-repeat;
 }
-/* line 41, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 41, sass/Imports/parts/_lightbox.scss */
 #lbCenter #lbPrevLink, #lbBottomContainer #lbPrevLink, #lbCenter #lbNextLink, #lbBottomContainer #lbNextLink {
   display: block;
   position: absolute;
@@ -646,12 +646,12 @@
   outline: none;
   left: 0;
 }
-/* line 50, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 50, sass/Imports/parts/_lightbox.scss */
 #lbCenter #lbNextLink, #lbBottomContainer #lbNextLink {
   right: 0;
 }
 
-/* line 59, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 59, sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom {
   font-size: 11px;
   color: inherit;
@@ -659,7 +659,7 @@
   text-align: left;
   padding: 5px 10px 10px 10px;
 }
-/* line 67, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 67, sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbCloseLink {
   display: block;
   float: right;
@@ -667,22 +667,22 @@
   vertical-align: baseline;
   color: inherit;
 }
-/* line 73, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 73, sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbCloseLink:before {
   font-size: 20px;
   line-height: 20px;
   content: "k";
 }
-/* line 80, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 80, sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbNumber, #lbBottomContainer #lbBottom #lbCaption {
   margin: 0  71px 0 7px;
 }
-/* line 84, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_lightbox.scss */
+/* line 84, sass/Imports/parts/_lightbox.scss */
 #lbBottomContainer #lbBottom #lbCaption {
   font-style: italic;
 }
 
-/* line 4, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_amazon.scss */
+/* line 4, sass/Imports/admin/_amazon.scss */
 .book_display_cover {
   clear: both;
   display: block;
@@ -691,38 +691,38 @@
   border-bottom: 1px solid #eee;
   *zoom: 1;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .book_display_cover:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 13, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_amazon.scss */
+/* line 13, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_image {
   width: 25%;
   margin-right: 2.5%;
   float: left;
   display: inline-block;
 }
-/* line 20, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_amazon.scss */
+/* line 20, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_image img {
   width: 100%;
   height: auto;
 }
-/* line 27, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_amazon.scss */
+/* line 27, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_details_cover {
   width: 70%;
   float: right;
   display: inline-block;
 }
-/* line 33, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_amazon.scss */
+/* line 33, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_details_cover .book_display_title {
   font-size: 15px;
   margin: 10px 0;
   color: #222;
   clear: both;
 }
-/* line 41, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_amazon.scss */
+/* line 41, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_details_cover .book_display_author, .book_display_cover .book_display_details_cover .book_display_binding, .book_display_cover .book_display_details_cover .book_display_rrp, .book_display_cover .book_display_details_cover .book_display_lowest, .book_display_cover .book_display_details_cover .book_display_isbn, .book_display_cover .book_display_details_cover .book_display_weight, .book_display_cover .book_display_details_cover .book_display_dimensions {
   font-style: italic;
   color: #999;
@@ -730,31 +730,31 @@
   font-size: 12px;
   clear: both;
 }
-/* line 50, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_amazon.scss */
+/* line 50, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_details_cover .book_display_binding, .book_display_cover .book_display_details_cover .book_display_rrp, .book_display_cover .book_display_details_cover .book_display_lowest, .book_display_cover .book_display_details_cover .book_display_isbn, .book_display_cover .book_display_details_cover .book_display_weight, .book_display_cover .book_display_details_cover .book_display_dimensions {
   color: #222;
   margin: 5px;
   font-style: normal;
 }
-/* line 58, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_amazon.scss */
+/* line 58, sass/Imports/admin/_amazon.scss */
 .book_display_cover .book_display_details_cover .book_display_rrp, .book_display_cover .book_display_details_cover .book_display_lowest, .book_display_cover .book_display_details_cover .book_display_isbn, .book_display_cover .book_display_details_cover .book_display_weight, .book_display_cover .book_display_details_cover .book_display_dimensions {
   font-weight: bold;
 }
 
-/* line 1, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 1, sass/Imports/admin/_ticket.scss */
 .ticket_labels_guide {
   display: inline-block;
   float: left;
   margin: 20px 5px 20px 50px;
   padding: 10px 0;
 }
-/* line 8, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 8, sass/Imports/admin/_ticket.scss */
 .ticket_labels_guide .ticket_label_guide {
   margin: 0 15px 0 0;
   float: left;
   display: inline-block;
 }
-/* line 14, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 14, sass/Imports/admin/_ticket.scss */
 .ticket_labels_guide .ticket_label_guide .ticket_circle {
   width: 20px;
   height: 20px;
@@ -768,16 +768,16 @@
   float: left;
   margin: 0 5px 0 0;
 }
-/* line 25, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 25, sass/Imports/admin/_ticket.scss */
 .ticket_labels_guide .ticket_label_guide .ticket_label_description {
   margin: 4px 0 4px 5px;
   float: left;
   font-size: 12px;
   line-height: 12px;
-  font-style: italic;
+  text-decoration: underline;
 }
 
-/* line 36, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 37, sass/Imports/admin/_ticket.scss */
 .ticket_select_user_box {
   display: block;
   float: left;
@@ -796,14 +796,14 @@
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 49, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 50, sass/Imports/admin/_ticket.scss */
 .ticket_select_user_box span, .ticket_select_user_box .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .ticket_select_user_box .lf-admin-post-meta-td-checkbox-label, .ticket_select_user_box .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .ticket_select_user_box .lf-admin-td-checkbox-label, .ticket_select_user_box .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .ticket_select_user_box .layout-builder-options-td-checkbox-label {
   display: block;
   clear: both;
   font-weight: bold;
   margin: 10px 0 5px;
 }
-/* line 57, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 58, sass/Imports/admin/_ticket.scss */
 .ticket_select_user_box select {
   width: 98%;
   padding: 3px 1%;
@@ -811,7 +811,7 @@
   display: block;
   clear: both;
 }
-/* line 66, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 67, sass/Imports/admin/_ticket.scss */
 .ticket_select_user_box .button {
   text-align: center;
   width: 35%;
@@ -819,7 +819,7 @@
   margin: 0 30%;
 }
 
-/* line 75, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 76, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket {
   width: 95%;
   padding: 0 0 20px;
@@ -828,14 +828,14 @@
   margin: 10px 2.5% 20px;
   border-bottom: 2px solid #000;
 }
-/* line 84, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 85, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_search {
   width: 30%;
   padding: 5px 1.5%;
   display: inline-block;
   float: right;
 }
-/* line 91, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 92, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_search .ticket_search_label {
   margin: 0 0 10px;
   font-size: 12px;
@@ -843,7 +843,7 @@
   float: left;
   display: block;
 }
-/* line 100, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 101, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_search .ticket_input {
   width: 98%;
   padding: 5px 1%;
@@ -854,7 +854,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 108, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 109, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_search .ticket_button, .ticket_create_ticket .ticket_search .create_ticket_button, .ticket_create_ticket .ticket_search .tickets_tabs .ticket_tab, .tickets_tabs .ticket_create_ticket .ticket_search .ticket_tab {
   width: 95%;
   clear: both;
@@ -863,18 +863,18 @@
   opacity: 0.8;
   margin: 10px 0;
 }
-/* line 117, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 118, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_search .ticket_button:active, .ticket_create_ticket .ticket_search .create_ticket_button:active, .ticket_create_ticket .ticket_search .tickets_tabs .ticket_tab:active, .tickets_tabs .ticket_create_ticket .ticket_search .ticket_tab:active {
   opacity: 1;
 }
-/* line 124, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 125, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_book {
   width: 30%;
   padding: 5px 1.5%;
   display: inline-block;
   float: right;
 }
-/* line 131, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 132, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_book .ticket_book_wrap {
   width: 100%;
   float: left;
@@ -882,34 +882,34 @@
   display: block;
   margin-top: 30px;
 }
-/* line 139, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 140, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_thumbnail {
   width: 45%;
   float: left;
 }
-/* line 144, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 145, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_thumbnail img {
   width: 100%;
   height: auto;
 }
-/* line 151, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 152, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_details {
   width: 50%;
   margin-left: 5%;
   float: left;
 }
-/* line 156, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 157, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_details .ticket_book_detail, .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_details .ticket_quoted_ammount {
   display: block;
   float: left;
   clear: both;
   margin: 0 0 10px;
 }
-/* line 164, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 165, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_details .ticket_quoted_ammount {
   margin: 10px 0;
 }
-/* line 169, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 170, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_details .ticket_quoted_ammount .we_quote {
   background: #eee;
   color: #999;
@@ -917,37 +917,37 @@
   margin-right: 5px;
   font-style: italic;
 }
-/* line 178, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 179, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_details .ticket_quoted_ammount .quote {
   font-size: 18px;
   font-weight: bold;
 }
-/* line 185, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 186, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_details .ticket_button, .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_details .create_ticket_button, .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_details .tickets_tabs .ticket_tab, .tickets_tabs .ticket_create_ticket .ticket_book .ticket_book_wrap .ticket_book_details .ticket_tab {
   margin: 10px 0 20px 0;
   clear: both;
 }
-/* line 194, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 195, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_basket {
   width: 30%;
   padding: 5px 1.5%;
   display: inline-block;
   float: right;
 }
-/* line 201, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 202, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_basket .ticket_basket_book {
   margin: 0 0 15px 0;
   float: left;
   display: block;
 }
-/* line 207, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 208, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_basket .ticket_basket_book .ticket_basket_book_name {
   background: #eee;
   padding: 5px;
   float: left;
   margin: 0 3px 3px;
 }
-/* line 215, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 216, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_basket .ticket_basket_book .ticket_basket_remove_button {
   padding: 5px 5px 3px;
   font-size: 10px;
@@ -958,17 +958,17 @@
   margin: 0 0 3px 5px;
   cursor: pointer;
 }
-/* line 226, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 227, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_basket .ticket_basket_book .ticket_basket_remove_button:active {
   margin-top: 2px;
 }
-/* line 233, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 234, sass/Imports/admin/_ticket.scss */
 .ticket_create_ticket .ticket_basket .ticket_button, .ticket_create_ticket .ticket_basket .create_ticket_button, .ticket_create_ticket .ticket_basket .tickets_tabs .ticket_tab, .tickets_tabs .ticket_create_ticket .ticket_basket .ticket_tab {
   clear: both;
   margin-left: 0px;
 }
 
-/* line 241, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 242, sass/Imports/admin/_ticket.scss */
 .ticket_button, .create_ticket_button, .tickets_tabs .ticket_tab {
   background: #eee;
   color: #999;
@@ -980,48 +980,53 @@
   float: left;
   cursor: pointer;
 }
-/* line 253, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 254, sass/Imports/admin/_ticket.scss */
 .ticket_button:active, .create_ticket_button:active, .tickets_tabs .ticket_tab:active {
   -webkit-box-shadow: inset 1px 1px 1px 0 rgba(128, 128, 128, 0.1);
   -moz-box-shadow: inset 1px 1px 1px 0 rgba(128, 128, 128, 0.1);
   box-shadow: inset 1px 1px 1px 0 rgba(128, 128, 128, 0.1);
 }
 
-/* line 259, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 260, sass/Imports/admin/_ticket.scss */
 .create_ticket_button {
   float: right;
   display: inline-block;
   margin: 20px 50px;
 }
 
-/* line 267, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 268, sass/Imports/admin/_ticket.scss */
 .tickets_tabs {
   display: block;
   margin: 20px 0 20px 20px;
   *zoom: 1;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .tickets_tabs:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 273, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 274, sass/Imports/admin/_ticket.scss */
 .tickets_tabs .ticket_tab {
   padding: 15px;
   opacity: 0.8;
 }
-/* line 279, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 280, sass/Imports/admin/_ticket.scss */
 .tickets_tabs .ticket_tab:active {
   opacity: 1;
 }
 
-/* line 286, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 287, sass/Imports/admin/_ticket.scss */
 .tickets {
   display: block;
   clear: both;
 }
-/* line 291, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 294, sass/Imports/admin/_ticket.scss */
+.tickets .ticket_overall_wrap .ticket_button, .tickets .ticket_overall_wrap .create_ticket_button, .tickets .ticket_overall_wrap .tickets_tabs .ticket_tab, .tickets_tabs .tickets .ticket_overall_wrap .ticket_tab {
+  float: right;
+  margin: 0 20px 20px 5px;
+}
+/* line 301, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box {
   display: block;
   padding: 10px 20px;
@@ -1038,27 +1043,27 @@
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   *zoom: 1;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .tickets .ticket_box:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 303, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 313, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row, .tickets .ticket_box .ticket_information_row_button {
   display: inline-block;
   float: left;
   margin: 15px 0;
   width: 14%;
 }
-/* line 310, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 320, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .button, .tickets .ticket_box .ticket_information_row_button .button {
   margin: 10px;
   display: block;
   clear: both;
   text-align: center;
 }
-/* line 318, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 328, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information_type, .tickets .ticket_box .ticket_information_row_button .ticket_information_type {
   font-size: 12px;
   line-height: 12px;
@@ -1067,33 +1072,33 @@
   margin: 0 0 15px 0;
   padding: 5px 25px;
 }
-/* line 328, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 338, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information, .tickets .ticket_box .ticket_information_row_button .ticket_information {
   maring: 15px 0 0;
   padding: 0 25px;
   text-align: center;
 }
-/* line 334, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 344, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_user_info, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info {
   display: block;
   float: left;
-  height: 3px;
+  height: 10px;
   width: 100%;
   margin: 10px 0 0;
   background: #2478A8;
   opacity: 0.8;
   cursor: pointer;
 }
-/* line 345, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 355, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_user_info:hover, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info:hover {
   opacity: 1;
 }
-/* line 350, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 360, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_user_info:active, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info:active {
   margin: 12px 0 0;
 }
-/* line 356, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
-.tickets .ticket_box .ticket_information_row .ticket_information .ticket_pending, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_pending, .tickets .ticket_box .ticket_information_row .ticket_information .ticket_not_pending, .tickets .ticket_box .ticket_information_row_button .ticket_information_row .ticket_information .ticket_not_pending, .tickets .ticket_box .ticket_information_row .ticket_information_row_button .ticket_information .ticket_not_pending, .tickets .ticket_box .ticket_information_row .ticket_information_row_button .ticket_information .ticket_not_pending, .tickets .ticket_box .ticket_information_row_button .ticket_information_row .ticket_information .ticket_not_pending, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_not_pending {
+/* line 366, sass/Imports/admin/_ticket.scss */
+.tickets .ticket_box .ticket_information_row .ticket_information .ticket_status, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_status {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   -ms-border-radius: 25px;
@@ -1102,18 +1107,13 @@
   margin: 0 auto;
   width: 35px;
   height: 35px;
-  background: #CB4D4D;
 }
-/* line 365, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
-.tickets .ticket_box .ticket_information_row .ticket_information .ticket_not_pending, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_not_pending {
-  background: #34B27D;
-}
-/* line 373, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/admin/_ticket.scss */
+/* line 376, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row_button {
   width: 10%;
 }
 
-/* line 371, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 371, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker-open {
   width: 22px;
   height: 22px;
@@ -1129,7 +1129,7 @@
   background-color: transparent;
   cursor: pointer;
 }
-/* line 381, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 381, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker-open .colorpicker-handle {
   width: 8.8px;
   height: 8.8px;
@@ -1137,7 +1137,7 @@
   background: #363636;
 }
 
-/* line 389, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 389, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker {
   width: 390px;
   height: 180px;
@@ -1157,7 +1157,7 @@
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 403, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 403, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_color {
   width: 150px;
   height: 150px;
@@ -1168,7 +1168,7 @@
   overflow: hidden;
   cursor: crosshair;
 }
-/* line 414, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 414, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_color div {
   position: absolute;
   top: 0;
@@ -1177,7 +1177,7 @@
   height: 150px;
   background: url(../CSS/Includes/Images/colorpicker_overlay.png);
 }
-/* line 422, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 422, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_color div div {
   position: absolute;
   top: 0;
@@ -1194,7 +1194,7 @@
   -o-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 438, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 438, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hue {
   position: absolute;
   top: 15px;
@@ -1204,7 +1204,7 @@
   cursor: n-resize;
   background: url(../CSS/Includes/Images/hue.png) repeat-x;
 }
-/* line 447, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 447, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hue div {
   position: absolute;
   width: 8px;
@@ -1218,7 +1218,7 @@
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
 }
-/* line 462, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 462, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_new_color {
   position: absolute;
   width: 70px;
@@ -1227,7 +1227,7 @@
   top: 15px;
   background: #f00;
 }
-/* line 471, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 471, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_current_color {
   position: absolute;
   width: 70px;
@@ -1236,7 +1236,7 @@
   top: 15px;
   background: #fff;
 }
-/* line 316, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1244,12 +1244,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r {
   top: 57px;
   left: 213px;
 }
-/* line 327, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r span, .colorpicker .colorpicker_field.colorpicker_rgb_r .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_r .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_r .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_r .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_r .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_r .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1261,7 +1261,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r input {
   width: 35px;
   display: inline-block;
@@ -1279,7 +1279,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r:before {
   content: "r:";
   width: 10px;
@@ -1287,7 +1287,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 316, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1295,12 +1295,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g {
   top: 87px;
   left: 213px;
 }
-/* line 327, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g span, .colorpicker .colorpicker_field.colorpicker_rgb_g .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_g .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_g .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_g .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_g .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_g .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1312,7 +1312,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g input {
   width: 35px;
   display: inline-block;
@@ -1330,7 +1330,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g:before {
   content: "g:";
   width: 10px;
@@ -1338,7 +1338,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 316, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1346,12 +1346,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b {
   top: 117px;
   left: 213px;
 }
-/* line 327, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b span, .colorpicker .colorpicker_field.colorpicker_rgb_b .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_b .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_b .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_b .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_b .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_b .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1363,7 +1363,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b input {
   width: 35px;
   display: inline-block;
@@ -1381,7 +1381,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b:before {
   content: "b:";
   width: 10px;
@@ -1389,7 +1389,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 316, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1397,12 +1397,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h {
   top: 57px;
   left: 303px;
 }
-/* line 327, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h span, .colorpicker .colorpicker_field.colorpicker_hsb_h .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_h .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_h .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_h .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_h .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_h .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1414,7 +1414,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h input {
   width: 35px;
   display: inline-block;
@@ -1432,7 +1432,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h:before {
   content: "h:";
   width: 10px;
@@ -1440,7 +1440,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 316, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1448,12 +1448,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s {
   top: 87px;
   left: 303px;
 }
-/* line 327, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s span, .colorpicker .colorpicker_field.colorpicker_hsb_s .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_s .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_s .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_s .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_s .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_s .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1465,7 +1465,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s input {
   width: 35px;
   display: inline-block;
@@ -1483,7 +1483,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s:before {
   content: "s:";
   width: 10px;
@@ -1491,7 +1491,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 316, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1499,12 +1499,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b {
   top: 117px;
   left: 303px;
 }
-/* line 327, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b span, .colorpicker .colorpicker_field.colorpicker_hsb_b .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_b .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_b .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_b .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_b .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_b .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1516,7 +1516,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b input {
   width: 35px;
   display: inline-block;
@@ -1534,7 +1534,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b:before {
   content: "b:";
   width: 10px;
@@ -1542,7 +1542,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 488, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 488, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hex {
   position: absolute;
   width: 70px;
@@ -1550,7 +1550,7 @@
   left: 213px;
   top: 147px;
 }
-/* line 495, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 495, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hex input {
   margin: 0;
   padding: 2px;
@@ -1566,7 +1566,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 508, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 508, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_submit {
   position: absolute;
   width: 62px;
@@ -1581,7 +1581,7 @@
   top: 147px;
   overflow: hidden;
 }
-/* line 522, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 522, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_submit:before {
   content: "Use Color";
 }
@@ -1649,7 +1649,7 @@
   padding: 0 0 10px;
   border-bottom: 1px solid #eee;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-profile_managment:after {
   content: "";
   display: table;
@@ -1767,7 +1767,7 @@
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 94, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 94, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider {
   width: 43%;
   height: 10px;
@@ -1786,7 +1786,7 @@
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
-/* line 108, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 108, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider .ui-slider-handle {
   width: 16px;
   height: 16px;
@@ -1808,7 +1808,7 @@
   background: -o-linear-gradient(top, #f5f5f5, #eeeeee);
   background: linear-gradient(top, #f5f5f5, #eeeeee);
 }
-/* line 123, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 123, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider .ui-slider-range {
   height: 10px;
   -webkit-border-radius: 5px;
@@ -1820,17 +1820,17 @@
   position: absolute;
   z-index: 1;
 }
-/* line 133, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 133, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider-min, .lf-admin-post-meta-table .lf-admin-post-meta-td-slider-equal, .lf-admin-post-meta-table .lf-admin-post-meta-td-slider-value {
   float: left;
   clear: none;
   margin: 4px 0 0 5px;
 }
-/* line 139, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 139, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider-equal {
   margin: 4px 0;
 }
-/* line 145, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 145, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-post-meta-table .lf-admin-post-meta-td-slider-value {
   margin-left: 15px;
   padding: 0 10px;
@@ -1900,7 +1900,7 @@
   padding: 0 0 10px;
   border-bottom: 1px solid #eee;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .lf-admin-table .lf-admin-td-profile_managment:after {
   content: "";
   display: table;
@@ -2018,7 +2018,7 @@
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 94, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 94, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider {
   width: 43%;
   height: 10px;
@@ -2037,7 +2037,7 @@
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
-/* line 108, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 108, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider .ui-slider-handle {
   width: 16px;
   height: 16px;
@@ -2059,7 +2059,7 @@
   background: -o-linear-gradient(top, #f5f5f5, #eeeeee);
   background: linear-gradient(top, #f5f5f5, #eeeeee);
 }
-/* line 123, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 123, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider .ui-slider-range {
   height: 10px;
   -webkit-border-radius: 5px;
@@ -2071,24 +2071,24 @@
   position: absolute;
   z-index: 1;
 }
-/* line 133, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 133, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider-min, .lf-admin-table .lf-admin-td-slider-equal, .lf-admin-table .lf-admin-td-slider-value {
   float: left;
   clear: none;
   margin: 4px 0 0 5px;
 }
-/* line 139, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 139, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider-equal {
   margin: 4px 0;
 }
-/* line 145, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 145, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-table .lf-admin-td-slider-value {
   margin-left: 15px;
   padding: 0 10px;
   background-color: #dfdfdf;
 }
 
-/* line 6, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 6, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body {
   background-color: #f5f5f5;
   float: left;
@@ -2100,21 +2100,21 @@
   -o-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
 }
-/* line 15, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 15, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .nav {
   width: 20%;
   float: left;
   margin: 30px 0 20px;
 }
-/* line 21, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 21, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .nav ul {
   margin: 0 0 10px;
 }
-/* line 25, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 25, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .nav ul li {
   margin: 0;
 }
-/* line 29, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 29, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .nav ul li a {
   border-left: 1px solid   #dfdfdf;
   border-top: 1px solid    #dfdfdf;
@@ -2133,7 +2133,7 @@
   -moz-box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
   box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 42, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 42, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .nav ul li a.open-page {
   position: relative;
   left: 2px;
@@ -2142,7 +2142,7 @@
   border-color: #dfdfdf;
   background-color: #f5f5f5;
 }
-/* line 56, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 56, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .holder {
   width: 79%;
   float: left;
@@ -2159,14 +2159,14 @@
   box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
   padding: 20px 0 10px;
 }
-/* line 67, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 67, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-body .holder .content {
   width: 97.5%;
   padding-left: 2.5%;
   float: left;
   margin: 0 0 20px;
 }
-/* line 78, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 78, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header {
   width: 95%;
   float: left;
@@ -2180,35 +2180,35 @@
   -o-border-radius: 15px 15px 0 0;
   border-radius: 15px 15px 0 0;
 }
-/* line 88, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 88, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap {
   width: 80%;
   float: left;
   display: inline-block;
 }
-/* line 94, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 94, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap ul {
   clear: both;
 }
-/* line 98, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 98, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap ul li {
   display: inline;
   float: left;
 }
-/* line 105, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 105, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap span, .lf-admin-form .lf-admin-header .lf-admin-header-wrap .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-form .lf-admin-header .lf-admin-header-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-form .lf-admin-header .lf-admin-header-wrap .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-form .lf-admin-header .lf-admin-header-wrap .lf-admin-td-checkbox-label, .lf-admin-form .lf-admin-header .lf-admin-header-wrap .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .lf-admin-form .lf-admin-header .lf-admin-header-wrap .layout-builder-options-td-checkbox-label {
   float: left;
   margin: 24px 0 20px 10px;
   vertical-align: baseline;
 }
-/* line 112, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 112, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header .lf-admin-header-wrap h1 {
   font-size: 24px;
   margin: 20px 0;
   display: inline;
   float: left;
 }
-/* line 120, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 120, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header img {
   display: inline-block;
   float: right;
@@ -2221,7 +2221,7 @@
   -o-transition: all 400ms;
   transition: all 400ms false;
 }
-/* line 128, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 128, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-header img:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;
@@ -2231,7 +2231,7 @@
   -o-transition: all 400ms;
   transition: all 400ms false;
 }
-/* line 136, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 136, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-save {
   width: 95%;
   padding: 10px 2.5%;
@@ -2239,7 +2239,7 @@
   float: left;
   background-color: #363636;
 }
-/* line 144, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 144, sass/Imports/mixins/_adminstyle.scss */
 .lf-admin-form .lf-admin-save .lf-admin-button {
   -moz-box-sizing: content-box;
   border-radius: 11px 11px 11px 11px;
@@ -2256,17 +2256,17 @@
   padding: 5px 15px;
   margin-right: 10px;
 }
-/* line 54, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 54, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-form .lf-admin-save .lf-admin-button:hover {
   border-color: black;
 }
-/* line 58, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 58, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-admin-form .lf-admin-save .lf-admin-button:active {
   background: #282828;
   border-color: #282828;
 }
 
-/* line 6, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 6, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-body {
   background-color: #f5f5f5;
   float: left;
@@ -2278,21 +2278,21 @@
   -o-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
 }
-/* line 15, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 15, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-body .nav {
   width: 20%;
   float: left;
   margin: 30px 0 20px;
 }
-/* line 21, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 21, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-body .nav ul {
   margin: 0 0 10px;
 }
-/* line 25, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 25, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-body .nav ul li {
   margin: 0;
 }
-/* line 29, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 29, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-body .nav ul li a {
   border-left: 1px solid   #dfdfdf;
   border-top: 1px solid    #dfdfdf;
@@ -2311,7 +2311,7 @@
   -moz-box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
   box-shadow: -2px 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 42, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 42, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-body .nav ul li a.open-page {
   position: relative;
   left: 2px;
@@ -2320,7 +2320,7 @@
   border-color: #dfdfdf;
   background-color: #f5f5f5;
 }
-/* line 56, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 56, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-body .holder {
   width: 79%;
   float: left;
@@ -2337,14 +2337,14 @@
   box-shadow: -1px 1px 1px 0 rgba(217, 217, 217, 0.3);
   padding: 20px 0 10px;
 }
-/* line 67, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 67, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-body .holder .content {
   width: 97.5%;
   padding-left: 2.5%;
   float: left;
   margin: 0 0 20px;
 }
-/* line 78, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 78, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-header {
   width: 95%;
   float: left;
@@ -2358,35 +2358,35 @@
   -o-border-radius: 15px 15px 0 0;
   border-radius: 15px 15px 0 0;
 }
-/* line 88, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 88, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-header .lf-users-header-wrap {
   width: 80%;
   float: left;
   display: inline-block;
 }
-/* line 94, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 94, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-header .lf-users-header-wrap ul {
   clear: both;
 }
-/* line 98, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 98, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-header .lf-users-header-wrap ul li {
   display: inline;
   float: left;
 }
-/* line 105, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 105, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-header .lf-users-header-wrap span, .lf-users-form .lf-users-header .lf-users-header-wrap .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-users-form .lf-users-header .lf-users-header-wrap .lf-admin-post-meta-td-checkbox-label, .lf-users-form .lf-users-header .lf-users-header-wrap .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .lf-users-form .lf-users-header .lf-users-header-wrap .lf-admin-td-checkbox-label, .lf-users-form .lf-users-header .lf-users-header-wrap .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .lf-users-form .lf-users-header .lf-users-header-wrap .layout-builder-options-td-checkbox-label {
   float: left;
   margin: 24px 0 20px 10px;
   vertical-align: baseline;
 }
-/* line 112, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 112, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-header .lf-users-header-wrap h1 {
   font-size: 24px;
   margin: 20px 0;
   display: inline;
   float: left;
 }
-/* line 120, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 120, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-header img {
   display: inline-block;
   float: right;
@@ -2399,7 +2399,7 @@
   -o-transition: all 400ms;
   transition: all 400ms false;
 }
-/* line 128, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 128, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-header img:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;
@@ -2409,7 +2409,7 @@
   -o-transition: all 400ms;
   transition: all 400ms false;
 }
-/* line 136, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 136, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-save {
   width: 95%;
   padding: 10px 2.5%;
@@ -2417,7 +2417,7 @@
   float: left;
   background-color: #363636;
 }
-/* line 144, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_adminstyle.scss */
+/* line 144, sass/Imports/mixins/_adminstyle.scss */
 .lf-users-form .lf-users-save .lf-users-button {
   -moz-box-sizing: content-box;
   border-radius: 11px 11px 11px 11px;
@@ -2434,50 +2434,50 @@
   padding: 5px 15px;
   margin-right: 10px;
 }
-/* line 54, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 54, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-users-form .lf-users-save .lf-users-button:hover {
   border-color: black;
 }
-/* line 58, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 58, sass/Imports/mixins/_mixins.mixins.scss */
 .lf-users-form .lf-users-save .lf-users-button:active {
   background: #282828;
   border-color: #282828;
 }
 
-/* line 201, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 201, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl {
   position: absolute;
 }
 
-/* line 205, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 205, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl {
   position: fixed;
 }
-/* line 208, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 208, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl .highlight {
   font-weight: normal;
 }
-/* line 212, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 212, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.top-left {
   left: 0px;
   top: 40px;
 }
-/* line 217, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 217, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.top-right {
   right: 0px;
   top: 40px;
 }
-/* line 222, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 222, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.bottom-left {
   left: 0px;
   bottom: 0px;
 }
-/* line 227, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 227, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.bottom-right {
   right: 0px;
   bottom: 0px;
 }
-/* line 232, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 232, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.center {
   top: 0px;
   width: 50%;
@@ -2485,13 +2485,13 @@ body > div.jGrowl.jGrowl.center {
 }
 
 /** Cross Browser Styling **/
-/* line 246, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 246, sass/Imports/mixins/_mixins.mixins.scss */
 .center div .jGrowl-notification, .center div .jGrowl-closer {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 258, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 258, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification, .center div.jGrowl div.jGrowl-closer, div.jGrowl div.jGrowl-closer {
   zoom: 1;
   width: 235px;
@@ -2508,12 +2508,12 @@ div.jGrowl div.jGrowl-notification, .center div.jGrowl div.jGrowl-closer, div.jG
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 271, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 271, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification div.jGrowl-header, .center div.jGrowl div.jGrowl-closer div.jGrowl-header, div.jGrowl div.jGrowl-closer div.jGrowl-header {
   font-weight: bold;
   font-size: .85em;
 }
-/* line 276, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 276, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification div.jGrowl-close, .center div.jGrowl div.jGrowl-closer div.jGrowl-close, div.jGrowl div.jGrowl-closer div.jGrowl-close {
   z-index: 99;
   float: right;
@@ -2521,7 +2521,7 @@ div.jGrowl div.jGrowl-notification div.jGrowl-close, .center div.jGrowl div.jGro
   font-size: 1em;
   cursor: pointer;
 }
-/* line 286, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 286, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification div.jGrowl-message .seperate_notications, div.jGrowl div.jGrowl-closer div.jGrowl-message .seperate_notications {
   border-top: 1px solid #f5f5f5;
   clear: both;
@@ -2530,12 +2530,12 @@ div.jGrowl div.jGrowl-notification div.jGrowl-message .seperate_notications, div
   padding: 10px 0;
   margin: 5px 0;
 }
-/* line 297, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 297, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification:hover, .center div.jGrowl div.jGrowl-closer:hover, div.jGrowl div.jGrowl-closer:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
 }
-/* line 302, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 302, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-closer {
   min-height: 10px;
   padding-top: 4px;
@@ -2587,7 +2587,7 @@ div.jGrowl div.jGrowl-closer {
   right: 0;
   top: 0;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .layout_builder_body:after {
   content: "";
   display: table;
@@ -2614,7 +2614,7 @@ div.jGrowl div.jGrowl-closer {
   -moz-box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.2);
   box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.2);
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .layout-builder-options-box:after {
   content: "";
   display: table;
@@ -2693,7 +2693,7 @@ div.jGrowl div.jGrowl-closer {
   padding: 0 0 10px;
   border-bottom: 1px solid #eee;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .layout-builder-options-table .layout-builder-options-td-profile_managment:after {
   content: "";
   display: table;
@@ -2811,7 +2811,7 @@ div.jGrowl div.jGrowl-closer {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 94, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 94, sass/Imports/mixins/_mixins.mixins.scss */
 .layout-builder-options-table .layout-builder-options-td-slider {
   width: 43%;
   height: 10px;
@@ -2830,7 +2830,7 @@ div.jGrowl div.jGrowl-closer {
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
-/* line 108, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 108, sass/Imports/mixins/_mixins.mixins.scss */
 .layout-builder-options-table .layout-builder-options-td-slider .ui-slider-handle {
   width: 16px;
   height: 16px;
@@ -2852,7 +2852,7 @@ div.jGrowl div.jGrowl-closer {
   background: -o-linear-gradient(top, #f5f5f5, #eeeeee);
   background: linear-gradient(top, #f5f5f5, #eeeeee);
 }
-/* line 123, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 123, sass/Imports/mixins/_mixins.mixins.scss */
 .layout-builder-options-table .layout-builder-options-td-slider .ui-slider-range {
   height: 10px;
   -webkit-border-radius: 5px;
@@ -2864,17 +2864,17 @@ div.jGrowl div.jGrowl-closer {
   position: absolute;
   z-index: 1;
 }
-/* line 133, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 133, sass/Imports/mixins/_mixins.mixins.scss */
 .layout-builder-options-table .layout-builder-options-td-slider-min, .layout-builder-options-table .layout-builder-options-td-slider-equal, .layout-builder-options-table .layout-builder-options-td-slider-value {
   float: left;
   clear: none;
   margin: 4px 0 0 5px;
 }
-/* line 139, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 139, sass/Imports/mixins/_mixins.mixins.scss */
 .layout-builder-options-table .layout-builder-options-td-slider-equal {
   margin: 4px 0;
 }
-/* line 145, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_mixins.mixins.scss */
+/* line 145, sass/Imports/mixins/_mixins.mixins.scss */
 .layout-builder-options-table .layout-builder-options-td-slider-value {
   margin-left: 15px;
   padding: 0 10px;
@@ -2895,7 +2895,7 @@ div.jGrowl div.jGrowl-closer {
   z-index: 9;
   font-family: Georgia;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .layout-builder-options:after {
   content: "";
   display: table;
@@ -2910,7 +2910,7 @@ div.jGrowl div.jGrowl-closer {
   border-top: 1px solid #fff;
   border-bottom: 1px solid #dfdfdf;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .layout-builder-options .layout-builder-info-box:after {
   content: "";
   display: table;
@@ -2966,7 +2966,7 @@ div.jGrowl div.jGrowl-closer {
   background: -o-linear-gradient(top, #f5f5f5, #eeeeee);
   background: linear-gradient(top, #f5f5f5, #eeeeee);
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .layout-builder-options ul li:after {
   content: "";
   display: table;
@@ -2999,7 +2999,7 @@ div.jGrowl div.jGrowl-closer {
   z-index: 9999;
   font-family: sans-serif;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .layout-builder-save-options:after {
   content: "";
   display: table;
@@ -3033,7 +3033,7 @@ div.jGrowl div.jGrowl-closer {
   margin-right: 15px;
   *zoom: 1;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .layout-builder-save-options a:after {
   content: "";
   display: table;
@@ -3056,7 +3056,7 @@ div.jGrowl div.jGrowl-closer {
   box-shadow: 2px 0 5px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* line 1, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 1, sass/Imports/parts/_users_profile.scss */
 .users_profile_box {
   width: 88%;
   padding: 20px 5%;
@@ -3064,7 +3064,7 @@ div.jGrowl div.jGrowl-closer {
   display: inline-block;
   float: left;
 }
-/* line 10, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 10, sass/Imports/parts/_users_profile.scss */
 .users_profile_box .user_profile_toggle {
   background: #EEE;
   color: #999;
@@ -3076,19 +3076,19 @@ div.jGrowl div.jGrowl-closer {
   padding: 20px 1.5%;
   clear: both;
 }
-/* line 23, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 23, sass/Imports/parts/_users_profile.scss */
 .users_profile_box .user_profile_box_field_inner {
   display: block;
   float: left;
   width: 100%;
 }
-/* line 29, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 29, sass/Imports/parts/_users_profile.scss */
 .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split {
   width: 100%;
   float: left;
   display: block;
 }
-/* line 35, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 35, sass/Imports/parts/_users_profile.scss */
 .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field {
   marign: 5px 0;
   float: left;
@@ -3096,31 +3096,31 @@ div.jGrowl div.jGrowl-closer {
   width: 47%;
   margin: 10px 1.5%;
 }
-/* line 43, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 43, sass/Imports/parts/_users_profile.scss */
 .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input {
   width: 100%;
   clear: both;
   float: left;
   margin: 10px 0;
 }
-/* line 50, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 50, sass/Imports/parts/_users_profile.scss */
 .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc strong, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input strong {
   float: left;
   margin: 0 0 5px;
 }
-/* line 55, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 55, sass/Imports/parts/_users_profile.scss */
 .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc span, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input span, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-post-meta-td-checkbox-label, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-post-meta-td-checkbox-label, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .lf-admin-td-checkbox-label, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .lf-admin-td-checkbox-label, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_desc .layout-builder-options-td-checkbox-label, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input .layout-builder-options-td-checkbox-label {
   clear: both;
   float: left;
   font-style: italic;
   color: #999;
 }
-/* line 66, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 66, sass/Imports/parts/_users_profile.scss */
 .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input input, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input textarea, .users_profile_box .user_profile_box_field_inner .user_profile_box_field_split .user_profile_box_field .user_profile_input select {
   width: 100%;
 }
 
-/* line 76, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 76, sass/Imports/parts/_users_profile.scss */
 .profile_button, .user_profile_box_minimize, .user_profile_box_remove {
   background-color: #EEEEEE;
   color: #999999;
@@ -3137,7 +3137,7 @@ div.jGrowl div.jGrowl-closer {
   width: auto;
   display: block;
 }
-/* line 94, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 94, sass/Imports/parts/_users_profile.scss */
 .profile_button:active, .user_profile_box_minimize:active, .user_profile_box_remove:active {
   -webkit-box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
   -moz-box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
@@ -3145,7 +3145,7 @@ div.jGrowl div.jGrowl-closer {
   opacity: 1;
 }
 
-/* line 101, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 101, sass/Imports/parts/_users_profile.scss */
 .user_profile_box_minimize, .user_profile_box_remove {
   float: right;
   margin: 0px 3px 0;
@@ -3154,13 +3154,13 @@ div.jGrowl div.jGrowl-closer {
   font-size: 22px;
 }
 
-/* line 111, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users_profile.scss */
+/* line 111, sass/Imports/parts/_users_profile.scss */
 .user_profile_box_remove {
   font-size: 12px;
   margin: 0px 0px 0px 3px;
 }
 
-/* line 1, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 1, sass/Imports/parts/_users.scss */
 .profile_display_user {
   width: 98%;
   margin: 10px 2% 10px 0;
@@ -3175,19 +3175,19 @@ div.jGrowl div.jGrowl-closer {
   -o-border-radius: 3px 3px;
   border-radius: 3px 3px;
 }
-/* line 10, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 10, sass/Imports/parts/_users.scss */
 .profile_display_user .small_user_display {
   display: block;
   padding: 10px 20px;
   *zoom: 1;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .profile_display_user .small_user_display:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 16, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 16, sass/Imports/parts/_users.scss */
 .profile_display_user .small_user_display .small_user_field {
   width: 22%;
   margin: 10px 1.5%;
@@ -3195,14 +3195,14 @@ div.jGrowl div.jGrowl-closer {
   float: left;
   clear: none;
 }
-/* line 24, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 24, sass/Imports/parts/_users.scss */
 .profile_display_user .small_user_display .small_user_field .small_user_field_name {
   display: inline-block;
   float: left;
   margin: 0 5px 0 0;
   font-weight: bold;
 }
-/* line 36, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 36, sass/Imports/parts/_users.scss */
 .profile_display_user .small_user_display .small_user_controls {
   float: right;
   width: 22%;
@@ -3210,7 +3210,7 @@ div.jGrowl div.jGrowl-closer {
   display: inline-block;
   clear: none;
 }
-/* line 44, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 44, sass/Imports/parts/_users.scss */
 .profile_display_user .small_user_display .small_user_controls .small_user_edit, .profile_display_user .small_user_display .small_user_controls .small_user_save, .profile_display_user .small_user_display .small_user_controls .small_user_remove, .profile_display_user .small_user_display .small_user_controls .small_user_toggle {
   background: #dfdfdf;
   color: #999;
@@ -3220,42 +3220,42 @@ div.jGrowl div.jGrowl-closer {
   opacity: 0.8;
   cursor: pointer;
 }
-/* line 54, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 54, sass/Imports/parts/_users.scss */
 .profile_display_user .small_user_display .small_user_controls .small_user_edit:active, .profile_display_user .small_user_display .small_user_controls .small_user_save:active, .profile_display_user .small_user_display .small_user_controls .small_user_remove:active, .profile_display_user .small_user_display .small_user_controls .small_user_toggle:active {
   -webkit-box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
   -moz-box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
   box-shadow: inset 1px 1px 1px 0px rgba(128, 128, 128, 0.1);
   opacity: 1;
 }
-/* line 71, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 71, sass/Imports/parts/_users.scss */
 .profile_display_user .small_user_display .small_user_controls .small_user_toggle {
   font-size: 15px;
   width: 12px;
   text-align: center;
 }
-/* line 81, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 81, sass/Imports/parts/_users.scss */
 .profile_display_user .full_user_display {
   padding: 20px;
   *zoom: 1;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .profile_display_user .full_user_display:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 86, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 86, sass/Imports/parts/_users.scss */
 .profile_display_user .full_user_display .personal_field {
   *zoom: 1;
   margin: 0 0 20px;
 }
-/* line 38, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+/* line 38, ../../../../../../../../../../Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .profile_display_user .full_user_display .personal_field:after {
   content: "";
   display: table;
   clear: both;
 }
-/* line 91, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 91, sass/Imports/parts/_users.scss */
 .profile_display_user .full_user_display .personal_field .personal_field_name {
   margin: 0 5px 0 0;
   padding: 0 5px;
@@ -3264,12 +3264,12 @@ div.jGrowl div.jGrowl-closer {
   float: left;
   background: #dfdfdf;
 }
-/* line 102, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 102, sass/Imports/parts/_users.scss */
 .profile_display_user .full_user_display .personal_field .personal_field_text {
   margin: 0;
   display: inline-block;
 }
-/* line 107, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 107, sass/Imports/parts/_users.scss */
 .profile_display_user .full_user_display .personal_field .personal_field_editor {
   background: transparent;
   border: none;
@@ -3278,17 +3278,17 @@ div.jGrowl div.jGrowl-closer {
   padding: 0;
   border-bottom: 1px solid #222;
 }
-/* line 116, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 116, sass/Imports/parts/_users.scss */
 .profile_display_user .full_user_display .personal_field .personal_field_editor:focus {
   box-shadow: none;
 }
 
-/* line 126, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 126, sass/Imports/parts/_users.scss */
 .search_users_wrap {
   width: 98%;
   margin: 40px 2% 20px 0;
 }
-/* line 132, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 132, sass/Imports/parts/_users.scss */
 .search_users_wrap .search_users {
   width: 100%;
   -webkit-border-radius: 0px;
@@ -3304,7 +3304,7 @@ div.jGrowl div.jGrowl-closer {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   border-color: #dfdfdf;
 }
-/* line 142, C:/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/parts/_users.scss */
+/* line 142, sass/Imports/parts/_users.scss */
 .search_users_wrap .search_users:focus {
   -webkit-box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
