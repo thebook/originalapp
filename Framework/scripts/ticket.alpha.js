@@ -336,6 +336,74 @@ var alpha = (function ( alpha, $ ) {
 		}
 	};
 
+	alpha.check_books = function (current_click) { 
+
+		var books = current_click.instructions;
+			this.prototype.memory = this.prototype.sort_books_by_isbn(books);
+			this.prototype.parts = {};
+			this.prototype.parts.current_ticket_box = current_click.element.closest('.ticket_box'),
+			this.prototype.parts.display_books      = $(this.prototype.get_books(books)),
+			this.prototype.parts.input              = $('<input id="verify_books_search" type="text" value=""><div data-function-to-call="check_books.prototype.cross_out_book" class="ticket_button">Submit</div>'),
+
+			this.prototype.parts.current_ticket_box.css({ 'z-index' : '2', 'position' : 'relative' });
+
+			$('<div class="ticket_box_add_on"></div>').css({
+				'z-index'  : '0',
+				'position' : 'relative'
+			})
+			.append(this.prototype.parts.display_books)
+			.append(this.prototype.parts.input)
+			.insertAfter(this.prototype.parts.current_ticket_box);
+	};
+
+	alpha.check_books.prototype.get_books = function (books) { 
+
+		var books_element = 
+			'<div class="ticket_information_row">'+
+				'<div class="ticket_information_type">Books Expected</div>'+
+				'<div class="ticket_information">';
+
+			$.each(books,
+			function (index, book) { 
+
+				books_element += 
+					'<div class="books_for_ticket_verifying books_for_ticket">'+
+						'<div class="ticket_book_start_label '+ book.isbn +'">'+
+							book.isbn +
+						'</div>'+
+					'</div>';
+			});
+					
+			return books_element += '</div></div>';
+	};
+
+	alpha.check_books.prototype.sort_books_by_isbn = function (books) { 
+
+		var sorted_books = {};
+
+			$.each(books,
+			function (key, book) { 
+
+				( sorted_books[book.isbn]? sorted_books[book.isbn].push(book) : sorted_books[book.isbn] = [book] );
+			});
+
+		return sorted_books
+	};
+
+	alpha.check_books.prototype.cross_out_book = function () { 
+
+		var isbn  = $('#verify_books_search').val(),
+			klass = alpha.check_books.prototype,
+			ticked_book = klass.parts.display_books.find('.'+ isbn );
+			
+			if ( ticked_book.length > 0 ) {
+
+				( klass.memory[isbn].length > 1? klass.memory[isbn].pop() : delete klass.memory[isbn] );
+				
+				$(ticked_book[0]).css({ 'text-decoration' : 'line-through' }).removeClass(isbn);
+			}
+	};
+
 	return alpha;
 
 })(alpha || {}, jQuery );	

@@ -87,5 +87,4 @@ new tickets( FRAMEWORK .'/Definitions/ticket.definition.php');
 // 		'books_ordered'       => array('stuff', 'stufedy' )
 // 	));
 
-
 ?>

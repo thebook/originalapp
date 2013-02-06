@@ -136,7 +136,6 @@ class tickets extends branch_ticket
 
 		<?php $get_tickets = $this->get_and_sort_tickets(); ?>
 
-
 		<div id="window_of_<?php echo $_GET['tickets_to_show']; ?>"class="ticket_overall_wrap ticket_window">
 			
 			<div data-function-to-call="ticket_tab.prototype.load" id="<?php echo $_GET['tickets_to_show']; ?>" class="ticket_button">Reload</div>
@@ -152,8 +151,6 @@ class tickets extends branch_ticket
 		<?php exit; ?>
 
 <?php }
-
-	
 
 	protected function _display_ticket_status ($current_status)
 	{
@@ -191,7 +188,7 @@ class tickets extends branch_ticket
 		$books         = unserialize($books);
 		$return_string = ''; 
 
-		foreach ($books as $book) 
+		foreach ($books as $book)
 		{
 			$return_string .= "<div style=\"display : none;\" class=\"books_for_ticket\"><div class=\"ticket_book_start_label\"><span>Isbn: </span><strong>{$book['isbn']}</strong></div>";
 				$return_string .= "<div class=\"ticket_book_label\"><span>Title</span><i>{$book['title']}</i></div>";
@@ -228,29 +225,37 @@ class tickets extends branch_ticket
 		return $return_string;
 	}
 
+	protected function _verify_ticket_button ($ticket)
+	{
+		return str_replace('"', "'", json_encode(unserialize($ticket['books_ordered'])));
+	}
+
 	protected function _display_ticket ($ticket)
 	{ ?>
 
-		<div class="ticket_box">
+		<div class="ticket_box_wrap">
 
-			<div class="ticket_information_row">
+			<div class="ticket_box">
 
-				<div data-function-to-call="" data-function-instructions="" class="button">Update Ticket</div>
-
-			</div>
-
-			<?php foreach ( $ticket as $ticket_column ): ?>
-						
 				<div class="ticket_information_row">
 
-					<div class="ticket_information_type"><?php echo $ticket_column['name']; ?></div>
-
-					<div class="ticket_information"><?php echo $ticket_column['value']; ?></div>
+					<div data-function-to-call="check_books" data-function-instructions="<?php echo $this->_verify_ticket_button($ticket['ticket']); ?>" class="button">Verify Ticket</div>				
 
 				</div>
 
-			<?php endforeach; ?>
+				<?php foreach ( $ticket['formated'] as $ticket_column ): ?>
+							
+					<div class="ticket_information_row">
 
+						<div class="ticket_information_type"><?php echo $ticket_column['name']; ?></div>
+
+						<div class="ticket_information"><?php echo $ticket_column['value']; ?></div>
+
+					</div>
+
+				<?php endforeach; ?>
+
+			</div>
 		</div>
 
 <?php }

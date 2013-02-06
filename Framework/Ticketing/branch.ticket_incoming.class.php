@@ -21,7 +21,7 @@ abstract class branch_ticket extends alpha_tree_ticket
 
 		endforeach;
 
-		return $format;
+		return array('ticket' => $ticket, 'formated' => $format );
 	}
 
 	protected function _display_all_tickets ($tickets)

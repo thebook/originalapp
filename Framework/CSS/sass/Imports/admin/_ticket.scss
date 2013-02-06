@@ -298,15 +298,23 @@
 		}
 	}
 
+	.ticket_box_wrap { 
+
+		margin: 0 20px 20px;
+		display: block;
+		clear: both;
+		@include pie-clearfix;
+	}
+
 	.ticket_box { 
 
 		display: block;
 		padding: 10px 20px;
-		margin: 0 20px 20px; 
+		// margin: 0 20px 20px; 
 		background: #eee;
 		clear: both;
 		@include border-radius(5px 5px 1px 1px); 
-		@include single-box-shadow(rgba(0,0,0, 0.1), 1px, 1px, 1px );
+		@include single-box-shadow(rgba(0,0,0, 0.1), 1px, 2px, 1px );
 		@include pie-clearfix;
 		
 
@@ -453,5 +461,15 @@
 			width: 10%;
 		} 
 
+	}
+
+	.ticket_box_add_on { 
+
+		@extend .ticket_box;
+		@include border-radius(0px);
+		@include single-box-shadow( #fff, 0px, 0px, 0px);
+		width: 97%;
+		padding: 10px 1%;
+		margin: 0 0.5%;
 	}
 }
