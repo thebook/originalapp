@@ -58,6 +58,20 @@ var alpha = (function ( alpha, $ ) {
   		return !isNaN(parseFloat(number)) && isFinite(number);
 	};
 
+	alpha.show_or_hide_element = function (current_click) { 
+
+		var to_toggle = current_click.element.parent().find(current_click.instructions.elements_to_hide);
+
+		if ( current_click.element.hasClass(current_click.instructions.class_to_mark_as_hidden) ) { 
+			current_click.element.removeClass(current_click.instructions.class_to_mark_as_hidden);
+			to_toggle.show(400);
+		}
+		else { 
+			current_click.element.addClass(current_click.instructions.class_to_mark_as_hidden);
+			to_toggle.hide(400);
+		}
+	};
+
 	return alpha;
 
 })(alpha || {}, jQuery );

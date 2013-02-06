@@ -315,7 +315,7 @@
 			display: inline-block;
 			float: left;		
 			margin: 15px 0;
-			width: 14%;
+			width: 12.5%;
 			
 			.button { 
 
@@ -341,29 +341,77 @@
 				padding: 0 25px;
 				text-align: center;
 				
-				.user_info { 
+				.ticket_button { 
 
-					position: absolute;
-					display: block;
-					padding: 20px;
-					background: #eee;					
-					@include single-box-shadow( rgba(0,0,0, 0.2), 1px, 1px, 1px );					
+					margin: 0px;
+					background: #dfdfdf;
+					color: #999;
+					width: 90%;
+					padding: 5px 5%;
+				}
+				
+				.books_for_ticket { 
+
+					margin-bottom: 15px;
+					padding: 0 0 10px;
+					border-bottom: 2px solid #dfdfdf;
 					
-					.user_field { 
+					.ticket_book_start_label { 
 
-						clear: left;
-						background: #dfdfdf;
-						color: #999;
-						font-weight: bold;
-						margin: 0 5px 0 0px;
-						float: left;
-						display: inline;
-						text-align: left;  
+						margin-bottom: 5px;
 					}
 
-					.user_info_field { 
-						display: inline;
+					.ticket_book_label { 
+
+						margin-left: 10px;						
+						
+						span { 
+
+							background: #dfdfdf;
+							color: #999;
+						} 
+
+						i { 
+
+							font-size: 10px; 
+						}	
+					}
+				}
+
+				.user_ticket_id { 
+
+					width: 100%;
+					float: left;
+					margin-bottom: 10px;
+				}
+				
+				.user_info { 
+
+					display: block;
+					margin-top: 10px;
+					float: left;					
+					
+					.user_field_wrap {
+						
+						margin: 0 0 10px 0;						
 						float: left;
+
+						.user_field { 
+
+							clear: left;
+							background: #dfdfdf;
+							color: #999;
+							margin: 0 5px 0 0px;
+							float: left;
+							display: inline;
+							text-align: left;  
+						}
+
+						.user_info_field { 
+							display: inline;
+							float: left;
+							font-size: 10px; 
+						}
 					}
 				}
 				

@@ -1,5 +1,16 @@
 <?php 
 
+function remove_array_members ($array_whose_members_to_remove, $array_of_key_names_to_remove)
+{
+	foreach ($array_of_key_names_to_remove as $key_name) {
+
+		unset($array_whose_members_to_remove[$key_name]);
+
+	}
+	// var_export($array_whose_members_to_remove);
+	return $array_whose_members_to_remove;
+}
+
 function reverse_string_at_points ( $point_to_reverse_at, $string_to_reverse ) { 
 
 	$broken_string     = array_reverse(explode($point_to_reverse_at, $string_to_reverse ));

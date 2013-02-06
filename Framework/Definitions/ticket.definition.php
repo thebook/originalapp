@@ -14,7 +14,19 @@ return array(
 			array(
 				'table_name' => 'incoming_books',
 				'columns'    => 
-					array(						
+					array(															
+						array(
+							'column_name'    => 'status',
+							'data_type'      => 'VARCHAR(100)',
+							'auto_increment' => false,
+							'unique'         => false
+						),
+						array(
+							'column_name'    => 'quoted_price',
+							'data_type'      => 'INT',
+							'auto_increment' => false,
+							'unique'         => false
+						),	
 						array(
 							'column_name'    => 'date_created',
 							'data_type'      => 'DATE',
@@ -28,23 +40,11 @@ return array(
 							'unique'         => false
 						),
 						array(
-							'column_name'    => 'status',
-							'data_type'      => 'VARCHAR(100)',
-							'auto_increment' => false,
-							'unique'         => false
-						),
-						array(
 							'column_name'    => 'by_user',
 							'data_type'      => 'INT',
 							'auto_increment' => false,
 							'unique'         => false
-						),
-						array(
-							'column_name'    => 'quoted_price',
-							'data_type'      => 'INT',
-							'auto_increment' => false,
-							'unique'         => false
-						),
+						),						
 						array(
 							'column_name'    => 'books_ordered',
 							'data_type'      => 'LONGTEXT',
@@ -52,7 +52,7 @@ return array(
 							'unique'         => false
 						),
 						array(
-							'column_name'    => 'previous_order',
+							'column_name'    => 'history',
 							'data_type'      => 'LONGTEXT',
 							'auto_increment' => false,
 							'unique'         => false
