@@ -1069,13 +1069,31 @@
   width: 12.5%;
 }
 /* line 328, sass/Imports/admin/_ticket.scss */
+.tickets .ticket_box .ticket_information_row .ticket_input, .tickets .ticket_box_add_on .ticket_information_row .ticket_input, .tickets .ticket_box .ticket_information_row_button .ticket_input, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_input {
+  border: none;
+  width: 98%;
+  padding: 5px 1%;
+  margin-bottom: 10px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+/* line 336, sass/Imports/admin/_ticket.scss */
+.tickets .ticket_box .ticket_information_row .ticket_input:focus, .tickets .ticket_box_add_on .ticket_information_row .ticket_input:focus, .tickets .ticket_box .ticket_information_row_button .ticket_input:focus, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_input:focus {
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+/* line 342, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .button, .tickets .ticket_box_add_on .ticket_information_row .button, .tickets .ticket_box .ticket_information_row_button .button, .tickets .ticket_box_add_on .ticket_information_row_button .button {
   margin: 10px;
   display: block;
   clear: both;
   text-align: center;
 }
-/* line 336, sass/Imports/admin/_ticket.scss */
+/* line 350, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information_type, .tickets .ticket_box_add_on .ticket_information_row .ticket_information_type, .tickets .ticket_box .ticket_information_row_button .ticket_information_type, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information_type {
   font-size: 12px;
   line-height: 12px;
@@ -1084,13 +1102,13 @@
   margin: 0 0 15px 0;
   padding: 5px 25px;
 }
-/* line 346, sass/Imports/admin/_ticket.scss */
+/* line 360, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information, .tickets .ticket_box_add_on .ticket_information_row .ticket_information, .tickets .ticket_box .ticket_information_row_button .ticket_information, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information {
   maring: 15px 0 0;
   padding: 0 25px;
   text-align: center;
 }
-/* line 352, sass/Imports/admin/_ticket.scss */
+/* line 366, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_button, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .ticket_button, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_button, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .ticket_button, .tickets .ticket_box .ticket_information_row .ticket_information .create_ticket_button, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .create_ticket_button, .tickets .ticket_box .ticket_information_row_button .ticket_information .create_ticket_button, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .create_ticket_button, .tickets .ticket_box .ticket_information_row .ticket_information .tickets_tabs .ticket_tab, .tickets_tabs .tickets .ticket_box .ticket_information_row .ticket_information .ticket_tab, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .tickets_tabs .ticket_tab, .tickets_tabs .tickets .ticket_box_add_on .ticket_information_row .ticket_information .ticket_tab, .tickets .ticket_box .ticket_information_row_button .ticket_information .tickets_tabs .ticket_tab, .tickets_tabs .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_tab, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .tickets_tabs .ticket_tab, .tickets_tabs .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .ticket_tab {
   margin: 0px;
   background: #dfdfdf;
@@ -1098,47 +1116,47 @@
   width: 90%;
   padding: 5px 5%;
 }
-/* line 361, sass/Imports/admin/_ticket.scss */
+/* line 375, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket, .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket {
   margin-bottom: 15px;
   padding: 0 0 10px;
   border-bottom: 2px solid #dfdfdf;
 }
-/* line 367, sass/Imports/admin/_ticket.scss */
+/* line 381, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket .ticket_book_start_label, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket .ticket_book_start_label, .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_start_label, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_start_label {
   margin-bottom: 5px;
 }
-/* line 372, sass/Imports/admin/_ticket.scss */
+/* line 386, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label, .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label {
   margin-left: 10px;
 }
-/* line 376, sass/Imports/admin/_ticket.scss */
+/* line 390, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label span, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label span, .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label span, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label span, .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .lf-admin-post-meta-td-checkbox-label, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .lf-admin-post-meta-td-checkbox-label, .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .lf-admin-post-meta-td-checkbox-label, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .lf-admin-post-meta-td-checkbox-label, .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .lf-admin-td-checkbox-label, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .lf-admin-td-checkbox-label, .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .lf-admin-td-checkbox-label, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .lf-admin-td-checkbox-label, .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .layout-builder-options-td-checkbox-label, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label .layout-builder-options-td-checkbox-label, .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .layout-builder-options-td-checkbox-label, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label .layout-builder-options-td-checkbox-label {
   background: #dfdfdf;
   color: #999;
 }
-/* line 382, sass/Imports/admin/_ticket.scss */
+/* line 396, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label i, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .books_for_ticket .ticket_book_label i, .tickets .ticket_box .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label i, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .books_for_ticket .ticket_book_label i {
   font-size: 10px;
 }
-/* line 389, sass/Imports/admin/_ticket.scss */
+/* line 403, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .user_ticket_id, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .user_ticket_id, .tickets .ticket_box .ticket_information_row_button .ticket_information .user_ticket_id, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .user_ticket_id {
   width: 100%;
   float: left;
   margin-bottom: 10px;
 }
-/* line 396, sass/Imports/admin/_ticket.scss */
+/* line 410, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .user_info, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .user_info, .tickets .ticket_box .ticket_information_row_button .ticket_information .user_info, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .user_info {
   display: block;
   margin-top: 10px;
   float: left;
 }
-/* line 402, sass/Imports/admin/_ticket.scss */
+/* line 416, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .user_info .user_field_wrap, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .user_info .user_field_wrap, .tickets .ticket_box .ticket_information_row_button .ticket_information .user_info .user_field_wrap, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .user_info .user_field_wrap {
   margin: 0 0 10px 0;
   float: left;
 }
-/* line 407, sass/Imports/admin/_ticket.scss */
+/* line 421, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .user_info .user_field_wrap .user_field, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .user_info .user_field_wrap .user_field, .tickets .ticket_box .ticket_information_row_button .ticket_information .user_info .user_field_wrap .user_field, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .user_info .user_field_wrap .user_field {
   clear: left;
   background: #dfdfdf;
@@ -1148,13 +1166,13 @@
   display: inline;
   text-align: left;
 }
-/* line 418, sass/Imports/admin/_ticket.scss */
+/* line 432, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .user_info .user_field_wrap .user_info_field, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .user_info .user_field_wrap .user_info_field, .tickets .ticket_box .ticket_information_row_button .ticket_information .user_info .user_field_wrap .user_info_field, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .user_info .user_field_wrap .user_info_field {
   display: inline;
   float: left;
   font-size: 10px;
 }
-/* line 426, sass/Imports/admin/_ticket.scss */
+/* line 440, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_user_info, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .ticket_user_info, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .ticket_user_info {
   display: block;
   float: left;
@@ -1165,15 +1183,15 @@
   opacity: 0.8;
   cursor: pointer;
 }
-/* line 437, sass/Imports/admin/_ticket.scss */
+/* line 451, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_user_info:hover, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .ticket_user_info:hover, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info:hover, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .ticket_user_info:hover {
   opacity: 1;
 }
-/* line 442, sass/Imports/admin/_ticket.scss */
+/* line 456, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_user_info:active, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .ticket_user_info:active, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_user_info:active, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .ticket_user_info:active {
   margin: 12px 0 0;
 }
-/* line 448, sass/Imports/admin/_ticket.scss */
+/* line 462, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row .ticket_information .ticket_status, .tickets .ticket_box_add_on .ticket_information_row .ticket_information .ticket_status, .tickets .ticket_box .ticket_information_row_button .ticket_information .ticket_status, .tickets .ticket_box_add_on .ticket_information_row_button .ticket_information .ticket_status {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
@@ -1184,11 +1202,11 @@
   width: 35px;
   height: 35px;
 }
-/* line 458, sass/Imports/admin/_ticket.scss */
+/* line 472, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box .ticket_information_row_button, .tickets .ticket_box_add_on .ticket_information_row_button {
   width: 10%;
 }
-/* line 466, sass/Imports/admin/_ticket.scss */
+/* line 480, sass/Imports/admin/_ticket.scss */
 .tickets .ticket_box_add_on {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;

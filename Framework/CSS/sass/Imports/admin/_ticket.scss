@@ -325,6 +325,20 @@
 			margin: 15px 0;
 			width: 12.5%;
 			
+			.ticket_input {
+
+				border: none;
+				width: 98%;
+				padding: 5px 1%;
+				margin-bottom: 10px;
+				@include border-radius(0px);
+				
+				&:focus { 
+
+					@include single-box-shadow( rgba(0,0,0, 0.1), 1px, 1px, 1px );
+				}
+			}
+			
 			.button { 
 
 				margin: 10px;
