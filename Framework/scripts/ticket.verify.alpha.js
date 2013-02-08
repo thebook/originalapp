@@ -149,13 +149,12 @@ var alpha = (function ( alpha, $ ) {
 					$.each(amazon_books,
 					function (index, book) { 
 						
-						var reference = reference_of_number_of_books[index];
-					
-						book.quote = (reference.quote? reference.quote : alpha.search_though_amazon_for_a_book.prototype.quote(book.lowest_used_price.Amount) );
+						var reference  = reference_of_number_of_books[index];
+							book.quote = (reference.quote? reference.quote : alpha.search_though_amazon_for_a_book.prototype.quote(book.lowest_used_price.Amount) );
 
-						for (var i = 0; i < reference.number; i++) {
-							new_memory.push(book);
-						};
+							for (var i = 0; i < reference.number; i++) {
+								new_memory.push(book);
+							};
 					});
 					
 					klass.new_memory = alpha.amazon.prototype.return_books(new_memory);
@@ -164,23 +163,26 @@ var alpha = (function ( alpha, $ ) {
 				},
 				'json'
 			);
-
 	};
 
-	alpha.check_books.prototype.sort_for_new_submit = function () {
-	};
+	alpha.check_books.prototype.flaten_to_array = function (object_to_flaten) {
 
-	alpha.check_books.prototype.check_condition = function () { 
+		var return_array = [];
 
-		this.parts.verify_ticket_box.children().fadeOut(400, function () { $(this).empty().remove(); });
-		this.parts.condition_ticker = 
-			$('<div class="ticket_information_row">'+ 
-					'<div class="ticket_information_type">Verify Books</div>'+
-						this.sort_books_for_ticking() +
-				'</div>');
+		$.each(object_to_flaten,
+		function (key, member) { 
 
-		this.parts.condition_ticker.appendTo(this.parts.verify_ticket_box);
-		console.log(this.new_memory);
+			if ( member.construct === Array ) { 
+
+				$.each( member, function (index, value) { return_array.push(value); });
+			}
+			else { 
+
+				return_array.push(member);
+			}
+		});
+
+		return return_array;
 	};
 
 	alpha.check_books.prototype.sort_books_for_ticking = function () { 
@@ -192,16 +194,117 @@ var alpha = (function ( alpha, $ ) {
 
 				books_element += 
 					'<div class="books_for_ticket_verifying books_for_ticket">'+
-						'<div class="ticket_book_start_label '+ book.isbn +'">'+
+						'<div class="ticket_book_start_label">'+
 							book.isbn +
 						'</div>'+
-						'<input type="checkbox" value="bad_condition">'+
+						'<input data-function-to-call="check_books.prototype.cross_out_goods" class="'+ index +'" type="checkbox" value="bad_condition">'+
 					'</div>';
 			});
 					
 		return books_element += '</div>';
+	};
+
+	alpha.check_books.prototype.manifest = function (thoughts_of_what_to_manifest) { 
+
+		var prototype = this.manifest.prototype;
+			
+			prototype.manifestor = function (thoughts_of_what_to_manifest, append_to) { 
+
+				$.each( thoughts_of_what_to_manifest,
+					function (name, body) { 
+
+						body.self = $(body.self);
+						
+						append_to.append(body.self);
+
+						if ( body.branch ) { 
+													
+							$.each( body.branch,
+							function (branch_name, branch_body) { 
+
+								if ( branch_body.constructor === String ) {
+
+									branch_body 			 = $(branch_body);
+									body.branch[branch_name] = $(branch_body);							
+									body.self.append(branch_body);
+								}
+							});
+
+							if ( body.branch.branch ) { 
+								
+								prototype.manifestor(body.branch, body.self);
+							}
+						}
+					});
+
+				return thoughts_of_what_to_manifest;				
+			};
+
+			return prototype.manifestor(thoughts_of_what_to_manifest, this.parts.verify_ticket_box);
+	};
+
+
+	alpha.check_books.prototype.check_condition = function () { 
+
+		this.parts.verify_ticket_box.children().fadeOut(400, function () { $(this).empty().remove(); });			
+
+		this.bad_goods = [];
+
+		this.parts.condition = this.manifest({			
+			condition_row : { 
+				self   : '<div class="ticket_information_row"></div>',
+				branch : {
+					label    : '<div class="ticket_information_type">Verify Books</div>',
+					contents : this.sort_books_for_ticking()
+				}
+			},
+			unusable_row : { 
+				self   : '<div class="ticket_information_row"></div>',
+				branch : { 
+					label    		   : '<div class="ticket_information_type">Bad Condition</div>',
+					ticket_information : '<div class="ticket_information"></div>'
+				}
+			},
+			option_row : { 
+				self   : '<div class="ticket_information_row"></div>',
+				branch : { 
+					label    : '<div class="ticket_information_type">Bad Condition</div>',
+					branch   : {
+						self   : '<div class="ticket_information"></div>',
+						branch : {
+							button_complete : '<div data-function-to-call="" class="check_state button">Pay The Man!</div>',
+							button_cancel   : '<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>',
+							button_change   : '<div data-function-to-call="" class="check_state button">Update</div>'
+						}
+					}
+				}
+			}
+		});
+
+		console.log(this.parts.condition);
 
 	};
+
+	alpha.check_books.prototype.cross_out_goods = function (current_click) { 
+
+		var klass, book;
+
+			klass = alpha.check_books.prototype;
+
+			klass.bad_goods.push(klass.new_memory[current_click.element.attr('class')]);
+			delete klass.new_memory[current_click.element.attr('class')];
+
+			book  = 
+				'<div class="books_for_ticket_verifying books_for_ticket">'+
+					'<div class="ticket_book_start_label">'+
+						klass.bad_goods[current_click.element.attr('class')].isbn +
+					'</div>'+
+				'</div>';
+			
+			current_click.element.parent().fadeOut(400, function () { $(this).empty().remove() });
+
+			klass.parts.condition.unusable_row.branch.ticket_information.append(book);
+};	
 
 	alpha.check_books.prototype.remove_ticket_verifyer = function () { 
 
