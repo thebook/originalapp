@@ -79,11 +79,16 @@ return array(
 				array(
 					'f' => 'add_action',
 					'o' => array('wp_ajax_get_tickets', array($this, 'display_tickets' ) ) 
-				),
-				// get user info for a ticket
+				),	
+				// complete ticket order
 				array(
 					'f' => 'add_action',
-					'o' => array('wp_ajax_get_user_info_for_ticket', array($this, 'get_user_info_of_ticket' ) ) 
+					'o' => array('wp_ajax_complete_ticket_order', array($this, 'complete_ticket' ) )
+				),
+				// update ticket
+				array(
+					'f' => 'add_action',
+					'o' => array('wp_ajax_update_ticket_order', array($this, 'change_ticket' ) )
 				),
 				// Create Menu page
 				array(

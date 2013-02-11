@@ -4,10 +4,11 @@ var alpha = (function ( alpha, $ ) {
 
 		var books, verify_ticket_thought;
 
-			books = current_click.instructions;
+			books = current_click.instructions.books;
 			this.prototype.new_memory = {};
 			this.prototype.parts = {};
 			this.prototype.unexpected = [];
+			this.prototype.ticket = current_click.instructions.ticket;
 			this.prototype.memory = this.prototype.sort_books_by_isbn(books);
 			this.prototype.parts.current_ticket_box = current_click.element.closest('.ticket_box_wrap');
 			verify_ticket_thought = {
@@ -287,8 +288,8 @@ var alpha = (function ( alpha, $ ) {
 				branch : { 
 					label           : '<div class="ticket_information_type">Options</div>',						
 					button_complete : '<div data-function-to-call="check_books.prototype.complete_perfect_order" class="check_state button">Pay The Man!</div>',
-					button_cancel   : '<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>',
-					button_change   : '<div data-function-to-call="check_books.prototype.update_order" class="check_state button">Update</div>'
+					button_change   : '<div data-function-to-call="check_books.prototype.update_order" class="check_state button">Update</div>',
+					button_cancel   : '<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>'
 				}
 			}
 		};
@@ -309,34 +310,34 @@ var alpha = (function ( alpha, $ ) {
 	alpha.check_books.prototype.complete_perfect_order = function (current_click) { 
 
 		var prototype = alpha.check_books.prototype;
-
-		$.post(
-			ajaxurl, 
-			{ action : 'complete_ticket_order', information : { books_to_pay_for : prototype.new_memory },
-			function (response) { 
-				$.jGrowl(response.message, { header : response.header, sticky : true });
-			},
-			'json');
+		console.log(prototype);
+		// $.post(
+		// 	ajaxurl, 
+		// 	{ action : 'complete_ticket_order', information : { books_to_pay_for : prototype.new_memory } },
+		// 	function (response) { 
+		// 		$.jGrowl(response.message, { header : response.header, sticky : true });
+		// 	},
+		// 	'json');
 	};
 
 	alpha.check_books.prototype.update_order = function (current_click) { 
 
 		var prototype = alpha.check_books.prototype;
-
-		$.post(
-			ajaxurl, 
-			{ action : 'update_ticket_order', 
-				information : { 
-					books_to_pay_for 			    : prototype.new_memory,
-					books_that_didint_arrive        : prototype.memory,
-					books_that_are_in_bad_condition : prototype.bad_goods,
-					books_that_were_unexpected      : prototype.unexpected
-				}
-			},
-			function (response) { 
-				$.jGrowl(response.message, { header : response.header, sticky : true });
-			},
-			'json');
+		console.log(prototype);
+		// $.post(
+		// 	ajaxurl, 
+		// 	{ action : 'update_ticket_order', 
+		// 		information : { 
+		// 			books_to_pay_for 			    : prototype.new_memory,
+		// 			books_that_didint_arrive        : prototype.memory,
+		// 			books_that_are_in_bad_condition : prototype.bad_goods,
+		// 			books_that_were_unexpected      : prototype.unexpected
+		// 		}
+		// 	},
+		// 	function (response) { 
+		// 		$.jGrowl(response.message, { header : response.header, sticky : true });
+		// 	},
+		// 	'json');
 	};
 
 	alpha.check_books.prototype.display_ticket_buttons_based_on_ticket_book_state = function () { 

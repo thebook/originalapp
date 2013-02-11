@@ -40,6 +40,11 @@ class tickets extends branch_ticket
 		exit;
 	}
 
+	public function complete_ticket ()
+	{
+		
+	}
+
 	public function ticket_creation_element ()
 	{ ?>				
 		<div class="ticket_create_ticket">
@@ -232,14 +237,13 @@ class tickets extends branch_ticket
 
 	protected function _display_ticket ($ticket)
 	{ ?>
-
 		<div class="ticket_box_wrap">
 
 			<div class="ticket_box">
 
 				<div class="ticket_information_row">
 
-					<div data-function-to-call="check_books" data-function-instructions="<?php echo $this->_verify_ticket_button($ticket['ticket']); ?>" class="button">Verify Ticket</div>				
+					<div data-function-to-call="check_books" data-function-instructions="{ 'books' : <?php echo $this->_verify_ticket_button($ticket['ticket']); ?>, 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>' }" class="button">Verify Ticket</div>				
 
 				</div>
 
