@@ -4,9 +4,10 @@ var alpha = (function ( alpha, $ ) {
 
 		var books, verify_ticket_thought;
 
+			books = current_click.instructions;
 			this.prototype.new_memory = {};
 			this.prototype.parts = {};
-			books = current_click.instructions;
+			this.prototype.unexpected = [];
 			this.prototype.memory = this.prototype.sort_books_by_isbn(books);
 			this.prototype.parts.current_ticket_box = current_click.element.closest('.ticket_box_wrap');
 			verify_ticket_thought = {
@@ -54,42 +55,14 @@ var alpha = (function ( alpha, $ ) {
 					}
 				}
 			}
-
-			// this.prototype.parts.books		        = $('<div class="ticket_information_row"><div class="ticket_information_type">Unexpected Books</div><div class="ticket_information"></div></div>');
-			// this.prototype.parts.display_books      = $(this.prototype.get_books(books));
-			// this.prototype.parts.next 				= 
-			// 	$('<div class="ticket_information_row">'+
-			// 		'<div data-function-to-call="check_books.prototype.transitioning_to_check_condition" class="check_state button">Next</div>'+
-			// 		'<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>'+
-			// 	'</div>');
-			// this.prototype.parts.input              = 
-			// 	$('<div class="ticket_information_row">'+ 
-			// 		'<div class="ticket_information_type">Verify Books</div>'+
-			// 		'<div class="ticket_information">'+
-			// 			'<input class="ticket_input" id="verify_books_search" type="text" value="">'+
-			// 			'<div data-function-to-call="check_books.prototype.cross_out_book" class="ticket_button">'+
-			// 				'Submit'+
-			// 			'</div>'+
-			// 		'</div>'+
-			// 	'</div>');
-			// this.prototype.parts.verify_ticket_box = $('<div class="ticket_box_add_on"></div>');
-
+			
 			this.prototype.parts.verify = this.prototype.manifest({
 				what_to_manifest : verify_ticket_thought,
 				append_to_who    : this.prototype.parts.current_ticket_box
-			})				
+			});
 
-			// this.prototype.parts.current_ticket_box.css({ 'z-index' : '2', 'position' : 'relative' });
-
-			// this.prototype.parts.verify_ticket_box.css({
-			// 	'z-index'  : '0',
-			// 	'position' : 'relative'
-			// })
-			// .append(this.prototype.parts.display_books)
-			// .append(this.prototype.parts.input)
-			// .append(this.prototype.parts.books)
-			// .append(this.prototype.parts.next)
-			// .insertAfter(this.prototype.parts.current_ticket_box);
+			this.prototype.parts.verify.wrap.self.prev().css({ 'z-index' : '2', 'position' : 'relative' });
+			this.prototype.parts.verify.wrap.self.css({ 'z-index' : 0, 'position' : 'relative' });
 	};
 
 	alpha.check_books.prototype.get_books = function (books) { 
@@ -126,9 +99,9 @@ var alpha = (function ( alpha, $ ) {
 	alpha.check_books.prototype.cross_out_book = function () {
 
 		var klass = alpha.check_books.prototype,
-			isbn  = klass.parts.input.find('input').attr('value'),
-			ticked_book = klass.parts.display_books.find('.'+ isbn );
-			
+			isbn  = klass.parts.verify.wrap.branch.branch.verify_row.branch.branch.search.branch.input.attr('value'),
+			ticked_book = klass.parts.verify.wrap.branch.branch.expected_row.branch.contents.find('.'+ isbn );
+
 			if ( alpha._is_number(isbn) && isbn.length === 10 ) {
 				
 				if ( ticked_book.length > 0 ) {
@@ -136,11 +109,9 @@ var alpha = (function ( alpha, $ ) {
 					var insert;
 
 					if ( klass.memory[isbn].length > 1 ) {
-
 					 	insert = klass.memory[isbn].pop(); 
 					} 
 					else {
-
 						insert = klass.memory[isbn][0]; 
 						delete klass.memory[isbn];
 					}
@@ -151,13 +122,14 @@ var alpha = (function ( alpha, $ ) {
 				}
 				else { 
 
-					klass.parts.books.find('.ticket_information').append(
+					klass.parts.verify.wrap.branch.branch.unexpected_books.branch.contents.append(
 						'<div class="books_for_ticket_verifying books_for_ticket">'+
 							'<div class="ticket_book_start_label">'+
-								isbn+
+								isbn +
 							'</div>'+
 						'</div>');
 
+					klass.unexpected.push(isbn);
 					( klass.new_memory[isbn]? klass.new_memory[isbn].push(isbn) : klass.new_memory[isbn] = [isbn] );
 				}
 			}
@@ -170,6 +142,8 @@ var alpha = (function ( alpha, $ ) {
 			reference_of_number_of_books = [],
 			string = '';
 
+			klass.parts.verify.wrap.branch.branch.buttons.branch.button_next_step.text('loading...');
+
 			$.each(klass.new_memory,
 			function (isbn, book) { 
 
@@ -177,17 +151,17 @@ var alpha = (function ( alpha, $ ) {
 
 					var reference = { number : book.length };
 
- 					if ( book[0].constructor === Object ) { 
+	 					if ( book[0].constructor === Object ) { 
 
-						reference.quote = book[0].quote;
-						string += book[0].isbn +', ';	
-					}
-					else if ( book[0].constructor === String) { 
+							reference.quote = book[0].quote;
+							string += book[0].isbn +', ';	
+						}
+						else if ( book[0].constructor === String ) { 
 
-						string += book[0] +', ';	
-					}					
+							string += book[0] +', ';	
+						}					
 
-					reference_of_number_of_books.push(reference);
+						reference_of_number_of_books.push(reference);
 				}				
 			});
 
@@ -208,11 +182,9 @@ var alpha = (function ( alpha, $ ) {
 					});
 					
 					klass.new_memory = alpha.amazon.prototype.return_books(new_memory);
-
 					klass.check_condition();
 				},
-				'json'
-			);
+				'json');
 	};
 
 	alpha.check_books.prototype.flaten_to_array = function (object_to_flaten) {
@@ -295,11 +267,7 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.check_books.prototype.check_condition = function () { 
 
-		this.parts.verify_ticket_box.children().fadeOut(400, function () { $(this).empty().remove(); });			
-		this.memory    = this.flaten_to_array(this.memory);
-		this.bad_goods = [];
-
-		this.parts.condition = this.manifest({			
+		var check_ticket_condition_thought = {	
 			condition_row : { 
 				self   : '<div class="ticket_information_row"></div>',
 				branch : {
@@ -317,46 +285,97 @@ var alpha = (function ( alpha, $ ) {
 			option_row : { 
 				self   : '<div class="ticket_information_row"></div>',
 				branch : { 
-					label           : '<div class="ticket_information_type">Bad Condition</div>',						
-					button_complete : '<div data-function-to-call="" class="check_state button">Pay The Man!</div>',
+					label           : '<div class="ticket_information_type">Options</div>',						
+					button_complete : '<div data-function-to-call="check_books.prototype.complete_perfect_order" class="check_state button">Pay The Man!</div>',
 					button_cancel   : '<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>',
-					button_change   : '<div data-function-to-call="" class="check_state button">Update</div>'
+					button_change   : '<div data-function-to-call="check_books.prototype.update_order" class="check_state button">Update</div>'
 				}
 			}
-		}, this.parts.verify_ticket_box);
+		};
 
-		this.check_display_for_buttons();
+		// Perhaps improve this with manifest object options 
+		this.parts.verify.wrap.self.children().fadeOut(400, function () { $(this).empty().remove(); });
+		this.memory    = this.flaten_to_array(this.memory);
+		this.bad_goods = [];
+
+		this.parts.condition = this.manifest({
+			what_to_manifest : check_ticket_condition_thought,
+		 	append_to_who    : this.parts.verify.wrap.self 
+		});
+
+		this.display_ticket_buttons_based_on_ticket_book_state();
 	};
 
-	alpha.check_books.prototype.check_display_for_buttons = function () { 
+	alpha.check_books.prototype.complete_perfect_order = function (current_click) { 
 
-		console.log(this.new_memory);
-		console.log(this.memory);
-		console.log(this.bad_books);
+		var prototype = alpha.check_books.prototype;
+
+		$.post(
+			ajaxurl, 
+			{ action : 'complete_ticket_order', information : { books_to_pay_for : prototype.new_memory },
+			function (response) { 
+				$.jGrowl(response.message, { header : response.header, sticky : true });
+			},
+			'json');
+	};
+
+	alpha.check_books.prototype.update_order = function (current_click) { 
+
+		var prototype = alpha.check_books.prototype;
+
+		$.post(
+			ajaxurl, 
+			{ action : 'update_ticket_order', 
+				information : { 
+					books_to_pay_for 			    : prototype.new_memory,
+					books_that_didint_arrive        : prototype.memory,
+					books_that_are_in_bad_condition : prototype.bad_goods,
+					books_that_were_unexpected      : prototype.unexpected
+				}
+			},
+			function (response) { 
+				$.jGrowl(response.message, { header : response.header, sticky : true });
+			},
+			'json');
+	};
+
+	alpha.check_books.prototype.display_ticket_buttons_based_on_ticket_book_state = function () { 
+
+		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 ) 
+		{
+			this.parts.condition.option_row.branch.button_complete.css({ display : 'block' });
+			this.parts.condition.option_row.branch.button_change.css({ display : 'none' });
+		}
+		else 
+		{
+			this.parts.condition.option_row.branch.button_complete.css({ display : 'none' });
+			this.parts.condition.option_row.branch.button_change.css({ display : 'block' });
+		}
 	};
 
 	alpha.check_books.prototype.cross_out_goods = function (current_click) { 
 
-		var klass, book;
+		var klass = alpha.check_books.prototype,
+			index = current_click.element.attr('class');
 
-			klass = alpha.check_books.prototype;
-
-			klass.bad_goods.push(klass.new_memory[current_click.element.attr('class')]);
-			delete klass.new_memory[current_click.element.attr('class')];
-
-			book  = 
-				'<div class="books_for_ticket_verifying books_for_ticket">'+
-					'<div class="ticket_book_start_label">'+ klass.bad_goods[current_click.element.attr('class')].isbn + '</div>'+
-				'</div>';
+			klass.bad_goods.push(klass.new_memory[index]);
 			
 			current_click.element.parent().fadeOut(400, function () { $(this).empty().remove() });
+			klass.parts.condition.unusable_row.branch.ticket_information.append(
+				'<div class="books_for_ticket_verifying books_for_ticket">'+
+					'<div class="ticket_book_start_label">'+ 
+						klass.new_memory[index].isbn + 
+					'</div>'+
+				'</div>');
 
-			klass.parts.condition.unusable_row.branch.ticket_information.append(book);
+			delete klass.new_memory[index];
+
+			klass.display_ticket_buttons_based_on_ticket_book_state();
 	};	
 
 	alpha.check_books.prototype.remove_ticket_verifyer = function () { 
 
-		alpha.check_books.prototype.parts.verify_ticket_box.empty().remove();
+		alpha.check_books.prototype.parts.verify.wrap.self.fadeOut(400, function () { $(this).empty().remove(); });
 	};
 
 	return alpha;
