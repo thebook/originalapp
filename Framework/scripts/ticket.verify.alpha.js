@@ -2,49 +2,99 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.check_books = function (current_click) { 
 
-		var books = current_click.instructions;
-			this.prototype.memory = this.prototype.sort_books_by_isbn(books);
+		var books, verify_ticket_thought;
+
 			this.prototype.new_memory = {};
 			this.prototype.parts = {};
-			this.prototype.parts.current_ticket_box = current_click.element.closest('.ticket_box');
-			this.prototype.parts.books		        = $('<div class="ticket_information_row"><div class="ticket_information_type">Unexpected Books</div><div class="ticket_information"></div></div>');
-			this.prototype.parts.display_books      = $(this.prototype.get_books(books));
-			this.prototype.parts.next 				= 
-				$('<div class="ticket_information_row">'+
-					'<div data-function-to-call="check_books.prototype.complete_books_compiling" class="check_state button">Next</div>'+
-					'<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>'+
-				'</div>');
-			this.prototype.parts.input              = 
-				$('<div class="ticket_information_row">'+ 
-					'<div class="ticket_information_type">Verify Books</div>'+
-					'<div class="ticket_information">'+
-						'<input class="ticket_input" id="verify_books_search" type="text" value="">'+
-						'<div data-function-to-call="check_books.prototype.cross_out_book" class="ticket_button">'+
-							'Submit'+
-						'</div>'+
-					'</div>'+
-				'</div>');
-			this.prototype.parts.verify_ticket_box = $('<div class="ticket_box_add_on"></div>');
+			books = current_click.instructions;
+			this.prototype.memory = this.prototype.sort_books_by_isbn(books);
+			this.prototype.parts.current_ticket_box = current_click.element.closest('.ticket_box_wrap');
+			verify_ticket_thought = {
+				wrap : {
+					self   : '<div class="ticket_box"></div>',
+					branch : {
+						branch : {
+							expected_row : {
+								self   : '<div class="ticket_information_row"></div>',
+								branch : {
+									label    : '<div class="ticket_information_type">Books Expected</div>',
+									contents : this.prototype.get_books(books)
+								},
+							},
+							unexpected_books : { 
+									self   : '<div class="ticket_information_row"></div>',
+									branch : { 
+										label    : '<div class="ticket_information_type">Unexpected Books</div>',
+										contents : '<div class="ticket_information"></div>'
+									}
+							},
+							verify_row : { 
+									self   : '<div class="ticket_information_row"></div>',
+									branch : {
+										label  : '<div class="ticket_information_type">Verify Books</div>',						
+										branch : { 
+											search : {
+												self   : '<div class="ticket_information"></div>', 
+												branch : {
+													input		  : '<input class="ticket_input" id="verify_books_search" type="text" value="">',
+													search_button : '<div data-function-to-call="check_books.prototype.cross_out_book" class="ticket_button">Submit</div>'
+												}
+											}
+										}
+									}
+							},
+							buttons : {
+									self   : '<div class="ticket_information_row"></div>',
+									branch : {
+										button_next_step     :'<div data-function-to-call="check_books.prototype.transitioning_to_check_condition" class="check_state button">Next</div>',
+										button_cancel_ticket :'<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>'
+									}
+							}
+						}						
+					}
+				}
+			}
 
-			this.prototype.parts.current_ticket_box.css({ 'z-index' : '2', 'position' : 'relative' });
+			// this.prototype.parts.books		        = $('<div class="ticket_information_row"><div class="ticket_information_type">Unexpected Books</div><div class="ticket_information"></div></div>');
+			// this.prototype.parts.display_books      = $(this.prototype.get_books(books));
+			// this.prototype.parts.next 				= 
+			// 	$('<div class="ticket_information_row">'+
+			// 		'<div data-function-to-call="check_books.prototype.transitioning_to_check_condition" class="check_state button">Next</div>'+
+			// 		'<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>'+
+			// 	'</div>');
+			// this.prototype.parts.input              = 
+			// 	$('<div class="ticket_information_row">'+ 
+			// 		'<div class="ticket_information_type">Verify Books</div>'+
+			// 		'<div class="ticket_information">'+
+			// 			'<input class="ticket_input" id="verify_books_search" type="text" value="">'+
+			// 			'<div data-function-to-call="check_books.prototype.cross_out_book" class="ticket_button">'+
+			// 				'Submit'+
+			// 			'</div>'+
+			// 		'</div>'+
+			// 	'</div>');
+			// this.prototype.parts.verify_ticket_box = $('<div class="ticket_box_add_on"></div>');
 
-			this.prototype.parts.verify_ticket_box.css({
-				'z-index'  : '0',
-				'position' : 'relative'
-			})
-			.append(this.prototype.parts.display_books)
-			.append(this.prototype.parts.input)
-			.append(this.prototype.parts.books)
-			.append(this.prototype.parts.next)
-			.insertAfter(this.prototype.parts.current_ticket_box);
+			this.prototype.parts.verify = this.prototype.manifest({
+				what_to_manifest : verify_ticket_thought,
+				append_to_who    : this.prototype.parts.current_ticket_box
+			})				
+
+			// this.prototype.parts.current_ticket_box.css({ 'z-index' : '2', 'position' : 'relative' });
+
+			// this.prototype.parts.verify_ticket_box.css({
+			// 	'z-index'  : '0',
+			// 	'position' : 'relative'
+			// })
+			// .append(this.prototype.parts.display_books)
+			// .append(this.prototype.parts.input)
+			// .append(this.prototype.parts.books)
+			// .append(this.prototype.parts.next)
+			// .insertAfter(this.prototype.parts.current_ticket_box);
 	};
 
 	alpha.check_books.prototype.get_books = function (books) { 
 
-		var books_element = 
-			'<div class="ticket_information_row">'+
-				'<div class="ticket_information_type">Books Expected</div>'+
-				'<div class="ticket_information">';
+		var books_element = '<div class="ticket_information">';
 
 			$.each(books,
 			function (index, book) { 
@@ -57,7 +107,7 @@ var alpha = (function ( alpha, $ ) {
 					'</div>';
 			});
 					
-			return books_element += '</div></div>';
+			return books_element += '</div>';
 	};
 
 	alpha.check_books.prototype.sort_books_by_isbn = function (books) { 
@@ -113,7 +163,7 @@ var alpha = (function ( alpha, $ ) {
 			}
 	};	
 
-	alpha.check_books.prototype.complete_books_compiling = function () { 
+	alpha.check_books.prototype.transitioning_to_check_condition = function () { 
 
 		var klass  = alpha.check_books.prototype,
 			new_memory = [],
@@ -204,7 +254,7 @@ var alpha = (function ( alpha, $ ) {
 		return books_element += '</div>';
 	};
 
-	alpha.check_books.prototype.manifest = function (thoughts_of_what_to_manifest) { 
+	alpha.check_books.prototype.manifest = function (passed) { 
 
 		var prototype = this.manifest.prototype;
 			
@@ -214,7 +264,7 @@ var alpha = (function ( alpha, $ ) {
 					function (name, body) { 
 
 						body.self = $(body.self);
-						
+
 						append_to.append(body.self);
 
 						if ( body.branch ) { 
@@ -232,7 +282,7 @@ var alpha = (function ( alpha, $ ) {
 
 							if ( body.branch.branch ) { 
 								
-								prototype.manifestor(body.branch, body.self);
+								prototype.manifestor(body.branch.branch, body.self);
 							}
 						}
 					});
@@ -240,14 +290,13 @@ var alpha = (function ( alpha, $ ) {
 				return thoughts_of_what_to_manifest;				
 			};
 
-			return prototype.manifestor(thoughts_of_what_to_manifest, this.parts.verify_ticket_box);
+			return prototype.manifestor(passed.what_to_manifest, passed.append_to_who);
 	};
-
 
 	alpha.check_books.prototype.check_condition = function () { 
 
 		this.parts.verify_ticket_box.children().fadeOut(400, function () { $(this).empty().remove(); });			
-
+		this.memory    = this.flaten_to_array(this.memory);
 		this.bad_goods = [];
 
 		this.parts.condition = this.manifest({			
@@ -268,21 +317,22 @@ var alpha = (function ( alpha, $ ) {
 			option_row : { 
 				self   : '<div class="ticket_information_row"></div>',
 				branch : { 
-					label    : '<div class="ticket_information_type">Bad Condition</div>',
-					branch   : {
-						self   : '<div class="ticket_information"></div>',
-						branch : {
-							button_complete : '<div data-function-to-call="" class="check_state button">Pay The Man!</div>',
-							button_cancel   : '<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>',
-							button_change   : '<div data-function-to-call="" class="check_state button">Update</div>'
-						}
-					}
+					label           : '<div class="ticket_information_type">Bad Condition</div>',						
+					button_complete : '<div data-function-to-call="" class="check_state button">Pay The Man!</div>',
+					button_cancel   : '<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>',
+					button_change   : '<div data-function-to-call="" class="check_state button">Update</div>'
 				}
 			}
-		});
+		}, this.parts.verify_ticket_box);
 
-		console.log(this.parts.condition);
+		this.check_display_for_buttons();
+	};
 
+	alpha.check_books.prototype.check_display_for_buttons = function () { 
+
+		console.log(this.new_memory);
+		console.log(this.memory);
+		console.log(this.bad_books);
 	};
 
 	alpha.check_books.prototype.cross_out_goods = function (current_click) { 
@@ -296,15 +346,13 @@ var alpha = (function ( alpha, $ ) {
 
 			book  = 
 				'<div class="books_for_ticket_verifying books_for_ticket">'+
-					'<div class="ticket_book_start_label">'+
-						klass.bad_goods[current_click.element.attr('class')].isbn +
-					'</div>'+
+					'<div class="ticket_book_start_label">'+ klass.bad_goods[current_click.element.attr('class')].isbn + '</div>'+
 				'</div>';
 			
 			current_click.element.parent().fadeOut(400, function () { $(this).empty().remove() });
 
 			klass.parts.condition.unusable_row.branch.ticket_information.append(book);
-};	
+	};	
 
 	alpha.check_books.prototype.remove_ticket_verifyer = function () { 
 
