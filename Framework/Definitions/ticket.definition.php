@@ -83,7 +83,7 @@ return array(
 				// complete ticket order
 				array(
 					'f' => 'add_action',
-					'o' => array('wp_ajax_complete_ticket_order', array($this, 'complete_ticket' ) )
+					'o' => array('wp_ajax_update_ticket', array($this, 'update_ticket' ) )
 				),
 				// update ticket
 				array(

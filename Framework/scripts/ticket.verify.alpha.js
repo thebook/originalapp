@@ -8,6 +8,7 @@ var alpha = (function ( alpha, $ ) {
 			this.prototype.new_memory = {};
 			this.prototype.parts = {};
 			this.prototype.unexpected = [];
+			this.prototype.original_quote = current_click.instructions.quote;
 			this.prototype.ticket = current_click.instructions.ticket;
 			this.prototype.memory = this.prototype.sort_books_by_isbn(books);
 			this.prototype.parts.current_ticket_box = current_click.element.closest('.ticket_box_wrap');
@@ -174,15 +175,16 @@ var alpha = (function ( alpha, $ ) {
 					$.each(amazon_books,
 					function (index, book) { 
 						
-						var reference  = reference_of_number_of_books[index];
-							book.quote = (reference.quote? reference.quote : alpha.search_though_amazon_for_a_book.prototype.quote(book.lowest_used_price.Amount) );
+						var reference   = reference_of_number_of_books[index];
+							book.lowest_used_price.Amount = (reference.quote? reference.quote : alpha.search_though_amazon_for_a_book.prototype.quote(book.lowest_used_price.Amount) );
 
 							for (var i = 0; i < reference.number; i++) {
 								new_memory.push(book);
 							};
 					});
-					
+
 					klass.new_memory = alpha.amazon.prototype.return_books(new_memory);
+
 					klass.check_condition();
 				},
 				'json');
@@ -287,8 +289,8 @@ var alpha = (function ( alpha, $ ) {
 				self   : '<div class="ticket_information_row"></div>',
 				branch : { 
 					label           : '<div class="ticket_information_type">Options</div>',						
-					button_complete : '<div data-function-to-call="check_books.prototype.complete_perfect_order" class="check_state button">Pay The Man!</div>',
-					button_change   : '<div data-function-to-call="check_books.prototype.update_order" class="check_state button">Update</div>',
+					button_complete : '<div data-function-to-call="check_books.prototype.complete_ticket" class="check_state button">Pay The Man!</div>',
+					// button_change   : '<div data-function-to-call="check_books.prototype.update_order" class="check_state button">Update</div>',
 					button_cancel   : '<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>'
 				}
 			}
@@ -304,53 +306,57 @@ var alpha = (function ( alpha, $ ) {
 		 	append_to_who    : this.parts.verify.wrap.self 
 		});
 
-		this.display_ticket_buttons_based_on_ticket_book_state();
 	};
 
-	alpha.check_books.prototype.complete_perfect_order = function (current_click) { 
+	alpha.check_books.prototype.complete_ticket = function (current_click) { 
 
-		var prototype = alpha.check_books.prototype;
-		console.log(prototype);
-		// $.post(
-		// 	ajaxurl, 
-		// 	{ action : 'complete_ticket_order', information : { books_to_pay_for : prototype.new_memory } },
-		// 	function (response) { 
-		// 		$.jGrowl(response.message, { header : response.header, sticky : true });
-		// 	},
-		// 	'json');
+		var prototype      = alpha.check_books.prototype,
+			action_to_take = prototype.what_to_do_with_ticket();
+			console.log(prototype.new_memory);
+		$.post(
+			ajaxurl, 
+			{ 
+				action : 'update_ticket', 				
+				information : {
+					action 			        	    : action_to_take,
+					ticket							: prototype.ticket,
+					books_to_pay_for 			    : prototype.new_memory,
+					books_that_didint_arrive        : prototype.memory,
+					books_that_are_in_bad_condition : prototype.bad_goods,
+					books_that_were_unexpected      : prototype.unexpected
+				}
+			},
+			function (response) { 
+				$.jGrowl(response.message, { header : response.header, sticky : true });
+				current_click.closest('');
+			},
+			'json');
 	};
 
-	alpha.check_books.prototype.update_order = function (current_click) { 
+	alpha.check_books.prototype.what_to_do_with_ticket = function () { 
 
-		var prototype = alpha.check_books.prototype;
-		console.log(prototype);
-		// $.post(
-		// 	ajaxurl, 
-		// 	{ action : 'update_ticket_order', 
-		// 		information : { 
-		// 			books_to_pay_for 			    : prototype.new_memory,
-		// 			books_that_didint_arrive        : prototype.memory,
-		// 			books_that_are_in_bad_condition : prototype.bad_goods,
-		// 			books_that_were_unexpected      : prototype.unexpected
-		// 		}
-		// 	},
-		// 	function (response) { 
-		// 		$.jGrowl(response.message, { header : response.header, sticky : true });
-		// 	},
-		// 	'json');
-	};
-
-	alpha.check_books.prototype.display_ticket_buttons_based_on_ticket_book_state = function () { 
-
-		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 ) 
-		{
-			this.parts.condition.option_row.branch.button_complete.css({ display : 'block' });
-			this.parts.condition.option_row.branch.button_change.css({ display : 'none' });
+		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 ) {
+			return "move_to_complete";
 		}
-		else 
-		{
-			this.parts.condition.option_row.branch.button_complete.css({ display : 'none' });
-			this.parts.condition.option_row.branch.button_change.css({ display : 'block' });
+		
+		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 ) {
+			return "bad_books";
+		}
+
+		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 ) {
+			return "bad_books_with_some_missing";
+		}
+
+		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length > 0 ) {
+			return "unexpected_book"
+		}
+
+		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 ) {
+			return "unexpected_books_and_some_are_bad_books";
+		}
+
+		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 ) {
+			return "some_books_missing_some_unexpected_and_some_in_bad_shape";
 		}
 	};
 
@@ -370,8 +376,6 @@ var alpha = (function ( alpha, $ ) {
 				'</div>');
 
 			delete klass.new_memory[index];
-
-			klass.display_ticket_buttons_based_on_ticket_book_state();
 	};	
 
 	alpha.check_books.prototype.remove_ticket_verifyer = function () { 

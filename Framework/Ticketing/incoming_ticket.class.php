@@ -40,9 +40,37 @@ class tickets extends branch_ticket
 		exit;
 	}
 
-	public function complete_ticket ()
+	public function update_ticket ()
 	{
-		
+		$method = "_{$_POST['information']['action']}";
+
+		$response = $this->$method($_POST['information']);
+
+		echo json_encode($response);
+
+		exit;
+	}
+
+	protected function _move_to_complete ($information)
+	{	
+		extract($information);
+
+			$current_ticket = $this->get_ticket($ticket);
+			$quote   	    = $current_ticket['quoted_price'] / 100;
+			$history 	    = unserialize($current_ticket['history']);
+			
+			$this->alter_ticket($ticket, array(
+				'status'  => 'complete',
+				'history' => $history
+			));
+
+			// Print here 
+			// Send email here after print is sucessfull
+
+			$response['header']  = 'Ticket Completed';
+			$response['message'] = "Ticket <strong>\"$ticket\"</strong> has moved to the </strong>Complete</strong> group and a check of £$quote should be printed.";
+
+			return $response;
 	}
 
 	public function ticket_creation_element ()
@@ -243,7 +271,9 @@ class tickets extends branch_ticket
 
 				<div class="ticket_information_row">
 
-					<div data-function-to-call="check_books" data-function-instructions="{ 'books' : <?php echo $this->_verify_ticket_button($ticket['ticket']); ?>, 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>' }" class="button">Verify Ticket</div>				
+					<div data-function-to-call="check_books" 
+					     data-function-instructions="{ 'books' : <?php echo $this->_verify_ticket_button($ticket['ticket']); ?>, 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>' }" 
+					     class="button">Verify Ticket</div>				
 
 				</div>
 

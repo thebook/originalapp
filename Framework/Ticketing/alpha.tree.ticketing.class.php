@@ -74,6 +74,13 @@ abstract class alpha_tree_ticket
 		$table->update_row($this->table_name, $ticket_values_to_alter_with, 'ticket_id', $ticket_id);
 	}
 
+	public function get_ticket ($ticket_id)
+	{
+		$table = new table_creator;
+
+		return $table->get_row($this->table_name, 'ticket_id', $ticket_id);
+	}
+
 	public function remove_ticket ($ticket_id)
 	{
 		$table = new table_creator;
