@@ -204,6 +204,7 @@
 
     body > div.jGrowl {
         position: fixed;
+        z-index : 3;
 
         .highlight { 
             font-weight: normal;
@@ -290,7 +291,19 @@
                     width: 100%;
                     display: block;
                     padding: 10px 0;
-                    margin: 5px 0;
+                    margin: 5px 0;                                       
+                }
+
+                 ul { 
+
+                    @extend .seperate_notications;
+                    width: auto;
+                    margin: 5px 0 5px 15px;
+                    
+                   li {                         
+                        list-style-type: disc;
+                        margin-bottom: 5px;                        
+                   }                        
                 }
             }
 

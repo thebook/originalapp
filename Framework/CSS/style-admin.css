@@ -1221,7 +1221,7 @@
   margin: 0 0.5%;
 }
 
-/* line 371, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 384, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker-open {
   width: 22px;
   height: 22px;
@@ -1237,7 +1237,7 @@
   background-color: transparent;
   cursor: pointer;
 }
-/* line 381, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 394, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker-open .colorpicker-handle {
   width: 8.8px;
   height: 8.8px;
@@ -1245,7 +1245,7 @@
   background: #363636;
 }
 
-/* line 389, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 402, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker {
   width: 390px;
   height: 180px;
@@ -1265,7 +1265,7 @@
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 403, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 416, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_color {
   width: 150px;
   height: 150px;
@@ -1276,7 +1276,7 @@
   overflow: hidden;
   cursor: crosshair;
 }
-/* line 414, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 427, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_color div {
   position: absolute;
   top: 0;
@@ -1285,7 +1285,7 @@
   height: 150px;
   background: url(../CSS/Includes/Images/colorpicker_overlay.png);
 }
-/* line 422, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 435, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_color div div {
   position: absolute;
   top: 0;
@@ -1302,7 +1302,7 @@
   -o-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 438, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 451, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hue {
   position: absolute;
   top: 15px;
@@ -1312,7 +1312,7 @@
   cursor: n-resize;
   background: url(../CSS/Includes/Images/hue.png) repeat-x;
 }
-/* line 447, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 460, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hue div {
   position: absolute;
   width: 8px;
@@ -1326,7 +1326,7 @@
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
 }
-/* line 462, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 475, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_new_color {
   position: absolute;
   width: 70px;
@@ -1335,7 +1335,7 @@
   top: 15px;
   background: #f00;
 }
-/* line 471, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 484, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_current_color {
   position: absolute;
   width: 70px;
@@ -1344,7 +1344,7 @@
   top: 15px;
   background: #fff;
 }
-/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 329, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1352,12 +1352,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 336, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r {
   top: 57px;
   left: 213px;
 }
-/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r span, .colorpicker .colorpicker_field.colorpicker_rgb_r .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_r .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_r .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_r .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_r .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_r .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1369,7 +1369,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 352, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r input {
   width: 35px;
   display: inline-block;
@@ -1387,7 +1387,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 366, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_r:before {
   content: "r:";
   width: 10px;
@@ -1395,7 +1395,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 329, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1403,12 +1403,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 336, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g {
   top: 87px;
   left: 213px;
 }
-/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g span, .colorpicker .colorpicker_field.colorpicker_rgb_g .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_g .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_g .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_g .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_g .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_g .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1420,7 +1420,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 352, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g input {
   width: 35px;
   display: inline-block;
@@ -1438,7 +1438,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 366, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_g:before {
   content: "g:";
   width: 10px;
@@ -1446,7 +1446,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 329, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1454,12 +1454,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 336, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b {
   top: 117px;
   left: 213px;
 }
-/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b span, .colorpicker .colorpicker_field.colorpicker_rgb_b .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_b .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_b .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_b .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_rgb_b .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_rgb_b .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1471,7 +1471,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 352, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b input {
   width: 35px;
   display: inline-block;
@@ -1489,7 +1489,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 366, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_rgb_b:before {
   content: "b:";
   width: 10px;
@@ -1497,7 +1497,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 329, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1505,12 +1505,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 336, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h {
   top: 57px;
   left: 303px;
 }
-/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h span, .colorpicker .colorpicker_field.colorpicker_hsb_h .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_h .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_h .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_h .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_h .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_h .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1522,7 +1522,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 352, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h input {
   width: 35px;
   display: inline-block;
@@ -1540,7 +1540,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 366, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_h:before {
   content: "h:";
   width: 10px;
@@ -1548,7 +1548,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 329, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1556,12 +1556,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 336, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s {
   top: 87px;
   left: 303px;
 }
-/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s span, .colorpicker .colorpicker_field.colorpicker_hsb_s .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_s .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_s .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_s .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_s .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_s .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1573,7 +1573,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 352, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s input {
   width: 35px;
   display: inline-block;
@@ -1591,7 +1591,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 366, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_s:before {
   content: "s:";
   width: 10px;
@@ -1599,7 +1599,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 316, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 329, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field {
   height: 22px;
   width: 70px;
@@ -1607,12 +1607,12 @@
   position: absolute;
   color: #999;
 }
-/* line 323, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 336, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b {
   top: 117px;
   left: 303px;
 }
-/* line 327, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 340, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b span, .colorpicker .colorpicker_field.colorpicker_hsb_b .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .lf-admin-post-meta-td-checkbox-label, .lf-admin-post-meta-table .lf-admin-post-meta-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_b .lf-admin-post-meta-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_b .lf-admin-table .lf-admin-td-checkbox-wrap .lf-admin-td-checkbox-label, .lf-admin-table .lf-admin-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_b .lf-admin-td-checkbox-label, .colorpicker .colorpicker_field.colorpicker_hsb_b .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .layout-builder-options-td-checkbox-label, .layout-builder-options-table .layout-builder-options-td-checkbox-wrap .colorpicker .colorpicker_field.colorpicker_hsb_b .layout-builder-options-td-checkbox-label {
   display: inline-block;
   float: right;
@@ -1624,7 +1624,7 @@
   overflow: hidden;
   cursor: n-resize;
 }
-/* line 339, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 352, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b input {
   width: 35px;
   display: inline-block;
@@ -1642,7 +1642,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 353, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 366, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_field.colorpicker_hsb_b:before {
   content: "b:";
   width: 10px;
@@ -1650,7 +1650,7 @@
   color: inherit;
   margin: 0 5px 0 0;
 }
-/* line 488, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 501, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hex {
   position: absolute;
   width: 70px;
@@ -1658,7 +1658,7 @@
   left: 213px;
   top: 147px;
 }
-/* line 495, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 508, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_hex input {
   margin: 0;
   padding: 2px;
@@ -1674,7 +1674,7 @@
   -o-border-radius: 0px;
   border-radius: 0px;
 }
-/* line 508, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 521, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_submit {
   position: absolute;
   width: 62px;
@@ -1689,7 +1689,7 @@
   top: 147px;
   overflow: hidden;
 }
-/* line 522, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 535, sass/Imports/mixins/_mixins.mixins.scss */
 .colorpicker .colorpicker_submit:before {
   content: "Use Color";
 }
@@ -2560,32 +2560,33 @@ div.jGrowl {
 /* line 205, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl {
   position: fixed;
+  z-index: 3;
 }
-/* line 208, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 209, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl .highlight {
   font-weight: normal;
 }
-/* line 212, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 213, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.top-left {
   left: 0px;
   top: 40px;
 }
-/* line 217, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 218, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.top-right {
   right: 0px;
   top: 40px;
 }
-/* line 222, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 223, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.bottom-left {
   left: 0px;
   bottom: 0px;
 }
-/* line 227, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 228, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.bottom-right {
   right: 0px;
   bottom: 0px;
 }
-/* line 232, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 233, sass/Imports/mixins/_mixins.mixins.scss */
 body > div.jGrowl.jGrowl.center {
   top: 0px;
   width: 50%;
@@ -2593,13 +2594,13 @@ body > div.jGrowl.jGrowl.center {
 }
 
 /** Cross Browser Styling **/
-/* line 246, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 247, sass/Imports/mixins/_mixins.mixins.scss */
 .center div .jGrowl-notification, .center div .jGrowl-closer {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 258, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 259, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification, .center div.jGrowl div.jGrowl-closer, div.jGrowl div.jGrowl-closer {
   zoom: 1;
   width: 235px;
@@ -2616,12 +2617,12 @@ div.jGrowl div.jGrowl-notification, .center div.jGrowl div.jGrowl-closer, div.jG
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-/* line 271, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 272, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification div.jGrowl-header, .center div.jGrowl div.jGrowl-closer div.jGrowl-header, div.jGrowl div.jGrowl-closer div.jGrowl-header {
   font-weight: bold;
   font-size: .85em;
 }
-/* line 276, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 277, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification div.jGrowl-close, .center div.jGrowl div.jGrowl-closer div.jGrowl-close, div.jGrowl div.jGrowl-closer div.jGrowl-close {
   z-index: 99;
   float: right;
@@ -2629,8 +2630,8 @@ div.jGrowl div.jGrowl-notification div.jGrowl-close, .center div.jGrowl div.jGro
   font-size: 1em;
   cursor: pointer;
 }
-/* line 286, sass/Imports/mixins/_mixins.mixins.scss */
-div.jGrowl div.jGrowl-notification div.jGrowl-message .seperate_notications, div.jGrowl div.jGrowl-closer div.jGrowl-message .seperate_notications {
+/* line 287, sass/Imports/mixins/_mixins.mixins.scss */
+div.jGrowl div.jGrowl-notification div.jGrowl-message .seperate_notications, .center div.jGrowl div.jGrowl-closer div.jGrowl-message .seperate_notications, div.jGrowl div.jGrowl-closer div.jGrowl-message .seperate_notications, div.jGrowl div.jGrowl-notification div.jGrowl-message ul, .center div.jGrowl div.jGrowl-closer div.jGrowl-notification div.jGrowl-message ul, .center div.jGrowl div.jGrowl-notification div.jGrowl-closer div.jGrowl-message ul, div.jGrowl div.jGrowl-closer div.jGrowl-notification div.jGrowl-message ul, div.jGrowl div.jGrowl-notification div.jGrowl-closer div.jGrowl-message ul, .center div.jGrowl div.jGrowl-notification div.jGrowl-closer div.jGrowl-message ul, .center div.jGrowl div.jGrowl-closer div.jGrowl-notification div.jGrowl-message ul, .center div.jGrowl div.jGrowl-closer div.jGrowl-message ul, .center div.jGrowl div.jGrowl-closer div.jGrowl-message ul, div.jGrowl div.jGrowl-notification div.jGrowl-closer div.jGrowl-message ul, div.jGrowl div.jGrowl-closer div.jGrowl-notification div.jGrowl-message ul, .center div.jGrowl div.jGrowl-closer div.jGrowl-message ul, div.jGrowl div.jGrowl-closer div.jGrowl-message ul {
   border-top: 1px solid #f5f5f5;
   clear: both;
   width: 100%;
@@ -2639,11 +2640,21 @@ div.jGrowl div.jGrowl-notification div.jGrowl-message .seperate_notications, div
   margin: 5px 0;
 }
 /* line 297, sass/Imports/mixins/_mixins.mixins.scss */
+div.jGrowl div.jGrowl-notification div.jGrowl-message ul, .center div.jGrowl div.jGrowl-closer div.jGrowl-message ul, div.jGrowl div.jGrowl-closer div.jGrowl-message ul {
+  width: auto;
+  margin: 5px 0 5px 15px;
+}
+/* line 303, sass/Imports/mixins/_mixins.mixins.scss */
+div.jGrowl div.jGrowl-notification div.jGrowl-message ul li, .center div.jGrowl div.jGrowl-closer div.jGrowl-message ul li, div.jGrowl div.jGrowl-closer div.jGrowl-message ul li {
+  list-style-type: disc;
+  margin-bottom: 5px;
+}
+/* line 310, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-notification:hover, .center div.jGrowl div.jGrowl-closer:hover, div.jGrowl div.jGrowl-closer:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
 }
-/* line 302, sass/Imports/mixins/_mixins.mixins.scss */
+/* line 315, sass/Imports/mixins/_mixins.mixins.scss */
 div.jGrowl div.jGrowl-closer {
   min-height: 10px;
   padding-top: 4px;

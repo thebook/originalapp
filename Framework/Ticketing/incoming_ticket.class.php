@@ -7,18 +7,15 @@ class tickets extends branch_ticket
 {
 	public function prepare_books_ticket ()
 	{
-		$time   = new helper_time;
-		global $global_admin_options_white_whale;
-
 		$ticket = 
 			array(
-				'date_created'        => date('Y-m-d'),
-				'date_expected'       => round($time->calculate_total_number_of_days(date('d/m/Y'))) + $global_admin_options_white_whale['expiery_wait'],
-				'status' 			  => $_POST['ticket']['status'],
-				'by_user' 			  => $_POST['ticket']['by_user'],
-				'history'      => array(),
-				'quoted_price'        => $_POST['ticket']['quote'],
-				'books_ordered'		  => $_POST['ticket']['books']
+				'date_created'  => date('Y-m-d'),
+				'date_expected' => $this->calculate_expiration_date(),
+				'status' 		=> $_POST['ticket']['status'],
+				'by_user' 		=> $_POST['ticket']['by_user'],
+				'history'      	=> array(),
+				'quoted_price'  => $_POST['ticket']['quote'],
+				'books_ordered'	=> $_POST['ticket']['books']
 		);
 
 		$this->create_ticket($ticket);
@@ -44,33 +41,119 @@ class tickets extends branch_ticket
 	{
 		$method = "_{$_POST['information']['action']}";
 
-		$response = $this->$method($_POST['information']);
+		$response = $this->$method($_POST['information']['message']);
 
 		echo json_encode($response);
 
 		exit;
 	}
 
-	protected function _move_to_complete ($information)
+	protected function _move_to_complete ($message)
 	{	
-		extract($information);
-
-			$current_ticket = $this->get_ticket($ticket);
-			$quote   	    = $current_ticket['quoted_price'] / 100;
-			$history 	    = unserialize($current_ticket['history']);
-			
-			$this->alter_ticket($ticket, array(
-				'status'  => 'complete',
-				'history' => $history
-			));
+		$current_ticket = $this->get_ticket($ticket);
+		$quote   	    = $current_ticket['quoted_price'] / 100;
+		$history 	    = unserialize($current_ticket['history']);
+		array_push($history, $current_ticket );			
+		$this->alter_ticket($ticket, array(
+			'status'  => 'complete',
+			'history' => $history
+		));
 
 			// Print here 
 			// Send email here after print is sucessfull
 
 			$response['header']  = 'Ticket Completed';
-			$response['message'] = "Ticket <strong>\"$ticket\"</strong> has moved to the </strong>Complete</strong> group and a check of £$quote should be printed.";
+			$response['message'] = "Ticket <strong>\"$ticket\"</strong> has moved to the <strong>Complete</strong> group and a check of <strong>£$quote</strong> should be printed.";
 
 			return $response;
+	}
+
+	public function _some_books_are_bad ($message)
+	{
+		$current_ticket = $this->get_ticket($message['ticket_id']);
+		$new_quote = 0;
+		$old_quote = $current_ticket['quoted_price'];
+		foreach ($message['books'] as $book) {
+			$new_quote = $new_quote + $book['lowest'];
+		}
+
+		$money_taken_from_old_quote_because_of_bad_books = $old_quote - $new_quote;
+		$history   = unserialize($current_ticket['history']);
+		array_push($history, $current_ticket );			
+
+
+		// $this->alter_ticket($message['ticket_id'], array(
+		// 	'status'  		=> 'complete',
+		// 	'books_ordered' => $message['books'],
+		// 	'quoted_price'  => $new_quote,
+		// 	'history' 		=> $history
+		// ));
+
+		// $this->create_ticket(array(
+		// 	'status' 		=> 'awaiting_response',
+		// 	'date_created'  => date('Y-m-d'),
+		// 	'date_expected' => $this->calculate_expiration_date(),
+		// 	'by_user'		=> $current_ticket['by_user'],
+		// 	'books_ordered'	=> $message['bad_books'],
+		// 	'quoted_price'  => $money_taken_from_old_quote_because_of_bad_books,
+		// 	'history' 		=> $history
+		// ));
+
+		// Print check here 
+
+		$response['header']   = 'Ticket Split';
+		$response['message']  = "<p class=\"seperate_notifications\">Ticket <strong>\"{$message['ticket_id']}\"</strong> has bee split into two different tickets and the quote has been changed from <strong>£". $old_quote / 100 ."</strong> to <strong>£". $new_quote / 100 ."</strong>: </p>";
+		$response['message'] .= '<p class="seperate_notifications">The Following books have been split into the <strong>Complete</strong> ticket, and a check of <span style="text-decoration: underline;">£'. ( $new_quote/100 ) .'</span> has been printed :</p>';
+		$response['message'] .= $this->_format_book_names_to_return_in_string_for_growl($message['books']);
+		$response['message'] .= '<p class="seperate_notifications">The Following books have been split into the <strong>Awaiting Return</strong>ticket, as they are in unaceptable condition. A sum of <span style="text-decoration: underline;">£'. ( $money_taken_from_old_quote_because_of_bad_books/100 ) .'</span> has been deducted from the original price :</p>';
+		$response['message'] .= $this->_format_book_names_to_return_in_string_for_growl($message['bad_books']);
+
+		return $response;		
+	}
+
+	protected function _format_book_names_to_return_in_string_for_growl ($books)
+	{	
+		$string = '<ul>';
+
+		foreach ($books as $book) {			
+			$string .= "<li><strong>{$book['title']}</strong></li>";
+		}
+
+		return $string .= '</ul>';
+	}
+
+	public function _all_bad_books ($message)
+	{
+		$current_ticket = $this->get_ticket($message['ticket_id']);
+		$quote 		    = $current_ticket['quoted_price'] / 100;
+		$history 	    = unserialize($current_ticket['history']);
+
+		array_push($history, $current_ticket );
+
+		$this->alter_ticket($message['ticket_id'], array(
+			'status'        => 'awaiting_response',
+			'date_created'  => date('Y-m-d'),
+			'date_expected' => $this->calculate_expiration_date(),
+			'books_ordered' => $message['bad_books'],
+			'history'       => $history
+		));
+
+		# Send email to user
+		
+		$response['header']   = 'Ticket Moved To Awaiting Response';
+		$response['message']  = "<p class=\"seperate_notifications\">Ticket <strong>\"{$message['ticket_id']}\"</strong> has moved to the <strong>Awaiting Response</strong> group because all of the books in it are in a bad shape.</p>";
+		$response['message'] .= "<p class=\"seperate_notifications\">An e-mail will be sent to the user asking them if they wish to donate the books, if not the books shall be moved to <strong>Awaiting Return</strong></p>";
+		$response['message'] .= "<p class=\"seperate_notifications\">Should the user not respond in the expiration period time, the books shall be considered automaticly donated, and put into <strong>Complete</strong> group.</p>";
+		
+		return $response;
+	}
+
+	protected function calculate_expiration_date ()
+	{
+		global $global_admin_options_white_whale;
+		$time = new helper_time;
+
+		return round($time->calculate_total_number_of_days(date('d/m/Y'))) + $global_admin_options_white_whale['expiery_wait'];
 	}
 
 	public function ticket_creation_element ()
@@ -171,7 +254,7 @@ class tickets extends branch_ticket
 
 		<div id="window_of_<?php echo $_GET['tickets_to_show']; ?>"class="ticket_overall_wrap ticket_window">
 			
-			<div data-function-to-call="ticket_tab.prototype.load" id="<?php echo $_GET['tickets_to_show']; ?>" class="ticket_button">Reload</div>
+			<div data-function-to-call="ticket_tab.prototype.load" id="<?php echo $_GET['tickets_to_show']; ?>" class="ticket_button reload_ticket">Reload</div>
 			
 			<?php foreach ($get_tickets[$_GET['tickets_to_show']] as $ticket ): ?>
 				

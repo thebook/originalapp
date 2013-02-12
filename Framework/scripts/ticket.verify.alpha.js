@@ -289,8 +289,7 @@ var alpha = (function ( alpha, $ ) {
 				self   : '<div class="ticket_information_row"></div>',
 				branch : { 
 					label           : '<div class="ticket_information_type">Options</div>',						
-					button_complete : '<div data-function-to-call="check_books.prototype.complete_ticket" class="check_state button">Pay The Man!</div>',
-					// button_change   : '<div data-function-to-call="check_books.prototype.update_order" class="check_state button">Update</div>',
+					button_complete : '<div data-function-to-call="check_books.prototype.complete_ticket" class="check_state button">Pay The Man!</div>',					
 					button_cancel   : '<div data-function-to-call="check_books.prototype.remove_ticket_verifyer" class="cancel_verify button">Cancel</div>'
 				}
 			}
@@ -310,25 +309,18 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.check_books.prototype.complete_ticket = function (current_click) { 
 
-		var prototype      = alpha.check_books.prototype,
-			action_to_take = prototype.what_to_do_with_ticket();
-			console.log(prototype.new_memory);
+		var prototype  = alpha.check_books.prototype,
+			what_to_do = prototype.what_to_do_with_ticket();
+
 		$.post(
 			ajaxurl, 
 			{ 
-				action : 'update_ticket', 				
-				information : {
-					action 			        	    : action_to_take,
-					ticket							: prototype.ticket,
-					books_to_pay_for 			    : prototype.new_memory,
-					books_that_didint_arrive        : prototype.memory,
-					books_that_are_in_bad_condition : prototype.bad_goods,
-					books_that_were_unexpected      : prototype.unexpected
-				}
+				action      : 'update_ticket', 				
+				information : what_to_do
 			},
 			function (response) { 
 				$.jGrowl(response.message, { header : response.header, sticky : true });
-				current_click.closest('');
+				// current_click.element.closest('.ticket_window').children('.reload_ticket').trigger('click');
 			},
 			'json');
 	};
@@ -340,7 +332,28 @@ var alpha = (function ( alpha, $ ) {
 		}
 		
 		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 ) {
-			return "bad_books";
+
+			if ( $.isEmptyObject(this.new_memory) ) {
+
+				return { 
+					action   : "all_bad_books",
+					message : {
+						ticket_id : this.ticket,
+						bad_books : this.bad_goods
+					}
+				}
+			}
+			else {
+
+				return { 
+					action  : "some_books_are_bad",
+					message : {
+						ticket_id  : this.ticket,
+						bad_books  : this.bad_goods,
+						books      : this.new_memory
+					}
+				}
+			}
 		}
 
 		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 ) {
