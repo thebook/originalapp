@@ -22,6 +22,8 @@ include FRAMEWORK . '/embed.class.php';
 
 include FRAMEWORK . '/table_create.class.php';
 
+include FRAMEWORK . '/response.class.php';
+
 //include FRAMEWORK . '/gravatar.class.php';
 
 ?>

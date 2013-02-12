@@ -328,7 +328,13 @@ var alpha = (function ( alpha, $ ) {
 	alpha.check_books.prototype.what_to_do_with_ticket = function () { 
 
 		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 ) {
-			return "move_to_complete";
+			return { 
+				action   : "all_books_are_here_as_promised",
+				message : {
+					ticket_id : this.ticket,
+					books     : this.new_memory
+				}
+			}
 		}
 		
 		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 ) {
@@ -357,7 +363,29 @@ var alpha = (function ( alpha, $ ) {
 		}
 
 		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 ) {
-			return "bad_books_with_some_missing";
+
+			if ( $.isEmptyObject(this.new_memory) ) { 
+
+				return { 
+					action   : "all_bad_books_with_some_missing",
+					message : {
+						ticket_id      : this.ticket,
+						bad_books      : this.bad_goods,
+						promised_books : this.memory
+					}
+				}				
+			}
+			else { 
+				return { 
+					action   : "some_books_are_in_bad_condition_and_some_missing",
+					message : {
+						ticket_id      : this.ticket,
+						bad_books      : this.bad_goods,
+						books 		   : this.new_memory,
+						promised_books : this.memory
+					}
+				}
+			}
 		}
 
 		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length > 0 ) {
