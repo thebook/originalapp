@@ -1,5 +1,16 @@
 <?php 
 
+function extract_and_return_a_member_of_nested_array ($array, $who_to_extract ) {
+
+	$return_array = array();
+
+	foreach ($array as $member) {			
+		$return_array[] = $member[$who_to_extract];
+	}
+
+	return $return_array;
+}
+
 function remove_array_members ($array_whose_members_to_remove, $array_of_key_names_to_remove)
 {
 	foreach ($array_of_key_names_to_remove as $key_name) {

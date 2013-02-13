@@ -104,7 +104,7 @@ var alpha = (function ( alpha, $ ) {
 			isbn  = klass.parts.verify.wrap.branch.branch.verify_row.branch.branch.search.branch.input.attr('value'),
 			ticked_book = klass.parts.verify.wrap.branch.branch.expected_row.branch.contents.find('.'+ isbn );
 
-			if ( alpha._is_number(isbn) && isbn.length === 10 ) {
+			if ( isbn.length === 10 ) {
 				
 				if ( ticked_book.length > 0 ) {
 
