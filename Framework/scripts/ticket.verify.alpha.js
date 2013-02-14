@@ -7,7 +7,7 @@ var alpha = (function ( alpha, $ ) {
 			books = current_click.instructions.books;
 			this.prototype.new_memory = {};
 			this.prototype.parts = {};
-			this.prototype.unexpected = [];
+			this.prototype.unexpected = {};
 			this.prototype.original_quote = current_click.instructions.quote;
 			this.prototype.ticket = current_click.instructions.ticket;
 			this.prototype.memory = this.prototype.sort_books_by_isbn(books);
@@ -130,64 +130,97 @@ var alpha = (function ( alpha, $ ) {
 								isbn +
 							'</div>'+
 						'</div>');
-
-					klass.unexpected.push(isbn);
-					( klass.new_memory[isbn]? klass.new_memory[isbn].push(isbn) : klass.new_memory[isbn] = [isbn] );
+					
+					( klass.unexpected[isbn]? klass.unexpected[isbn].push(isbn) : klass.unexpected[isbn] = [isbn] );
 				}
 			}
 	};	
 
+	alpha.check_books.prototype.prepare_books_to_be_queried_in_amazon = function (books) { 
+
+		var amazon = {}, 
+		    book_details = {};
+		   	amazon.search_text   = '';
+		   	amazon.list_of_books = [];
+
+		$.each( books,
+		function (isbn, book) { 
+
+			book_details = {};
+
+			if ( book.constructor === Array && book[0].constructor === Object ) { 
+
+				book_details.quote = book[0].quote;
+				book_details.number_of_the_same_book = book.length;
+				amazon.search_text += book[0].isbn +', ';
+
+				amazon.list_of_books.push(book_details);
+			}
+
+			if ( book.constructor === Array && book[0].constructor === String ) {
+
+				book_details.number_of_the_same_book = book.length;
+				amazon.search_text += book[0] +', ';
+
+				amazon.list_of_books.push(book_details);
+			}
+		});
+
+		return amazon;
+	};
+
+	alpha.check_books.prototype.get_books_info_from_amazon = function (instructions) {
+
+	 	var array_to_append = [],
+	 		klass			= this,
+	 		information     = this.prepare_books_to_be_queried_in_amazon(instructions.books);
+	 		console.log(information);
+		$.post(
+			ajaxurl, 
+			{ 
+				action     : 'amazon', 
+				paramaters : { 
+					typed       : information.search_text, 
+					search_by   : 'isbn', 
+					search_for  : 'books',
+					filter_name : 'tiny' 
+				} 
+			},
+			function (amazon_books) { 
+
+				$.each(amazon_books,
+				function (index, book) { 
+						
+					var information_on_book           = information.list_of_books[index];
+						book.lowest_used_price.Amount = (information_on_book.quote? information_on_book.quote : alpha.search_though_amazon_for_a_book.prototype.quote(book.lowest_used_price.Amount) );
+
+						for (var i = 0; i < information_on_book.number_of_the_same_book; i++) {
+							array_to_append.push(book);
+						};
+				});
+
+				instructions.invoke.call(klass, alpha.amazon.prototype.return_books(array_to_append));
+			},
+		'json');
+	};
+
 	alpha.check_books.prototype.transitioning_to_check_condition = function () { 
 
-		var klass  = alpha.check_books.prototype,
-			new_memory = [],
-			reference_of_number_of_books = [],
-			string = '';
+		var klass = alpha.check_books.prototype;
 
-			klass.parts.verify.wrap.branch.branch.buttons.branch.button_next_step.text('loading...');
+		klass.get_books_info_from_amazon({ 
+			books  : klass.new_memory, 
+			invoke : function (promised_and_arrived_books) { 
 
-			$.each(klass.new_memory,
-			function (isbn, book) { 
+				this.get_books_info_from_amazon({
+					books  : this.unexpected, 
+					invoke : function (unexpected_and_arrived_books) {
 
-				if ( book.constructor === Array ) { 
-
-					var reference = { number : book.length };
-
-	 					if ( book[0].constructor === Object ) { 
-
-							reference.quote = book[0].quote;
-							string += book[0].isbn +', ';	
-						}
-						else if ( book[0].constructor === String ) { 
-
-							string += book[0] +', ';	
-						}					
-
-						reference_of_number_of_books.push(reference);
-				}				
-			});
-
-			$.post(
-				ajaxurl, 
-				{ action : 'amazon', paramaters : { typed : string, search_by : 'isbn', search_for : 'books', filter_name : 'tiny' } },
-				function (amazon_books) { 
-
-					$.each(amazon_books,
-					function (index, book) { 
-						
-						var reference   = reference_of_number_of_books[index];
-							book.lowest_used_price.Amount = (reference.quote? reference.quote : alpha.search_though_amazon_for_a_book.prototype.quote(book.lowest_used_price.Amount) );
-
-							for (var i = 0; i < reference.number; i++) {
-								new_memory.push(book);
-							};
-					});
-
-					klass.new_memory = alpha.amazon.prototype.return_books(new_memory);
-
-					klass.check_condition();
-				},
-				'json');
+						this.new_memory = promised_and_arrived_books;
+						this.unexpected = unexpected_and_arrived_books;
+						this.check_condition();
+				}});
+		}});
 	};
 
 	alpha.check_books.prototype.flaten_to_array = function (object_to_flaten) {
@@ -208,25 +241,6 @@ var alpha = (function ( alpha, $ ) {
 		});
 
 		return return_array;
-	};
-
-	alpha.check_books.prototype.sort_books_for_ticking = function () { 
-
-		var books_element = '<div class="ticket_information">';
-
-			$.each(this.new_memory,
-			function (index, book) { 
-
-				books_element += 
-					'<div class="books_for_ticket_verifying books_for_ticket">'+
-						'<div class="ticket_book_start_label">'+
-							book.isbn +
-						'</div>'+
-						'<input data-function-to-call="check_books.prototype.cross_out_goods" class="'+ index +'" type="checkbox" value="bad_condition">'+
-					'</div>';
-			});
-					
-		return books_element += '</div>';
 	};
 
 	alpha.check_books.prototype.manifest = function (passed) { 
@@ -275,7 +289,14 @@ var alpha = (function ( alpha, $ ) {
 				self   : '<div class="ticket_information_row"></div>',
 				branch : {
 					label    : '<div class="ticket_information_type">Verify Books</div>',
-					contents : this.sort_books_for_ticking()
+					contents : this.sort_books_for_ticking(this.new_memory, 'new_memory')
+				}
+			},
+			unexpected_condition_row : { 
+				self   : '<div class="ticket_information_row"></div>',
+				branch : {
+					label    : '<div class="ticket_information_type">Tick Bad Unexpected Books</div>',
+					contents : this.sort_books_for_ticking(this.unexpected, 'unexpected')
 				}
 			},
 			unusable_row : { 
@@ -304,7 +325,6 @@ var alpha = (function ( alpha, $ ) {
 			what_to_manifest : check_ticket_condition_thought,
 		 	append_to_who    : this.parts.verify.wrap.self 
 		});
-
 	};
 
 	alpha.check_books.prototype.complete_ticket = function (current_click) { 
@@ -323,6 +343,49 @@ var alpha = (function ( alpha, $ ) {
 				// current_click.element.closest('.ticket_window').children('.reload_ticket').trigger('click');
 			},
 			'json');
+	};
+
+	alpha.check_books.prototype.cross_out_goods = function (current_click) { 
+
+		var klass = alpha.check_books.prototype,
+			index = current_click.element.attr('id'),
+			unexpected_or_expected = current_click.element.attr('class');
+
+			klass.bad_goods.push(klass[unexpected_or_expected][index]);
+			
+			current_click.element.parent().fadeOut(400, function () { $(this).empty().remove() });
+			klass.parts.condition.unusable_row.branch.ticket_information.append(
+				'<div class="books_for_ticket_verifying books_for_ticket">'+
+					'<div class="ticket_book_start_label">'+ 
+						klass[unexpected_or_expected][index].isbn + 
+					'</div>'+
+				'</div>');
+
+			delete klass[unexpected_or_expected][index];
+	};	
+
+	alpha.check_books.prototype.remove_ticket_verifyer = function () { 
+
+		alpha.check_books.prototype.parts.verify.wrap.self.fadeOut(400, function () { $(this).empty().remove(); });
+	};
+
+	alpha.check_books.prototype.sort_books_for_ticking = function (which_books, unexpected_or_expected) { 
+
+		var books_element = '<div class="ticket_information">';
+
+			$.each(which_books,
+			function (index, book) { 
+
+				books_element += 
+					'<div class="books_for_ticket_verifying books_for_ticket">'+
+						'<div class="ticket_book_start_label">'+
+							book.isbn +
+						'</div>'+
+						'<input data-function-to-call="check_books.prototype.cross_out_goods" id="'+ index +'" class="'+ unexpected_or_expected +'" type="checkbox" value="bad_condition">'+
+					'</div>';
+			});
+					
+		return books_element += '</div>';
 	};
 
 	alpha.check_books.prototype.what_to_do_with_ticket = function () { 
@@ -399,29 +462,6 @@ var alpha = (function ( alpha, $ ) {
 		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 ) {
 			return "some_books_missing_some_unexpected_and_some_in_bad_shape";
 		}
-	};
-
-	alpha.check_books.prototype.cross_out_goods = function (current_click) { 
-
-		var klass = alpha.check_books.prototype,
-			index = current_click.element.attr('class');
-
-			klass.bad_goods.push(klass.new_memory[index]);
-			
-			current_click.element.parent().fadeOut(400, function () { $(this).empty().remove() });
-			klass.parts.condition.unusable_row.branch.ticket_information.append(
-				'<div class="books_for_ticket_verifying books_for_ticket">'+
-					'<div class="ticket_book_start_label">'+ 
-						klass.new_memory[index].isbn + 
-					'</div>'+
-				'</div>');
-
-			delete klass.new_memory[index];
-	};	
-
-	alpha.check_books.prototype.remove_ticket_verifyer = function () { 
-
-		alpha.check_books.prototype.parts.verify.wrap.self.fadeOut(400, function () { $(this).empty().remove(); });
 	};
 
 	return alpha;
