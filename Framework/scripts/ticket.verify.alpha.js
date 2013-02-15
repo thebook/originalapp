@@ -409,7 +409,7 @@ var alpha = (function ( alpha, $ ) {
 			action.action = this.what_to_do_with_ticket();
 
 											  action.message.ticket_id = this.ticket;
-			if ( this.memory.length     > 0 ) action.message.promised_books = this.memory;
+			if ( this.memory.length     > 0 ) action.message.promised_books = this.memory[0];
 			if ( this.new_memory.length > 0 ) action.message.arrived_promised_books = this.new_memory;
 			if ( this.bad_goods.length  > 0 ) action.message.bad_books = this.bad_goods;
 			if ( this.unexpected.length > 0 ) action.message.unexpected_books = this.unexpected;
@@ -426,11 +426,11 @@ var alpha = (function ( alpha, $ ) {
 		// some of the books did not arrive and the ones that did are all bad condition
 		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 && this.new_memory.length === 0 ) {
 
-			return "all_bad_books_with_some_missing";
+			return "some_of_the_books_did_not_arrive_and_the_ones_that_did_are_all_bad_condition";
 		}
 		// some unexpected books arrived out of the batch that are ussable along with some that are in bad shape
 		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 && this.new_memory.length === 0 ) {
-			return "some_unexpected_books_arrived_out_of_the_batch_that_are_ussable_along_with_some_that_are_in_bad_shape";
+			return "some_unexpected_books_arrived_out_of_the_batch_that_are_useable_along_with_some_that_are_in_bad_shape";
 		}
 		// some books didint arrive but unexpected books arrived along with normal ones with some that are unisable
 		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 && this.new_memory.length > 0 ) {
