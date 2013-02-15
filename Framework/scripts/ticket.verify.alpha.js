@@ -329,14 +329,18 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.check_books.prototype.complete_ticket = function (current_click) { 
 
-		var prototype  = alpha.check_books.prototype,
-			what_to_do = prototype.what_to_do_with_ticket();
+		var prototype, ticket_action;
 
+		  	prototype     		 = alpha.check_books.prototype,
+			prototype.memory     = prototype.convert_object_to_array(prototype.memory);
+			prototype.bad_goods  = prototype.convert_object_to_array(prototype.bad_goods);
+			prototype.unexpected = prototype.convert_object_to_array(prototype.unexpected);
+			prototype.new_memory = prototype.convert_object_to_array(prototype.new_memory);
+			ticket_action        = prototype.prepare_ticket_action();
+						
 		$.post(
 			ajaxurl, 
-			{ 
-				action      : 'update_ticket', 				
-				information : what_to_do
+			{ action      : 'update_ticket', information : ticket_action
 			},
 			function (response) { 
 				$.jGrowl(response.message, { header : response.header, sticky : true });
@@ -388,80 +392,131 @@ var alpha = (function ( alpha, $ ) {
 		return books_element += '</div>';
 	};
 
+	alpha.check_books.prototype.convert_object_to_array = function (object) { 
+
+		var array = [];			
+			for ( var member in object ) { 
+				array.push(object[member]);
+			}
+		return array;
+	};
+
+	alpha.check_books.prototype.prepare_ticket_action = function () { 
+		
+		var action = {};
+			action.message = {}
+
+			action.action = this.what_to_do_with_ticket();
+
+											  action.message.ticket_id = this.ticket;
+			if ( this.memory.length     > 0 ) action.message.promised_books = this.memory;
+			if ( this.new_memory.length > 0 ) action.message.arrived_promised_books = this.new_memory;
+			if ( this.bad_goods.length  > 0 ) action.message.bad_books = this.bad_goods;
+			if ( this.unexpected.length > 0 ) action.message.unexpected_books = this.unexpected;
+
+		return action;
+	};
+
 	alpha.check_books.prototype.what_to_do_with_ticket = function () { 
 
-		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 ) {
-			return { 
-				action   : "all_books_are_here_as_promised",
-				message : {
-					ticket_id : this.ticket,
-					books     : this.new_memory
-				}
-			}
+		// all books didint arrive 
+		if ( this.memory.length > 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 && this.new_memory.length === 0 ) {
+			return "all_books_didint_arrive";
+		}
+		// some of the books did not arrive and the ones that did are all bad condition
+		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 && this.new_memory.length === 0 ) {
+
+			return "all_bad_books_with_some_missing";
+		}
+		// some unexpected books arrived out of the batch that are ussable along with some that are in bad shape
+		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 && this.new_memory.length === 0 ) {
+			return "some_unexpected_books_arrived_out_of_the_batch_that_are_ussable_along_with_some_that_are_in_bad_shape";
+		}
+		// some books didint arrive but unexpected books arrived along with normal ones with some that are unisable
+		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 && this.new_memory.length > 0 ) {
+			return "some_books_didint_arrive_but_unexpected_books_arrived_along_with_normal_ones_and_some_that_are_unusable";
+		}
+		// all books arrived along with some new books and some books are in bad shape
+		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 && this.new_memory.length > 0 ) {
+			return "all_books_arrived_along_with_some_new_books_and_some_books_are_in_bad_shape";
+		}
+		// all books arrived with some unexpected ones and are all in good shape
+		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length > 0 && this.new_memory.length > 0 ) {
+			return "all_books_arrived_with_some_unexpected_ones_and_are_all_in_good_shape";
+		}
+		// all books arrrived and are all in perfect condition
+		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 && this.new_memory.length > 0 ) {
+					return { 
+						action   : "all_books_are_here_as_promised",
+						// books that were promised are here and are in good condition
+						message : {
+							ticket_id : this.ticket,
+							books     : this.new_memory
+						}
+					}
+			return "all_books_arrrived_and_are_all_in_perfect_condition";
+		}
+		// *having evrything null is not possible since the books from new memory had to go somewehre 
+		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 && this.new_memory.length === 0  ) {
+			return false;
+		}
+		// all books arrived and are bad
+		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 && this.new_memory.length === 0  ) {
+
+			return "all_bad_books";
+		}
+		// *this one cancels itslef out
+		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length > 0 && this.new_memory.length === 0  ) {
+			return false;
+		}
+		// some books arrived along with some unexpected ones and are all in good condition 
+		if ( this.memory.length > 0 && this.bad_goods.length === 0 && this.unexpected.length > 0 && this.new_memory.length > 0  ) {
+			return "some_books_arrived_along_with_some_unexpected_ones_and_are_all_in_good_condition";
+		}
+		// all books arrived and some are in a unaceptable condition
+		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 && this.new_memory.length > 0  ) {					
+			return "some_books_are_bad";
+		}
+		// only unexpectede books arrived 
+		if ( this.memory.length > 0 && this.bad_goods.length === 0 && this.unexpected.length > 0 && this.new_memory.length === 0  ) {
+			return "only_unexpected_books_arrived";
+		}
+		// some books didint arrive and some that did are not in a good shape 
+		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 && this.new_memory.length > 0  ) {
+			return "some_books_didint_arrive_and_some_that_did_are_not_in_a_good_shape";
+		}
+		// all books arrived with some unexpected books and only some unexpected books are in good shape
+		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 && this.new_memory.length === 0  ) {
+			return "all_books_arrived_with_some_unexpected_books_and_only_some_unexpected_books_are_in_good_shape";
+		}
+		// some books didint arrive but the ones that did are in a good condition 
+		if ( this.memory.length > 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 && this.new_memory.length > 0  ) {
+			return "some_books_didint_arrive_but_the_ones_that_did_are_in_a_good_condition";
 		}
 		
-		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 ) {
+		// if { 
+		// 	return { 
+		// 		action  : "some_books_are_in_bad_condition_and_some_missing",
+		// 		message : {
+		// 			ticket_id      : this.ticket,
+		// 			bad_books      : this.bad_goods,
+		// 			books 		   : this.new_memory,
+		// 			promised_books : this.memory
+		// 		}
+		// 	}
+		// }
 
-			if ( $.isEmptyObject(this.new_memory) ) {
+		// if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length > 0 ) {
+		// 	return "unexpected_book"
+		// }
 
-				return { 
-					action   : "all_bad_books",
-					message : {
-						ticket_id : this.ticket,
-						bad_books : this.bad_goods
-					}
-				}
-			}
-			else {
+		// if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 ) {
+		// 	return "unexpected_books_and_some_are_bad_books";
+		// }
 
-				return { 
-					action  : "some_books_are_bad",
-					message : {
-						ticket_id  : this.ticket,
-						bad_books  : this.bad_goods,
-						books      : this.new_memory
-					}
-				}
-			}
-		}
-
-		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 ) {
-
-			if ( $.isEmptyObject(this.new_memory) ) { 
-
-				return { 
-					action   : "all_bad_books_with_some_missing",
-					message : {
-						ticket_id      : this.ticket,
-						bad_books      : this.bad_goods,
-						promised_books : this.memory
-					}
-				}				
-			}
-			else { 
-				return { 
-					action   : "some_books_are_in_bad_condition_and_some_missing",
-					message : {
-						ticket_id      : this.ticket,
-						bad_books      : this.bad_goods,
-						books 		   : this.new_memory,
-						promised_books : this.memory
-					}
-				}
-			}
-		}
-
-		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length > 0 ) {
-			return "unexpected_book"
-		}
-
-		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 ) {
-			return "unexpected_books_and_some_are_bad_books";
-		}
-
-		if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 ) {
-			return "some_books_missing_some_unexpected_and_some_in_bad_shape";
-		}
+		// if ( this.memory.length > 0 && this.bad_goods.length > 0 && this.unexpected.length > 0 ) {
+		// 	return "some_books_missing_some_unexpected_and_some_in_bad_shape";
+		// }
 	};
 
 	return alpha;

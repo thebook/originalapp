@@ -162,6 +162,8 @@ abstract class branch_ticket_splitter extends branch_ticket
 		return $response->return;
 	}
 
+	
+
 	protected function _initialise_message ($message, $get_quote_from)
 	{
 		$message['current_ticket'] = $this->get_ticket($message['ticket_id']);
