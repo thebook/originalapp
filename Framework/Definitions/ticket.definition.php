@@ -83,12 +83,12 @@ return array(
 				// complete ticket order
 				array(
 					'f' => 'add_action',
-					'o' => array('wp_ajax_update_ticket', array($this, 'update_ticket' ) )
+					'o' => array('wp_ajax_update_ticket', array($this, 'update_ticket_after_verify' ) )
 				),
 				// update ticket
 				array(
 					'f' => 'add_action',
-					'o' => array('wp_ajax_update_ticket_order', array($this, 'change_ticket' ) )
+					'o' => array('wp_ajax_change_ticket', array($this, 'change_ticket' ) )
 				),
 				// Create Menu page
 				array(

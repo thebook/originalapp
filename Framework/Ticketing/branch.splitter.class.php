@@ -5,7 +5,19 @@
 */
 abstract class branch_ticket_splitter extends branch_ticket
 {
-	public function update_ticket ()
+	public function change_ticket ()
+	{
+		$data = $_POST['information'];
+		$ticket = array_shift($data);
+
+		$this->alter_ticket($ticket, $data);
+
+		return json_encode(array('message' => 'stuff', 'header' => 'some other stuff'));
+
+		exit;
+	}
+
+	public function update_ticket_after_verify ()
 	{
 		$method = "_{$_POST['information']['action']}";
 

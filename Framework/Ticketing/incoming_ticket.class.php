@@ -227,6 +227,48 @@ class tickets extends branch_ticket_splitter
 		return str_replace('"', "'", json_encode(unserialize($ticket['books_ordered'])));
 	}
 
+	protected function _display_ticket_buttons ($ticket)
+	{ ?>
+		<?php extract($ticket['ticket']); ?>
+
+		<?php if ($status === 'waiting_arrival'): ?>
+			
+			<div data-function-to-call="check_books" data-function-instructions="{ 'books' : <?php echo $this->_verify_ticket_button($ticket['ticket']); ?>, 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>' }" class="button">Verify Ticket</div>
+
+		<?php endif ?>
+
+		<?php if ($status === 'awaiting_return'): ?>
+			
+			<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Books Returned', 'message' : 'Ticket has been moved to the <strong>Returned</strong> group.'}, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'returned' } }" class="button">Books Returned</div>
+
+		<?php endif ?>
+
+		<?php if ($status === 'awaiting_response'): ?>
+			
+		<?php endif ?>
+
+		<?php if ($status === 'expired' ): ?>
+			
+			<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Books Returned', 'message' : 'Ticket has been moved to the <strong>Returned</strong> group.'}, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'awaiting_response' } }" class="button">Books Returned</div>
+
+		<?php endif ?>
+
+		<?php if ($status === 'returned' ): ?>
+			
+			<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Ticket Revived', 'message' : 'Ticket has been put back into the <strong>Awaiting Return</strong> group.' }, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'awaiting_return' }}" class="button">Not Returned?</div>
+			
+		<?php endif ?>
+
+		<?php if ($status === 'waiting_arrival' or $status === 'awaiting_return' or $status === 'awaiting_response'): ?>
+			
+			<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Ticket moved to expire', 'message' : 'Ticket has been moved to the <strong>Expired</strong> group, this ticket will be treated as if its order never arrived.'}, 'ticket' : { 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'expired' } }" class="button">Expire</div>
+			
+			<div data-function-to-call="extend_ticket_expirey" class="button">Change Expirey</div>
+
+		<?php endif ?>
+
+<?php }
+
 	protected function _display_ticket ($ticket)
 	{ ?>
 		<div class="ticket_box_wrap">
@@ -235,9 +277,7 @@ class tickets extends branch_ticket_splitter
 
 				<div class="ticket_information_row">
 
-					<div data-function-to-call="check_books" 
-					     data-function-instructions="{ 'books' : <?php echo $this->_verify_ticket_button($ticket['ticket']); ?>, 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>' }" 
-					     class="button">Verify Ticket</div>				
+					<?php $this->_display_ticket_buttons($ticket); ?>
 
 				</div>
 

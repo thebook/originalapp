@@ -56,7 +56,7 @@ var alpha = (function ( alpha, $ ) {
 						}						
 					}
 				}
-			}
+			};
 			
 			this.prototype.parts.verify = this.prototype.manifest({
 				what_to_manifest : verify_ticket_thought,
@@ -327,28 +327,6 @@ var alpha = (function ( alpha, $ ) {
 		});
 	};
 
-	alpha.check_books.prototype.complete_ticket = function (current_click) { 
-
-		var prototype, ticket_action;
-
-		  	prototype     		 = alpha.check_books.prototype,
-			prototype.memory     = prototype.convert_object_to_array(prototype.memory);
-			prototype.bad_goods  = prototype.convert_object_to_array(prototype.bad_goods);
-			prototype.unexpected = prototype.convert_object_to_array(prototype.unexpected);
-			prototype.new_memory = prototype.convert_object_to_array(prototype.new_memory);
-			ticket_action        = prototype.prepare_ticket_action();
-						
-		$.post(
-			ajaxurl, 
-			{ action      : 'update_ticket', information : ticket_action
-			},
-			function (response) { 
-				$.jGrowl(response.message, { header : response.header, sticky : true });
-				// current_click.element.closest('.ticket_window').children('.reload_ticket').trigger('click');
-			},
-			'json');
-	};
-
 	alpha.check_books.prototype.cross_out_goods = function (current_click) { 
 
 		var klass = alpha.check_books.prototype,
@@ -366,6 +344,28 @@ var alpha = (function ( alpha, $ ) {
 				'</div>');
 
 			delete klass[unexpected_or_expected][index];
+	};
+
+	alpha.check_books.prototype.complete_ticket = function (current_click) { 
+
+		var prototype, ticket_action;
+
+		  	prototype     		 = alpha.check_books.prototype,
+			prototype.memory     = prototype.convert_object_to_array(prototype.memory);
+			prototype.bad_goods  = prototype.convert_object_to_array(prototype.bad_goods);
+			prototype.unexpected = prototype.convert_object_to_array(prototype.unexpected);
+			prototype.new_memory = prototype.convert_object_to_array(prototype.new_memory);
+			ticket_action        = prototype.prepare_ticket_action();
+						
+		$.post(
+			ajaxurl, 
+			{ action      : 'update_ticket', information : ticket_action
+			},
+			function (response) { 
+				$.jGrowl(response.message, { header : response.header, sticky : true });
+				current_click.element.closest('.ticket_window').children('.reload_ticket').trigger('click');
+			},
+			'json');
 	};	
 
 	alpha.check_books.prototype.remove_ticket_verifyer = function () { 

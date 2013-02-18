@@ -72,6 +72,45 @@ var alpha = (function ( alpha, $ ) {
 		}
 	};
 
+	alpha.manifest = function (passed) { 
+
+		var prototype = this.manifest.prototype;
+			
+			prototype.manifestor = function (thoughts_of_what_to_manifest, append_to) { 
+
+				$.each( thoughts_of_what_to_manifest,
+					function (name, body) { 
+
+						body.self = $(body.self);
+
+						append_to.append(body.self);
+
+						if ( body.branch ) { 
+													
+							$.each( body.branch,
+							function (branch_name, branch_body) { 
+
+								if ( branch_body.constructor === String ) {
+
+									branch_body 			 = $(branch_body);
+									body.branch[branch_name] = $(branch_body);							
+									body.self.append(branch_body);
+								}
+							});
+
+							if ( body.branch.branch ) { 
+								
+								prototype.manifestor(body.branch.branch, body.self);
+							}
+						}
+					});
+
+				return thoughts_of_what_to_manifest;				
+			};
+
+			return prototype.manifestor(passed.what_to_manifest, passed.append_to_who);
+	};
+
 	return alpha;
 
 })(alpha || {}, jQuery );
