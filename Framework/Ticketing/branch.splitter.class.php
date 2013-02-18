@@ -88,7 +88,13 @@ abstract class branch_ticket_splitter extends branch_ticket
 		$this->_create_book_ticket('awaiting_response', $message, $unusable_books_quote, $message['bad_books']);
 		$this->_create_book_ticket('awaiting_response', $message, $unexpected_books_quote, $message['unexpected_books']);
 
-		return " some unexpected books arrived out of the batch that are useable along with some that are in bad shape";
+		return $this->_response(array(
+			'Some books arrived, some unexpected and some bad',
+			'Not all of the promised books have arrived, however some unexpected books were detected amongst then and some of the arrived books are in an unusable shape',
+			'This tickets unarrived books has been moved to the _o Expired o_ group, a new ticket for the _o Unusable Books o_ has been created',
+			"A new ticket for the _o Unexpected Books o_ has been created aswell, the quote being _o £$unexpected_books_quote! o_",
+			'An email has been sent informing the customer about the awaiting tickets'
+		));
 	}
 
 	protected function _some_books_didint_arrive_but_unexpected_books_arrived_along_with_normal_ones_and_some_that_are_unusable ($message)
@@ -102,8 +108,14 @@ abstract class branch_ticket_splitter extends branch_ticket
 		$this->_create_book_ticket('complete', $message, $arrived_promised_books_quote, $message['arrived_promised_books']);
 		$this->_create_book_ticket('awaiting_response', $message, $unusable_books_quote, $message['bad_books']);
 		$this->_create_book_ticket('awaiting_response', $message, $unexpected_books_quote, $message['unexpected_books']);
-	
-		return "some books didint arrive but unexpected books arrived along with normal ones and some that are unusable";
+		
+		return $this->_response(array(
+			'Some books arrived, some unexpected and in bad condition',
+			'The _@ unarrived books  @_ of this ticket have been moved to the _o "Expired" o_ group',
+			"The _@ promised books   @_ that arrived have been moved to the _o \"Complete\" o_ group and a check of _o £$arrived_promised_books_quote! should be printed. o_",
+			'The _@ unusable books   @_ have been moved as a ticket to the _o "Awaiting Response" o_ group, and shall be donted if they wait time expires, or the customer says so, if not they will be returned',
+			"The _@ unexpected books @_ have been moved as a ticket to the _o \"Awaiting Response\" o_ group, with a quote of _o £$unexpected_books_quote! o_"
+		));
 	}
 
 	protected function _all_books_arrived_along_with_some_new_books_and_some_books_are_in_bad_shape ($message) 
@@ -112,20 +124,150 @@ abstract class branch_ticket_splitter extends branch_ticket
 		$unusable_books_quote   	  = $this->_quote($message['bad_books']);
 		$unexpected_books_quote 	  = $this->_quote($message['unexpected_books']);
 
-		$this->_create_book_ticket('complete', $message, $arrived_promised_books_quote, $message['arrived_promised_books']);
+		$this->_alter_book_ticket('complete', $message, $arrived_promised_books_quote, $message['arrived_promised_books']);
 		$this->_create_book_ticket('awaiting_response', $message, $unusable_books_quote, $message['bad_books']);
 		$this->_create_book_ticket('awaiting_response', $message, $unexpected_books_quote, $message['unexpected_books']);
 
-		return "all books arrived along with some new books and some books are in bad shape";	
+		return $this->_response(array(
+			'All books arrived, some unexpected and in bad condition',
+			"The _@ promised books   @_ that arrived have been moved to the _o \"Complete\" o_ group and a check of _o £$arrived_promised_books_quote! should be printed. o_",
+			'The _@ unusable books   @_ have been moved as a ticket to the _o "Awaiting Response" o_ group, and shall be donted if they wait time expires, or the customer says so, if not they will be returned',
+			"The _@ unexpected books @_ have been moved as a ticket to the _o \"Awaiting Response\" o_ group, with a quote of _o £$unexpected_books_quote! o_"
+		));
 	}
 
+	protected function _all_books_arrived_with_some_unexpected_ones_and_are_all_in_good_shape ($message)
+	{
+		$arrived_promised_books_quote = $this->_quote($message['arrived_promised_books']);
+		$unexpected_books_quote 	  = $this->_quote($message['unexpected_books']);
 
+		$this->_alter_book_ticket('complete', $message, $arrived_promised_books_quote, $message['arrived_promised_books']);
+		$this->_create_book_ticket('awaiting_response', $message, $unexpected_books_quote, $message['unexpected_books']);
 
+		return $this->_response(array(
+			'All books arrived, and some unexpected ones, all in good shape',
+			"The _@ promised books   @_ that arrived have been moved to the _o \"Complete\" o_ group and a check of _o £$arrived_promised_books_quote! should be printed. o_",
+			"The _@ unexpected books @_ have been moved as a ticket to the _o \"Awaiting Response\" o_ group, with a quote of _o £$unexpected_books_quote! o_"
+		));
+	}
+
+	protected function _all_books_arrrived_and_are_all_in_perfect_condition ($message)
+	{
+		$this->_alter_book_ticket('complete', $message, $message['old_quote'], $message['arrived_promised_books']);
+
+		return $this->_response(array(
+			'All promised books arrived and are all perfect',
+			"The _@ promised books @_ that arrived have been moved to the _o \"Complete\" o_ group and a check of _o £{$message['old_quote']}! should be printed. o_",
+		));
+	}
+
+	protected function _all_books_arrived_and_are_bad ($message)
+	{
+		$unusable_books_quote = $this->_quote($message['bad_books']);
+		$this->_alter_book_ticket('awaiting_response', $message, $message['old_quote'], $message['bad_books']);
+
+		return $this->_response(array(
+			'All the books arrived but are in bad shape',
+			"The _@ promised books @_ that arrived have been moved to the _o \"Awaiting Response\" o_ and shall be donted if they wait time expires, or the customer says so, if not they will be returned.",
+		));
+	}
+
+	protected function _some_books_arrived_along_with_some_unexpected_ones_and_are_all_in_good_condition ($message)
+	{
+		$arrived_promised_books_quote = $this->_quote($message['arrived_promised_books']);
+		$promised_books_quote   	  = $this->_quote($message['promised_books']);
+		$unexpected_books_quote 	  = $this->_quote($message['unexpected_books']);	
+
+		$this->_alter_book_ticket('complete', $message, $arrived_promised_books_quote, $message['arrived_promised_books']);
+		$this->_create_book_ticket('expired', $message, $promised_books_quote, $message['promised_books']);
+		$this->_create_book_ticket('awaiting_response', $message, $unexpected_books_quote, $message['unexpected_books']);
+
+		return $this->_response(array(
+			'Some books arrived, and unexpected ones all in good condition',
+			'The _@ unarrived books  @_ of this ticket have been moved to the _o "Expired" o_ group',
+			"The _@ promised books   @_ that arrived have been moved to the _o \"Complete\" o_ group and a check of _o £$arrived_promised_books_quote! should be printed. o_",
+			"The _@ unexpected books @_ have been moved as a ticket to the _o \"Awaiting Response\" o_ group, with a quote of _o £$unexpected_books_quote! o_"
+		));
+	}
+
+	protected function _all_books_arrived_and_some_are_in_a_unaceptable_condition ($message)
+	{
+		$arrived_promised_books_quote = $this->_quote($message['arrived_promised_books']);
+		$unusable_books_quote   	  = $this->_quote($message['bad_books']);
+
+		$this->_alter_book_ticket('complete', $message, $arrived_promised_books_quote, $message['arrived_promised_books']);
+		$this->_create_book_ticket('awaiting_response', $message, $unusable_books_quote, $message['bad_books']);
+
+		return $this->_response(array(
+			'All books have arrived but some are in bad shape',	
+			"The _@ promised books   @_ that arrived have been moved to the _o \"Complete\" o_ group and a check of _o £$arrived_promised_books_quote! should be printed. o_",
+			'The _@ unusable books   @_ have been moved as a ticket to the _o "Awaiting Response" o_ group, and shall be donted if they wait time expires, or the customer says so, if not they will be returned',
+		));
+	}
+
+	protected function _only_unexpected_books_arrived ($message)
+	{
+		$unexpected_books_quote = $this->_quote($message['unexpected_books']);
+
+		$this->_alter_book_ticket('expired', $message, $message['old_quote'], $message['promised_books']);
+		$this->_create_book_ticket('awaiting_response', $message, $unexpected_books_quote, $message['unexpected_books']);
+
+		return $this->_response(array(
+			'Only unexpected books arrived',
+			'All the _@ unarrived books  @_ of this ticket have been moved to the _o "Expired" o_ group, since they did not arrive',
+			"The _@ unexpected books @_ have been moved as a ticket to the _o \"Awaiting Response\" o_ group, with a quote of _o £$unexpected_books_quote! o_"
+		));
+	}
+
+	protected function _some_books_didint_arrive_and_some_that_did_are_not_in_a_good_shape ($message)
+	{
+		$arrived_promised_books_quote = $this->_quote($message['arrived_promised_books']);
+		$unusable_books_quote   	  = $this->_quote($message['bad_books']);
+
+		$this->_alter_book_ticket('expired', $message, $message['old_quote'], $message['promised_books']);
+		$this->_create_book_ticket('complete', $message, $arrived_promised_books_quote, $message['arrived_promised_books']);		
+		$this->_create_book_ticket('awaiting_response', $message, $unusable_books_quote, $message['bad_books']);
+
+		return $this->_response(array(
+			'Some books arrived and some are in a bad shape',
+			'The _@ unarrived books  @_ of this ticket have been moved to the _o "Expired" o_ group',
+			"The _@ promised books   @_ that arrived have been moved to the _o \"Complete\" o_ group and a check of _o £$arrived_promised_books_quote! should be printed. o_",
+			'The _@ unusable books   @_ have been moved as a ticket to the _o "Awaiting Response" o_ group, and shall be donted if they wait time expires, or the customer says so, if not they will be returned'
+		));
+	}
+
+	protected function _all_books_arrived_with_some_unexpected_books_and_only_some_unexpected_books_are_in_good_shape ($message)
+	{
+		$unusable_books_quote = $this->_quote($message['bad_books']);
+		$unexpected_books_quote = $this->_quote($message['unexpected_books']);
+
+		$this->_alter_book_ticket('awaiting_response', $message, $unusable_books_quote, $message['bad_books']);
+		$this->_create_book_ticket('awaiting_response', $message, $unexpected_books_quote, $message['unexpected_books']);
+
+		return $this->_response(array(
+			'All books arrived, with unexpected ones which are in good shape',
+			'The _@ unusable books   @_ have been moved as a ticket to the _o "Awaiting Response" o_ group, and shall be donted if they wait time expires, or the customer says so, if not they will be returned',
+			"The _@ unexpected books @_ have been moved as a ticket to the _o \"Awaiting Response\" o_ group, with a quote of _o £$unexpected_books_quote! o_"
+		));
+	}
+
+	protected function _some_books_didint_arrive_but_the_ones_that_did_are_in_a_good_condition ($message)
+	{
+		$arrived_promised_books_quote = $this->_quote($message['arrived_promised_books']);
+
+		$this->_alter_book_ticket('complete', $message, $arrived_promised_books_quote, $message['arrived_promised_books']);
+
+		return $this->_response(array(
+			'Some books arrived and all are in a good condition',
+			'The _@ unarrived books  @_ of this ticket have been moved to the _o "Expired" o_ group',
+			"The _@ promised books   @_ that arrived have been moved to the _o \"Complete\" o_ group and a check of _o £$arrived_promised_books_quote! should be printed. o_"
+		));
+	}
 
 	protected function _all_books_are_here_as_promised ($message)
 	{	
 		$message = $this->_initialise_message($message, 'books');
-		
+				
 		$this->alter_ticket($message['ticket_id'], array(
 			'status'  => 'complete',
 			'history' => $message['history']

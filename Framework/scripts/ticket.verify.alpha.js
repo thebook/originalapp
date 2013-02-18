@@ -445,15 +445,7 @@ var alpha = (function ( alpha, $ ) {
 			return "all_books_arrived_with_some_unexpected_ones_and_are_all_in_good_shape";
 		}
 		// all books arrrived and are all in perfect condition
-		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 && this.new_memory.length > 0 ) {
-					return { 
-						action   : "all_books_are_here_as_promised",
-						// books that were promised are here and are in good condition
-						message : {
-							ticket_id : this.ticket,
-							books     : this.new_memory
-						}
-					}
+		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length === 0 && this.new_memory.length > 0 ) {					
 			return "all_books_arrrived_and_are_all_in_perfect_condition";
 		}
 		// *having evrything null is not possible since the books from new memory had to go somewehre 
@@ -463,7 +455,7 @@ var alpha = (function ( alpha, $ ) {
 		// all books arrived and are bad
 		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 && this.new_memory.length === 0  ) {
 
-			return "all_bad_books";
+			return "all_books_arrived_and_are_bad";
 		}
 		// *this one cancels itslef out
 		if ( this.memory.length === 0 && this.bad_goods.length === 0 && this.unexpected.length > 0 && this.new_memory.length === 0  ) {
@@ -475,7 +467,7 @@ var alpha = (function ( alpha, $ ) {
 		}
 		// all books arrived and some are in a unaceptable condition
 		if ( this.memory.length === 0 && this.bad_goods.length > 0 && this.unexpected.length === 0 && this.new_memory.length > 0  ) {					
-			return "some_books_are_bad";
+			return "all_books_arrived_and_some_are_in_a_unaceptable_condition";
 		}
 		// only unexpectede books arrived 
 		if ( this.memory.length > 0 && this.bad_goods.length === 0 && this.unexpected.length > 0 && this.new_memory.length === 0  ) {
