@@ -3,42 +3,11 @@
 /**
 * A class for ticketing incoming books 
 */
-class tickets extends branch_ticket_splitter
+class tickets extends branch_ticket_format
 {
-	public function prepare_books_ticket ()
-	{
-		$ticket = 
-			array(
-				'date_created'  => date('Y-m-d'),
-				'date_expected' => $this->calculate_expiration_date(),
-				'status' 		=> $_POST['ticket']['status'],
-				'by_user' 		=> $_POST['ticket']['by_user'],
-				'history'      	=> array(),
-				'quoted_price'  => $_POST['ticket']['quote'],
-				'books_ordered'	=> $_POST['ticket']['books']
-		);
-
-		$this->create_ticket($ticket);
-
-		$response['header']   = 'Ticket Created';
-		$response['message']  = "<p class=\"seperate_notications\">Ticket has been created for User : <strong>\"{$_POST['ticket']['by_user']}\"</strong>, with the quote of <strong>\"£". ( $_POST['ticket']['quote'] / 100 )."\"</strong>; and has been given the status of <strong>\"".ucwords(str_replace('_', ' ', $_POST['ticket']['status']))."\"</strong></p>";
-
-		echo json_encode($response);
-
-		exit;
-	}
-
-	public function users_for_ticket ()
-	{
-		global $user;
-		
-		echo json_encode($user->get_users());
-		
-		exit;
-	}	
 
 	public function ticket_creation_element ()
-	{ ?>				
+	{ ?>
 		<div class="ticket_create_ticket">
 			
 			<div class="ticket_search">
@@ -68,13 +37,16 @@ class tickets extends branch_ticket_splitter
 		</div>
 
 		<?php exit; ?>
-
 <?php }
 
 	public function page ()
 	{ ?> 
 
-		<?php global $global_admin_options_white_whale; ?>		
+		<?php global $global_admin_options_white_whale; ?>
+
+		<?php $this->sort_ticket_states(); ?>
+
+		<?php $tickets = $this->get_and_sort_tickets(); ?>
 
 		<div class="tickets_all">
 
@@ -90,11 +62,13 @@ class tickets extends branch_ticket_splitter
 				
 			</div>
 
-			<div class="create_ticket_button" data-function-to-call="open_ticket_in_admin">Create Ticket</div>
-
-			<?php $tickets = $this->get_and_sort_tickets(); ?>
-
+			<div class="create_ticket_button" data-function-to-call="open_ticket_in_admin">Create Ticket</div>		
+				
 			<div class="tickets">
+
+				<div class="search_users_wrap"><input type="text" data-function-to-call="filter_search" data-function-instructions="{'what_to_filter' : '.ticket_box_wrap', 'filter_by' : 'data_type'}" class="search_users"></div>
+
+				<script>alpha.track_events_on_this(".search_users", 'keypress');</script>
 
 				<div class="tickets_tabs">
 					
@@ -104,7 +78,7 @@ class tickets extends branch_ticket_splitter
 
 					<?php endforeach; ?>
 
-				</div>		
+				</div>				
 				
 			</div>
 
@@ -114,19 +88,85 @@ class tickets extends branch_ticket_splitter
 
 <?php }
 
-	public function get_and_sort_tickets ()
-	{
-		$get_tickets    = $this->get_all_tickets();
-		$tickets        = array();
-		$tickets['all'] = $this->_display_all_tickets($get_tickets);
+	protected function _display_ticket ($ticket)
+	{ ?>
+		
+		<div class="ticket_box_wrap" data-filter="">
+		
+			<div class="ticket_box">
 
-		foreach ($this->paramaters['manifestation']['ticket_types'] as $type) {
+				<div class="ticket_information_row">
 
-			$tickets[$type] = $this->_return_specific_tickets('status', $type, $get_tickets);
+					<?php $this->_display_ticket_buttons($ticket); ?>
+
+				</div>
+
+				<?php foreach ( $ticket['formated'] as $ticket_column ): ?>
+							
+					<div class="ticket_information_row">
+
+						<div class="ticket_information_type"><?php echo $ticket_column['name']; ?></div>
+
+						<div class="ticket_information"><?php echo $ticket_column['value']; ?></div>
+
+					</div>
+
+				<?php endforeach; ?>
+
+			</div>
+		</div>
+
+<?php }
+
+	protected function _display_ticket_buttons ($ticket)
+	{ ?>
+		<?php extract($ticket['ticket']); ?>
+
+			<?php if ($status === 'waiting_arrival'): ?>
+				
+				<div data-function-to-call="check_books" data-function-instructions="{ 'books' : <?php echo $this->_verify_ticket_button($ticket['ticket']); ?>, 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>' }" class="button">Verify Ticket</div>
+
+			<?php endif ?>
+
+			<?php if ($status === 'awaiting_return'): ?>
+				
+				<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Books Returned', 'message' : 'Ticket has been moved to the <strong>Returned</strong> group.'}, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'returned' } }" class="button">Books Returned</div>
+
+			<?php endif ?>
+
+			<?php if ($status === 'returned' ): ?>
+				
+				<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Ticket Revived', 'message' : 'Ticket has been put back into the <strong>Awaiting Return</strong> group.' }, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'awaiting_return' }}" class="button">Not Returned?</div>
+				
+			<?php endif ?>
+
+			<?php if ($status === 'waiting_arrival' or $status === 'awaiting_return' or $status === 'awaiting_response'): ?>
+				
+				<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Ticket moved to expire', 'message' : 'Ticket has been moved to the <strong>Expired</strong> group, this ticket will be treated as if its order never arrived.'}, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'expired' } }" class="button">Expire</div>			
+				<div data-function-to-call="extend_ticket_expirey" data-function-instructions="{ 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'days_left' : '<?php echo $this->_calculate_expirey_date($ticket['ticket']['date_expected']);  ?>' }" class="button">Change Expirey</div>
+
+			<?php endif ?>
+
+<?php }
+
+	protected function _ticket_filter ($ticket, $ordered_books)
+	{	
+		$ordered_books = unserialize($ordered_books);
+		$filter = '';
+		
+		foreach ($ticket as $ticket_column ) {
+			
+			$filter .= $ticket_column['name'] .' :: '. $ticket_column['value'] .', ';
+
 		}
 
-		return $tickets;
-	}
+		foreach ($ordered_books as $book) {
+			
+			$filter .=	'Book ::'. $book['title'] .', ';
+		}
+
+		return $filter;
+	}	
 
 	public function display_tickets ()
 	{ ?>
@@ -180,6 +220,13 @@ class tickets extends branch_ticket_splitter
 		return '£'. $quote / 100;
 	}
 
+	protected function _calculate_expirey_date ($date_expected)
+	{
+		$time = new helper_time;
+
+		return ( $date_expected - round($time->calculate_total_number_of_days(date('d-m-Y'), '-')) );	
+	}
+
 	protected function _display_ticket_books_ordered ($books)
 	{	
 		$books         = unserialize($books);
@@ -226,77 +273,6 @@ class tickets extends branch_ticket_splitter
 	{
 		return str_replace('"', "'", json_encode(unserialize($ticket['books_ordered'])));
 	}
-
-	protected function _display_ticket_buttons ($ticket)
-	{ ?>
-		<?php extract($ticket['ticket']); ?>
-
-		<?php if ($status === 'waiting_arrival'): ?>
-			
-			<div data-function-to-call="check_books" data-function-instructions="{ 'books' : <?php echo $this->_verify_ticket_button($ticket['ticket']); ?>, 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>' }" class="button">Verify Ticket</div>
-
-		<?php endif ?>
-
-		<?php if ($status === 'awaiting_return'): ?>
-			
-			<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Books Returned', 'message' : 'Ticket has been moved to the <strong>Returned</strong> group.'}, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'returned' } }" class="button">Books Returned</div>
-
-		<?php endif ?>
-
-		<?php if ($status === 'awaiting_response'): ?>
-			
-		<?php endif ?>
-
-		<?php if ($status === 'expired' ): ?>
-			
-			<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Books Returned', 'message' : 'Ticket has been moved to the <strong>Returned</strong> group.'}, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'awaiting_response' } }" class="button">Books Returned</div>
-
-		<?php endif ?>
-
-		<?php if ($status === 'returned' ): ?>
-			
-			<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Ticket Revived', 'message' : 'Ticket has been put back into the <strong>Awaiting Return</strong> group.' }, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'awaiting_return' }}" class="button">Not Returned?</div>
-			
-		<?php endif ?>
-
-		<?php if ($status === 'waiting_arrival' or $status === 'awaiting_return' or $status === 'awaiting_response'): ?>
-			
-			<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Ticket moved to expire', 'message' : 'Ticket has been moved to the <strong>Expired</strong> group, this ticket will be treated as if its order never arrived.'}, 'ticket' : { 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'expired' } }" class="button">Expire</div>
-			
-			<div data-function-to-call="extend_ticket_expirey" class="button">Change Expirey</div>
-
-		<?php endif ?>
-
-<?php }
-
-	protected function _display_ticket ($ticket)
-	{ ?>
-		<div class="ticket_box_wrap">
-
-			<div class="ticket_box">
-
-				<div class="ticket_information_row">
-
-					<?php $this->_display_ticket_buttons($ticket); ?>
-
-				</div>
-
-				<?php foreach ( $ticket['formated'] as $ticket_column ): ?>
-							
-					<div class="ticket_information_row">
-
-						<div class="ticket_information_type"><?php echo $ticket_column['name']; ?></div>
-
-						<div class="ticket_information"><?php echo $ticket_column['value']; ?></div>
-
-					</div>
-
-				<?php endforeach; ?>
-
-			</div>
-		</div>
-
-<?php }
 }
 
 ?>

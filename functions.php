@@ -24,6 +24,8 @@ include FRAMEWORK .'/Apis/include.php';
 
 include FRAMEWORK . '/Ticketing/include.php';
 
+include FRAMEWORK . '/e_mail/include.php';
+
 new register_scripts;
 	
 new admin( 
@@ -75,7 +77,7 @@ $amazon = new amazon(
 		'region'               => 'co.uk'
 	));
 
-new tickets( FRAMEWORK .'/Definitions/ticket.definition.php');
+new tickets( FRAMEWORK .'/Definitions/ticket.definition.php');		
 
 // $ticketing->alter_ticket(
 // 	1,

@@ -28,7 +28,7 @@ var alpha = (function ( alpha, $ ) {
 							self   : '<div class="ticket_information_row"></div>',
 							branch : {
 								label    : '<div class="ticket_information_type">Extend Expiery</div>',
-								expiery_input : '<input class="ticket_input" type="text" value="1">',
+								expiery_input : '<div class="ticket_information">'+ wake.instructions.days_left +'</div>',
 								plus  : '<div data-function-to-call="extend_ticket_expirey.prototype.plus"  class="button"> + </div>',
 								minus : '<div data-function-to-call="extend_ticket_expirey.prototype.minus" class="button"> - </div>'
 							}},
@@ -36,8 +36,8 @@ var alpha = (function ( alpha, $ ) {
 							self   : '<div class="ticket_information_row"></div>',
 							branch : {
 								label : '<div class="ticket_information_type">Options</div>',
-								cancel : '<div data-function-to-call="extend_ticket_expirey.prototype.cancel" class="button">Cancel</div>',
 								finish : '<div data-function-to-call="extend_ticket_expirey.prototype.finish" class="button">Finish</div>',
+								cancel : '<div data-function-to-call="extend_ticket_expirey.prototype.cancel" class="button">Cancel</div>'
 							}
 						}
 					}					
@@ -56,16 +56,17 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.extend_ticket_expirey.prototype.finish = function () { 
 
-		$.ajax({
-			type : 'POST',
-			url  : ajaxurl,
-			data : { action : 'change_ticket', information : wake.instructions.ticket },
-			complete : function (message) { 					
-				$.jGrowl( wake.instructions.message.message, { header : wake.instructions.message.header, sticky : true });
-				wake.element.closest('.ticket_window').children('.reload_ticket').trigger('click');
+		var prototype = alpha.extend_ticket_expirey.prototype;
+
+		$.post(
+			ajaxurl,
+			{ action : 'update_date', information : { id : prototype.being.ticket_id, days_to_add : parseInt( prototype.parts.box.wrap.branch.branch.row.branch.expiery_input.text() ) } },
+			function (message) {
+
+				$.jGrowl( message.message, { header : message.header, sticky : true });
+				prototype.parts.current_ticket_box.closest('.ticket_window').children('.reload_ticket').trigger('click');
 			},
-			dataType : 'json'
-		});
+			'json');
 	};
 
 	alpha.extend_ticket_expirey.prototype.cancel = function () { 
@@ -81,16 +82,16 @@ var alpha = (function ( alpha, $ ) {
 		var prototype = alpha.extend_ticket_expirey.prototype,
 			input = prototype.parts.box.wrap.branch.branch.row.branch.expiery_input;
 			
-			input.val(( parseInt(input.val()) + 1 ));
+			input.text(( parseInt(input.text()) + 1 ));
 	};
 
 	alpha.extend_ticket_expirey.prototype.minus = function () { 
 
 		var prototype = alpha.extend_ticket_expirey.prototype,
 			input = prototype.parts.box.wrap.branch.branch.row.branch.expiery_input;
-			number_of_days_to_add = parseInt( input.val() );
+			number_of_days_to_add = parseInt( input.text() );
 
-			if ( number_of_days_to_add > 0 ) input.val(( number_of_days_to_add - 1 ));
+			if ( number_of_days_to_add > 0 ) input.text(( number_of_days_to_add - 1 ));
 	};
 
 	return alpha;

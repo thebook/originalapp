@@ -5,18 +5,6 @@
 */
 abstract class branch_ticket_splitter extends branch_ticket
 {
-	public function change_ticket ()
-	{
-		$data = $_POST['information'];
-		$ticket = array_shift($data);
-
-		$this->alter_ticket($ticket, $data);
-
-		return json_encode(array('message' => 'stuff', 'header' => 'some other stuff'));
-
-		exit;
-	}
-
 	public function update_ticket_after_verify ()
 	{
 		$method = "_{$_POST['information']['action']}";
@@ -276,135 +264,24 @@ abstract class branch_ticket_splitter extends branch_ticket
 		));
 	}
 
-	protected function _all_books_are_here_as_promised ($message)
-	{	
-		$message = $this->_initialise_message($message, 'books');
-				
-		$this->alter_ticket($message['ticket_id'], array(
-			'status'  => 'complete',
-			'history' => $message['history']
-		));
 
-		// Print check here 
-		// Add new books to stock
-		// Send email here after print is sucessfull
-		
-		$response = new response(array(
-			'Ticket Completed',
-			"Ticket _o {$message['ticket_id']} o_ has been moved to the _o Complete o_ group and a check of _o £{$message['new_quote']}! o_ should be printed. Books that have arrived are : ",
-			array($message['books'], 'title')
-		));
-
-		return $response->return;
-	}
-
-	protected function _some_books_are_bad ($message)
-	{
-		$message = $this->_initialise_message($message, 'bad_books');
-
-		$this->alter_ticket($message['ticket_id'], array(
-			'status'  		=> 'complete',
-			'books_ordered' => $message['books'],
-			'quoted_price'  => $message['new_quote'],
-			'history' 		=> $message['history']
-		));
-
-		$this->create_ticket(array(
-			'status' 		=> 'awaiting_response',
-			'date_created'  => date('Y-m-d'),
-			'date_expected' => $this->calculate_expiration_date(),
-			'by_user'		=> $message['current_ticket']['by_user'],
-			'books_ordered'	=> $message['bad_books'],
-			'quoted_price'  => $message['deducted_money'],
-			'history' 		=> $message['history']
-		));
-
-		// Add books to stock
-		// Print check here 
-		
-		$response = new response(array(
-			'Some Books are in a bad condition',
-			"Ticket _o {$message['ticket_id']} o_ has been split into two different tickets and the quote has been changed from _o £{$message['old_quote']}! o_ to _o £{$message['new_quote']}! o_:",
-			"The Following books have been split into the _o Complete o_ ticket, and a check of _@ £{$message['new_quote']}! @_ has been printed : ",
-			array($message['books'], 'title'),
-			"The Following books have been split into the _o Awaiting Return o_ticket, as they are in unaceptable condition. A sum of _@ £{$message['deducted_money']}! @_ has been deducted from the original price : ",
-			array($message['bad_books'], 'title')
-		));
-
-		return $response->return;
-	}
-
-	protected function _all_bad_books ($message)
-	{
-		$message = $this->_initialise_message($message, 'bad_books');
-
-		$this->alter_ticket($message['ticket_id'], array(
-			'status'        => 'awaiting_response',
-			'date_created'  => date('Y-m-d'),
-			'date_expected' => $this->calculate_expiration_date(),
-			'books_ordered' => $message['bad_books'],
-			'history'       => $message['history']
-		));
-
-		# Send email to user
-		
-		$response = new response(array(
-			'Ticket Moved To Awaiting Response',
-		 	"Ticket _o {$message['ticket_id']} o_ has moved to the _o Awaiting Response o_ group because all of the books in it are in a bad shape.",
-		 	"An e-mail will be sent to the user asking them if they wish to donate the books, if not the books shall be moved to _o Awaiting Return o_ : ",
-		 	array( $message['bad_books'], 'title' ),
-		 	"Should the user not respond in the expiration period time, the books shall be considered automaticly donated, and put into _o Complete o_ group."
-		));
-		
-		return $response->return;
-	}
-
-	protected function _some_books_are_in_bad_condition_and_some_missing ($message)
-	{
-		$message = $this->_initialise_message($message, 'books');
-		
-		$this->alter_ticket($message['ticket_id'], array(
-			'status'  		=> 'complete',
-			'books_ordered' => $message['books'],
-			'quoted_price'  => $message['new_quote'],
-			'history' 		=> $message['history']
-		));
-
-		$this->create_ticket(array(
-			'status' 		=> 'awaiting_response',
-			'date_created'  => date('Y-m-d'),
-			'date_expected' => $this->calculate_expiration_date(),
-			'by_user'		=> $message['current_ticket']['by_user'],
-			'books_ordered'	=> $message['bad_books'],
-			'quoted_price'  => $message['deducted_money'],
-			'history' 		=> $message['history']
-		));
-
-		$response = new response (array(
-			'Some books are in bad condition and some missing',			
-			"Ticket {$message['ticket_id']} has been split into two different tickets and the quote has been changed from _o £{$message['old_quote']}! o_ to _o £{$message['new_quote']}! o_ : ",
-			array($message['books'], 'title'),
-			'The Following books have been split into the _oAwaiting Responseo_ ticket as they are in an uneceptable condition',
-			array($message['bad_books'], 'title'),
-			'The Following books never arrived : ',
-			array($message['promised_books'][0], 'title'),
-			"A sum of _o £{$message['deducted_money']}! o_ has been deducted from the original quote because of bad or missing books."
-		));
-
-		return $response->return;
-	}
 
 	protected function _initialise_message ($message)
 	{
 		$message['current_ticket'] = $this->get_ticket($message['ticket_id']);
 		$message['history']        = unserialize($message['current_ticket']['history']);
 		$message['old_quote'] 	   = $message['current_ticket']['quoted_price'];
-		// $message['new_quote'] 	   = $this->_quote($message[$get_quote_from]);
-		// $message['deducted_money'] = $message['old_quote'] - $message['new_quote'];
 
 		array_push($message['history'], $message['current_ticket']);
 
 		return $message;
+	}
+
+	protected function _add_to_ticket_history ($ticket_id)
+	{
+		$ticket = $this->get_ticket($ticket_id);
+		$ticket['history'] = unserialize($ticket['history']);
+		return array_push($ticket['history'], $ticket['current_ticket']);
 	}
 
 	protected function _quote ($books)

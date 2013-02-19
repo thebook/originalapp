@@ -275,11 +275,7 @@ class branch_users_style extends alpha_tree_users
 		
 		<div class="display_users_page_wrap"><?php $this->display_users(); ?></div>
 
-		<script>
-			
-			alpha.track_events_on_this(".display_users_page_wrap", "click");
-
-		</script>
+		<script>alpha.track_events_on_this(".display_users_page_wrap", "click");</script>
 
 <?php }
 

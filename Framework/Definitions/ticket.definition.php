@@ -90,6 +90,11 @@ return array(
 					'f' => 'add_action',
 					'o' => array('wp_ajax_change_ticket', array($this, 'change_ticket' ) )
 				),
+				// update ticket
+				array(
+					'f' => 'add_action',
+					'o' => array('wp_ajax_update_date', array($this, 'update_expirey_date' ) )
+				),
 				// Create Menu page
 				array(
 					'f' => 'add_menu_page',
