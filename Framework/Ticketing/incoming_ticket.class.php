@@ -89,9 +89,9 @@ class tickets extends branch_ticket_format
 <?php }
 
 	protected function _display_ticket ($ticket)
-	{ ?>
-		
-		<div class="ticket_box_wrap" data-filter="">
+	{ ?>		
+
+		<div class="ticket_box_wrap" <?php echo $this->_ticket_filter($ticket); ?>>
 		
 			<div class="ticket_box">
 
@@ -149,23 +149,30 @@ class tickets extends branch_ticket_format
 
 <?php }
 
-	protected function _ticket_filter ($ticket, $ordered_books)
+	protected function _ticket_filter ($ticket)
 	{	
-		$ordered_books = unserialize($ordered_books);
-		$filter = '';
 		
-		foreach ($ticket as $ticket_column ) {
+		$filter = '';
+		$ordered_books = unserialize($ticket['ticket']['books_ordered']);
+		unset($ticket['ticket']['books_ordered']);
+		
+		foreach ($ticket['ticket'] as $column_name => $column_value ) :
 			
-			$filter .= $ticket_column['name'] .' :: '. $ticket_column['value'] .', ';
+			($column_name === 'quoted_price' ) and $column_value = '£'. $column_value / 100;
 
-		}
+			$filter .= str_replace('_', ' ', $column_name ) ." :: $column_value ";
 
-		foreach ($ordered_books as $book) {
+		endforeach;
+
+		foreach ($ordered_books as $book) :
 			
-			$filter .=	'Book ::'. $book['title'] .', ';
-		}
+			$filter .=	"Title :: {$book['title']} ";
+			$filter .=	"ISBN :: {$book['isbn']} ";
+			$filter .=	"Author :: {$book['author']} ";
 
-		return $filter;
+		endforeach;
+
+		return "data-filter=\"$filter\"";
 	}	
 
 	public function display_tickets ()
