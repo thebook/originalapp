@@ -32,8 +32,8 @@
 		 		$this->alter_ticket($ticket['ticket_id'], array('status' => 'expired', 'history' => $history ));
 		 		
 		 		# corespondance
-
-		 	endif;		 
+		 	
+		 	endif;
 		endforeach;
 	}
 

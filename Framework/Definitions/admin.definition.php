@@ -182,6 +182,78 @@
 																	'name'        => 'awaiting_return_color',
 																	'saved'       => '35494C' )) ),
 													)))
+												)),
+						array( 
+							'f' => array( $this, 'pop'),
+							'o'	=>	
+								array(
+									array( 
+										'id' => 'email_setup',
+										'title' => __('Email Setup', 'liquidflux'),
+										'page'  => 'whitewhale',
+										'desc'  => __('Setup the email sending, for when users recieve emails', 'liquidflux'),
+										'options' => 
+											array( 
+												'opt' => 
+													array(	
+														// Mail host
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'text',
+																	'title'       => 'Host Address',
+																	'description' => 'Set up host adress, from which mail is delivered',
+																	'array'       => 'main_options',
+																	'name'        => 'mail_host',
+																	'saved'       => '' )) ),
+														// Encription
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'select',
+																	'title'       => 'Encription',
+																	'description' => 'Chose the encription for the host service its either ssl or tls',
+																	'array'       => 'main_options',
+																	'name'        => 'encription',
+																	'saved'       => 'ssl',
+																	'options'     => array('ssl', 'tsl'),
+																	'values'      => array('SSL', 'TSL')  )) ),
+														// email
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'text',
+																	'title'       => 'E mail',
+																	'description' => 'The email which is the sender',
+																	'array'       => 'main_options',
+																	'name'        => 'email',
+																	'saved'       => '' )) ),
+														// email password
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'text',
+																	'title'       => 'E mail password',
+																	'description' => 'The password for the email',
+																	'array'       => 'main_options',
+																	'name'        => 'email_password',
+																	'saved'       => '' )) ),
+														// From name
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'text',
+																	'title'       => 'From Name',
+																	'description' => 'The from name when the email is sent',
+																	'array'       => 'main_options',
+																	'name'        => 'name',
+																	'saved'       => '' )) ),
+																)))
 												))
 				));
 ?>
