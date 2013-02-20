@@ -54,16 +54,25 @@
 			'date_expected' => $this->calculate_expiration_date(),
 			'by_user'       => $new_ticket['by_user'],
 			'quoted_price'  => $new_ticket['quote'],
-			'books_ordered' => $new_ticket['books'][0],
+			'books_ordered' => $new_ticket['books'],
 			'history'       => array()
 		));
 
 		exit;
 	}
 
+	public function change_ticket ()
+	{
+		$ticket = $_POST['information'];
+		$id = $ticket['ticket'];
+		unset($ticket['ticket']);
+		$this->alter_ticket($id, $ticket);
+		exit;
+	}
+
 	protected function _setup_mail_sender_and_send ($message, $recipient, $subject)
 	{	
-	global $global_admin_options_white_whale;
+		global $global_admin_options_white_whale;
 
 		$mail = new PHPMailer;
 		$mail->IsSMTP();

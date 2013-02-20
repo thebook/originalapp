@@ -88,36 +88,6 @@ class tickets extends branch_ticket_format
 
 <?php }
 
-	protected function _display_ticket ($ticket)
-	{ ?>		
-
-		<div class="ticket_box_wrap" <?php echo $this->_ticket_filter($ticket); ?>>
-		
-			<div class="ticket_box">
-
-				<div class="ticket_information_row">
-
-					<?php $this->_display_ticket_buttons($ticket); ?>
-
-				</div>
-
-				<?php foreach ( $ticket['formated'] as $ticket_column ): ?>
-							
-					<div class="ticket_information_row">
-
-						<div class="ticket_information_type"><?php echo $ticket_column['name']; ?></div>
-
-						<div class="ticket_information"><?php echo $ticket_column['value']; ?></div>
-
-					</div>
-
-				<?php endforeach; ?>
-
-			</div>
-		</div>
-
-<?php }
-
 	protected function _display_ticket_buttons ($ticket)
 	{ ?>
 		<?php extract($ticket['ticket']); ?>
@@ -139,6 +109,18 @@ class tickets extends branch_ticket_format
 				<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Ticket Revived', 'message' : 'Ticket has been put back into the <strong>Awaiting Return</strong> group.' }, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'awaiting_return' }}" class="button">Not Returned?</div>
 				
 			<?php endif ?>
+
+			<?php if ($status === 'awaiting_delivery' ): ?>
+				
+				<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Books Sent', 'message' : 'Ticket has been put into the <strong>Delivered</strong> group, as they have been sent.' }, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'delivered' }}" class="button">Books Sent?</div>
+				<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Ticket moved to expire', 'message' : 'Ticket has been moved to the <strong>Expired</strong> group, this ticket will be treated as if its order never arrived.'}, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'expired' } }" class="button">Order Canceled?</div>
+			<?php endif; ?>
+
+			<?php if ($status === 'delivered' ): ?>
+				
+				<div data-function-to-call="change_ticket" data-function-instructions="{ 'message' : { 'header' : 'Books Not Sent', 'message' : 'Ticket has been put back into the <strong>Awaiting Delivery</strong> group, as they books are deemd to not have been sent.' }, 'ticket' : { 'ticket' : '<?php echo $ticket['ticket']['ticket_id']; ?>', 'status' : 'awaiting_delivery' }}" class="button">Books Not Sent?</div>
+
+			<?php endif; ?>
 
 			<?php if ($status === 'waiting_arrival' or $status === 'awaiting_return' or $status === 'awaiting_response'): ?>
 				
@@ -195,6 +177,41 @@ class tickets extends branch_ticket_format
 		</div>
 
 		<?php exit; ?>
+
+<?php }
+
+	protected function _display_ticket ($ticket)
+	{ ?>		
+		<?php if ($ticket['ticket']['status'] === 'awaiting_delivery' or $ticket['ticket']['status'] === 'delivered' ) : ?>
+
+		 	<?php $ticket['formated']['date_expected']['value'] = 'no expected date'; ?>
+
+		<?php endif; ?>
+
+		<div class="ticket_box_wrap" <?php echo $this->_ticket_filter($ticket); ?>>
+		
+			<div class="ticket_box">
+
+				<div class="ticket_information_row">
+
+					<?php $this->_display_ticket_buttons($ticket); ?>
+
+				</div>
+
+				<?php foreach ( $ticket['formated'] as $ticket_column ): ?>
+							
+					<div class="ticket_information_row">
+
+						<div class="ticket_information_type"><?php echo $ticket_column['name']; ?></div>
+
+						<div class="ticket_information"><?php echo $ticket_column['value']; ?></div>
+
+					</div>
+
+				<?php endforeach; ?>
+
+			</div>
+		</div>
 
 <?php }
 
