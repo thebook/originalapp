@@ -159,6 +159,8 @@ class tickets extends branch_ticket_format
 		foreach ($ticket['ticket'] as $column_name => $column_value ) :
 			
 			($column_name === 'quoted_price' ) and $column_value = '£'. $column_value / 100;
+			($column_name === 'date_expected') and $column_value = $this->_calculate_expirey_date($column_value) .' days';
+			($column_name === 'status')        and $column_value = str_replace('_', ' ', $column_value);
 
 			$filter .= str_replace('_', ' ', $column_name ) ." :: $column_value ";
 

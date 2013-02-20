@@ -39,7 +39,7 @@
 
 	protected function _setup_mail_sender_and_send ($message, $recipient, $subject)
 	{	
-		global $global_admin_options_white_whale;
+	global $global_admin_options_white_whale;
 
 		$mail = new PHPMailer;
 		$mail->IsSMTP();
