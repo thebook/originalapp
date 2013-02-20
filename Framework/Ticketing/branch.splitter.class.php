@@ -30,7 +30,7 @@ abstract class branch_ticket_splitter extends branch_ticket
 
 	protected function _create_book_ticket ($status, $details, $quote_to_use, $books_to_submit)
 	{
-		$this->create_ticket($details['ticket_id'], $this->_prepare_ticket($status, $details, $quote_to_use, $books_to_submit));
+		$this->create_ticket($this->_prepare_ticket($status, $details, $quote_to_use, $books_to_submit));
 	}
 
 	protected function _prepare_ticket ( $status, $details, $quote_to_use, $books_to_submit )

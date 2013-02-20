@@ -37,6 +37,30 @@
 		endforeach;
 	}
 
+	public function users_for_ticket ()
+	{
+		global $user;
+		echo json_encode($user->get_users());
+		exit;
+	}
+
+	public function create_new_book_ticket ()
+	{
+		$new_ticket = $_POST['ticket'];
+
+		$this->create_ticket(array(
+			'status' 	    => $new_ticket['status'],
+			'date_created'  => date('Y-m-d'),
+			'date_expected' => $this->calculate_expiration_date(),
+			'by_user'       => $new_ticket['by_user'],
+			'quoted_price'  => $new_ticket['quote'],
+			'books_ordered' => $new_ticket['books'][0],
+			'history'       => array()
+		));
+
+		exit;
+	}
+
 	protected function _setup_mail_sender_and_send ($message, $recipient, $subject)
 	{	
 	global $global_admin_options_white_whale;

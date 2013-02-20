@@ -211,6 +211,8 @@ var alpha = (function ( alpha, $ ) {
 						'<option value="expired">Expired</option>'+	
 						'<option value="awaiting_return">Awaiting Return</option>'+
 						'<option value="awaiting_response">Awaiting Response</option>'+	
+						'<option value="awaiting_delivery">Awaiting Delivery</option>'+	
+						'<option value="delivered">Delivered</option>'+	
 					'</select>'+
 					'<span>Assign Ticket To User</span>'+
 					'<select class="ticket_user">';

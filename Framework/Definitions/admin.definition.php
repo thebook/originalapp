@@ -181,6 +181,28 @@
 																	'array'       => 'main_options',
 																	'name'        => 'awaiting_return_color',
 																	'saved'       => '35494C' )) ),
+														// Awaiting delivery
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Awaiting Delivery Color',
+																	'description' => 'Set the label color for tickets which are waiting to be delivered to the customer',
+																	'array'       => 'main_options',
+																	'name'        => 'awaiting_delivery_color',
+																	'saved'       => '35494C' )) ),
+														// Awaiting delivery
+														array(
+															'f' => array( $this, 'create'),
+															'o' => array(
+																array(
+																	'type'        => 'color',
+																	'title'       => 'Delivered Color',
+																	'description' => 'Set the label color for tickets which have been delivered',
+																	'array'       => 'main_options',
+																	'name'        => 'delivered_color',
+																	'saved'       => '35494C' )) ),
 													)))
 												)),
 						array( 

@@ -103,6 +103,9 @@ abstract class alpha_tree_ticket
 		return $ticket_to_create;
 	}
 
+	public function get_being ()
+	{}
+
 	abstract public function page();
 }
 

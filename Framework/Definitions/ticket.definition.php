@@ -8,7 +8,9 @@ return array(
 				'expired',
 				'returned',
 				'awaiting_return',
-				'awaiting_response'
+				'awaiting_response',
+				'awaiting_delivery',
+				'delivered'
 			),
 		'table_creation' => 
 			array(
@@ -68,7 +70,7 @@ return array(
 				// hook in the ticket addition element
 				array(
 					'f' => 'add_action',
-					'o' => array('wp_ajax_complete_ticket', array($this, 'prepare_books_ticket' ) ) 
+					'o' => array('wp_ajax_complete_ticket', array($this, 'create_new_book_ticket' ) ) 
 				),
 				// hook into ticket display creation 
 				array(
