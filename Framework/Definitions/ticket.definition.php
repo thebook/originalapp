@@ -95,7 +95,7 @@ return array(
 				// update ticket
 				array(
 					'f' => 'add_action',
-					'o' => array('wp_ajax_update_date', array($this, 'update_expirey_date' ) )
+					'o' => array('wp_ajax_update_date', array($this, 'change_expiry_date' ) )
 				),
 				// Create Menu page
 				array(

@@ -62,7 +62,7 @@ var alpha = (function ( alpha, $ ) {
 			ajaxurl,
 			{ action : 'update_date', information : { id : prototype.being.ticket_id, days_to_add : parseInt( prototype.parts.box.wrap.branch.branch.row.branch.expiery_input.text() ) } },
 			function (message) {
-
+				
 				$.jGrowl( message.message, { header : message.header, sticky : true });
 				prototype.parts.current_ticket_box.closest('.ticket_window').children('.reload_ticket').trigger('click');
 			},

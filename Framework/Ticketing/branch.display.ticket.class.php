@@ -44,6 +44,27 @@
 		exit;
 	}
 
+	public function change_expiry_date ()
+	{	
+		$ticket       = $_POST['information'];
+		$time         = new helper_time;
+		$ticket_state = $this->get_ticket($ticket['id']);
+		$current_date_in_days = $time->calculate_total_number_of_days(date('d/m/Y'), '/');
+		$new_expectation_date = $current_date_in_days + $ticket['days_to_add'];
+		$ticket_creation_date_in_days = $time->calculate_total_number_of_days($ticket_state['date_created'], '-');
+
+		$this->alter_ticket($ticket['id'], array(
+			'date_expected' => $new_expectation_date, 
+		));
+
+		echo json_encode( $this->_response(array(
+			'Ticket date changed',
+			'Ticket expectation date has been changed from _o"'. ( round($ticket_state['date_expected'] - $current_date_in_days) ) .'"o_ to _o"'. ( $new_expectation_date - $current_date_in_days ) .'"o_'
+		)));
+
+		exit;
+	}
+
 	public function create_new_book_ticket ()
 	{
 		$new_ticket = $_POST['ticket'];
