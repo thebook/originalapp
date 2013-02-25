@@ -29,4 +29,4 @@
 
 </head>
 <body>
-<div class="liquidflux-wrap-everything">
+<div class="wrap">

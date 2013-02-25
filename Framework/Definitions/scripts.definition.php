@@ -345,96 +345,96 @@
 											), 
 										'enqueue' => true
 										))),
-						// easing plugin for jquery, ( for animations )
-						array(
-							'f' => array( $this, 'sort'),
-							'o' =>
-								array(
-									array(
-										'side' => 'public',
-										'type' => 'script',
-										'arg'  => 
-											array(
-												'j-ease', 
-												SCRIPTS .'/jquery.easing.min.js', 
-												array( 'jquery' ), 
-												'1.3', 
-												true ),
-										'enqueue' => true,
-										'conditional' => false
-										))),
-						// The comments reply script
-						array(
-							'f' => array( $this, 'sort'),
-							'o' =>
-								array(
-									array(
-										'side' => 'public',
-										'type' => 'script',
-										'arg'  => 
-											array(
-												'reply', 
-												SCRIPTS .'/comments.reply.js', 
-												array(), 
-												'1.0', 
-												true ),
-										'enqueue' => false,
-										'conditional' => false
-										))),
-						// j player
-						array(
-							'f' => array( $this, 'sort'),
-							'o' =>
-								array(
-									array(
-										'side' => 'public',
-										'type' => 'script',
-										'arg'  => 
-											array(
-												'jplayer', 
-												SCRIPTS .'/jquery.jplayer.min.js', 
-												array( 'jquery' ), 
-												'2.2', 
-												true ),
-										'conditional' => false, 
-										'enqueue' => true
-										))),
-						// lightbox plugin
-						array(
-							'f' => array( $this, 'sort'),
-							'o' =>
-								array(
-									array(
-										'side' => 'public',
-										'type' => 'script',
-										'arg'  => 
-											array(
-												'slimbox',
-												SCRIPTS .'/slimbox2.js',
-												array( 'jquery' ),
-												'2.0',
-												true ),
-										'conditional' => false, 
-										'enqueue' => true
-										))),
-						// slider
-						array(
-							'f' => array( $this, 'sort'),
-							'o' =>
-								array(
-									array(
-										'side' => 'public',
-										'type' => 'script',
-										'arg'  => 
-											array(
-												'flexslider', 
-												SCRIPTS .'/flexslider-min.js',
-												array( 'jquery', 'j-ease' ),
-												'2.1',
-												true ),
-										'conditional' => false, 
-										'enqueue' => true
-										)))
+						// // easing plugin for jquery, ( for animations )
+						// array(
+						// 	'f' => array( $this, 'sort'),
+						// 	'o' =>
+						// 		array(
+						// 			array(
+						// 				'side' => 'public',
+						// 				'type' => 'script',
+						// 				'arg'  => 
+						// 					array(
+						// 						'j-ease', 
+						// 						SCRIPTS .'/jquery.easing.min.js', 
+						// 						array( 'jquery' ), 
+						// 						'1.3', 
+						// 						true ),
+						// 				'enqueue' => true,
+						// 				'conditional' => false
+						// 				))),
+						// // The comments reply script
+						// array(
+						// 	'f' => array( $this, 'sort'),
+						// 	'o' =>
+						// 		array(
+						// 			array(
+						// 				'side' => 'public',
+						// 				'type' => 'script',
+						// 				'arg'  => 
+						// 					array(
+						// 						'reply', 
+						// 						SCRIPTS .'/comments.reply.js', 
+						// 						array(), 
+						// 						'1.0', 
+						// 						true ),
+						// 				'enqueue' => false,
+						// 				'conditional' => false
+						// 				))),
+						// // j player
+						// array(
+						// 	'f' => array( $this, 'sort'),
+						// 	'o' =>
+						// 		array(
+						// 			array(
+						// 				'side' => 'public',
+						// 				'type' => 'script',
+						// 				'arg'  => 
+						// 					array(
+						// 						'jplayer', 
+						// 						SCRIPTS .'/jquery.jplayer.min.js', 
+						// 						array( 'jquery' ), 
+						// 						'2.2', 
+						// 						true ),
+						// 				'conditional' => false, 
+						// 				'enqueue' => true
+						// 				))),
+						// // lightbox plugin
+						// array(
+						// 	'f' => array( $this, 'sort'),
+						// 	'o' =>
+						// 		array(
+						// 			array(
+						// 				'side' => 'public',
+						// 				'type' => 'script',
+						// 				'arg'  => 
+						// 					array(
+						// 						'slimbox',
+						// 						SCRIPTS .'/slimbox2.js',
+						// 						array( 'jquery' ),
+						// 						'2.0',
+						// 						true ),
+						// 				'conditional' => false, 
+						// 				'enqueue' => true
+						// 				))),
+						// // slider
+						// array(
+						// 	'f' => array( $this, 'sort'),
+						// 	'o' =>
+						// 		array(
+						// 			array(
+						// 				'side' => 'public',
+						// 				'type' => 'script',
+						// 				'arg'  => 
+						// 					array(
+						// 						'flexslider', 
+						// 						SCRIPTS .'/flexslider-min.js',
+						// 						array( 'jquery', 'j-ease' ),
+						// 						'2.1',
+						// 						true ),
+						// 				'conditional' => false, 
+						// 				'enqueue' => true
+						// 				)))
 									));
 
 ?>

@@ -7,7 +7,7 @@
 
 get_header();
 
-the_one_function();
+echo "404";
 
 get_footer();
 

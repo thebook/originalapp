@@ -1,226 +1,34 @@
- $default-box-shadow-color: rgba(0, 0, 0, 0.1);
- $default-box-shadow-v-offset: 1px;
- $default-box-shadow-blur: 1px;
+@import "Imports/mixins/linear.garident";
+@import "Imports/mixins/global.reset";
+@import "Imports/mixins/input.reset";
+@import "Imports/mixins/width.model";
+@import "Imports/mixins/circle";
+@import "Imports/mixins/box.shadow";
+@import "Imports/front/bar";
+$url: #{"<?php echo get_template_directory_uri(); ?>"};
+ 
+@include global-reset;
 
- @import "Imports/import";
-
- @include global-reset;
-
- @include lffontface;
-
-$w : 960px;
-$cp: 0 9px;
-
-// Content
-$post_meta_size: #{"<?php echo $o['post_meta_size'] . 'px'; ?>"};
-$post_readmore_color: #{"<?php echo $o['post_readmore_color']; ?>"};
-$post_readmore_text: #{"<?php echo $o['post_readmore_text']; ?>"};
-$background_color: #{"<?php echo '#' . $o['background_color']; ?>"};
-$background_texture: #{"<?php echo $o['background_texture']; ?>"};
-$post_title_background: #{"<?php echo '#' . $o['post_title_background']; ?>"};
-$post_title_texture: #{"<?php echo $o['post_title_texture']; ?>"};
-// Header style
-$show_title: #{"<?php echo $o['show_title']; ?>"};
-$show_logo: #{"<?php echo $o['show_logo']; ?>"};
-$title_font: #{"<?php echo $o['title_font']; ?>"};
-$title_style: #{"<?php echo $o['title_style']; ?>"};
-$title_weight: #{"<?php echo $o['title_weight']; ?>"};
-$title_size: #{"<?php echo $o['title_size'] .'px'; ?>"};
-$title_color: #{"<?php echo $o['title_color']; ?>"};
-$logo_size: #{"<?php echo $o['logo_size'] .'px'; ?>"};
-// Menu
-$menu_text_font: #{"<?php echo $o['menu_text_font']; ?>"};
-$menu_text_size: #{"<?php echo $o['menu_text_size'] . 'px'; ?>"};
-$menu_text_weight: #{"<?php echo $o['menu_text_weight']; ?>"};
-$menu_text_style: #{"<?php echo $o['menu_text_style']; ?>"};
-$menu_text_color: #{"<?php echo '#' . $o['menu_text_color']; ?>"};
-$menu_background: #{"<?php echo '#' . $o['menu_background']; ?>"};
-$menu_hover_color: #{"<?php echo '#' . $o['menu_hover_color']; ?>"};
-// Formats
-// Post title box
-
- a { 
-
-	color: inherit;
-	text-decoration: none;
-
-	&:hover {
-
-		text-decoration: underline;
-	}
+@font-face {
+    font-family: 'MotorOil';
+    src: url('#{$url}/Framework/CSS/Includes/fonts/MotorOil.ttf');
 }
 
-
-$prefix : liquidflux;
-
-html, body { 
-
-	width: 100%;
-	height: 100%;
+body { 
+	font-family: Tahoma;
 }
 
-.#{$prefix}-wrap-everything {
-
-	width: 100%;
-	height: 100%;
-	background: $background_color $background_texture;
-	@include pie-clearfix;
-
-}
-
-//
-//	Header
-@import "Imports/parts/header";
-
-//
-//	Menu 
-@import "Imports/parts/menu";
-
-//
-//	Post Title box
-@import "Imports/parts/title";
-
-//
-//	Post Text box
-@import "Imports/parts/post_text";
-
-//
-//	Widget 
-@import "Imports/parts/widget";
-
-//
-//	Content
-@import "Imports/parts/content";
-
-//
-//	Post Formats
-@import "Imports/parts/post_formats";
-
-//
-//	Body meta 
-@import "Imports/parts/meta";
-
-//
-//	Comments
-@import "Imports/parts/comments";
-
-//
-// Slider
-@import "Imports/parts/slider";
-
-//
-// Player 
-@import "Imports/parts/player";
-
-//
-//	Author box
-@import "Imports/parts/author";
-
-//
-//	Layout builder 
-@import "Imports/parts/layout";
-
-
-
-
-
-
-/* // Pagnation // */
-.lf-pagnation {
-
-	margin: 0 0 12px;
-	@include block( l );
-}
-
-.lf-pagnation-nav {
-
-	@include block( l, ib );
-}
-
-.lf-pagnation-num,
-.lf-pagnation-num-current {
-
-	padding: 6px;
-	margin: 0 6px;
-}
-
-
-
-//
-//
-//
-//	Advert widgets
-//	
-//	
-//	
-.lf-resp-aside-wrap { 
-
-	@include block( l, ib );
-}
-
-.lf-resp-widget-area { 
-
-	width: 85.5%;
-	@include block( l );
-	padding: 0 5.25% 0 9.25%;
-}
-
-.lf-test-ad {
-
-	height: 250px;
-	width: 100%;
-	background-color: #000;
-}
-
-.lf-ad-widget-dummy-ad {
-
-	width: 70%;
-	height: 10px;
-	padding: 55px 15%;
-	text-align: center;
-	background-color: #ff3f3f;
-}
-
-.lf-ad-widget-dummy-ad-inner { 
-
-	width: 100%;
-	height: 10px;
-	padding: 25px 0 35px;
-	background-color:#ff3f4c;
-}
-
-.lf-ad-widget-link-ad { 
-
-	width: 100%;
-	height: 24px;
-	text-align: center;
-	background-color:#ff3f4c;
-}
-
-.lf-header-ad-wrap { 
+.wrap {
 	
-	display: block;
-	margin: 24px 0;
-	z-index: 5;
+	width: 100%;	
 }
 
-.lf-header-leaderboard-ad { 
+.header {
 
-	height: 90px;
-	width: 728px;
-	margin: 0 auto;
-	clear: both;
-	background-color: #000;
+	width:inherit;
+	float: left;
+	height: 345px;  
+	background: #9ad9e0;
 }
 
-.lf-header-banner-ad { 
-
-	height: 60px;
-	width: 468px;
-	margin: 0 auto;
-	clear: both;
-	background-color: #000;
-}
-
-
-
+.body {}
