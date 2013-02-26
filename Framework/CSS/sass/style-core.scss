@@ -5,8 +5,18 @@
 @import "Imports/mixins/circle";
 @import "Imports/mixins/box.shadow";
 @import "Imports/front/bar";
+@import "Imports/front/sales";
+@import "Imports/front/search.book";
 $url: #{"<?php echo get_template_directory_uri(); ?>"};
- 
+
+$light_blue:#9ad9e0;
+$green: #b4d65a;
+$light_gray: #f6f6f6;
+$dark_gray: #efefef;
+$black_gray: #555;
+$light: #fff;
+$dark_blue: #3f7986;
+
 @include global-reset;
 
 @font-face {
@@ -27,8 +37,6 @@ body {
 
 	width:inherit;
 	float: left;
-	height: 345px;  
-	background: #9ad9e0;
+	height: 300px;  
+	background: $light_blue;
 }
-
-.body {}

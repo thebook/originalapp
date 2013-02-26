@@ -1,26 +1,39 @@
+$bar_height: 47px;
+$light_blue:#9ad9e0;
+$green: #b4d65a;
+$light_gray: #f6f6f6;
+$middle_gray: #dadada;
+$dark_gray: #efefef;
+$black_gray: #555;
+$light: #fff;
+$dark_blue: #3f7986;
+
 .bar {
 
-	background: #f6f6f6;
-	@include width-model( 82% );
+	background: $light;
+	@include width-model(76%);
 	height: 47px;
 	float: left;
 }
 
 .logo_for_bar { 
 	
-	width: 50px;
-	height: 47px;
+	$margin: 6px;
+
+	width:  $bar_height -( $margin * 2);
+	height: $bar_height -( $margin * 2);
+	margin: 6px 0;
 	float: left;
-	background: #B4d65a;
+	background: $green;
 }
 
 .progress_icon_for_bar { 
 
-	height: 47px;
-	width: 47px;
+	height: $bar_height;
+	width: $bar_height;
 	float: left;
 	padding: 0 7px 0 6px;
-	background: #FFF;		
+	background: $light;	
 }
 
 .progress_icon_for_bar_text { 
@@ -30,16 +43,15 @@
 	line-height: 10px;
 	text-align: center;
 	position: relative;
-	text-transform: uppercase;
-	
-	color: #717171;
+	text-transform: uppercase;	
+	color: $black_gray;
 	top: 27px;
 }
 
 .input_for_bar { 
 	
-	background: #fff; 
-	height: 33px;
+	background: $light; 
+	height: $bar_height - ( 8px * 2 );
 	width: 26%; 
 	margin: 8px 0 6px;
 	float: right;
@@ -49,7 +61,9 @@
 
 .field_for_input { 
 
-	height: 33px;
+	height: $bar_height - ( 8px * 2 );
+	border-radius: $bar_height - ( 8px * 2 );
+	background: $dark_gray; 
 	width: 90%;	
 	padding: 0 5%;
 	float: left;
@@ -63,20 +77,30 @@
 	height: 23px;
 	font-size: 11px;
 	padding: 0px;
-	line-height: 23px;  
-	color: #aaa;
+	line-height: 23px;
+	color: $light_gray;
 	
 	&:focus { 
-		color: #717171;
+		color: $black_gray;
 	}
 }
 
 .button_for_input { 
 
-	@include circle(28px);
-	top: -33px;
+	@include circle(( $bar_height - ( 8px * 2 )));
+	top: -( $bar_height - ( 8px * 2 ));
 	position: relative;
-	margin: 3px 6px 3px 3px;
-	background: #6C676E;
+	cursor: pointer;
+	margin: 0;
+	background: $light_blue;
+	float: right;
+}
+
+.button_for_user { 
+
+	@include circle(( $bar_height - ( 8px * 2 )));
+	cursor: pointer;
+	margin: 8px 6px 0;
+	background: $dark_blue;
 	float: right;
 }
