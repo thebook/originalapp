@@ -25,7 +25,14 @@ $dark_blue: #3f7986;
 	height: $bar_height -( $margin * 2);
 	margin: 6px 6px 6px 0;
 	float: left;
-	background: $green;
+	background: $green;	
+}
+
+.with-icon-logo { 
+
+	&:before { 
+		content:"!";
+	}
 }
 
 .progress_icon_for_bar { 

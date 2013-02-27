@@ -6,6 +6,7 @@
 @import "Imports/mixins/box.shadow";
 @import "Imports/mixins/radius.border";
 @import "Imports/mixins/transition";
+@import "Imports/mixins/font.import";
 @import "Imports/front/bar";
 @import "Imports/front/sales";
 @import "Imports/front/search.book";
@@ -23,6 +24,7 @@ $light: #fff;
 $dark_blue: #3f7986;
 
 @include global-reset;
+@include font-import;
 
 @font-face {
     font-family: 'MotorOil';

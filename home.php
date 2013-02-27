@@ -6,7 +6,7 @@
 
 	<section class="bar">				
 		<!-- Logo  -->
-		<div class="logo_for_bar"></div>
+		<div class="logo_for_bar"><span class="with-icon-logo"></span></div>
 
 		<!-- Progress bar  -->
 		<!-- <div class="progress_icon_for_bar">						
