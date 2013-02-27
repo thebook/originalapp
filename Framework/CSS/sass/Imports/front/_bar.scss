@@ -3,6 +3,7 @@ $light_blue:#9ad9e0;
 $green: #b4d65a;
 $light_gray: #f6f6f6;
 $middle_gray: #dadada;
+$darkest_gray: #9F9F9F;
 $dark_gray: #efefef;
 $black_gray: #555;
 $light: #fff;
@@ -22,7 +23,7 @@ $dark_blue: #3f7986;
 
 	width:  $bar_height -( $margin * 2);
 	height: $bar_height -( $margin * 2);
-	margin: 6px 0;
+	margin: 6px 6px 6px 0;
 	float: left;
 	background: $green;
 }
@@ -46,6 +47,23 @@ $dark_blue: #3f7986;
 	text-transform: uppercase;	
 	color: $black_gray;
 	top: 27px;
+}
+
+.navigation_text_for_bar { 
+	$font_size: 12px;
+	
+	float: left;
+	display: inline-block;
+	text-transform: Uppercase;
+	color: $darkest_gray;
+	padding: (($bar_height - $font_size )/2) 1.25%;
+	font-size: $font_size;
+	font-family: MotorOil;
+	cursor: pointer;
+	&:hover {
+		
+		color: $black_gray;
+	}
 }
 
 .input_for_bar { 

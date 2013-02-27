@@ -4,14 +4,19 @@
 @import "Imports/mixins/width.model";
 @import "Imports/mixins/circle";
 @import "Imports/mixins/box.shadow";
+@import "Imports/mixins/radius.border";
+@import "Imports/mixins/transition";
 @import "Imports/front/bar";
 @import "Imports/front/sales";
 @import "Imports/front/search.book";
 $url: #{"<?php echo get_template_directory_uri(); ?>"};
 
+$bar_height: 47px;
 $light_blue:#9ad9e0;
 $green: #b4d65a;
 $light_gray: #f6f6f6;
+$middle_gray: #dadada;
+$darkest_gray: #9F9F9F;
 $dark_gray: #efefef;
 $black_gray: #555;
 $light: #fff;
