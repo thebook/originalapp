@@ -9,10 +9,22 @@ $dark_blue: #3f7986;
 
 .result_book_search_wrapper { 
 	
-	width: 27.33%;
+	width: 29.33%;
 	margin: 0 3% 20px;
 	display: inline-block;
 	float: left;
+}
+
+.result_book_search_wrapper_left {
+	
+	@extend .result_book_search_wrapper;
+	margin: 0 3% 20px 0;
+}
+
+.result_book_search_wrapper_right {
+	
+	@extend .result_book_search_wrapper;
+	margin: 0 0 20px 3%;
 }
 
 .result_book_search { 
@@ -34,7 +46,7 @@ $article_width: 52%;
 
 .result_book_thumbnail_image {
 	
-	height: 200px;
+	height: 150px;
 	margin: 35px 0px 30px;
 	width: auto; 
 	@include box-shadow( -3px, 3px, 5px, 1px, rgba(0,0,0, 0.4 ));	
@@ -96,10 +108,11 @@ $article_width: 52%;
 	clear: both;
 	margin: 15px 0 0;
 	background: $light_blue;
-	@include border-radius(2px);
 }
 
 .result_book_add_button_text { 
+
+	$add_button_font_size: 13px;
 	
 	display: block;
 	float: left;
@@ -107,10 +120,10 @@ $article_width: 52%;
 	text-transform: uppercase;
 	vertical-align: middle;
 	font-family: MotorOil; 
-	font-size: 13px;
+	font-size: $add_button_font_size;
 	cursor: pointer;
 	width: 80%;
-	padding: 18px 10%;
+	padding: (( 47px-$add_button_font_size) / 2) 10%;
 	color: $light;
 }
 

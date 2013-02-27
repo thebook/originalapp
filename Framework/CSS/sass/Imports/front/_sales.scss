@@ -9,11 +9,11 @@ $black_gray: #555;
 $light: #fff;
 $dark_blue: #3f7986;
 
+$width: 64%;
+
 .body { 
 
-	$width: 68%;
-	
-	@include width-model( $width);
+	@include width-model($width);
 	float: right;
 	display: block; 
 	background: $light_gray; 
@@ -21,12 +21,15 @@ $dark_blue: #3f7986;
 
 .price_selection { 
 	
-	width: 6%;
+	$price_selection_width: 6%;
+	$padding: 1%;
+	
+	width: $price_selection_width;
 	height: 50px;
 	position: absolute;
-	padding: 1%;
-	margin: 27px 0 0;
-	left: 6.5%;   
+	padding: $padding;
+	margin: 93px 0 0;
+	left: ( (( 100% - $width )/2)) - ($price_selection_width + ( $padding * 2 ) + 2%);   
 	background: transparent;
 	border: 1px solid $darkest_gray; 
 }
@@ -47,8 +50,8 @@ $dark_blue: #3f7986;
 	width: 100%;
 	font-size: 12px;
 	float: left; 
-	color: $darkest_gray;
-	margin: 30px 0;
+	color: $black_gray;
+	margin: 38px 0 30px;
 	padding: 0 0 12px;
 	border-bottom: 1px solid $middle_gray;	
 }
@@ -73,4 +76,3 @@ $dark_blue: #3f7986;
 	float: right;
 	margin: 0 5px 0 0;
 }
-

@@ -98,8 +98,8 @@
   float: right; }
 
 .body {
-  width: 68%;
-  padding: 0 16%;
+  width: 64%;
+  padding: 0 18%;
   float: right;
   display: block;
   background: #f6f6f6; }
@@ -109,8 +109,8 @@
   height: 50px;
   position: absolute;
   padding: 1%;
-  margin: 27px 0 0;
-  left: 6.5%;
+  margin: 93px 0 0;
+  left: 8%;
   background: transparent;
   border: 1px solid #9f9f9f; }
 
@@ -125,8 +125,8 @@
   width: 100%;
   font-size: 12px;
   float: left;
-  color: #9f9f9f;
-  margin: 30px 0;
+  color: #555555;
+  margin: 38px 0 30px;
   padding: 0 0 12px;
   border-bottom: 1px solid #dadada; }
 
@@ -145,11 +145,17 @@
   float: right;
   margin: 0 5px 0 0; }
 
-.result_book_search_wrapper {
-  width: 27.33%;
+.result_book_search_wrapper, .result_book_search_wrapper_left, .result_book_search_wrapper_right {
+  width: 29.33%;
   margin: 0 3% 20px;
   display: inline-block;
   float: left; }
+
+.result_book_search_wrapper_left {
+  margin: 0 3% 20px 0; }
+
+.result_book_search_wrapper_right {
+  margin: 0 0 20px 3%; }
 
 .result_book_search {
   width: 100%;
@@ -167,7 +173,7 @@
     background: #efefef; }
 
 .result_book_thumbnail_image {
-  height: 200px;
+  height: 150px;
   margin: 35px 0px 30px;
   width: auto;
   -webkit-box-shadow: -3px 3px 5px 1px rgba(0, 0, 0, 0.4);
@@ -216,9 +222,7 @@
   float: left;
   clear: both;
   margin: 15px 0 0;
-  background: #9ad9e0;
-  -webkit-border-radius: 2px;
-  border-radius: 2px; }
+  background: #9ad9e0; }
 
 .result_book_add_button_text {
   display: block;
@@ -230,7 +234,7 @@
   font-size: 13px;
   cursor: pointer;
   width: 80%;
-  padding: 18px 10%;
+  padding: 17px 10%;
   color: white; }
 
 .result_book_extra_options_buttons {

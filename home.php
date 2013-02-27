@@ -49,7 +49,7 @@
 		</div>
 		
 		<!-- A result book -->
-		<div class="result_book_search_wrapper">
+		<div class="result_book_search_wrapper_left">
 			<div class="result_book_search">
 
 				<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="result_book_thumbnail_image">
@@ -72,7 +72,7 @@
 			</div>
 		</div>
 		
-		<!--  -->
+		<!-- Middle wrapper -->
 		<div class="result_book_search_wrapper">
 			<div class="result_book_search">
 
@@ -84,6 +84,30 @@
 					<div class="result_book_price_wrap">
 						<span class="result_book_price_text">Sell for -</span>
 						<storng class="result_book_price">£7.80</storng>
+					</div>
+				</article>
+
+				<div class="result_book_add_button"><span class="result_book_add_button_text">Add To Sell Basket</span></div>
+			</div>
+			
+			<div class="result_book_extra_options_buttons">
+				<span class="result_book_added_book_sell_button">Sell now?</span>
+				<span class="result_book_added_book_add_again_button">Add again+</span>
+			</div>
+		</div>
+		
+		<!-- Last wrapper -->
+		<div class="result_book_search_wrapper_right">
+			<div class="result_book_search">
+
+				<img src="http://1.bp.blogspot.com/_nXknRDZBs0E/STIHwAsUmwI/AAAAAAAACfA/hkB8fkCiGY0/s400/tongue.jpg" class="result_book_thumbnail_image">
+
+				<article class="result_book_search_text">
+					<strong class="result_book_title">The Mayors</strong>
+					<div class="result_book_author">by Nathaniel..</div>
+					<div class="result_book_price_wrap">
+						<span class="result_book_price_text">Sell for -</span>
+						<storng class="result_book_price">£5.80</storng>
 					</div>
 				</article>
 
