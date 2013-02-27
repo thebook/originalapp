@@ -35,7 +35,7 @@
 		
 		<!-- Books description title -->
 		<div class="search_books_description_title">
-			<div class="search_books_description_title_text">Search Results For: Yo Motha</div>
+			<div class="search_books_description_title_text">Search Results For: 'Yo Motha'</div>
 
 			<div class="sell_and_buy_basket">
 				<div id="buy_basket" class="basket_stats"><span class="sell_basket_text">Sell</span><span class="sell_basket_number">(0)</span></div>
@@ -43,19 +43,23 @@
 			</div>
 		</div>
 		
-		<div class="result_book_search">
-			<img class="img" src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg">
+		<div class="result_book_search_wrapper">
+			<div class="result_book_search">
 
-			<article>
-				<strong class="result_book_title">Jaggarenath</strong>
-				<div class="result_book_author">by Karla Talbeck</div>
-				<div class="result_book_price_wrap">
-					<span class="result_book_price_text">Sell for</span>
-					<storng class="result_book_price">£5.30</storng>
-				</div>
-			</article>
+				<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="result_book_thumbnail_image">
 
-			<div class="result_book_add_button"><span class="result_book_add_button_text">Added To Basket</span></div>
+				<article class="result_book_search_text">
+					<strong class="result_book_title">Jaggarenath</strong>
+					<div class="result_book_author">by Karla Talbeck</div>
+					<div class="result_book_price_wrap">
+						<span class="result_book_price_text">Sell for -</span>
+						<storng class="result_book_price">£5.30</storng>
+					</div>
+				</article>
+
+				<div class="result_book_add_button"><span class="result_book_add_button_text">Add To Sell Basket</span></div>
+			</div>
+
 			<span class="result_book_added_book_button">Sell now?</span>
 			<span class="result_book_added_book_button">Add again+</span>
 		</div>

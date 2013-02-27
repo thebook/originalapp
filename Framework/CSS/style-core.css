@@ -90,7 +90,6 @@
   padding: 0 16%;
   float: right;
   display: block;
-  height: 200px;
   background: #f6f6f6; }
 
 .price_selection {
@@ -133,6 +132,83 @@
   display: inline;
   float: right;
   margin: 0 5px 0 0; }
+
+.result_book_search_wrapper {
+  width: 33.33%;
+  display: inline-block;
+  float: left; }
+
+.result_book_search {
+  width: 90%;
+  margin: 0 5%;
+  float: left;
+  display: block;
+  background: #efefef;
+  color: #707070; }
+
+.result_book_thumbnail_image {
+  width: 52%;
+  margin: 35px 24% 30px;
+  height: auto;
+  -webkit-box-shadow: -3px 3px 5px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: -3px 3px 5px 1px rgba(0, 0, 0, 0.4); }
+
+.result_book_search_text {
+  width: 52%;
+  margin: 0px 24%;
+  text-align: center; }
+
+.result_book_title {
+  font-family: MotorOil;
+  font-size: 20px;
+  margin-bottom: 5px;
+  width: 100%;
+  display: block;
+  clear: both;
+  float: left; }
+
+.result_book_author {
+  letter-spacing: 1px;
+  font-size: 15px;
+  width: 100%;
+  display: block;
+  clear: both;
+  float: left; }
+
+.result_book_price_wrap {
+  width: 100%;
+  clear: both;
+  float: left;
+  margin: 15px 0 0;
+  letter-spacing: 1px;
+  text-align: center; }
+
+.result_book_price_text {
+  display: inline-block; }
+
+.result_book_price {
+  display: inline-block;
+  font-weight: bold; }
+
+.result_book_add_button {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin: 15px 0 0;
+  background: #9ad9e0; }
+
+.result_book_add_button_text {
+  display: block;
+  float: left;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  font-family: MotorOil;
+  font-size: 14px;
+  cursor: pointer;
+  width: 80%;
+  padding: 18px 10% 12px;
+  color: #FFF; }
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

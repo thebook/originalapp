@@ -6,3 +6,102 @@ $dark_gray: #efefef;
 $black_gray: #707070;
 $light: #fff;
 $dark_blue: #3f7986;
+
+.result_book_search_wrapper { 
+	
+	width: 33.33%;
+	display: inline-block;
+	float: left;
+}
+
+.result_book_search { 
+
+	width: 90%;
+	margin: 0 5%;
+	float: left;
+	display: block;
+	background: $dark_gray; 
+	color: $black_gray;
+}
+
+$article_width: 52%;
+
+.result_book_thumbnail_image {
+	
+	width: $article_width;
+	margin: 35px (( 100% - $article_width ) / 2 ) 30px;
+	height: auto;
+	@include box-shadow( -3px, 3px, 5px, 1px, rgba(0,0,0, 0.4 ));	
+}
+
+.result_book_search_text { 
+	
+	width: $article_width;
+	margin: 0px (( 100% - $article_width ) / 2 );
+	text-align: center;
+}
+
+.result_book_title { 
+	
+	font-family: MotorOil; 
+	font-size: 20px;
+	margin-bottom: 5px;
+	width: 100%;
+	display: block;
+	clear: both;
+	float: left;
+}
+
+.result_book_author {
+	
+	letter-spacing: 1px; 
+	font-size: 15px;
+	width: 100%;
+	display: block;
+	clear: both;
+	float: left;
+}
+
+.result_book_price_wrap { 
+
+	width: 100%;
+	clear: both;
+	float: left;
+	margin: 15px 0 0;
+	letter-spacing: 1px;
+	text-align: center;
+}
+.result_book_price_text { 
+	
+	display: inline-block;
+}
+
+.result_book_price { 
+	
+	display: inline-block;
+	font-weight: bold; 
+}
+
+.result_book_add_button { 
+	
+	width: 100%;
+	float: left;
+	clear: both;
+	margin: 15px 0 0;
+	background: $light_blue;
+}
+
+.result_book_add_button_text { 
+	
+	display: block;
+	float: left;
+	text-align: center;
+	text-transform: uppercase;
+	vertical-align: middle;
+	font-family: MotorOil; 
+	font-size: 14px;
+	cursor: pointer;
+	width: 80%;
+	padding: 18px 10% 12px;
+	color: #FFF;
+}
