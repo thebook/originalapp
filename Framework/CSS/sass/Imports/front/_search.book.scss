@@ -9,8 +9,8 @@ $dark_blue: #3f7986;
 
 .result_book_search_wrapper { 
 	
-	width: 29.33%;
-	margin: 0 3% 20px;
+	width: 28.33%;
+	margin: 0 3.5% 20px;
 	display: inline-block;
 	float: left;
 }
@@ -57,7 +57,7 @@ $dark_blue: #3f7986;
 		content:"i";
 		font-size: 40px; 
 		position: absolute;
-		margin-left: -41px;
+		margin: 4px 0 0 -45px;
 		color: $green;
 	}
 }
@@ -65,7 +65,7 @@ $dark_blue: #3f7986;
 .result_book_thumbnail_image {
 	
 	height: 150px;
-	margin: 35px 0px 30px;
+	margin: 35px 0px 26px;
 	width: auto; 
 	@include box-shadow( -3px, 3px, 5px, 1px, rgba(0,0,0, 0.4 ));	
 }
@@ -82,7 +82,7 @@ $dark_blue: #3f7986;
 	
 	font-family: MotorOil; 
 	font-size: 20px;
-	margin-bottom: 5px;
+	margin-bottom: 3px;
 	width: 100%;
 	display: block;
 	clear: both;
@@ -125,7 +125,7 @@ $dark_blue: #3f7986;
 	width: 100%;
 	float: left;
 	clear: both;
-	margin: 15px 0 0;
+	margin: 12px 0 0;
 	background: $light_blue;
 }
 
@@ -142,7 +142,7 @@ $dark_blue: #3f7986;
 	font-size: $add_button_font_size;
 	cursor: pointer;
 	width: 80%;
-	padding: (( 47px-$add_button_font_size) / 2) 10%;
+	padding: ((( 47px-$add_button_font_size) / 2) - 1px) 10%;
 	color: $dark_blue;
 }
 
@@ -169,8 +169,8 @@ $dark_blue: #3f7986;
 
 .result_book_added_book_sell_button { 
 	
-	padding: 7px 7%;
-	width: 33%;
+	padding: 7px 2%;
+	width: 43%;
 	text-align: center;
 	@include border-radius(2px);
 	float: left;

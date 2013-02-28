@@ -12,14 +12,48 @@
 		</div>
 
 		<!-- Progress bar  -->
-		<!-- <div class="progress_icon_for_bar">
+			<!-- Icon 1 -->
+		<div class="progress_icon_for_bar_done">
+			<div class="progress_icon_circle_done"><span class="with-icon-welcome-progress-bar"></span></div>
+			<span class="progress_icon_for_bar_text">Welcome</span>
+		</div>
+			<!-- Icon 2  -->
+		<div class="progress_icon_for_bar">
+			<div class="progress_icon_circle_doing"><span class="with-icon-account-progress-bar"></span></div>
+			<span class="progress_icon_for_bar_text">Account</span>
+		</div>
+			<!-- Icon 3  -->
+		<div class="progress_icon_for_bar">
+			<div class="progress_icon_circle"><span class="with-icon-confirm-progress-bar"></span></div>
 			<span class="progress_icon_for_bar_text">Confirm</span>
-		</div> -->
+		</div>
+			<!-- Icon 4 -->
+		<div class="progress_icon_for_bar">
+			<div class="progress_icon_circle"><span class="with-icon-thank-you-progress-bar"></span></div>
+			<span class="progress_icon_for_bar_text">Thank You</span>
+		</div>
+
+		<!-- Progress pop up -->
+		<span class="with-icon-progress-pop-up-arrow"></span>
+		<div class="progress_pop_up">
+			<div class="progress_pop_up_title">
+				<span class="progress_pop_up_title_text">Welcome</span>
+				<span class="progress_pop_up_title_icon">
+					<span class="with-icon-welcome-progress-bar"></span>
+				</span>
+			</div>
+			<p class="progress_pop_up_text">
+				The wind blew up heathlciffs lower behind, as he rose up to meet the oncoming challenge, thunder, strorm, eath and fire to
+				the meeting of these elements to excelent to magnaminous, that the very being that held him together began to quake;
+				"Just a little longer" he though, as he began to rumage into the very ground which gave him birth, just what precious metals,
+				just what substance and essence lied beneath this rocky mountain, layed to be discovered... to be continued suckass
+			</p>
+		</div>
 
 		<!-- Navigation  -->
-		<div class="navigation_text_for_bar">How It Works</div>
+		<!-- <div class="navigation_text_for_bar">How It Works</div>
 		<div class="navigation_text_for_bar">Recyclabus</div>
-		<div class="navigation_text_for_bar">Us</div>
+		<div class="navigation_text_for_bar">Us</div> -->
 
 		<!-- User registration or sign in button -->
 		<div class="button_for_user">
@@ -58,8 +92,7 @@
 		</div>
 		
 		<!-- Books description title -->
-		<div class="search_books_description_title">
-			<!-- <div class="search_books_description_title_text">Search Results For: 'Yo Motha'</div> -->
+		<div class="search_books_description_title">		
 
 			<div class="sell_and_buy_basket">
 				<div id="sell_basket" class="basket_stats"><span class="buy_basket_text">Buy : </span><span class="buy_basket_number">0</span></div>
@@ -121,7 +154,7 @@
 				<img src="http://www.tangentbooks.co.uk/product_images/a/short_story_vol2__99344.jpg" class="result_book_thumbnail_image">
 
 				<article class="result_book_search_text">
-					<strong class="result_book_title">Bristol Short Stories</strong>
+					<strong class="result_book_title">Bristol Short S...</strong>
 					<div class="result_book_author">by Guy Mcgee</div>
 					<div class="result_book_price_wrap">
 						<span class="result_book_price_text">Sell for -</span>
