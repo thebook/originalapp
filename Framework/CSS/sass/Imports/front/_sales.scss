@@ -21,17 +21,15 @@ $width: 64%;
 
 .price_selection { 
 	
-	$price_selection_width: 6%;
+	$price_selection_width: 7%;
 	$padding: 1%;
 	
 	width: $price_selection_width;
-	height: 50px;
 	position: absolute;
-	padding: $padding;
-	margin: 93px 0 0;
+	padding: 15px $padding 20px;
+	margin: 84px 0 0;
 	left: ( (( 100% - $width )/2)) - ($price_selection_width + ( $padding * 2 ) + 2%);   
-	background: transparent;
-	border: 1px solid $darkest_gray; 
+	background: $light;
 }
 
 .price_selection_quote { 
@@ -45,29 +43,67 @@ $width: 64%;
 	&:before {} 
 }
 
+.price_selection_selection { 
+
+	clear: both;
+	width: 100%;
+	float: left;
+	margin-top: 10px;
+}
+
+.price_selection_box {
+	
+	width: 16px;
+	height: 16px;
+	margin-right: 8px;
+	display: inline-block;
+	float: left;
+	background: $black_gray; 
+	cursor: pointer;
+}
+
+.price_selection_text {
+	
+	font-size: 12px; 
+	line-height: 12px; 
+	display: inline-block;
+	float: left;
+	margin: 2px 0 0;
+	vertical-align: top;
+	color: $darkest_gray;
+}
+
 .search_books_description_title { 
 	
 	width: 100%;
 	font-size: 12px;
 	float: left; 
 	color: $black_gray;
-	margin: 38px 0 30px;
+	margin: 4px 0 20px;
 	padding: 0 0 12px;
-	border-bottom: 1px solid $middle_gray;	
+	border-bottom: 1px solid $middle_gray;
 }
 
-.search_books_description_title_text {
-	
-	width: 80%;
-	display: inline-block; 
-	float: left;
+.with-icon-selection-tick { 
+
+	&:before { 
+
+		content:"t";
+		position: relative;
+		left: 1px;
+		font-size: 14px; 
+		color: $light;		
+	}
 }
 
 .sell_and_buy_basket { 
-	
-	width: 20%;
+
 	display: inline-block;
 	float: right;
+	font-weight: bold; 
+	background: $light_blue;
+	color: $dark_blue;
+	padding: 8px 10px; 
 }
 
 .basket_stats { 

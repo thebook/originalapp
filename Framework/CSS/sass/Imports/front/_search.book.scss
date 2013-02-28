@@ -27,7 +27,7 @@ $dark_blue: #3f7986;
 	margin: 0 0 20px 3%;
 }
 
-.result_book_search { 
+.result_book_search {
 
 	width: 100%;
 	float: left;
@@ -38,11 +38,29 @@ $dark_blue: #3f7986;
 	@include transition;
 	
 	&:hover { 
-		background: $dark_gray; 
+		background: $light; 
 	}
 }
 
-$article_width: 52%;
+.result_book_search_added { 
+
+	@extend .result_book_search;	
+	background: $dark_gray;
+}
+
+.with-icon-info-for-book { 
+
+	float: right;
+	cursor: pointer;
+	
+	&:before { 
+		content:"i";
+		font-size: 40px; 
+		position: absolute;
+		margin-left: -41px;
+		color: $green;
+	}
+}
 
 .result_book_thumbnail_image {
 	
@@ -53,7 +71,8 @@ $article_width: 52%;
 }
 
 .result_book_search_text { 
-	
+	$article_width: 80%;
+		
 	width: $article_width;
 	margin: 0px (( 100% - $article_width ) / 2 );
 	text-align: center;
@@ -124,7 +143,18 @@ $article_width: 52%;
 	cursor: pointer;
 	width: 80%;
 	padding: (( 47px-$add_button_font_size) / 2) 10%;
-	color: $light;
+	color: $dark_blue;
+}
+
+.with-icon-added-to-sell-basket-tick { 
+
+	@extend .result_book_add_button_text;
+	
+	&:before { 
+		text-transform: lowercase;
+		content:"t";
+		color: $dark_blue;		
+	}
 }
 
 .result_book_extra_options_buttons { 
