@@ -98,8 +98,17 @@
 			
 			<!-- Extra buttons -->
 			<div class="result_book_extra_options_buttons">
-				<span class="result_book_added_book_sell_button">Sell now?</span>
-				<span class="result_book_added_book_add_again_button">Add again+</span>
+
+				<span class="result_book_added_book_sell_button">
+					<span class="with-icon-sell-now-arrow"></span>
+					Sell now?
+				</span>
+
+				<span class="result_book_added_book_add_again_button">
+					<span class="with-icon-add-again"></span>
+					Add again+
+				</span>
+
 			</div>
 		</div>
 		
@@ -126,11 +135,6 @@
 					</span>
 				</div>
 			</div>
-			
-			<div class="result_book_extra_options_buttons">
-				<span class="result_book_added_book_sell_button">Sell now?</span>
-				<span class="result_book_added_book_add_again_button">Add again+</span>
-			</div>
 		</div>
 		
 		<!-- Last wrapper -->
@@ -151,11 +155,6 @@
 				</article>
 
 				<div class="result_book_add_button"><span class="result_book_add_button_text">Add To Sell Basket</span></div>
-			</div>
-			
-			<div class="result_book_extra_options_buttons">
-				<span class="result_book_added_book_sell_button">Sell now?</span>
-				<span class="result_book_added_book_add_again_button">Add again+</span>
 			</div>
 		</div>
 

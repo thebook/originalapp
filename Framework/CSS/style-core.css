@@ -323,18 +323,31 @@
   font-size: 15px;
   color: #707070; }
 
-.result_book_added_book_sell_button {
+.result_book_added_book_sell_button, .result_book_added_book_add_again_button {
+  padding: 7px 7%;
+  width: 33%;
+  text-align: center;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
   float: left;
-  padding: 7px 2.5%;
-  cursor: pointer; }
+  margin: 0 3% 0 0;
+  cursor: pointer;
+  background: white; }
 
 .result_book_added_book_add_again_button {
   float: right;
-  cursor: pointer;
-  padding: 7px 7%;
-  background: #efefef;
-  -webkit-border-radius: 2px;
-  border-radius: 2px; }
+  margin-left: 0 0 0 3%;
+  background: #efefef; }
+
+.with-icon-sell-now-arrow, .with-icon-add-again {
+  position: absolute;
+  margin: -20px 0 0 25px; }
+  .with-icon-sell-now-arrow:before, .with-icon-add-again:before {
+    content: "u";
+    color: white; }
+
+.with-icon-add-again:before {
+  color: #efefef; }
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

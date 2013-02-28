@@ -169,16 +169,40 @@ $dark_blue: #3f7986;
 
 .result_book_added_book_sell_button { 
 	
+	padding: 7px 7%;
+	width: 33%;
+	text-align: center;
+	@include border-radius(2px);
 	float: left;
-	padding: 7px 2.5%;
+	margin:0 3% 0 0;
 	cursor: pointer;
+	background: $light; 
 }
 
 .result_book_added_book_add_again_button { 
 	
+	@extend .result_book_added_book_sell_button;
+	
 	float: right;
-	cursor: pointer;
-	padding: 7px 7%;
+	margin-left: 0 0 0 3%;
 	background: $dark_gray;
-	@include border-radius(2px);
+}
+
+.with-icon-sell-now-arrow { 
+	
+	position: absolute;
+	margin: -20px 0 0 25px;
+	
+	&:before { 
+		content:"u";
+		color: $light;
+	}
+}
+
+.with-icon-add-again { 
+	@extend .with-icon-sell-now-arrow;
+	
+	&:before { 
+		color: $dark_gray;
+	}
 }
