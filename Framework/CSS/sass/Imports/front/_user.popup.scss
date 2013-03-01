@@ -1,0 +1,46 @@
+.user_pop_up_box { 
+	
+	width: 14%;
+	padding: 1.5%;
+	margin: $bar_height + 20px 0 0;
+	left: 71%; 
+	float: right;
+	background: $dark_blue; 
+	position: absolute;
+	z-index: 2;
+	@include box-shadow( 1px, 1px, 3px, 1px, rgba(0,0,0, 0.3));
+}
+
+.user_pop_up_title { 
+	
+	font-size: 17px;
+	color: $light_blue;
+	font-weight: bold;   
+	width: 100%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.user_pop_up_option {
+
+	color: $light;
+	width: 100%;
+	margin-bottom: 1px;
+	font-weight: normal; 
+	cursor: pointer;
+	
+	&:hover { 
+		text-decoration: underline;
+	}
+}
+
+.with-icon-user-pop-up-box-arrow { 
+
+	&:before { 
+
+		position: absolute;
+		margin: -35px 0 0 -14px;
+		color: $dark_blue;
+		content:"u";
+	}
+}

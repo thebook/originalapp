@@ -1,0 +1,69 @@
+.progress_pop_up { 
+	
+	$arrow_height: 10px;
+	
+	position: absolute;
+	font-family: MotorOil; 
+	margin: ( $bar_height + $arrow_height ) 0 0 50px;
+	background: $dark_blue; 
+	width: 35%;
+	color: $light;
+	padding: 1.5%;
+	z-index: 1;
+	@include box-shadow( 1px, 1px, 3px, 1px, rgba(0,0,0, 0.3));
+}
+
+.with-icon-progress-pop-up-arrow { 
+	
+	$arrow_size: 19px;
+	
+	&:before { 
+		position: relative;
+		font-size: $arrow_size;
+		line-height: $arrow_size;
+		height: $arrow_size;
+		left: -325px;
+		color: $dark_blue;
+		top: $bar_height + ( $arrow_size /2 ) + 2;
+		z-index: 2;
+		content:"u";
+	}
+}
+
+.progress_pop_up_title { 
+	
+	width: 100%;
+	clear: both;
+	float: left;
+	margin-bottom: 10px;
+}
+
+$progress_pop_up_title_size: 27px;
+
+.progress_pop_up_title_text { 
+
+	display: inline-block;
+	float: left;
+	font-size: $progress_pop_up_title_size;
+	color: $light_blue;	
+	text-transform: uppercase; 
+}
+
+.progress_pop_up_title_icon { 
+	
+	@include circle($progress_pop_up_title_size);
+	margin: -2px 0 0 7px;
+	display: inline-block;
+	float: left;
+	background: $light_blue; 
+}
+
+.progress_pop_up_text { 
+
+	clear: both;
+	float: left;
+	font-size: 14px; 
+	line-height: 20px;
+	font-family: Tahoma; 
+	text-align: justify;
+}

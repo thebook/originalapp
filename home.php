@@ -13,28 +13,28 @@
 
 		<!-- Progress bar  -->
 			<!-- Icon 1 -->
-		<div class="progress_icon_for_bar_done">
-			<div class="progress_icon_circle_done"><span class="with-icon-welcome-progress-bar"></span></div>
-			<span class="progress_icon_for_bar_text">Welcome</span>
-		</div>
+			<div class="progress_icon_for_bar_done">
+				<div class="progress_icon_circle_done"><span class="with-icon-welcome-progress-bar"></span></div>
+				<span class="progress_icon_for_bar_text">Welcome</span>
+			</div>
 			<!-- Icon 2  -->
-		<div class="progress_icon_for_bar">
-			<div class="progress_icon_circle_doing"><span class="with-icon-account-progress-bar"></span></div>
-			<span class="progress_icon_for_bar_text">Account</span>
-		</div>
+			<div class="progress_icon_for_bar">
+				<div class="progress_icon_circle_doing"><span class="with-icon-account-progress-bar"></span></div>
+				<span class="progress_icon_for_bar_text">Account</span>
+			</div>
 			<!-- Icon 3  -->
-		<div class="progress_icon_for_bar">
-			<div class="progress_icon_circle"><span class="with-icon-confirm-progress-bar"></span></div>
-			<span class="progress_icon_for_bar_text">Confirm</span>
-		</div>
+			<div class="progress_icon_for_bar">
+				<div class="progress_icon_circle"><span class="with-icon-confirm-progress-bar"></span></div>
+				<span class="progress_icon_for_bar_text">Confirm</span>
+			</div>
 			<!-- Icon 4 -->
-		<div class="progress_icon_for_bar">
-			<div class="progress_icon_circle"><span class="with-icon-thank-you-progress-bar"></span></div>
-			<span class="progress_icon_for_bar_text">Thank You</span>
-		</div>
+			<div class="progress_icon_for_bar">
+				<div class="progress_icon_circle"><span class="with-icon-thank-you-progress-bar"></span></div>
+				<span class="progress_icon_for_bar_text">Thank You</span>
+			</div>
 
 		<!-- Progress pop up -->
-		<span class="with-icon-progress-pop-up-arrow"></span>
+		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
 		<div class="progress_pop_up">
 			<div class="progress_pop_up_title">
 				<span class="progress_pop_up_title_text">Welcome</span>
@@ -48,18 +48,33 @@
 				"Just a little longer" he though, as he began to rumage into the very ground which gave him birth, just what precious metals,
 				just what substance and essence lied beneath this rocky mountain, layed to be discovered... to be continued suckass
 			</p>
-		</div>
+		</div> -->
 
+		<!-- Welcome pop up -->
+		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
+		<div class="progress_welcome_pop_up">
+			<div class="progress_welcome_sign_in_box">
+				<div class="progress_welcome_sign_in_box_title">Sign In</div>
+				<input type="text" class="progress_welcome_sign_in_box_input" placeholder="Email Address" value="">
+				<input type="text" class="progress_welcome_sign_in_box_input" placeholder="Password" value="">				
+				<span class="progress_welcome_sign_in_box_forgot_password">Forgoten Password?</span>
+			</div>
+			<div class="progress_welcome_register_box">
+				<div class="progress_welcome_register_box_text">New To Recyclabook >>></div>
+				<div class="progress_welcome_register_box_button">Sign Up</div>
+			</div>
+		</div> -->
+			
 		<!-- Navigation  -->
 		<!-- <div class="navigation_text_for_bar">How It Works</div>
 		<div class="navigation_text_for_bar">Recyclabus</div>
-		<div class="navigation_text_for_bar">Us</div> -->
+		<div class="navigation_text_for_bar">Us</div> -->		
 
 		<!-- User registration or sign in button -->
 		<div class="button_for_user">
 			<span class="with-icon-user"></span>
 			<span class="with-icon-user-arrow"></span>
-		</div>
+		</div>		
 
 		<!-- Search Input -->
 		<div class="input_for_bar">	
@@ -69,8 +84,18 @@
 			<div class="button_for_input"><span class="with-icon-search"></span></div>
 		</div>
 
-	</section>
+		<!-- User button pop up -->
+		<div class="user_pop_up_box">
+			<span class="with-icon-user-pop-up-box-arrow"></span>
+			<div class="user_pop_up_title">Hi, Mcgee</div>
+			<div class="user_pop_up_option">Edit Account</div>
+			<div class="user_pop_up_option">Tracking</div>
+			<div class="user_pop_up_option">Account History</div>
+		</div>
+		
 
+	</section>
+	
 	<section class="body">
 		
 		<!-- Price checker -->
