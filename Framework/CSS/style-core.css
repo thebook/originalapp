@@ -296,13 +296,23 @@ body {
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3); }
 
-.user_pop_up_title {
-  font-size: 17px;
+.user_pop_up_title, .user_pop_up_title_white {
+  font-size: 16px;
   color: #9ad9e0;
   font-weight: bold;
   width: 100%;
   float: left;
-  margin-bottom: 10px; }
+  margin-bottom: 6px;
+  letter-spacing: 1px; }
+
+.user_pop_up_title_white {
+  color: white; }
+
+.user_pop_up_title_highlight {
+  color: #9ad9e0;
+  cursor: pointer; }
+  .user_pop_up_title_highlight:hover {
+    text-decoration: underline; }
 
 .user_pop_up_option {
   color: white;
@@ -311,6 +321,33 @@ body {
   font-weight: normal;
   cursor: pointer; }
   .user_pop_up_option:hover {
+    text-decoration: underline; }
+
+.user_pop_up_option_input {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  width: 90%;
+  background: white;
+  padding: 8px 5%;
+  margin: 2px 0;
+  color: #9f9f9f;
+  -webkit-border-radius: 25px;
+  border-radius: 25px; }
+  .user_pop_up_option_input:hover {
+    border: none; }
+  .user_pop_up_option_input:focus {
+    border: none; }
+  .user_pop_up_option_input:focus {
+    color: #555555; }
+
+.user_pop_up_options_forgot_password {
+  font-size: 10px;
+  margin-top: 3px;
+  color: white;
+  float: right;
+  cursor: pointer; }
+  .user_pop_up_options_forgot_password:hover {
     text-decoration: underline; }
 
 .with-icon-user-pop-up-box-arrow:before {
@@ -504,7 +541,7 @@ body {
   display: block;
   background: transparent;
   text-align: center;
-  color: #707070;
+  color: #555555;
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
@@ -602,7 +639,7 @@ body {
   width: 100%;
   margin: 13px 0 0;
   font-size: 15px;
-  color: #707070; }
+  color: #555555; }
 
 .result_book_added_book_sell_button, .result_book_added_book_add_again_button {
   padding: 7px 2%;
@@ -629,3 +666,94 @@ body {
 
 .with-icon-add-again:before {
   color: #efefef; }
+
+.search_books_expanded_book {
+  width: 58.5%;
+  margin: 67px 0 0;
+  padding: 30px 2%;
+  background: white;
+  position: absolute;
+  z-index: 1;
+  -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2); }
+
+.with-icon-info-close {
+  float: right;
+  position: relative;
+  left: 3%;
+  top: -26px;
+  cursor: pointer; }
+  .with-icon-info-close:before {
+    content: "x";
+    color: #b4d65a;
+    font-size: 40px; }
+
+.search_books_expanded_image_wrap {
+  width: 27%;
+  padding: 0 3% 0 0;
+  display: inline-block;
+  float: left; }
+
+.search_books_expanded_image {
+  width: 100%;
+  height: auto; }
+
+.search_books_expanded_title {
+  font-weight: bold;
+  font-size: 24px;
+  color: #555555;
+  display: inline-block;
+  float: left; }
+
+.search_books_expanded_author {
+  display: inline-block;
+  margin: 6px 0 30px 10px;
+  color: #555555; }
+
+.search_books_expanded_isbn {
+  clear: right;
+  margin-bottom: 30px;
+  color: #555555; }
+
+.search_books_expanded_isbn_highlight {
+  font-weight: bold;
+  text-transform: uppercase; }
+
+.search_books_expanded_book_description_title {
+  font-weight: bold;
+  color: #555555;
+  margin-bottom: 15px; }
+
+.search_books_expanded_book_description_text {
+  color: #555555;
+  line-height: 20px;
+  font-size: 14px;
+  margin-bottom: 20px; }
+
+.search_books_expanded_book_description_see_more {
+  color: #9ad9e0;
+  text-transform: lowercase; }
+
+.search_books_expanded_book_price {
+  color: #555555;
+  display: inline-block;
+  float: left;
+  margin-top: 10px;
+  font-size: 14px; }
+
+.search_books_expanded_book_price_highlight {
+  font-size: 20px;
+  margin-left: 5px;
+  color: #b4d65a;
+  font-weight: bold; }
+
+.search_books_expanded_book_add_to_sell_basket {
+  background: #9ad9e0;
+  padding: 18px 40px;
+  color: white;
+  font-size: 12px;
+  float: right;
+  letter-spacing: 1px;
+  font-family: MotorOil;
+  text-transform: uppercase;
+  display: inline-block; }

@@ -1,12 +1,3 @@
-$light_blue:#9ad9e0;
-$green: #b4d65a;
-$light_gray: #f6f6f6;
-$middle_gray: #dadada;
-$dark_gray: #efefef;
-$black_gray: #707070;
-$light: #fff;
-$dark_blue: #3f7986;
-
 .result_book_search_wrapper { 
 	
 	width: 28.33%;
@@ -205,4 +196,128 @@ $dark_blue: #3f7986;
 	&:before { 
 		color: $dark_gray;
 	}
+}
+
+.search_books_expanded_book {
+	
+	width: 58.5%;
+	margin: 67px 0 0;
+	padding: 30px 2%;
+	background: $light;
+	position: absolute;
+	z-index:1;
+ 	@include box-shadow( 1px, 1px, 3px, 1px, rgba(0,0,0, 0.2));
+}
+
+.with-icon-info-close { 
+	
+	float: right;
+	position: relative;
+	left: 3%;
+	top: -26px;
+	cursor: pointer;
+	&:before { 
+
+		content:"x";
+		color: $green;		
+		font-size: 40px; 
+	}
+}
+
+$search_books_expanded_image_wrap_width: 27%;
+$search_books_expanded_image_wrap_padding: 3%;
+
+.search_books_expanded_image_wrap { 
+
+	width: $search_books_expanded_image_wrap_width;
+	padding: 0 $search_books_expanded_image_wrap_padding 0 0;
+	display: inline-block;
+	float: left;	
+}
+
+.search_books_expanded_image { 
+
+	width: 100%;
+	height: auto;
+}
+
+.search_books_expanded_title { 
+
+	font-weight: bold;
+	font-size: 24px;
+	color: $black_gray;
+	display: inline-block;
+	float: left;   
+}
+
+.search_books_expanded_author { 
+	
+	display: inline-block;
+	margin: 6px 0 30px 10px; 
+	color: $black_gray;
+}
+
+.search_books_expanded_isbn {
+
+	clear: right;
+	margin-bottom: 30px;
+	color: $black_gray;
+	
+}
+
+.search_books_expanded_isbn_highlight { 
+	
+	font-weight: bold;
+	text-transform: uppercase; 
+}
+
+.search_books_expanded_book_description_title { 
+	
+	font-weight: bold; 
+	color: $black_gray;  
+	margin-bottom: 15px;
+}
+
+.search_books_expanded_book_description_text { 
+	
+	color: $black_gray;
+	line-height: 20px;
+	font-size: 14px; 
+	margin-bottom: 20px;
+}
+
+.search_books_expanded_book_description_see_more { 
+	
+	color: $light_blue;
+	text-transform: lowercase;
+}
+
+.search_books_expanded_book_price { 
+	
+	color: $black_gray;
+	display: inline-block;
+	float: left;
+	margin-top: 10px;
+	font-size: 14px;
+}	
+
+.search_books_expanded_book_price_highlight { 
+
+	font-size: 20px; 
+	margin-left: 5px;
+	color: $green;
+	font-weight: bold;  
+}
+
+.search_books_expanded_book_add_to_sell_basket {
+
+	background: $light_blue;
+	padding: 18px 40px; 
+	color: $light;
+	font-size: 12px; 
+	float: right;
+	letter-spacing: 1px; 
+	font-family: MotorOil;
+	text-transform: uppercase;
+	display: inline-block;
 }

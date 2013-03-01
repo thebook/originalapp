@@ -56,7 +56,7 @@
 			<div class="progress_welcome_sign_in_box">
 				<div class="progress_welcome_sign_in_box_title">Sign In</div>
 				<input type="text" class="progress_welcome_sign_in_box_input" placeholder="Email Address" value="">
-				<input type="text" class="progress_welcome_sign_in_box_input" placeholder="Password" value="">				
+				<input type="password" class="progress_welcome_sign_in_box_input" placeholder="Password" value="">				
 				<span class="progress_welcome_sign_in_box_forgot_password">Forgoten Password?</span>
 			</div>
 			<div class="progress_welcome_register_box">
@@ -85,13 +85,22 @@
 		</div>
 
 		<!-- User button pop up -->
-		<div class="user_pop_up_box">
+		<!-- <div class="user_pop_up_box">
 			<span class="with-icon-user-pop-up-box-arrow"></span>
 			<div class="user_pop_up_title">Hi, Mcgee</div>
 			<div class="user_pop_up_option">Edit Account</div>
 			<div class="user_pop_up_option">Tracking</div>
 			<div class="user_pop_up_option">Account History</div>
-		</div>
+
+			<span class="with-icon-user-pop-up-box-arrow"></span>
+			<div class="user_pop_up_title_white">
+				Sign in Or
+				<span class="user_pop_up_title_highlight">Register</span> 
+			</div>
+			<input type="text" class="user_pop_up_option_input" placeholder="Username">
+			<input type="password" class="user_pop_up_option_input" placeholder="Password">
+			<div class="user_pop_up_options_forgot_password">forgottten password?</div>
+		</div> -->
 		
 
 	</section>
@@ -114,8 +123,8 @@
 				<span class="price_selection_box"></span>
 				<span class="price_selection_text">Recyclabus</span>
 			</div>
-		</div>
-		
+		</div>		
+
 		<!-- Books description title -->
 		<div class="search_books_description_title">		
 
@@ -123,6 +132,41 @@
 				<div id="sell_basket" class="basket_stats"><span class="buy_basket_text">Buy : </span><span class="buy_basket_number">0</span></div>
 				<div id="buy_basket" class="basket_stats"><span class="sell_basket_text">Sell : </span><span class="sell_basket_number">0</span> |</div>
 			</div>
+		</div>
+		
+		<!-- Pop out book -->
+		<div class="search_books_expanded_book">
+
+			<span class="with-icon-info-close"></span>
+
+			<div class="search_books_expanded_image_wrap">
+				<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="search_books_expanded_image">
+			</div>
+
+			<div class="search_books_expanded_text">
+				<div class="search_books_expanded_title">Jaggernath</div>
+				<div class="search_books_expanded_author">by Karla Tidberck</div>
+				<div class="search_books_expanded_isbn"><span class="search_books_expanded_isbn_highlight">isbn: </span>0239 2309 2310 20</div>
+
+				<div class="search_books_expanded_book_description">
+					<div class="search_books_expanded_book_description_title">Book Description</div>
+					<div class="search_books_expanded_book_description_text">
+						We walked thourgh the air those days, thousand and thousand of miles, upon the rocky cliff
+						where once upon we met, i smelled the dew still fresh within your hair, as i held you in my 
+						arms lost within the intoxicating aromas of your skin; "Oh, Lousie how i loved to hold you so"
+						i exclamed, and then from began to transform... <span class="search_books_expanded_book_description_see_more">See More</span>
+					</div>
+				</div>
+
+				<div class="search_books_expanded_book_price">
+					Well Buy For:
+					<span class="search_books_expanded_book_price_highlight">£5.30</span>
+				</div>
+
+				<div class="search_books_expanded_book_add_to_sell_basket">Add To Sell Basket</div>
+
+			</div>
+
 		</div>
 		
 		<!-- A result book -->
