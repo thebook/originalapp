@@ -34,7 +34,7 @@
 			</div>
 
 		<!-- Progress pop up -->
-		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
+		<span class="with-icon-progress-pop-up-arrow"></span>
 		<div class="progress_pop_up">
 			<div class="progress_pop_up_title">
 				<span class="progress_pop_up_title_text">Welcome</span>
@@ -43,12 +43,13 @@
 				</span>
 			</div>
 			<p class="progress_pop_up_text">
-				The wind blew up heathlciffs lower behind, as he rose up to meet the oncoming challenge, thunder, strorm, eath and fire to
+				<!-- The wind blew up heathlciffs lower behind, as he rose up to meet the oncoming challenge, thunder, strorm, eath and fire to
 				the meeting of these elements to excelent to magnaminous, that the very being that held him together began to quake;
 				"Just a little longer" he though, as he began to rumage into the very ground which gave him birth, just what precious metals,
-				just what substance and essence lied beneath this rocky mountain, layed to be discovered... to be continued suckass
+				just what substance and essence lied beneath this rocky mountain, layed to be discovered... to be continued suckass -->
+				This will not only create your profile hub that will let your track payments, check books orders and edit details but makes sure we make the payment out to the right person and send the freepost pack to the correct address.
 			</p>
-		</div> -->
+		</div>
 
 		<!-- Welcome pop up -->
 		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
@@ -101,14 +102,98 @@
 			<input type="password" class="user_pop_up_option_input" placeholder="Password">
 			<div class="user_pop_up_options_forgot_password">forgottten password?</div>
 		</div> -->
-		
 
 	</section>
 	
-	<section class="body">
+	<section class="input_box_body_wrap"> 
+		
+		<div class="legend_wrap">
+			<div class="legend_mark_green">mandatory fields*</div>
+			<div class="legend_mark_x_symbol">
+				<span class="with-icon-x-for-legend"></span>
+				This is not a valid email adress
+			</div>
+		</div>
+		
+		<!-- Field Box one -->
+		<div class="field_box_wrap">
+			
+			<div class="field_box_title_wrap">
+				<div class="with-icon-leaf-one"></div>
+				<div class="field_box_title">Name & Adress Details.*</div>
+			</div>
+
+			<div class="field_box_input_wrap">
+				<div class="field_box_input_title">First Name and Last Name</div>
+				<input type="text" class="field_box_input" placeholder="First Name">
+				<input type="text" class="field_box_input" placeholder="Second Name">
+			</div>
+
+			<div class="field_box_input_wrap">
+				<div class="field_box_input_title">Where shall we send your freepost pack</div>
+				<input type="text" class="field_box_input_small" placeholder="Post Code">
+				<div class="field_box_input_small_button">
+					Find Address
+					<span class="with-icon-field-box-house"></span>
+				</div>
+				<div class="field_box_input_extra_text">
+					<span class="field_box_input_extra_text_highlight">or</span> enter address manually</div>
+			</div>
+		</div>
+		
+		<!-- Input box 2 -->
+		<div class="field_box_wrap_left">
+			
+			<div class="field_box_title_wrap">
+				<div class="with-icon-leaf-two"></div>
+				<div class="field_box_title">Login Details.*</div>
+			</div>
+
+			<div class="field_box_input_wrap">
+				<div class="field_box_input_title">Email address</div>
+				<input type="text" class="field_box_input" placeholder="Email address">
+				<span class="with-icon-not-valid-field"></span>
+				<input type="text" class="field_box_input" placeholder="Confrim email address">
+			</div>
+
+			<div class="field_box_input_wrap">
+				<div class="field_box_input_title">Password</div>
+				<input type="text" class="field_box_input" placeholder="Password">
+				<span class="with-icon-not-valid-field"></span>
+				<input type="text" class="field_box_input" placeholder="Confirm Password">
+			</div>
+		</div>
+		
+		<div class="field_box_wrap_full">
+
+			<div class="field_box_title_wrap">
+				<div class="with-icon-leaf-three"></div>
+				<div class="field_box_title">
+					Lets get better aquainted
+					<span class="field_box_title_highlight">
+						(this is to help us make the service smoother by anticipating books coming and goind)
+					</span>
+				</div>
+			</div>
+
+			<div class="field_box_input_half_wrap">
+				<div class="field_box_input_title">Question?</div>
+				<input type="text" class="field_box_input" placeholder="Question">
+			</div>
+
+			<div class="field_box_input_half_wrap">
+				<div class="field_box_input_title">Question?</div>
+				<input type="text" class="field_box_input" placeholder="Question">
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- <section class="body"> -->
 		
 		<!-- Price checker -->
-		<div class="price_selection">
+		<!-- <div class="price_selection">
 			
 			<div class="price_selection_quote">Quote</div>
 			
@@ -123,19 +208,19 @@
 				<span class="price_selection_box"></span>
 				<span class="price_selection_text">Recyclabus</span>
 			</div>
-		</div>		
+		</div> -->	
 
 		<!-- Books description title -->
-		<div class="search_books_description_title">		
+		<!-- <div class="search_books_description_title">		
 
 			<div class="sell_and_buy_basket">
 				<div id="sell_basket" class="basket_stats"><span class="buy_basket_text">Buy : </span><span class="buy_basket_number">0</span></div>
 				<div id="buy_basket" class="basket_stats"><span class="sell_basket_text">Sell : </span><span class="sell_basket_number">0</span> |</div>
 			</div>
-		</div>
+		</div> -->
 		
 		<!-- Pop out book -->
-		<div class="search_books_expanded_book">
+		<!-- <div class="search_books_expanded_book">
 
 			<span class="with-icon-info-close"></span>
 
@@ -167,39 +252,39 @@
 
 			</div>
 
-		</div>
+		</div> -->
 		
 		<!-- A result book -->
-		<div class="result_book_search_wrapper_left">
-			<div class="result_book_search_added">
+		<!-- <div class="result_book_search_wrapper_left">
+			<div class="result_book_search_added"> -->
 				
 				<!-- Info Icon -->
-				<span class="with-icon-info-for-book"></span>
+				<!-- <span class="with-icon-info-for-book"></span> -->
 				
 				<!-- Books thumbnail image -->
-				<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="result_book_thumbnail_image">
+				<!-- <img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="result_book_thumbnail_image"> -->
 				
 				<!-- Article book search -->
-				<article class="result_book_search_text">
+				<!-- <article class="result_book_search_text">
 					<strong class="result_book_title">Jaggarenath</strong>
 					<div class="result_book_author">by Karla Talb..</div>
 					<div class="result_book_price_wrap">
 						<span class="result_book_price_text">Sell for -</span>
 						<storng class="result_book_price">£5.30</storng>
 					</div>
-				</article>
+				</article> -->
 				
 				<!-- Add book button -->
-				<div class="result_book_add_button">
+				<!-- <div class="result_book_add_button">
 					<span class="with-icon-added-to-sell-basket-tick">
 						Added To Basket
 					</span>
 				</div>
 
-			</div>
+			</div> -->
 			
 			<!-- Extra buttons -->
-			<div class="result_book_extra_options_buttons">
+			<!-- <div class="result_book_extra_options_buttons">
 
 				<span class="result_book_added_book_sell_button">
 					<span class="with-icon-sell-now-arrow"></span>
@@ -212,10 +297,10 @@
 				</span>
 
 			</div>
-		</div>
+		</div> -->
 		
 		<!-- Middle wrapper -->
-		<div class="result_book_search_wrapper">
+		<!-- <div class="result_book_search_wrapper">
 			<div class="result_book_search">
 
 				<span class="with-icon-info-for-book"></span>
@@ -237,10 +322,10 @@
 					</span>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		
 		<!-- Last wrapper -->
-		<div class="result_book_search_wrapper_right">
+		<!-- <div class="result_book_search_wrapper_right">
 			<div class="result_book_search">
 
 				<span class="with-icon-info-for-book"></span>
@@ -258,8 +343,8 @@
 
 				<div class="result_book_add_button"><span class="result_book_add_button_text">Add To Sell Basket</span></div>
 			</div>
-		</div>
+		</div> -->
 
-	</section>
+	<!-- </section> -->
 
 <?php get_footer(); ?>

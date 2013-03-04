@@ -1,0 +1,55 @@
+.input_box_body_wrap { 
+
+	$width: 69%;
+	
+	display: block;
+    width: $width;
+    padding: 0 (( 100% - $width )/2);
+	padding-top: 145px;
+	background: $light_gray; 
+    float: right;
+}
+
+.legend_wrap { 
+
+	float: right;	
+	width: 48%;
+	margin: 0 2% 30px 50%;
+	font-size: 13px;
+}
+
+.legend_mark_green { 
+	
+	background: $green;
+	width: 28%;
+	padding: 12px 1%;
+	color: $light;
+	text-align: center;
+	display: inline-block;
+	float: left;  
+}
+
+.legend_mark_x_symbol { 
+	
+	background: $light_blue;
+	display: inline-block;
+	float: left;
+	width: 57%;
+	padding: 12px 5% 12px 8%;
+	color: $dark_blue; 
+	font-weight: bold; 
+}
+
+.with-icon-x-for-legend { 
+	
+	&:before { 
+		$font_size: 30px;
+		
+		position: absolute;
+		margin: -9px 0 0 -28px;
+		font-size: $font_size; 
+		content:"X";
+	}
+}
+
+@import "user.fields"; 

@@ -9,11 +9,10 @@
 @import "Imports/mixins/font.import";
 
 $url: #{"<?php echo get_template_directory_uri(); ?>"};
-$bar_height: 60px;
-
+$bar_height: 52px;
 $light_blue:#9ad9e0;
 $green: #b4d65a;
-$light_gray: #f6f6f6;
+$light_gray: #f4f4f4;
 $middle_gray: #dadada;
 $darkest_gray: #9F9F9F;
 $even_darker_gray: #d1d1d1;
@@ -50,3 +49,4 @@ body {
 @import "Imports/front/bar";
 @import "Imports/front/sales";
 @import "Imports/front/search.book";
+@import "Imports/front/user";

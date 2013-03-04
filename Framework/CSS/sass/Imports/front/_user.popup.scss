@@ -1,9 +1,12 @@
 .user_pop_up_box { 
+
+	$user_pop_box_width: 18%;
+	$padding: 1%;
 	
-	width: 14%;
-	padding: 1.5%;
+	width: $user_pop_box_width;
+	padding: 10px $padding;
 	margin: $bar_height + 20px 0 0;
-	left: 71%; 
+	left: 100% - ( $user_pop_box_width + ( $padding *2 ) + 12% );
 	float: right;
 	background: $dark_blue; 
 	position: absolute;
@@ -18,7 +21,7 @@
 	font-weight: bold;   
 	width: 100%;
 	float: left;
-	margin-bottom: 6px;
+	margin: 0 0 6px 10px;
 	letter-spacing: 1px; 
 }
 
@@ -84,7 +87,7 @@
 	&:before { 
 
 		position: absolute;
-		margin: -35px 0 0 -14px;
+		margin: -25px 0 0 -30px;
 		color: $dark_blue;
 		content:"u";
 	}

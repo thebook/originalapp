@@ -1,9 +1,9 @@
 .progress_icon_for_bar { 
 
 	height: $bar_height;
-	width: $bar_height + 10px;
+	width: $bar_height + 18px;
 	float: left;
-	padding: 0 0 0 20px;
+	padding: 0 0 0 13px;
 	background: transparent;	
 }
 
@@ -15,11 +15,11 @@
 
 .progress_icon_circle { 
 	
-	$circle_diamater: $bar_height / 2.3;
-	$circle_margin: ( $bar_height - $circle_diamater ) /2.3;
+	$circle_diamater: $bar_height / 2.1;
+	$circle_margin: ( $bar_height - $circle_diamater ) /2;
 	
 	@include circle( $circle_diamater );
-	margin: $circle_margin 0 0 $circle_margin;
+	margin: ( $circle_margin - 5px )0 0 $circle_margin;
 	background: $even_darker_gray; 
 	position: absolute;
 }
@@ -47,7 +47,6 @@
 	line-height: $progress_icon_text_size;
 	text-transform: uppercase;	
 	font-family: MotorOil;
-	letter-spacing: 1px;  
 	color: $black_gray;
 	top: $bar_height - ( $progress_icon_text_size * 2);
 }
@@ -88,7 +87,6 @@
 	
 	@extend .with-icon-welcome-progress-bar;
 	&:before { 
-		left: px;			
 		content:"c";
 	}	
 }
@@ -102,7 +100,8 @@
 	
 	@extend .with-icon-welcome-progress-bar;
 	&:before { 
-		left: 5px;		
+		left: 5px;
+		font-size: 14px;
 		content:"b";
 	}	
 }

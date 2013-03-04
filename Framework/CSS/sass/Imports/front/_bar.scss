@@ -10,7 +10,7 @@
 	
 	$margin: 0px;
 
-	width:  $bar_height - 18px;
+	width:  $bar_height - 10px;
 	height: $bar_height;
 	margin: $margin 0;
 	float: left;
@@ -55,7 +55,7 @@
 	}
 }
 
-$input_margin_size: 12px;
+$input_margin_size: 10px;
 $input_bar_size: $bar_height - ($input_margin_size * 2 ); 
 
 .input_for_bar { 
@@ -113,8 +113,8 @@ $input_bar_size: $bar_height - ($input_margin_size * 2 );
 	&:before { 
 		
 		position: relative;
-		top: 9px;
-		left: 10px;
+		top: 8px;
+		left: 9px;
 		font-size: 14px; 
 		content: "S";
 		color: $light;
@@ -135,8 +135,8 @@ $input_bar_size: $bar_height - ($input_margin_size * 2 );
 	&:before { 
 		
 		position: relative;
-		top: 8px;
-		left: 11px;
+		top: 7px;
+		left: 9px;
 		font-size: 18px; 
 		content: "U";
 		color: $light;
@@ -147,8 +147,8 @@ $input_bar_size: $bar_height - ($input_margin_size * 2 );
 
 	&:before { 
 		position: relative;
-		top: 25px;
-		left: -5px;		
+		top: 23px;
+		left: -7px;		
 		font-size: 7px;
 		color: $middle_gray;  
 		content:"d";

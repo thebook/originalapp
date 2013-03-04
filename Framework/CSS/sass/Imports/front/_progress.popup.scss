@@ -6,7 +6,7 @@
 	font-family: MotorOil; 
 	margin: ( $bar_height + $arrow_height ) 0 0 50px;
 	background: $dark_blue; 
-	width: 35%;
+	width: 30%;
 	color: $light;
 	padding: 1.5%;
 	z-index: 1;
@@ -22,7 +22,7 @@
 		font-size: $arrow_size;
 		line-height: $arrow_size;
 		height: $arrow_size;
-		left: -325px;
+		left: -305px;
 		color: $dark_blue;
 		top: $bar_height + ( $arrow_size /2 ) + 2;
 		z-index: 2;
