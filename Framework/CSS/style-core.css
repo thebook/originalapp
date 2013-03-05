@@ -64,6 +64,10 @@ header, section, time, hgroup, nav {
   font-family: 'MotorOil';
   src: url("<?php echo get_template_directory_uri(); ?>/Framework/CSS/Includes/fonts/MotorOil.ttf"); }
 
+@font-face {
+  font-family: 'HandWritten';
+  src: url("<?php echo get_template_directory_uri(); ?>/Framework/CSS/Includes/fonts/handwritten.ttf"); }
+
 body {
   font-family: Tahoma; }
 
@@ -493,6 +497,13 @@ body {
   vertical-align: top;
   color: #9f9f9f; }
 
+.with-icon-selection-tick:before {
+  content: "t";
+  position: relative;
+  left: 1px;
+  font-size: 14px;
+  color: white; }
+
 .search_books_description_title {
   width: 100%;
   font-size: 12px;
@@ -500,14 +511,23 @@ body {
   color: #555555;
   margin: 4px 0 20px;
   padding: 0 0 12px;
-  border-bottom: 1px solid #dadada; }
+  border-bottom: 1px solid #dadada;
+  text-align: baseline; }
 
-.with-icon-selection-tick:before {
-  content: "t";
-  position: relative;
-  left: 1px;
-  font-size: 14px;
-  color: white; }
+.with-icon-description-title-thumbs-up {
+  float: left;
+  margin: 10px 10px 0 5px;
+  color: #b4d65a; }
+  .with-icon-description-title-thumbs-up:before {
+    font-size: 18px;
+    content: "$"; }
+
+.search_books_description_title_text {
+  font-size: 12px;
+  margin-top: 15px;
+  float: left;
+  color: #555555;
+  font-family: HandWritten; }
 
 .sell_and_buy_basket {
   display: inline-block;
@@ -521,6 +541,159 @@ body {
   display: inline;
   float: right;
   margin: 0 5px 0 0; }
+
+.with-icon-store-basket-pop-up-arrow:before {
+  position: relative;
+  float: right;
+  top: -35px;
+  color: white;
+  content: "u"; }
+
+.store_basket_pop_up {
+  position: relative;
+  float: right;
+  background: white;
+  width: 70%;
+  margin: 0 0 10px;
+  padding: 20px 2%;
+  z-index: 1;
+  -webkit-box-shadow: -1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: -1px 1px 2px 0px rgba(0, 0, 0, 0.3); }
+
+.store_basket_pop_up_content {
+  display: inline-block;
+  width: 65%;
+  float: left; }
+
+.store_basket_pop_up_content_item {
+  background: #efefef;
+  margin-bottom: 10px;
+  padding: 15px 0 15px 2%; }
+  .store_basket_pop_up_content_item:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.store_basket_pop_up_content_item_thumbnail {
+  height: 70px;
+  margin: 0 4% 0 0;
+  float: left;
+  display: inline-block; }
+  .store_basket_pop_up_content_item_thumbnail img {
+    width: auto;
+    height: 100%;
+    -webkit-box-shadow: -1px 1px 2px 1px rgba(0, 0, 0, 0.4);
+    box-shadow: -1px 1px 2px 1px rgba(0, 0, 0, 0.4); }
+
+.store_basket_pop_up_content_item_title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #555555; }
+
+.store_basket_pop_up_content_item_author {
+  color: #555555;
+  line-height: 20px;
+  font-size: 12px; }
+
+.store_basket_pop_up_content_item_isbn_wrap {
+  float: left;
+  display: inline-block;
+  color: #555555;
+  margin: 20px 0 0;
+  font-size: 12px; }
+
+.store_basket_pop_up_content_item_isbn_highlight {
+  font-weight: bold;
+  display: inline-block;
+  float: left;
+  margin-right: 5px; }
+
+.store_basket_pop_up_content_item_isbn {
+  display: inline-block;
+  float: left; }
+
+.store_basket_pop_up_content_item_sell_price_wrap {
+  float: right;
+  position: relative;
+  top: -20px;
+  left: -7%;
+  color: #555555; }
+
+.store_basket_pop_up_content_item_sell_price_text {
+  float: left;
+  font-size: 12px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px; }
+
+.store_basket_pop_up_content_item_sell_price {
+  font-weight: bold;
+  font-size: 14px; }
+
+.store_basket_pop_up_content_item_sell_price_text {
+  color: #555555; }
+
+.with-icon-x-for-store-basket-pop-up-content-item {
+  float: right;
+  display: inline-block;
+  position: relative;
+  top: 18px;
+  left: 12.5%;
+  cursor: pointer; }
+  .with-icon-x-for-store-basket-pop-up-content-item:before {
+    font-size: 30px;
+    color: #b4d65a;
+    content: "!"; }
+
+.store_basket_pop_up_content_total_wrap {
+  width: 96%;
+  float: left;
+  clear: both;
+  background: #efefef;
+  padding: 12px 2%;
+  font-weight: bold;
+  color: #555555;
+  font-size: 15px; }
+
+.store_basket_pop_up_content_total_text {
+  display: inline;
+  float: left; }
+
+.store_basket_pop_up_content_total_number {
+  display: inline;
+  float: right; }
+
+.store_basket_pop_up_button_wrap {
+  display: inline-block;
+  width: 32.5%;
+  margin-left: 2.5%;
+  float: left; }
+
+.store_basket_pop_up_button_second, .store_basket_pop_up_button_first {
+  background: #b4d65a;
+  cursor: pointer;
+  padding: 10px 5%;
+  font-size: 13px;
+  font-family: MotorOil;
+  text-align: center;
+  color: white;
+  text-transform: uppercase; }
+
+.store_basket_pop_up_button_first {
+  margin-top: 10px;
+  padding: 16px 5%;
+  background: #9ad9e0;
+  color: #3f7986; }
+
+.store_basket_pop_up_text {
+  float: left;
+  clear: both; }
+
+.store_basket_pop_up_text {
+  font-size: 12px;
+  margin: 12px 0 0 5px;
+  float: left;
+  color: #555555; }
 
 .result_book_search_wrapper, .result_book_search_wrapper_left, .result_book_search_wrapper_right {
   width: 28.33%;
@@ -761,7 +934,7 @@ body {
   display: block;
   width: 69%;
   padding: 0 15.5%;
-  padding-top: 145px;
+  padding-top: 152px;
   background: #f6f6f6;
   float: right; }
 
@@ -807,8 +980,70 @@ body {
   margin-left: 2%; }
 
 .field_box_wrap_full {
-  background: #9ad9e0;
   width: 95%; }
+
+.input_box_disclaimer {
+  width: 100%;
+  margin-bottom: 100px;
+  float: left; }
+
+.input_box_disclaimer_box {
+  position: absolute;
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  background: #555555; }
+
+.with-icon-input-box-disclaimer-tick:before {
+  font-size: 10px;
+  position: relative;
+  top: -4px;
+  left: 1px;
+  content: "t";
+  color: white; }
+
+.input_box_disclaimer_text_wrap {
+  width: 42%;
+  margin: -4px 0 0 25px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #555555;
+  float: left;
+  display: inline-block; }
+
+.input_box_disclaimer_small {
+  clear: both;
+  display: inline-block;
+  float: left;
+  margin: 7px 0 0;
+  padding: 7px 0 0;
+  border-top: 1px solid #9f9f9f; }
+
+.input_box_disclaimer_highlight {
+  clear: both;
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  margin: 10px 0 0;
+  color: #9ad9e0;
+  cursor: pointer; }
+  .input_box_disclaimer_highlight:hover {
+    text-decoration: underline; }
+
+.input_box_button {
+  float: right;
+  cursor: pointer;
+  font-family: MotorOil;
+  margin: 0 2%;
+  font-size: 12px;
+  padding: 14px 5%;
+  letter-spacing: 1px;
+  background: #b4d65a;
+  color: white;
+  text-transform: uppercase; }
+
+.with-icon-input-box-continue:before {
+  content: ""; }
 
 .field_box_title_wrap {
   display: block;
@@ -920,6 +1155,13 @@ body {
   display: inline-block;
   background: #9ad9e0;
   color: #3f7986; }
+
+.with-icon-field-box-house {
+  margin: 0 0 0 5px; }
+  .with-icon-field-box-house:before {
+    position: relative;
+    top: -1px;
+    content: "#"; }
 
 .field_box_input_extra_text {
   display: block;

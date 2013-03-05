@@ -1,0 +1,49 @@
+.search_books_description_title { 
+	
+	width: 100%;
+	font-size: 12px;
+	float: left;  
+	color: $black_gray;
+	margin: 4px 0 20px;
+	padding: 0 0 12px;
+	border-bottom: 1px solid $middle_gray;
+	text-align: baseline;
+}
+
+.with-icon-description-title-thumbs-up { 
+	
+	float: left;
+	margin: 10px 10px 0 5px;
+	color: $green; 
+	&:before { 
+	
+		font-size: 18px; 
+		content:"$";
+	}
+}
+
+.search_books_description_title_text { 
+
+	font-size: 12px;
+	margin-top: 15px;
+	float: left; 
+	color: $black_gray;  
+	font-family: HandWritten;
+}
+
+.sell_and_buy_basket {
+
+	display: inline-block;
+	float: right;
+	font-weight: bold; 
+	background: $light_blue;
+	color: $dark_blue;
+	padding: 8px 10px; 
+}
+
+.basket_stats { 
+
+	display: inline;
+	float: right;
+	margin: 0 5px 0 0;
+}

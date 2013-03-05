@@ -34,7 +34,7 @@
 			</div>
 
 		<!-- Progress pop up -->
-		<span class="with-icon-progress-pop-up-arrow"></span>
+		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
 		<div class="progress_pop_up">
 			<div class="progress_pop_up_title">
 				<span class="progress_pop_up_title_text">Welcome</span>
@@ -43,13 +43,13 @@
 				</span>
 			</div>
 			<p class="progress_pop_up_text">
-				<!-- The wind blew up heathlciffs lower behind, as he rose up to meet the oncoming challenge, thunder, strorm, eath and fire to
+				The wind blew up heathlciffs lower behind, as he rose up to meet the oncoming challenge, thunder, strorm, eath and fire to
 				the meeting of these elements to excelent to magnaminous, that the very being that held him together began to quake;
 				"Just a little longer" he though, as he began to rumage into the very ground which gave him birth, just what precious metals,
-				just what substance and essence lied beneath this rocky mountain, layed to be discovered... to be continued suckass -->
+				just what substance and essence lied beneath this rocky mountain, layed to be discovered... to be continued suckass
 				This will not only create your profile hub that will let your track payments, check books orders and edit details but makes sure we make the payment out to the right person and send the freepost pack to the correct address.
 			</p>
-		</div>
+		</div> -->
 
 		<!-- Welcome pop up -->
 		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
@@ -101,22 +101,24 @@
 			<input type="text" class="user_pop_up_option_input" placeholder="Username">
 			<input type="password" class="user_pop_up_option_input" placeholder="Password">
 			<div class="user_pop_up_options_forgot_password">forgottten password?</div>
-		</div> -->
+		</div> -->		
 
 	</section>
 	
-	<section class="input_box_body_wrap"> 
+	<!-- User registration -->
+	<!-- <section class="input_box_body_wrap">  -->
 		
-		<div class="legend_wrap">
+		<!-- Legend -->
+		<!-- <div class="legend_wrap">
 			<div class="legend_mark_green">mandatory fields*</div>
 			<div class="legend_mark_x_symbol">
 				<span class="with-icon-x-for-legend"></span>
 				This is not a valid email adress
 			</div>
-		</div>
+		</div> -->
 		
 		<!-- Field Box one -->
-		<div class="field_box_wrap">
+		<!-- <div class="field_box_wrap">
 			
 			<div class="field_box_title_wrap">
 				<div class="with-icon-leaf-one"></div>
@@ -139,10 +141,10 @@
 				<div class="field_box_input_extra_text">
 					<span class="field_box_input_extra_text_highlight">or</span> enter address manually</div>
 			</div>
-		</div>
+		</div> -->
 		
 		<!-- Input box 2 -->
-		<div class="field_box_wrap_left">
+		<!-- <div class="field_box_wrap_left">
 			
 			<div class="field_box_title_wrap">
 				<div class="with-icon-leaf-two"></div>
@@ -162,9 +164,10 @@
 				<span class="with-icon-not-valid-field"></span>
 				<input type="text" class="field_box_input" placeholder="Confirm Password">
 			</div>
-		</div>
+		</div> -->
 		
-		<div class="field_box_wrap_full">
+		<!-- Input box 3 -->
+<!-- 		<div class="field_box_wrap_full">
 
 			<div class="field_box_title_wrap">
 				<div class="with-icon-leaf-three"></div>
@@ -185,12 +188,22 @@
 				<div class="field_box_input_title">Question?</div>
 				<input type="text" class="field_box_input" placeholder="Question">
 			</div>
+		</div> -->
+		
+		<!-- Disclaimer & Continue-->
+		<!-- <div class="input_box_disclaimer">
+			<div class="input_box_disclaimer_box"><span class="with-icon-input-box-disclaimer-tick"></span></div>
+			<div class="input_box_disclaimer_text_wrap">
+				<div class="input_box_disclaimer_text">If you don't want to recieve emails with exclusive offers and competitions from Recyclabook and our firends then untick this</div>
+				<div class="input_box_disclaimer_small">by pressing continue you aggre to</div>
+				<div class="input_box_disclaimer_highlight">terms & conditions</div>
+			</div>
+			<div class="input_box_button">Continue <span class="with-icon-input-box-continue"></span></div>
+		</div> -->
 
-		</div>
+	<!-- </section> -->
 
-	</section>
-
-	<!-- <section class="body"> -->
+	<section class="body">
 		
 		<!-- Price checker -->
 		<!-- <div class="price_selection">
@@ -211,13 +224,69 @@
 		</div> -->	
 
 		<!-- Books description title -->
-		<!-- <div class="search_books_description_title">		
+		<div class="search_books_description_title">		
+
+			<span class="with-icon-description-title-thumbs-up"></span>
+			<span class="search_books_description_title_text">Our price promise guaranteed</span>
 
 			<div class="sell_and_buy_basket">
-				<div id="sell_basket" class="basket_stats"><span class="buy_basket_text">Buy : </span><span class="buy_basket_number">0</span></div>
-				<div id="buy_basket" class="basket_stats"><span class="sell_basket_text">Sell : </span><span class="sell_basket_number">0</span> |</div>
+				<!-- <div id="sell_basket" class="basket_stats"><span class="buy_basket_text">Buy : </span><span class="buy_basket_number">0</span></div> -->
+				<div id="buy_basket" class="basket_stats"><span class="sell_basket_text">Sell : </span><span class="sell_basket_number">0</span></div>
 			</div>
-		</div> -->
+		</div>
+
+		<div class="store_basket_pop_up">
+			<div class="with-icon-store-basket-pop-up-arrow"></div>
+			
+			<div class="store_basket_pop_up_content">				
+				<div class="store_basket_pop_up_content_items_wrap">
+					
+					<div class="store_basket_pop_up_content_item">
+						<div class="store_basket_pop_up_content_item_thumbnail"><img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" alt=""></div>
+						<div class="store_basket_pop_up_content_item_title">Jaggarnath</div>
+						<div class="store_basket_pop_up_content_item_author">by Kemery Mcgee</div>
+						<div class="store_basket_pop_up_content_item_isbn_wrap">
+							<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>
+							<div class="store_basket_pop_up_content_item_isbn">0293239219</div>
+						</div>
+						<div class="store_basket_pop_up_content_item_sell_price_wrap">
+							<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>
+							<div class="store_basket_pop_up_content_item_sell_price">£12.00</div>
+						</div>
+						<div class="with-icon-x-for-store-basket-pop-up-content-item"></div>
+					</div>
+
+					<div class="store_basket_pop_up_content_item">
+						<div class="store_basket_pop_up_content_item_thumbnail"><img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" alt=""></div>
+						<div class="store_basket_pop_up_content_item_title">Jaggarnath</div>
+						<div class="store_basket_pop_up_content_item_author">by Kemery Mcgee</div>
+						<div class="store_basket_pop_up_content_item_isbn_wrap">
+							<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>
+							<div class="store_basket_pop_up_content_item_isbn">0293239219</div>
+						</div>
+						<div class="store_basket_pop_up_content_item_sell_price_wrap">
+							<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>
+							<div class="store_basket_pop_up_content_item_sell_price">£12.00</div>
+						</div>
+						<div class="with-icon-x-for-store-basket-pop-up-content-item"></div>
+					</div>
+
+				</div>
+
+				<div class="store_basket_pop_up_content_total_wrap">
+					<div class="store_basket_pop_up_content_total_text">Total:</div>
+					<div class="store_basket_pop_up_content_total_number">£12.00</div>
+				</div>
+			</div>
+
+			<div class="store_basket_pop_up_button_wrap">
+				<div class="store_basket_pop_up_button_second">Convert To Recyclabus Quote</div>
+				<div class="store_basket_pop_up_button_first">Check And Continue</div>
+			</div>
+
+			<div class="store_basket_pop_up_text">Currently showing freepost prices</div>
+
+		</div>
 		
 		<!-- Pop out book -->
 		<!-- <div class="search_books_expanded_book">
@@ -345,6 +414,6 @@
 			</div>
 		</div> -->
 
-	<!-- </section> -->
+	</section>
 
 <?php get_footer(); ?>
