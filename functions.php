@@ -44,13 +44,13 @@ new meta(
 		'definition' => FRAMEWORK .'/Definitions/meta_boxes.definition.php'
 		));
 
-new leaf_slide(
-	array(
-		'id' => 'lf-post-meta',
-		'class' => 'lf-admin-post-meta-td',
-		'default_type' => 'meta', 
-		'definition' => FRAMEWORK .'/Definitions/slider.definition.php'
-		));
+// new leaf_slide(
+// 	array(
+// 		'id' => 'lf-post-meta',
+// 		'class' => 'lf-admin-post-meta-td',
+// 		'default_type' => 'meta', 
+// 		'definition' => FRAMEWORK .'/Definitions/slider.definition.php'
+// 		));
 
 $user = new branch_users_database( 
 	array(
@@ -78,15 +78,5 @@ $amazon = new amazon(
 	));
 
 new tickets( FRAMEWORK .'/Definitions/ticket.definition.php');		
-
-// $ticketing->alter_ticket(
-// 	1,
-// 	array(
-// 		'date_created'        => date('y-m-d'), 
-// 		'pending_or_complete' => 0,
-// 		'by_user'             => '2234',
-// 		'quoted_price'        => '9',
-// 		'books_ordered'       => array('stuff', 'stufedy' )
-// 	));
 
 ?>

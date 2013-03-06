@@ -3,7 +3,6 @@ var alpha = (function ( alpha, $ ) {
 	alpha.track_events_on_this = function (track_events_on, events_to_track) { 
 
 		var thought_of_this = this.track_events_on_this.prototype;
-
 		$(track_events_on)
 		.on(events_to_track, function (event) { 
 
@@ -123,6 +122,24 @@ var alpha = (function ( alpha, $ ) {
 	    	
 	    	return subject_to_invoke;
 	    }
+    };
+
+    alpha.load_scripts_asynchronously_with_callback = function (array_of_paths_to_load, callback_function_to_call_when_all_scripts_are_loaded) { 
+
+		var number_of_scripts_left_to_load = array_of_paths_to_load.length;
+
+    		$.map(array_of_paths_to_load,
+    		function (path, index_in_array) {
+
+    			$.getScript(path,
+    			function () { 
+    				
+    				number_of_scripts_left_to_load--;    				
+
+    				if ( number_of_scripts_left_to_load < 1 )
+    					callback_function_to_call_when_all_scripts_are_loaded();
+    			});
+    		});
     };
 
 	return alpha;

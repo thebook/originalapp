@@ -14,7 +14,7 @@
 	
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" />
 	
-	<meta name="viewport" content="width=device-width; initial-scale=0.1; maximum-scale=0.1; user-scalable=0;" />
+	<meta name="viewport" content="width=device-width; initial-scale=0.1; maximum-scale=0.1; user-scalable=0;"/>
 	
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
@@ -25,7 +25,22 @@
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 		
-<?php wp_head(); ?>
+	<?php wp_head(); ?>
+
+	<script src="<?php echo FRAMEWORKURI .'/scripts/jquery.js'; ?>"></script>	
+	<script src="<?php echo FRAMEWORKURI .'/scripts/alpha.js'; ?>"></script>
+
+	<script>	  
+	  	var scripts = "<?php echo FRAMEWORKURI .'/scripts'; ?>",
+	  		ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+
+		alpha.load_scripts_asynchronously_with_callback(
+			[scripts+"/native.extend.js", scripts+"/front.search.alpha.js", scripts+"/utility.users.js", scripts+"/amazon.js", scripts+"/ticket.alpha.js", scripts+"/front.alpha.js"], 			
+			function (error, result) { 
+				alpha.front();
+			});
+
+	</script>
 
 </head>
 <body>

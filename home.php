@@ -78,12 +78,12 @@
 		</div>		
 
 		<!-- Search Input -->
-		<div class="input_for_bar">	
+		<!-- <div class="input_for_bar">	
 			<div class="field_for_input">
 				<input type="text" class="input_block_for_search">
 			</div>
 			<div class="button_for_input"><span class="with-icon-search"></span></div>
-		</div>
+		</div> -->
 
 		<!-- User button pop up -->
 		<!-- <div class="user_pop_up_box">
@@ -224,18 +224,17 @@
 		</div> -->	
 
 		<!-- Books description title -->
-		<div class="search_books_description_title">		
+		<!-- <div class="search_books_description_title">		
 
 			<span class="with-icon-description-title-thumbs-up"></span>
 			<span class="search_books_description_title_text">Our price promise guaranteed</span>
 
 			<div class="sell_and_buy_basket">
-				<!-- <div id="sell_basket" class="basket_stats"><span class="buy_basket_text">Buy : </span><span class="buy_basket_number">0</span></div> -->
 				<div id="buy_basket" class="basket_stats"><span class="sell_basket_text">Sell : </span><span class="sell_basket_number">0</span></div>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="store_basket_pop_up">
+		<!-- <div class="store_basket_pop_up">
 			<div class="with-icon-store-basket-pop-up-arrow"></div>
 			
 			<div class="store_basket_pop_up_content">				
@@ -286,7 +285,7 @@
 
 			<div class="store_basket_pop_up_text">Currently showing freepost prices</div>
 
-		</div>
+		</div> -->
 		
 		<!-- Pop out book -->
 		<!-- <div class="search_books_expanded_book">

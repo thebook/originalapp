@@ -17,7 +17,7 @@ var alpha = (function ( alpha, $ ) {
 				current_click.element.val('Search');
 			},
 			'json');
-	};
+	};	
 
 	alpha.amazon.prototype.display_books = function (items_to_display, element, post_id) { 
 
@@ -77,6 +77,54 @@ var alpha = (function ( alpha, $ ) {
 			},
 			'json'
 		);
+	};
+
+	alpha.amazon.prototype.get_books_from_amazon = function (paramaters, callback) { 
+
+		paramaters.search_by   = paramaters.search_by   || 'keywords';
+		paramaters.search_for  = paramaters.search_for  || 'books';
+		paramaters.filter_name = paramaters.filter_name || 'tiny';
+
+		$.post( ajaxurl, { action : 'amazon', paramaters : paramaters }, callback, 'json');
+	};
+
+	alpha.amazon.prototype.clean_array = function (books) { 
+
+		books = $.map(books, 
+		function (book, key) {
+
+			var filter_book = {};
+			$.each(book, function (key, property) {
+
+				if ( property[0] !== undefined && property[1] === undefined ) {
+					filter_book[key] = property[0];
+				}
+				else if ( !$.isEmptyObject(property) ) {
+					filter_book[key] = property;
+				}
+			});
+
+			return filter_book;
+		});
+
+		return books;
+	};
+
+	alpha.amazon.prototype.pick_which_details_to_get_out_of_the_book_properties = function (books, details_to_get) { 
+
+		books = $.map(books, 
+		function (book, key) { 
+
+			var filter_book = {};
+			$.each(book, function (key, property) {
+				
+				filter_book[key] = (details_to_get[key]? property[details_to_get[key]] : property );
+			});
+
+			return filter_book;
+		});
+
+		return books;
 	};
 
 	alpha.amazon.prototype.return_books = function (books) { 
