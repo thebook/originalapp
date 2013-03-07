@@ -698,6 +698,7 @@ body {
 .result_book_search_wrapper, .result_book_search_wrapper_left, .result_book_search_wrapper_right {
   width: 28.33%;
   margin: 0 3.5% 20px;
+  height: 385px;
   display: inline-block;
   float: left; }
 
@@ -780,30 +781,63 @@ body {
   display: inline-block;
   font-weight: bold; }
 
-.result_book_add_button {
+.result_book_add_button_wrap {
+  width: 100%;
+  margin: 12px 0 0;
+  height: 45px;
+  overflow: hidden;
+  float: left;
+  clear: both; }
+
+.result_book_add_button, .result_book_add_button_static {
   width: 100%;
   float: left;
   clear: both;
-  margin: 12px 0 0;
+  cursor: pointer;
+  color: #3f7986;
   background: #9ad9e0; }
+  .result_book_add_button:hover, .result_book_add_button_static:hover {
+    background: #73cad4;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease; }
+  .result_book_add_button:active, .result_book_add_button_static:active {
+    background: #5fc3ce;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease; }
+
+.result_book_add_button_static {
+  background: #b4d65a;
+  color: white;
+  cursor: default; }
+  .result_book_add_button_static:hover {
+    background: #b4d65a; }
+  .result_book_add_button_static:active {
+    background: #b4d65a; }
 
 .result_book_add_button_text, .with-icon-added-to-sell-basket-tick {
+  height: 13px;
   display: block;
   float: left;
   text-align: center;
   text-transform: uppercase;
   vertical-align: middle;
   font-family: MotorOil;
+  color: inherit;
   font-size: 13px;
-  cursor: pointer;
   width: 80%;
-  padding: 16px 10%;
-  color: #3f7986; }
+  padding: 16px 10%; }
 
 .with-icon-added-to-sell-basket-tick:before {
   text-transform: lowercase;
+  font-size: 13px;
   content: "t";
-  color: #3f7986; }
+  color: inherit; }
 
 .result_book_extra_options_buttons {
   float: left;

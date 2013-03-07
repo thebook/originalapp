@@ -27,12 +27,19 @@ var alpha = (function ( alpha, $ ) {
 						'<strong class="result_book_title">{(title)}</strong>'+
 						'<div class="result_book_author">{(author)}</div>'+
 						'<div class="result_book_price_wrap">'+
-							'<span class="result_book_price_text">Sell for -</span>'+
-							'<storng class="result_book_price">{(price)}</storng>'+
+							'<span class="result_book_price_text">Sell for - </span>'+
+							' <storng class="result_book_price"> {(price)}</storng>'+
 						'</div>'+
 					'</article>'+				
-					'<div class="result_book_add_button">'+
-						'<span data-function-instructions="{\'id\':\'{(id)}\'}"data-function-to-call="front.prototype.add_to_basket" class="result_book_add_button_text">Added To Basket</span>'+
+					'<div class="result_book_add_button_wrap">'+
+						'<div class="result_book_inner_wrap">'+
+							'<div class="result_book_add_button">'+
+								'<span data-function-instructions="{\'id\':\'{(id)}\'}"data-function-to-call="front.prototype.add_to_basket" class="result_book_add_button_text">Add To Basket</span>'+
+							'</div>'+
+							'<div class="result_book_add_button_static">'+
+								'<span class="with-icon-added-to-sell-basket-tick">Added To Basket</span>'+
+							'</div>'+
+						'</div>'+						
 					'</div>'+
 				'</div>'+							
 			'</div>';
@@ -42,7 +49,7 @@ var alpha = (function ( alpha, $ ) {
 					'<span class="with-icon-sell-now-arrow"></span>'+
 					'Sell now?'+
 				'</span>'+
-				'<span class="result_book_added_book_add_again_button">'+
+				'<span data-function-instructions="{\'id\':\'{(id)}\'}"data-function-to-call="front.prototype.add_a_book_to_basket" class="result_book_added_book_add_again_button">'+
 					'<span class="with-icon-add-again"></span>'+
 					'Add again+'+
 				'</span>'+
@@ -69,7 +76,7 @@ var alpha = (function ( alpha, $ ) {
 						wrapper : wrap_names[keeping_count],
 						image   : book.image,
 						title   : book.title.slice(0, 10) +'...',
-						author  : book.author,
+						author  : book.author.slice(0, 18) +'...',
 						price   : '£'+ ( book.price / 100 ),
 						id 	    : index
 					},
@@ -93,19 +100,35 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.add_to_basket = function (wake) { 
 
-		var book_id, the_book;
+		alpha.front.prototype.add_a_book_to_basket(wake, 
+		function (book_id, id) {
 
-			book_id  = alpha.front.prototype.being.basket.items[wake.instructions.id];
+			var the_book, sell_again_buttons
+
 			the_book = $('#book_'+ wake.instructions.id);
 
-			alpha.front.prototype.being.basket.inside.push(book_id);
+			the_book.children().addClass('result_book_search_added').removeClass('result_book_search');			
+			the_book.find('.result_book_add_button_text').removeAttr('data-function-to-call').removeAttr('data-function-instructions');
+			the_book.find('.result_book_add_button_wrap').children().css({ position : "relative" }).animate({ top : "-45px" }, 400 );
 
-			the_book.children().addClass('result_book_search_added').removeClass('result_book_search');
-			the_book.find('.result_book_add_button_text')
-			.removeAttr('data-function-to-call').removeAttr('data-function-instructions')
-			.addClass('with-icon-added-to-sell-basket-tick').removeClass('result_book_add_button_text');
 
-			the_book.append(alpha.front.prototype.being.sell_again_buttons);
+			sell_again_buttons += alpha.replace_placeholders_with_values_in_text(
+				{ id : id }, 
+				alpha.front.prototype.being.sell_again_buttons );
+			
+			$(sell_again_buttons).css({ opacity : 0  }).appendTo(the_book);
+			the_book.find('.result_book_extra_options_buttons').animate({ opacity : 1 }, 500 );
+
+		});			
+	};
+
+	alpha.front.prototype.add_a_book_to_basket = function (wake, callback) {
+
+		callback = callback || false;
+		alpha.front.prototype.being.basket.inside.push(alpha.front.prototype.being.basket.items[wake.instructions.id]);
+
+		if (callback)
+			callback(alpha.front.prototype.being.basket.items[wake.instructions.id], wake.instructions.id);
 	};
 
 	alpha.front.prototype.search_bar = function () { 

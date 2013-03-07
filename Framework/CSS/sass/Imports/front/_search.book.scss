@@ -112,13 +112,50 @@
 	font-weight: bold; 
 }
 
+.result_book_add_button_wrap { 
+
+	width: 100%;
+	margin: 12px 0 0;
+	height: 45px;
+	overflow: hidden;
+	float: left;
+	clear: both;
+}
+
 .result_book_add_button { 
 	
 	width: 100%;
 	float: left;
 	clear: both;
-	margin: 12px 0 0;
-	background: $light_blue;
+	cursor: pointer; 
+	color: $dark_blue;
+	background: $light_blue;	
+	
+	&:hover { 
+		background: darken($light_blue, 10%); 
+		@include transition;
+	}
+
+	&:active { 
+		background: darken($light_blue, 15%); 
+		@include transition;
+	}
+}
+
+.result_book_add_button_static {
+
+	@extend .result_book_add_button;	
+	background: $green;
+	color: $light; 
+	cursor: default;
+	 
+	&:hover {
+		background: $green; 
+	}
+
+	&:active {
+		background: $green; 
+	}
 }
 
 $add_button_font_size: 13px;
@@ -132,11 +169,10 @@ $add_button_font_size: 13px;
 	text-transform: uppercase;
 	vertical-align: middle;
 	font-family: MotorOil; 
+	color: inherit; 
 	font-size: $add_button_font_size;
-	cursor: pointer;
 	width: 80%;
 	padding: ((( 47px-$add_button_font_size) / 2) - 1px) 10%;
-	color: $dark_blue;
 }
 
 .with-icon-added-to-sell-basket-tick { 
@@ -147,7 +183,7 @@ $add_button_font_size: 13px;
 		text-transform: lowercase;
 		font-size: $add_button_font_size;
 		content:"t";
-		color: $dark_blue;		
+		color: inherit; 		
 	}
 }
 

@@ -379,11 +379,19 @@
 					</div>
 				</article>
 
-				<div class="result_book_add_button">
-					<span class="result_book_add_button_text">
-						Add To Sell Basket
-					</span>
+				<div class="result_book_add_button_wrap">
+					<div class="result_book_add_button">
+						<span class="result_book_add_button_text">
+							Add To Sell Basket
+						</span>
+					</div>
+					<div class="result_book_add_button_static">
+						<span class="with-icon-added-to-sell-basket-tick">
+							Added To Basket
+						</span>
+					</div>
 				</div>
+
 			</div>
 		</div> -->
 		
