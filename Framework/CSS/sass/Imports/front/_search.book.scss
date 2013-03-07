@@ -2,6 +2,7 @@
 	
 	width: 28.33%;
 	margin: 0 3.5% 20px;
+	height: 385px;
 	display: inline-block;
 	float: left;
 }
@@ -120,10 +121,11 @@
 	background: $light_blue;
 }
 
-.result_book_add_button_text { 
+$add_button_font_size: 13px;
 
-	$add_button_font_size: 13px;
+.result_book_add_button_text { 
 	
+	height: 13px;
 	display: block;
 	float: left;
 	text-align: center;
@@ -143,6 +145,7 @@
 	
 	&:before { 
 		text-transform: lowercase;
+		font-size: $add_button_font_size;
 		content:"t";
 		color: $dark_blue;		
 	}

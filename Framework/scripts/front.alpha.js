@@ -2,9 +2,9 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front = function () { 
 
-		this.track_events_on_this('.bar', 'click');
+		this.track_events_on_this('.wrap', 'click');
 
-		this.front.prototype.parts = {};
+		this.front.prototype.parts = {};		
 
 		this.front.prototype.being = {};		
 		this.front.prototype.being.user_id      = '';
@@ -14,12 +14,13 @@ var alpha = (function ( alpha, $ ) {
 
 		this.front.prototype.being.basket            = {};
 		this.front.prototype.being.basket.items      = {};
+		this.front.prototype.being.basket.inside     = [];		
 		this.front.prototype.being.basket.displayed  = {};
 		this.front.prototype.being.basket.total      = '';
 		this.front.prototype.being.basket.quote_by   = '';
 		this.front.prototype.being.first_book_format = 
-			'<div class="{(wrapper)}">'+
-				'<div class="result_book_search_added">'+				
+			'<div id="book_{(id)}" class="{(wrapper)}">'+
+				'<div class="result_book_search">'+				
 					'<span class="with-icon-info-for-book"></span>'+				
 					'<img src="{(image)}" class="result_book_thumbnail_image">'+				
 					'<article class="result_book_search_text">'+
@@ -31,15 +32,20 @@ var alpha = (function ( alpha, $ ) {
 						'</div>'+
 					'</article>'+				
 					'<div class="result_book_add_button">'+
-						'<span class="with-icon-added-to-sell-basket-tick">Added To Basket</span>'+
+						'<span data-function-instructions="{\'id\':\'{(id)}\'}"data-function-to-call="front.prototype.add_to_basket" class="result_book_add_button_text">Added To Basket</span>'+
 					'</div>'+
-				'</div>'+			
-				'<div class="result_book_extra_options_buttons">'+
-					'<span class="result_book_added_book_sell_button">'+
-						'<span class="with-icon-sell-now-arrow"></span> Sell now? </span>'+
-					'<span class="result_book_added_book_add_again_button">'+
-						'<span class="with-icon-add-again"></span>Add again+</span>'+
-				'</div>'+
+				'</div>'+							
+			'</div>';
+		this.front.prototype.being.sell_again_buttons = 
+			'<div class="result_book_extra_options_buttons">'+
+				'<span class="result_book_added_book_sell_button">'+
+					'<span class="with-icon-sell-now-arrow"></span>'+
+					'Sell now?'+
+				'</span>'+
+				'<span class="result_book_added_book_add_again_button">'+
+					'<span class="with-icon-add-again"></span>'+
+					'Add again+'+
+				'</span>'+
 			'</div>';
 
 		this.front.prototype.being.basket.watch( 'items', alpha.front.prototype.display_books );
@@ -64,7 +70,8 @@ var alpha = (function ( alpha, $ ) {
 						image   : book.image,
 						title   : book.title.slice(0, 10) +'...',
 						author  : book.author,
-						price   : '£'+ ( book.price / 100 )
+						price   : '£'+ ( book.price / 100 ),
+						id 	    : index
 					},
 						alpha.front.prototype.being.first_book_format
 					);
@@ -79,11 +86,27 @@ var alpha = (function ( alpha, $ ) {
 
 			string_of_books = $('<div class="result_books"></div>').append(string_of_books);			
 			string_of_books.css({ position : "relative", top : "1000px"}).appendTo('.body');
-			$('.result_books').animate({ top : "0px" }, 1000);
+			$('.result_books').animate({ top : "0px" }, 1500);
 			
 			return books;
-
 	};	
+
+	alpha.front.prototype.add_to_basket = function (wake) { 
+
+		var book_id, the_book;
+
+			book_id  = alpha.front.prototype.being.basket.items[wake.instructions.id];
+			the_book = $('#book_'+ wake.instructions.id);
+
+			alpha.front.prototype.being.basket.inside.push(book_id);
+
+			the_book.children().addClass('result_book_search_added').removeClass('result_book_search');
+			the_book.find('.result_book_add_button_text')
+			.removeAttr('data-function-to-call').removeAttr('data-function-instructions')
+			.addClass('with-icon-added-to-sell-basket-tick').removeClass('result_book_add_button_text');
+
+			the_book.append(alpha.front.prototype.being.sell_again_buttons);
+	};
 
 	alpha.front.prototype.search_bar = function () { 
 
@@ -104,12 +127,8 @@ var alpha = (function ( alpha, $ ) {
 							self : '<div class="button_for_input"></div>',
 							branch : {
 								icon : '<span data-function-to-call="front.prototype.search_though_amazon" class="with-icon-search"></div>'
-								}
-							}
-						}
-					}		
-				}
-			};
+								}}}
+							}}};
 
 		this.parts.search = alpha.manifest({
 			what_to_manifest : this.parts.search,
@@ -181,15 +200,8 @@ var alpha = (function ( alpha, $ ) {
 										branch : {
 											sell_text : '<span class="sell_basket_text">Sell : </span>',
 											quote : '<span class="sell_basket_number">0</span>'
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		};
+										}}}}
+									}}}}};
 										
 
 		this.parts.basket = alpha.manifest({
