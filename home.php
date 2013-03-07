@@ -323,36 +323,31 @@
 		</div> -->
 		
 		<!-- A result book -->
-		<!-- <div class="result_book_search_wrapper_left">
-			<div class="result_book_search_added"> -->
+		<div class="result_book_search_wrapper_left">
+			<div class="result_book_search_added">
 				
-				<!-- Info Icon -->
-				<!-- <span class="with-icon-info-for-book"></span> -->
+				<span class="with-icon-info-for-book"></span>
 				
-				<!-- Books thumbnail image -->
-				<!-- <img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="result_book_thumbnail_image"> -->
+				<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="result_book_thumbnail_image">
 				
-				<!-- Article book search -->
-				<!-- <article class="result_book_search_text">
+				<article class="result_book_search_text">
 					<strong class="result_book_title">Jaggarenath</strong>
 					<div class="result_book_author">by Karla Talb..</div>
 					<div class="result_book_price_wrap">
 						<span class="result_book_price_text">Sell for -</span>
 						<storng class="result_book_price">£5.30</storng>
 					</div>
-				</article> -->
+				</article>
 				
-				<!-- Add book button -->
-				<!-- <div class="result_book_add_button">
+				<div class="result_book_add_button">
 					<span class="with-icon-added-to-sell-basket-tick">
 						Added To Basket
 					</span>
 				</div>
 
-			</div> -->
+			</div>
 			
-			<!-- Extra buttons -->
-			<!-- <div class="result_book_extra_options_buttons">
+			<div class="result_book_extra_options_buttons">
 
 				<span class="result_book_added_book_sell_button">
 					<span class="with-icon-sell-now-arrow"></span>
@@ -365,7 +360,7 @@
 				</span>
 
 			</div>
-		</div> -->
+		</div>
 		
 		<!-- Middle wrapper -->
 		<!-- <div class="result_book_search_wrapper">

@@ -11,17 +11,59 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.being.search       = {};
 		this.front.prototype.being.listed_items = {};
 
-		this.front.prototype.being.basket          = {};
-		this.front.prototype.being.basket.items    = {};
-		this.front.prototype.being.basket.total    = '';
-		this.front.prototype.being.basket.quote_by = '';
+		this.front.prototype.being.basket            = {};
+		this.front.prototype.being.basket.items      = {};
+		this.front.prototype.being.basket.displayed  = {};
+		this.front.prototype.being.basket.total      = '';
+		this.front.prototype.being.basket.quote_by   = '';
+		// this.front.prototype.being.first_book_format = 
+		// 	'<div class="result_book_search_wrapper_left">'+
+		// 		'<div class="result_book_search_added">'+				
+		// 			'<span class="with-icon-info-for-book"></span>'+				
+		// 			'<img src="{image}" class="result_book_thumbnail_image">'+				
+		// 			'<article class="result_book_search_text">'+
+		// 				'<strong class="result_book_title">{title}</strong>'+
+		// 				'<div class="result_book_author">{author}</div>'+
+		// 				'<div class="result_book_price_wrap">'+
+		// 					'<span class="result_book_price_text">Sell for -</span>'+
+		// 					'<storng class="result_book_price">{price}</storng>'+
+		// 				'</div>'+
+		// 			'</article>'+				
+		// 			'<div class="result_book_add_button">'+
+		// 				'<span class="with-icon-added-to-sell-basket-tick">Added To Basket</span>'+
+		// 			'</div>'+
+		// 		'</div>'+			
+		// 		'<div class="result_book_extra_options_buttons">'+
+		// 			'<span class="result_book_added_book_sell_button">'+
+		// 				'<span class="with-icon-sell-now-arrow"></span> Sell now? </span>'+
+		// 			'<span class="result_book_added_book_add_again_button">'+
+		// 				'<span class="with-icon-add-again"></span>Add again+</span>'+
+		// 		'</div>'+
+		// 	'</div>';
 
 		this.front.prototype.being.basket.watch( 'items', alpha.front.prototype.display_books );
+
 		this.front.prototype.search_bar();
 	};
 
-	alpha.front.prototype.display_books = function () { 
-		console.log("display books");
+	alpha.front.prototype.display_books = function (poperty, old_books, books) { 
+
+		// $.each(books,
+		// function () { 
+
+		// });
+		
+		alpha.replace_placeholders_with_values_in_text(
+			{ replacement : 'this part has been replaced'},
+			'some stiff was here and {(replacement)}'
+		);
+	};
+
+	alpha.replace_placeholders_with_values_in_text = function (placeholders_to_values_guide, text) { 
+
+		text.replace(/(?<=\{\()[^\}]*(?=\)\})/, function (match) {
+			return placeholders_to_values_guide[match];
+		});
 	};
 
 	alpha.front.prototype.search_bar = function () { 
@@ -74,9 +116,8 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.search_though_amazon = function (wake) { 
 
-		var prototype = alpha.front.prototype,
-			search    = alpha.front.prototype.get_the_search_value_from_blocks({ 
-				input : prototype.parts.search.wrap.branch.branch.input.self, 
+		var search = alpha.front.prototype.get_the_search_value_from_blocks({ 
+				input : alpha.front.prototype.parts.search.wrap.branch.branch.input.self, 
 				block_class_name : '.input_block_for_search'
 			});
 			
@@ -93,15 +134,14 @@ var alpha = (function ( alpha, $ ) {
 					lowest_new_price  : 'Amount',
 					price  			  : 'Amount'
 				});
-				
+
+				alpha.front.prototype.being.basket.items = books;
 			});
 	};
 
 	alpha.front.prototype.basket = function () { 
 
 		var prototype = alpha.basket.prototype;
-
-			prototype.parts
 	};
 
 	return alpha;
