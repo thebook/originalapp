@@ -129,7 +129,24 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.amazon.prototype.remove_books_that_dont_have_given_properties = function (books, details_to_have) { 
 
+		books = $.map(books,
+		function (book, index) { 
 
+			var cross_out_details = new Array;
+				cross_out_details.push.apply(cross_out_details, details_to_have);
+				
+			$.each(book, function (key, property) {
+
+				var does_it_contain_the_detail = $.inArray(key, cross_out_details);
+					if ( does_it_contain_the_detail !== -1 )
+						cross_out_details.splice(does_it_contain_the_detail, 1);
+			});
+
+			if ( cross_out_details.length === 0 )
+				return book;
+		});
+
+		return books;
 	};
 
 	alpha.amazon.prototype.return_books = function (books) { 

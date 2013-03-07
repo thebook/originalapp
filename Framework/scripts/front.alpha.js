@@ -3,6 +3,7 @@ var alpha = (function ( alpha, $ ) {
 	alpha.front = function () { 
 
 		this.track_events_on_this('.bar', 'click');
+
 		this.front.prototype.parts = {};
 
 		this.front.prototype.being = {};		
@@ -44,6 +45,7 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.being.basket.watch( 'items', alpha.front.prototype.display_books );
 
 		this.front.prototype.search_bar();
+		this.front.prototype.initialize_basket();
 	};
 
 	alpha.front.prototype.display_books = function (poperty, old_books, books) { 
@@ -60,7 +62,7 @@ var alpha = (function ( alpha, $ ) {
 					{ 	
 						wrapper : wrap_names[keeping_count],
 						image   : book.image,
-						title   : book.title,
+						title   : book.title.slice(0, 10) +'...',
 						author  : book.author,
 						price   : '£'+ ( book.price / 100 )
 					},
@@ -71,7 +73,13 @@ var alpha = (function ( alpha, $ ) {
 				
 			});
 
-			$('.body').append(string_of_books);		
+			$('.result_books').animate({ top : "800px" }, 1000, function () {
+				$(this).empty().remove();
+			});
+
+			string_of_books = $('<div class="result_books"></div>').append(string_of_books);			
+			string_of_books.css({ position : "relative", top : "1000px"}).appendTo('.body');
+			$('.result_books').animate({ top : "0px" }, 1000);
 			
 			return books;
 
@@ -145,15 +153,49 @@ var alpha = (function ( alpha, $ ) {
 					lowest_new_price  : 'Amount',
 					price  			  : 'Amount'
 				});
-
+				books = alpha.amazon.prototype.remove_books_that_dont_have_given_properties(books, ['image']);
 
 				alpha.front.prototype.being.basket.items = books;				
 			});
 	};
 
-	alpha.front.prototype.basket = function () { 
+	alpha.front.prototype.initialize_basket = function () { 
 
-		var prototype = alpha.basket.prototype;
+		this.parts.basket = {
+			wrap : {
+				self   : '<div class="search_books_description_title"></div>',
+				branch : {
+					branch : {
+						icon : {
+							self : '<span class="with-icon-description-title-thumbs-up"></span>'
+						},
+						promotional_text : {
+							self : '<span class="search_books_description_title_text">Our price promise guaranteed</span>'
+						},
+						basket_box : {
+							self   : '<div class="sell_and_buy_basket"></div>',
+							branch : {
+								branch : {
+									stats : { 
+										self   : '<div id="buy_basket" class="basket_stats"></div>',
+										branch : {
+											sell_text : '<span class="sell_basket_text">Sell : </span>',
+											quote : '<span class="sell_basket_number">0</span>'
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		};
+										
+
+		this.parts.basket = alpha.manifest({
+			what_to_manifest : this.parts.basket,
+			append_to_who : $('.body') 
+		});
 	};
 
 	return alpha;
