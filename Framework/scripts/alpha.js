@@ -124,6 +124,16 @@ var alpha = (function ( alpha, $ ) {
 	    }
     };
 
+    alpha.replace_placeholders_with_values_in_text = function (placeholders_to_values_guide, text) { 
+
+		text = text.replace(/[^\{\(]+(?=\)\})/g, function (match) {;
+			return placeholders_to_values_guide[match];
+		});
+		text = text.replace(/\{\(|\)\}/g, '');
+		
+		return text;
+	};
+
     alpha.load_scripts_asynchronously_with_callback = function (array_of_paths_to_load, callback_function_to_call_when_all_scripts_are_loaded) { 
 
 		var number_of_scripts_left_to_load = array_of_paths_to_load.length;

@@ -127,6 +127,11 @@ var alpha = (function ( alpha, $ ) {
 		return books;
 	};
 
+	alpha.amazon.prototype.remove_books_that_dont_have_given_properties = function (books, details_to_have) { 
+
+
+	};
+
 	alpha.amazon.prototype.return_books = function (books) { 
 
 		var return_object = new Object;

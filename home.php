@@ -323,7 +323,7 @@
 		</div> -->
 		
 		<!-- A result book -->
-		<div class="result_book_search_wrapper_left">
+		<!-- <div class="result_book_search_wrapper_left">
 			<div class="result_book_search_added">
 				
 				<span class="with-icon-info-for-book"></span>
@@ -360,7 +360,7 @@
 				</span>
 
 			</div>
-		</div>
+		</div> -->
 		
 		<!-- Middle wrapper -->
 		<!-- <div class="result_book_search_wrapper">

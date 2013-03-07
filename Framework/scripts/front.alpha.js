@@ -16,30 +16,30 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.being.basket.displayed  = {};
 		this.front.prototype.being.basket.total      = '';
 		this.front.prototype.being.basket.quote_by   = '';
-		// this.front.prototype.being.first_book_format = 
-		// 	'<div class="result_book_search_wrapper_left">'+
-		// 		'<div class="result_book_search_added">'+				
-		// 			'<span class="with-icon-info-for-book"></span>'+				
-		// 			'<img src="{image}" class="result_book_thumbnail_image">'+				
-		// 			'<article class="result_book_search_text">'+
-		// 				'<strong class="result_book_title">{title}</strong>'+
-		// 				'<div class="result_book_author">{author}</div>'+
-		// 				'<div class="result_book_price_wrap">'+
-		// 					'<span class="result_book_price_text">Sell for -</span>'+
-		// 					'<storng class="result_book_price">{price}</storng>'+
-		// 				'</div>'+
-		// 			'</article>'+				
-		// 			'<div class="result_book_add_button">'+
-		// 				'<span class="with-icon-added-to-sell-basket-tick">Added To Basket</span>'+
-		// 			'</div>'+
-		// 		'</div>'+			
-		// 		'<div class="result_book_extra_options_buttons">'+
-		// 			'<span class="result_book_added_book_sell_button">'+
-		// 				'<span class="with-icon-sell-now-arrow"></span> Sell now? </span>'+
-		// 			'<span class="result_book_added_book_add_again_button">'+
-		// 				'<span class="with-icon-add-again"></span>Add again+</span>'+
-		// 		'</div>'+
-		// 	'</div>';
+		this.front.prototype.being.first_book_format = 
+			'<div class="{(wrapper)}">'+
+				'<div class="result_book_search_added">'+				
+					'<span class="with-icon-info-for-book"></span>'+				
+					'<img src="{(image)}" class="result_book_thumbnail_image">'+				
+					'<article class="result_book_search_text">'+
+						'<strong class="result_book_title">{(title)}</strong>'+
+						'<div class="result_book_author">{(author)}</div>'+
+						'<div class="result_book_price_wrap">'+
+							'<span class="result_book_price_text">Sell for -</span>'+
+							'<storng class="result_book_price">{(price)}</storng>'+
+						'</div>'+
+					'</article>'+				
+					'<div class="result_book_add_button">'+
+						'<span class="with-icon-added-to-sell-basket-tick">Added To Basket</span>'+
+					'</div>'+
+				'</div>'+			
+				'<div class="result_book_extra_options_buttons">'+
+					'<span class="result_book_added_book_sell_button">'+
+						'<span class="with-icon-sell-now-arrow"></span> Sell now? </span>'+
+					'<span class="result_book_added_book_add_again_button">'+
+						'<span class="with-icon-add-again"></span>Add again+</span>'+
+				'</div>'+
+			'</div>';
 
 		this.front.prototype.being.basket.watch( 'items', alpha.front.prototype.display_books );
 
@@ -48,23 +48,34 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.display_books = function (poperty, old_books, books) { 
 
-		// $.each(books,
-		// function () { 
+		var string_of_books = '', 
+			keeping_count   = 0, 
+			wrap_names      = ['result_book_search_wrapper_left', 'result_book_search_wrapper', 'result_book_search_wrapper_right'];
 
-		// });
-		
-		alpha.replace_placeholders_with_values_in_text(
-			{ replacement : 'this part has been replaced'},
-			'some stiff was here and {(replacement)}'
-		);
-	};
+			$.each(books,
+			function (index, book) { 
+				
+				string_of_books += 
+					alpha.replace_placeholders_with_values_in_text(
+					{ 	
+						wrapper : wrap_names[keeping_count],
+						image   : book.image,
+						title   : book.title,
+						author  : book.author,
+						price   : '£'+ ( book.price / 100 )
+					},
+						alpha.front.prototype.being.first_book_format
+					);
 
-	alpha.replace_placeholders_with_values_in_text = function (placeholders_to_values_guide, text) { 
+				( keeping_count === 2? keeping_count = 0 : keeping_count++ );
+				
+			});
 
-		text.replace(/(?<=\{\()[^\}]*(?=\)\})/, function (match) {
-			return placeholders_to_values_guide[match];
-		});
-	};
+			$('.body').append(string_of_books);		
+			
+			return books;
+
+	};	
 
 	alpha.front.prototype.search_bar = function () { 
 
@@ -135,7 +146,8 @@ var alpha = (function ( alpha, $ ) {
 					price  			  : 'Amount'
 				});
 
-				alpha.front.prototype.being.basket.items = books;
+
+				alpha.front.prototype.being.basket.items = books;				
 			});
 	};
 
