@@ -15,6 +15,15 @@
 	@include pie-clearfix; 
 }
 
+.store_basket_pop_up_contet_empty_item { 
+	
+	@extend .store_basket_pop_up_content_item;
+	font-style: italic;
+	font-size: 12px;
+	color: $black_gray;
+	text-align: center;   
+}
+
 .store_basket_pop_up_content_item_thumbnail { 
 
 	height: 70px;

@@ -43,3 +43,43 @@ if (!Object.prototype.unwatch) {
 		}
 	});
 }
+
+if ( !Object.prototype.keys ) {
+
+	Object.defineProperty(Object.prototype, "keys", {
+		enumerable   : false,
+		configurable : true,
+		writable     : false,
+		value        : function () {
+
+			var object = this, keys = [];
+
+			for ( property in object )
+				object.hasOwnProperty(property) && keys.push(property);
+
+			return keys;
+		}
+	});
+}
+
+if ( !Object.prototype.add ) {
+
+	Object.defineProperty(Object.prototype, "add", {
+		enumerable   : false,
+		configurable : true,
+		writable     : false,
+		value 		 : function (value) {
+
+			var object = this, keys = [], new_key;
+
+			for ( property in object )
+				object.hasOwnProperty(property) && keys.push(property);
+
+			new_key =  keys.length + 1;
+
+			object[new_key] = value;
+
+			return object;
+		}
+	});
+}

@@ -11,11 +11,11 @@
 
 .store_basket_pop_up { 
 
-	position: relative;
+	position: absolute;
 	float: right;
 	background: $light;
-	width: 70%;
-	margin: 0 0 10px;
+	width: 40%;
+	margin: 42px 0 0 20%;
 	padding: 20px 2%;
 	z-index: 1;
 	@include box-shadow( -1px, 1px, 2px, 0px, rgba(0,0,0, 0.3)); 

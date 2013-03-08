@@ -90,7 +90,7 @@ $input_bar_size: $bar_height - ($input_margin_size * 2 );
 	font-size: 11px;
 	padding: 0px;
 	line-height: $input_bar_size - ($input_block_margin * 2 );
-	color: $light_gray;
+	color: $black_gray;
 	
 	&:focus { 
 		color: $black_gray;		

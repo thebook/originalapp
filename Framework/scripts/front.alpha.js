@@ -14,7 +14,7 @@ var alpha = (function ( alpha, $ ) {
 
 		this.front.prototype.being.basket            = {};
 		this.front.prototype.being.basket.items      = {};
-		this.front.prototype.being.basket.inside     = [];		
+		this.front.prototype.being.basket.inside     = {};		
 		this.front.prototype.being.basket.displayed  = {};
 		this.front.prototype.being.basket.total      = '';
 		this.front.prototype.being.basket.quote_by   = '';
@@ -28,7 +28,7 @@ var alpha = (function ( alpha, $ ) {
 						'<div class="result_book_author">{(author)}</div>'+
 						'<div class="result_book_price_wrap">'+
 							'<span class="result_book_price_text">Sell for - </span>'+
-							' <storng class="result_book_price"> {(price)}</storng>'+
+							' <storng class="result_book_price">£{(price)}</storng>'+
 						'</div>'+
 					'</article>'+				
 					'<div class="result_book_add_button_wrap">'+
@@ -54,11 +54,60 @@ var alpha = (function ( alpha, $ ) {
 					'Add again+'+
 				'</span>'+
 			'</div>';
+		this.front.prototype.being.basket_book_format = 
+			'<div class="store_basket_pop_up_content_item">'+
+				'<div class="store_basket_pop_up_content_item_thumbnail"><img src="{(image)}"></div>'+
+				'<div class="store_basket_pop_up_content_item_title">{(title)}</div>'+
+				'<div class="store_basket_pop_up_content_item_author">{(author)}</div>'+
+				'<div class="store_basket_pop_up_content_item_isbn_wrap">'+
+					'<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>'+
+					'<div class="store_basket_pop_up_content_item_isbn">{(isbn)}</div>'+
+				'</div>'+
+				'<div class="store_basket_pop_up_content_item_sell_price_wrap">'+
+					'<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>'+
+					'<div class="store_basket_pop_up_content_item_sell_price">£{(price)}</div>'+
+				'</div>'+
+				'<div class="with-icon-x-for-store-basket-pop-up-content-item"></div>'+
+			'</div>';
 
 		this.front.prototype.being.basket.watch( 'items', alpha.front.prototype.display_books );
+		this.front.prototype.being.basket.watch( 'inside', alpha.front.prototype.reorder_basket );
 
 		this.front.prototype.search_bar();
 		this.front.prototype.initialize_basket();
+	};
+
+	alpha.front.prototype.reorder_basket = function (poperty, old_books, books) { 
+		console.log("reorder");
+		var prototype  = alpha.front.prototype,
+			items_wrap = prototype.parts.basket.popup.wrap.branch.branch.content.branch.branch.items.self,
+			string_of_books = '';
+
+			if ( $.isEmptyObject(books) ) 
+				items_wrap.append('<div class="store_basket_pop_up_contet_empty_item">No items in your basket at the momment</div>');
+			else 
+				items_wrap.children().fadeOut(400, function () { $(this).remove(); });
+				$.each(books,
+				function (index, book) { 
+					
+					string_of_books += 
+						alpha.replace_placeholders_with_values_in_text(
+						{ 	
+							image   : book.image,
+							isbn    : book.ISBN,
+							title   : book.title,
+							author  : book.author,
+							price   : book.price / 100,
+						},
+							alpha.front.prototype.being.basket_book_format
+						);					
+				});
+
+				$(string_of_books).css({ opacity : 0 }).appendTo(items_wrap);
+				items_wrap.children().animate({ opacity : 1 }, 400);
+
+			return books;
+
 	};
 
 	alpha.front.prototype.display_books = function (poperty, old_books, books) { 
@@ -77,7 +126,7 @@ var alpha = (function ( alpha, $ ) {
 						image   : book.image,
 						title   : book.title.slice(0, 10) +'...',
 						author  : book.author.slice(0, 18) +'...',
-						price   : '£'+ ( book.price / 100 ),
+						price   : book.price / 100,
 						id 	    : index
 					},
 						alpha.front.prototype.being.first_book_format
@@ -125,7 +174,12 @@ var alpha = (function ( alpha, $ ) {
 	alpha.front.prototype.add_a_book_to_basket = function (wake, callback) {
 
 		callback = callback || false;
-		alpha.front.prototype.being.basket.inside.push(alpha.front.prototype.being.basket.items[wake.instructions.id]);
+
+		var value = alpha.front.prototype.being.basket.inside,
+			key   = value.keys() + 1;
+			
+			value[key] = alpha.front.prototype.being.basket.items[wake.instructions.id];
+			alpha.front.prototype.being.basket.inside = value;
 
 		if (callback)
 			callback(alpha.front.prototype.being.basket.items[wake.instructions.id], wake.instructions.id);
@@ -203,7 +257,9 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.initialize_basket = function () { 
 
-		this.parts.basket = {
+		this.parts.basket = {};
+
+		this.parts.basket.self = {
 			wrap : {
 				self   : '<div class="search_books_description_title"></div>',
 				branch : {
@@ -225,12 +281,58 @@ var alpha = (function ( alpha, $ ) {
 											quote : '<span class="sell_basket_number">0</span>'
 										}}}}
 									}}}}};
-										
 
-		this.parts.basket = alpha.manifest({
-			what_to_manifest : this.parts.basket,
+		this.parts.basket.popup = { 
+			wrap : {
+				self   : '<div class="store_basket_pop_up"></div>',
+				branch : { 
+					branch : {
+						arrow : { 
+							self : '<div class="with-icon-store-basket-pop-up-arrow"></div>'
+						},
+						content : {
+							self   : '<div class="store_basket_pop_up_content"></div>',
+							branch : {
+								branch : {
+									items : {
+										self : '<div class="store_basket_pop_up_content_items_wrap"></div>'
+									},
+									total : { 
+										self   : '<div class="store_basket_pop_up_content_total_wrap"></div>',
+										branch : {
+											text   : '<div class="store_basket_pop_up_content_total_text">Total:</div>',
+											number : '<div class="store_basket_pop_up_content_total_number"></div>'
+										}
+									}									
+								}
+							}
+						},
+						buttons : { 
+							self   : '<div class="store_basket_pop_up_button_wrap"></div>',
+							branch : {
+								recyclabus_button : '<div class="store_basket_pop_up_button_second">Convert To Recyclabus Quote</div>',
+								checkout : '<div class="store_basket_pop_up_button_first">Check And Continue</div>'
+							}
+						},
+						popup_text : {
+							self : '<div class="store_basket_pop_up_text">Currently showing freepost prices</div>'
+						}
+					}
+				}
+			}																								
+		};			
+										
+		this.parts.basket.self = alpha.manifest({
+			what_to_manifest : this.parts.basket.self,
 			append_to_who : $('.body') 
 		});
+
+		this.parts.basket.popup = alpha.manifest({
+			what_to_manifest : this.parts.basket.popup,
+			append_to_who : $('.body') 
+		});
+
+		this.reorder_basket('', {}, {});
 	};
 
 	return alpha;
