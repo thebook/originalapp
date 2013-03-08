@@ -13,25 +13,25 @@
 
 		<!-- Progress bar  -->
 			<!-- Icon 1 -->
-			<div class="progress_icon_for_bar_done">
+			<!-- <div class="progress_icon_for_bar_done">
 				<div class="progress_icon_circle_done"><span class="with-icon-welcome-progress-bar"></span></div>
 				<span class="progress_icon_for_bar_text">Welcome</span>
-			</div>
+			</div> -->
 			<!-- Icon 2  -->
-			<div class="progress_icon_for_bar">
+			<!-- <div class="progress_icon_for_bar">
 				<div class="progress_icon_circle_doing"><span class="with-icon-account-progress-bar"></span></div>
 				<span class="progress_icon_for_bar_text">Account</span>
-			</div>
+			</div> -->
 			<!-- Icon 3  -->
-			<div class="progress_icon_for_bar">
+			<!-- <div class="progress_icon_for_bar">
 				<div class="progress_icon_circle"><span class="with-icon-confirm-progress-bar"></span></div>
 				<span class="progress_icon_for_bar_text">Confirm</span>
-			</div>
+			</div> -->
 			<!-- Icon 4 -->
-			<div class="progress_icon_for_bar">
+			<!-- <div class="progress_icon_for_bar">
 				<div class="progress_icon_circle"><span class="with-icon-thank-you-progress-bar"></span></div>
 				<span class="progress_icon_for_bar_text">Thank You</span>
-			</div>
+			</div> -->
 
 		<!-- Progress pop up -->
 		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
@@ -67,15 +67,14 @@
 		</div> -->
 			
 		<!-- Navigation  -->
-		<!-- <div class="navigation_text_for_bar">How It Works</div>
+		<div class="with-icon-for-navigation-text-for-bar-active">How It Works</div>
 		<div class="navigation_text_for_bar">Recyclabus</div>
-		<div class="navigation_text_for_bar">Us</div> -->		
 
 		<!-- User registration or sign in button -->
-		<div class="button_for_user">
+		<!-- <div class="button_for_user">
 			<span class="with-icon-user"></span>
 			<span class="with-icon-user-arrow"></span>
-		</div>		
+		</div>	 -->	
 
 		<!-- Search Input -->
 		<!-- <div class="input_for_bar">	
@@ -104,6 +103,71 @@
 		</div> -->		
 
 	</section>
+
+	<secton class="homepage_body_wrap">
+		
+		<div class="homepage_extra_text_box_first">
+			<div class="with-icon-arrow-for-extra-text-box"></div>
+			<div class="homepage_extra_text_box_title">Who We Are</div>
+			<div class="homepage_extra_text_box_text">
+				Were a student run, student focused and student friendly team, thats dedicated to making it 
+				as easy as possible for you to sell your book.
+			</div>
+		</div>
+
+		<div class="homepage_extra_text_box">
+			<div class="homepage_extra_text_box_title">How It Works</div>
+			<div class="homepage_extra_text_box_text">
+				We have <strong>2 easy ways</strong> for you to sell your books, Freepost or our innovotive Recyclabus.
+				<strong>and here is how they both work.</strong>
+			</div>
+		</div>
+
+		<div class="homepage_how_it_works_boxes_wrap">
+
+			<div class="homepage_how_it_works_box_wrap">
+				<div class="homepage_how_it_works_box">
+					<div class="with-icon-homepage-how-it-works-box-number-one"></div>
+					<div class="homepage_how_it_works_box_text_wrap">
+						<div class="homepage_how_it_works_box_title">Find Your Books</div>
+						<div class="homepage_how_it_works_text">find your books and add them to the sell basket</div>
+					</div>
+					<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/type.png'; ?>" class="homepage_how_it_works_box_first_image">
+					<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
+				</div>
+				<div class="homepage_how_it_works_box_button">Where is My ISBN <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
+			</div>
+
+			<div class="homepage_how_it_works_box_wrap">
+				<div class="homepage_how_it_works_box">
+					<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>
+					<div class="with-icon-homepage-how-it-works-box-number-two"></div>
+					<div class="homepage_how_it_works_box_text_wrap">
+						<div class="homepage_how_it_works_box_title">Freepost<br/>Your Books</div>
+						<div class="homepage_how_it_works_text">we send you a freepost pack and<br/> you send us your books</div>
+					</div>
+					<img  src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/letter.png'; ?>" class="homepage_how_it_works_box_second_image">
+					<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
+				</div>
+				<div class="homepage_how_it_works_box_button">Freepost Options <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
+			</div>
+
+			<div class="homepage_how_it_works_box_wrap_last">
+				<div class="homepage_how_it_works_box">
+					<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>
+					<div class="with-icon-homepage-how-it-works-box-number-three"></div>
+					<div class="homepage_how_it_works_box_text_wrap">
+						<div class="homepage_how_it_works_box_title"><br/>Get Paid</div>
+						<div class="homepage_how_it_works_text">we send you out a cheque the same day we recieve your books</div>
+					</div>
+					<img  src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/check.png'; ?>" class="homepage_how_it_works_box_third_image">
+				</div>
+				<div class="homepage_how_it_works_box_button">How Am I Being Paid <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
+			</div>
+
+		</div>
+
+	</secton>
 	
 	<!-- User registration -->
 	<!-- <section class="input_box_body_wrap">  -->
@@ -167,7 +231,7 @@
 		</div> -->
 		
 		<!-- Input box 3 -->
-<!-- 		<div class="field_box_wrap_full">
+		<!-- <div class="field_box_wrap_full">
 
 			<div class="field_box_title_wrap">
 				<div class="with-icon-leaf-three"></div>
@@ -203,7 +267,7 @@
 
 	<!-- </section> -->
 
-	<section class="body">
+	<!-- <section class="body"> -->
 		
 		<!-- Price checker -->
 		<!-- <div class="price_selection">
@@ -416,6 +480,6 @@
 			</div>
 		</div> -->
 
-	</section>
+	<!-- </section> -->
 
 <?php get_footer(); ?>

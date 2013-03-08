@@ -1,0 +1,10 @@
+.homepage_body_wrap { 
+		
+	display: block;
+	float: left;
+	@include width-model(70%);
+	background: $light_gray; 
+}
+
+@import "homepage.extra_box";
+@import "homepage.how_it_works_boxes";

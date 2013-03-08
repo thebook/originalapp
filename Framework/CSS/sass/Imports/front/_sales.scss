@@ -1,16 +1,4 @@
-$bar_height: 47px;
-$light_blue:#9ad9e0;
-$green: #b4d65a;
-$light_gray: #f6f6f6;
-$middle_gray: #dadada;
-$darkest_gray: #9F9F9F;
-$dark_gray: #efefef;
-$black_gray: #555;
-$light: #fff;
-$dark_blue: #3f7986;
-
 $width: 64%;
-
 .body { 
 
 	@include width-model($width);

@@ -1,0 +1,50 @@
+.with-icon-arrow-for-extra-text-box { 
+	
+	position: absolute;
+	margin: -25px 0 0 33px;
+	color: $light; 	
+	
+	&:before { 
+		content:"u";
+	}
+}
+
+.homepage_extra_text_box_first { 
+
+	background: $light;
+	width: 28.33%;
+	display: inline-block;
+	float: left;
+	padding: 10px 1.5%;
+	margin: 15px 1.5% 10px 0;
+	@include border-radius(2px 2px 0 0);
+	@include box-shadow( -1px, 1px, 5px, 1px, rgba(130,130,130, 0.1));
+	
+}
+
+.homepage_extra_text_box {
+	
+	@extend .homepage_extra_text_box_first;
+}
+
+.homepage_extra_text_box_title {
+	
+	color: $black_gray;
+	font-size: 18px;  
+	font-family: MotorOil;
+	text-transform: uppercase; 
+}
+
+.homepage_extra_text_box_text {
+	
+	width: 100%;
+	margin-top: 5px;
+	font-size: 14px;
+	line-height: 20px; 
+	color: $black_gray; 
+	
+	strong { 
+		
+		font-weight: bold; 
+	}
+}

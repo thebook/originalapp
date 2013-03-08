@@ -1,0 +1,33 @@
+.button_for_user { 
+
+	@include circle($input_bar_size);
+	cursor: pointer;
+	margin: $input_margin_size 6px 0;
+	background: $dark_blue;
+	float: right;
+}
+
+.with-icon-user { 
+
+	&:before { 
+		
+		position: relative;
+		top: 7px;
+		left: 9px;
+		font-size: 18px; 
+		content: "U";
+		color: $light;
+	}
+}
+
+.with-icon-user-arrow { 
+
+	&:before { 
+		position: relative;
+		top: 23px;
+		left: -7px;		
+		font-size: 7px;
+		color: $middle_gray;  
+		content:"d";
+	}
+}
