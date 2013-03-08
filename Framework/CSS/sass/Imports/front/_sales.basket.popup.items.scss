@@ -107,10 +107,11 @@
 .with-icon-x-for-store-basket-pop-up-content-item { 
 	
 	float: right;
-	display: inline-block;
-	position: relative;
-	top: 18px;
-	left: 12.5%; 
+	display: block;
+	position: absolute;
+	margin: 15px 0 0 52%;
+	// top: 18px;
+	// left: 12.5%; 
 	cursor: pointer;
 	
 	&:before { 

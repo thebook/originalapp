@@ -36,9 +36,17 @@
 	display: inline-block;
 	float: right;
 	font-weight: bold; 
+	cursor: pointer;
 	background: $light_blue;
 	color: $dark_blue;
 	padding: 8px 10px; 
+	@include transition;
+	
+	&:hover { 
+	
+		background: darken($light_blue, 10%); 
+		@include transition;
+	}
 }
 
 .basket_stats { 

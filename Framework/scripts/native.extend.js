@@ -83,3 +83,16 @@ if ( !Object.prototype.add ) {
 		}
 	});
 }
+
+if ( !Object.prototype.is_number ) {
+
+	Object.defineProperty(Object.prototype, "is_number", {
+		enumerable   : false,
+		configurable : true,
+		writable     : false,
+		value 		 : function () {
+
+			return !isNaN(parseFloat(this)) && isFinite(this);
+		}
+	});
+}
