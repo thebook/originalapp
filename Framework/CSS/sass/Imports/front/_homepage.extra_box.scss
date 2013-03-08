@@ -13,6 +13,7 @@
 
 	background: $light;
 	width: 28.33%;
+	height: 105px;
 	display: inline-block;
 	float: left;
 	padding: 10px 1.5%;
@@ -25,6 +26,7 @@
 .homepage_extra_text_box {
 	
 	@extend .homepage_extra_text_box_first;
+	width: 30%;
 }
 
 .homepage_extra_text_box_title {
@@ -47,4 +49,63 @@
 		
 		font-weight: bold; 
 	}
+}
+
+.homepage_extra_text_box_suggestions {
+
+	@extend .homepage_extra_text_box_first;
+	width: 29.66%; 
+	background: $light_blue;
+	margin: 15px 0 10px;
+	@include border-radius(5px); 
+} 
+
+.homepage_extra_text_box_suggestions_background {
+
+	// width: 100%;
+	// position: relative;
+	// z-index: 0;
+}
+
+.with-icon-for-suggestion-box-left {
+
+	&:before { 
+		
+		content:"'";
+	} 
+}
+
+.with-icon-for-suggestion-box-right {
+
+	&:before { 
+		
+		content:"*";
+	} 
+}
+
+.with-icon-for-suggestion-box-large-circle {}
+
+.with-icon-for-suggestion-box-small-circle {}
+
+.homepage_extra_text_box_suggestions_text_wrap {
+	
+	position: relative;
+	width: 100%;
+	margin-top: 20px; 
+	text-align: center;
+	z-index: 1;
+}
+
+.homepage_extra_text_box_suggestions_title {
+	
+	font-family: MotorOil;
+	color: $dark_blue; 
+	text-transform: lowercase;
+	font-size: 20px;
+}
+
+.homepage_extra_text_box_suggestions_text {
+	
+	color: $black_gray;
+	font-size: 12px;
 }

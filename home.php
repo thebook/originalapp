@@ -123,6 +123,19 @@
 			</div>
 		</div>
 
+		<div class="homepage_extra_text_box_suggestions">
+			<div class="homepage_extra_text_box_suggestions_background">
+				<div class="with-icon-for-suggestion-box-left"></div>
+				<div class="with-icon-for-suggestion-box-right"></div>
+				<div class="with-icon-for-suggestion-box-large-circle"></div>
+				<div class="with-icon-for-suggestion-box-small-circle"></div>
+			</div>
+			<div class="homepage_extra_text_box_suggestions_text_wrap">
+				<div class="homepage_extra_text_box_suggestions_title">any suggestions?</div>
+				<div class="homepage_extra_text_box_suggestions_text">talk@recyclabook.co.uk</div>
+			</div>
+		</div>
+
 		<div class="homepage_how_it_works_boxes_wrap">
 
 			<div class="homepage_how_it_works_box_wrap">
@@ -165,6 +178,32 @@
 				<div class="homepage_how_it_works_box_button">How Am I Being Paid <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
 			</div>
 
+		</div>
+
+		<div class="with-icon-or-sticker-recyclabus"></div>
+		<div class="homepage_recyclabus_box_wrap">
+			<div class="homepage_recyclabus_box_title">
+				Use Recycla<span class="homepage_recyclabus_box_title_color">Bus</span>
+			</div>
+			<div class="homepage_recyclabus_box_text_wrap">
+				<div class="homepage_recyclabus_box_point">
+					<div class="with-icon-recyclabus-point-leaf"></div>
+					<div class="homepage_recyclabus_box_point_text">Our bus is touring Universities all over the country, come along and get paid instantly</div>
+				</div>
+				<div class="homepage_recyclabus_box_point">
+					<div class="with-icon-recyclabus-point-leaf"></div>
+					<div class="homepage_recyclabus_box_point_text">It gives you an <strong>extra 20%</strong> on your sell quote</div>
+				</div>
+				<div class="homepage_recyclabus_box_point">
+					<div class="with-icon-recyclabus-point-leaf"></div>
+					<div class="homepage_recyclabus_box_point_text">No need to fill in any details <strong>just turn up on the day</strong></div>
+				</div>
+			</div>
+			<div class="homepage_recyclabus_box_button_wrap">
+				<div class="homepage_recyclabus_box_button_text">Find Out More</div>
+				<div class="with-icon-recyclabus-find-out-more-arrow"></div>
+			</div>
+			<img src="" alt="" class="homepage_recyclabus_box_image">
 		</div>
 
 	</secton>
