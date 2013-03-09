@@ -4,7 +4,7 @@
 
 	<section class="header">
 		
-		<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhonc.png'; ?>" class="header_image">
+		<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhoncc.png'; ?>" class="header_image">
 
 		<div class="header_wrap">
 			<div class="header_text_box">
@@ -13,9 +13,9 @@
 				<div class="header_text_box_text">use a comma "," to search for more than one book</div>
 				<div class="header_text_box_input">	
 					<div class="header_field_for_input">
-						<input type="text" class="header_input_block_for_search" placeholder="isbn, book title, keyword, etc...">
+						<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">
 					</div>
-					<div class="header_button_for_input"><span data-function-to-call="front.prototype.search_though_amazon" class="with-icon-header-search"></span></div>
+					<div class="header_button_for_input"><span data-function-instruction="{'type':'header'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-header-search"></span></div>
 				</div>
 			</div>
 			<div class="header_invisible_box">

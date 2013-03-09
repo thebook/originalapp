@@ -237,13 +237,13 @@ var alpha = (function ( alpha, $ ) {
 						input : {
 							self : '<div class="field_for_input"></div>',
 							branch : {
-								input_block : '<input type="text" class="input_block_for_search" placeholder="isbn, book title, keyword, etc...">'
+								input_block : '<input type="text" class="input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">'
 								}
 							},
 						button : {
 							self : '<div class="button_for_input"></div>',
 							branch : {
-								icon : '<span data-function-to-call="front.prototype.search_though_amazon" class="with-icon-search"></div>'
+								icon : '<span data-function-instructions="{\'type\':\'bar\'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-search"></div>'
 								}}}
 							}}};
 
@@ -271,11 +271,14 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.search_though_amazon = function (wake) { 
 
-		var search, search_by;
+		var search, search_by, input;
 
+
+			input = ( wake.instructions.type == 'bar'? alpha.front.prototype.parts.search.wrap.branch.branch.input.self : $('.header_field_for_input') );
+			
 			search = alpha.front.prototype.get_the_search_value_from_blocks({ 
-				input : alpha.front.prototype.parts.search.wrap.branch.branch.input.self, 
-				block_class_name : '.input_block_for_search'
+				input : input, 
+				block_class_name : '.block_for_search'
 			});
 			search_by = (search.is_number()? 'isbn' : 'keywords' );
 			
