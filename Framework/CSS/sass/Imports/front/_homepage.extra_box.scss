@@ -62,28 +62,44 @@
 
 .homepage_extra_text_box_suggestions_background {
 
-	// width: 100%;
-	// position: relative;
-	// z-index: 0;
+	position: absolute;
 }
 
 .with-icon-for-suggestion-box-left {
-
+	
+	position: relative;
+	top: 15px;
+	left: 30px;
 	&:before { 
 		
+		color: $light; 
+		font-size: 80px; 
 		content:"'";
 	} 
 }
 
 .with-icon-for-suggestion-box-right {
-
+	
+	position: relative;
+	top: -70px;
+	left: 115px;
 	&:before { 
 		
+		color: lighten($light_blue, 10%);
+		font-size: 80px; 
 		content:"*";
 	} 
 }
 
-.with-icon-for-suggestion-box-large-circle {}
+.with-icon-for-suggestion-box-large-circle {
+
+	&:before { 
+		
+		
+		font-size: 80px; 
+		content:"^";
+	}
+}
 
 .with-icon-for-suggestion-box-small-circle {}
 

@@ -80,6 +80,15 @@ body {
   height: 300px;
   background: #9ad9e0; }
 
+.recyclabook_footer {
+  padding: 10px 0;
+  float: left;
+  width: 100%;
+  text-align: center;
+  background: #9ad9e0;
+  color: white;
+  font-size: 14px; }
+
 .bar {
   background: white;
   width: 76%;
@@ -519,11 +528,30 @@ body {
   -webkit-border-radius: 5px;
   border-radius: 5px; }
 
-.with-icon-for-suggestion-box-left:before {
-  content: "'"; }
+.homepage_extra_text_box_suggestions_background {
+  position: absolute; }
 
-.with-icon-for-suggestion-box-right:before {
-  content: "*"; }
+.with-icon-for-suggestion-box-left {
+  position: relative;
+  top: 15px;
+  left: 30px; }
+  .with-icon-for-suggestion-box-left:before {
+    color: white;
+    font-size: 80px;
+    content: "'"; }
+
+.with-icon-for-suggestion-box-right {
+  position: relative;
+  top: -70px;
+  left: 115px; }
+  .with-icon-for-suggestion-box-right:before {
+    color: #c1e8ec;
+    font-size: 80px;
+    content: "*"; }
+
+.with-icon-for-suggestion-box-large-circle:before {
+  font-size: 80px;
+  content: "^"; }
 
 .homepage_extra_text_box_suggestions_text_wrap {
   position: relative;
@@ -563,10 +591,12 @@ body {
   content: "["; }
 
 .with-icon-homepage-how-it-works-box-number-two:before {
-  content: "{"; }
+  content: "{";
+  font-size: 33px; }
 
 .with-icon-homepage-how-it-works-box-number-three:before {
-  content: "("; }
+  content: "(";
+  font-size: 35px; }
 
 .homepage_how_it_works_box {
   background: #9ad9e0;
@@ -654,7 +684,7 @@ body {
   float: left;
   clear: both;
   background: white;
-  margin: 5px 0 10px;
+  margin: 5px 0 30px;
   padding: 30px 0 10px 5%;
   -webkit-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0; }
@@ -736,6 +766,14 @@ body {
   .with-icon-recyclabus-find-out-more-arrow:before {
     color: #3f7986;
     content: ">"; }
+
+.homepage_recyclabus_box_image {
+  width: 70%;
+  float: right;
+  position: relative;
+  top: -150px;
+  left: 5px;
+  margin: 0 0 -164px; }
 
 .body {
   width: 64%;

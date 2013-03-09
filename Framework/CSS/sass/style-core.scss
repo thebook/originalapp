@@ -52,6 +52,17 @@ body {
 	background: $light_blue;
 }
 
+.recyclabook_footer {
+	
+	padding: 10px 0;
+	float: left;
+	width: 100%;
+	text-align: center;
+	background: $light_blue;
+	color: $light;
+	font-size: 14px;   
+}
+
 @import "Imports/front/bar";
 @import "Imports/front/homepage";
 @import "Imports/front/sales";

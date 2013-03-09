@@ -7,6 +7,7 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.parts = {};		
 
 		this.front.prototype.being = {};		
+		this.front.prototype.being.on_page      = '';
 		this.front.prototype.being.user_id      = '';
 		this.front.prototype.being.user_info    = {};
 		this.front.prototype.being.search       = {};
@@ -72,9 +73,31 @@ var alpha = (function ( alpha, $ ) {
 
 		this.front.prototype.being.basket.watch( 'items', alpha.front.prototype.display_books );
 		this.front.prototype.being.basket.watch( 'inside', alpha.front.prototype.reorder_basket );
+		this.front.prototype.being.watch( 'on_page', alpha.front.prototype.page_changer );
 
 		this.front.prototype.search_bar();
 		this.front.prototype.initialize_basket();
+		this.front.prototype.being.on_page = 'homepage_body_wrap';
+	};
+
+	alpha.front.prototype.page_changer = function (property, old_page, page) {
+
+		if ( old_page.length < 1 ) old_page = 'pages';
+
+		if ( old_page !== page )
+			$('.'+ old_page ).fadeOut(500, function () { $('.'+ page ).fadeIn(500); });		
+
+		return page;
+	};
+
+	alpha.front.prototype.change_page = function (wake, callback) {
+
+		callback = callback || false;
+
+		alpha.front.prototype.being.on_page = wake.instructions.page;
+
+		if (callback)
+			callback(wake.instructions.page);	
 	};
 
 	alpha.front.prototype.reorder_basket = function (poperty, old_books, books) { 
@@ -272,7 +295,8 @@ var alpha = (function ( alpha, $ ) {
 				});
 				books = alpha.amazon.prototype.remove_books_that_dont_have_given_properties(books, ['image']);
 
-				alpha.front.prototype.being.basket.items = books;				
+				alpha.front.prototype.being.basket.items = books;	
+				alpha.front.prototype.being.on_page = 'body';			
 			});
 	};
 

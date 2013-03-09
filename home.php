@@ -2,7 +2,10 @@
 
 
 
-	<section class="header"></section>
+	<section class="header">
+		
+		<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhonc.png'; ?>" class="header_image">
+	</section>
 
 	<section class="bar">
 
@@ -67,8 +70,8 @@
 		</div> -->
 			
 		<!-- Navigation  -->
-		<div class="with-icon-for-navigation-text-for-bar-active">How It Works</div>
-		<div class="navigation_text_for_bar">Recyclabus</div>
+		<div data-function-instructions="{'page' : 'homepage_body_wrap' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active">How It Works</div>
+		<!-- <div class="navigation_text_for_bar">Recyclabus</div> -->
 
 		<!-- User registration or sign in button -->
 		<!-- <div class="button_for_user">
@@ -104,7 +107,7 @@
 
 	</section>
 
-	<secton class="homepage_body_wrap">
+	<secton class="homepage_body_wrap pages">
 		
 		<div class="homepage_extra_text_box_first">
 			<div class="with-icon-arrow-for-extra-text-box"></div>
@@ -125,10 +128,10 @@
 
 		<div class="homepage_extra_text_box_suggestions">
 			<div class="homepage_extra_text_box_suggestions_background">
+				<!-- <div class="with-icon-for-suggestion-box-large-circle"></div> -->
+				<!-- <div class="with-icon-for-suggestion-box-small-circle"></div> -->
 				<div class="with-icon-for-suggestion-box-left"></div>
 				<div class="with-icon-for-suggestion-box-right"></div>
-				<div class="with-icon-for-suggestion-box-large-circle"></div>
-				<div class="with-icon-for-suggestion-box-small-circle"></div>
 			</div>
 			<div class="homepage_extra_text_box_suggestions_text_wrap">
 				<div class="homepage_extra_text_box_suggestions_title">any suggestions?</div>
@@ -203,7 +206,7 @@
 				<div class="homepage_recyclabus_box_button_text">Find Out More</div>
 				<div class="with-icon-recyclabus-find-out-more-arrow"></div>
 			</div>
-			<img src="" alt="" class="homepage_recyclabus_box_image">
+			<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recyclabus.png'; ?>"class="homepage_recyclabus_box_image">
 		</div>
 
 	</secton>
@@ -306,7 +309,7 @@
 
 	<!-- </section> -->
 
-	<!-- <section class="body"> -->
+	<section class="body pages">
 		
 		<!-- Price checker -->
 		<!-- <div class="price_selection">
@@ -519,6 +522,8 @@
 			</div>
 		</div> -->
 
-	<!-- </section> -->
+	</section>
+
+	<section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section>
 
 <?php get_footer(); ?>
