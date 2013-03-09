@@ -35,6 +35,11 @@ $dark_blue: #3f7986;
     src: url('#{$url}/Framework/CSS/Includes/fonts/handwritten.ttf');
 }
 
+@font-face {
+    font-family: 'Vieira';
+    src: url('#{$url}/Framework/CSS/Includes/fonts/vieira.ttf');
+}
+
 body { 
 	font-family: Tahoma;
 }
@@ -42,14 +47,6 @@ body {
 .wrap {
 	
 	width: 100%;	
-}
-
-.header {
-
-	width:inherit;
-	float: left;
-	height: 300px;  
-	background: $light_blue;
 }
 
 .recyclabook_footer {
@@ -63,6 +60,7 @@ body {
 	font-size: 14px;   
 }
 
+@import "Imports/front/header";
 @import "Imports/front/bar";
 @import "Imports/front/homepage";
 @import "Imports/front/sales";

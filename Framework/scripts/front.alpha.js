@@ -237,7 +237,7 @@ var alpha = (function ( alpha, $ ) {
 						input : {
 							self : '<div class="field_for_input"></div>',
 							branch : {
-								input_block : '<input type="text" class="input_block_for_search">'
+								input_block : '<input type="text" class="input_block_for_search" placeholder="isbn, book title, keyword, etc...">'
 								}
 							},
 						button : {
