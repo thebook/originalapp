@@ -96,12 +96,13 @@ var alpha = (function ( alpha, $ ) {
 			var filter_book = {};
 			$.each(book, function (key, property) {
 
-				if ( property[0] !== undefined && property[1] === undefined ) {
-					filter_book[key] = property[0];
-				}
-				else if ( !$.isEmptyObject(property) ) {
-					filter_book[key] = property;
-				}
+				if (property)
+					if ( property[0] !== undefined && property[1] === undefined ) {
+						filter_book[key] = property[0];
+					}
+					else if ( !$.isEmptyObject(property) ) {
+						filter_book[key] = property;
+					}
 			});
 
 			return filter_book;

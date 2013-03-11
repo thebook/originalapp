@@ -295,7 +295,7 @@ var alpha = (function ( alpha, $ ) {
 					lowest_new_price  : 'Amount',
 					price  			  : 'Amount'
 				});
-				books = alpha.amazon.prototype.remove_books_that_dont_have_given_properties(books, ['image']);
+				books = alpha.amazon.prototype.remove_books_that_dont_have_given_properties(books, ['image', 'author']);
 
 				alpha.front.prototype.being.basket.items = books;	
 				alpha.front.prototype.being.on_page = 'body';			
