@@ -53,6 +53,4 @@ abstract class branch_ticket extends alpha_tree_ticket
 
 		return $formated_tickets;
 	}
-}
-
-?>			
+}?>

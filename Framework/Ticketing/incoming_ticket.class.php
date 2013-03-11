@@ -299,6 +299,4 @@ class tickets extends branch_ticket_format
 	{
 		return str_replace('"', "'", json_encode(unserialize($ticket['books_ordered'])));
 	}
-}
-
-?>
+}?>

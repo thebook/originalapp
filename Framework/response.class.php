@@ -83,6 +83,4 @@ class response
 
 		return str_replace($matched[0], $remplacement_array, $text );
 	}
-}
-
-?>	
+}?>
