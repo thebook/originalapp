@@ -84,17 +84,10 @@
 													'thickbox', 
 													'media-upload',
 													'jGrowl',
-													'jquery-ui-slider',
-													'layout'), 
+													'jquery-ui-slider'), 
 												'1.0', 
 												false ),
-										'conditional' => 
-											array(
-												array( false, 'admin.php'),
-												array( true,  'lf_slide' ),
-												array( true,  'books' ),
-												array( true,  'post' )
-												),
+										'conditional' => false,
 										'enqueue' => true 
 											))),
 						// Colorpicker

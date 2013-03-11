@@ -94,33 +94,41 @@ body {
   background: #9ad9e0; }
 
 .header_image {
-  float: right; }
+  float: right;
+  margin-right: 4.5%; }
 
 .header_wrap {
   position: absolute;
   width: 70%;
   padding: 0 15%; }
-
-.with-icon-header-text-box-arrow:before {
-  float: right;
-  position: absolute;
-  margin-top: -43px;
-  margin-left: 31.2%;
-  font-size: 50px;
-  color: white;
-  z-index: 1;
-  content: "+"; }
+  @media (max-width: 80em) {
+    .header_wrap {
+      width: 79%;
+      padding: 0 10.5%; } }
 
 .header_text_box {
   background: white;
-  float: right;
-  width: 41%;
-  padding: 30px 4%;
-  margin: 20px 19% 0 0;
+  display: inline-block;
+  float: left;
+  width: 44%;
+  padding: 35px 4% 40px;
+  margin: 20px 0 0 0;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   -webkit-box-shadow: -1px 1px 5px 1px rgba(0, 0, 0, 0.1);
   box-shadow: -1px 1px 5px 1px rgba(0, 0, 0, 0.1); }
+
+.with-icon-header-text-box-arrow {
+  width: 5%;
+  float: left;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: -1px; }
+  .with-icon-header-text-box-arrow:before {
+    font-size: 300%;
+    color: white;
+    z-index: 1;
+    content: "+"; }
 
 .header_text_box_title {
   width: 100%;
@@ -128,7 +136,7 @@ body {
   color: #b4d65a;
   font-family: 'Vieira';
   font-size: 38px;
-  line-height: 44px; }
+  line-height: 40px; }
 
 .header_text_box_title_highlight {
   color: #91b62d; }
@@ -136,10 +144,10 @@ body {
 .header_text_box_text {
   font-size: 12px;
   float: left;
-  margin: 20px 0 10px;
+  margin: 30px 0 10px;
   width: 100%;
   text-align: center;
-  color: #555555; }
+  color: #9f9f9f; }
 
 .header_text_box_input {
   width: 90%;
@@ -154,6 +162,7 @@ body {
 .header_input_block_for_search {
   background: transparent;
   border: none;
+  outline-color: transparent;
   box-shadow: none;
   font-family: Tahoma;
   float: left;
@@ -178,30 +187,38 @@ body {
   float: left;
   text-align: center; }
 
-.with-icon-header-search:before {
-  font-size: 16px;
-  line-height: 16px;
-  color: #555555;
-  content: "S"; }
+.with-icon-header-search {
+  width: 10%;
+  height: 16px;
+  cursor: pointer;
+  margin: 10.5px 0;
+  display: inline;
+  float: left;
+  text-align: center; }
+  .with-icon-header-search:before {
+    font-size: 16px;
+    line-height: 16px;
+    color: #555555;
+    content: "S"; }
 
 .header_invisible_box {
   display: inline-block;
   float: left;
-  width: 30%;
-  margin-top: 20px; }
+  width: 26.5%;
+  margin: 20px 1% 0 0; }
 
 .header_invisible_box_title_logo {
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   background: #b4d65a;
   display: inline-block;
   float: left; }
 
 .with-icon-invisible-title-logo:before {
   position: relative;
-  top: 5px;
+  top: 6px;
   left: 12px;
-  font-size: 40px;
+  font-size: 35px;
   color: white;
   content: "R"; }
 
@@ -209,31 +226,38 @@ body {
   float: left;
   font-family: MotorOil;
   font-size: 22px;
-  margin-left: 10px;
+  margin: 5px 0 0 10px;
   color: #3f7986;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  letter-spacing: 1px; }
 
 .header_invisible_box_text_wrap {
   clear: both;
   float: left;
-  margin-top: 10px;
+  margin-top: 15px;
   color: white; }
 
 .header_invisible_box_text_title {
   font-family: MotorOil;
-  font-size: 20px;
-  text-transform: uppercase; }
+  font-size: 18px;
+  margin-right: 5px;
+  text-transform: uppercase;
+  text-align: right; }
 
 .header_invisible_box_text {
-  font-size: 13px;
-  line-height: 22px; }
+  font-size: 15px;
+  line-height: 19px;
+  text-align: justify;
+  margin: 5px 5px 0 0; }
 
 .with-icon-down-arrow {
   clear: both;
   float: right;
   margin-right: 20px; }
   .with-icon-down-arrow:before {
-    font-size: 45px;
+    position: relative;
+    top: -11px;
+    font-size: 60px;
     color: white;
     content: "-"; }
 
@@ -243,6 +267,10 @@ body {
   padding: 0 12%;
   height: 52px;
   float: left; }
+  @media (max-width: 80em) {
+    .bar {
+      width: 86%;
+      padding: 0 7%; } }
 
 .logo_for_bar {
   width: 42px;
@@ -403,6 +431,7 @@ body {
 .progress_welcome_sign_in_box_input {
   background: transparent;
   border: none;
+  outline-color: transparent;
   box-shadow: none;
   width: 91%;
   padding: 10px 2%;
@@ -486,6 +515,7 @@ body {
 .user_pop_up_option_input {
   background: transparent;
   border: none;
+  outline-color: transparent;
   box-shadow: none;
   width: 90%;
   background: white;
@@ -565,6 +595,7 @@ body {
 .input_block_for_search {
   background: transparent;
   border: none;
+  outline-color: transparent;
   box-shadow: none;
   margin: 5px 0px;
   width: 100%;
@@ -630,6 +661,10 @@ body {
   width: 70%;
   padding: 0 15%;
   background: #f6f6f6; }
+  @media (max-width: 80em) {
+    .homepage_body_wrap {
+      width: 79%;
+      padding: 0 10.5%; } }
 
 .with-icon-arrow-for-extra-text-box {
   position: absolute;
@@ -756,11 +791,14 @@ body {
 .homepage_how_it_works_box_text_wrap {
   position: relative;
   float: left;
-  left: 12%;
+  left: 6.5%;
   display: inline-block;
   color: #3f7986;
   letter-spacing: 1px;
-  width: 50%; }
+  width: 45%; }
+  @media (max-device-width: 1290px) {
+    .homepage_how_it_works_box_text_wrap {
+      width: 42%; } }
 
 .homepage_how_it_works_box_title {
   font-family: MotorOil;
@@ -772,24 +810,27 @@ body {
   margin-top: 10px;
   line-height: 18px; }
 
-.homepage_how_it_works_box_first_image, .homepage_how_it_works_box_second_image, .homepage_how_it_works_box_third_image {
-  width: 50%;
+.homepage_how_it_works_box_first_image, .homepage_how_it_works_box_third_image {
+  float: right;
+  display: inline-block;
+  width: 55%;
   height: auto;
   position: relative;
-  top: -4px;
-  left: 9px;
+  top: -10px;
+  left: 10px;
   z-index: 1; }
 
 .homepage_how_it_works_box_second_image {
-  top: 11px;
-  width: 44%;
-  padding-left: 4%;
-  padding-right: 2%; }
+  position: relative;
+  z-index: 1;
+  height: 84%;
+  left: 2%;
+  margin-top: -2%;
+  width: auto; }
 
 .homepage_how_it_works_box_third_image {
-  width: 46%;
-  top: 5px;
-  left: 10px; }
+  top: 0;
+  left: 0px; }
 
 .with-icon-homepage-how-it-works-box-right-arrow {
   float: left;
@@ -809,7 +850,6 @@ body {
   .with-icon-homepage-how-it-works-box-left-arrow:before {
     color: #9ad9e0;
     position: relative;
-    top: -35px;
     font-size: 170px;
     content: "}"; }
 
@@ -1639,6 +1679,7 @@ body {
 .field_box_input, .field_box_input_small {
   background: transparent;
   border: none;
+  outline-color: transparent;
   box-shadow: none;
   background: #efefef;
   position: relative;

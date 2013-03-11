@@ -19,10 +19,11 @@ var alpha = (function ( alpha, $ ) {
 	alpha.track_events_on_this.prototype.create_current_click_object = function (the_event) {
 		
 		var current_click = new Object;
+
 			current_click.element = $(the_event.target);
 			current_click.function_call = current_click.element.attr('data-function-to-call');
 			current_click.has_a_function_call = ( current_click.function_call? true : false );
-			current_click.instructions = ( current_click.element.attr('data-function-instructions')? JSON.parse(current_click.element.attr('data-function-instructions').replace("'", "\"", "g")) : false );
+			current_click.instructions = ( current_click.element.attr('data-function-instructions')? JSON.parse(current_click.element.attr('data-function-instructions').replace(/[']/g, "\"")) : false );
 			current_click.the_event = the_event;
 
 			return current_click;

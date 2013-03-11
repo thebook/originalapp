@@ -7,7 +7,17 @@
 		<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhoncc.png'; ?>" class="header_image">
 
 		<div class="header_wrap">
-			
+			<div class="header_text_box">
+				<div class="with-icon-header-text-box-arrow"></div>
+				<div class="header_text_box_title">How <span class="header_text_box_title_highlight">much</span> is <span class="header_text_box_title_highlight">your</span> book <span class="header_text_box_title_highlight">worth?</span></div>
+				<div class="header_text_box_text">use a comma "," to search for more than one book</div>
+				<div class="header_text_box_input">	
+					<div class="header_field_for_input">
+						<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">
+					</div>
+					<div class="header_button_for_input"><span data-function-instruction="{'type':'header'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-header-search"></span></div>
+				</div>
+			</div>
 			<div class="header_invisible_box">
 				<div class="header_invisible_box_title_wrap">
 					<div class="header_invisible_box_title_logo"><span class="with-icon-invisible-title-logo"></span></div>
@@ -19,18 +29,6 @@
 				</div>
 				<div class="with-icon-down-arrow"></div>
 			</div>
-
-			<div class="header_text_box">
-				<div class="header_text_box_title">How <span class="header_text_box_title_highlight">much</span> is <br/><span class="header_text_box_title_highlight">your</span> book <span class="header_text_box_title_highlight">worth?</span></div>
-				<div class="header_text_box_text">use a comma "," to search for more than one book</div>
-				<div class="header_text_box_input">	
-					<div class="header_field_for_input">
-						<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">
-					</div>
-					<span data-function-instruction="{'type':'header'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-header-search"></span>
-				</div>
-			</div>
-			<div class="with-icon-header-text-box-arrow"></div>
 
 		</div>
 
@@ -106,7 +104,7 @@
 		<!-- <div class="button_for_user">
 			<span class="with-icon-user"></span>
 			<span class="with-icon-user-arrow"></span>
-		</div>		 -->
+		</div>	 -->	
 
 		<!-- Search Input -->
 		<!-- <div class="input_for_bar">	
@@ -153,7 +151,20 @@
 				We have <strong>2 easy ways</strong> for you to sell your books, Freepost or our innovotive Recyclabus.
 				<strong>and here is how they both work.</strong>
 			</div>
-		</div>	
+		</div>
+
+		<div class="homepage_extra_text_box_suggestions">
+			<div class="homepage_extra_text_box_suggestions_background">
+				<!-- <div class="with-icon-for-suggestion-box-large-circle"></div> -->
+				<!-- <div class="with-icon-for-suggestion-box-small-circle"></div> -->
+				<div class="with-icon-for-suggestion-box-left"></div>
+				<div class="with-icon-for-suggestion-box-right"></div>
+			</div>
+			<div class="homepage_extra_text_box_suggestions_text_wrap">
+				<div class="homepage_extra_text_box_suggestions_title">any suggestions?</div>
+				<div class="homepage_extra_text_box_suggestions_text">talk@recyclabook.co.uk</div>
+			</div>
+		</div>
 
 		<div class="homepage_how_it_works_boxes_wrap">
 
@@ -165,29 +176,22 @@
 						<div class="homepage_how_it_works_text">find your books and add them to the sell basket</div>
 					</div>
 					<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/type.png'; ?>" class="homepage_how_it_works_box_first_image">
+					<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
 				</div>
-				<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
 				<div class="homepage_how_it_works_box_button">Where is My ISBN <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
 			</div>
 
 			<div class="homepage_how_it_works_box_wrap">
-				
 				<div class="homepage_how_it_works_box">
-				
 					<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>
-					
 					<div class="with-icon-homepage-how-it-works-box-number-two"></div>
-					
 					<div class="homepage_how_it_works_box_text_wrap">
 						<div class="homepage_how_it_works_box_title">Freepost<br/>Your Books</div>
 						<div class="homepage_how_it_works_text">we send you a freepost pack and<br/> you send us your books</div>
 					</div>
-				
 					<img  src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/letter.png'; ?>" class="homepage_how_it_works_box_second_image">
-				
+					<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
 				</div>
-
-				<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
 				<div class="homepage_how_it_works_box_button">Freepost Options <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
 			</div>
 
@@ -209,7 +213,7 @@
 		<div class="with-icon-or-sticker-recyclabus"></div>
 		<div class="homepage_recyclabus_box_wrap">
 			<div class="homepage_recyclabus_box_title">
-				Recycla<span class="homepage_recyclabus_box_title_color">Bus</span>
+				Use Recycla<span class="homepage_recyclabus_box_title_color">Bus</span>
 			</div>
 			<div class="homepage_recyclabus_box_text_wrap">
 				<div class="homepage_recyclabus_box_point">

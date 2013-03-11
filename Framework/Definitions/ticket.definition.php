@@ -62,41 +62,41 @@ return array(
 					),
 		'opt' => 
 			array(
-				// hook in the ticket creation element
-				array(
-					'f' => 'add_action',
-					'o' => array('wp_ajax_ticket_admin_creation', array($this, 'ticket_creation_element' ) ) 
-				),
-				// hook in the ticket addition element
-				array(
-					'f' => 'add_action',
-					'o' => array('wp_ajax_complete_ticket', array($this, 'create_new_book_ticket' ) ) 
-				),
-				// hook into ticket display creation 
-				array(
-					'f' => 'add_action',
-					'o' => array('wp_ajax_show_users_for_ticket', array($this, 'users_for_ticket' ) ) 
-				),
-				// display tickets for specific type
-				array(
-					'f' => 'add_action',
-					'o' => array('wp_ajax_get_tickets', array($this, 'display_tickets' ) ) 
-				),	
-				// complete ticket order
-				array(
-					'f' => 'add_action',
-					'o' => array('wp_ajax_update_ticket', array($this, 'update_ticket_after_verify' ) )
-				),
-				// update ticket
-				array(
-					'f' => 'add_action',
-					'o' => array('wp_ajax_change_ticket', array($this, 'change_ticket' ) )
-				),
-				// update ticket
-				array(
-					'f' => 'add_action',
-					'o' => array('wp_ajax_update_date', array($this, 'change_expiry_date' ) )
-				),
+				// // hook in the ticket creation element
+				// array(
+				// 	'f' => 'add_action',
+				// 	'o' => array('wp_ajax_ticket_admin_creation', array($this, 'ticket_creation_element' ) ) 
+				// ),
+				// // hook in the ticket addition element
+				// array(
+				// 	'f' => 'add_action',
+				// 	'o' => array('wp_ajax_complete_ticket', array($this, 'create_new_book_ticket' ) ) 
+				// ),
+				// // hook into ticket display creation 
+				// array(
+				// 	'f' => 'add_action',
+				// 	'o' => array('wp_ajax_show_users_for_ticket', array($this, 'users_for_ticket' ) ) 
+				// ),
+				// // display tickets for specific type
+				// array(
+				// 	'f' => 'add_action',
+				// 	'o' => array('wp_ajax_get_tickets', array($this, 'display_tickets' ) ) 
+				// ),	
+				// // complete ticket order
+				// array(
+				// 	'f' => 'add_action',
+				// 	'o' => array('wp_ajax_update_ticket', array($this, 'update_ticket_after_verify' ) )
+				// ),
+				// // update ticket
+				// array(
+				// 	'f' => 'add_action',
+				// 	'o' => array('wp_ajax_change_ticket', array($this, 'change_ticket' ) )
+				// ),
+				// // update ticket
+				// array(
+				// 	'f' => 'add_action',
+				// 	'o' => array('wp_ajax_update_date', array($this, 'change_expiry_date' ) )
+				// ),
 				// Create Menu page
 				array(
 					'f' => 'add_menu_page',

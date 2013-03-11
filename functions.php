@@ -12,11 +12,7 @@ include FRAMEWORK . '/include.php';
 
 include FRAMEWORK . '/Helpers/include.php';
 
-include FRAMEWORK . '/Shortcodes/include.php';
-
 include FRAMEWORK . '/Options/include.php';
-
-include FRAMEWORK . '/Templates/include.php';
 
 include BOOK .'/include.php';
 
@@ -24,7 +20,6 @@ include FRAMEWORK .'/Apis/include.php';
 
 include FRAMEWORK . '/Ticketing/include.php';
 
-include FRAMEWORK . '/e_mail/include.php';
 
 new register_scripts;
 	
@@ -36,20 +31,12 @@ new admin(
 		'definition' => FRAMEWORK .'/Definitions/admin.definition.php'
 		));
 
-new meta(
-	array( 
-		'id' => 'lf-post-meta',
-		'class' => 'lf-admin-post-meta-td',
-		'default_type' => 'meta', 
-		'definition' => FRAMEWORK .'/Definitions/meta_boxes.definition.php'
-		));
-
-// new leaf_slide(
-// 	array(
+// new meta(
+// 	array( 
 // 		'id' => 'lf-post-meta',
 // 		'class' => 'lf-admin-post-meta-td',
 // 		'default_type' => 'meta', 
-// 		'definition' => FRAMEWORK .'/Definitions/slider.definition.php'
+// 		'definition' => FRAMEWORK .'/Definitions/meta_boxes.definition.php'
 // 		));
 
 $user = new branch_users_database( 

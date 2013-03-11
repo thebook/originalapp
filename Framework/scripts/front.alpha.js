@@ -273,7 +273,6 @@ var alpha = (function ( alpha, $ ) {
 
 		var search, search_by, input;
 
-
 			input = ( wake.instructions.type == 'bar'? alpha.front.prototype.parts.search.wrap.branch.branch.input.self : $('.header_field_for_input') );
 			
 			search = alpha.front.prototype.get_the_search_value_from_blocks({ 
@@ -287,7 +286,7 @@ var alpha = (function ( alpha, $ ) {
 				search_by : search_by
 			},
 			function (books) { 
-				
+
 				books = alpha.amazon.prototype.clean_array(books);
 				books = alpha.amazon.prototype.pick_which_details_to_get_out_of_the_book_properties(books, 
 				{

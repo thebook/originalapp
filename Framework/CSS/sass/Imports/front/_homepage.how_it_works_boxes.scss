@@ -62,11 +62,15 @@ $homepage_how_it_works_box_wrap_size: 170px;
 	
 	position: relative; 
 	float: left;
-	left: 12%; 
+	left: 6.5%; 
 	display: inline-block;
 	color: $dark_blue;
 	letter-spacing: 1px;
-	width: 50%;
+	width: 45%;
+	
+	@media (max-device-width: 1290px) {
+		width: 42%;
+	}
 }
 
 .homepage_how_it_works_box_title {
@@ -85,29 +89,37 @@ $homepage_how_it_works_box_wrap_size: 170px;
 
 .homepage_how_it_works_box_first_image {
 	
-	width: 50%;
-	height: auto; 
+	
+	float: right;
+	display: inline-block;
+	width: 55%;
+	height: auto;
 	position: relative;
-	top: -4px;
-	left: 9px;
+	top: -10px;
+	left: 10px;
 	z-index: 1;
+	
+	
+	@media (max-device-width: 1290px) {
+		
+	}
 }
 
 .homepage_how_it_works_box_second_image {
 	
-	@extend .homepage_how_it_works_box_first_image;
-	top: 11px;
-	width: 44%;
-	padding-left: 4%;
-	padding-right: 2%;
+	position: relative;
+	z-index: 1;
+	height: 84%;
+	left: 2%;	
+	margin-top: -2%; // Chrome bug it dosent notice percentages on top: so we use margin-top
+	width: auto;
 }
 
 .homepage_how_it_works_box_third_image {
 	
 	@extend .homepage_how_it_works_box_first_image;
-	width: 46%;
-	top: 5px;
-	left: 10px;
+	top: 0;
+	left: 0px;
 }
 
 .with-icon-homepage-how-it-works-box-right-arrow {
@@ -134,7 +146,6 @@ $homepage_how_it_works_box_wrap_size: 170px;
 	&:before { 
 		color: $light_blue; 
 		position: relative;
-		top: -35px;
 		font-size: $homepage_how_it_works_box_wrap_size; 
 		content:"}";
 	}

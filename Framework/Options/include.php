@@ -17,6 +17,9 @@
 	 * Happy Coding.
 	 * 
 	 */
+	
+	include 'alpha.tree.type.class.php';
+
 	include_fol( FRAMEWORK . '/Options/Type/');
 	
 	include 'alpha.tree.options.class.php';

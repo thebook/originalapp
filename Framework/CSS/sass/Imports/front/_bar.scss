@@ -4,6 +4,10 @@
 	@include width-model(76%);
 	height: $bar_height;
 	float: left;
+	
+	@media (max-width: to_em(1280)) {
+		@include width-model($breakpoint_bar_width);
+	}
 }
 
 .logo_for_bar { 

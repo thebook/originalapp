@@ -4,6 +4,10 @@
 	float: left;
 	@include width-model(70%);
 	background: $light_gray; 
+	
+	@media (max-width: to_em(1280)) {
+		@include width-model($breakpoint_content_width);
+	}
 }
 
 @import "homepage.extra_box";
