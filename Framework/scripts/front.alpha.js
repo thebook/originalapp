@@ -4,7 +4,8 @@ var alpha = (function ( alpha, $ ) {
 
 		this.track_events_on_this('.wrap', 'click');
 
-		this.front.prototype.parts = {};		
+		this.front.prototype.parts = {};
+		this.front.prototype.parts.book = {};
 
 		this.front.prototype.being = {};		
 		this.front.prototype.being.on_page      = '';
@@ -22,7 +23,7 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.being.first_book_format = 
 			'<div id="book_{(id)}" class="{(wrapper)}">'+
 				'<div class="result_book_search">'+				
-					'<span class="with-icon-info-for-book"></span>'+				
+					'<span data-function-instructions="{\'id\':\'{(id)}\'}" data-function-to-call="front.prototype.open_book_popup" class="with-icon-info-for-book"></span>'+				
 					'<img src="{(image)}" class="result_book_thumbnail_image">'+				
 					'<article class="result_book_search_text">'+
 						'<strong class="result_book_title">{(title)}</strong>'+
@@ -69,7 +70,7 @@ var alpha = (function ( alpha, $ ) {
 					'<div class="store_basket_pop_up_content_item_sell_price">£{(price)}</div>'+
 				'</div>'+
 				'<div data-function-instructions="{\'id\' : \'{(id)}\'}" data-function-to-call="front.prototype.remove_item_from_basket" class="with-icon-x-for-store-basket-pop-up-content-item"></div>'+
-			'</div>';
+			'</div>';		
 
 		this.front.prototype.being.basket.watch( 'items', alpha.front.prototype.display_books );
 		this.front.prototype.being.basket.watch( 'inside', alpha.front.prototype.reorder_basket );
@@ -77,7 +78,143 @@ var alpha = (function ( alpha, $ ) {
 
 		this.front.prototype.search_bar();
 		this.front.prototype.initialize_basket();
+		this.front.prototype.popup_book();
 		this.front.prototype.being.on_page = 'homepage_body_wrap';
+	};
+
+	alpha.front.prototype.popup_book = function () { 
+
+		this.parts.book.popup = {
+			wrap : {
+				self   : ' <div data-function-to-call="front.prototype.close_book_popup" class="search_books_expanded_book_wrap"></div>',
+				branch : {
+					branch : {
+						book : {
+							self   : '<div class="search_books_expanded_book"></div>',
+							branch : {
+								branch : { 
+									close : { 
+										self : '<span data-function-to-call="front.prototype.close_book_popup" class="with-icon-info-close"></span>'
+									},
+									image_wrap : {
+										self   : '<div class="search_books_expanded_image_wrap"></div>',
+										branch : {
+											image : '<img src="" class="search_books_expanded_image">'
+										}
+									},
+									books_text : {
+										self   : '<div class="search_books_expanded_text"></div>',
+										branch : {
+											branch : {
+												title : { 
+													self : '<div class="search_books_expanded_title"></div>'
+												},
+												author : { 
+													self : '<div class="search_books_expanded_author"></div>'
+												},
+												isbn : { 
+													self   : '<div class="search_books_expanded_isbn"></div>',
+													branch : {
+														text : '<span class="search_books_expanded_isbn_highlight">isbn: </span>',
+														isbn : '<span></span>'
+													}
+												},
+												description : {
+													self   : '<div class="search_books_expanded_book_description"></div>',
+													branch : {
+														title : '<div class="search_books_expanded_book_description_title">Book Description</div>',
+														text  : '<div class="search_books_expanded_book_description_text"></div>' 
+													}										
+												},
+												quote : {
+													self   : '<div class="search_books_expanded_book_price">Well Buy For: </div>',
+													branch : {
+														price : '<span class="search_books_expanded_book_price_highlight">£5.30</span>'
+													}
+												},
+												buttons : {
+													self   : '<div class="search_books_expanded_book_add_to_sell_basket_wrap"></div>',
+													branch : {
+														branch : {
+															inner_wrap : {
+																self   : '<div class="search_books_expanded_book_add_to_sell_basket_inner_wrap"></div>',
+																branch : {
+																	branch : {
+																		add_button : {
+																			self   : '<div class="search_books_expanded_book_add_to_sell_basket_button"></div>',
+																			branch : {
+																				text : '<span data-function-instructions="" data-function-to-call="front.prototype.add_to_basket_from_popup" class="search_books_expanded_book_add_to_sell_basket_button_text">Add To Basket</span>'
+																			}
+																		},
+																		add_again_button : {
+																			self   : '<div class="search_books_expanded_book_add_to_sell_basket_add_again_button"></div>',
+																			branch : {
+																				text : '<span data-function-instructions="" data-function-to-call="front.prototype.add_to_basket_from_popup" class="with-icon-added-to-sell-basket-expanded-tick">Add Again?</span>'
+																			}
+																		}}}
+																	}}}}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}				
+			}
+		};
+
+		this.parts.book.popup = alpha.manifest({
+			what_to_manifest : this.parts.book.popup,
+			append_to_who : $('.wrap') 
+		});
+
+		this.parts.book.popup.wrap.self.css({ display : 'none' });
+	};
+
+	alpha.front.prototype.close_book_popup = function (wake) {
+
+		alpha.front.prototype.parts.book.popup.wrap.self.animate({ top: '1000px' }, 400, function () { $(this).css({ display: 'block'}); });
+	};
+
+	alpha.front.prototype.add_to_basket_from_popup = function (wake) {
+		
+		var buttons = alpha.front.prototype.parts.book.popup.wrap.branch.branch.book.branch.branch.books_text.branch.branch.buttons;
+			button  = buttons.branch.branch.inner_wrap.branch.branch;
+
+		alpha.front.prototype.add_a_book_to_basket(wake,
+		function () {
+				
+			if (wake.instructions.add_again === 'false') {
+				button.add_again_button.self.css({ display :'block' });
+				buttons.self.css({ height : button.add_button.self.height() +'px' });
+				buttons.branch.branch.inner_wrap.self.css({ height: '100%', 'float':'left', position:'relative' }).animate({top: '-'+ button.add_button.self.height() +'px' }, 400);
+			}
+		});
+	};
+
+
+	alpha.front.prototype.open_book_popup = function (wake) {
+
+		var popup      = alpha.front.prototype.parts.book.popup,
+			popup_book = popup.wrap.branch.branch.book.branch.branch,
+			book       = alpha.front.prototype.being.basket.items[wake.instructions.id];
+
+			book.description = ( book.editorial_review && book.editorial_review.Content.length > 35? book.editorial_review.Content : "Sorry no given description is available at this time" );
+			popup_book.image_wrap.branch.image.attr('src', book.image);
+			popup_book.books_text.branch.branch.title.self.text(book.title);
+			popup_book.books_text.branch.branch.author.self.text('by '+ book.author);
+			popup_book.books_text.branch.branch.description.branch.text.text(book.description);
+			popup_book.books_text.branch.branch.isbn.branch.isbn.text(book.ISBN);
+			popup_book.books_text.branch.branch.buttons.branch.branch.inner_wrap.branch.branch.add_button.branch.text.attr('data-function-instructions', "{ 'id' : '"+ wake.instructions.id +"', 'add_again' : 'false' }");
+			popup_book.books_text.branch.branch.buttons.branch.branch.inner_wrap.self.css({ position: 'static', top: '0' });
+			popup_book.books_text.branch.branch.buttons.branch.branch.inner_wrap.branch.branch.add_again_button.self.css({ display: 'none' });
+			popup_book.books_text.branch.branch.buttons.branch.branch.inner_wrap.branch.branch.add_again_button.branch.text.attr('data-function-instructions', "{ 'id' : '"+ wake.instructions.id +"', 'add_again' : 'true' }");
+			popup_book.books_text.branch.branch.quote.branch.price.text( '£'+ ( book.price/100 ));
+
+			popup.wrap.self
+			.css({ top : '0px', background: 'transparent', width:'5%', height:'5%', 'font-size':((16/100)*5)+'px', opacity:0, display:'block', margin:'50% 47.5%' })
+			.animate({ width:'100%', height:'100%', 'font-size':'16px', opacity:1, margin:0 }, 300);
 	};
 
 	alpha.front.prototype.page_changer = function (property, old_page, page) {
@@ -293,9 +430,10 @@ var alpha = (function ( alpha, $ ) {
 					lowest_used_price : 'Amount',
 					image             : 'URL',
 					lowest_new_price  : 'Amount',
-					price  			  : 'Amount'
+					price  			  : 'Amount',
+					editorial_review  : 'EditorialReview'
 				});
-				books = alpha.amazon.prototype.remove_books_that_dont_have_given_properties(books, ['image', 'author']);
+				books = alpha.amazon.prototype.remove_books_that_dont_have_given_properties(books, ['image', 'author', 'price']);
 
 				alpha.front.prototype.being.basket.items = books;	
 				alpha.front.prototype.being.on_page = 'body';			

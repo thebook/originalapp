@@ -204,7 +204,7 @@ body {
 .header_invisible_box {
   display: inline-block;
   float: left;
-  width: 26.5%;
+  width: 27.5%;
   margin: 20px 1% 0 0; }
 
 .header_invisible_box_title_logo {
@@ -241,8 +241,7 @@ body {
   font-family: MotorOil;
   font-size: 18px;
   margin-right: 5px;
-  text-transform: uppercase;
-  text-align: right; }
+  text-transform: uppercase; }
 
 .header_invisible_box_text {
   font-size: 15px;
@@ -256,7 +255,7 @@ body {
   margin-right: 20px; }
   .with-icon-down-arrow:before {
     position: relative;
-    top: -11px;
+    top: 0px;
     font-size: 60px;
     color: white;
     content: "-"; }
@@ -1267,6 +1266,8 @@ body {
     position: absolute;
     margin: 4px 0 0 -45px;
     color: #b4d65a; }
+  .with-icon-info-for-book:hover:before {
+    color: #abd146; }
 
 .result_book_thumbnail_image {
   height: 150px;
@@ -1405,26 +1406,50 @@ body {
 .with-icon-add-again:before {
   color: #efefef; }
 
+.search_books_expanded_book_wrap {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  margin: 0 auto;
+  background-color: transparent;
+  z-index: 1;
+  font-size: 16px; }
+
 .search_books_expanded_book {
   width: 58.5%;
-  margin: 67px 0 0;
-  padding: 30px 2%;
-  background: white;
+  margin: 5% 20% 0;
+  padding: 2.3% 2%;
   position: absolute;
-  z-index: 1;
+  background: white;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2); }
 
 .with-icon-info-close {
   float: right;
-  position: relative;
-  left: 3%;
-  top: -26px;
-  cursor: pointer; }
+  position: absolute;
+  top: 1%;
+  left: 94.7%;
+  width: 5%;
+  height: auto;
+  cursor: pointer;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
   .with-icon-info-close:before {
     content: "x";
     color: #b4d65a;
-    font-size: 40px; }
+    font-size: 2.5em; }
+  .with-icon-info-close:hover {
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease; }
+    .with-icon-info-close:hover:before {
+      color: #abd146; }
 
 .search_books_expanded_image_wrap {
   width: 27%;
@@ -1436,22 +1461,32 @@ body {
   width: 100%;
   height: auto; }
 
-.search_books_expanded_title {
-  font-weight: bold;
-  font-size: 24px;
-  color: #555555;
+.search_books_expanded_text {
+  width: 70%;
   display: inline-block;
   float: left; }
 
-.search_books_expanded_author {
+.search_books_expanded_title {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #555555;
   display: inline-block;
-  margin: 6px 0 30px 10px;
+  float: left;
+  width: 100%; }
+
+.search_books_expanded_author {
+  display: block;
+  float: left;
+  clear: both;
+  font-size: 0.875em;
+  margin: 2% 0 5% 2%;
   color: #555555; }
 
 .search_books_expanded_isbn {
   clear: right;
-  margin-bottom: 30px;
-  color: #555555; }
+  margin-bottom: 5%;
+  color: #555555;
+  clear: both; }
 
 .search_books_expanded_isbn_highlight {
   font-weight: bold;
@@ -1460,13 +1495,13 @@ body {
 .search_books_expanded_book_description_title {
   font-weight: bold;
   color: #555555;
-  margin-bottom: 15px; }
+  margin-bottom: 2.5%; }
 
 .search_books_expanded_book_description_text {
   color: #555555;
-  line-height: 20px;
-  font-size: 14px;
-  margin-bottom: 20px; }
+  line-height: 1.25em;
+  font-size: 0.875em;
+  margin-bottom: 3%; }
 
 .search_books_expanded_book_description_see_more {
   color: #9ad9e0;
@@ -1476,25 +1511,65 @@ body {
   color: #555555;
   display: inline-block;
   float: left;
-  margin-top: 10px;
-  font-size: 14px; }
+  margin-top: 2%;
+  width: 40%;
+  font-size: 1em; }
 
 .search_books_expanded_book_price_highlight {
-  font-size: 20px;
-  margin-left: 5px;
+  font-size: 1.25em;
+  margin-left: 1%;
   color: #b4d65a;
   font-weight: bold; }
 
-.search_books_expanded_book_add_to_sell_basket {
-  background: #9ad9e0;
-  padding: 18px 40px;
-  color: white;
-  font-size: 12px;
+.search_books_expanded_book_add_to_sell_basket_wrap {
+  cursor: pointer;
+  font-size: 0.875em;
   float: right;
   letter-spacing: 1px;
   font-family: MotorOil;
   text-transform: uppercase;
-  display: inline-block; }
+  display: inline-block;
+  width: 35%;
+  overflow: hidden;
+  color: white; }
+
+.search_books_expanded_book_add_to_sell_basket_button, .search_books_expanded_book_add_to_sell_basket_add_again_button {
+  float: left;
+  clear: both;
+  width: 100%;
+  background: #9ad9e0;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
+  .search_books_expanded_book_add_to_sell_basket_button:hover, .search_books_expanded_book_add_to_sell_basket_add_again_button:hover {
+    background: #73cad4;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease; }
+
+.search_books_expanded_book_add_to_sell_basket_add_again_button {
+  background: #b4d65a;
+  display: none; }
+  .search_books_expanded_book_add_to_sell_basket_add_again_button:hover {
+    background: #aed34e; }
+
+.search_books_expanded_book_add_to_sell_basket_button_text, .with-icon-added-to-sell-basket-expanded-tick {
+  width: 70%;
+  padding: 0 15%;
+  padding-top: 9%;
+  padding-bottom: 9%;
+  display: block;
+  float: left;
+  text-align: center; }
+
+.with-icon-added-to-sell-basket-expanded-tick:before {
+  content: "t";
+  font-size: 0.8125em;
+  text-transform: lowercase; }
 
 .input_box_body_wrap {
   display: block;

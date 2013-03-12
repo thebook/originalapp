@@ -1,4 +1,4 @@
-@function to_em($pixels) { 
+@function to_em($pixels, $divide_by:16) { 
 
-	@return #{$pixels/16}em
+	@return #{$pixels/$divide_by}em
 }

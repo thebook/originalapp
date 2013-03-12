@@ -6,6 +6,8 @@
 	<meta http-equiv="Content-Typse" content="<?php bloginfo('html_type'); ?>" charset="<?php bloginfo( 'charset' ); ?>" />
 	
 	<title>Recyclabook</title>
+
+	<link rel="shortcut icon" href="<?php echo FRAMEWORKURI .'/CSS/Includes/Works/rfavicon.png'; ?>"/>
 	
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" />
 	
@@ -28,11 +30,17 @@
 	  		ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
 
 		alpha.load_scripts_asynchronously_with_callback(
-			[scripts+"/native.extend.js", scripts+"/front.search.alpha.js", scripts+"/utility.users.js", scripts+"/amazon.js", scripts+"/ticket.alpha.js", scripts+"/front.alpha.js"], 			
+			[
+			 scripts+"/native.extend.js", 
+			 scripts+"/front.search.alpha.js", 
+			 scripts+"/utility.users.js", 
+			 scripts+"/amazon.js", 
+			 scripts+"/ticket.alpha.js", 
+			 scripts+"/front.alpha.js"
+			],
 			function (error, result) { 
 				alpha.front();
 			});
-
 	</script>
 
 </head>

@@ -1,0 +1,201 @@
+.search_books_expanded_book_wrap {
+
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	margin: 0 auto;
+	background-color: transparent; 
+	z-index:1;
+	font-size: (16px/100)*100; 
+}
+
+.search_books_expanded_book {
+	
+	width: 58.5%;
+	margin: 5% 20% 0;
+	padding: 2.3% 2%;
+	position: absolute;
+	background: $light;		
+ 	@include box-shadow( 1px, 1px, 3px, 1px, rgba(0,0,0, 0.2));
+}
+
+.with-icon-info-close { 
+	
+	float: right;
+	position: absolute;
+	top: 1%;
+	left: 94.7%;
+	width: 5%;
+	height: auto;  
+	cursor: pointer;
+	@include transition;
+	&:before { 
+
+		content:"x";
+		color: $green;		
+		font-size: to_em(40); 
+	}
+	&:hover { 
+
+		@include transition;
+		&:before { 
+			color: darken($green, 5%);
+		}
+	}
+}
+
+$search_books_expanded_image_wrap_width: 27%;
+$search_books_expanded_image_wrap_padding: 3%;
+
+.search_books_expanded_image_wrap { 
+
+	width: $search_books_expanded_image_wrap_width;
+	padding: 0 $search_books_expanded_image_wrap_padding 0 0;
+	display: inline-block;
+	float: left;	
+}
+
+.search_books_expanded_image { 
+
+	width: 100%;
+	height: auto;
+}
+
+.search_books_expanded_text { 
+	
+	width: 70%;
+	display: inline-block;
+	float: left;
+}
+
+.search_books_expanded_title { 
+
+	font-weight: bold;
+	font-size: to_em(24);
+	color: $black_gray;
+	display: inline-block;
+	float: left;
+	width: 100%;
+}
+
+.search_books_expanded_author { 
+	
+	display: block;
+	float: left;
+	clear: both;
+	font-size: to_em(14); 
+	margin:2% 0 5% 2%; 
+	color: $black_gray;
+}
+
+.search_books_expanded_isbn {
+
+	clear: right;
+	margin-bottom: 5%;
+	color: $black_gray;
+	clear: both;
+}
+
+.search_books_expanded_isbn_highlight { 
+	
+	font-weight: bold;
+	text-transform: uppercase; 
+}
+
+.search_books_expanded_book_description_title { 
+	
+	font-weight: bold; 
+	color: $black_gray;  
+	margin-bottom: 2.5%;
+}
+
+.search_books_expanded_book_description_text { 
+	
+	color: $black_gray;
+	line-height: to_em(20);
+	font-size: to_em(14); 
+	margin-bottom: 3%;
+}
+
+.search_books_expanded_book_description_see_more { 
+	
+	color: $light_blue;
+	text-transform: lowercase;
+}
+
+.search_books_expanded_book_price { 
+	
+	color: $black_gray;
+	display: inline-block;
+	float: left;
+	margin-top: 2%;
+	width: 40%;
+	font-size: to_em(16);
+}	
+
+.search_books_expanded_book_price_highlight { 
+
+	font-size: to_em(20); 
+	margin-left: 1%;
+	color: $green;
+	font-weight: bold;  
+}
+
+
+.search_books_expanded_book_add_to_sell_basket_wrap {
+	
+	cursor: pointer;
+	font-size: to_em(14); 
+	float: right;
+	letter-spacing: 1px; 
+	font-family: MotorOil;
+	text-transform: uppercase;
+	display: inline-block;
+	width: 35%;
+	overflow: hidden;
+	color: $light;
+}
+
+.search_books_expanded_book_add_to_sell_basket_button { 
+	
+	float: left;
+	clear: both;
+	width: 100%;
+	background: $light_blue;
+	@include transition;
+	
+	&:hover {
+		background: darken($light_blue, 10%); 
+		@include transition;
+	}
+}
+
+.search_books_expanded_book_add_to_sell_basket_add_again_button { 
+	
+	@extend .search_books_expanded_book_add_to_sell_basket_button;
+	background: $green;
+	display: none;
+	
+	&:hover {
+		background: darken($green, 3%); 
+	}
+}
+
+.search_books_expanded_book_add_to_sell_basket_button_text {
+	@include width-model(70%);
+	padding-top: 9%;
+	padding-bottom: 9%;
+	display: block;
+	float: left;
+	text-align: center;
+}
+
+.with-icon-added-to-sell-basket-expanded-tick { 
+	@extend .search_books_expanded_book_add_to_sell_basket_button_text;
+	&:before { 
+		content:"t";
+		font-size: to_em(13);
+		text-transform: lowercase; 
+	}	
+}

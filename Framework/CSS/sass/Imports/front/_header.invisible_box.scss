@@ -2,7 +2,7 @@
 	
 	display: inline-block;
 	float: left;
-	width: 26.5%;
+	width: 27.5%;
 	margin: 20px 1% 0 0;
 }
 
@@ -54,7 +54,6 @@
 	font-size: 18px;
 	margin-right: 5px;
 	text-transform: uppercase;  
-	text-align: right;
 }
 
 .header_invisible_box_text {
@@ -74,7 +73,7 @@
 	&:before { 
 		
 		position: relative;
-		top: -11px;
+		top: 0px;
 		font-size: 60px;
 		color: $light; 
 		content:"-";

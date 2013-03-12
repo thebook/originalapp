@@ -65,7 +65,7 @@ class amazon extends alpha_tree_api
 			'Operation'     => 'ItemSearch',
 			'Keywords'      => "$search_words",
 			'SearchIndex'   => 'Books',
-			'ResponseGroup' => 'Offers, ItemAttributes, Images',
+			'ResponseGroup' => 'Offers, ItemAttributes, Images, EditorialReview',
 			'Condition'     => 'Used'
 		);
 	}
@@ -77,7 +77,7 @@ class amazon extends alpha_tree_api
 			'IdType'        => 'ISBN',
 			'ItemId'        => "$search_number",
 			'SearchIndex'   => 'Books',
-			'ResponseGroup' => 'Offers, ItemAttributes, Images',
+			'ResponseGroup' => 'Offers, ItemAttributes, Images, EditorialReview',
 			'Condition'     => 'Used'
 		);
 	}
@@ -87,7 +87,7 @@ class amazon extends alpha_tree_api
 		$return_array = array();
 
 		foreach ($xml->Items->Item as $item => $attributes) : 
-			
+
 			$return_array[] = 
 				array(
 					'item_links'         => $attributes->ItemLinks,
@@ -104,6 +104,7 @@ class amazon extends alpha_tree_api
 					'title'              => $attributes->ItemAttributes->Title,
 					'lowest_new_price'   => $attributes->OfferSummary->LowestNewPrice,
 					'lowest_used_price'  => $attributes->OfferSummary->LowestUsedPrice,
+					'editorial_review'   => $attributes->EditorialReviews,
 					'ASIN' 				 => $attributes->ASIN
 				);
 

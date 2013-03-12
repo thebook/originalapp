@@ -416,40 +416,7 @@
 
 		</div> -->
 		
-		<!-- Pop out book -->
-		<!-- <div class="search_books_expanded_book">
-
-			<span class="with-icon-info-close"></span>
-
-			<div class="search_books_expanded_image_wrap">
-				<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="search_books_expanded_image">
-			</div>
-
-			<div class="search_books_expanded_text">
-				<div class="search_books_expanded_title">Jaggernath</div>
-				<div class="search_books_expanded_author">by Karla Tidberck</div>
-				<div class="search_books_expanded_isbn"><span class="search_books_expanded_isbn_highlight">isbn: </span>0239 2309 2310 20</div>
-
-				<div class="search_books_expanded_book_description">
-					<div class="search_books_expanded_book_description_title">Book Description</div>
-					<div class="search_books_expanded_book_description_text">
-						We walked thourgh the air those days, thousand and thousand of miles, upon the rocky cliff
-						where once upon we met, i smelled the dew still fresh within your hair, as i held you in my 
-						arms lost within the intoxicating aromas of your skin; "Oh, Lousie how i loved to hold you so"
-						i exclamed, and then from began to transform... <span class="search_books_expanded_book_description_see_more">See More</span>
-					</div>
-				</div>
-
-				<div class="search_books_expanded_book_price">
-					Well Buy For:
-					<span class="search_books_expanded_book_price_highlight">£5.30</span>
-				</div>
-
-				<div class="search_books_expanded_book_add_to_sell_basket">Add To Sell Basket</div>
-
-			</div>
-
-		</div> -->
+		
 		
 		<!-- A result book -->
 		<!-- <div class="result_book_search_wrapper_left">
@@ -548,5 +515,49 @@
 	</section>
 
 	<section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section>
+
+	<!-- Pop out book -->
+		<!-- <div class="search_books_expanded_book_wrap">
+			<div class="search_books_expanded_book">
+
+				<span class="with-icon-info-close"></span>
+
+				<div class="search_books_expanded_image_wrap">
+					<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="search_books_expanded_image">
+				</div>
+
+				<div class="search_books_expanded_text">
+					<div class="search_books_expanded_title">Jaggernath</div>
+					<span class="search_books_expanded_author">by Karla Tidberck</span>
+					<div class="search_books_expanded_isbn"><span class="search_books_expanded_isbn_highlight">isbn: </span>0239 2309 2310 20</div>
+
+					<div class="search_books_expanded_book_description">
+						<div class="search_books_expanded_book_description_title">Book Description</div>
+						<div class="search_books_expanded_book_description_text">
+							We walked thourgh the air those days, thousand and thousand of miles, upon the rocky cliff
+							where once upon we met, i smelled the dew still fresh within your hair, as i held you in my 
+							arms lost within the intoxicating aromas of your skin; "Oh, Lousie how i loved to hold you so"
+							i exclamed, and then from began to transform... <span class="search_books_expanded_book_description_see_more">See More</span>
+						</div>
+					</div>
+
+					<div class="search_books_expanded_book_price">
+						Well Buy For:
+						<span class="search_books_expanded_book_price_highlight">£5.30</span>
+					</div>
+
+					<div class="search_books_expanded_book_add_to_sell_basket_wrap">
+						<div data-function-instructions="{\'id\':\'{(id)}\'}" data-sfunction-to-call="front.prototype.add_to_basket" class="search_books_expanded_book_add_to_sell_basket_button">
+							<span class="search_books_expanded_book_add_to_sell_basket_button_text">Add To Basket</span>
+						</div>
+						<div class="search_books_expanded_book_add_to_sell_basket_add_again_button">
+							<span class="with-icon-added-to-sell-basket-expanded-tick">Add Again?</span>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div> -->
 
 <?php get_footer(); ?>
