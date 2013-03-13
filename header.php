@@ -27,11 +27,13 @@
 
 	<script>	  
 	  	var scripts = "<?php echo FRAMEWORKURI .'/scripts'; ?>",
+	  		frameworkuri = "<?php echo FRAMEWORKURI; ?>",
 	  		ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
 
 		alpha.load_scripts_asynchronously_with_callback(
 			[
 			 scripts+"/native.extend.js", 
+			 scripts+"/front.recyclabus.alpha.js", 
 			 scripts+"/front.search.alpha.js", 
 			 scripts+"/utility.users.js", 
 			 scripts+"/amazon.js", 

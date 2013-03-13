@@ -9,6 +9,7 @@
 @import "Imports/mixins/transition";
 @import "Imports/mixins/font.import";
 @import "Imports/mixins/media.query";
+@import "Imports/mixins/arrow";
 
 $url: #{"<?php echo get_template_directory_uri(); ?>"};
 $bar_height: 52px;
@@ -23,6 +24,8 @@ $black_gray: #555;
 $light: #fff;
 $dark_blue: #3f7986;
 
+$width: 64%;
+$content_width: 70%;
 $breakpoint_content_width: 79%;
 $breakpoint_bar_width: 86%;
 
@@ -67,6 +70,7 @@ body {
 @import "Imports/front/header";
 @import "Imports/front/bar";
 @import "Imports/front/homepage";
+@import "Imports/front/recyclabus";
 @import "Imports/front/sales";
 @import "Imports/front/search.book";
 @import "Imports/front/user";

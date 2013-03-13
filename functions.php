@@ -31,14 +31,6 @@ new admin(
 		'definition' => FRAMEWORK .'/Definitions/admin.definition.php'
 		));
 
-// new meta(
-// 	array( 
-// 		'id' => 'lf-post-meta',
-// 		'class' => 'lf-admin-post-meta-td',
-// 		'default_type' => 'meta', 
-// 		'definition' => FRAMEWORK .'/Definitions/meta_boxes.definition.php'
-// 		));
-
 $user = new branch_users_database( 
 	array(
 		'id' => 'lf-users',
@@ -64,6 +56,6 @@ $amazon = new amazon(
 		'region'               => 'co.uk'
 	));
 
-new tickets( FRAMEWORK .'/Definitions/ticket.definition.php');		
+new tickets( FRAMEWORK .'/Definitions/ticket.definition.php');
 
 ?>

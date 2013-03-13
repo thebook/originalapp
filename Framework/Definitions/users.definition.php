@@ -66,19 +66,33 @@
 									'required'         => 1,
 									'field_input_type' => 'smalltext' ),
 								array(
-									'field_name'       => 'user_name',
-									'description'      => 'Description for user name',
-									'help_them_along'  => 'Help for user name',
-									'is_unique'        => 1,
-									'required'         => 1,
-									'field_input_type' => 'smalltext' ),
-								array(
 									'field_name'       => 'e_mail',
 									'description'      => 'Description for second name',
 									'help_them_along'  => 'This be help for email',
 									'is_unique'        => 1,
 									'required'         => 1,
-									'field_input_type' => 'email' )
+									'field_input_type' => 'email' ),
+								array(
+									'field_name'       => 'password',
+									'description'      => 'Description for second name',
+									'help_them_along'  => 'This be help for email',
+									'is_unique'        => 1,
+									'required'         => 1,
+									'field_input_type' => 'smalltext' ),
+								array(
+									'field_name'       => 'address',
+									'description'      => 'Description for second name',
+									'help_them_along'  => 'This be help for email',
+									'is_unique'        => 0,
+									'required'         => 1,
+									'field_input_type' => 'smalltext' ),
+								array(
+									'field_name'       => 'university',
+									'description'      => 'Description for second name',
+									'help_them_along'  => 'This be help for email',
+									'is_unique'        => 0,
+									'required'         => 0,
+									'field_input_type' => 'smalltext' )
 							)),
 				'opt' => 
 					array(

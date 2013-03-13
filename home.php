@@ -100,6 +100,8 @@
 			
 		<!-- Navigation  -->
 		<div data-function-instructions="{'page' : 'homepage_body_wrap' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active">How It Works</div>
+
+		<div data-function-instructions="{'page' : 'recyclabus' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active">Recyclabus</div>
 		<!-- <div class="navigation_text_for_bar">Recyclabus</div> -->
 
 		<!-- User registration or sign in button -->
@@ -136,7 +138,7 @@
 
 	</section>
 
-	<secton class="homepage_body_wrap pages">
+	<section class="homepage_body_wrap pages">
 		
 		<div class="homepage_extra_text_box_first">
 			<div class="with-icon-arrow-for-extra-text-box"></div>
@@ -232,7 +234,61 @@
 			<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recyclabus.png'; ?>"class="homepage_recyclabus_box_image">
 		</div>
 
-	</secton>
+	</section>
+
+	<section class="recyclabus pages">
+		<div class="recyclabus_half_left">
+			<div class="recyclabus_title">Recycla <span class="recyclabus_title_highlight">Bus</span></div>
+			<div class="recyclabus_title_description">The idea of Recyclabus is to make it as simple as possible for you to sell your textbooks.</div>
+			<div class="recyclabus_description_box">
+				<div class="recyclabus_description_box_title">What is recyclabus?</div>
+				<div class="recyclabus_description_box_paragraph">Eeach Recyclabus will be manned by one of our book buyers, ready with a barcode scanner to scan your books and pay your instantly.</div>
+				<div class="recyclabus_description_box_paragraph">The bus will be coming to your university towords the end of your exams, we'll be accepting over 1 million titles, so please visit this page nearer the time so you dont miss the bus and don't miss getting some money for the books you no longer need.</div>
+				<div class="recyclabus_description_box_white_paragraph">On the day of the event we'll also have lots of exciting giveaways, so stay tuned to whats going on and what were giving away.</div>
+			</div>
+		</div>
+		<div class="recyclabus_half">
+			<div class="recyclabus_half_dates_wrap">
+				<div class="recyclabus_dates_wrap">
+					<div class="recyclabus_dates_level_one">
+						<div class="recyclabus_dates_level_one_text_wrap">
+							<div class="recyclabus_dates_title_one">Dates</div>
+							<div class="recyclabus_dates_title_two">Released On</div>
+						</div>
+						<div class="recyclabus_dates_icon"><img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/calendar.png'; ?>"></div>
+					</div>
+					<div class="recyclabus_dates_level_two">
+						<div class="recyclabus_dates_title_three">1<span class="recyclabus_dates_title_three_superscript">st.</span></div>
+						<div class="recyclabus_dates_title_four">April</div>
+					</div>
+				</div>
+				<div class="recyclabus_dates_highlight">If you give us your email and uni well send you a reminder when were coming your way</div>
+				<div class="recyclabus_dates_input_wrap">
+					<input type="text" class="recyclabus_dates_first_input" placeholder="Email">
+					<input type="text" class="recyclabus_dates_seach_input" placeholder="University">
+					<div class="recyclabus_dates_input_text"><strong class="with-icon-lock-for-strong">Dont worry,</strong> well only use this information to remind you when you can sell your books</div>
+				</div>
+				<div class="recyclabus_dates_button_wrap">
+					<div class="recyclabus_dates_inner_wrap">
+						<div class="recyclabus_dates_first_button">Notify me about recyclabus</div>
+						<div class="recyclabus_dates_second_button">Thank you for signing up</div>
+					</div>
+				</div>
+			</div>
+			<div class="with-icon-dates-down-arrow"></div>
+			<div class="recyclabus_dates_extra_box">
+				<div class="with-icon-dates-clock"></div>
+				<div class="recyclabus_dates_extra_text_wrap">
+					<div class="recyclabus_dates_extra_text_title">No Time To Lose?</div>
+					<div class="recyclabus_dates_extra_text">
+						Check out how to sell by freepost and sell to us now
+						<div class="recyclabus_dates_extra_text_icon"><span class="with-icon-recyclabus-dates-extra-text"></span></div>					
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</section>
 	
 	<!-- User registration -->
 	<!-- <section class="input_box_body_wrap">  -->
@@ -332,189 +388,9 @@
 
 	<!-- </section> -->
 
-	<section class="body pages">
-		
-		<!-- Price checker -->
-		<!-- <div class="price_selection">
-			
-			<div class="price_selection_quote">Quote</div>
-			
-			<div class="price_selection_selection">
-				<span class="price_selection_box">
-					<span class="with-icon-selection-tick"></span>
-				</span>
-				<span class="price_selection_text">Freepost</span>
-			</div>
+	<section class="body pages"></section>
 
-			<div class="price_selection_selection">
-				<span class="price_selection_box"></span>
-				<span class="price_selection_text">Recyclabus</span>
-			</div>
-		</div> -->	
-
-		<!-- Books description title -->
-		<!-- <div class="search_books_description_title">		
-
-			<span class="with-icon-description-title-thumbs-up"></span>
-			<span class="search_books_description_title_text">Our price promise guaranteed</span>
-
-			<div class="sell_and_buy_basket">
-				<div id="buy_basket" class="basket_stats"><span class="sell_basket_text">Sell : </span><span class="sell_basket_number">0</span></div>
-			</div>
-		</div> -->
-
-		<!-- <div class="store_basket_pop_up">
-			<div class="with-icon-store-basket-pop-up-arrow"></div>
-			
-			<div class="store_basket_pop_up_content">				
-				<div class="store_basket_pop_up_content_items_wrap">
-					
-					<div class="store_basket_pop_up_content_item">
-						<div class="store_basket_pop_up_content_item_thumbnail"><img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" alt=""></div>
-						<div class="store_basket_pop_up_content_item_title">Jaggarnath</div>
-						<div class="store_basket_pop_up_content_item_author">by Kemery Mcgee</div>
-						<div class="store_basket_pop_up_content_item_isbn_wrap">
-							<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>
-							<div class="store_basket_pop_up_content_item_isbn">0293239219</div>
-						</div>
-						<div class="store_basket_pop_up_content_item_sell_price_wrap">
-							<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>
-							<div class="store_basket_pop_up_content_item_sell_price">£12.00</div>
-						</div>
-						<div class="with-icon-x-for-store-basket-pop-up-content-item"></div>
-					</div>
-
-					<div class="store_basket_pop_up_content_item">
-						<div class="store_basket_pop_up_content_item_thumbnail"><img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" alt=""></div>
-						<div class="store_basket_pop_up_content_item_title">Jaggarnath</div>
-						<div class="store_basket_pop_up_content_item_author">by Kemery Mcgee</div>
-						<div class="store_basket_pop_up_content_item_isbn_wrap">
-							<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>
-							<div class="store_basket_pop_up_content_item_isbn">0293239219</div>
-						</div>
-						<div class="store_basket_pop_up_content_item_sell_price_wrap">
-							<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>
-							<div class="store_basket_pop_up_content_item_sell_price">£12.00</div>
-						</div>
-						<div class="with-icon-x-for-store-basket-pop-up-content-item"></div>
-					</div>
-
-				</div>
-
-				<div class="store_basket_pop_up_content_total_wrap">
-					<div class="store_basket_pop_up_content_total_text">Total:</div>
-					<div class="store_basket_pop_up_content_total_number">£12.00</div>
-				</div>
-			</div>
-
-			<div class="store_basket_pop_up_button_wrap">
-				<div class="store_basket_pop_up_button_second">Convert To Recyclabus Quote</div>
-				<div class="store_basket_pop_up_button_first">Check And Continue</div>
-			</div>
-
-			<div class="store_basket_pop_up_text">Currently showing freepost prices</div>
-
-		</div> -->
-		
-		
-		
-		<!-- A result book -->
-		<!-- <div class="result_book_search_wrapper_left">
-			<div class="result_book_search_added">
-				
-				<span class="with-icon-info-for-book"></span>
-				
-				<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="result_book_thumbnail_image">
-				
-				<article class="result_book_search_text">
-					<strong class="result_book_title">Jaggarenath</strong>
-					<div class="result_book_author">by Karla Talb..</div>
-					<div class="result_book_price_wrap">
-						<span class="result_book_price_text">Sell for -</span>
-						<storng class="result_book_price">£5.30</storng>
-					</div>
-				</article>
-				
-				<div class="result_book_add_button">
-					<span class="with-icon-added-to-sell-basket-tick">
-						Added To Basket
-					</span>
-				</div>
-
-			</div>
-			
-			<div class="result_book_extra_options_buttons">
-
-				<span class="result_book_added_book_sell_button">
-					<span class="with-icon-sell-now-arrow"></span>
-					Sell now?
-				</span>
-
-				<span class="result_book_added_book_add_again_button">
-					<span class="with-icon-add-again"></span>
-					Add again+
-				</span>
-
-			</div>
-		</div> -->
-		
-		<!-- Middle wrapper -->
-		<!-- <div class="result_book_search_wrapper">
-			<div class="result_book_search">
-
-				<span class="with-icon-info-for-book"></span>
-
-				<img src="http://www.tangentbooks.co.uk/product_images/a/short_story_vol2__99344.jpg" class="result_book_thumbnail_image">
-
-				<article class="result_book_search_text">
-					<strong class="result_book_title">Bristol Short S...</strong>
-					<div class="result_book_author">by Guy Mcgee</div>
-					<div class="result_book_price_wrap">
-						<span class="result_book_price_text">Sell for -</span>
-						<storng class="result_book_price">£7.80</storng>
-					</div>
-				</article>
-
-				<div class="result_book_add_button_wrap">
-					<div class="result_book_add_button">
-						<span class="result_book_add_button_text">
-							Add To Sell Basket
-						</span>
-					</div>
-					<div class="result_book_add_button_static">
-						<span class="with-icon-added-to-sell-basket-tick">
-							Added To Basket
-						</span>
-					</div>
-				</div>
-
-			</div>
-		</div> -->
-		
-		<!-- Last wrapper -->
-		<!-- <div class="result_book_search_wrapper_right">
-			<div class="result_book_search">
-
-				<span class="with-icon-info-for-book"></span>
-
-				<img src="http://1.bp.blogspot.com/_nXknRDZBs0E/STIHwAsUmwI/AAAAAAAACfA/hkB8fkCiGY0/s400/tongue.jpg" class="result_book_thumbnail_image">
-
-				<article class="result_book_search_text">
-					<strong class="result_book_title">The Mayors</strong>
-					<div class="result_book_author">by Nathaniel..</div>
-					<div class="result_book_price_wrap">
-						<span class="result_book_price_text">Sell for -</span>
-						<storng class="result_book_price">£5.80</storng>
-					</div>
-				</article>
-
-				<div class="result_book_add_button"><span class="result_book_add_button_text">Add To Sell Basket</span></div>
-			</div>
-		</div> -->
-
-	</section>
-
-	<section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section>
+	<!-- <section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section> -->
 
 	<!-- Pop out book -->
 		<!-- <div class="search_books_expanded_book_wrap">

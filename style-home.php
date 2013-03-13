@@ -7,17 +7,7 @@
 		<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhoncc.png'; ?>" class="header_image">
 
 		<div class="header_wrap">
-			<div class="header_text_box">
-				<div class="with-icon-header-text-box-arrow"></div>
-				<div class="header_text_box_title">How <span class="header_text_box_title_highlight">much</span> is <span class="header_text_box_title_highlight">your</span> book <span class="header_text_box_title_highlight">worth?</span></div>
-				<div class="header_text_box_text">use a comma "," to search for more than one book</div>
-				<div class="header_text_box_input">	
-					<div class="header_field_for_input">
-						<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">
-					</div>
-					<div class="header_button_for_input"><span data-function-instruction="{'type':'header'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-header-search"></span></div>
-				</div>
-			</div>
+			
 			<div class="header_invisible_box">
 				<div class="header_invisible_box_title_wrap">
 					<div class="header_invisible_box_title_logo"><span class="with-icon-invisible-title-logo"></span></div>
@@ -29,6 +19,18 @@
 				</div>
 				<div class="with-icon-down-arrow"></div>
 			</div>
+
+			<div class="header_text_box">
+				<div class="header_text_box_title">How <span class="header_text_box_title_highlight">much</span> is <br/><span class="header_text_box_title_highlight">your</span> book <span class="header_text_box_title_highlight">worth?</span></div>
+				<div class="header_text_box_text">use a comma "," to search for more than one book</div>
+				<div class="header_text_box_input">	
+					<div class="header_field_for_input">
+						<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">
+					</div>
+					<span data-function-instruction="{'type':'header'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-header-search"></span>
+				</div>
+			</div>
+			<div class="with-icon-header-text-box-arrow"></div>
 
 		</div>
 
@@ -98,13 +100,15 @@
 			
 		<!-- Navigation  -->
 		<div data-function-instructions="{'page' : 'homepage_body_wrap' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active">How It Works</div>
+
+		<div data-function-instructions="{'page' : 'recyclabus' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active">Recyclabus</div>
 		<!-- <div class="navigation_text_for_bar">Recyclabus</div> -->
 
 		<!-- User registration or sign in button -->
 		<!-- <div class="button_for_user">
 			<span class="with-icon-user"></span>
 			<span class="with-icon-user-arrow"></span>
-		</div>	 -->	
+		</div>		 -->
 
 		<!-- Search Input -->
 		<!-- <div class="input_for_bar">	
@@ -151,20 +155,7 @@
 				We have <strong>2 easy ways</strong> for you to sell your books, Freepost or our innovotive Recyclabus.
 				<strong>and here is how they both work.</strong>
 			</div>
-		</div>
-
-		<div class="homepage_extra_text_box_suggestions">
-			<div class="homepage_extra_text_box_suggestions_background">
-				<!-- <div class="with-icon-for-suggestion-box-large-circle"></div> -->
-				<!-- <div class="with-icon-for-suggestion-box-small-circle"></div> -->
-				<div class="with-icon-for-suggestion-box-left"></div>
-				<div class="with-icon-for-suggestion-box-right"></div>
-			</div>
-			<div class="homepage_extra_text_box_suggestions_text_wrap">
-				<div class="homepage_extra_text_box_suggestions_title">any suggestions?</div>
-				<div class="homepage_extra_text_box_suggestions_text">talk@recyclabook.co.uk</div>
-			</div>
-		</div>
+		</div>	
 
 		<div class="homepage_how_it_works_boxes_wrap">
 
@@ -176,22 +167,29 @@
 						<div class="homepage_how_it_works_text">find your books and add them to the sell basket</div>
 					</div>
 					<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/type.png'; ?>" class="homepage_how_it_works_box_first_image">
-					<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
 				</div>
+				<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
 				<div class="homepage_how_it_works_box_button">Where is My ISBN <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
 			</div>
 
 			<div class="homepage_how_it_works_box_wrap">
+				
 				<div class="homepage_how_it_works_box">
+				
 					<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>
+					
 					<div class="with-icon-homepage-how-it-works-box-number-two"></div>
+					
 					<div class="homepage_how_it_works_box_text_wrap">
 						<div class="homepage_how_it_works_box_title">Freepost<br/>Your Books</div>
 						<div class="homepage_how_it_works_text">we send you a freepost pack and<br/> you send us your books</div>
 					</div>
+				
 					<img  src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/letter.png'; ?>" class="homepage_how_it_works_box_second_image">
-					<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
+				
 				</div>
+
+				<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
 				<div class="homepage_how_it_works_box_button">Freepost Options <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
 			</div>
 
@@ -213,7 +211,7 @@
 		<div class="with-icon-or-sticker-recyclabus"></div>
 		<div class="homepage_recyclabus_box_wrap">
 			<div class="homepage_recyclabus_box_title">
-				Use Recycla<span class="homepage_recyclabus_box_title_color">Bus</span>
+				Recycla<span class="homepage_recyclabus_box_title_color">Bus</span>
 			</div>
 			<div class="homepage_recyclabus_box_text_wrap">
 				<div class="homepage_recyclabus_box_point">
@@ -237,6 +235,60 @@
 		</div>
 
 	</secton>
+
+	<secton class="recyclabus pages">
+		<div class="recyclabus_half_left">
+			<div class="recyclabus_title">Recycla <span class="recyclabus_title_highlight">Bus</span></div>
+			<div class="recyclabus_title_description">The idea of Recyclabus is to make it as simple as possible for you to sell your textbooks.</div>
+			<div class="recyclabus_description_box">
+				<div class="recyclabus_description_box_title">What is recyclabus?</div>
+				<div class="recyclabus_description_box_paragraph">Eeach Recyclabus will be manned by one of our book buyers, ready with a barcode scanner to scan your books and pay your instantly.</div>
+				<div class="recyclabus_description_box_paragraph">The bus will be coming to your university towords the end of your exams, we'll be accepting over 1 million titles, so please visit this page nearer the time so you dont miss the bus and don't miss getting some money for the books you no longer need.</div>
+				<div class="recyclabus_description_box_white_paragraph">On the day of the event we'll also have lots of exciting giveaways, so stay tuned to whats going on and what were giving away.</div>
+			</div>
+		</div>
+		<div class="recyclabus_half">
+			<div class="recyclabus_half_dates_wrap">
+				<div class="recyclabus_dates_wrap">
+					<div class="recyclabus_dates_level_one">
+						<div class="recyclabus_dates_level_one_text_wrap">
+							<div class="recyclabus_dates_title_one">Dates</div>
+							<div class="recyclabus_dates_title_two">Released On</div>
+						</div>
+						<div class="recyclabus_dates_icon"><img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/calendar.png'; ?>"></div>
+					</div>
+					<div class="recyclabus_dates_level_two">
+						<div class="recyclabus_dates_title_three">1<span class="recyclabus_dates_title_three_superscript">st.</span></div>
+						<div class="recyclabus_dates_title_four">April</div>
+					</div>
+				</div>
+				<div class="recyclabus_dates_highlight">If you give us your email and uni well send you a reminder when were coming your way</div>
+				<div class="recyclabus_dates_input_wrap">
+					<input type="text" class="recyclabus_dates_first_input" placeholder="Email">
+					<input type="text" class="recyclabus_dates_seach_input" placeholder="University">
+					<div class="recyclabus_dates_input_text"><strong class="with-icon-lock-for-strong">Dont worry,</strong> well only use this information to remind you when you can sell your books</div>
+				</div>
+				<div class="recyclabus_dates_button_wrap">
+					<div class="recyclabus_dates_inner_wrap">
+						<div class="recyclabus_dates_first_button">Notify me about recyclabus</div>
+						<div class="recyclabus_dates_second_button">We've got your back :)</div>
+					</div>
+				</div>
+			</div>
+			<div class="with-icon-dates-down-arrow"></div>
+			<div class="recyclabus_dates_extra_box">
+				<div class="with-icon-dates-clock"></div>
+				<div class="recyclabus_dates_extra_text_wrap">
+					<div class="recyclabus_dates_extra_text_title">No Time To Lose?</div>
+					<div class="recyclabus_dates_extra_text">
+						Check out how to sell by freepost and sell to us now
+						<div class="recyclabus_dates_extra_text_icon"><span class="with-icon-recyclabus-dates-extra-text"></span></div>					
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</section>
 	
 	<!-- User registration -->
 	<!-- <section class="input_box_body_wrap">  -->
@@ -420,40 +472,7 @@
 
 		</div> -->
 		
-		<!-- Pop out book -->
-		<!-- <div class="search_books_expanded_book">
-
-			<span class="with-icon-info-close"></span>
-
-			<div class="search_books_expanded_image_wrap">
-				<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="search_books_expanded_image">
-			</div>
-
-			<div class="search_books_expanded_text">
-				<div class="search_books_expanded_title">Jaggernath</div>
-				<div class="search_books_expanded_author">by Karla Tidberck</div>
-				<div class="search_books_expanded_isbn"><span class="search_books_expanded_isbn_highlight">isbn: </span>0239 2309 2310 20</div>
-
-				<div class="search_books_expanded_book_description">
-					<div class="search_books_expanded_book_description_title">Book Description</div>
-					<div class="search_books_expanded_book_description_text">
-						We walked thourgh the air those days, thousand and thousand of miles, upon the rocky cliff
-						where once upon we met, i smelled the dew still fresh within your hair, as i held you in my 
-						arms lost within the intoxicating aromas of your skin; "Oh, Lousie how i loved to hold you so"
-						i exclamed, and then from began to transform... <span class="search_books_expanded_book_description_see_more">See More</span>
-					</div>
-				</div>
-
-				<div class="search_books_expanded_book_price">
-					Well Buy For:
-					<span class="search_books_expanded_book_price_highlight">£5.30</span>
-				</div>
-
-				<div class="search_books_expanded_book_add_to_sell_basket">Add To Sell Basket</div>
-
-			</div>
-
-		</div> -->
+		
 		
 		<!-- A result book -->
 		<!-- <div class="result_book_search_wrapper_left">
@@ -551,6 +570,50 @@
 
 	</section>
 
-	<section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section>
+	<!-- <section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section> -->
+
+	<!-- Pop out book -->
+		<!-- <div class="search_books_expanded_book_wrap">
+			<div class="search_books_expanded_book">
+
+				<span class="with-icon-info-close"></span>
+
+				<div class="search_books_expanded_image_wrap">
+					<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="search_books_expanded_image">
+				</div>
+
+				<div class="search_books_expanded_text">
+					<div class="search_books_expanded_title">Jaggernath</div>
+					<span class="search_books_expanded_author">by Karla Tidberck</span>
+					<div class="search_books_expanded_isbn"><span class="search_books_expanded_isbn_highlight">isbn: </span>0239 2309 2310 20</div>
+
+					<div class="search_books_expanded_book_description">
+						<div class="search_books_expanded_book_description_title">Book Description</div>
+						<div class="search_books_expanded_book_description_text">
+							We walked thourgh the air those days, thousand and thousand of miles, upon the rocky cliff
+							where once upon we met, i smelled the dew still fresh within your hair, as i held you in my 
+							arms lost within the intoxicating aromas of your skin; "Oh, Lousie how i loved to hold you so"
+							i exclamed, and then from began to transform... <span class="search_books_expanded_book_description_see_more">See More</span>
+						</div>
+					</div>
+
+					<div class="search_books_expanded_book_price">
+						Well Buy For:
+						<span class="search_books_expanded_book_price_highlight">£5.30</span>
+					</div>
+
+					<div class="search_books_expanded_book_add_to_sell_basket_wrap">
+						<div data-function-instructions="{\'id\':\'{(id)}\'}" data-sfunction-to-call="front.prototype.add_to_basket" class="search_books_expanded_book_add_to_sell_basket_button">
+							<span class="search_books_expanded_book_add_to_sell_basket_button_text">Add To Basket</span>
+						</div>
+						<div class="search_books_expanded_book_add_to_sell_basket_add_again_button">
+							<span class="with-icon-added-to-sell-basket-expanded-tick">Add Again?</span>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div> -->
 
 <?php get_footer(); ?>

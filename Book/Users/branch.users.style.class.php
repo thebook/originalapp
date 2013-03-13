@@ -11,6 +11,32 @@ class branch_users_style extends alpha_tree_users
 		parent::__construct($creation_paramaters);
 		add_action("wp_ajax_save_user_field", array( $this, 'save_user_field' ));
 		add_action("wp_ajax_remove_user", array( $this, 'user_remove' ));
+		add_action("wp_ajax_create_sub_user", array( $this, 'create_sub_user' ));
+	}
+
+	public function make_default_template_for_user_insertion ()
+	{
+		$creator = new table_creator; 
+		$fields  = $creator->get_all_rows_from_table($this->params['manifestation']['create_table']['name'] .'_fields_data');
+		$preset_fields = array();
+
+		foreach ($fields as $field) {
+			$preset_fields[$field['field_name']] = '';
+		}
+
+		return $preset_fields;
+	}
+
+	public function create_sub_user ()
+	{
+		$temporary_user = $_POST['user_information'];
+		$template       = $this->make_default_template_for_user_insertion();
+		$temporary_user = array_merge($template, $temporary_user);
+		$creator        = new table_creator; 
+		$creator->add_row_to_table($this->params['manifestation']['create_table']['name'], $temporary_user );
+		echo json_encode(array('passed' => true ));
+
+		exit;
 	}
 
 	public function save_user_field ()

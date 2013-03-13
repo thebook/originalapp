@@ -6,10 +6,10 @@ set working_theme=%CD%
  
 :: Copy
 echo.Copying %CD%
-robocopy %CD% ../theme /S /XF *.gitignore *.scss *.scssc *.sublime-project *.sublime-workspace /XD .git .sass-cache sass
+robocopy "%CD%" \Users\Cikica.Stefan-PC/Desktop/recyclabook /S /XF *.gitignore *.scss *.scssc *.sublime-project *.sublime-workspace /XD .git .sass-cache sass
 
-cd \
-cd C:\Users\Cikica.Stefan-PC/Desktop/recyclabook/
+::cd \
+::cd C:\Users\Cikica.Stefan-PC/Desktop/recyclabook/
  
 :: Zip
 ::echo.Zipping Theme
@@ -17,7 +17,7 @@ cd C:\Users\Cikica.Stefan-PC/Desktop/recyclabook/
  
 ::winrar a -afzip -r "../whitewhale"
  
-cd %working_theme%
+cd \%working_theme%
  
 endlocal
  

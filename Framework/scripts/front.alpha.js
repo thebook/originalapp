@@ -1,9 +1,11 @@
 var alpha = (function ( alpha, $ ) {
 
+	// if (alpha.front && alpha.front.constructor === Function ) var old_front_prototype = alpha.front.prototype;
+
 	alpha.front = function () { 
 
 		this.track_events_on_this('.wrap', 'click');
-
+		
 		this.front.prototype.parts = {};
 		this.front.prototype.parts.book = {};
 
@@ -77,6 +79,7 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.being.watch( 'on_page', alpha.front.prototype.page_changer );
 
 		this.front.prototype.search_bar();
+		this.recyclabus();
 		this.front.prototype.initialize_basket();
 		this.front.prototype.popup_book();
 		this.front.prototype.being.on_page = 'homepage_body_wrap';

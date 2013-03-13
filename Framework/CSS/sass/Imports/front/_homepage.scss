@@ -2,7 +2,7 @@
 		
 	display: block;
 	float: left;
-	@include width-model(70%);
+	@include width-model($content_width);
 	background: $light_gray; 
 	
 	@media (max-width: to_em(1280)) {
