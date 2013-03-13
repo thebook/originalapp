@@ -1,13 +1,24 @@
+.bar_outer_wrap {
+
+	width: 100%;
+	float: left;
+	background: $light; 
+}
+
 .bar {
 
-	background: $light;
-	@include width-model(76%);
+	width: $the_bar_width;
+	margin: 0 auto;
 	height: $bar_height;
-	float: left;
+	@include pie-clearfix;
+
+}
+
+.bar_wrap_inner_wrap { 
 	
-	@media (max-width: to_em(1280)) {
-		@include width-model($breakpoint_bar_width);
-	}
+	width: 100%;
+	float: left;
+	background: $light; 
 }
 
 .logo_for_bar { 

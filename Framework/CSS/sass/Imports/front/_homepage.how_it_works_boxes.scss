@@ -131,8 +131,9 @@ $homepage_how_it_works_box_wrap_size: 170px;
 	&:before { 
 		color: $light_blue; 
 		position: relative;
+		top: 1px;
 		left: -14px;
-		font-size: $homepage_how_it_works_box_wrap_size; 
+		font-size: 170px; 
 		content:")";
 	}
 }
@@ -146,6 +147,7 @@ $homepage_how_it_works_box_wrap_size: 170px;
 	&:before { 
 		color: $light_blue; 
 		position: relative;
+		left: -1px;
 		font-size: $homepage_how_it_works_box_wrap_size; 
 		content:"}";
 	}

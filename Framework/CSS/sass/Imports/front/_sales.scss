@@ -1,9 +1,10 @@
 .body { 
 
-	@include width-model($width);
-	float: right;
+	width: 859px;
 	display: block; 
-	background: $light_gray; 
+	margin: 0 auto;
+	// float: right;
+	// background: $light_gray; 
 }
 
 .price_selection { 

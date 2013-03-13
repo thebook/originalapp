@@ -1,13 +1,14 @@
 .homepage_body_wrap { 
 		
 	display: block;
-	float: left;
-	@include width-model($content_width);
+	margin: 0 auto;
+	width: $the_width; 
 	background: $light_gray; 
-	
-	@media (max-width: to_em(1280)) {
-		@include width-model($breakpoint_content_width);
-	}
+}
+
+.homepage_body_inner_wrap {
+
+	float: left;
 }
 
 @import "homepage.extra_box";

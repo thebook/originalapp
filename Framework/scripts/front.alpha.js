@@ -196,7 +196,6 @@ var alpha = (function ( alpha, $ ) {
 		});
 	};
 
-
 	alpha.front.prototype.open_book_popup = function (wake) {
 
 		var popup      = alpha.front.prototype.parts.book.popup,
@@ -225,7 +224,10 @@ var alpha = (function ( alpha, $ ) {
 		if ( old_page.length < 1 ) old_page = 'pages';
 
 		if ( old_page !== page )
-			$('.'+ old_page ).fadeOut(500, function () { $('.'+ page ).fadeIn(500); });		
+			$('.'+ old_page ).fadeOut(500, function () { $('.'+ page ).fadeIn(500); });
+			$('#navigation_for_'+ old_page ).removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');
+			$('#navigation_for_'+ page ).removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
+
 
 		return page;
 	};

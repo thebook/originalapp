@@ -24,6 +24,8 @@ $black_gray: #555;
 $light: #fff;
 $dark_blue: #3f7986;
 
+$the_width: 930px;
+$the_bar_width: 1010px;
 $width: 64%;
 $content_width: 70%;
 $breakpoint_content_width: 79%;
@@ -49,6 +51,7 @@ $breakpoint_bar_width: 86%;
 
 body { 
 	font-family: Tahoma;
+	background: $light_gray; 
 }
 
 .wrap {

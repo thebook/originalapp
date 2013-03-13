@@ -9,17 +9,22 @@
 .header_image {
 	
 	float: right;
-	margin-right: 4.5%;
+	position: absolute;
+	left: 63%;
 }
 
 .header_wrap {
 	
-	position: absolute;
-	@include width-model(70%);
+	// position: absolute;
+	width: 940px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 1;
+	// @include width-model(70%);
 	
-	@media (max-width: to_em(1280)) {
-		@include width-model(79%);		
-	}
+	// @media (max-width: to_em(1280)) {
+	// 	@include width-model(79%);		
+	// }
 }
 
 @import "header.text_box";

@@ -91,6 +91,13 @@
 	padding : 15px 5%;
 	cursor: pointer;
 	background: $light_blue; 
+	@include transition;
+	
+	&:hover { 
+		
+		@include transition;
+		background: darken($light_blue, 10%); 
+	}
 }
 
 .homepage_recyclabus_box_button_text {
