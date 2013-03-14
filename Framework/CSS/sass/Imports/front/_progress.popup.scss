@@ -2,6 +2,7 @@
 	
 	$arrow_height: 10px;
 	
+	display: none;	
 	position: absolute;
 	font-family: MotorOil; 
 	margin: ( $bar_height + $arrow_height ) 0 0 50px;
@@ -16,16 +17,18 @@
 .with-icon-progress-pop-up-arrow { 
 	
 	$arrow_size: 19px;
+	display: none;
+	float: left;
+	position: absolute;
+	top: 292px + $bar_height;
 	
 	&:before { 
 		position: relative;
 		font-size: $arrow_size;
 		line-height: $arrow_size;
 		height: $arrow_size;
-		left: -305px;
-		color: $dark_blue;
-		top: $bar_height + ( $arrow_size /2 ) + 2;
-		z-index: 2;
+		color: $dark_blue;		
+		z-index: 4;
 		content:"u";
 	}
 }

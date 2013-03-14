@@ -50,7 +50,7 @@ var alpha = (function ( alpha, $ ) {
 			'</div>';
 		this.front.prototype.being.sell_again_buttons = 
 			'<div class="result_book_extra_options_buttons">'+
-				'<span class="result_book_added_book_sell_button">'+
+				'<span data-function-to-call="front.prototype.registration" class="result_book_added_book_sell_button">'+
 					'<span class="with-icon-sell-now-arrow"></span>'+
 					'Sell now?'+
 				'</span>'+

@@ -214,6 +214,17 @@ $add_button_font_size: 13px;
 	margin:0 3% 0 0;
 	cursor: pointer;
 	background: $light; 
+	@include box-shadow(1px, 1px, 2px, 0px, rgba(0,0,0, 0.1));
+	
+	&:hover {
+
+		@include box-shadow(1px, 1px, 2px, 0px, rgba(0,0,0, 0.2));
+	}
+
+	&:active {
+
+		@include box-shadow(1px, 1px, 2px, 0px, rgba(0,0,0, 0.1));
+	}
 }
 
 .result_book_added_book_add_again_button { 

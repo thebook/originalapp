@@ -15,8 +15,8 @@
 	float: right;
 	background: $light;
 	width: 500px;
-	top: 419px;
-	margin: 0 0 0 22.5%;
+	top: 398px;
+	margin: 0 0 0 22.8%;
 	padding: 20px 2%;
 	z-index: 1;
 	@include box-shadow( -1px, 1px, 2px, 0px, rgba(0,0,0, 0.3)); 
@@ -77,7 +77,13 @@
 	@extend .store_basket_pop_up_button_second;	
 	padding: 16px 5%;
 	background: $light_blue; 
-	color: $dark_blue; 
+	color: $dark_blue;
+	@include transition;
+	
+	&:hover {
+		@include transition;
+		background: darken($light_blue, 10%); 
+	}
 }
 
 .store_basket_pop_up_text { 

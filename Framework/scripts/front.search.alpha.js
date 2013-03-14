@@ -21,7 +21,7 @@ var alpha = (function ( alpha, $ ) {
 
 		var search, search_by, input;
 
-			input = ( wake.instructions.type == 'bar'? alpha.front.prototype.parts.search.wrap.branch.branch.input.self : $('.header_field_for_input') );
+			input = ( wake.instructions.type == 'bar'? $('.bar_field_for_input') : $('.header_field_for_input') );
 			
 			search = alpha.front.prototype.get_the_search_value_from_blocks({ 
 				input : input, 

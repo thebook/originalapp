@@ -60,7 +60,7 @@ var alpha = (function ( alpha, $ ) {
 							self   : '<div class="store_basket_pop_up_button_wrap"></div>',
 							branch : {
 								// recyclabus_button : '<div class="store_basket_pop_up_button_second">Convert To Recyclabus Quote</div>',
-								checkout : '<div class="store_basket_pop_up_button_first">Check And Continue</div>'
+								checkout : '<div data-function-to-call="front.prototype.registration" class="store_basket_pop_up_button_first">Check And Continue</div>'
 							}
 						},
 						popup_text : {

@@ -2,6 +2,28 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front = alpha.front || function () {};
 
+	alpha.front.prototype.page_changer = function (property, old_page, page) {
+
+		if ( old_page.length < 1 ) old_page = 'pages';
+
+		if ( old_page !== page )
+			$('.'+ old_page ).fadeOut(500, function () { $('.'+ page ).fadeIn(500); });
+			$('#navigation_for_'+ old_page ).removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');
+			$('#navigation_for_'+ page ).removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
+
+		return page;
+	};
+
+	alpha.front.prototype.change_page = function (wake, callback) {
+
+		callback = callback || false;
+
+		alpha.front.prototype.being.on_page = wake.instructions.page;
+
+		if (callback)
+			callback(wake.instructions.page);	
+	};
+
 	alpha.front.prototype.navigation = function () {
 
 		this.parts = this.parts || {};
@@ -11,73 +33,95 @@ var alpha = (function ( alpha, $ ) {
 				self   : '<div class="bar"></div>',
 				branch : {
 					branch : {
-						logo : {
-							self   : '<div class="logo_for_bar"></div>',
-							branch : {
-								logo : '<span class="with-icon-logo"></span>'
-							}
-						},
-						progress : {
-							self   : '<div class="progress_icons_for_bar_wrap"></div>',
-							branch : {
-								branch : {									
-									welcome_icon : {
-										self   : '<div class="progress_icon_for_bar_done"></div>',
-										branch : {
-											branch : {
-												circle : {
-													self   : '<div class="progress_icon_circle_done"></div>',
-													branch : {
-														icon : '<span class="with-icon-welcome-progress-bar"></span>'
-													}
-												},
-												text : {
-													self : '<span class="progress_icon_for_bar_text">Welcome</span>'
-												}}}},
-									account_icon : {
-										self   : '<div class="progress_icon_for_bar"></div>',
-										branch : {
-											branch : {
-												circle : {
-													self   : '<div class="progress_icon_circle_doing"></div>',
-													branch : {
-														icon : '<span class="with-icon-account-progress-bar"></span>'
-													}
-												},
-												text : {
-													self : '<span class="progress_icon_for_bar_text">Account</span>'
-												}}}},
-									confirm : {
-										self   : '<div class="progress_icon_for_bar"></div>',
-										branch : {
-											branch : {
-												circle : {
-													self   : '<div class="progress_icon_circle"></div>',
-													branch : {
-														icon : '<span class="with-icon-confirm-progress-bar"></span>'
-													}
-												},
-												text : {
-													self : '<span class="progress_icon_for_bar_text">Confirm</span>'
-												}}}},
-									thank_you : {
-										self   : '<div class="progress_icon_for_bar"></div>',
-										branch : {
-											branch : {
-												circle : {
-													self   : '<div class="progress_icon_circle"></div>',
-													branch : {
-														icon : '<span class="with-icon-thank-you-progress-bar"></span>'
-													}
-												},
-												text : {
-													self : '<span class="progress_icon_for_bar_text">Thank You</span>'
-												}}}},
-											}}
-						},
 						arrow : {
 							self : '<span class="with-icon-progress-pop-up-arrow"></span>'
 						},
+						logo : {
+							self   : '<div data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="logo_for_bar"></div>',
+							branch : {
+								logo : '<span data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="with-icon-logo"></span>'
+							}
+						},
+						navigation : {
+							self   : '<div class="navigation_wrap"></div>',
+							branch : {
+								branch : {
+									wrap : {
+										self   : '<div class="navigation_inner_wrap"></div>',
+										branch : {
+											branch : {
+												navigation : {
+													self   : '<div class="navigation"></div>',
+													branch : {
+														how_it_works : '<div data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active" id="navigation_for_homepage_body_wrap" >How It Works</div>',
+														recyclabus   : '<div data-function-instructions="{\'page\' : \'recyclabus\' }" data-function-to-call="front.prototype.change_page" class="navigation_text_for_bar" id="navigation_for_recyclabus">Recyclabus</div>'
+													}
+												},
+												progress : {
+													self   : '<div class="progress_icons_for_bar_wrap"></div>',
+													branch : {
+														branch : {									
+															welcome_icon : {
+																self   : '<div class="progress_icon_for_bar_done"></div>',
+																branch : {
+																	branch : {
+																		circle : {
+																			self   : '<div class="progress_icon_circle_done"></div>',
+																			branch : {
+																				icon : '<span class="with-icon-welcome-progress-bar"></span>'
+																			}
+																		},
+																		text : {
+																			self : '<span class="progress_icon_for_bar_text">Welcome</span>'
+																		}}}},
+															account_icon : {
+																self   : '<div class="progress_icon_for_bar"></div>',
+																branch : {
+																	branch : {
+																		circle : {
+																			self   : '<div class="progress_icon_circle_doing"></div>',
+																			branch : {
+																				icon : '<span class="with-icon-account-progress-bar"></span>'
+																			}
+																		},
+																		text : {
+																			self : '<span class="progress_icon_for_bar_text">Account</span>'
+																		}}}},
+															confirm : {
+																self   : '<div class="progress_icon_for_bar"></div>',
+																branch : {
+																	branch : {
+																		circle : {
+																			self   : '<div class="progress_icon_circle"></div>',
+																			branch : {
+																				icon : '<span class="with-icon-confirm-progress-bar"></span>'
+																			}
+																		},
+																		text : {
+																			self : '<span class="progress_icon_for_bar_text">Confirm</span>'
+																		}}}},
+															thank_you : {
+																self   : '<div class="progress_icon_for_bar"></div>',
+																branch : {
+																	branch : {
+																		circle : {
+																			self   : '<div class="progress_icon_circle"></div>',
+																			branch : {
+																				icon : '<span class="with-icon-thank-you-progress-bar"></span>'
+																			}
+																		},
+																		text : {
+																			self : '<span class="progress_icon_for_bar_text">Thank You</span>'
+																		}}}},
+																	}}
+												}
+											}
+										}
+									}								
+												
+								}
+							}
+						},						
 						progress_popup : { 
 							self   : '<div class="progress_pop_up"></div>',
 							branch : {
@@ -104,6 +148,7 @@ var alpha = (function ( alpha, $ ) {
 								}
 							}
 						},
+						
 						welcome_popup : {
 							self   : '<div class="progress_welcome_pop_up"></div>',
 							branch : {
@@ -127,13 +172,7 @@ var alpha = (function ( alpha, $ ) {
 								}
 							}
 						},
-						navigation : {
-							self   : '<div class="navigation_wrap"></div>',
-							branch : {
-								how_it_works : '<div data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active" id="navigation_for_homepage_body_wrap" >How It Works</div>',
-								recyclabus   : '<div data-function-instructions="{\'page\' : \'recyclabus\' }" data-function-to-call="front.prototype.change_page" class="navigation_text_for_bar" id="navigation_for_recyclabus">Recyclabus</div>'
-							}
-						},
+						
 						user_button : {
 							self   : '<div class="button_for_user"></div>',
 							branch : {
@@ -146,15 +185,15 @@ var alpha = (function ( alpha, $ ) {
 							branch : {
 								branch : {
 									field : {
-										self   : '<div class="field_for_input"></div>',
+										self   : '<div class="field_for_input bar_field_for_input"></div>',
 										branch : {
-											input : '<input type="text" class="input_block_for_search">'
+											input : '<input type="text" class="input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">'
 										}
 									},
 									button : {
 										self   : '<div class="button_for_input"></div>',
 										branch : {
-											icon : '<span class="with-icon-search"></span>'
+											icon : '<span data-function-instructions="{\'type\':\'bar\'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-search"></div>'
 										}}}}},
 						user_popup_box : {
 							self   :  '<div class="user_pop_up_box"></div>',
@@ -199,28 +238,6 @@ var alpha = (function ( alpha, $ ) {
 			what_to_manifest : this.parts.bar,
 			append_to_who : $('.bar_outer_wrap') 
 		});
-	};
-
-	alpha.front.prototype.page_changer = function (property, old_page, page) {
-
-		if ( old_page.length < 1 ) old_page = 'pages';
-
-		if ( old_page !== page )
-			$('.'+ old_page ).fadeOut(500, function () { $('.'+ page ).fadeIn(500); });
-			$('#navigation_for_'+ old_page ).removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');
-			$('#navigation_for_'+ page ).removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
-
-		return page;
-	};
-
-	alpha.front.prototype.change_page = function (wake, callback) {
-
-		callback = callback || false;
-
-		alpha.front.prototype.being.on_page = wake.instructions.page;
-
-		if (callback)
-			callback(wake.instructions.page);	
 	};
 
 	return alpha;

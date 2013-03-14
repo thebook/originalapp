@@ -1,8 +1,15 @@
+.navigation {
+	
+	width: 100%;
+	clear: both;
+	float: left;
+}
+
 .navigation_text_for_bar { 
 	$font_size: 12px;
-	
+		
 	float: left;
-	width: 10%;
+	width: 110px;
 	text-align: center; 
 	display: inline-block;
 	text-transform: Uppercase;
@@ -34,7 +41,7 @@
 	&:before {
 		
 		position: absolute;
-		margin: 12px 0 0 23px;
+		margin: 12px 0 0 25px;
 		font-size: 22px; 	
 		content:"u";
 		color: $light_gray; 

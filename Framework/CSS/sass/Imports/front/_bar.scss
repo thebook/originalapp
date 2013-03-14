@@ -30,12 +30,13 @@
 	margin: $margin 0;
 	float: left;
 	background: $green;	
+	cursor: pointer;
 }
 
 .with-icon-logo { 
-
+	
 	&:before { 
-		cursor: default;
+		cursor: pointer;
 		position: relative;
 		top: (( $bar_height - 30px ) /2);
 		left: 10px;
@@ -43,6 +44,20 @@
 		color: $light;
 		content:"R";
 	}
+}
+
+.navigation_wrap {
+	
+	float: left;
+	width: 50%;
+	height: $bar_height;
+	overflow: hidden;
+}
+
+.navigation_inner_wrap { 
+	
+	position: relative;
+	float: left;
 }
 
 @import "progress.icons";

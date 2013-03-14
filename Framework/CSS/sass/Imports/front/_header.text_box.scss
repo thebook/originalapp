@@ -24,13 +24,6 @@
 		z-index:1;
 		content:"+";
 	}
-
-	// @media (max-width: to_em(1280)) {
-	// 	&:before { 
-	// 		margin-top:9px;
-	// 		margin-left: 63.5%;
-	// 	}
-	// }
 }
 
 .header_text_box_title {
@@ -102,12 +95,21 @@
 	margin: (37px - 16 )/2 0;
 	display: inline;
 	float: left;
-	text-align: center;	
+	text-align: center;
+
 	&:before {
 
 		font-size: 16px;
 		line-height: 16px;  
 		color: $black_gray; 
 		content:"S";
+	}
+
+	&:hover {
+
+		&:before {
+			
+			color: lighten($black_gray, 10%); 
+		}
 	}
 }

@@ -16,6 +16,7 @@ $sign_in_box_height: $welcome_sign_in_box_title_size + $forgot_password_text_siz
 	@extend .progress_pop_up;
 	width: 65%;
 	height: $progress_welcome_pop_up_height;
+	z-index: 3;
 }
 
 .progress_welcome_sign_in_box { 
@@ -40,6 +41,12 @@ $sign_in_box_height: $welcome_sign_in_box_title_size + $forgot_password_text_siz
 	font-family: Tahoma;
 	margin: $progress_welcome_sign_in_box_forgot_password_margin 30px 0 0; 
 	font-size: $forgot_password_text_size; 
+	cursor: pointer;
+	
+	&:hover {
+
+		text-decoration: underline;
+	}
 }
 
 .progress_welcome_sign_in_box_input {
@@ -90,4 +97,12 @@ $sign_in_box_height: $welcome_sign_in_box_title_size + $forgot_password_text_siz
 	text-transform: uppercase;
 	background: $green;
 	color:$light; 
+	cursor: pointer;
+	@include transition;
+	
+	&:hover {
+		
+		@include transition;
+		background: darken($green, 5%); 
+	}
 }
