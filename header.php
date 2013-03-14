@@ -38,6 +38,8 @@
 			 scripts+"/front.books.alpha.js", 
 			 scripts+"/front.books.popup.alpha.js", 
 			 scripts+"/front.change_page.alpha.js", 
+			 scripts+"/front.basket.alpha.js", 
+			 scripts+"/front.registration.alpha.js", 
 			 scripts+"/utility.users.js", 
 			 scripts+"/amazon.js", 
 			 scripts+"/ticket.alpha.js", 

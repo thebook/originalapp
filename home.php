@@ -22,7 +22,7 @@
 
 			<div class="header_text_box">
 				<div class="header_text_box_title">How <span class="header_text_box_title_highlight">much</span> is <br/><span class="header_text_box_title_highlight">your</span> book <span class="header_text_box_title_highlight">worth?</span></div>
-				<div class="header_text_box_text">use a comma "," to search for more than one book</div>
+				<div class="header_text_box_text">use a comma to search for more than one book</div>
 				<div class="header_text_box_input">	
 					<div class="header_field_for_input">
 						<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">
@@ -38,110 +38,7 @@
 
 	</section>
 
-	<section class="bar_outer_wrap">
-		
-		<div class="bar">
-		<!-- Logo  -->
-		<div class="logo_for_bar">
-			<span class="with-icon-logo"></span>
-		</div>
-
-		<!-- Progress bar  -->
-			<!-- Icon 1 -->
-			<!-- <div class="progress_icon_for_bar_done">
-				<div class="progress_icon_circle_done"><span class="with-icon-welcome-progress-bar"></span></div>
-				<span class="progress_icon_for_bar_text">Welcome</span>
-			</div> -->
-			<!-- Icon 2  -->
-			<!-- <div class="progress_icon_for_bar">
-				<div class="progress_icon_circle_doing"><span class="with-icon-account-progress-bar"></span></div>
-				<span class="progress_icon_for_bar_text">Account</span>
-			</div> -->
-			<!-- Icon 3  -->
-			<!-- <div class="progress_icon_for_bar">
-				<div class="progress_icon_circle"><span class="with-icon-confirm-progress-bar"></span></div>
-				<span class="progress_icon_for_bar_text">Confirm</span>
-			</div> -->
-			<!-- Icon 4 -->
-			<!-- <div class="progress_icon_for_bar">
-				<div class="progress_icon_circle"><span class="with-icon-thank-you-progress-bar"></span></div>
-				<span class="progress_icon_for_bar_text">Thank You</span>
-			</div> -->
-
-		<!-- Progress pop up -->
-		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
-		<div class="progress_pop_up">
-			<div class="progress_pop_up_title">
-				<span class="progress_pop_up_title_text">Welcome</span>
-				<span class="progress_pop_up_title_icon">
-					<span class="with-icon-welcome-progress-bar"></span>
-				</span>
-			</div>
-			<p class="progress_pop_up_text">
-				The wind blew up heathlciffs lower behind, as he rose up to meet the oncoming challenge, thunder, strorm, eath and fire to
-				the meeting of these elements to excelent to magnaminous, that the very being that held him together began to quake;
-				"Just a little longer" he though, as he began to rumage into the very ground which gave him birth, just what precious metals,
-				just what substance and essence lied beneath this rocky mountain, layed to be discovered... to be continued suckass
-				This will not only create your profile hub that will let your track payments, check books orders and edit details but makes sure we make the payment out to the right person and send the freepost pack to the correct address.
-			</p>
-		</div> -->
-
-		<!-- Welcome pop up -->
-		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
-		<div class="progress_welcome_pop_up">
-			<div class="progress_welcome_sign_in_box">
-				<div class="progress_welcome_sign_in_box_title">Sign In</div>
-				<input type="text" class="progress_welcome_sign_in_box_input" placeholder="Email Address" value="">
-				<input type="password" class="progress_welcome_sign_in_box_input" placeholder="Password" value="">				
-				<span class="progress_welcome_sign_in_box_forgot_password">Forgoten Password?</span>
-			</div>
-			<div class="progress_welcome_register_box">
-				<div class="progress_welcome_register_box_text">New To Recyclabook >>></div>
-				<div class="progress_welcome_register_box_button">Sign Up</div>
-			</div>
-		</div> -->
-			
-		<!-- Navigation  -->
-		<div data-function-instructions="{'page' : 'homepage_body_wrap' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active" id="navigation_for_homepage_body_wrap" >How It Works</div>
-
-		<div data-function-instructions="{'page' : 'recyclabus' }" data-function-to-call="front.prototype.change_page" class="navigation_text_for_bar" id="navigation_for_recyclabus">Recyclabus</div>
-		<!-- <div class="navigation_text_for_bar">Recyclabus</div> -->
-
-		<!-- User registration or sign in button -->
-		<!-- <div class="button_for_user">
-			<span class="with-icon-user"></span>
-			<span class="with-icon-user-arrow"></span>
-		</div>		 -->
-
-		<!-- Search Input -->
-		<!-- <div class="input_for_bar">	
-			<div class="field_for_input">
-				<input type="text" class="input_block_for_search">
-			</div>
-			<div class="button_for_input"><span class="with-icon-search"></span></div>
-		</div> -->
-
-		<!-- User button pop up -->
-		<!-- <div class="user_pop_up_box">
-			<span class="with-icon-user-pop-up-box-arrow"></span>
-			<div class="user_pop_up_title">Hi, Mcgee</div>
-			<div class="user_pop_up_option">Edit Account</div>
-			<div class="user_pop_up_option">Tracking</div>
-			<div class="user_pop_up_option">Account History</div>
-
-			<span class="with-icon-user-pop-up-box-arrow"></span>
-			<div class="user_pop_up_title_white">
-				Sign in Or
-				<span class="user_pop_up_title_highlight">Register</span> 
-			</div>
-			<input type="text" class="user_pop_up_option_input" placeholder="Username">
-			<input type="password" class="user_pop_up_option_input" placeholder="Password">
-			<div class="user_pop_up_options_forgot_password">forgottten password?</div>
-		</div> -->	
-
-		</div>
-
-	</section>
+	<section class="bar_outer_wrap"></section>
 
 	<section class="homepage_body_wrap pages">
 

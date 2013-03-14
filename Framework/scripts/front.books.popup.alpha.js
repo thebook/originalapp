@@ -88,6 +88,22 @@ var alpha = (function ( alpha, $ ) {
 		this.parts.book.popup.wrap.self.css({ display : 'none' });
 	};
 
+	alpha.front.prototype.add_to_basket_from_popup = function (wake) {
+		
+		var buttons = alpha.front.prototype.parts.book.popup.wrap.branch.branch.book.branch.branch.books_text.branch.branch.buttons;
+			button  = buttons.branch.branch.inner_wrap.branch.branch;
+
+		alpha.front.prototype.add_a_book_to_basket(wake,
+		function () {
+				
+			if (wake.instructions.add_again === 'false') {
+				button.add_again_button.self.css({ display :'block' });
+				buttons.self.css({ height : button.add_button.self.height() +'px' });
+				buttons.branch.branch.inner_wrap.self.css({ height: '100%', 'float':'left', position:'relative' }).animate({top: '-'+ button.add_button.self.height() +'px' }, 400);
+			}
+		});
+	};
+
 	alpha.front.prototype.open_book_popup = function (wake) {
 
 		var popup      = alpha.front.prototype.parts.book.popup,

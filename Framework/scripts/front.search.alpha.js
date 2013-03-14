@@ -4,30 +4,51 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.search_bar = function () { 
 
-		this.parts = this.parts || {};
+		$('.block_for_search').on('keypress', function (event) { 
 
-		this.parts.search = {
-			wrap : {
-				self   : '<div class="input_for_bar"></div>',
-				branch : {
-					branch : {
-						input : {
-							self : '<div class="field_for_input"></div>',
-							branch : {
-								input_block : '<input type="text" class="input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">'
-								}
-							},
-						button : {
-							self : '<div class="button_for_input"></div>',
-							branch : {
-								icon : '<span data-function-instructions="{\'type\':\'bar\'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-search"></div>'
-								}}}
-							}}};
-
-		this.parts.search = alpha.manifest({
-			what_to_manifest : this.parts.search,
-			append_to_who : $('.bar') 
+			if ( event.keyCode === 13 ) {
+				var wake = {
+					instructions : {
+						type : ($(this).hasClass('header_input_block_for_search')? 'header' : 'bar' )
+					}
+				};
+				alpha.front.prototype.search_though_amazon(wake);
+			}
 		});
+	};
+
+	alpha.front.prototype.search_though_amazon = function (wake) { 
+
+		var search, search_by, input;
+
+			input = ( wake.instructions.type == 'bar'? alpha.front.prototype.parts.search.wrap.branch.branch.input.self : $('.header_field_for_input') );
+			
+			search = alpha.front.prototype.get_the_search_value_from_blocks({ 
+				input : input, 
+				block_class_name : '.block_for_search'
+			});
+			search_by = (search.is_number()? 'isbn' : 'keywords' );
+			
+			alpha.amazon.prototype.get_books_from_amazon({
+				typed     : search,
+				search_by : search_by
+			},
+			function (books) { 
+
+				books = alpha.amazon.prototype.clean_array(books);
+				books = alpha.amazon.prototype.pick_which_details_to_get_out_of_the_book_properties(books, 
+				{
+					lowest_used_price : 'Amount',
+					image             : 'URL',
+					lowest_new_price  : 'Amount',
+					price  			  : 'Amount',
+					editorial_review  : 'EditorialReview'
+				});
+				books = alpha.amazon.prototype.remove_books_that_dont_have_given_properties(books, ['image', 'author', 'price']);
+
+				alpha.front.prototype.being.basket.items = books;	
+				alpha.front.prototype.being.on_page = 'body';			
+			});
 	};
 
 	return alpha;
