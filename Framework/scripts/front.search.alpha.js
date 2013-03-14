@@ -1,41 +1,34 @@
 var alpha = (function ( alpha, $ ) {
 
-	// alpha.front.prototype.search_bar = function () { 
+	alpha.front = alpha.front || function () {};
 
-	// 	var prototype = this;
+	alpha.front.prototype.search_bar = function () { 
 
-	// 	this.being.search = {
-	// 		wrap : {
-	// 			self   : '<div class="input_for_bar"></div>',
-	// 			branch : {
-	// 				branch : {
-	// 					input : {
-	// 						self : '<div class="field_for_input"></div>',
-	// 						branch : {
-	// 							input_block : '<input type="text" class="input_block_for_search">'
-	// 							}
-	// 						},
-	// 					button : {
-	// 						self : '<div data-function-to-call="alpha.front.prototype.search_bar.prototype.search_though_amazon" class="button_for_input"></div>',
-	// 						branch : {
-	// 							icon : '<span class="with-icon-search"></div>'
-	// 							}
-	// 						}
-	// 					}
-	// 				}		
-	// 			}
-	// 		};
+		this.parts = this.parts || {};
 
-	// 	this.being.search = alpha.manifest({
-	// 		what_to_manifest : this.being.search,
-	// 		append_to_who : $('.bar') 
-	// 	});
-	// };
+		this.parts.search = {
+			wrap : {
+				self   : '<div class="input_for_bar"></div>',
+				branch : {
+					branch : {
+						input : {
+							self : '<div class="field_for_input"></div>',
+							branch : {
+								input_block : '<input type="text" class="input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">'
+								}
+							},
+						button : {
+							self : '<div class="button_for_input"></div>',
+							branch : {
+								icon : '<span data-function-instructions="{\'type\':\'bar\'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-search"></div>'
+								}}}
+							}}};
 
-	// alpha.front.prototype.search_bar.prototype.search_though_amazon = function (wake) { 
-
-	// 	console.log("stuff");
-	// };
+		this.parts.search = alpha.manifest({
+			what_to_manifest : this.parts.search,
+			append_to_who : $('.bar') 
+		});
+	};
 
 	return alpha;
 

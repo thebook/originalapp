@@ -1,11 +1,11 @@
 var alpha = (function ( alpha, $ ) {
 
-	// if (alpha.front && alpha.front.constructor === Function ) var old_front_prototype = alpha.front.prototype;
+	if (alpha.front && alpha.front.constructor === Function ) var old_front_prototype = alpha.front.prototype;
 
 	alpha.front = function () { 
 
 		this.track_events_on_this('.wrap', 'click');
-		
+
 		this.front.prototype.parts = {};
 		this.front.prototype.parts.book = {};
 
@@ -79,106 +79,11 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.being.watch( 'on_page', alpha.front.prototype.page_changer );
 
 		this.front.prototype.search_bar();
-		this.recyclabus();
+		this.front.prototype.recyclabus();
 		this.front.prototype.initialize_basket();
 		this.front.prototype.popup_book();
 		this.front.prototype.being.on_page = 'homepage_body_wrap';
-	};
-
-	alpha.front.prototype.popup_book = function () { 
-
-		this.parts.book.popup = {
-			wrap : {
-				self   : ' <div data-function-to-call="front.prototype.close_book_popup" class="search_books_expanded_book_wrap"></div>',
-				branch : {
-					branch : {
-						book : {
-							self   : '<div class="search_books_expanded_book"></div>',
-							branch : {
-								branch : { 
-									close : { 
-										self : '<span data-function-to-call="front.prototype.close_book_popup" class="with-icon-info-close"></span>'
-									},
-									image_wrap : {
-										self   : '<div class="search_books_expanded_image_wrap"></div>',
-										branch : {
-											image : '<img src="" class="search_books_expanded_image">'
-										}
-									},
-									books_text : {
-										self   : '<div class="search_books_expanded_text"></div>',
-										branch : {
-											branch : {
-												title : { 
-													self : '<div class="search_books_expanded_title"></div>'
-												},
-												author : { 
-													self : '<div class="search_books_expanded_author"></div>'
-												},
-												isbn : { 
-													self   : '<div class="search_books_expanded_isbn"></div>',
-													branch : {
-														text : '<span class="search_books_expanded_isbn_highlight">isbn: </span>',
-														isbn : '<span></span>'
-													}
-												},
-												description : {
-													self   : '<div class="search_books_expanded_book_description"></div>',
-													branch : {
-														title : '<div class="search_books_expanded_book_description_title">Book Description</div>',
-														text  : '<div class="search_books_expanded_book_description_text"></div>' 
-													}										
-												},
-												quote : {
-													self   : '<div class="search_books_expanded_book_price">Well Buy For: </div>',
-													branch : {
-														price : '<span class="search_books_expanded_book_price_highlight">£5.30</span>'
-													}
-												},
-												buttons : {
-													self   : '<div class="search_books_expanded_book_add_to_sell_basket_wrap"></div>',
-													branch : {
-														branch : {
-															inner_wrap : {
-																self   : '<div class="search_books_expanded_book_add_to_sell_basket_inner_wrap"></div>',
-																branch : {
-																	branch : {
-																		add_button : {
-																			self   : '<div class="search_books_expanded_book_add_to_sell_basket_button"></div>',
-																			branch : {
-																				text : '<span data-function-instructions="" data-function-to-call="front.prototype.add_to_basket_from_popup" class="search_books_expanded_book_add_to_sell_basket_button_text">Add To Basket</span>'
-																			}
-																		},
-																		add_again_button : {
-																			self   : '<div class="search_books_expanded_book_add_to_sell_basket_add_again_button"></div>',
-																			branch : {
-																				text : '<span data-function-instructions="" data-function-to-call="front.prototype.add_to_basket_from_popup" class="with-icon-added-to-sell-basket-expanded-tick">Add Again?</span>'
-																			}
-																		}}}
-																	}}}}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}				
-			}
-		};
-
-		this.parts.book.popup = alpha.manifest({
-			what_to_manifest : this.parts.book.popup,
-			append_to_who : $('.wrap') 
-		});
-
-		this.parts.book.popup.wrap.self.css({ display : 'none' });
-	};
-
-	alpha.front.prototype.close_book_popup = function (wake) {
-
-		alpha.front.prototype.parts.book.popup.wrap.self.animate({ top: '1000px' }, 400, function () { $(this).css({ display: 'block'}); });
-	};
+	};		
 
 	alpha.front.prototype.add_to_basket_from_popup = function (wake) {
 		
@@ -194,52 +99,6 @@ var alpha = (function ( alpha, $ ) {
 				buttons.branch.branch.inner_wrap.self.css({ height: '100%', 'float':'left', position:'relative' }).animate({top: '-'+ button.add_button.self.height() +'px' }, 400);
 			}
 		});
-	};
-
-	alpha.front.prototype.open_book_popup = function (wake) {
-
-		var popup      = alpha.front.prototype.parts.book.popup,
-			popup_book = popup.wrap.branch.branch.book.branch.branch,
-			book       = alpha.front.prototype.being.basket.items[wake.instructions.id];
-
-			book.description = ( book.editorial_review && book.editorial_review.Content.length > 35? book.editorial_review.Content : "Sorry no given description is available at this time" );
-			popup_book.image_wrap.branch.image.attr('src', book.image);
-			popup_book.books_text.branch.branch.title.self.text(book.title);
-			popup_book.books_text.branch.branch.author.self.text('by '+ book.author);
-			popup_book.books_text.branch.branch.description.branch.text.text(book.description);
-			popup_book.books_text.branch.branch.isbn.branch.isbn.text(book.ISBN);
-			popup_book.books_text.branch.branch.buttons.branch.branch.inner_wrap.branch.branch.add_button.branch.text.attr('data-function-instructions', "{ 'id' : '"+ wake.instructions.id +"', 'add_again' : 'false' }");
-			popup_book.books_text.branch.branch.buttons.branch.branch.inner_wrap.self.css({ position: 'static', top: '0' });
-			popup_book.books_text.branch.branch.buttons.branch.branch.inner_wrap.branch.branch.add_again_button.self.css({ display: 'none' });
-			popup_book.books_text.branch.branch.buttons.branch.branch.inner_wrap.branch.branch.add_again_button.branch.text.attr('data-function-instructions', "{ 'id' : '"+ wake.instructions.id +"', 'add_again' : 'true' }");
-			popup_book.books_text.branch.branch.quote.branch.price.text( '£'+ ( book.price/100 ));
-
-			popup.wrap.self
-			.css({ top : '0px', background: 'transparent', width:'5%', height:'5%', 'font-size':((16/100)*5)+'px', opacity:0, display:'block', margin:'50% 47.5%' })
-			.animate({ width:'100%', height:'100%', 'font-size':'16px', opacity:1, margin:0 }, 300);
-	};
-
-	alpha.front.prototype.page_changer = function (property, old_page, page) {
-
-		if ( old_page.length < 1 ) old_page = 'pages';
-
-		if ( old_page !== page )
-			$('.'+ old_page ).fadeOut(500, function () { $('.'+ page ).fadeIn(500); });
-			$('#navigation_for_'+ old_page ).removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');
-			$('#navigation_for_'+ page ).removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
-
-
-		return page;
-	};
-
-	alpha.front.prototype.change_page = function (wake, callback) {
-
-		callback = callback || false;
-
-		alpha.front.prototype.being.on_page = wake.instructions.page;
-
-		if (callback)
-			callback(wake.instructions.page);	
 	};
 
 	alpha.front.prototype.reorder_basket = function (poperty, old_books, books) { 
@@ -365,34 +224,6 @@ var alpha = (function ( alpha, $ ) {
 
 		if (callback)
 			callback(alpha.front.prototype.being.basket.items[wake.instructions.id], wake.instructions.id);
-	};
-
-	alpha.front.prototype.search_bar = function () { 
-
-		var prototype = this;
-
-		this.parts.search = {
-			wrap : {
-				self   : '<div class="input_for_bar"></div>',
-				branch : {
-					branch : {
-						input : {
-							self : '<div class="field_for_input"></div>',
-							branch : {
-								input_block : '<input type="text" class="input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">'
-								}
-							},
-						button : {
-							self : '<div class="button_for_input"></div>',
-							branch : {
-								icon : '<span data-function-instructions="{\'type\':\'bar\'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-search"></div>'
-								}}}
-							}}};
-
-		this.parts.search = alpha.manifest({
-			what_to_manifest : this.parts.search,
-			append_to_who : $('.bar') 
-		});
 	};
 
 	alpha.front.prototype.get_the_search_value_from_blocks = function (wake) { 
@@ -529,6 +360,8 @@ var alpha = (function ( alpha, $ ) {
 
 		this.being.basket.inside = {};	
 	};
+
+	$.extend(alpha.front.prototype, old_front_prototype);
 
 	return alpha;
 

@@ -11,7 +11,7 @@ class branch_users_style extends alpha_tree_users
 		parent::__construct($creation_paramaters);
 		add_action("wp_ajax_save_user_field", array( $this, 'save_user_field' ));
 		add_action("wp_ajax_remove_user", array( $this, 'user_remove' ));
-		add_action("wp_ajax_create_sub_user", array( $this, 'create_sub_user' ));
+		add_action("wp_ajax_nopriv_create_sub_user", array( $this, 'create_sub_user' ));
 	}
 
 	public function make_default_template_for_user_insertion ()
