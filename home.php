@@ -148,7 +148,7 @@
 
 
 	<section class="input_box_body_wrap account pages">
-		
+		<div class="account_wrap"></div>		
 	</section>
 	
 	<!-- User registration -->

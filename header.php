@@ -40,6 +40,7 @@
 			 scripts+"/front.change_page.alpha.js", 
 			 scripts+"/front.basket.alpha.js", 
 			 scripts+"/front.registration.alpha.js", 
+			 scripts+"/front.confirm.alpha.js", 
 			 scripts+"/utility.users.js", 
 			 scripts+"/amazon.js", 
 			 scripts+"/ticket.alpha.js", 

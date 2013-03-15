@@ -379,6 +379,7 @@ body {
 .progress_pop_up, .progress_welcome_pop_up {
   display: none;
   position: absolute;
+  float: left;
   font-family: MotorOil;
   margin: 71px 0 0 42px;
   background: #3f7986;
@@ -392,8 +393,9 @@ body {
 .with-icon-progress-pop-up-arrow {
   display: none;
   float: left;
-  position: absolute;
-  top: 353px; }
+  position: relative;
+  top: 54px;
+  margin: 0 0 -54px; }
   .with-icon-progress-pop-up-arrow:before {
     position: relative;
     font-size: 19px;
@@ -410,6 +412,7 @@ body {
   margin-bottom: 10px; }
 
 .progress_pop_up_title_text {
+  min-width: 45%;
   display: inline-block;
   float: left;
   font-size: 27px;
@@ -1940,11 +1943,12 @@ body {
 
 .input_box_body_wrap {
   display: block;
-  width: 69%;
-  padding: 0 15.5%;
-  padding-top: 152px;
-  background: #f6f6f6;
-  float: right; }
+  width: 930px;
+  margin: 0 auto;
+  background: #f6f6f6; }
+
+.account_wrap {
+  float: left; }
 
 .legend_wrap {
   float: right;
@@ -2053,7 +2057,19 @@ body {
   letter-spacing: 1px;
   background: #b4d65a;
   color: white;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
+  .input_box_button:hover {
+    background: #abd146;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease; }
 
 .with-icon-input-box-continue:before {
   content: ""; }

@@ -1,13 +1,14 @@
 .input_box_body_wrap { 
-
-	$width: 69%;
 	
 	display: block;
-    width: $width;
-    padding: 0 (( 100% - $width )/2);
-	padding-top: 152px;
+    width: $the_width;
+    margin: 0 auto;
 	background: $light_gray; 
-    float: right;
+}
+
+.account_wrap { 
+
+	float: left;
 }
 
 .legend_wrap { 

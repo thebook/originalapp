@@ -5,21 +5,31 @@ var alpha = (function ( alpha, $ ) {
 	alpha.front.prototype.registration = function () { 
 
 		alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'-52px' }, 300);
-		alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.css({ display: 'inline', left: '234px', opacity: 0 }).animate({ opacity: 1 }, 300);
-		alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);
+		alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block', left: '68px', opacity: 0 }).animate({ opacity: 1 }, 300);
+		alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);		
 	};
 
 	alpha.front.prototype.account = function () {
 
 		var parts = alpha.front.prototype.parts;
 
+		// Fade out welcome box and fade in progress popup box
 		parts.bar.wrap.branch.branch.welcome_popup.self.fadeOut(400);
 		parts.bar.wrap.branch.branch.progress_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 400);
-		parts.bar.wrap.branch.branch.arrow.self.animate({ left: '318px' });
+		parts.bar.wrap.branch.branch.arrow.self.animate({ left: '152px' });
+
+		// Change progress icon look
+		parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch.welcome_icon.branch.branch.circle.self.removeClass('progress_icon_circle_doing').addClass('progress_icon_circle_done');
+		parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch.welcome_icon.self.removeClass('progress_icon_for_bar').addClass('progress_icon_for_bar_done');
+		parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch.account_icon.branch.branch.circle.self.removeClass('progress_icon_circle').addClass('progress_icon_circle_doing');
+		
+		// fill in the popup box with right kinda info 
 		parts.bar.wrap.branch.branch.progress_popup.branch.branch.title.branch.branch.text.self.text("Create User");
 		parts.bar.wrap.branch.branch.progress_popup.branch.branch.title.branch.branch.icon.branch.icon.removeAttr("class");
 		parts.bar.wrap.branch.branch.progress_popup.branch.branch.title.branch.branch.icon.branch.icon.addClass("with-icon-account-progress-bar");
 		parts.bar.wrap.branch.branch.progress_popup.branch.branch.text.self.text(alpha.front.prototype.being.text.registration);
+
+		parts.registration_wrap.css({ 'margin-top': '2000px' }).animate({ 'margin-top': ( parts.bar.wrap.branch.branch.progress_popup.self.height() + 24 ) + 'px' }, 1200);
 
 		alpha.front.prototype.parts.account = { 
 			legend : { 
@@ -90,7 +100,7 @@ var alpha = (function ( alpha, $ ) {
 							self   : '<div class="field_box_input_wrap"></div>',
 							branch : {
 								title          		   : '<div class="field_box_input_title">Password</div>',
-								password 		   : '<input type="password" class="field_box_input" placeholder="Password">',
+								password 		       : '<input type="password" class="field_box_input" placeholder="Password">',
 								not_valid      		   : '<span class="with-icon-not-valid-field"></span>',
 								password_input_confirm : '<input type="password" class="field_box_input" placeholder="Confirm Password">'
 							}}}}},
@@ -119,7 +129,7 @@ var alpha = (function ( alpha, $ ) {
 
 		alpha.front.prototype.parts.account = alpha.manifest({
 			what_to_manifest : alpha.front.prototype.parts.account,
-			append_to_who : $('.account') 
+			append_to_who : $('.account_wrap') 
 		});
 
 		alpha.front.prototype.parts.account.disclaimer.branch.branch.tick.self.bind('click', function () {
@@ -128,8 +138,7 @@ var alpha = (function ( alpha, $ ) {
 				(tick.css('display') !== 'none')? tick.css({ display : 'none' }) : tick.css({ display : 'inline' });
 		});
 
-		alpha.front.prototype.being.on_page = 'account';
-		
+		alpha.front.prototype.being.on_page = 'account';	
 	};
 
 	alpha.front.prototype.register = function () {
@@ -214,15 +223,14 @@ var alpha = (function ( alpha, $ ) {
 					ajaxurl,
 					{ action:"create_sub_user", user_information: input },
 					function (response) {
-
+						alpha.front.prototype.confirm();
 					},
 					'json');
 			}
 			else {
 				alpha.front.prototype.parts.account.disclaimer.branch.branch.continue_button.self.text("Continue");
 			}
-		});
-		
+		});	
 	};
 
 	alpha.front.prototype.register.prototype.is_email_in_use = function (email, callback) {

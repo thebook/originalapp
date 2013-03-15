@@ -79,6 +79,13 @@ $input_box_dispclaimer_box_size: 12px;
 	background: $green;  
 	color: $light; 
 	text-transform: uppercase;
+	@include transition;
+	
+	&:hover {
+
+		background: darken($green, 5%);
+		@include transition;
+	}
 }
 
 .with-icon-input-box-continue { 

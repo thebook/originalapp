@@ -81,7 +81,7 @@ var alpha = (function ( alpha, $ ) {
 
 		this.front.prototype.being.text = {};
 		this.front.prototype.being.text.registration = "This will not only create your profile hub that will let you track payments, check book orders and edit details but makes sure we make the payment out to the right person and send the freepost pack to the correct address.";
-
+		this.front.prototype.parts.registration_wrap = $('.account_wrap');
 
 		this.front.prototype.being.basket.watch( 'items', alpha.front.prototype.display_books );
 		this.front.prototype.being.basket.watch( 'inside', alpha.front.prototype.reorder_basket );
@@ -92,7 +92,6 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.recyclabus();
 		this.front.prototype.initialize_basket();
 		this.front.prototype.popup_book();
-		this.front.prototype.registration();
 		this.front.prototype.being.on_page = 'homepage_body_wrap';
 	};		
 
