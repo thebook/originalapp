@@ -62,11 +62,11 @@ var alpha = (function ( alpha, $ ) {
 													branch : {
 														branch : {									
 															welcome_icon : {
-																self   : '<div class="progress_icon_for_bar_done"></div>',
+																self   : '<div class="progress_icon_for_bar"></div>',
 																branch : {
 																	branch : {
 																		circle : {
-																			self   : '<div class="progress_icon_circle_done"></div>',
+																			self   : '<div class="progress_icon_circle_doing"></div>',
 																			branch : {
 																				icon : '<span class="with-icon-welcome-progress-bar"></span>'
 																			}
@@ -79,7 +79,7 @@ var alpha = (function ( alpha, $ ) {
 																branch : {
 																	branch : {
 																		circle : {
-																			self   : '<div class="progress_icon_circle_doing"></div>',
+																			self   : '<div class="progress_icon_circle"></div>',
 																			branch : {
 																				icon : '<span class="with-icon-account-progress-bar"></span>'
 																			}
@@ -131,7 +131,7 @@ var alpha = (function ( alpha, $ ) {
 										branch : {
 											branch : {
 												text : {
-													self : '<span class="progress_pop_up_title_text">Welcome</span>'
+													self : '<span class="progress_pop_up_title_text"></span>'
 												},
 												icon : {
 													self   : '<span class="progress_pop_up_title_icon"></span>',
@@ -166,7 +166,7 @@ var alpha = (function ( alpha, $ ) {
 										self   : '<div class="progress_welcome_register_box"></div>',
 										branch : {
 											text   : '<div class="progress_welcome_register_box_text">New To Recyclabook >>></div>',
-											button : '<div class="progress_welcome_register_box_button">Sign Up</div>'
+											button : '<div data-function-to-call="front.prototype.account" class="progress_welcome_register_box_button">Sign Up</div>'
 										}
 									}
 								}

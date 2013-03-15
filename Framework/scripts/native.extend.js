@@ -96,3 +96,35 @@ if ( !Object.prototype.is_number ) {
 		}
 	});
 }
+
+if ( !String.prototype.trim ) {
+
+	Object.defineProperty(String.prototype, "trim", {
+		enumerable   : false,
+		configurable : true,
+		writable     : false,
+		value 		 : function () {
+
+			var	str = this.replace(/^\s\s*/, ''),
+				ws  = /\s/,
+				i   = str.length;
+				
+				while (ws.test(str.charAt(--i)));
+				
+				return str.slice(0, i + 1);
+		}
+	});
+}
+
+if ( !String.prototype.is_length_between ) {
+
+	Object.defineProperty(String.prototype, "is_length_between", {
+		enumerable   : false,
+		configurable : true,
+		writable     : false,
+		value 		 : function (first_marker, second_marker) {
+
+			return (this.length > first_marker && this.length < second_marker);
+		}
+	});
+}

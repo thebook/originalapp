@@ -29,13 +29,20 @@
 	float: left;  
 }
 
+.legend_mark_x_wrap {
+
+	float: right;
+	width: 70%;
+	display: inline-block;
+}
+
 .legend_mark_x_symbol { 
 	
 	background: $light_blue;
 	display: inline-block;
 	float: left;
-	width: 57%;
-	padding: 12px 5% 12px 8%;
+	width: 67%;
+	padding: 12px 10% 12px 12%;
 	color: $dark_blue; 
 	font-weight: bold; 
 }

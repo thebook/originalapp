@@ -11,7 +11,7 @@
 			<div class="header_invisible_box">
 				<div class="header_invisible_box_title_wrap">
 					<div class="header_invisible_box_title_logo"><span class="with-icon-invisible-title-logo"></span></div>
-					<div class="header_invisible_box_title">Recyclabook <br/>.com</div>
+					<div class="header_invisible_box_title">Recyclabook <br/>.co.uk</div>
 				</div>
 				<div class="header_invisible_box_text_wrap">
 					<div class="header_invisible_box_text_title">What We Do</div>
@@ -145,21 +145,24 @@
 	<section class="recyclabus pages">
 		
 	</section>
+
+
+	<section class="input_box_body_wrap account pages">
+		
+	</section>
 	
 	<!-- User registration -->
-	<!-- <section class="input_box_body_wrap">  -->
+	<!-- <section class="input_box_body_wrap"> 
 		
-		<!-- Legend -->
-		<!-- <div class="legend_wrap">
+		<div class="legend_wrap">
 			<div class="legend_mark_green">mandatory fields*</div>
 			<div class="legend_mark_x_symbol">
 				<span class="with-icon-x-for-legend"></span>
 				This is not a valid email adress
 			</div>
-		</div> -->
+		</div>
 		
-		<!-- Field Box one -->
-		<!-- <div class="field_box_wrap">
+		<div class="field_box_wrap">
 			
 			<div class="field_box_title_wrap">
 				<div class="with-icon-leaf-one"></div>
@@ -182,10 +185,9 @@
 				<div class="field_box_input_extra_text">
 					<span class="field_box_input_extra_text_highlight">or</span> enter address manually</div>
 			</div>
-		</div> -->
+		</div>
 		
-		<!-- Input box 2 -->
-		<!-- <div class="field_box_wrap_left">
+		<div class="field_box_wrap_left">
 			
 			<div class="field_box_title_wrap">
 				<div class="with-icon-leaf-two"></div>
@@ -205,10 +207,19 @@
 				<span class="with-icon-not-valid-field"></span>
 				<input type="text" class="field_box_input" placeholder="Confirm Password">
 			</div>
-		</div> -->
+		</div>
+
+		<div class="input_box_disclaimer">
+			<div class="input_box_disclaimer_box"><span class="with-icon-input-box-disclaimer-tick"></span></div>
+			<div class="input_box_disclaimer_text_wrap">
+				<div class="input_box_disclaimer_text">If you don't want to recieve emails with exclusive offers and competitions from Recyclabook and our firends then untick this</div>
+				<div class="input_box_disclaimer_small">by pressing continue you aggre to</div>
+				<div class="input_box_disclaimer_highlight">terms & conditions</div>
+			</div>
+			<div class="input_box_button">Continue <span class="with-icon-input-box-continue"></span></div>
+		</div>
 		
-		<!-- Input box 3 -->
-		<!-- <div class="field_box_wrap_full">
+		<div class="field_box_wrap_full">
 
 			<div class="field_box_title_wrap">
 				<div class="with-icon-leaf-three"></div>
@@ -229,20 +240,10 @@
 				<div class="field_box_input_title">Question?</div>
 				<input type="text" class="field_box_input" placeholder="Question">
 			</div>
-		</div> -->
-		
-		<!-- Disclaimer & Continue-->
-		<!-- <div class="input_box_disclaimer">
-			<div class="input_box_disclaimer_box"><span class="with-icon-input-box-disclaimer-tick"></span></div>
-			<div class="input_box_disclaimer_text_wrap">
-				<div class="input_box_disclaimer_text">If you don't want to recieve emails with exclusive offers and competitions from Recyclabook and our firends then untick this</div>
-				<div class="input_box_disclaimer_small">by pressing continue you aggre to</div>
-				<div class="input_box_disclaimer_highlight">terms & conditions</div>
-			</div>
-			<div class="input_box_button">Continue <span class="with-icon-input-box-continue"></span></div>
-		</div> -->
+		</div>
+	
 
-	<!-- </section> -->
+	</section> -->
 
 	<section class="body pages"></section>
 
