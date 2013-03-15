@@ -12,6 +12,7 @@ class branch_users_style extends alpha_tree_users
 		add_action("wp_ajax_save_user_field", array( $this, 'save_user_field' ));
 		add_action("wp_ajax_remove_user", array( $this, 'user_remove' ));
 		add_action("wp_ajax_nopriv_create_sub_user", array( $this, 'create_sub_user' ));
+		add_action("wp_ajax_nopriv_check_if_email_is_in_use", array( $this, 'check_if_email_is_in_use' ));
 	}
 
 	public function make_default_template_for_user_insertion ()
@@ -25,6 +26,12 @@ class branch_users_style extends alpha_tree_users
 		}
 
 		return $preset_fields;
+	}
+
+	public function check_if_email_is_in_use ()
+	{
+		$creator = new table_creator;
+		echo $creator->check_if_value_is_in_column($this->params['manifestation']['create_table']['name'], 'e_mail', $_POST['email']);
 	}
 
 	public function create_sub_user ()

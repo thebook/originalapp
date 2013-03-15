@@ -87,6 +87,20 @@
 									'required'         => 1,
 									'field_input_type' => 'smalltext' ),
 								array(
+									'field_name'       => 'post_code',
+									'description'      => 'Description for second name',
+									'help_them_along'  => 'This be help for email',
+									'is_unique'        => 0,
+									'required'         => 1,
+									'field_input_type' => 'smalltext' ),
+								array(
+									'field_name'       => 'recieve_newsletters',
+									'description'      => 'Description for second name',
+									'help_them_along'  => 'This be help for email',
+									'is_unique'        => 0,
+									'required'         => 0,
+									'field_input_type' => 'smalltext' ),
+								array(
 									'field_name'       => 'university',
 									'description'      => 'Description for second name',
 									'help_them_along'  => 'This be help for email',

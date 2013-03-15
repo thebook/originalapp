@@ -90,7 +90,7 @@ var alpha = (function ( alpha, $ ) {
 							self   : '<div class="field_box_input_wrap"></div>',
 							branch : {
 								title          		   : '<div class="field_box_input_title">Password</div>',
-								password_input 		   : '<input type="password" class="field_box_input" placeholder="Password">',
+								password 		   : '<input type="password" class="field_box_input" placeholder="Password">',
 								not_valid      		   : '<span class="with-icon-not-valid-field"></span>',
 								password_input_confirm : '<input type="password" class="field_box_input" placeholder="Confirm Password">'
 							}}}}},
@@ -122,6 +122,12 @@ var alpha = (function ( alpha, $ ) {
 			append_to_who : $('.account') 
 		});
 
+		alpha.front.prototype.parts.account.disclaimer.branch.branch.tick.self.bind('click', function () {
+
+			var tick = alpha.front.prototype.parts.account.disclaimer.branch.branch.tick.branch.tick;
+				(tick.css('display') !== 'none')? tick.css({ display : 'none' }) : tick.css({ display : 'inline' });
+		});
+
 		alpha.front.prototype.being.on_page = 'account';
 		
 	};
@@ -130,9 +136,9 @@ var alpha = (function ( alpha, $ ) {
 
 		var valid = {}, input = {}, parts = alpha.front.prototype.parts;
 
-		input.email_input       = parts.account.password.branch.branch.email.branch.emai_input.val();
+		input.e_mail            = parts.account.password.branch.branch.email.branch.emai_input.val();
 		input.email_confirm     = parts.account.password.branch.branch.email.branch.confirm_email_input.val();
-		input.password_input    = parts.account.password.branch.branch.password.branch.password_input.val();
+		input.password          = parts.account.password.branch.branch.password.branch.password.val();
 		input.password_confirm  = parts.account.password.branch.branch.password.branch.password_input_confirm.val();
 		input.first_name  		= parts.account.name_and_address.branch.branch.name.branch.name_input.val();
 		input.second_name 		= parts.account.name_and_address.branch.branch.name.branch.last_name_input.val();
@@ -170,9 +176,9 @@ var alpha = (function ( alpha, $ ) {
 			if ( !input.address.trim().length > 0 ) 		      									  valid.address.message = "Address has not been entered";
 		}
 
-		if ( this.prototype.check_that_input_is_valid(input.email_input, /[@]/g) && this.prototype.check_that_input_is_valid(input.email_confirm, /[@]/g)) {
+		if ( ( input.e_mail.length > 4 && this.prototype.check_that_input_is_valid(input.e_mail, /[@]/g) ) && ( input.email_confirm.length > 4 && this.prototype.check_that_input_is_valid(input.email_confirm, /[@]/g)) ) {
 
-			valid.email.pass    = this.prototype.check_that_two_inputs_match(input.email_input, input.email_confirm );
+			valid.email.pass    = this.prototype.check_that_two_inputs_match(input.e_mail, input.email_confirm );
 			valid.email.message = "Emails do not match";
 		}
 		else {
@@ -181,9 +187,9 @@ var alpha = (function ( alpha, $ ) {
 			valid.email.message = "Not a valid email";
 		}
 
-		if ( this.prototype.check_that_two_inputs_match( input.password_input, input.password_confirm)) {
+		if ( this.prototype.check_that_two_inputs_match( input.password, input.password_confirm)) {
 
-			valid.password.pass    = (input.password_input.length > 5);
+			valid.password.pass    = (input.password.length > 5);
 			valid.password.message = "Password should be more than 5 characters long";
 		}
 		else {
@@ -191,11 +197,43 @@ var alpha = (function ( alpha, $ ) {
 			valid.password.pass    = false;
 			valid.password.message = "Passwords do not match";
 		}
+
+		alpha.front.prototype.parts.account.disclaimer.branch.branch.continue_button.self.text("a momment...");
+
+		alpha.front.prototype.register.prototype.is_email_in_use(input.e_mail, function (is_email_in_use) {
+
+			if (valid.email.pass && is_email_in_use) valid.email.pass = false; valid.email.message = "Email is already in use";
+
+			if (alpha.front.prototype.register.prototype.throw_errors_for_inputs(valid)) {
+
+				delete input.email_confirm;
+				delete input.password_confirm;
+				input.recieve_newsletters = (alpha.front.prototype.parts.account.disclaimer.branch.branch.tick.branch.tick.css('display') !== 'none');				
+
+				$.post(
+					ajaxurl,
+					{ action:"create_sub_user", user_information: input },
+					function (response) {
+
+					},
+					'json');
+			}
+			else {
+				alpha.front.prototype.parts.account.disclaimer.branch.branch.continue_button.self.text("Continue");
+			}
+		});
 		
-		if (this.prototype.throw_errors_for_inputs(valid)) {
+	};
 
+	alpha.front.prototype.register.prototype.is_email_in_use = function (email, callback) {
 
-		}
+		$.post(
+			ajaxurl,
+			{ action:"check_if_email_is_in_use", email:email },
+			function (position_of_email) {
+				callback((position_of_email !== 0));
+			},
+			'json' );
 	};
 
 	alpha.front.prototype.register.prototype.throw_errors_for_inputs = function (log_of_mistakes) {
