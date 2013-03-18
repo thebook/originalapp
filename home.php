@@ -1,11 +1,8 @@
 <?php get_header(); ?>
 
-
-
+	
+	<!-- Header -->
 	<section class="header">
-		
-		
-
 		<div class="header_wrap">
 			
 			<div class="header_invisible_box">
@@ -37,10 +34,12 @@
 		<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhoncc.png'; ?>" class="header_image">
 
 	</section>
-
+	
+	<!-- Bar  -->
 	<section class="bar_outer_wrap"></section>
-
-	<section class="homepage_body_wrap pages">
+	
+	<!-- Homepage -->
+<!-- 	<section class="homepage_body_wrap pages">
 
 		<div class="homepage_body_inner_wrap">
 			
@@ -139,158 +138,77 @@
 			</div>
 
 		</div>
-
-	</section>
-
-	<section class="recyclabus pages">
-		
-	</section>
-
-
-	<section class="input_box_body_wrap account pages">
-		<div class="account_wrap"></div>		
-	</section>
-	
-	<!-- User registration -->
-	<!-- <section class="input_box_body_wrap"> 
-		
-		<div class="legend_wrap">
-			<div class="legend_mark_green">mandatory fields*</div>
-			<div class="legend_mark_x_symbol">
-				<span class="with-icon-x-for-legend"></span>
-				This is not a valid email adress
-			</div>
-		</div>
-		
-		<div class="field_box_wrap">
-			
-			<div class="field_box_title_wrap">
-				<div class="with-icon-leaf-one"></div>
-				<div class="field_box_title">Name & Adress Details.*</div>
-			</div>
-
-			<div class="field_box_input_wrap">
-				<div class="field_box_input_title">First Name and Last Name</div>
-				<input type="text" class="field_box_input" placeholder="First Name">
-				<input type="text" class="field_box_input" placeholder="Second Name">
-			</div>
-
-			<div class="field_box_input_wrap">
-				<div class="field_box_input_title">Where shall we send your freepost pack</div>
-				<input type="text" class="field_box_input_small" placeholder="Post Code">
-				<div class="field_box_input_small_button">
-					Find Address
-					<span class="with-icon-field-box-house"></span>
-				</div>
-				<div class="field_box_input_extra_text">
-					<span class="field_box_input_extra_text_highlight">or</span> enter address manually</div>
-			</div>
-		</div>
-		
-		<div class="field_box_wrap_left">
-			
-			<div class="field_box_title_wrap">
-				<div class="with-icon-leaf-two"></div>
-				<div class="field_box_title">Login Details.*</div>
-			</div>
-
-			<div class="field_box_input_wrap">
-				<div class="field_box_input_title">Email address</div>
-				<input type="text" class="field_box_input" placeholder="Email address">
-				<span class="with-icon-not-valid-field"></span>
-				<input type="text" class="field_box_input" placeholder="Confrim email address">
-			</div>
-
-			<div class="field_box_input_wrap">
-				<div class="field_box_input_title">Password</div>
-				<input type="text" class="field_box_input" placeholder="Password">
-				<span class="with-icon-not-valid-field"></span>
-				<input type="text" class="field_box_input" placeholder="Confirm Password">
-			</div>
-		</div>
-
-		<div class="input_box_disclaimer">
-			<div class="input_box_disclaimer_box"><span class="with-icon-input-box-disclaimer-tick"></span></div>
-			<div class="input_box_disclaimer_text_wrap">
-				<div class="input_box_disclaimer_text">If you don't want to recieve emails with exclusive offers and competitions from Recyclabook and our firends then untick this</div>
-				<div class="input_box_disclaimer_small">by pressing continue you aggre to</div>
-				<div class="input_box_disclaimer_highlight">terms & conditions</div>
-			</div>
-			<div class="input_box_button">Continue <span class="with-icon-input-box-continue"></span></div>
-		</div>
-		
-		<div class="field_box_wrap_full">
-
-			<div class="field_box_title_wrap">
-				<div class="with-icon-leaf-three"></div>
-				<div class="field_box_title">
-					Lets get better aquainted
-					<span class="field_box_title_highlight">
-						(this is to help us make the service smoother by anticipating books coming and goind)
-					</span>
-				</div>
-			</div>
-
-			<div class="field_box_input_half_wrap">
-				<div class="field_box_input_title">Question?</div>
-				<input type="text" class="field_box_input" placeholder="Question">
-			</div>
-
-			<div class="field_box_input_half_wrap">
-				<div class="field_box_input_title">Question?</div>
-				<input type="text" class="field_box_input" placeholder="Question">
-			</div>
-		</div>
-	
-
 	</section> -->
+	
+	<!-- Recyclabus -->
+	<section class="recyclabus pages"></section>
 
+	<!-- User registration -->
+	<section class="input_box_body_wrap account pages">
+		<div class="account_wrap"></div>
+	</section>
+	
+	<!-- Selling -->
 	<section class="body pages"></section>
 
-	<!-- <section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section> -->
+	<section class="checkout pages">
+		
+		<div class="confirmation_overview">
 
-	<!-- Pop out book -->
-		<!-- <div class="search_books_expanded_book_wrap">
-			<div class="search_books_expanded_book">
-
-				<span class="with-icon-info-close"></span>
-
-				<div class="search_books_expanded_image_wrap">
-					<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="search_books_expanded_image">
+			<div class="basket_overview_outer_wrap">
+				<div class="basket_overview_wrap">
+					<div class="basket_overview_title">Basket Overview</div>
+					<div class="basket_overview_items">
+						<div class="basket_overview_item">
+							<img class="basket_overview_item_thumbnail" src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg">
+							<div class="basket_overview_item_text_wrap">
+								<div class="basket_overview_item_text_title">Jaggarnath</div>
+								<div class="basket_overview_item_text_author">by Kelsey McDolth</div>
+								<div class="basket_overview_item_isbn"><span class="basket_overview_item_isbn_highlight">isbn</span> 923495943</div>
+							</div>
+							<div class="basket_overview_item_price_wrap">
+								<div class="basket_overview_item_price_text">Sell for</div>
+								<div class="basket_overview_item_price">£ 12.20</div>
+							</div>
+						</div>
+						<div class="basket_overview_item">
+							<img class="basket_overview_item_thumbnail" src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg">
+							<div class="basket_overview_item_text_wrap">
+								<div class="basket_overview_item_text_title">Jaggarnath</div>
+								<div class="basket_overview_item_text_author">by Kelsey McDolth</div>
+								<div class="basket_overview_item_isbn"><span class="basket_overview_item_isbn_highlight">isbn</span> 923495943</div>
+							</div>
+							<div class="basket_overview_item_price_wrap">
+								<div class="basket_overview_item_price_text">Sell for</div>
+								<div class="basket_overview_item_price">£ 12.20</div>
+							</div>
+						</div>
+					</div>
+					<div class="basket_overview_bar">
+						<div class="basket_overview_bar_block"></div>
+					</div>
 				</div>
-
-				<div class="search_books_expanded_text">
-					<div class="search_books_expanded_title">Jaggernath</div>
-					<span class="search_books_expanded_author">by Karla Tidberck</span>
-					<div class="search_books_expanded_isbn"><span class="search_books_expanded_isbn_highlight">isbn: </span>0239 2309 2310 20</div>
-
-					<div class="search_books_expanded_book_description">
-						<div class="search_books_expanded_book_description_title">Book Description</div>
-						<div class="search_books_expanded_book_description_text">
-							We walked thourgh the air those days, thousand and thousand of miles, upon the rocky cliff
-							where once upon we met, i smelled the dew still fresh within your hair, as i held you in my 
-							arms lost within the intoxicating aromas of your skin; "Oh, Lousie how i loved to hold you so"
-							i exclamed, and then from began to transform... <span class="search_books_expanded_book_description_see_more">See More</span>
-						</div>
-					</div>
-
-					<div class="search_books_expanded_book_price">
-						Well Buy For:
-						<span class="search_books_expanded_book_price_highlight">£5.30</span>
-					</div>
-
-					<div class="search_books_expanded_book_add_to_sell_basket_wrap">
-						<div data-function-instructions="{\'id\':\'{(id)}\'}" data-sfunction-to-call="front.prototype.add_to_basket" class="search_books_expanded_book_add_to_sell_basket_button">
-							<span class="search_books_expanded_book_add_to_sell_basket_button_text">Add To Basket</span>
-						</div>
-						<div class="search_books_expanded_book_add_to_sell_basket_add_again_button">
-							<span class="with-icon-added-to-sell-basket-expanded-tick">Add Again?</span>
-						</div>
-					</div>
-
+				
+				<div class="basket_overview_edit_button">Edit Basket</div>
+				<div class="basket_overview_total_wrap">
+					<div class="basket_overview_total">£12.20</div>
+					<div class="basket_overview_total_text">Total Sale:</div>
 				</div>
-
 			</div>
-		</div> -->
+		
+			<div class="address_overview_wrap">
+				<div class="address_overview_title">Address Confirmation</div>
+				<div class="address_overview_inputs">
+					<input class="address_overview_input">
+					<input class="address_overview_input_small">
+				</div>
+				<div class="address_overview_edit">Edit Address</div>
+			</div>
+
+		</div>
+		
+	</section>
+	
+	<!-- <section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section> -->
 
 <?php get_footer(); ?>
