@@ -9,11 +9,11 @@
 	
 	@extend .field_box_wrap;
 	background: $light;	 
-	width: 90%;
+	width: 91.5%;
 	padding: 15px 3% 5px;
 	display: inline-block;
 	float: left;
-	margin: 0 2% 20px 0;
+	margin: 0 2.5% 20px 0;
 }
 
 .confirmation_overview_inner_wrap { 
@@ -52,6 +52,7 @@
 	display: inline-block;
 	float: left;
 	width: 93%;
+	height: 228px;
 }
 
 .basket_overview_item {

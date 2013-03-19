@@ -1,0 +1,158 @@
+.how_would_you_like_wrap {
+
+	width: 100%;
+	float: left;
+	margin-top: 20px;
+}
+
+.how_would_you_like_title {
+	
+	font-family: MotorOil;
+	font-size: 18px;
+	line-height: 18px;
+	text-transform: uppercase;
+	color: $black_gray;
+	float: left;
+	background: $light; 
+	width: 48%;
+	padding: 20px 0 10px 2%;
+}
+
+.how_would_you_like_titles_wrap {
+
+	width: 100%;
+	float: left;
+}
+
+.how_would_you_like_tab_title {
+	
+	width: 45%;
+	padding: 13px 2.5%;
+	background: $light_blue; 
+	font-size: 18px;
+	line-height: 18px; 
+	color: $dark_blue; 
+	text-align: center;
+	display: inline-block;
+	float: left;
+	font-family: MotorOil;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.how_would_you_like_tab_title_active { 
+
+	@extend .how_would_you_like_tab_title;
+	background: $dark_blue;
+	color: $light_blue;
+	@include box-shadow(3px, 1px, 8px, 0px, rgba(0,0,0, 0.2) );
+	z-index: 1;
+	position: relative;
+}
+
+.how_would_you_like_tab_wrap {
+
+	width: 100%;
+	float: left;
+	position: relative;
+	z-index: 2;
+}
+
+.how_would_you_like_we_send_active_tab {
+	
+	background: $dark_blue;
+	color: $light;
+	padding: 20px 0;
+	float: left;
+}
+
+.we_send_freepost_tab_image {
+	
+	width: 32%;
+	padding-right: 2.5%; 
+	height: 200px;
+	display: inline-block;
+	float: left;
+}
+
+.we_send_freepost_tab_text_wrap { 
+	
+	width: 49%;
+	display: inline-block;
+	float: left;	
+}
+
+.we_send_freepost_tab_text {
+	
+	width: 94%;
+	margin-left: 6%;
+	display: inline-block;
+	list-style: disc;
+	float: left;
+}
+
+.we_send_freepost_tab_paragraph {
+	
+	float: left;
+	margin-bottom: 15px;
+	line-height: 20px; 
+}
+
+.we_send_freepost_tab_tick_button {
+	
+	margin: 15px 0 0 6%;
+	display: inline-block;
+	float: left;
+}
+
+.with-icon-we-checkout-tick {
+	
+	width: 20px;
+	height: 20px;
+	background: $light_blue; 
+	display: inline;
+	float: left;
+	margin-right: 8px; 
+	cursor: pointer;
+	
+	&:before {
+		
+		color: $dark_blue;
+		position: relative;
+		top: 2px;
+		left: 2px;
+		content:"t";
+	}
+}
+
+.we_send_freepost_tab_tick_button_text {
+	
+	font-size: 14px;
+	line-height: 20px; 
+	font-family: MotorOil;
+	text-transform: uppercase;
+	display: inline;
+	float: left;
+}
+
+.checkout_button {
+	
+	cursor: pointer;
+	width: 20%;
+	margin: 30px 37.5%;
+	padding: 17px 2.5%;
+	font-family: MotorOil;
+	font-size: 14px;
+	background: $green;
+	color: $light; 
+	text-transform: uppercase;
+	text-align: center;
+	float: left;
+	@include transition;
+	
+	&:hover { 
+		
+		@include transition;
+		background: darken($green, 5%); 
+	}
+}

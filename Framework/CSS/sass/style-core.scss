@@ -10,6 +10,7 @@
 @import "Imports/mixins/font.import";
 @import "Imports/mixins/media.query";
 @import "Imports/mixins/arrow";
+@import "Imports/mixins/rotate";
 
 $url: #{"<?php echo get_template_directory_uri(); ?>"};
 $bar_height: 52px;
@@ -78,3 +79,4 @@ body {
 @import "Imports/front/search.book";
 @import "Imports/front/user";
 @import "Imports/front/checkout";
+@import "Imports/front/thank_you";

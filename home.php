@@ -150,11 +150,10 @@
 	
 	<!-- Selling -->
 	<section class="body pages"></section>
-
+<!-- 
 	<section class="checkout pages">
 		
 		<div class="confirmation_overview">
-
 			<div class="basket_overview_outer_wrap">
 				<div class="basket_overview_wrap">
 					<div class="basket_overview_title">Basket Overview</div>
@@ -195,18 +194,69 @@
 					<div class="basket_overview_total_text">Total Sale:</div>
 				</div>
 			</div>
-		
-			<div class="address_overview_wrap">
-				<div class="address_overview_title">Address Confirmation</div>
-				<div class="address_overview_inputs">
-					<input class="address_overview_input">
-					<input class="address_overview_input_small">
+			
+			<div class="address_overview_wrap_outer">
+				<div class="address_overview_wrap">
+					<div class="address_overview_title">Address Confirmation</div>
+					<div class="address_overview_inputs">
+						<input class="address_overview_input" value="">
+						<input class="address_overview_input" value="Country">
+						<input class="address_overview_input" value="Region">
+						<input class="address_overview_input_small" value="Post Code">
+					</div>
 				</div>
 				<div class="address_overview_edit">Edit Address</div>
 			</div>
+		</div>
 
+		<div class="how_would_you_like_wrap">
+			<div class="how_would_you_like_title">How would you like to send your books?</div>
+			<div class="how_would_you_like_titles_wrap">
+				<div class="how_would_you_like_tab_title_active">We Send you a freepost pack</div>
+				<div class="how_would_you_like_tab_title">Print your own freepost pack</div>
+			</div>
+			<div class="how_would_you_like_tab_wrap">
+				<div class="how_would_you_like_we_send_active_tab">
+					<div class="we_send_freepost_tab_image"></div>
+					<div class="we_send_freepost_tab_text_wrap">
+						<ul class="we_send_freepost_tab_text">
+							<li class="we_send_freepost_tab_paragraph">Youll get instructions to guide you through a Pre-paid Envelope for your books.</li>
+							<li class="we_send_freepost_tab_paragraph">Just pop them in the <strong>pre-paid</strong>, <strong>pre-addressed</strong> bag and send them to us for quick payment.</li>
+							<li class="we_send_freepost_tab_paragraph">Well send you a cheque on the day we recieve your books.</li>
+						</ul>
+						<div class="we_send_freepost_tab_tick_button">
+							<div class="with-icon-we-checkout-tick"></div>
+							<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="checkout_button">Confirm & Complete</div>
 		</div>
 		
+	</section> -->
+
+	<section class="thank_you pages">
+		
+		<div class="thank_you_banner_wrap">
+			<div class="thank_you_banner">
+				<div class="with-icon-thank-you-icon-leaf"></div>
+				<div class="thank_you_banner_title_one">Thank you </div>
+				<div class="thank_you_banner_title_two">For using recyclabook</div>
+				<div class="thank_you_banner_summary">You have sold your books. You will recieve a cheque for <span class="thank_you_banner_summary_underline">£xx.xx</span> as soon as we get your books</div>
+				<div class="thank_you_banner_paragraph">We'll be waiting for your books to arrive, in the meantime, <strong>you have an account now</strong>. You cna login and track the books and payments anytime, theres also an option to tell us when you've sent your books so we can get your payment out <strong>even quicker.</strong></div>
+			</div>
+			<div class="with-icon-thank-you-bottom-arrow"></div>
+		</div>
+		<div class="thank_you_circle_wrap">
+			<div class="with-icon-thank-you-corn"></div>
+			<div class="thank_you_circle_text_wrap">
+				<div class="thank_you_circle_text_header">Alas we shall</div>
+				<div class="thank_you_circle_text">to the edge of earth and back dear friend and trips and trips till death</div>
+			</div>
+		</div>
+		<div class="with-icon-your-account"></div>
+
 	</section>
 	
 	<!-- <section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section> -->
