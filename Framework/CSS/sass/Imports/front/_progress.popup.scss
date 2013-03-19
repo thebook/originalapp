@@ -9,9 +9,9 @@ $popup_arrow_size: 19px;
 	font-family: MotorOil; 
 	margin: ( $bar_height + $popup_arrow_size ) 0 0 42px;
 	background: $dark_blue; 
-	width: 30%;
+	width: 398px;
 	color: $light;
-	padding: 1.5%;
+	padding: 20px;
 	z-index: 1;
 	@include box-shadow( 1px, 1px, 3px, 1px, rgba(0,0,0, 0.3));
 }

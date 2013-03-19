@@ -39,7 +39,7 @@
 	<section class="bar_outer_wrap"></section>
 	
 	<!-- Homepage -->
-<!-- 	<section class="homepage_body_wrap pages">
+	<section class="homepage_body_wrap pages" style="display: none;">
 
 		<div class="homepage_body_inner_wrap">
 			
@@ -138,7 +138,7 @@
 			</div>
 
 		</div>
-	</section> -->
+	</section>
 	
 	<!-- Recyclabus -->
 	<section class="recyclabus pages"></section>
@@ -150,93 +150,111 @@
 	
 	<!-- Selling -->
 	<section class="body pages"></section>
-<!-- 
+
 	<section class="checkout pages">
-		
-		<div class="confirmation_overview">
-			<div class="basket_overview_outer_wrap">
-				<div class="basket_overview_wrap">
-					<div class="basket_overview_title">Basket Overview</div>
-					<div class="basket_overview_items">
-						<div class="basket_overview_item">
-							<img class="basket_overview_item_thumbnail" src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg">
-							<div class="basket_overview_item_text_wrap">
-								<div class="basket_overview_item_text_title">Jaggarnath</div>
-								<div class="basket_overview_item_text_author">by Kelsey McDolth</div>
-								<div class="basket_overview_item_isbn"><span class="basket_overview_item_isbn_highlight">isbn</span> 923495943</div>
+		<!-- <div class="checkout_wrap">
+			<div class="confirmation_overview">
+				<div class="basket_overview_outer_wrap">
+
+					<div class="basket_overview_wrap">
+						<div class="basket_overview_title">Basket Overview</div>
+						<div class="basket_overview_items">
+							<div class="basket_overview_item">
+								<img class="basket_overview_item_thumbnail" src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg">
+								<div class="basket_overview_item_text_wrap">
+									<div class="basket_overview_item_text_title">Jaggarnath</div>
+									<div class="basket_overview_item_text_author">by Kelsey McDolth</div>
+									<div class="basket_overview_item_isbn"><span class="basket_overview_item_isbn_highlight">isbn</span> 923495943</div>
+								</div>
+								<div class="basket_overview_item_price_wrap">
+									<div class="basket_overview_item_price_text">Sell for</div>
+									<div class="basket_overview_item_price">£ 12.20</div>
+								</div>
 							</div>
-							<div class="basket_overview_item_price_wrap">
-								<div class="basket_overview_item_price_text">Sell for</div>
-								<div class="basket_overview_item_price">£ 12.20</div>
+							<div class="basket_overview_item">
+								<img class="basket_overview_item_thumbnail" src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg">
+								<div class="basket_overview_item_text_wrap">
+									<div class="basket_overview_item_text_title">Jaggarnath</div>
+									<div class="basket_overview_item_text_author">by Kelsey McDolth</div>
+									<div class="basket_overview_item_isbn"><span class="basket_overview_item_isbn_highlight">isbn</span> 923495943</div>
+								</div>
+								<div class="basket_overview_item_price_wrap">
+									<div class="basket_overview_item_price_text">Sell for</div>
+									<div class="basket_overview_item_price">£ 12.20</div>
+								</div>
 							</div>
 						</div>
-						<div class="basket_overview_item">
-							<img class="basket_overview_item_thumbnail" src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg">
-							<div class="basket_overview_item_text_wrap">
-								<div class="basket_overview_item_text_title">Jaggarnath</div>
-								<div class="basket_overview_item_text_author">by Kelsey McDolth</div>
-								<div class="basket_overview_item_isbn"><span class="basket_overview_item_isbn_highlight">isbn</span> 923495943</div>
-							</div>
-							<div class="basket_overview_item_price_wrap">
-								<div class="basket_overview_item_price_text">Sell for</div>
-								<div class="basket_overview_item_price">£ 12.20</div>
-							</div>
+						<div class="basket_overview_bar">
+							<div class="basket_overview_bar_block"></div>
 						</div>
 					</div>
-					<div class="basket_overview_bar">
-						<div class="basket_overview_bar_block"></div>
+					
+					<div class="basket_overview_edit_button">Edit Basket</div>
+					<div class="basket_overview_total_wrap">
+						<div class="basket_overview_total">£12.20</div>
+						<div class="basket_overview_total_text">Total Sale:</div>
 					</div>
+					
 				</div>
 				
-				<div class="basket_overview_edit_button">Edit Basket</div>
-				<div class="basket_overview_total_wrap">
-					<div class="basket_overview_total">£12.20</div>
-					<div class="basket_overview_total_text">Total Sale:</div>
-				</div>
-			</div>
-			
-			<div class="address_overview_wrap_outer">
-				<div class="address_overview_wrap">
-					<div class="address_overview_title">Address Confirmation</div>
-					<div class="address_overview_inputs">
-						<input class="address_overview_input" value="">
-						<input class="address_overview_input" value="Country">
-						<input class="address_overview_input" value="Region">
-						<input class="address_overview_input_small" value="Post Code">
+				<div class="address_overview_wrap_outer">
+					<div class="address_overview_wrap">
+						<div class="address_overview_title">Address Confirmation</div>
+						<div class="address_overview_inputs">
+							<input class="address_overview_input" 		readonly value="">
+							<input class="address_overview_input" 		readonly value="Country">
+							<input class="address_overview_input" 		readonly value="Region">
+							<input class="address_overview_input_small" readonly value="Post Code">
+						</div>
 					</div>
+					<div class="address_overview_edit">Edit Address</div>
 				</div>
-				<div class="address_overview_edit">Edit Address</div>
 			</div>
-		</div>
 
-		<div class="how_would_you_like_wrap">
-			<div class="how_would_you_like_title">How would you like to send your books?</div>
-			<div class="how_would_you_like_titles_wrap">
-				<div class="how_would_you_like_tab_title_active">We Send you a freepost pack</div>
-				<div class="how_would_you_like_tab_title">Print your own freepost pack</div>
-			</div>
-			<div class="how_would_you_like_tab_wrap">
-				<div class="how_would_you_like_we_send_active_tab">
-					<div class="we_send_freepost_tab_image"></div>
-					<div class="we_send_freepost_tab_text_wrap">
-						<ul class="we_send_freepost_tab_text">
-							<li class="we_send_freepost_tab_paragraph">Youll get instructions to guide you through a Pre-paid Envelope for your books.</li>
-							<li class="we_send_freepost_tab_paragraph">Just pop them in the <strong>pre-paid</strong>, <strong>pre-addressed</strong> bag and send them to us for quick payment.</li>
-							<li class="we_send_freepost_tab_paragraph">Well send you a cheque on the day we recieve your books.</li>
-						</ul>
-						<div class="we_send_freepost_tab_tick_button">
-							<div class="with-icon-we-checkout-tick"></div>
-							<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>
+			<div class="how_would_you_like_wrap">
+				<div class="how_would_you_like_title">How would you like to send your books?</div>
+				<div class="how_would_you_like_titles_wrap">
+					<div class="how_would_you_like_tab_title_active ">We Send you a freepost pack</div>
+					<div class="how_would_you_like_tab_title active_tab_right">Print your own freepost pack</div>
+				</div>
+				<div class="how_would_you_like_tab_wrap">
+					<div class="how_would_you_like_we_send_active_tab">
+						<img class="we_send_freepost_tab_image" src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/freepost_send.png">
+						<div class="we_send_freepost_tab_text_wrap">
+							<ul class="we_send_freepost_tab_text">
+								<li class="we_send_freepost_tab_paragraph">Youll get instructions to guide you through a Pre-paid Envelope for your books.</li>
+								<li class="we_send_freepost_tab_paragraph">Just pop them in the <strong>pre-paid</strong>, <strong>pre-addressed</strong> bag and send them to us for quick payment.</li>
+								<li class="we_send_freepost_tab_paragraph">Well send you a cheque on the day we recieve your books.</li>
+							</ul>
+							<div class="we_send_freepost_tab_tick_button">
+								<div class="with-icon-we-checkout-tick"></div>
+								<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="how_would_you_like_we_send_tab">
+						<img class="we_send_freepost_tab_image" src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/print.png">
+						<div class="we_send_freepost_tab_text_wrap">
+							<ul class="we_send_freepost_tab_text">
+								<li class="we_send_freepost_tab_paragraph">Youll get instructions to guide you through a Pre-paid Envelope for your books.</li>
+								<li class="we_send_freepost_tab_paragraph">Just pop them in the <strong>pre-paid</strong>, <strong>pre-addressed</strong> bag and send them to us for quick payment.</li>
+								<li class="we_send_freepost_tab_paragraph">Well send you a cheque on the day we recieve your books.</li>
+							</ul>
+							<div class="we_send_freepost_tab_tick_button">
+								<div class="with-icon-we-checkout-tick-dark"></div>
+								<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div class="checkout_button">Confirm & Complete</div>
 			</div>
-			<div class="checkout_button">Confirm & Complete</div>
-		</div>
+		</div> -->
 		
-	</section> -->
+	</section>
 
-	<section class="thank_you pages">
+	<section class="thank_you pages" style="display: none;">
 		
 		<div class="thank_you_banner_wrap">
 			<div class="thank_you_banner">

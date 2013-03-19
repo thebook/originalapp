@@ -1,19 +1,20 @@
 .basket_overview_outer_wrap {
 	
-	width: 50%;
+	width: 48%;
 	float: left;
 	display: inline-block;
+	background: $light;	 
+	margin-right: 2%;
 }
 
 .basket_overview_wrap {
 	
 	@extend .field_box_wrap;
-	background: $light;	 
-	width: 91.5%;
+	width: 94%;
 	padding: 15px 3% 5px;
 	display: inline-block;
 	float: left;
-	margin: 0 2.5% 20px 0;
+	margin: 0 0 5px 0;
 }
 
 .confirmation_overview_inner_wrap { 
@@ -25,12 +26,11 @@
 
 .basket_overview_title {
 	
-	text-transform: uppercase;
-	font-family: MotorOil;
+	@extend .field_box_title;
+	width: 100%;
+	padding-bottom: 10px;
 	margin: 10px 0 15px;
-	padding: 0px 0px 10px; 
-	color: $black_gray; 
-	border-bottom: 1px solid $black_gray; 
+	border-bottom: 1px solid $middle_gray; 
 }
 
 .basket_overview_bar {
@@ -134,17 +134,29 @@
 
 .basket_overview_total_wrap {
 	
-	width: 66%;
 	display: inline;
-	float: left;
+	float: right;
 	margin: 0 0 10px 0;
 	padding: 12px 3% 11px 0;
-	margin-right: 2%;
+	margin-right: 3%;
 	font-size: 14px;
-	border: 1px solid $darkest_gray;
 	text-align: right;
 	font-weight: bold;
+	border-top: 1px solid $darkest_gray;
+	border-bottom: 1px solid $darkest_gray;
 	color: $black_gray; 
+}
+
+.basket_overview_total_text {
+		
+	display: inline;
+	margin-right: 5px; 
+	float: right;
+}
+
+.basket_overview_total {
+	display: inline;
+	float: right;
 }
 
 .basket_overview_edit_button {
@@ -161,6 +173,7 @@
 	font-family: MotorOil;
 	text-transform: uppercase;
 	cursor: pointer;
+	margin: 0 0 0 10px;
 	@include transition;
 	
 	&:hover { 
@@ -168,16 +181,4 @@
 		background: darken($light_blue, 10%);
 		@include transition;	
 	}
-}
-
-.basket_overview_total_text {
-		
-	display: inline;
-	margin-right: 5px; 
-	float: right;
-}
-
-.basket_overview_total {
-	display: inline;
-	float: right;
 }

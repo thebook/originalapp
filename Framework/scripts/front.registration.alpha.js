@@ -6,7 +6,7 @@ var alpha = (function ( alpha, $ ) {
 
 		alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'-52px' }, 300);
 		alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block', left: '68px', opacity: 0 }).animate({ opacity: 1 }, 300);
-		alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);		
+		alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);				
 	};
 
 	alpha.front.prototype.account = function () {
@@ -71,9 +71,11 @@ var alpha = (function ( alpha, $ ) {
 							self   : '<div class="field_box_input_wrap"></div>',
 							branch : {
 								title  			 : '<div class="field_box_input_title">Where shall we send your freepost pack</div>',
-								post_code_input  : '<input type="text" class="field_box_input" placeholder="Post Code, no spaces">',
+								post_code_input  : '<input type="text" class="field_box_input" placeholder="Post Code">',
 								not_valid        : '<span class="with-icon-not-valid-field"></span>',
-								address_input    : '<input type="text" class="field_box_input" placeholder="Full Address">',
+								town_input       : '<input type="text" class="field_box_input" placeholder="Town/City">',
+								area_input       : '<input type="text" class="field_box_input" placeholder="Area">',
+								address_input    : '<input type="text" class="field_box_input" placeholder="Street And Address">'
 						}}
 					}}},
 			password : {
@@ -143,16 +145,18 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.register = function () {
 
-		var valid = {}, input = {}, parts = alpha.front.prototype.parts;
+		var valid = {}, fields = alpha.front.prototype.being.user_info.fields, parts = alpha.front.prototype.parts;
 
-		input.e_mail            = parts.account.password.branch.branch.email.branch.emai_input.val();
-		input.email_confirm     = parts.account.password.branch.branch.email.branch.confirm_email_input.val();
-		input.password          = parts.account.password.branch.branch.password.branch.password.val();
-		input.password_confirm  = parts.account.password.branch.branch.password.branch.password_input_confirm.val();
-		input.first_name  		= parts.account.name_and_address.branch.branch.name.branch.name_input.val();
-		input.second_name 		= parts.account.name_and_address.branch.branch.name.branch.last_name_input.val();
-		input.post_code 		= parts.account.name_and_address.branch.branch.address.branch.post_code_input.val();
-		input.address   		= parts.account.name_and_address.branch.branch.address.branch.address_input.val();
+		fields.e_mail            = parts.account.password.branch.branch.email.branch.emai_input.val();
+		fields.email_confirm     = parts.account.password.branch.branch.email.branch.confirm_email_input.val();
+		fields.password          = parts.account.password.branch.branch.password.branch.password.val();
+		fields.password_confirm  = parts.account.password.branch.branch.password.branch.password_input_confirm.val();
+		fields.first_name  		 = parts.account.name_and_address.branch.branch.name.branch.name_input.val();
+		fields.second_name 		 = parts.account.name_and_address.branch.branch.name.branch.last_name_input.val();
+		fields.post_code 		 = parts.account.name_and_address.branch.branch.address.branch.post_code_input.val();
+		fields.address   		 = parts.account.name_and_address.branch.branch.address.branch.address_input.val();
+		fields.address_area   	 = parts.account.name_and_address.branch.branch.address.branch.area_input.val();
+		fields.address_town   	 = parts.account.name_and_address.branch.branch.address.branch.town_input.val();
 
 		valid.name         	   = {};
 		valid.name.object  	   = parts.account.name_and_address.branch.branch.name.branch;
@@ -164,7 +168,7 @@ var alpha = (function ( alpha, $ ) {
 		valid.password.object  = parts.account.password.branch.branch.password.branch;
 
 
-		if ( input.first_name.trim().length > 1 && input.second_name.trim().length > 1 ) {
+		if ( fields.first_name.trim().length > 1 && fields.second_name.trim().length > 1 ) {
 
 			valid.name.pass  = true;
 		}
@@ -173,21 +177,24 @@ var alpha = (function ( alpha, $ ) {
 			valid.name.message = "First name and last name should be greater than one character";
 		}
 
-		if ( input.post_code.trim().is_length_between(5,8) && input.address.trim().length > 0 ) {
+		if ( fields.post_code.trim().is_length_between(5,8) && fields.address.trim().length > 0 && fields.address_area.trim().length > 0 && fields.address_town.trim().length > 0 ) {
 
 			valid.address.pass = true;
 		}
 		else {
 
 			valid.address.pass = false;	
-			if ( !input.post_code.trim().is_length_between(5,8) && !input.address.trim().length > 0 ) valid.address.message = "Post Code and Adress are incorrect";
-			if ( !input.post_code.trim().is_length_between(5,8) ) 									  valid.address.message = "Post Code is incorect";
-			if ( !input.address.trim().length > 0 ) 		      									  valid.address.message = "Address has not been entered";
+			valid.address.message = "";
+			// if ( !fields.post_code.trim().is_length_between(5,8) && !fields.address.trim().length > 0 ) valid.address.message += "Post Code and Adress are incorrect,";
+			if ( !fields.post_code.trim().is_length_between(5,8) ) 	valid.address.message += "Post Code is incorect, <br/>";
+			if ( !fields.address.trim().length > 0 ) 		      	valid.address.message += "Address has not been entered, <br/>";
+			if ( !fields.address_town.trim().length > 0 ) 		 	valid.address.message += "Town has not been entered, <br/>";
+			if ( !fields.address_area.trim().length > 0 ) 		 	valid.address.message += "Area has not been entered,";
 		}
 
-		if ( ( input.e_mail.length > 4 && this.prototype.check_that_input_is_valid(input.e_mail, /[@]/g) ) && ( input.email_confirm.length > 4 && this.prototype.check_that_input_is_valid(input.email_confirm, /[@]/g)) ) {
+		if ( ( fields.e_mail.length > 4 && this.prototype.check_that_input_is_valid(fields.e_mail, /[@]/g) ) && ( fields.email_confirm.length > 4 && this.prototype.check_that_input_is_valid(fields.email_confirm, /[@]/g)) ) {
 
-			valid.email.pass    = this.prototype.check_that_two_inputs_match(input.e_mail, input.email_confirm );
+			valid.email.pass    = this.prototype.check_that_two_inputs_match(fields.e_mail, fields.email_confirm );
 			valid.email.message = "Emails do not match";
 		}
 		else {
@@ -196,9 +203,9 @@ var alpha = (function ( alpha, $ ) {
 			valid.email.message = "Not a valid email";
 		}
 
-		if ( this.prototype.check_that_two_inputs_match( input.password, input.password_confirm)) {
+		if ( this.prototype.check_that_two_inputs_match( fields.password, fields.password_confirm)) {
 
-			valid.password.pass    = (input.password.length > 5);
+			valid.password.pass    = (fields.password.length > 5);
 			valid.password.message = "Password should be more than 5 characters long";
 		}
 		else {
@@ -209,23 +216,24 @@ var alpha = (function ( alpha, $ ) {
 
 		alpha.front.prototype.parts.account.disclaimer.branch.branch.continue_button.self.text("a momment...");
 
-		alpha.front.prototype.register.prototype.is_email_in_use(input.e_mail, function (is_email_in_use) {
+		alpha.front.prototype.register.prototype.is_email_in_use(fields.e_mail, function (is_email_in_use) {
 
 			if (valid.email.pass && is_email_in_use) valid.email.pass = false; valid.email.message = "Email is already in use";
 
 			if (alpha.front.prototype.register.prototype.throw_errors_for_inputs(valid)) {
 
-				delete input.email_confirm;
-				delete input.password_confirm;
-				input.recieve_newsletters = (alpha.front.prototype.parts.account.disclaimer.branch.branch.tick.branch.tick.css('display') !== 'none');				
+				delete fields.email_confirm;
+				delete fields.password_confirm;
+				fields.recieve_newsletters = (alpha.front.prototype.parts.account.disclaimer.branch.branch.tick.branch.tick.css('display') !== 'none');				
+				alpha.front.prototype.confirm();
 
-				$.post(
-					ajaxurl,
-					{ action:"create_sub_user", user_information: input },
-					function (response) {
-						alpha.front.prototype.confirm();
-					},
-					'json');
+				// $.post(
+				// 	ajaxurl,
+				// 	{ action:"create_sub_user", user_information: input },
+				// 	function (response) {
+						
+				// 	},
+				// 	'json');
 			}
 			else {
 				alpha.front.prototype.parts.account.disclaimer.branch.branch.continue_button.self.text("Continue");
@@ -256,7 +264,7 @@ var alpha = (function ( alpha, $ ) {
 				if (!object.pass) {
 					
 					object.object.not_valid.css({ display :'block' });
-					notification.append(alpha.replace_placeholders_with_values_in_text({ index : index, message : object.message }, alpha.front.prototype.being.basket_book_format ));
+					notification.append(alpha.replace_placeholders_with_values_in_text({ index : index, message : object.message }, alpha.front.prototype.being.basket_book_format_tick ));
 					no_mistakes = false;
 				}
 				else { 

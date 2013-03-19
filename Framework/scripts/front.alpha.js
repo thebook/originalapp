@@ -10,12 +10,13 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.parts.book = {};
 
 		this.front.prototype.being = {};		
-		this.front.prototype.being.on_page      = '';
-		this.front.prototype.being.first_search = false;
-		this.front.prototype.being.user_id      = '';
-		this.front.prototype.being.user_info    = {};
-		this.front.prototype.being.search       = {};
-		this.front.prototype.being.listed_items = {};
+		this.front.prototype.being.on_page      	= '';
+		this.front.prototype.being.first_search 	= false;
+		this.front.prototype.being.user_id      	= '';
+		this.front.prototype.being.user_info    	= {};
+		this.front.prototype.being.user_info.fields = {};
+		this.front.prototype.being.search       	= {};
+		this.front.prototype.being.listed_items 	= {};
 
 		this.front.prototype.being.basket            = {};
 		this.front.prototype.being.basket.items      = {};
@@ -74,13 +75,14 @@ var alpha = (function ( alpha, $ ) {
 				'</div>'+
 				'<div data-function-instructions="{\'id\' : \'{(id)}\'}" data-function-to-call="front.prototype.remove_item_from_basket" class="with-icon-x-for-store-basket-pop-up-content-item"></div>'+
 			'</div>';		
-		this.front.prototype.being.basket_book_format = 
+		this.front.prototype.being.basket_book_format_tick = 
 			'<div id="notification_{(index)}" class="legend_mark_x_symbol">'+
 				'<span class="with-icon-x-for-legend"></span>{(message)}'+
 			'</div>';
 
 		this.front.prototype.being.text = {};
 		this.front.prototype.being.text.registration = "This will not only create your profile hub that will let you track payments, check book orders and edit details but makes sure we make the payment out to the right person and send the freepost pack to the correct address.";
+		this.front.prototype.being.text.confirmation = "Better be safe than sorry, Just check the books and address are correct and edit any mistakes if need be, then chose which type of freepost you prefer and confirm your sale. Shazam!";
 		this.front.prototype.parts.registration_wrap = $('.account_wrap');
 
 		this.front.prototype.being.basket.watch( 'items', alpha.front.prototype.display_books );
@@ -91,6 +93,7 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.search_bar();
 		this.front.prototype.recyclabus();
 		this.front.prototype.initialize_basket();
+		// this.front.prototype.registration();
 		this.front.prototype.popup_book();
 		this.front.prototype.being.on_page = 'homepage_body_wrap';
 	};		
