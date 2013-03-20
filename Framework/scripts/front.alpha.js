@@ -18,11 +18,12 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.being.search       	= {};
 		this.front.prototype.being.listed_items 	= {};
 
+		this.front.prototype.being.format            = {};
 		this.front.prototype.being.basket            = {};
 		this.front.prototype.being.basket.items      = {};
 		this.front.prototype.being.basket.inside     = {};		
 		this.front.prototype.being.basket.displayed  = {};
-		this.front.prototype.being.basket.total      = '';
+		this.front.prototype.being.basket.total      = 0;
 		this.front.prototype.being.basket.quote_by   = '';
 		this.front.prototype.being.first_book_format = 
 			'<div id="book_{(id)}" class="{(wrapper)}">'+
@@ -96,7 +97,19 @@ var alpha = (function ( alpha, $ ) {
 		// this.front.prototype.registration();
 		this.front.prototype.popup_book();
 		this.front.prototype.being.on_page = 'homepage_body_wrap';
-	};		
+	};
+
+	alpha.front.prototype.calculate_total_quote_for_sold_books = function () { 
+
+		var total = 0, books = alpha.front.prototype.being.basket.inside;
+
+		$.each(books,
+		function (index, book) { 
+			total += parseInt(book.price);
+		});
+
+		alpha.front.prototype.being.basket.total = total;
+	};
 
 	alpha.front.prototype.add_a_book_to_basket = function (wake, callback) {
 
@@ -107,6 +120,7 @@ var alpha = (function ( alpha, $ ) {
 
 			value[key] = alpha.front.prototype.being.basket.items[wake.instructions.id];
 			alpha.front.prototype.being.basket.inside = value;
+			alpha.front.prototype.calculate_total_quote_for_sold_books();
 
 		if (callback)
 			callback(alpha.front.prototype.being.basket.items[wake.instructions.id], wake.instructions.id);
@@ -118,6 +132,7 @@ var alpha = (function ( alpha, $ ) {
 
 			delete basket[wake.instructions.id];
 			alpha.front.prototype.being.basket.inside = basket;
+			alpha.front.prototype.calculate_total_quote_for_sold_books();
 	};
 
 	alpha.front.prototype.get_the_search_value_from_blocks = function (wake) { 

@@ -17,8 +17,6 @@ var alpha = (function ( alpha, $ ) {
 
 		// Page change
 		alpha.front.prototype.being.on_page = 'thank_you';
-
-		console.log("thank you");
 	};
 
 	return alpha;

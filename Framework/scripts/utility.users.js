@@ -111,6 +111,17 @@ var alpha = (function ( alpha, $ ) {
 			return prototype.manifestor(passed.what_to_manifest, passed.append_to_who);
 	};
 
+	alpha.paste_values_into_fields = function (fields, values) {
+
+		$.each(fields, function (index, field) {
+
+			field.val(values[index]);
+		});
+
+		return true;
+
+	};
+
 	return alpha;
 
 })(alpha || {}, jQuery );

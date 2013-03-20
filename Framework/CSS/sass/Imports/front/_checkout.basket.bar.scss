@@ -1,0 +1,14 @@
+.basket_overview_bar {
+	
+	width: 27px;
+	border : 1px solid $middle_gray;
+	display: inline-block;
+	float: left;
+	height: $confirm_item_wrap_height;
+}
+
+.basket_overview_bar_block {
+	
+	background: $dark_gray;
+	height: 10px; 
+}

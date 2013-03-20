@@ -23,6 +23,7 @@
 	<?php wp_head(); ?>
 
 	<script src="<?php echo FRAMEWORKURI .'/scripts/jquery.js'; ?>"></script>	
+	<script src="<?php echo FRAMEWORKURI .'/scripts/mousewheel.jquery.js'; ?>"></script>	
 	<script src="<?php echo FRAMEWORKURI .'/scripts/alpha.js'; ?>"></script>
 
 	<script>	  
@@ -43,11 +44,12 @@
 			 scripts+"/front.confirm.alpha.js", 
 			 scripts+"/front.thank_you.alpha.js", 
 			 scripts+"/utility.users.js", 
+			 scripts+"/utility.alpha.js", 
 			 scripts+"/amazon.js", 
 			 scripts+"/ticket.alpha.js", 
 			 scripts+"/front.alpha.js"
 			],
-			function (error, result) { 
+			function (error, result) { 				
 				alpha.front();
 			});
 	</script>

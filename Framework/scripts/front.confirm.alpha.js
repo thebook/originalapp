@@ -15,42 +15,42 @@ var alpha = (function ( alpha, $ ) {
 							self   : '<div class="confirmation_overview"></div>',
 							branch : {
 								branch : {
-									// basket_overview : {
-									// 	self   : '<div class="basket_overview_outer_wrap"></div>',
-									// 	branch : {
-									// 		branch : {
-									// 			basket : {
-									// 				self   : '<div class="basket_overview_wrap"></div>',
-									// 				branch : {
-									// 					branch : {
-									// 						title : {
-									// 							self : '<div class="basket_overview_title">Basket Overview</div>'
-									// 						},
-									// 						items : {
-									// 							self : '<div class="basket_overview_items"></div>'
-									// 						},
-									// 						bar : {
-									// 							self   : '<div class="basket_overview_bar"></div>',
-									// 							branch : {
-									// 								block : '<div class="basket_overview_bar_block"></div>'
-									// 							}
-									// 						}
-									// 					}
-									// 				}
-									// 			},
-									// 			edit : {
-									// 				self : '<div class="basket_overview_edit_button">Edit Basket</div>'
-									// 			},
-									// 			total : {
-									// 				self  : '<div class="basket_overview_total_wrap"></div>',
-									// 				banch : {
-									// 					total : '<div class="basket_overview_total">£12.20</div>',
-									// 					text  : '<div class="basket_overview_total_text">Total Sale:</div>'
-									// 				}
-									// 			}
-									// 		}
-									// 	}
-									// },
+									basket_overview : {
+										self   : '<div class="basket_overview_outer_wrap"></div>',
+										branch : {
+											branch : {
+												basket : {
+													self   : '<div class="basket_overview_wrap"></div>',
+													branch : {
+														branch : {
+															title : {
+																self : '<div class="basket_overview_title">Basket Overview</div>'
+															},
+															items : {
+																self : '<div class="basket_overview_items"></div>'
+															},
+															bar : {
+																self   : '<div class="basket_overview_bar"></div>',
+																branch : {
+																	block : '<div class="basket_overview_bar_block"></div>'
+																}
+															}
+														}
+													}
+												},
+												edit : {
+													self : '<div class="basket_overview_edit_button">Edit Basket</div>'
+												},
+												total : {
+													self  : '<div class="basket_overview_total_wrap"></div>',
+													branch : {
+														total : '<div class="basket_overview_total"></div>',
+														text  : '<div class="basket_overview_total_text">Total Sale: </div>'
+													}
+												}
+											}
+										}
+									},
 									address_overview : {
 										self   : '<div class="address_overview_wrap_outer"></div>',
 										branch : { 
@@ -65,18 +65,18 @@ var alpha = (function ( alpha, $ ) {
 															inputs : {
 																self   : '<div class="address_overview_inputs"></div>',
 																branch : {
-																	address  : '<input class="address_overview_input" value="Address">',
-																	area     : '<input class="address_overview_input" value="Area">',
-																	town     : '<input class="address_overview_input" value="Town">',
-																	post_code: '<input class="address_overview_input_small" value="Post Code">'
+																	address  : '<input readonly class="address_overview_input" value="Address">',
+																	area     : '<input readonly class="address_overview_input" value="Area">',
+																	town     : '<input readonly class="address_overview_input" value="Town">',
+																	post_code: '<input readonly class="address_overview_input_small" value="Post Code">'
 																}
 															}																
 														}
 													}
+												},
+												edit : {
+													self : '<div class="address_overview_edit">Edit Address</div>'
 												}
-												// ,edit : {
-												// 	self : '<div class="address_overview_edit">Edit Address</div>'
-												// }
 											}
 										}
 									}
@@ -147,6 +147,20 @@ var alpha = (function ( alpha, $ ) {
 			}		
 		};
 
+		alpha.front.prototype.being.format.confirm_basket_book =
+			'<div class="basket_overview_item">'+
+				'<img class="basket_overview_item_thumbnail" src="{(image)}">'+
+				'<div class="basket_overview_item_text_wrap">'+
+					'<div class="basket_overview_item_text_title">{(title)}</div>'+
+					'<div class="basket_overview_item_text_author">by {(author)}</div>'+
+					'<div class="basket_overview_item_isbn"><span class="basket_overview_item_isbn_highlight">isbn</span> {(isbn)}</div>'+
+				'</div>'+
+				'<div class="basket_overview_item_price_wrap">'+
+					'<div class="basket_overview_item_price_text">Sell for</div>'+
+					'<div class="basket_overview_item_price">£{(price)}</div>'+
+				'</div>'+
+			'</div>';
+
 		alpha.front.prototype.parts.confirm = alpha.manifest({
 			what_to_manifest : alpha.front.prototype.parts.confirm,
 			append_to_who : $('.checkout') 
@@ -165,35 +179,67 @@ var alpha = (function ( alpha, $ ) {
 
 		parts.confirm.wrap.self.css({ 'margin-top': '2000px' }).animate({ 'margin-top': ( parts.bar.wrap.branch.branch.progress_popup.self.height() + 50 ) + 'px' }, 1200);
 
+		alpha.front.prototype.confirm.prototype.display_address_and_make_editable();
+		alpha.front.prototype.confirm.prototype.display_basket_and_make_editable();
+
 		alpha.front.prototype.being.on_page = 'checkout';
-		alpha.front.prototype.confirm.prototype.address_confirmation();
 
-		// alpha.front.prototype.parts.confirm.wrap.branch.branch.choice_wrap.branch.branch.button.self.on('click', 
-		// function () {
-		// 	;
-		// });
 	};
 
-	alpha.front.prototype.confirm.prototype.address_confirmation = function () {
+	alpha.front.prototype.confirm.prototype.display_basket_and_make_editable = function () {
 
-		var inputs = alpha.front.prototype.parts.confirm.wrap.branch.branch.confirmation_overview.branch.branch.address_overview.branch.branch.address.branch.branch.inputs.branch,
-			values = alpha.front.prototype.being.user_info.fields;
-	
-			alpha.paste_values_into_fields([inputs.address, inputs.town, inputs.area, inputs.post_code], [values.address, values.address_town, values.address_area, values.post_code]);
-	};
+		var books, basket, basket_overview;
+			books  			= '';
+			basket_overview = alpha.front.prototype.parts.confirm.wrap.branch.branch.confirmation_overview.branch.branch.basket_overview.branch.branch;
+			basket 			= basket_overview.basket.branch.branch;
 
-	alpha.paste_values_into_fields = function (fields, values) {
+		$.each(alpha.front.prototype.being.basket.inside, 
+		function (index, book) {
 
-		$.each(fields, function (index, field) {
-
-			field.val(values[index]);
+			books += alpha.replace_placeholders_with_values_in_text(
+			{
+				image : book.image,
+				author: book.author,
+				title : book.title,
+				price : book.price /100,
+				isbn  : book.ISBN
+			}, 
+			alpha.front.prototype.being.format.confirm_basket_book );
 		});
 
-		return true;
+		$(books).appendTo(basket.items.self);
 
+		setTimeout(function () {
+			alpha.sidebar({
+				content : basket.items.self, 
+				bar     : basket.bar.self, 
+				handle  : basket.bar.branch.block,
+				increase: 5
+			});
+		}, 1000);
+
+		basket_overview.total.branch.total.text('£'+ ( alpha.front.prototype.being.basket.total/100 ));
 	};
 
+	alpha.front.prototype.confirm.prototype.display_address_and_make_editable = function () {
 
+		var address = alpha.front.prototype.parts.confirm.wrap.branch.branch.confirmation_overview.branch.branch.address_overview.branch.branch,
+			inputs  = address.address.branch.branch.inputs.branch,
+			values  = alpha.front.prototype.being.user_info.fields;
+			
+			alpha.paste_values_into_fields([inputs.address, inputs.town, inputs.area, inputs.post_code], [values.address, values.address_town, values.address_area, values.post_code]);
+			
+			address.edit.self.toggle( 
+			function () {
+				address.edit.self.text('Set Edits');
+				address.address.branch.branch.inputs.self.find('input').removeAttr('readonly');
+			},
+			function () {
+				address.edit.self.text('Edit');
+				address.address.branch.branch.inputs.self.find('input').attr( 'readonly', true );
+			});
+
+	};
 
 	return alpha;
 
