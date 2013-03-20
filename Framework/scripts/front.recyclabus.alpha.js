@@ -136,13 +136,13 @@ var alpha = (function ( alpha, $ ) {
 				university : alpha.front.prototype.parts.recyclabus.right.branch.branch.wrap.branch.branch.inputs_wrap.branch.input_university.val()
 			}
 			
-			$(this).text('...a momment');
+			$(this).text('...one momment');
 
 			$.post(
 				ajaxurl,
 				{ action:"create_sub_user", user_information: value },
 				function (response) {					
-					alpha.front.prototype.parts.recyclabus.right.branch.branch.wrap.branch.branch.buttons_wrap.branch.branch.inner_wrap.animate({ top: '-52px' });
+					alpha.front.prototype.parts.recyclabus.right.branch.branch.wrap.branch.branch.buttons_wrap.branch.branch.inner_wrap.self.animate({ top: '-52px' });
 				},
 				'json');
 		});

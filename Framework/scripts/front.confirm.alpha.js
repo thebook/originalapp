@@ -38,9 +38,9 @@ var alpha = (function ( alpha, $ ) {
 														}
 													}
 												},
-												edit : {
-													self : '<div class="basket_overview_edit_button">Edit Basket</div>'
-												},
+												// edit : {
+												// 	self : '<div class="basket_overview_edit_button">Edit Basket</div>'
+												// },
 												total : {
 													self  : '<div class="basket_overview_total_wrap"></div>',
 													branch : {

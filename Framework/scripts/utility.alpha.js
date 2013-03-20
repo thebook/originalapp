@@ -64,7 +64,7 @@ var alpha = (function ( alpha, $ ) {
 		if ( alpha.sidebar.prototype.being.delta === -1 && alpha.sidebar.prototype.being.bar.handle.moved === 0 )
 			alpha.sidebar.prototype.being.bar.handle.self.css({ 'margin-top': (alpha.sidebar.prototype.being.bar.handle.moved + alpha.sidebar.prototype.being.increase ) +'px' });
 		
-		if ( alpha.sidebar.prototype.being.delta === 1 && alpha.sidebar.prototype.being.bar.handle.moved > alpha.sidebar.prototype.being.bar.handle.pixel_difference ) 
+		if ( alpha.sidebar.prototype.being.delta === 1 && alpha.sidebar.prototype.being.bar.handle.moved >= alpha.sidebar.prototype.being.bar.handle.pixel_difference ) 
 			alpha.sidebar.prototype.being.bar.handle.self.css({ 'margin-top': (alpha.sidebar.prototype.being.bar.handle.moved - alpha.sidebar.prototype.being.increase ) +'px' });
 
 	};

@@ -41,7 +41,7 @@ var alpha = (function ( alpha, $ ) {
 					'<div class="result_book_add_button_wrap">'+
 						'<div class="result_book_inner_wrap">'+
 							'<div class="result_book_add_button">'+
-								'<span data-function-instructions="{\'id\':\'{(id)}\'}"data-function-to-call="front.prototype.add_to_basket" class="result_book_add_button_text">Add To Basket</span>'+
+								'<span data-function-instructions="{\'id\':\'{(id)}\'}"data-function-to-call="front.prototype.add_to_basket" class="result_book_add_button_text">Add To Sell Basket</span>'+
 							'</div>'+
 							'<div class="result_book_add_button_static">'+
 								'<span class="with-icon-added-to-sell-basket-tick">Added To Basket</span>'+
