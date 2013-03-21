@@ -45,6 +45,7 @@
 			 scripts+"/front.thank_you.alpha.js", 
 			 scripts+"/utility.users.js", 
 			 scripts+"/utility.alpha.js", 
+			 scripts+"/front.test.alpha.js", 
 			 scripts+"/amazon.js", 
 			 scripts+"/ticket.alpha.js", 
 			 scripts+"/front.alpha.js"
