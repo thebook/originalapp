@@ -4,24 +4,8 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.confirm = function () {
 
-		if (alpha.front.prototype.parts.confirm === undefined ) {
-
-			alpha.front.prototype.confirm.prototype.manifest();
-			alpha.front.prototype.being.basket.watch( 'inside', function (property_name, old_value, new_value) {
-				
-				alpha.front.prototype.confirm.prototype.display_basket(alpha.front.prototype.confirm.prototype.update_sidebar);
-				// alpha.front.prototype.confirm.prototype.update_total();
-
-				alpha.front.prototype.parts.confirm.wrap.branch.branch.confirmation_overview.branch.branch.basket_overview.branch.branch.edit.self.click();
-
-				return new_value;
-			});
-
-			alpha.front.prototype.being.basket.watch('total', function (property_name, old_total, total ) {
-				console.log("update total");
-			});
-		}
-
+		if (alpha.front.prototype.parts.confirm === undefined ) alpha.front.prototype.confirm.prototype.manifest();
+			
 		alpha.front.prototype.confirm.prototype.animate();
 		alpha.front.prototype.confirm.prototype.display_address_and_make_editable();
 
@@ -268,7 +252,7 @@ var alpha = (function ( alpha, $ ) {
 		
 			basket.edit.self.toggle(
 			function () {
-				basket.edit.self.text('Items Are Removable');
+				basket.edit.self.text('Stop Edit');
 				basket.basket.branch.branch.items.self.find('.confirm_basket_remove').css({ display : 'inline-block' });
 			},
 			function () {

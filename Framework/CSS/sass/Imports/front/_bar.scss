@@ -3,6 +3,7 @@
 	width: 100%;
 	float: left;
 	background: $light; 
+	z-index: 1;
 }
 
 .bar {
@@ -11,7 +12,6 @@
 	margin: 0 auto;
 	height: $bar_height;
 	@include pie-clearfix;
-
 }
 
 .bar_wrap_inner_wrap { 

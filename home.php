@@ -255,9 +255,9 @@
 		
 	</section>
 
-	<section class="thank_you pages" style="display: none;">
+	<section class="thank_you pages">
 		
-		<div class="thank_you_banner_wrap">
+<!-- 		<div class="thank_you_banner_wrap">
 			<div class="thank_you_banner">
 				<div class="with-icon-thank-you-icon-leaf"></div>
 				<div class="thank_you_banner_title_one">Thank you </div>
@@ -274,7 +274,7 @@
 				<div class="thank_you_circle_text">to the edge of earth and back dear friend and trips and trips till death</div>
 			</div>
 		</div>
-		<div class="with-icon-your-account"></div>
+		<div class="with-icon-your-account"></div> -->
 
 	</section>
 	

@@ -2,6 +2,8 @@
 
 	width: 61.5%;
 	margin: 0 auto;
+	position: relative;
+	z-index : -1;
 }
 
 .thank_you_banner {
@@ -10,7 +12,7 @@
 	padding-top: 80px;
 	padding-bottom: 25px;
 	float: left;
-	background: $light_blue;    
+	background: $light_blue;
 }
 
 .with-icon-thank-you-icon-leaf {

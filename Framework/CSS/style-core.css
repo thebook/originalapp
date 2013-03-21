@@ -92,7 +92,8 @@ body {
   width: inherit;
   float: left;
   height: 300px;
-  background: #9ad9e0; }
+  background: #9ad9e0;
+  z-index: 1; }
 
 .header_image {
   float: right;
@@ -264,7 +265,8 @@ body {
 .bar_outer_wrap {
   width: 100%;
   float: left;
-  background: white; }
+  background: white;
+  z-index: 1; }
 
 .bar {
   width: 1010px;
@@ -2551,7 +2553,9 @@ body {
 
 .thank_you_banner_wrap {
   width: 61.5%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  position: relative;
+  z-index: -1; }
 
 .thank_you_banner {
   width: 80%;

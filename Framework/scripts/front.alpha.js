@@ -87,15 +87,33 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.parts.registration_wrap = $('.account_wrap');
 
 		this.front.prototype.being.basket.watch( 'items', alpha.front.prototype.display_books );
-		this.front.prototype.being.basket.watch( 'inside', alpha.front.prototype.reorder_basket );
-		this.front.prototype.being.basket.watch( 'inside', alpha.front.prototype.calculate_total_quote_for_sold_books );
+
+		this.front.prototype.being.basket.watch( 'inside', function (property_name, old_books, books) {
+
+			alpha.front.prototype.reorder_basket(property_name, old_books, books);
+			alpha.front.prototype.calculate_total_quote_for_sold_books(property_name, old_books, books);
+			
+			if (alpha.front.prototype.parts.confirm !== undefined ) { 
+				alpha.front.prototype.confirm.prototype.display_basket(alpha.front.prototype.confirm.prototype.update_sidebar);
+				alpha.front.prototype.parts.confirm.wrap.branch.branch.confirmation_overview.branch.branch.basket_overview.branch.branch.edit.self.click();
+			}
+
+			return books;
+		});
+
+		this.front.prototype.being.basket.watch('total', function (property_name, old_total, total ) {
+
+			if (alpha.front.prototype.parts.confirm    !== undefined ) alpha.front.prototype.confirm.prototype.update_total();
+			if ( alpha.front.prototype.parts.thank_you !== undefined ) alpha.front.prototype.parts.thank_you.banner.branch.branch.inner_banner.branch.branch.summary.branch.quote.text('£'+ alpha.front.prototype.being.basket.total/100 );
+			return total;
+		});
+
 		this.front.prototype.being.watch( 'on_page', alpha.front.prototype.page_changer );
 
 		this.front.prototype.navigation();
 		this.front.prototype.search_bar();
 		this.front.prototype.recyclabus();
 		this.front.prototype.initialize_basket();
-		// this.front.prototype.registration();
 		this.front.prototype.popup_book();
 		this.front.prototype.being.on_page = 'homepage_body_wrap';
 	};
@@ -104,15 +122,8 @@ var alpha = (function ( alpha, $ ) {
 
 		var total = 0;
 
-		console.log("books object");
-		console.log(books);
-		if ( books) {
-			$.each(books, function (index, book) { 
-				total += parseInt(book.price);
-			});
-		}
-		console.log("total");
-		console.log(total);
+		if (books) $.each(books, function (index, book) { total += parseInt(book.price); });
+
 		alpha.front.prototype.being.basket.total = total;
 
 		return books;

@@ -122,6 +122,18 @@ var alpha = (function ( alpha, $ ) {
 
 	};
 
+	alpha.over_time = function (time, callback) { 
+
+		// time = time || 100;
+
+		// setInterval(function () {
+
+		// }, 10
+		// for (time >= 0; time--;) {
+		// 	callback(time);
+		// }
+	};
+
 	return alpha;
 
 })(alpha || {}, jQuery );
