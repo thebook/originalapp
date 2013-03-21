@@ -4,7 +4,23 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.confirm = function () {
 
-		if (alpha.front.prototype.parts.confirm === undefined ) alpha.front.prototype.confirm.prototype.manifest();
+		if (alpha.front.prototype.parts.confirm === undefined ) {
+
+			alpha.front.prototype.confirm.prototype.manifest();
+			alpha.front.prototype.being.basket.watch( 'inside', function (property_name, old_value, new_value) {
+				
+				alpha.front.prototype.confirm.prototype.display_basket(alpha.front.prototype.confirm.prototype.update_sidebar);
+				// alpha.front.prototype.confirm.prototype.update_total();
+
+				alpha.front.prototype.parts.confirm.wrap.branch.branch.confirmation_overview.branch.branch.basket_overview.branch.branch.edit.self.click();
+
+				return new_value;
+			});
+
+			alpha.front.prototype.being.basket.watch('total', function (property_name, old_total, total ) {
+				console.log("update total");
+			});
+		}
 
 		alpha.front.prototype.confirm.prototype.animate();
 		alpha.front.prototype.confirm.prototype.display_address_and_make_editable();
@@ -12,6 +28,7 @@ var alpha = (function ( alpha, $ ) {
 		setTimeout(function () {
 			alpha.front.prototype.confirm.prototype.display_basket(alpha.front.prototype.confirm.prototype.update_sidebar);
 			alpha.front.prototype.confirm.prototype.update_total();
+			alpha.front.prototype.confirm.prototype.make_basket_items_removable();
 		}, 1000 );
 		
 		alpha.front.prototype.being.on_page = 'checkout';
@@ -67,9 +84,9 @@ var alpha = (function ( alpha, $ ) {
 															}
 														}
 													},
-													// edit : {
-													// 	self : '<div class="basket_overview_edit_button">Edit Basket</div>'
-													// },
+													edit : {
+														self : '<div class="basket_overview_edit_button">Edit Basket</div>'
+													},
 													total : {
 														self  : '<div class="basket_overview_total_wrap"></div>',
 														branch : {
@@ -175,9 +192,9 @@ var alpha = (function ( alpha, $ ) {
 					}
 				}		
 			};
-			console.log("passed through 1");
+
 			alpha.front.prototype.being.format.confirm_basket_book =
-				'<div class="basket_overview_item">'+
+				'<div id="confirm_basket_item_{(id)}" class="basket_overview_item">'+
 					'<img class="basket_overview_item_thumbnail" src="{(image)}">'+
 					'<div class="basket_overview_item_text_wrap">'+
 						'<div class="basket_overview_item_text_title">{(title)}</div>'+
@@ -188,13 +205,13 @@ var alpha = (function ( alpha, $ ) {
 						'<div class="basket_overview_item_price_text">Sell for</div>'+
 						'<div class="basket_overview_item_price">£{(price)}</div>'+
 					'</div>'+
-				'</div>';
-			console.log("passed through 2");
+				'</div>'+
+				'<div id="confirm_basket_item_{(id)}" data-function-instructions="{ \'id\' : \'{(id)}\'}" data-function-to-call="front.prototype.confirm.prototype.remove_confirm_basket_item" class="with-icon-x-for-overview-item confirm_basket_remove"></div>';
+
 			alpha.front.prototype.parts.confirm = alpha.manifest({
 				what_to_manifest : alpha.front.prototype.parts.confirm,
 				append_to_who : $('.checkout') 
 			});
-			console.log("passed through 3");
 	};
 
 	alpha.front.prototype.confirm.prototype.display_basket = function (callback) {
@@ -209,7 +226,8 @@ var alpha = (function ( alpha, $ ) {
 				author: book.author,
 				title : book.title,
 				price : book.price /100,
-				isbn  : book.ISBN
+				isbn  : book.ISBN,
+				id    : index
 			}, alpha.front.prototype.being.format.confirm_basket_book );			
 		});
 
@@ -226,7 +244,8 @@ var alpha = (function ( alpha, $ ) {
 				content : basket.items.self, 
 				bar     : basket.bar.self, 
 				handle  : basket.bar.branch.block,
-				increase: 5
+				increase: 5,
+				content_height : 180
 			});
 
 			if ( callback && callback.constructor === Function ) callback();
@@ -243,15 +262,30 @@ var alpha = (function ( alpha, $ ) {
 		if ( callback && callback.constructor === Function ) callback();
 	};
 
-	// alpha.front.prototype.confirm.prototype.display_basket_and_make_editable = function () {
+	alpha.front.prototype.confirm.prototype.make_basket_items_removable = function () {
 
-	// 	var books, basket, basket_overview;
-	// 		books  			= '';
-	// 		basket_overview = alpha.front.prototype.parts.confirm.wrap.branch.branch.confirmation_overview.branch.branch.basket_overview.branch.branch;
-	// 		basket 			= basket_overview.basket.branch.branch;
+		var basket = alpha.front.prototype.parts.confirm.wrap.branch.branch.confirmation_overview.branch.branch.basket_overview.branch.branch;
+		
+			basket.edit.self.toggle(
+			function () {
+				basket.edit.self.text('Items Are Removable');
+				basket.basket.branch.branch.items.self.find('.confirm_basket_remove').css({ display : 'inline-block' });
+			},
+			function () {
+				basket.edit.self.text('Edit Basket');
+				basket.basket.branch.branch.items.self.find('.confirm_basket_remove').css({ display : 'none' });
+			});
+	};
 
-	// 		basket_overview.total.branch.total.text('£'+ ( alpha.front.prototype.being.basket.total/100 ));
-	// };
+	alpha.front.prototype.confirm.prototype.remove_confirm_basket_item = function (wake) {
+
+		var id     = wake.instructions.id,
+			basket = alpha.front.prototype.being.basket.inside;
+
+			$('#confirm_basket_item_'+ id ).remove();
+			delete basket[id];		
+			alpha.front.prototype.being.basket.inside = basket;
+	};
 
 	alpha.front.prototype.confirm.prototype.display_address_and_make_editable = function () {
 

@@ -2311,6 +2311,18 @@ body {
   clear: both;
   font-weight: bold; }
 
+.with-icon-x-for-overview-item {
+  display: none;
+  float: right;
+  font-size: 22px;
+  position: relative;
+  margin-top: -22px;
+  margin-right: 10px;
+  color: #b4d65a;
+  cursor: pointer; }
+  .with-icon-x-for-overview-item:before {
+    content: "!"; }
+
 .basket_overview_total_wrap {
   display: inline;
   float: right;

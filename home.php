@@ -171,6 +171,7 @@
 									<div class="basket_overview_item_price">£ 12.20</div>
 								</div>
 							</div>
+								<div class="with-icon-x-for-overview-item"></div>
 							<div class="basket_overview_item">
 								<img class="basket_overview_item_thumbnail" src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg">
 								<div class="basket_overview_item_text_wrap">

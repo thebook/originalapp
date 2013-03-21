@@ -85,3 +85,22 @@
 	clear: both;
 	font-weight: bold;
 }
+
+.with-icon-x-for-overview-item {
+	
+	// position: relative;
+	// top: -10px;
+	// left: 5px;
+	display: none;
+	float: right;
+	font-size: 22px; 
+	position: relative;
+	margin-top: -22px;
+	margin-right: 10px;  
+	color: $green; 
+	cursor: pointer;
+	&:before { 
+			
+		content: "!";
+	}
+}
