@@ -41,6 +41,7 @@
 			 scripts+"/front.change_page.alpha.js", 
 			 scripts+"/front.basket.alpha.js", 
 			 scripts+"/front.registration.alpha.js", 
+			 scripts+"/front.account.alpha.js", 
 			 scripts+"/front.confirm.alpha.js", 
 			 scripts+"/front.thank_you.alpha.js", 
 			 scripts+"/utility.users.js", 

@@ -61,7 +61,7 @@ var alpha = (function ( alpha, $ ) {
 													self   : '<div class="progress_icons_for_bar_wrap"></div>',
 													branch : {
 														branch : {									
-															welcome_icon : {
+															welcome : {
 																self   : '<div class="progress_icon_for_bar"></div>',
 																branch : {
 																	branch : {
@@ -74,7 +74,7 @@ var alpha = (function ( alpha, $ ) {
 																		text : {
 																			self : '<span class="progress_icon_for_bar_text">Welcome</span>'
 																		}}}},
-															account_icon : {
+															account : {
 																self   : '<div class="progress_icon_for_bar"></div>',
 																branch : {
 																	branch : {

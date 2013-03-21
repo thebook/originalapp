@@ -5,7 +5,7 @@ var alpha = (function ( alpha, $ ) {
 	alpha.front.prototype.confirm = function () {
 
 		if (alpha.front.prototype.parts.confirm === undefined ) alpha.front.prototype.confirm.prototype.manifest();
-		
+
 		alpha.front.prototype.confirm.prototype.animate();
 		alpha.front.prototype.confirm.prototype.display_address_and_make_editable();
 
@@ -17,24 +17,18 @@ var alpha = (function ( alpha, $ ) {
 		alpha.front.prototype.being.on_page = 'checkout';
 	};
 
-	// make a general function which animates the icons and arrow 
 	alpha.front.prototype.confirm.prototype.animate = function () {
-		
-		var parts 	       = alpha.front.prototype.parts,
-			popup          = parts.bar.wrap.branch.branch.progress_popup.branch.branch,
-			progress_icons = parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch;
 
-		progress_icons.account_icon.self.removeClass('progress_icon_for_bar').addClass('progress_icon_for_bar_done');
-		progress_icons.account_icon.branch.branch.circle.self.removeClass('progress_icon_circle_doing').addClass('progress_icon_circle_done');
-		progress_icons.confirm.branch.branch.circle.self.removeClass('progress_icon_circle').addClass('progress_icon_circle_doing');
-		parts.bar.wrap.branch.branch.arrow.self.animate({ left : '234px' });
+		alpha.front.prototype.registration.prototype.progress_to_icon(3);
+		alpha.front.prototype.registration.prototype.refill_popup_box({
+			title : "Sale Confirmation",
+			icon  : "with-icon-confirm-progress-bar",
+			text  : "confirmation"
+		});
 
-		popup.title.branch.branch.text.self.text("Sale Confirmation");
-		popup.title.branch.branch.icon.branch.icon.removeAttr("class");
-		popup.title.branch.branch.icon.branch.icon.addClass("with-icon-confirm-progress-bar");
-		popup.text.self.text(alpha.front.prototype.being.text.confirmation);
-
-		parts.confirm.wrap.self.css({ 'margin-top': '2000px' }).animate({ 'margin-top': ( parts.bar.wrap.branch.branch.progress_popup.self.height() + 50 ) + 'px' }, 1200);
+		alpha.front.prototype.parts.confirm.wrap.self
+		.css({ 'margin-top': '2000px' })
+		.animate({ 'margin-top': ( alpha.front.prototype.parts.bar.wrap.branch.branch.progress_popup.self.height() + 50 ) + 'px' }, 1200);
 	};
 
 	alpha.front.prototype.confirm.prototype.manifest = function () {
