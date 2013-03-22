@@ -67,17 +67,20 @@
 
 	public function create_new_book_ticket ()
 	{
-		$new_ticket = $_POST['ticket'];
-
-		$this->create_ticket(array(
-			'status' 	    => $new_ticket['status'],
+		$ticket     = $_POST['ticket'];
+		$new_ticket = array(
+			'status' 	    => $ticket['status'],
 			'date_created'  => date('Y-m-d'),
 			'date_expected' => $this->calculate_expiration_date(),
-			'by_user'       => $new_ticket['by_user'],
-			'quoted_price'  => $new_ticket['quote'],
-			'books_ordered' => $new_ticket['books'],
+			'by_user'       => $ticket['by_user'],
+			'quoted_price'  => $ticket['quote'],
+			'books_ordered' => $ticket['books'],
 			'history'       => array()
-		));
+		);
+
+		$this->create_ticket($new_ticket);
+
+		echo json_encode($new_ticket);
 
 		exit;
 	}

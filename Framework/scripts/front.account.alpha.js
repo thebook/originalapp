@@ -206,22 +206,19 @@ var alpha = (function ( alpha, $ ) {
 
 		alpha.front.prototype.register.prototype.is_email_in_use(fields.e_mail, function (is_email_in_use) {
 
-			if (valid.email.pass && is_email_in_use) valid.email.pass = false; valid.email.message = "Email is already in use";
+			if (valid.email.pass && is_email_in_use) {
+
+				valid.email.pass    = false; 
+				valid.email.message = "Email is already in use";
+			}
 
 			if (alpha.front.prototype.register.prototype.throw_errors_for_inputs(valid)) {
 
 				delete fields.email_confirm;
 				delete fields.password_confirm;
-				fields.recieve_newsletters = (alpha.front.prototype.parts.account.disclaimer.branch.branch.tick.branch.tick.css('display') !== 'none');				
-				alpha.front.prototype.confirm();
 
-				// $.post(
-				// 	ajaxurl,
-				// 	{ action:"create_sub_user", user_information: input },
-				// 	function (response) {
-						
-				// 	},
-				// 	'json');
+				fields.recieve_newsletters = (alpha.front.prototype.parts.account.disclaimer.branch.branch.tick.branch.tick.css('display') !== 'none');
+				alpha.front.prototype.confirm();
 			}
 			else {
 				alpha.front.prototype.parts.account.disclaimer.branch.branch.continue_button.self.text("Continue");

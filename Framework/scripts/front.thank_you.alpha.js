@@ -12,16 +12,28 @@ var alpha = (function ( alpha, $ ) {
 		
 		alpha.front.prototype.thank_you.prototype.animate();
 
+		alpha.front.prototype.complete_book_selling();
+		alpha.front.prototype.being.basket.inside = {};
+		alpha.front.prototype.being.basket.total  = 0;
+
 		alpha.front.prototype.being.on_page = 'thank_you';
 	};
 
 	alpha.front.prototype.thank_you.prototype.animate = function () {
 
 		alpha.front.prototype.registration.prototype.progress_to_icon(4);
+		alpha.front.prototype.registration.prototype.progress_to_icon(5);
 		alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.fadeOut(300);
 		alpha.front.prototype.parts.bar.wrap.branch.branch.progress_popup.self.fadeOut(300);
 		alpha.front.prototype.parts.thank_you.banner.self.css({ top: '-1000px' });
 		alpha.front.prototype.parts.thank_you.banner.self.animate({ top: '0px' }, 2000);
+
+		alpha.front.prototype.parts
+		.bar.wrap.branch.branch
+		.navigation.branch.branch.wrap.branch.branch
+		.progress.branch.branch.back.self.css({ display : 'block'}).animate({ opacity : 1 }, 400);;
+
+
 	};
 
 	alpha.front.prototype.thank_you.prototype.manifest = function () {

@@ -8,7 +8,10 @@ var alpha = (function ( alpha, $ ) {
 		alpha.front.prototype.registration.prototype.progress_to_icon(1);
 		alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);		
 		alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);
-		
+		alpha.animate_scroll(400, 250, false, 100);
+		$('.result_books').animate({ top : "800px" }, 500);
+
+		alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch.back.self.css({ display : 'none', opacity : 0 });
 	};
 
 	// Could be little better & (shared state perhaps )
@@ -16,8 +19,8 @@ var alpha = (function ( alpha, $ ) {
 
 		wake			  = wake			  || {};
 		on_icon      	  = on_icon -1   	  || 0;
-		wake.icon_names   = wake.icon_names   || ["welcome", "account", "confirm", "thank_you"];
-		wake.break_points = wake.break_points || ["68px", "152px", "234px", "318px"];
+		wake.icon_names   = wake.icon_names   || ["welcome", "account", "confirm", "thank_you", "back"];
+		wake.break_points = wake.break_points || ["68px", "152px", "234px", "318px", "318px"];
 
 		if ( on_icon > 0 ) this.complete_icon(wake.icon_names[on_icon-1]);
 		if ( on_icon > 0 ) this.set_icon_to_doing(wake.icon_names[on_icon]);

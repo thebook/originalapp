@@ -140,7 +140,7 @@ var alpha = (function ( alpha, $ ) {
 
 			$.post(
 				ajaxurl,
-				{ action:"create_sub_user", user_information: value },
+				{ action:"create_user", user_information: value },
 				function (response) {					
 					alpha.front.prototype.parts.recyclabus.right.branch.branch.wrap.branch.branch.buttons_wrap.branch.branch.inner_wrap.self.animate({ top: '-52px' });
 				},

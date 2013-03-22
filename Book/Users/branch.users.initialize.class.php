@@ -1,61 +1,54 @@
 <?php 
 
 /**
-* Clas responsible for generating user interface
+* A class which initializes the user tables and remodels any fields if necessary
 */
-class branch_users_database extends branch_users_style
+class branch_users_initialize extends alpha_tree_users
 {
-
-	function __construct($options) { 
-
-		parent::__construct($options);
-
-		$this->_table_create();
-	}
-
-
-	protected function _table_create ()
+	protected function _create_table ()
 	{
 		extract($this->params['manifestation']['create_table']);
 
-			$creator = new table_creator;
-			$table_of_fields_name = "{$name}_fields_data";
-			$does_table_exist = $creator->does_table_exist($name);
-			$does_table_of_fields_exist = $creator->does_table_exist($table_of_fields_name);			
+			$creator 			        = new table_creator;
+			$table_of_fields_name       = "{$name}_fields_data";
+			$does_table_exist           = $creator->does_table_exist($name);
+			$does_table_of_fields_exist = $creator->does_table_exist($table_of_fields_name);
 
 			if ( !$does_table_exist and !$does_table_of_fields_exist ) : 
 				
 				$creator->create_table(
+				 array(
+				 	'table_name'  => $name,
+				 	'primary_key' => 'id',
+				 	'fields'      => array(
 				 	array(
-				 		'table_name' => $name,
-				 		'primary_key' => 'id',
-				 		'fields' => array(
-				 			array(
-				 				'column_name' => 'id',
-				 				'data_type' => 'INT',
-				 				'auto_increment' => true,
-				 				'unique' => false				 									 				
-				 				))
-				 		));		
+				 		'column_name'    => 'id',
+				 		'data_type'      => 'INT',
+				 		'auto_increment' => true,
+				 		'unique'         => false				 									 				
+				 	))
+				 ));		
 	
 				$creator->create_table(
-					array(
-						'table_name'  => $table_of_fields_name, 
-						'primary_key' => false,
-						'fields'      => $define_data_type_array 
-					));
+				array(
+					'table_name'  => $table_of_fields_name, 
+					'primary_key' => false,
+					'fields'      => $define_data_type_array 
+				));
 
-				foreach ( $default_setup as $field ) : $creator->add_row_to_table($table_of_fields_name, $field); endforeach;
+				foreach ( $default_setup as $field ) : 
 
+					$creator->add_row_to_table($table_of_fields_name, $field); 
+
+				endforeach;
 			endif;
 
-		$this->change_table_columns_based_on_saved_options($name, $table_of_fields_name);
+			$this->change_table_columns_based_on_saved_options($name, $table_of_fields_name);
 	}
 
 	public function change_table_columns_based_on_saved_options ($name, $table_of_fields_name)
 	{
-		$creator = new table_creator;	
-
+		$creator    = new table_creator;	
 		$field_rows = $creator->get_all_rows_from_table($table_of_fields_name);		
 
 		foreach ($field_rows as $row ) { 
@@ -80,6 +73,7 @@ class branch_users_database extends branch_users_style
 		$column_names      = $creator->get_all_column_information($table_name, 'COLUMN_NAME');
 		$field_names       = filter_multi_array_value_into_single($field_rows, 'field_name');
 		$columns_to_remove = array_diff($column_names, $field_names);
+
 		unset($columns_to_remove[0]);
 		
 		if (!empty($columns_to_remove)) : 
@@ -91,8 +85,8 @@ class branch_users_database extends branch_users_style
 						'table_name' => $table_name, 
 						'field_name' => $column_name
 				));
+			
 			endforeach;
-
 		endif;
 	}
 
@@ -151,19 +145,6 @@ class branch_users_database extends branch_users_style
 
 		return $data_type;
 	}
-
-	public function get_users ()
-	{
-		$creator = new table_creator;
-		return $creator->get_all_rows_from_table($this->params['manifestation']['create_table']['name']);
-	}
-
-	public function get_user ($column_to_get_by, $value_to_get_by)
-	{
-		$creator = new table_creator;
-
-		return $creator->get_row($this->params['manifestation']['create_table']['name'], $column_to_get_by, $value_to_get_by );
-	}
-
 }
+
 ?>

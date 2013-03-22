@@ -113,6 +113,19 @@ var alpha = (function ( alpha, $ ) {
 																		text : {
 																			self : '<span class="progress_icon_for_bar_text">Thank You</span>'
 																		}}}},
+															back : {
+																self   : '<div class="progress_icon_for_bar"></div>',
+																branch : {
+																	branch : {
+																		circle : {
+																			self   : '<div class="progress_icon_circle"></div>',
+																			branch : {
+																				icon : '<span data-function-to-call="front.prototype.go_back_to_shopping" class="with-icon-back-progress-bar"></span>'
+																			}
+																		},
+																		text : {
+																			self : '<span class="progress_icon_for_bar_text">Go Back</span>'
+																		}}}},
 																	}}
 												}
 											}

@@ -10,16 +10,17 @@ abstract class alpha_tree_ticket
 
 	function __construct($ticket_definiton_path) 
 	{
-		$this->paramaters['manifestation'] = ( include $ticket_definiton_path );				
+		$this->paramaters['manifestation'] = ( include $ticket_definiton_path );
+						
 		add_action('admin_menu', array($this, 'create_ticketing_page') );
 
-		add_action('wp_ajax_ticket_admin_creation', array($this, 'ticket_creation_element' ));
-		add_action('wp_ajax_complete_ticket', array($this, 'create_new_book_ticket' )  );
-		add_action('wp_ajax_show_users_for_ticket', array($this, 'users_for_ticket' )  );
-		add_action('wp_ajax_get_tickets', array($this, 'display_tickets' )  );
-		add_action('wp_ajax_update_ticket', array($this, 'update_ticket_after_verify' ) );
-		add_action('wp_ajax_change_ticket', array($this, 'change_ticket' ) );
-		add_action('wp_ajax_update_date', array($this, 'change_expiry_date' ) );
+		add_action('wp_ajax_ticket_admin_creation',   array($this, 'ticket_creation_element' ));
+		add_action('wp_ajax_nopriv_complete_ticket',  array($this, 'create_new_book_ticket' ));
+		add_action('wp_ajax_show_users_for_ticket',   array($this, 'users_for_ticket' )  );
+		add_action('wp_ajax_get_tickets',             array($this, 'display_tickets' )  );
+		add_action('wp_ajax_update_ticket',           array($this, 'update_ticket_after_verify' ) );
+		add_action('wp_ajax_change_ticket',           array($this, 'change_ticket' ) );
+		add_action('wp_ajax_update_date',             array($this, 'change_expiry_date' ) );
 
 		$this->create_ticketing_table($this->paramaters['manifestation']['table_creation']);
 	}

@@ -95,7 +95,7 @@ class amazon extends alpha_tree_api
 					'image_sets'         => $attributes->ImageSet,
 					'author'             => $attributes->ItemAttributes->Author,
 					'binding'            => $attributes->ItemAttributes->Binding,
-					'ISBN'               => $attributes->ItemAttributes->ISBN,
+					'isbn'               => $attributes->ItemAttributes->ISBN,
 					'dimensions'         => $attributes->ItemAttributes->ItemDimensions,
 					'price'              => $attributes->ItemAttributes->ListPrice,
 					'number_in_stock'    => $attributes->ItemAttributes->NumberOfItems,
@@ -105,7 +105,7 @@ class amazon extends alpha_tree_api
 					'lowest_new_price'   => $attributes->OfferSummary->LowestNewPrice,
 					'lowest_used_price'  => $attributes->OfferSummary->LowestUsedPrice,
 					'editorial_review'   => $attributes->EditorialReviews,
-					'ASIN' 				 => $attributes->ASIN
+					'asin' 				 => $attributes->ASIN
 				);
 
 		endforeach;

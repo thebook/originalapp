@@ -10,13 +10,14 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.parts.book = {};
 
 		this.front.prototype.being = {};		
-		this.front.prototype.being.on_page      	= '';
-		this.front.prototype.being.first_search 	= false;
-		this.front.prototype.being.user_id      	= '';
-		this.front.prototype.being.user_info    	= {};
-		this.front.prototype.being.user_info.fields = {};
-		this.front.prototype.being.search       	= {};
-		this.front.prototype.being.listed_items 	= {};
+		this.front.prototype.being.on_page      	 = '';
+		this.front.prototype.being.first_search 	 = false;
+		this.front.prototype.being.user_info    	 = {};
+		this.front.prototype.being.user_info.id    	 = false;
+		this.front.prototype.being.user_info.fields  = {};
+		this.front.prototype.being.user_info.signed_in = false;
+		this.front.prototype.being.search       	 = {};
+		this.front.prototype.being.listed_items 	 = {};
 
 		this.front.prototype.being.format            = {};
 		this.front.prototype.being.basket            = {};
@@ -165,6 +166,71 @@ var alpha = (function ( alpha, $ ) {
 			});
 
 			return search;
+	};
+
+	alpha.front.prototype.create_user = function (information_to_commit, callback) {
+
+		$.post(
+			ajaxurl,
+			{
+				action : 'create_user',
+				user   : information_to_commit
+			},
+			function (the_data_of_the_user) {
+				alpha.front.prototype.sign_in_user(the_data_of_the_user);				 
+				if ( callback && callback.constructor === Function ) callback(the_data_of_the_user);
+			},
+			'json'
+		);
+	};	
+
+	alpha.front.prototype.create_ticket = function (callback) { 
+
+		$.post(
+			ajaxurl,
+			{
+				action : 'complete_ticket',
+				ticket : {
+					status : 'waiting_arrival',
+					quote  : alpha.front.prototype.being.basket.total,
+					books  : alpha.front.prototype.being.basket.inside,
+					by_user: alpha.front.prototype.being.user_info.id
+				}
+			},
+			function (ticket) {
+				if ( callback && callback.constructor === Function ) callback(ticket);
+			},
+			'json'
+		);
+	};
+
+	alpha.front.prototype.sign_in_user = function (user) {
+
+		alpha.front.prototype.being.user_info.id = user.id;
+	};
+
+	alpha.front.prototype.complete_book_selling = function () { 
+
+		if (!alpha.front.prototype.being.user_info.signed_in) {
+
+			alpha.front.prototype.create_user(alpha.front.prototype.being.user_info.fields,
+			function (user) {
+				alpha.front.prototype.being.user_info.signed_in = true;
+				alpha.front.prototype.create_ticket();
+			});
+		}
+		else { 
+			alpha.front.prototype.create_ticket();
+		}
+	};
+
+	alpha.front.prototype.go_back_to_shopping = function () {
+
+		alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'0px' }, 300);
+		alpha.front.prototype.registration.prototype.progress_to_icon();
+		alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch.back.self.css({ display : 'none', opacity : 0 });
+		$('.result_books').animate({ top : "0px" }, 1000);
+		alpha.front.prototype.being.on_page = 'body';
 	};
 
 	$.extend(alpha.front.prototype, old_front_prototype);

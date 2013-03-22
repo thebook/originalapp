@@ -116,3 +116,20 @@
 	@extend .with-icon-thank-you-progress-bar;
 	color: $light;
 }
+
+.with-icon-back-progress-bar { 
+	
+	@extend .with-icon-welcome-progress-bar;
+	cursor: pointer;
+	&:before { 
+		left: 5px;
+		font-size: 14px;
+		content:"7";
+	}	
+}
+
+.with-icon-thank-you-progress-bar-done {
+
+	@extend .with-icon-back-progress-bar;
+	color: $light; 
+}

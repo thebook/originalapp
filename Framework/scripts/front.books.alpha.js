@@ -28,6 +28,8 @@ var alpha = (function ( alpha, $ ) {
 				
 			});
 
+			alpha.animate_scroll(100, 380, false, 40);
+
 			$('.result_books').animate({ top : "800px" }, 1000, function () {
 				$(this).empty().remove();
 			});

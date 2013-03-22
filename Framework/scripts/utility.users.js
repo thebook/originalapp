@@ -122,16 +122,32 @@ var alpha = (function ( alpha, $ ) {
 
 	};
 
-	alpha.over_time = function (time, callback) { 
+	alpha.animate_scroll = function (time, sroll_to, callback, frames) {
+		// could work on the frame divisons 
+		time   = time     || 100;
+		frames = frames   || 30;
+		
+		if ( time < 100 ) return;
+		if ( time > 500 && time < 1000 ) frames /= 2;
+		if ( time > 100 && time < 500 )  frames /= 4;
 
-		// time = time || 100;
+		var the_window, initial_window_position, distance, interval, animation;
 
-		// setInterval(function () {
+		sroll_to   				= sroll_to || 0;
+		the_window 			    = $(window);
+		current_window_position = the_window.scrollTop();
+		distance   				= (sroll_to - the_window.scrollTop())/frames;
+		interval   				= time/frames;
+		animation               = setInterval(
+		function () {
 
-		// }, 10
-		// for (time >= 0; time--;) {
-		// 	callback(time);
-		// }
+			the_window.scrollTop(current_window_position+(distance));
+			current_window_position += (distance);
+			time-= interval;			
+			if ( time < 10 ) clearInterval(animation);
+			if ( time < 10 && callback && callback.constructor === Function ) callback();
+
+		}, interval);
 	};
 
 	return alpha;
