@@ -65,6 +65,7 @@ abstract class branch_ticket_splitter extends branch_ticket
 
 		$this->_alter_book_ticket('awaiting_response', $message, $bad_books_quote, 'bad_books' );
 
+
 		# Send email to user
 
 		return $this->_response(array(
@@ -264,8 +265,6 @@ abstract class branch_ticket_splitter extends branch_ticket
 		));
 	}
 
-
-
 	protected function _initialise_message ($message)
 	{
 		$message['current_ticket'] = $this->get_ticket($message['ticket_id']);
@@ -312,6 +311,45 @@ abstract class branch_ticket_splitter extends branch_ticket
 
 		return round($time->calculate_total_number_of_days(date('d/m/Y'))) + $global_admin_options_white_whale['expiery_wait'];
 	}	
+
+	public function send ($paramaters = null)
+	{
+		if (isset($_POST['email']) )  : 
+			
+			$this->_send($_POST['email']);
+
+			exit;
+
+		elseif (isset($paramaters) ) : 
+
+			$this->_send($paramaters);
+		
+		else :
+			echo "No Paramaters Set"; 
+		endif;
+	}
+
+	protected function _send ($details)
+	{	
+		require_once ABSPATH .'/wp-includes/class-phpmailer.php';
+		require_once ABSPATH .'/wp-includes/class-pop3.php';
+		require_once ABSPATH .'/wp-includes/class-smtp.php';
+
+		extract($details);
+
+		$email = new PHPMailer();
+		$email->SetFrom($from_email, $from_name);
+		$email->AddReplyTo($from_email, $from_name);
+		$email->AddAddress($to_email, $to_person);
+		$email->Subject = $subject;
+		$email->MsgHTML($message);
+
+		if(!$mail->Send()) {
+		  echo "Mailer Error: " . $mail->ErrorInfo;
+		} else {
+		  echo "Message sent!";
+		}
+	}
 }
 
 

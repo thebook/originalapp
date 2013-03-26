@@ -16,6 +16,7 @@ abstract class alpha_tree_ticket
 
 		add_action('wp_ajax_ticket_admin_creation',   array($this, 'ticket_creation_element' ));
 		add_action('wp_ajax_nopriv_complete_ticket',  array($this, 'create_new_book_ticket' ));
+		add_action('wp_ajax_nopriv_send_email',       array($this, 'email' ) );
 		add_action('wp_ajax_show_users_for_ticket',   array($this, 'users_for_ticket' )  );
 		add_action('wp_ajax_get_tickets',             array($this, 'display_tickets' )  );
 		add_action('wp_ajax_update_ticket',           array($this, 'update_ticket_after_verify' ) );

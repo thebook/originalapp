@@ -33,8 +33,6 @@ var alpha = (function ( alpha, $ ) {
 		.bar.wrap.branch.branch
 		.navigation.branch.branch.wrap.branch.branch
 		.progress.branch.branch.back.self.css({ display : 'block'}).animate({ opacity : 1 }, 400);;
-
-
 	};
 
 	alpha.front.prototype.thank_you.prototype.manifest = function () {

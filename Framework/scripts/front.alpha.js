@@ -82,6 +82,18 @@ var alpha = (function ( alpha, $ ) {
 				'<span class="with-icon-x-for-legend"></span>{(message)}'+
 			'</div>';
 
+		this.front.prototype.being.email				  = {};
+		this.front.prototype.being.email.address          = "noreply@recyclabook.co.uk";
+		this.front.prototype.being.email.name             = "Recyclabook";
+		this.front.prototype.being.email.templates		  = {};
+		this.front.prototype.being.email.templates.ticket         = {};
+		this.front.prototype.being.email.templates.ticket.subject = "We are awaiting your books";
+		this.front.prototype.being.email.templates.ticket.message = "<p>Hello, thank you very much for using recyclabook, your cheque is waiting for you and will be sent as soon as we get your books, until then we will keep a lookout.</p><p>All the best</p><p>The Recyclabook Team</p>";
+		this.front.prototype.being.email.templates.created_user         = {};
+		this.front.prototype.being.email.templates.created_user.subject = "Welcome To Recyclabook";
+		this.front.prototype.being.email.templates.created_user.message = "<p>Hello and thank you for joining Recyclabook, now that you have an account you can track tickets on your account, edit your settings and keep an eye out on various other things, we hope that the time you spend using our services will be a pleasant one</p><p>All the best</p><p>The Recyclabook Team</p>";
+
+
 		this.front.prototype.being.text = {};
 		this.front.prototype.being.text.registration = "This will not only create your profile hub that will let you track payments, check book orders and edit details but makes sure we make the payment out to the right person and send the freepost pack to the correct address.";
 		this.front.prototype.being.text.confirmation = "Better be safe than sorry, Just check the books and address are correct and edit any mistakes if need be, then chose which type of freepost you prefer and confirm your sale. Shazam!";
@@ -211,7 +223,7 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.complete_book_selling = function (callback) { 
 
-		 callback = callback || false;
+		callback = callback || false;
 
 		if (!alpha.front.prototype.being.user_info.signed_in) {
 
@@ -219,21 +231,68 @@ var alpha = (function ( alpha, $ ) {
 			function (user) {
 				alpha.front.prototype.being.user_info.signed_in = true;
 				alpha.front.prototype.create_ticket(callback);
+				alpha.front.prototype.send_email("created_user");
 			});
 		}
 		else { 
 			alpha.front.prototype.create_ticket(callback);
+			alpha.front.prototype.send_email("ticket",
+			function (message) { 
+				
+				var new_message = "<p>Expected Books:</p><ul>";
+
+					$.each(alpha.front.prototype.being.basket.inside, function (index, book ) {
+						new_message += 
+							"<li>"+
+								"<p>"+ book.title  +"</p>"+
+								"<p>by "+ book.author +"</p>"+
+								"<p>ISBN : "+ book.isbn   +"</p>"+
+							"</li>";
+					});
+
+					new_message += "</ul>";
+					new_message += "<p>Your Quote : £"+ alpha.front.prototype.being.basket.total/100 +"</p>";
+					new_message += message;
+
+					return new_message;
+			});
 		}
 	};
 
-	alpha.front.prototype.go_back_to_shopping = function () {
 
+	alpha.front.prototype.go_back_to_shopping = function () {
 		alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'0px' }, 300);
 		alpha.front.prototype.registration.prototype.progress_to_icon();
 		alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch.back.self.css({ display : 'none', opacity : 0 });
 		$('.result_books').animate({ top : "0px" }, 1000);
 		alpha.front.prototype.being.on_page = 'body';
 	};
+
+	alpha.front.prototype.send_email = function (state, message_callback, callback) {
+
+		var email   = alpha.front.prototype.being.email,
+			user    = alpha.front.prototype.being.user_info,
+			message = email.templates[state].message;
+
+			if ( message_callback && message_callback.constructor === Function ) message = message_callback(message);
+
+			$.post(ajaxurl, { 
+				action : "email", 
+				email  : { 
+					from_email : email.address,
+					from_name  : email.name, 
+					to_email   : user.fields.e_mail, 
+					to_person  : user.fields.first_name +" "+ user.fields.second_name, 
+					subject    : email.templates[state].subject, 
+					message    : message
+				}
+			}, 
+			function (response) { 
+				if ( callback && callbac.constructor === Function ) callback(response);
+			}, 
+			'json');
+	};
+	
 
 	$.extend(alpha.front.prototype, old_front_prototype);
 
