@@ -200,6 +200,13 @@ class table_creator
 		$wpdb->query("UPDATE $wpdb->prefix$table_name set $update where $where_column = '$where_value' ");
 	}
 
+	public function delete_all_table_rows ($table_name)
+	{
+		global $wpdb;
+
+		$wpdb->query("TRUNCATE TABLE $wpdb->prefix$table_name");
+	}
+
 	public function delete_row ($table_name, $where_column, $where_value)
 	{
 		global $wpdb;

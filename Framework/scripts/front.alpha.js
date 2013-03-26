@@ -209,18 +209,20 @@ var alpha = (function ( alpha, $ ) {
 		alpha.front.prototype.being.user_info.id = user.id;
 	};
 
-	alpha.front.prototype.complete_book_selling = function () { 
+	alpha.front.prototype.complete_book_selling = function (callback) { 
+
+		 callback = callback || false;
 
 		if (!alpha.front.prototype.being.user_info.signed_in) {
 
 			alpha.front.prototype.create_user(alpha.front.prototype.being.user_info.fields,
 			function (user) {
 				alpha.front.prototype.being.user_info.signed_in = true;
-				alpha.front.prototype.create_ticket();
+				alpha.front.prototype.create_ticket(callback);
 			});
 		}
 		else { 
-			alpha.front.prototype.create_ticket();
+			alpha.front.prototype.create_ticket(callback);
 		}
 	};
 

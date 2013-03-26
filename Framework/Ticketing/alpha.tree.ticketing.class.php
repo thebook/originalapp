@@ -21,6 +21,7 @@ abstract class alpha_tree_ticket
 		add_action('wp_ajax_update_ticket',           array($this, 'update_ticket_after_verify' ) );
 		add_action('wp_ajax_change_ticket',           array($this, 'change_ticket' ) );
 		add_action('wp_ajax_update_date',             array($this, 'change_expiry_date' ) );
+		add_action('wp_ajax_delete_tickets',          array($this, 'delete_all_tickets' ) );
 
 		$this->create_ticketing_table($this->paramaters['manifestation']['table_creation']);
 	}
@@ -52,11 +53,6 @@ abstract class alpha_tree_ticket
 				'fields' => $columns ));
 	}
 
-	/**
-	 * Gets all of the tickets in the table and their information, does not require parmaters as the 
-	 * table name should have been set in the construct 
-	 * @return array An array of all rows and their values and column names
-	 */
 	public function get_all_tickets ()
 	{
 		$table = new table_creator; 
@@ -64,11 +60,6 @@ abstract class alpha_tree_ticket
 		return $table->get_all_rows_from_table($this->table_name);
 	}
 
-	/**
-	 * Creates a ticket in the database table, 
-	 * @param  array $ticket_to_create the array holds the key value as the column name and the value as the column value
-	 * @return                    Adds a row to the table 
-	 */
 	public function create_ticket ($ticket_to_create)
 	{
 		$table = new table_creator;
@@ -101,6 +92,13 @@ abstract class alpha_tree_ticket
 		$table->delete_row($this->table_name, 'ticket_id', $ticket_id );
 	}
 
+	public function delete_all_tickets ()
+	{
+		$table = new table_creator; 
+
+		$table->delete_all_table_rows($this->table_name);
+	}
+
 	protected function _prepare_ticket_for_submission ($ticket_to_create)
 	{
 		foreach ($ticket_to_create as $column_name => $value) :
@@ -116,8 +114,7 @@ abstract class alpha_tree_ticket
 		return $ticket_to_create;
 	}
 
-	public function get_being ()
-	{}
+	public function get_being () {}
 
 	abstract public function page();
 }

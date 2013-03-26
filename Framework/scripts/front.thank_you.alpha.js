@@ -11,12 +11,13 @@ var alpha = (function ( alpha, $ ) {
 		}
 		
 		alpha.front.prototype.thank_you.prototype.animate();
-
-		alpha.front.prototype.complete_book_selling();
-		alpha.front.prototype.being.basket.inside = {};
-		alpha.front.prototype.being.basket.total  = 0;
-
 		alpha.front.prototype.being.on_page = 'thank_you';
+
+		alpha.front.prototype.complete_book_selling(function () {
+			alpha.front.prototype.being.basket.inside = {};
+			alpha.front.prototype.being.basket.total  = 0;
+		});
+		
 	};
 
 	alpha.front.prototype.thank_you.prototype.animate = function () {
