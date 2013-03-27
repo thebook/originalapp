@@ -5,7 +5,7 @@
 */
 class tickets extends branch_ticket_format
 {
-
+	
 	public function ticket_creation_element ()
 	{ ?>
 		<div class="ticket_create_ticket">

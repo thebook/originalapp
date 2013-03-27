@@ -180,6 +180,35 @@ class table_creator
 		return $wpdb->get_results("SELECT * FROM $wpdb->prefix$name", ARRAY_A );
 	}
 
+	public function unserialize_strings_in_an_array ($array)
+	{
+		foreach ($array as $key => $member) :
+			$array[$key] = $this->unserialize_or_return_regular_value($member);
+		endforeach;
+
+		return $array;
+	}
+
+	public function serialize_arrays_in_an_array ($array)
+	{
+		foreach ($array as $key => $member) :
+			(is_array($member)) and $array[$key] = serialize($member);
+		endforeach;
+
+		return $array;
+	}
+
+	public function unserialize_or_return_regular_value ($string)
+	{
+		$unserialized = @unserialize($string);
+
+		if ( $unserialized !== false or $string === 'b:0' ) :
+			return $unserialized;
+		else : 
+			return $string;
+		endif;
+	}
+
 	public function update_row ($table_name, $column_and_value_array_update, $where_column, $where_value)
 	{
 		global $wpdb;

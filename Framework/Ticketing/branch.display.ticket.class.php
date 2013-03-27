@@ -94,37 +94,6 @@
 		exit;
 	}
 
-	protected function _setup_mail_sender_and_send ($message, $recipient, $subject)
-	{	
-		global $global_admin_options_white_whale;
-
-		$mail = new PHPMailer;
-		$mail->IsSMTP();
-		$mail->SMTPAuth   = true;
-		$mail->SMTPSecure = $global_admin_options_white_whale['encription'];
-		$mail->Host 	  = $global_admin_options_white_whale['mail_host'];
-		$mail->Username   = $global_admin_options_white_whale['email'];
-		$mail->Password   = $global_admin_options_white_whale['email_password'];
-		$mail->From       = $mail->Username;
-		$mail->FromName   = $global_admin_options_white_whale['name'];
-		$mail->Subject    = $subject;
-		$mail->Body 	  = $message;
-		$mail->WordWrap   = 50;
-		$mail->AddAddress($recipient);
-		$mail->IsHTML(true);
-
-		if ($mail->Send()) :
-
-			return "Email has been sent to $subject";
-
-		else : 
-
-			return $mail->ErrorInfo;
-
-		endif;
-	}
-
-	protected function _what_to_do_with_expired_ticket ($ticket)
-	{}
+	protected function _what_to_do_with_expired_ticket ($ticket) {}
  }
 ?>

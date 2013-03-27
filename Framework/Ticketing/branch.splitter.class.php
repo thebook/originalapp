@@ -7,10 +7,8 @@ abstract class branch_ticket_splitter extends branch_ticket
 {
 	public function update_ticket_after_verify ()
 	{
-		$method = "_{$_POST['information']['action']}";
-
+		$method   = "_{$_POST['information']['action']}";
 		$response = $this->$method($this->_initialise_message($_POST['information']['message']));
-
 		echo json_encode($response);
 
 		exit;
