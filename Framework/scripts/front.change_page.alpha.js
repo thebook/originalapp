@@ -186,28 +186,28 @@ var alpha = (function ( alpha, $ ) {
 							}
 						},
 						
-						user_button : {
-							self   : '<div class="button_for_user"></div>',
-							branch : {
-								icon  : '<span class="with-icon-user"></span>',
-								arrow : '<span class="with-icon-user-arrow"></span>'
-							}
-						},
-						input : {
-							self   : '<div class="input_for_bar"></div>',
-							branch : {
-								branch : {
-									field : {
-										self   : '<div class="field_for_input bar_field_for_input"></div>',
-										branch : {
-											input : '<input type="text" class="input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">'
-										}
-									},
-									button : {
-										self   : '<div class="button_for_input"></div>',
-										branch : {
-											icon : '<span data-function-instructions="{\'type\':\'bar\'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-search"></div>'
-										}}}}},
+						// user_button : {
+						// 	self   : '<div class="button_for_user"></div>',
+						// 	branch : {
+						// 		icon  : '<span class="with-icon-user"></span>',
+						// 		arrow : '<span class="with-icon-user-arrow"></span>'
+						// 	}
+						// },
+						// input : {
+						// 	self   : '<div class="input_for_bar"></div>',
+						// 	branch : {
+						// 		branch : {
+						// 			field : {
+						// 				self   : '<div class="field_for_input bar_field_for_input"></div>',
+						// 				branch : {
+						// 					input : '<input type="text" class="input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">'
+						// 				}
+						// 			},
+						// 			button : {
+						// 				self   : '<div class="button_for_input"></div>',
+						// 				branch : {
+						// 					icon : '<span data-function-instructions="{\'type\':\'bar\'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-search"></div>'
+						// 				}}}}},
 						user_popup_box : {
 							self   :  '<div class="user_pop_up_box"></div>',
 							branch : {

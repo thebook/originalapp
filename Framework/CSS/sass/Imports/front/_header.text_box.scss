@@ -4,7 +4,7 @@
 	display: inline-block;
 	float: left;
 	width: 44%;
-	padding: 35px 4% 40px;
+	padding: 45px 4% 45px;
 	margin: 20px 0 0 0;
 	@include border-radius(5px);
 	@include box-shadow( -1px, 1px, 5px, 1px, rgba(0,0,0, 0.1));
@@ -15,8 +15,9 @@
 	width: 5%;
 	float: left;
 	display: inline-block;
-	margin-top: 10px;
-	margin-left: -1px;
+	margin-top: 17px;
+	margin-left: -12px;
+	@include rotate(24);
 	&:before { 
 		
 		font-size: 300%; 
@@ -32,8 +33,9 @@
 	text-align: center;
 	color: $green;
 	font-family: 'Vieira';
-	font-size: 38px; 
-	line-height: 40px 
+	text-transform: uppercase;
+	font-size: 28px; 
+	line-height: 30px 
 }
 
 .header_text_box_title_highlight {
@@ -54,9 +56,10 @@
 .header_text_box_input {
 	
 	width: 90%;
-	padding: 5px 5%;
+	padding: 0 0 0 5%;
 	float: left;
 	background: $light_gray; 
+	margin-top: 35px;
 	@include border-radius(25px);
 	@include box-shadow( -1px, 1px, 5px, 1px, rgba(0,0,0, 0.1), inset);	
 }
@@ -67,13 +70,12 @@
 	@include reset-input;	
 	font-family: Tahoma; 
 	float: left;
-	width: 90%;
+	width: 85%;
 	padding: 0;
-	margin: ( 32px - $size )/2 0;
+	margin: (( 32px - $size )/2)+ 5 0;
 	font-size: $size;
 	line-height: $size;  
 	color: $black_gray; 
-	text-align: center;
 }
 
 .header_button_for_input {
@@ -88,20 +90,23 @@
 }
 
 .with-icon-header-search {
-	
+	$padding_top: ((37px - 16 )/2)+ 5;
 	width: 10%;
 	height: 16px;
-	cursor: pointer;
-	margin: (37px - 16 )/2 0;
+	cursor: pointer; 
+	padding: $padding_top 3.5% $padding_top 1.5%;
 	display: inline;
 	float: left;
 	text-align: center;
+	background: $light; 
+	@include border-radius(0 25px 25px 0);
+	@include box-shadow(1px, 1px, 5px, 0px, rgba(0,0,0, 0.1));
 
 	&:before {
 
 		font-size: 16px;
 		line-height: 16px;  
-		color: $black_gray; 
+		color: $darkest_gray; 
 		content:"S";
 	}
 
@@ -111,5 +116,9 @@
 			
 			color: lighten($black_gray, 10%); 
 		}
+	}
+
+	&:active { 
+		@include box-shadow(1px, 1px, 5px, 0px, rgba(138,138,138, 0.1));	
 	}
 }

@@ -3,7 +3,7 @@
 /**
 * A ticketing class alpha
 */
-abstract class alpha_tree_ticket
+abstract class alpha_tree_ticket extends alpha
 {
 	var $table_name;
 	var $being; 
@@ -11,9 +11,12 @@ abstract class alpha_tree_ticket
 
 	function __construct($ticket_definiton_path) 
 	{
+		parent::__construct();
+
 		$this->paramaters['manifestation'] = ( include $ticket_definiton_path );
 		$this->create_ticketing_table($this->paramaters['manifestation']['table_creation']);
 		$this->update_being();
+
 
 		add_action('admin_menu', array($this, 'create_ticketing_page') );
 		
@@ -34,8 +37,8 @@ abstract class alpha_tree_ticket
 		add_action('wp_ajax_tickets_get_property',        array($this, 'get_class_property' ) );
 		add_action('wp_ajax_nopriv_tickets_get_property', array($this, 'get_class_property' ) );
 
-		add_action('wp_ajax_nopriv_get_from_tickets_class', array($this, 'get_' ) );
-		add_action('wp_ajax_get_from_tickets_class',        array($this, 'get_' ) );
+		// add_action('wp_ajax_nopriv_get_from_tickets_class', array($this, 'get_' ) );
+		// add_action('wp_ajax_get_from_tickets_class',        array($this, 'get_' ) );
 
 		// add_action('wp_ajax_show_users_for_ticket',   array($this, 'users_for_ticket' )  );
 	}
@@ -93,13 +96,6 @@ abstract class alpha_tree_ticket
 		$table->update_row($this->table_name, $ticket_values_to_alter_with, 'ticket_id', $ticket_id);
 	}
 
-	public function get_ticket ($ticket_id)
-	{
-		$table = new table_creator;
-		# unseal ticket
-		return $table->get_row($this->table_name, 'ticket_id', $ticket_id);
-	}
-
 	public function remove_ticket ($ticket_id)
 	{
 		$table = new table_creator;
@@ -114,10 +110,47 @@ abstract class alpha_tree_ticket
 		$table->delete_all_table_rows($this->table_name);
 	}	
 
+	public function get_ticket ($ticket_id)
+	{
+		$table  = new table_creator;
+		$ticket = $table->get_row($this->table_name, 'ticket_id', $ticket_id);
+		return $this->_unseal_ticket($ticket);
+	}
+
+	public function set_ticket ($ticket_id, $set_value)
+	{
+		$table     = new table_creator;
+		$set_value = $this->_seal_ticket($set_value);
+		$table->update_row($this->table_name, $set_value, 'ticket_id', $ticket_id);
+	}
+
 	public function get_ticket_property ($ticket_id, $property_to_get)
 	{
 		$ticket = $this->get_ticket($ticket_id);
+		$ticket = $this->_unseal_ticket($ticket);
 		return $ticket[$property_to_get];
+	}
+
+	public function set_ticket_property ($ticket_id, $property, $property_value)
+	{
+		$table = new table_creator;
+		$table->update_row($this->table_name, array( $property => $property_value ), 'ticket_id', $ticket_id );
+	}
+
+	public function get_tickets_based_on_property ($property, $property_value)
+	{
+		$table   = new table_creator;
+		$tickets = $table->get_rows($this->table_name, $property, $property_value);
+		return $this->_unseal_tickets($tickets);
+	}
+
+	public function set_tickets_based_on_property ($property, $property_value, $set_value)
+	{
+		$tickets = $this->get_tickets_based_on_property($property, $property_value);
+
+		foreach ($tickets as $ticket) :
+			$this->set_ticket($ticket['ticket_id'], $set_value);
+		endforeach;
 	}
 
 	public function update_being () {
@@ -141,6 +174,17 @@ abstract class alpha_tree_ticket
 		return $table->unserialize_strings_in_an_array($ticket);
 	}
 
+	protected function _seal_tickets ($tickets)
+	{
+		foreach ($tickets as $ticket_number => $ticket) :
+	
+			$tickets[$ticket_number] = $this->_seal_ticket($ticket);
+	
+		endforeach;
+
+		return $tickets;
+	}	
+
 	protected function _unseal_tickets ($tickets)
 	{
 		foreach ($tickets as $ticket_number => $ticket) :				
@@ -155,61 +199,6 @@ abstract class alpha_tree_ticket
 	public function update_and_return_being ()
 	{	
 		echo json_encode($this->update_being());
-		exit;
-	}
-
-	public function set_up_json_return_object ()
-	{
-		return array(
-			'error' => true, 
-			'text'  => false,
-			'return'=> false
-		);
-	}
-
-	public function get_ ()
-	{	
-		$report = $this->set_up_json_return_object();
-
-		if (isset($_GET['method'])) : 
-
-			$method     = "get_{$_GET['method']}";
-			$paramaters = (isset($_GET['paramaters'])? $_GET['paramaters'] : false );
-
-			try {
-				
-				$reflection = new ReflectionMethod($this, $method);
-
-				if ($reflection->isPublic()) :
-					
-					if ($paramaters) :
-						$array_of_paramaters = array();
-
-						foreach ($paramaters as $paramater) :
-							$array_of_paramaters[] = $paramater;
-						endforeach;
-
-						$report['return'] = call_user_func_array(array($this, $method), $array_of_paramaters);
-					else :
-						$report['return'] = call_user_func(array($this, $method));
-					endif;
-
-					$report['error'] = false;
-					$report['text']  = "Method : \"$method\" has been sucessfuly called";
-
-				else : 
-					$report['text'] = "Method : \"$method\" is not public in this class, as such will not be called";
-				endif;
-
-			} catch (Exception $exception) { 
-				$report['text'] = $exception->getMessage();
-			}
-		else : 
-			$report['text'] = "Method name was not given as such it was not called";
-		endif;
-
-		echo json_encode($report);
-
 		exit;
 	}
 

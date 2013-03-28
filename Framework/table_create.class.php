@@ -252,6 +252,15 @@ class table_creator
 		return $result[0];
 	}
 
+	public function get_rowS ($table_name, $where_column, $where_value)
+	{
+		global $wpdb;
+
+		$result	= $wpdb->get_results("SELECT * FROM $wpdb->prefix$table_name WHERE $where_column = '$where_value'", ARRAY_A);
+
+		return $result;
+	}
+
 	/**
 	 * Takes an array of strings and checks if they are digits or strings and returns a %d for didigs and 
 	 * %s for string for the wpdb->insert() function format
@@ -295,12 +304,6 @@ class table_creator
 		if ( !$this->does_column_exist($paramaters['table_name'], $paramaters['column_name']) ) { 
 			
 			global $wpdb;
-			
-			// $field_to_be_inserted = $this->_convert_table_field_choices_into_database_field_statement(
-			// 	array(
-			// 		'field_name'       => $paramaters['field_name'], 
-			// 		'field_input_type' => $paramaters['field_input_type'] 
-			// 		));
 			
 			$field_to_be_inserted = $this->_convert_field_into_type($paramaters);
 

@@ -8,18 +8,24 @@
 			<div class="header_invisible_box">
 				<div class="header_invisible_box_title_wrap">
 					<div class="header_invisible_box_title_logo"><span class="with-icon-invisible-title-logo"></span></div>
-					<div class="header_invisible_box_title">Recyclabook <br/>.co.uk</div>
+					<div class="header_invisible_box_title">
+						<span class="header_invisible_box_title_one_and_two_wrap">
+							<span class="header_invisible_box_title_one">Recycla</span>
+							<span class="header_invisible_box_title_two">book</span>
+						</span>	
+						<span class="header_invisible_box_title_three">co.uk</span></div>
 				</div>
 				<div class="header_invisible_box_text_wrap">
 					<div class="header_invisible_box_text_title">What We Do</div>
 					<div class="header_invisible_box_text">Recyclabook accepts over a million different titles, you can easily sell your book and get quick and safe payment</div>
 				</div>
+				<div class="header_invisible_box_arrow_text">Check and see!</div>
 				<div class="with-icon-down-arrow"></div>
 			</div>
 
 			<div class="header_text_box">
 				<div class="header_text_box_title">How <span class="header_text_box_title_highlight">much</span> is <br/><span class="header_text_box_title_highlight">your</span> book <span class="header_text_box_title_highlight">worth?</span></div>
-				<div class="header_text_box_text">use a comma to search for more than one book</div>
+					<!-- <div class="header_text_box_text">use a comma to search for more than one book</div> -->
 				<div class="header_text_box_input">	
 					<div class="header_field_for_input">
 						<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">
@@ -43,7 +49,7 @@
 
 		<div class="homepage_body_inner_wrap">
 			
-			<div class="homepage_extra_text_box_first">
+			<!-- <div class="homepage_extra_text_box_first">
 				<div class="with-icon-arrow-for-extra-text-box"></div>
 				<div class="homepage_extra_text_box_title">Who We Are</div>
 				<div class="homepage_extra_text_box_text">
@@ -58,8 +64,16 @@
 					We have <strong>2 easy ways</strong> for you to sell your books, Freepost or our innovotive Recyclabus.
 					<strong>and here is how they both work.</strong>
 				</div>
-			</div>	
+			</div> -->	
+			<div class="homepage_how_it_works_title">You can send you books to us by freepost or use Recyclabus</div>
 
+			<div class="homepage_how_it_works_option_title_wrap">
+				<div class="homepage_how_it_works_option_title_scrible">1st option</div>
+				<div class="homepage_how_it_works_option_title">
+					<span class="homepage_how_it_works_option_title_part_one">Free</span>
+					<span class="homepage_how_it_works_option_title_part_two">post</span>
+				</div>
+			</div>
 			<div class="homepage_how_it_works_boxes_wrap">
 
 				<div class="homepage_how_it_works_box_wrap">
@@ -113,6 +127,7 @@
 
 			<div class="with-icon-or-sticker-recyclabus"></div>
 			<div class="homepage_recyclabus_box_wrap">
+				<div class="homepage_recyclabus_box_title_scrible">2nd option</div>
 				<div class="homepage_recyclabus_box_title">
 					Recycla<span class="homepage_recyclabus_box_title_color">Bus</span>
 				</div>
@@ -135,6 +150,12 @@
 					<div class="with-icon-recyclabus-find-out-more-arrow"></div>
 				</div>
 				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recyclabus.png'; ?>"class="homepage_recyclabus_box_image">
+			</div>
+
+			<div class="homepage_alies_bar">
+				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/iod.png'; ?>" alt="" class="homepage_ally_bar_image">
+				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/fsc.png'; ?>" alt="" class="homepage_ally_bar_image">
+				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recycle.png'; ?>" alt="" class="homepage_ally_bar_image">
 			</div>
 
 		</div>

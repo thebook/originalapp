@@ -93,7 +93,5 @@
 		$this->alter_ticket($id, $ticket);
 		exit;
 	}
-
-	protected function _what_to_do_with_expired_ticket ($ticket) {}
  }
 ?>

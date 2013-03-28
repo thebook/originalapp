@@ -7,10 +7,13 @@
 }
 
 .homepage_body_inner_wrap {
-
+	
+	background: $light;
+	margin-bottom: 50px;  
 	float: left;
 }
 
 @import "homepage.extra_box";
 @import "homepage.how_it_works_boxes";
 @import "homepage.recyclabus";
+@import "homepage.alies";

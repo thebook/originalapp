@@ -3,10 +3,15 @@
 	display: inline-block;
 	float: left;
 	width: 27.5%;
-	margin: 20px 1% 0 0;
+	margin: 20px 0 0 0;
 }
 
-.header_invisible_box_title_wrap {}
+.header_invisible_box_title_wrap {
+	
+	width: 100%;
+	float: left;
+	border-bottom: 1px solid $light;
+}
 
 .header_invisible_box_title_logo {
 	
@@ -32,6 +37,8 @@
 .header_invisible_box_title {
 	
 	float: left;
+	width: 180px;
+	display: inline;
 	font-family: MotorOil;
 	font-size: 22px;
 	margin: 5px 0 0 10px;
@@ -40,12 +47,48 @@
 	letter-spacing: 1px;
 }
 
+.header_invisible_box_title_one_and_two_wrap {
+	
+	display: inline-block;
+	float: left;
+	width: 100px;
+	color: $light; 
+}
+
+.header_invisible_box_title_one {
+	
+	position: relative;
+	top: -3px;
+	font-size: 22px;
+	line-height: 22px;  
+}
+
+.header_invisible_box_title_two {
+
+	position: relative;
+	top: -8px;
+	float: left;
+	font-size: 34px;
+	line-height: 34px;  
+}
+
+.header_invisible_box_title_three { 
+	
+	font-size: 14px;
+	line-height: 14px; 
+	display: inline-block;
+	float: left;
+	margin-top: 12px;  
+	margin-left: -10px; 
+	@include rotate(90);
+}
+
 .header_invisible_box_text_wrap {
 	
 	clear: both;
 	float: left;
 	margin-top: 15px;
-	color: $light; 
+	color: $dark_blue; 
 }
 
 .header_invisible_box_text_title {
@@ -62,13 +105,26 @@
 	line-height: 19px;
 	text-align: justify; 
 	margin: 5px 5px 0 0;
+	width: 95%;
+}
+
+.header_invisible_box_arrow_text {
+
+	font-family: HandWritten;
+	color: $light;
+	position: relative;
+	left: 100px;
+	top: -12px;
+	margin-bottom: -20px;
+	@include rotate(-5); 
 }
 
 .with-icon-down-arrow {
 	
 	clear: both;
 	float: right;
-	margin-right: 20px; 
+	margin-right: 20px;
+	@include rotate(-25);
 	
 	&:before { 
 		

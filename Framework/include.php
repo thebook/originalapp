@@ -1,13 +1,15 @@
 <?php 
 
-include FRAMEWORK . '/utilities.php'; 
+include 'alpha.class.php';
 
-include FRAMEWORK . '/rewrites.php';
+include 'utilities.php'; 
 
-include FRAMEWORK . '/register_scripts.class.php';
+include 'rewrites.php';
 
-include FRAMEWORK . '/table_create.class.php';
+include 'register_scripts.class.php';
 
-include FRAMEWORK . '/response.class.php';
+include 'table_create.class.php';
+
+include 'response.class.php';
 
 ?>

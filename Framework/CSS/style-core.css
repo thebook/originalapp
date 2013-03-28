@@ -91,14 +91,16 @@ body {
 .header {
   width: inherit;
   float: left;
-  height: 300px;
+  height: 290px;
   background: #9ad9e0;
-  z-index: 1; }
+  z-index: 0; }
 
 .header_image {
   float: right;
   position: absolute;
-  left: 63%; }
+  height: 290px;
+  left: 65%;
+  z-index: 0; }
 
 .header_wrap {
   width: 940px;
@@ -111,7 +113,7 @@ body {
   display: inline-block;
   float: left;
   width: 44%;
-  padding: 35px 4% 40px;
+  padding: 45px 4% 45px;
   margin: 20px 0 0 0;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -122,8 +124,13 @@ body {
   width: 5%;
   float: left;
   display: inline-block;
-  margin-top: 10px;
-  margin-left: -1px; }
+  margin-top: 17px;
+  margin-left: -12px;
+  -moz-transform: rotate(24deg);
+  -webkit-transform: rotate(24deg);
+  -o-transform: rotate(24deg);
+  -ms-transform: rotate(24deg);
+  transform: rotate(24deg); }
   .with-icon-header-text-box-arrow:before {
     font-size: 300%;
     color: white;
@@ -135,8 +142,9 @@ body {
   text-align: center;
   color: #b4d65a;
   font-family: 'Vieira';
-  font-size: 38px;
-  line-height: 40px; }
+  text-transform: uppercase;
+  font-size: 28px;
+  line-height: 30px; }
 
 .header_text_box_title_highlight {
   color: #91b62d; }
@@ -151,9 +159,10 @@ body {
 
 .header_text_box_input {
   width: 90%;
-  padding: 5px 5%;
+  padding: 0 0 0 5%;
   float: left;
   background: #f6f6f6;
+  margin-top: 35px;
   -webkit-border-radius: 25px;
   border-radius: 25px;
   -webkit-box-shadow: inset -1px 1px 5px 1px rgba(0, 0, 0, 0.1);
@@ -166,13 +175,12 @@ body {
   box-shadow: none;
   font-family: Tahoma;
   float: left;
-  width: 90%;
+  width: 85%;
   padding: 0;
-  margin: 8px 0;
+  margin: 13px 0;
   font-size: 16px;
   line-height: 16px;
-  color: #555555;
-  text-align: center; }
+  color: #555555; }
   .header_input_block_for_search:hover {
     border: none; }
   .header_input_block_for_search:focus {
@@ -191,23 +199,36 @@ body {
   width: 10%;
   height: 16px;
   cursor: pointer;
-  margin: 10.5px 0;
+  padding: 15.5px 3.5% 15.5px 1.5%;
   display: inline;
   float: left;
-  text-align: center; }
+  text-align: center;
+  background: white;
+  -webkit-border-radius: 0 25px 25px 0;
+  border-radius: 0 25px 25px 0;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1); }
   .with-icon-header-search:before {
     font-size: 16px;
     line-height: 16px;
-    color: #555555;
+    color: #9f9f9f;
     content: "S"; }
   .with-icon-header-search:hover:before {
     color: #6e6e6e; }
+  .with-icon-header-search:active {
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(138, 138, 138, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(138, 138, 138, 0.1); }
 
 .header_invisible_box {
   display: inline-block;
   float: left;
   width: 27.5%;
-  margin: 20px 1% 0 0; }
+  margin: 20px 0 0 0; }
+
+.header_invisible_box_title_wrap {
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid white; }
 
 .header_invisible_box_title_logo {
   width: 50px;
@@ -226,6 +247,8 @@ body {
 
 .header_invisible_box_title {
   float: left;
+  width: 180px;
+  display: inline;
   font-family: MotorOil;
   font-size: 22px;
   margin: 5px 0 0 10px;
@@ -233,11 +256,43 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px; }
 
+.header_invisible_box_title_one_and_two_wrap {
+  display: inline-block;
+  float: left;
+  width: 100px;
+  color: white; }
+
+.header_invisible_box_title_one {
+  position: relative;
+  top: -3px;
+  font-size: 22px;
+  line-height: 22px; }
+
+.header_invisible_box_title_two {
+  position: relative;
+  top: -8px;
+  float: left;
+  font-size: 34px;
+  line-height: 34px; }
+
+.header_invisible_box_title_three {
+  font-size: 14px;
+  line-height: 14px;
+  display: inline-block;
+  float: left;
+  margin-top: 12px;
+  margin-left: -10px;
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg); }
+
 .header_invisible_box_text_wrap {
   clear: both;
   float: left;
   margin-top: 15px;
-  color: white; }
+  color: #3f7986; }
 
 .header_invisible_box_text_title {
   font-family: MotorOil;
@@ -249,12 +304,31 @@ body {
   font-size: 15px;
   line-height: 19px;
   text-align: justify;
-  margin: 5px 5px 0 0; }
+  margin: 5px 5px 0 0;
+  width: 95%; }
+
+.header_invisible_box_arrow_text {
+  font-family: HandWritten;
+  color: white;
+  position: relative;
+  left: 100px;
+  top: -12px;
+  margin-bottom: -20px;
+  -moz-transform: rotate(-5deg);
+  -webkit-transform: rotate(-5deg);
+  -o-transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+  transform: rotate(-5deg); }
 
 .with-icon-down-arrow {
   clear: both;
   float: right;
-  margin-right: 20px; }
+  margin-right: 20px;
+  -moz-transform: rotate(-25deg);
+  -webkit-transform: rotate(-25deg);
+  -o-transform: rotate(-25deg);
+  -ms-transform: rotate(-25deg);
+  transform: rotate(-25deg); }
   .with-icon-down-arrow:before {
     position: relative;
     top: 0px;
@@ -266,7 +340,10 @@ body {
   width: 100%;
   float: left;
   background: white;
-  z-index: 1; }
+  z-index: 1;
+  position: relative;
+  -webkit-box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.1); }
 
 .bar {
   width: 1010px;
@@ -726,6 +803,8 @@ body {
   background: #f6f6f6; }
 
 .homepage_body_inner_wrap {
+  background: white;
+  margin-bottom: 50px;
   float: left; }
 
 .with-icon-arrow-for-extra-text-box {
@@ -814,6 +893,49 @@ body {
 .homepage_extra_text_box_suggestions_text {
   color: #555555;
   font-size: 12px; }
+
+.homepage_how_it_works_title {
+  font-family: MotorOil;
+  font-size: 16px;
+  line-height: 16px;
+  border-bottom: 1px solid #dadada;
+  text-transform: uppercase;
+  text-align: center;
+  color: #9f9f9f;
+  padding: 20px 0;
+  margin: 10px 0 20px; }
+
+.homepage_how_it_works_option_title_wrap {
+  width: 95%;
+  float: left;
+  padding: 0 2.5%;
+  margin-bottom: 10px; }
+
+.homepage_how_it_works_option_title_scrible, .homepage_recyclabus_box_title_scrible {
+  font-family: HandWritten;
+  color: #9f9f9f;
+  margin: 0 0 8px -11px;
+  -moz-transform: rotate(-5deg);
+  -webkit-transform: rotate(-5deg);
+  -o-transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+  transform: rotate(-5deg);
+  float: left; }
+
+.homepage_how_it_works_option_title {
+  clear: both;
+  float: left;
+  font-family: MotorOil;
+  text-transform: uppercase;
+  font-size: 26px;
+  line-height: 26px; }
+
+.homepage_how_it_works_option_title_part_one {
+  color: #9ad9e0; }
+
+.homepage_how_it_works_option_title_part_two {
+  margin-left: -5px;
+  color: #3f7986; }
 
 .homepage_how_it_works_boxes_wrap {
   width: 100%;
@@ -936,8 +1058,9 @@ body {
   float: left;
   clear: both;
   background: white;
-  margin: 5px 0 30px;
+  margin: 5px 0 20px;
   padding: 30px 0 10px 5%;
+  border-top: 1px solid #dadada;
   -webkit-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0; }
 
@@ -947,21 +1070,25 @@ body {
   .with-icon-or-sticker-recyclabus:before {
     position: absolute;
     color: #3f7986;
-    margin: 0 0 0 -15px;
-    font-size: 50px;
+    margin: -10px 0 0 -15px;
+    font-size: 40px;
     cursor: pointer;
     content: ","; }
+
+.homepage_recyclabus_box_title_scrible {
+  display: block; }
 
 .homepage_recyclabus_box_title {
   font-family: MotorOil;
   font-size: 25px;
-  color: #9ad9e0;
+  color: #3f7986;
   float: left;
   margin-bottom: 20px;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  clear: both; }
 
 .homepage_recyclabus_box_title_color {
-  color: #3f7986; }
+  color: #9ad9e0; }
 
 .homepage_recyclabus_box_text_wrap {
   border-top: 2px solid #9f9f9f;
@@ -976,7 +1103,7 @@ body {
 .homepage_recyclabus_box_point {
   float: left;
   clear: both;
-  margin: 0 0 10px; }
+  margin: 0 0 15px; }
 
 .with-icon-recyclabus-point-leaf {
   display: inline;
@@ -1038,6 +1165,19 @@ body {
   top: -150px;
   left: 5px;
   margin: 0 0 -164px; }
+
+.homepage_alies_bar {
+  width: 100%;
+  float: left;
+  padding: 20px 0 0;
+  border-top: 1px solid #dadada;
+  height: 50px;
+  text-align: center; }
+
+.homepage_ally_bar_image {
+  opacity: 0.5;
+  height: 40px;
+  width: auto; }
 
 .recyclabus {
   width: 941px;

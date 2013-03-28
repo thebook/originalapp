@@ -1,0 +1,1127 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"for",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/style-core.scss",
+			"settings":
+			{
+				"buffer_size": 5465,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/parts/_post.formats.audio.scss",
+			"settings":
+			{
+				"buffer_size": 1563,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/Templates/Type/content/format/audio.php",
+			"settings":
+			{
+				"buffer_size": 2883,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/jplayer.class.php",
+			"settings":
+			{
+				"buffer_size": 2492,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 242.0,
+		"selected_items":
+		[
+			[
+				"synjs",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"ena",
+				"Package Control: Enable Package"
+			],
+			[
+				"synphp",
+				"Set Syntax: PHP"
+			],
+			[
+				"sass",
+				"Set Syntax: Sass"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"codex",
+				"WordPress Codex: Search Selection"
+			],
+			[
+				"syntext",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"syn ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"synxml",
+				"Set Syntax: XML"
+			],
+			[
+				"ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"",
+				":$ - EOF"
+			],
+			[
+				"snphp",
+				"Set Syntax: PHP"
+			],
+			[
+				"packinst",
+				"Package Control: Install Package"
+			],
+			[
+				"syn js",
+				"Set Syntax: JavaScript"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/mixins/_font.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/parts/_player.buttons.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/parts/_player.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/parts/_post.formats.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/Templates/Type/content/content.template.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/parts/_post.formats.quote.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/mixins/_box.shadow.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/Templates/Type/content/format/video.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/jplayer.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/Templates/Type/content/branch.content.template.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/parts/_post.formats.gallery.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/mixins/_radius.border.scss",
+		"/C/Users/Ciki/AppData/Local/Temp/fz3temp-1/front.alpha.js",
+		"/C/Users/Ciki/Downloads/PHPMailer_5.2.3/examples/test_smtp_basic.php",
+		"/C/Users/Ciki/AppData/Local/Temp/fz3temp-1/front.test.alpha.js",
+		"/C/Users/Ciki/Downloads/PHPMailer_5.2.3/examples/test_sendmail_advanced.php",
+		"/C/Users/Ciki/Downloads/PHPMailer_5.2.3/examples/test_mail_advanced.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Ticketing/branch.splitter.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.test.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.thank_you.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/include.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/functions.php",
+		"/C/Users/Ciki/AppData/Local/Temp/fz3temp-1/branch.splitter.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Ticketing/alpha.tree.ticketing.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/email.class.php",
+		"/C/Users/Ciki/AppData/Local/Temp/fz3temp-1/alpha.tree.ticketing.class.php",
+		"/C/Users/Ciki/AppData/Local/Temp/fz3temp-1/branch.ticket_incoming.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/e_mail/phpmailer.class.php",
+		"/C/Users/Ciki/Downloads/PHPMailer_5.2.3/examples/test_mail_basic.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-includes/class-phpmailer.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Definitions/users.definition.php",
+		"/C/Users/Ciki/Downloads/PHPMailer_5.2.3/examples/test_sendmail_basic.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/table_create.class.php",
+		"/C/Users/Ciki/Downloads/PHPMailer_5.2.3/examples/test_db_smtp_basic.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/home.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/footer.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/header.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/utility.users.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/manifest.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.change_page.alpha.js",
+		"/C/Users/Ciki/Videos/prototype manifest",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.recyclabus.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.registration.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_progress.icons.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.account.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_font.import.scss",
+		"/C/Users/Ciki/Downloads/recyclabook-icons78251/style.css",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.confirm.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Ticketing/branch.display.ticket.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.search.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Ticketing/incoming_ticket.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/amazon.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Apis/amazon.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/search.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Definitions/ticket.definition.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Book/Users/branch.users.commits.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Book/Users/alpha.tree.user.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Ticketing/include.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Ticketing/branch.ticket_incoming.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Ticketing/ticket.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Book/Users/include.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Book/Users/branch.users.initialize.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Book/Users/produce.user.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Book/Users/branch.users.style.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Book/Users/branch.users.save_fields.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/ajax_loads/load/user.load.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/ajax_loads/load/user_fields.load.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Book/Users/user.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Book/Users/branch.users.ajax.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.books.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/native.extend.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_thank_you.banner.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_bar.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_header.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_thank_you.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_checkout.basket.item.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/utility.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_checkout.how_would_you_like.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/.sass-cache/149e0d26439aacd7374020d301755e2dadd55c5d/_thank_you.banner.scssc",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/front.basket.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/mousewheel.jquery.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_checkout.address.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_checkout.basket.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_checkout.basket.bar.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_checkout.basket.total.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_checkout.basket.bar",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/export.bat",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_user.field.input.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_checkout.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_user.fields.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_user.field.title.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_recyclabus.dates.input.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/register_scripts.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_user.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_progress.popup.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/style-core.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_thank_you.circle.scss",
+		"/C/Users/Ciki/Downloads/recyclabook-icons89803/style.css",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_rotate.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/style-home.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/.sass-cache/149e0d26439aacd7374020d301755e2dadd55c5d/_checkout.basket.scssc",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_address.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/response.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/ticket.alpha.js",
+		"/C/Users/Ciki/AppData/Local/Temp/fz3temp-1/functions.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/native.extend.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/native.extensions.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/ticket.verify.alpha.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/extensions.alpha.ks",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-admin/admin-ajax.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Apis/alpha.tree.apis.class.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Definitions/book.definition.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/alpha.js",
+		"/C/Users/Ciki/AppData/Roaming/Sublime Text 2/Packages/User/Snippets/JavaScript/losseaugmentation.sublime-snippet",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/post-ui.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/Definitions/scripts.definition.php",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/remove.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/load.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/scripts/async.js",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_sales.basket.popup.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_sales.basket.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_sales.basket.popup.items.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_sales.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/front/_search.book.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framework/CSS/sass/Imports/mixins/_pie.clearfix.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/mixins/_clearfix.scss",
+		"/C/Users/Ciki/Documents/My Web Sites/WordPress/wp-content/themes/recyclabook/Framewrok/CSS/sass/Imports/front/_sales.basket.scss"
+	],
+	"find":
+	{
+		"height": 45.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"liquidflux_audio_interface_bar_wrap",
+			"font_size",
+			"icon_size",
+			"font_size",
+			"size",
+			"post_title_font",
+			"liquidflux_audio_no_solution",
+			"class=\"",
+			"liquidflux_audio_interface_volume",
+			"liquidflux_audio_interface_mute_button",
+			"liquidflux_audio_interface_bar_shadow",
+			"liquidflux_audio_interface_bar",
+			"liquidflux_audio_interface_play_button",
+			"liquidflux_audio_interface_play_buttons",
+			"liquidflux_audio_interface_play",
+			"class=\"-",
+			"class=\"",
+			"oga",
+			"source_string",
+			"post_audio_format_oga_url",
+			"oga",
+			"post_audio_format_oga_url",
+			"post_audio_format_mp3_url",
+			"source_string",
+			"player_id",
+			"$post_id",
+			"$id",
+			"key",
+			"source_url",
+			"value",
+			"key",
+			"$m",
+			"m",
+			"audio_sources",
+			"$m",
+			"$x",
+			"x",
+			"$m",
+			"m",
+			"$s",
+			"s",
+			"id",
+			" ",
+			"gallery",
+			"message",
+			"subject",
+			"ticket",
+			"ISBN",
+			"this",
+			"message",
+			"isbn",
+			"title",
+			"being",
+			"callback",
+			"name",
+			"address",
+			"text",
+			"go_back_to_shopping",
+			"email_address",
+			"send",
+			"$",
+			"send_email",
+			"the_post",
+			"paramaters",
+			"public",
+			"body",
+			"dontreplytothis",
+			"delete_all_tickets",
+			"mail",
+			"send_email",
+			"FROM",
+			"change_expiry_date",
+			"delete_row",
+			"delete_all_table_rows",
+			"TABLE",
+			"delete",
+			"remove",
+			"instructions",
+			"( ",
+			"with_instructions",
+			"paramaters",
+			"self",
+			"instructions",
+			"paramaters",
+			"with_instructions",
+			"instructions",
+			"alpha",
+			"seed",
+			"is_slumbering",
+			"is_slumberin",
+			"for_the",
+			"is_sleeping",
+			"is_slumbering",
+			"is_asleep",
+			"event_found_in",
+			"the_instructions",
+			"instructions",
+			"wake",
+			"a",
+			"instruction",
+			"instructions",
+			"instruction",
+			"constructor",
+			"instructions",
+			"the_instructions",
+			"instructions",
+			"instruction",
+			"members",
+			"instructions",
+			"body",
+			"instructions",
+			"wake",
+			"this",
+			"has_components_five_out_of",
+			"name",
+			"what_to_manifest",
+			"append_to_who",
+			"what_to_manifest",
+			"append_to_who",
+			"what_to_manifest",
+			"append_to",
+			"thoughts_of_what_to_manifest",
+			"this",
+			"prototype",
+			"apply",
+			"prototype",
+			"manifest",
+			"thought"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/style-core.scss",
+					"settings":
+					{
+						"buffer_size": 5465,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5393,
+								5393
+							]
+						],
+						"settings":
+						{
+							"auto_indent": true,
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2874.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/CSS/sass/Imports/parts/_post.formats.audio.scss",
+					"settings":
+					{
+						"buffer_size": 1563,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								762,
+								762
+							]
+						],
+						"settings":
+						{
+							"auto_indent": true,
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 870.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/Templates/Type/content/format/audio.php",
+					"settings":
+					{
+						"buffer_size": 2883,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								732,
+								732
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/Ciki/Documents/My Web Sites/WordPress1/wp-content/themes/whiterelease/Framework/jplayer.class.php",
+					"settings":
+					{
+						"buffer_size": 2492,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								955,
+								944
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 348.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 84.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"font",
+				"Framework/CSS/sass/Imports/mixins/_font.scss"
+			],
+			[
+				"player.button",
+				"Framework/CSS/sass/Imports/parts/_player.buttons.scss"
+			],
+			[
+				"quote.scss",
+				"Framework/CSS/sass/Imports/parts/_post.formats.quote.scss"
+			],
+			[
+				"boxshadow",
+				"Framework/CSS/sass/Imports/mixins/_box.shadow.scss"
+			],
+			[
+				"formatvideo",
+				"Framework/Templates/Type/content/format/video.php"
+			],
+			[
+				"content.template",
+				"Framework/Templates/Type/content/content.template.php"
+			],
+			[
+				"jplayer",
+				"Framework/jplayer.class.php"
+			],
+			[
+				"branchcontent",
+				"Framework/Templates/Type/content/branch.content.template.php"
+			],
+			[
+				"audio",
+				"Framework/Templates/Type/content/format/audio.php"
+			],
+			[
+				"player",
+				"Framework/CSS/sass/Imports/parts/_player.scss"
+			],
+			[
+				"style-core.scss",
+				"Framework/CSS/sass/style-core.scss"
+			],
+			[
+				"post.scss",
+				"Framework/CSS/sass/Imports/parts/_post.formats.scss"
+			],
+			[
+				"post.formats.",
+				"Framework/CSS/sass/Imports/parts/_post.formats.gallery.scss"
+			],
+			[
+				"post.formats",
+				"Framework/CSS/sass/Imports/parts/_post.formats.scss"
+			],
+			[
+				"sub",
+				"Framework/CSS/sass/Imports/mixins/_radius.border.scss"
+			],
+			[
+				"front.thank_you",
+				"Framework/scripts/front.thank_you.alpha.js"
+			],
+			[
+				"alpha.ticket",
+				"Framework/Ticketing/alpha.tree.ticketing.class.php"
+			],
+			[
+				"functions",
+				"functions.php"
+			],
+			[
+				"user.definiton",
+				"Framework/Definitions/users.definition.php"
+			],
+			[
+				"ticket/",
+				"Framework/Ticketing/branch.splitter.class.php"
+			],
+			[
+				"table",
+				"Framework/table_create.class.php"
+			],
+			[
+				"ticketing/",
+				"Framework/Ticketing/alpha.tree.ticketing.class.php"
+			],
+			[
+				"utilityuser",
+				"Framework/scripts/utility.users.js"
+			],
+			[
+				"manifest",
+				"Framework/scripts/manifest.alpha.js"
+			],
+			[
+				"footer",
+				"footer.php"
+			],
+			[
+				"changepage",
+				"Framework/scripts/front.change_page.alpha.js"
+			],
+			[
+				"frontrecyclabus",
+				"Framework/scripts/front.recyclabus.alpha.js"
+			],
+			[
+				"home",
+				"home.php"
+			],
+			[
+				"header",
+				"header.php"
+			],
+			[
+				"uti",
+				"Framework/scripts/utility.users.js"
+			],
+			[
+				"thankyou",
+				"Framework/scripts/front.thank_you.alpha.js"
+			],
+			[
+				"frontreg",
+				"Framework/scripts/front.registration.alpha.js"
+			],
+			[
+				"change",
+				"Framework/scripts/front.change_page.alpha.js"
+			],
+			[
+				"registration",
+				"Framework/scripts/front.registration.alpha.js"
+			],
+			[
+				"progress.icons",
+				"Framework/CSS/sass/Imports/front/_progress.icons.scss"
+			],
+			[
+				"fontimport",
+				"Framework/CSS/sass/Imports/mixins/_font.import.scss"
+			],
+			[
+				"account",
+				"Framework/scripts/front.account.alpha.js"
+			],
+			[
+				"confirm",
+				"Framework/scripts/front.confirm.alpha.js"
+			],
+			[
+				"front.seach",
+				"Framework/scripts/front.search.alpha.js"
+			],
+			[
+				"search",
+				"Framework/scripts/search.alpha.js"
+			],
+			[
+				"amazon.js",
+				"Framework/scripts/amazon.js"
+			],
+			[
+				"amazon",
+				"Framework/Apis/amazon.class.php"
+			],
+			[
+				"incoming",
+				"Framework/Ticketing/incoming_ticket.class.php"
+			],
+			[
+				"function",
+				"functions.php"
+			],
+			[
+				"ticket",
+				"Framework/Definitions/ticket.definition.php"
+			],
+			[
+				"front.alpha",
+				"Framework/scripts/front.alpha.js"
+			],
+			[
+				"users.commits",
+				"Book/Users/branch.users.commits.class.php"
+			],
+			[
+				"alphaticket",
+				"Framework/Ticketing/alpha.tree.ticketing.class.php"
+			],
+			[
+				"fields.css",
+				"Book/Users/branch.users.save_fields.class.php"
+			],
+			[
+				"user.definition",
+				"Framework/Definitions/users.definition.php"
+			],
+			[
+				"front.rec",
+				"Framework/scripts/front.recyclabus.alpha.js"
+			],
+			[
+				"front.recyclabus",
+				"Framework/scripts/front.recyclabus.alpha.js"
+			],
+			[
+				"user/",
+				"Book/Users/user.class.php"
+			],
+			[
+				"users/",
+				"Book/Users/alpha.tree.user.class.php"
+			],
+			[
+				"frontbooks",
+				"Framework/scripts/front.books.alpha.js"
+			],
+			[
+				"search.",
+				"Framework/scripts/search.alpha.js"
+			],
+			[
+				"nativeexted",
+				"Framework/scripts/native.extend.js"
+			],
+			[
+				"header.php",
+				"header.php"
+			],
+			[
+				"ut.",
+				"Framework/scripts/utility.users.js"
+			],
+			[
+				"front.books",
+				"Framework/scripts/front.books.alpha.js"
+			],
+			[
+				"front.registrat",
+				"Framework/scripts/front.registration.alpha.js"
+			],
+			[
+				"banner",
+				"Framework/CSS/sass/Imports/front/_thank_you.banner.scss"
+			],
+			[
+				"bar",
+				"Framework/CSS/sass/Imports/front/_bar.scss"
+			],
+			[
+				"header.scss",
+				"Framework/CSS/sass/Imports/front/_header.scss"
+			],
+			[
+				"test",
+				"Framework/scripts/front.test.alpha.js"
+			],
+			[
+				"native",
+				"Framework/scripts/native.extend.js"
+			],
+			[
+				"checkout.",
+				"Framework/CSS/sass/Imports/front/_checkout.basket.item.scss"
+			],
+			[
+				"homephp",
+				"home.php"
+			],
+			[
+				"alpha.js",
+				"Framework/scripts/utility.alpha.js"
+			],
+			[
+				"front.",
+				"Framework/scripts/front.change_page.alpha.js"
+			],
+			[
+				"front.sear",
+				"Framework/scripts/front.search.alpha.js"
+			],
+			[
+				"",
+				"Framework/scripts/front.confirm.alpha.js"
+			],
+			[
+				"front.registration",
+				"Framework/scripts/front.registration.alpha.js"
+			],
+			[
+				"test.",
+				"Framework/scripts/front.test.alpha.js"
+			],
+			[
+				"fron.con",
+				"Framework/scripts/front.confirm.alpha.js"
+			],
+			[
+				"searchalpha",
+				"Framework/scripts/front.search.alpha.js"
+			],
+			[
+				"thankyou.scss",
+				"Framework/CSS/sass/Imports/front/_thank_you.scss"
+			],
+			[
+				"checkouthow",
+				"Framework/CSS/sass/Imports/front/_checkout.how_would_you_like.scss"
+			],
+			[
+				"utility",
+				"Framework/scripts/utility.alpha.js"
+			],
+			[
+				"front.confirm",
+				"Framework/scripts/front.confirm.alpha.js"
+			],
+			[
+				"recyclabus.alpha",
+				"Framework/scripts/front.recyclabus.alpha.js"
+			],
+			[
+				"thankyoubanner",
+				"Framework/CSS/sass/Imports/front/_thank_you.banner.scss"
+			],
+			[
+				"thankyou.",
+				"Framework/CSS/.sass-cache/149e0d26439aacd7374020d301755e2dadd55c5d/_thank_you.banner.scssc"
+			],
+			[
+				"checkout.basket.item",
+				"Framework/CSS/sass/Imports/front/_checkout.basket.item.scss"
+			],
+			[
+				"front.al",
+				"Framework/scripts/front.alpha.js"
+			],
+			[
+				"front.book.",
+				"Framework/scripts/front.books.alpha.js"
+			],
+			[
+				"utili",
+				"Framework/scripts/utility.alpha.js"
+			],
+			[
+				"front.registrato",
+				"Framework/scripts/front.registration.alpha.js"
+			],
+			[
+				"utit",
+				"Framework/scripts/utility.users.js"
+			],
+			[
+				"checkout.address",
+				"Framework/CSS/sass/Imports/front/_checkout.address.scss"
+			],
+			[
+				"checkout.basket",
+				"Framework/CSS/sass/Imports/front/_checkout.basket.scss"
+			],
+			[
+				"front.book",
+				"Framework/scripts/front.books.alpha.js"
+			],
+			[
+				"home.php",
+				"home.php"
+			],
+			[
+				"users",
+				"Framework/scripts/utility.users.js"
+			],
+			[
+				"how_would",
+				"Framework/CSS/sass/Imports/front/_checkout.how_would_you_like.scss"
+			],
+			[
+				"front.regis",
+				"Framework/scripts/front.registration.alpha.js"
+			],
+			[
+				"front.confr",
+				"Framework/scripts/front.confirm.alpha.js"
+			],
+			[
+				"user.fie",
+				"Framework/CSS/sass/Imports/front/_user.field.input.scss"
+			],
+			[
+				"user.field",
+				"Framework/CSS/sass/Imports/front/_user.fields.scss"
+			],
+			[
+				"checkout.scss",
+				"Framework/CSS/sass/Imports/front/_checkout.scss"
+			],
+			[
+				"recyclabus.",
+				"Framework/CSS/sass/Imports/front/_recyclabus.dates.input.scss"
+			],
+			[
+				"field.input",
+				"Framework/CSS/sass/Imports/front/_user.field.input.scss"
+			],
+			[
+				"registrat",
+				"Framework/scripts/front.registration.alpha.js"
+			],
+			[
+				"register",
+				"Framework/register_scripts.class.php"
+			],
+			[
+				"header.",
+				"header.php"
+			],
+			[
+				"user.fields",
+				"Framework/CSS/sass/Imports/front/_user.fields.scss"
+			],
+			[
+				"ccheckout",
+				"Framework/CSS/sass/Imports/front/_checkout.scss"
+			],
+			[
+				"user.scss",
+				"Framework/CSS/sass/Imports/front/_user.scss"
+			],
+			[
+				"popup.",
+				"Framework/CSS/sass/Imports/front/_progress.popup.scss"
+			],
+			[
+				"change_page",
+				"Framework/scripts/front.change_page.alpha.js"
+			],
+			[
+				"banner.scs",
+				"Framework/CSS/sass/Imports/front/_thank_you.banner.scss"
+			],
+			[
+				"import.",
+				"Framework/CSS/sass/Imports/mixins/_font.import.scss"
+			],
+			[
+				"style-core",
+				"Framework/CSS/sass/style-core.scss"
+			],
+			[
+				"checkout",
+				"Framework/CSS/sass/Imports/front/_checkout.scss"
+			],
+			[
+				"baskc",
+				"Framework/CSS/sass/Imports/front/_checkout.basket.scss"
+			],
+			[
+				"checkbask",
+				"Framework/CSS/sass/Imports/front/_checkout.basket.scss"
+			],
+			[
+				"chebasket",
+				"Framework/CSS/sass/Imports/front/_checkout.basket.scss"
+			],
+			[
+				"checkoutbasket",
+				"Framework/CSS/sass/Imports/front/_checkout.basket.scss"
+			],
+			[
+				"style-home",
+				"style-home.php"
+			],
+			[
+				"address",
+				"Framework/CSS/sass/Imports/front/_checkout.address.scss"
+			],
+			[
+				"address.scs",
+				"Framework/CSS/sass/Imports/front/_checkout.address.scss"
+			],
+			[
+				"user.fi",
+				"Framework/CSS/sass/Imports/front/_user.fields.scss"
+			],
+			[
+				"response",
+				"Framework/response.class.php"
+			],
+			[
+				"nativextend",
+				"Framework/scripts/native.extend.js"
+			],
+			[
+				"ticketalpha",
+				"Framework/scripts/ticket.alpha.js"
+			],
+			[
+				"alphapi",
+				"Framework/Apis/alpha.tree.apis.class.php"
+			],
+			[
+				"amzon.class",
+				"Framework/Apis/amazon.class.php"
+			],
+			[
+				"amazon.c",
+				"Framework/Apis/amazon.class.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 237.0,
+	"status_bar_visible": true
+}

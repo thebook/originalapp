@@ -125,3 +125,53 @@
 	color: $black_gray;
 	font-size: 12px;
 }
+
+
+.homepage_how_it_works_title {
+	
+	font-family: MotorOil;
+	font-size: 16px;
+	line-height: 16px;
+	border-bottom: 1px solid $middle_gray;
+	text-transform: uppercase;
+	text-align: center;
+	color: $darkest_gray; 
+	padding: 20px 0;
+	margin: 10px 0 20px;  
+}
+
+.homepage_how_it_works_option_title_wrap {
+	
+	width: 95%;
+	float: left;
+	padding: 0 2.5%;
+	margin-bottom: 10px; 
+} 
+
+.homepage_how_it_works_option_title_scrible {
+	
+	font-family: HandWritten;
+	color: $darkest_gray; 
+	margin: 0 0 8px -11px;
+	@include rotate(-5); 
+	float: left;   
+} 
+
+.homepage_how_it_works_option_title {
+	
+	clear: both;
+	float: left;
+	font-family: MotorOil;
+	text-transform: uppercase;
+	font-size: 26px;
+	line-height: 26px;
+} 
+
+.homepage_how_it_works_option_title_part_one {
+	color: $light_blue;
+} 
+
+.homepage_how_it_works_option_title_part_two {
+	margin-left: -5px; 
+	color: $dark_blue;
+} 
