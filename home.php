@@ -65,7 +65,7 @@
 					<strong>and here is how they both work.</strong>
 				</div>
 			</div> -->	
-			<div class="homepage_how_it_works_title">You can send you books to us by freepost or use Recyclabus</div>
+			<div class="homepage_how_it_works_title">We have 2 easy ways for you to sell your books, Freepost or the Recyclabus. <br/> Choose whichever works for you...</div>
 
 			<div class="homepage_how_it_works_option_title_wrap">
 				<div class="homepage_how_it_works_option_title_scrible">1st option</div>
@@ -158,7 +158,7 @@
 				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recycle.png'; ?>" alt="" class="homepage_ally_bar_image">
 			</div>
 
-		</div>
+		</div>			
 	</section>
 	
 	<!-- Recyclabus -->
@@ -278,7 +278,7 @@
 
 	<section class="thank_you pages">
 		
-<!-- 		<div class="thank_you_banner_wrap">
+		<!-- <div class="thank_you_banner_wrap">
 			<div class="thank_you_banner">
 				<div class="with-icon-thank-you-icon-leaf"></div>
 				<div class="thank_you_banner_title_one">Thank you </div>
@@ -299,6 +299,23 @@
 
 	</section>
 	
-	<!-- <section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section> -->
+	<div class="homepage_blue_bar"></div>
+	<div class="homepage_bottom_navigation_wrap">
+
+		<div class="homepage_bottom_navigation">
+			<div class="homepage_bottom_navigation_button">Contact</div>
+			<div class="homepage_bottom_navigation_button">Got Questions?</div>
+			<div class="homepage_bottom_navigation_button">Media</div>
+			<div class="homepage_bottom_navigation_button">Jobs</div>
+			<div class="homepage_bottom_navigation_button">Word From Us</div>
+			<div class="homepage_bottom_navigation_button">T&C's</div>
+
+			<div class="homepage_bottom_navigation_copyright">
+				<div class="with-icon-bottom-navigation-copyright"></div>
+				<div class="homepage_bottom_navigation_copyright_text">Recyclabook &copy. 2013</div>
+			</div>
+		</div>
+		
+	</div>
 
 <?php get_footer(); ?>

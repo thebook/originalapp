@@ -121,21 +121,16 @@ body {
   box-shadow: -1px 1px 5px 1px rgba(0, 0, 0, 0.1); }
 
 .with-icon-header-text-box-arrow {
-  width: 5%;
+  width: 1px;
   float: left;
   display: inline-block;
-  margin-top: 17px;
-  margin-left: -12px;
-  -moz-transform: rotate(24deg);
-  -webkit-transform: rotate(24deg);
-  -o-transform: rotate(24deg);
-  -ms-transform: rotate(24deg);
-  transform: rotate(24deg); }
-  .with-icon-header-text-box-arrow:before {
-    font-size: 300%;
-    color: white;
-    z-index: 1;
-    content: "+"; }
+  height: 1px;
+  margin-top: 20px;
+  margin-left: -4px;
+  border-top: 0px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-right: 0px solid transparent;
+  border-left: 25px solid white; }
 
 .header_text_box_title {
   width: 100%;
@@ -171,7 +166,7 @@ body {
 .header_input_block_for_search {
   background: transparent;
   border: none;
-  outline-color: transparent;
+  outline: none;
   box-shadow: none;
   font-family: Tahoma;
   float: left;
@@ -553,7 +548,7 @@ body {
 .progress_welcome_sign_in_box_input {
   background: transparent;
   border: none;
-  outline-color: transparent;
+  outline: none;
   box-shadow: none;
   width: 91%;
   padding: 10px 2%;
@@ -651,7 +646,7 @@ body {
 .user_pop_up_option_input {
   background: transparent;
   border: none;
-  outline-color: transparent;
+  outline: none;
   box-shadow: none;
   width: 90%;
   background: white;
@@ -736,7 +731,7 @@ body {
 .input_block_for_search {
   background: transparent;
   border: none;
-  outline-color: transparent;
+  outline: none;
   box-shadow: none;
   margin: 5px 0px;
   width: 100%;
@@ -804,100 +799,15 @@ body {
 
 .homepage_body_inner_wrap {
   background: white;
-  margin-bottom: 50px;
-  float: left; }
-
-.with-icon-arrow-for-extra-text-box {
-  position: absolute;
-  margin: -25px 0 0 33px;
-  color: white; }
-  .with-icon-arrow-for-extra-text-box:before {
-    content: "u"; }
-
-.homepage_extra_text_box_first, .homepage_extra_text_box, .homepage_extra_text_box_suggestions {
-  background: white;
-  width: 28.33%;
-  height: 105px;
-  display: inline-block;
   float: left;
-  padding: 10px 1.5%;
-  margin: 10px 1.5% 10px 0;
-  -webkit-border-radius: 2px 2px 0 0;
-  border-radius: 2px 2px 0 0;
-  -webkit-box-shadow: -1px 1px 5px 1px rgba(130, 130, 130, 0.1);
-  box-shadow: -1px 1px 5px 1px rgba(130, 130, 130, 0.1); }
-
-.homepage_extra_text_box {
-  width: 30%; }
-
-.homepage_extra_text_box_title {
-  color: #555555;
-  font-size: 18px;
-  font-family: MotorOil;
-  text-transform: uppercase; }
-
-.homepage_extra_text_box_text {
-  width: 100%;
-  margin-top: 5px;
-  font-size: 14px;
-  line-height: 20px;
-  color: #555555; }
-  .homepage_extra_text_box_text strong {
-    font-weight: bold; }
-
-.homepage_extra_text_box_suggestions {
-  width: 29.66%;
-  background: #9ad9e0;
-  margin: 15px 0 10px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px; }
-
-.homepage_extra_text_box_suggestions_background {
-  position: absolute; }
-
-.with-icon-for-suggestion-box-left {
   position: relative;
-  top: 15px;
-  left: 30px; }
-  .with-icon-for-suggestion-box-left:before {
-    color: white;
-    font-size: 80px;
-    content: "'"; }
-
-.with-icon-for-suggestion-box-right {
-  position: relative;
-  top: -70px;
-  left: 115px; }
-  .with-icon-for-suggestion-box-right:before {
-    color: #c1e8ec;
-    font-size: 80px;
-    content: "*"; }
-
-.with-icon-for-suggestion-box-large-circle:before {
-  font-size: 80px;
-  content: "^"; }
-
-.homepage_extra_text_box_suggestions_text_wrap {
-  position: relative;
-  width: 100%;
-  margin-top: 20px;
-  text-align: center;
-  z-index: 1; }
-
-.homepage_extra_text_box_suggestions_title {
-  font-family: MotorOil;
-  color: #3f7986;
-  text-transform: lowercase;
-  font-size: 20px; }
-
-.homepage_extra_text_box_suggestions_text {
-  color: #555555;
-  font-size: 12px; }
+  -webkit-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.1); }
 
 .homepage_how_it_works_title {
   font-family: MotorOil;
   font-size: 16px;
-  line-height: 16px;
+  line-height: 22px;
   border-bottom: 1px solid #dadada;
   text-transform: uppercase;
   text-align: center;
@@ -1169,7 +1079,7 @@ body {
 .homepage_alies_bar {
   width: 100%;
   float: left;
-  padding: 20px 0 0;
+  padding: 20px 0 5px;
   border-top: 1px solid #dadada;
   height: 50px;
   text-align: center; }
@@ -1178,6 +1088,66 @@ body {
   opacity: 0.5;
   height: 40px;
   width: auto; }
+
+.homepage_blue_bar {
+  width: 100%;
+  background: #9ad9e0;
+  float: left;
+  height: 28px;
+  position: relative;
+  z-index: -1;
+  -webkit-box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.1); }
+
+.homepage_bottom_navigation_wrap {
+  width: 98%;
+  padding: 15px 1% 25px;
+  float: left;
+  color: #9f9f9f;
+  text-transfrom: uppercase;
+  font-size: 14px;
+  line-height: 14px;
+  background: white;
+  position: relative;
+  z-index: -2; }
+
+.homepage_bottom_navigation {
+  width: 930px;
+  margin: 0 auto; }
+
+.homepage_bottom_navigation_button {
+  display: inline;
+  float: left;
+  padding: 5px 15px;
+  border-right: 1px solid #9f9f9f;
+  cursor: pointer; }
+  .homepage_bottom_navigation_button:hover {
+    color: #555555; }
+
+.homepage_bottom_navigation_copyright {
+  float: right;
+  display: inline; }
+
+.with-icon-bottom-navigation-copyright {
+  display: inline-block;
+  float: left;
+  height: 18px;
+  width: 18px;
+  background: #b4d65a;
+  font-size: 12px;
+  text-align: center;
+  -webkit-border-radius: 2px;
+  border-radius: 2px; }
+  .with-icon-bottom-navigation-copyright:before {
+    color: white;
+    position: relative;
+    top: 1px;
+    content: "R"; }
+
+.homepage_bottom_navigation_copyright_text {
+  margin: 0px 5px;
+  float: left;
+  display: inline-block; }
 
 .recyclabus {
   width: 941px;
@@ -1321,7 +1291,7 @@ body {
 .recyclabus_dates_first_input, .recyclabus_dates_seach_input {
   background: transparent;
   border: none;
-  outline-color: transparent;
+  outline: none;
   box-shadow: none;
   -webkit-border-radius: 25px;
   border-radius: 25px;
@@ -2295,7 +2265,7 @@ body {
 .field_box_input, .field_box_input_small, .address_overview_input, .address_overview_input_small {
   background: transparent;
   border: none;
-  outline-color: transparent;
+  outline: none;
   box-shadow: none;
   background: #efefef;
   position: relative;

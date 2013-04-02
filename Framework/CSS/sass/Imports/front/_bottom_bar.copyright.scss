@@ -1,0 +1,29 @@
+.homepage_bottom_navigation_copyright {
+	float: right;
+	display: inline;
+}
+
+.with-icon-bottom-navigation-copyright {
+
+	display: inline-block;
+	float: left;
+	height: 18px;
+	width: 18px;
+	background: $green;
+	font-size: 12px;
+	text-align: center;
+	@include border-radius(2px);
+
+	&:before { 
+		color: $light;
+		position: relative;
+		top: 1px;
+		content:"R";
+	}
+}
+
+.homepage_bottom_navigation_copyright_text {
+	margin: 0px 5px;
+	float: left;
+	display: inline-block;
+}

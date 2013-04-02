@@ -12,19 +12,17 @@
 
 .with-icon-header-text-box-arrow { 
 	
-	width: 5%;
+	width: 1px;
 	float: left;
 	display: inline-block;
-	margin-top: 17px;
-	margin-left: -12px;
-	@include rotate(24);
-	&:before { 
-		
-		font-size: 300%; 
-		color: $light; 
-		z-index:1;
-		content:"+";
-	}
+	height: 1px;
+	// background: $dark_gray;
+	margin-top: 20px;
+	margin-left: -4px;
+	border-top:    0px solid transparent;
+	border-bottom: 25px solid transparent;
+	border-right:  0px solid transparent;
+	border-left:   25px solid $light;
 }
 
 .header_text_box_title {
@@ -67,15 +65,15 @@
 .header_input_block_for_search { 
 	
 	$size: 16px;
-	@include reset-input;	
+	@include reset-input;
 	font-family: Tahoma; 
 	float: left;
 	width: 85%;
 	padding: 0;
 	margin: (( 32px - $size )/2)+ 5 0;
 	font-size: $size;
-	line-height: $size;  
-	color: $black_gray; 
+	line-height: $size;
+	color: $black_gray;
 }
 
 .header_button_for_input {

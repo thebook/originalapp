@@ -99,7 +99,7 @@ var alpha = (function ( alpha, $ ) {
 
 			if ( $.isEmptyObject(books) ) {
 				items_wrap.fadeOut(400, function () { 
-					$(this).empty().append('<div class="store_basket_pop_up_contet_empty_item">No items in your basket at the momment</div>').fadeIn(400); });
+					$(this).empty().append('<div class="store_basket_pop_up_contet_empty_item">No items in your sell basket at the moment</div>').fadeIn(400); });
 			}
 			else {
 				$.each(books,
