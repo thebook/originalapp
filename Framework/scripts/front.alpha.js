@@ -292,6 +292,27 @@ var alpha = (function ( alpha, $ ) {
 			}, 
 			'json');
 	};
+
+	alpha.front.prototype.toggle_popup_boxes = function (wake) {
+
+		var toggle = wake.element.attr('id').replace('_trigger', '_toggle');
+
+		if ( wake.element.hasClass('this_element_is_toggled')) {
+
+			wake.element.removeClass('this_element_is_toggled');
+
+			$('#'+ toggle ).animate({ opacity: 0 }, 400, 
+			function () {
+				$(this).css({ display: 'none' });
+			});
+		}
+		else { 
+
+			wake.element.addClass('this_element_is_toggled');
+			$('#'+ toggle ).css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 400);
+		}
+	};
+
 	
 
 	$.extend(alpha.front.prototype, old_front_prototype);

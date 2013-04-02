@@ -1,0 +1,60 @@
+.homepage_how_it_works_box_first_image {
+	
+	
+	float: right;
+	display: inline-block;
+	width: 170px;
+	height: auto;
+	position: relative;
+	top: -20px;
+	left: -1px;
+	z-index: 1;
+}
+
+.homepage_how_it_works_box_second_image {
+	
+	position: relative;
+	z-index: 1;
+	height: 142px;
+	left: 5px;	
+	margin-top: -5px; // Chrome bug it dosent notice percentages on top: so we use margin-top
+	width: auto;
+}
+
+.homepage_how_it_works_box_third_image {
+	
+	@extend .homepage_how_it_works_box_first_image;
+	top: -35px;
+	left: 0px;
+}
+
+.with-icon-homepage-how-it-works-box-right-arrow {
+
+	float: left;
+	display: inline-block;
+	position: absolute;
+	
+	&:before { 
+		color: $light; 
+		position: relative;
+		top: 1px;
+		left: -14px;
+		font-size: 169.5px; 
+		content:")";
+	}
+}
+
+.with-icon-homepage-how-it-works-box-left-arrow {
+	
+	float: left;
+	display: inline-block;
+	position: absolute;
+	
+	&:before { 
+		color: $light;
+		position: relative;
+		top: 2px;
+		font-size: 168px; 
+		content:"}";
+	}
+}

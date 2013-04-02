@@ -6,7 +6,7 @@ set working_theme=%CD%
  
 :: Copy
 echo.Copying %CD%
-robocopy "%CD%" \Users\Ciki/Desktop/recyclabook /S /XF *.gitignore *.scss *.scssc *.sublime-project *.sublime-workspace /XD .git .sass-cache sass
+robocopy "%CD%" \Users\Aleksandar/Desktop/recyclabook /S /XF *.gitignore *.scss *.scssc *.sublime-project *.sublime-workspace /XD .git .sass-cache sass
 
 ::cd \
 ::cd C:\Users\Cikica.Stefan-PC/Desktop/recyclabook/

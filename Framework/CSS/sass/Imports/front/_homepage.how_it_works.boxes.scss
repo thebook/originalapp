@@ -1,0 +1,88 @@
+$homepage_how_it_works_box_wrap_size: 170px;
+
+.homepage_how_it_works_boxes_wrap {
+	
+	width: 100%;
+	float: left;
+}
+
+.homepage_how_it_works_box_wrap {
+
+	float: left;
+	display: inline-block;
+	// margin-right: 3%;
+	width: 310px;
+}
+
+.homepage_how_it_works_box_wrap_last {
+
+	@extend .homepage_how_it_works_box_wrap;
+	margin-right: 0%;
+}
+
+.with-icon-homepage-how-it-works-box-number-one {
+	
+	&:before { 
+		position: relative;
+		left: 5px; 
+		font-size: 34px; 
+		color: $light; 
+		content: "[";
+	}
+}
+
+.with-icon-homepage-how-it-works-box-number-two {
+	
+	@extend .with-icon-homepage-how-it-works-box-number-one;
+	&:before {  
+		content: "{";
+		font-size: 33px; 
+	}
+}
+
+.with-icon-homepage-how-it-works-box-number-three {
+	
+	@extend .with-icon-homepage-how-it-works-box-number-one;
+	&:before {  
+		content: "(";
+		font-size: 35px; 
+	}
+}
+
+.homepage_how_it_works_box {
+	
+	background: $light_blue; 
+	display: inline-block;
+	float: left; 
+	width: 100%;
+	height: $homepage_how_it_works_box_wrap_size;
+}
+
+.homepage_how_it_works_box_text_wrap {
+	
+	position: relative; 
+	float: left;
+	left: 20px; 
+	display: inline-block;
+	color: $dark_blue;
+	letter-spacing: 1px;
+	width: 45%;
+	
+	@media (max-device-width: 1290px) {
+		width: 42%;
+	}
+}
+
+.homepage_how_it_works_box_title {
+
+	font-family: MotorOil; 
+	text-transform: uppercase;
+	font-size: 16px;  
+}
+
+.homepage_how_it_works_text {
+	
+	font-size: 12px; 
+	margin-top: 10px;	
+	line-height: 18px;   
+}
