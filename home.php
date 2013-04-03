@@ -6,7 +6,7 @@
 		<div class="header_wrap">
 			
 			<div class="header_invisible_box">
-				<div class="header_invisible_box_title_wrap">
+				<!-- <div class="header_invisible_box_title_wrap">
 					<div class="header_invisible_box_title_logo"><span class="with-icon-invisible-title-logo"></span></div>
 					<div class="header_invisible_box_title">
 						<span class="header_invisible_box_title_one_and_two_wrap">
@@ -14,13 +14,14 @@
 							<span class="header_invisible_box_title_two">book</span>
 						</span>	
 						<span class="header_invisible_box_title_three">co.uk</span></div>
-				</div>
+				</div> -->
+				<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/header_logo.png" alt="" class="header_invisible_box_image_title">
 				<div class="header_invisible_box_text_wrap">
 					<div class="header_invisible_box_text_title">What We Do</div>
 					<div class="header_invisible_box_text">Recyclabook accepts over a million different titles, you can easily sell your book and get quick and safe payment</div>
 				</div>
-				<div class="header_invisible_box_arrow_text">Check and see!</div>
-				<div class="with-icon-down-arrow"></div>
+				<!-- <div class="header_invisible_box_arrow_text">Check and see!</div>
+				<div class="with-icon-down-arrow"></div> -->
 			</div>
 
 			<div class="header_text_box">
@@ -36,8 +37,10 @@
 			<div class="with-icon-header-text-box-arrow"></div>
 
 		</div>
-
-		<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhoncc.png'; ?>" class="header_image">
+		
+		<div class="header_image_wrap">
+			<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhonc.png'; ?>" class="header_image">
+		</div>
 
 	</section>
 	
@@ -48,24 +51,6 @@
 	<section class="homepage_body_wrap pages" style="display: none;">
 
 		<div class="homepage_body_inner_wrap">
-			
-			<!-- <div class="homepage_extra_text_box_first">
-				<div class="with-icon-arrow-for-extra-text-box"></div>
-				<div class="homepage_extra_text_box_title">Who We Are</div>
-				<div class="homepage_extra_text_box_text">
-					Were a student run, student focused and student friendly team, thats dedicated to making it 
-					as easy as possible for you to sell your book.
-				</div>
-			</div>
-
-			<div class="homepage_extra_text_box">
-				<div class="homepage_extra_text_box_title">How It Works</div>
-				<div class="homepage_extra_text_box_text">
-					We have <strong>2 easy ways</strong> for you to sell your books, Freepost or our innovotive Recyclabus.
-					<strong>and here is how they both work.</strong>
-				</div>
-			</div> -->	
-			<div class="homepage_how_it_works_title">We have 2 easy ways for you to sell your books, Freepost or the Recyclabus. <br/> Choose whichever works for you...</div>
 
 			<div class="homepage_how_it_works_option_title_wrap">
 				<div class="homepage_how_it_works_option_title_scrible">1st option</div>
@@ -74,24 +59,62 @@
 					<span class="homepage_how_it_works_option_title_part_two">post</span>
 				</div>
 			</div>
-			<div class="homepage_how_it_works_boxes_wrap">
 
-				<div class="homepage_how_it_works_box_wrap">
-					<div class="homepage_how_it_works_box">
-						<div class="with-icon-homepage-how-it-works-box-number-one"></div>
+			<div class="homepage_how_it_works_boxes_numbers_wrap">
+				<div class="with-icon-homepage-how-it-works-box-number-one"></div>
+				 <div class="with-icon-homepage-how-it-works-box-number-two"></div>	
+				<div class="with-icon-homepage-how-it-works-box-number-three"></div>
+			</div>
+
+			<div class="homepage_how_it_works_boxes_wrap">
+				<div class="homepage_how_it_works_box_wrap_first">
+					<div class="homepage_how_it_works_box homepage_how_it_works_box_first">						
 						<div class="homepage_how_it_works_box_text_wrap">
 							<div class="homepage_how_it_works_box_title">Find Your Books</div>
-							<div class="homepage_how_it_works_text">find your books and add them to the sell basket</div>
+							<div class="homepage_how_it_works_text">find your books and add them to your sell basket</div>
 						</div>
 						<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/type.png'; ?>" class="homepage_how_it_works_box_first_image">
 					</div>
-					<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
+					<div class="homepage_arrows_warp">
+						<div class="with-icon-homepage-how-it-works-box-left-blue-arrow"></div>
+						<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>						
+						<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
+					</div>
+				</div>				
 
+				<div class="homepage_how_it_works_box_wrap_second">				
+					<div class="homepage_how_it_works_box_second">											
+						<div class="homepage_how_it_works_box_text_wrap">
+							<div class="homepage_how_it_works_box_title">Freepost<br/>Your Books</div>
+							<div class="homepage_how_it_works_text">we send you a freepost pack and you send us your books</div>
+						</div>					
+						<img  src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/letter.png'; ?>" class="homepage_how_it_works_box_second_image">					
+					</div>
+					<div class="homepage_arrows_warp">
+						<div class="with-icon-homepage-how-it-works-box-left-blue-arrow"></div>
+						<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>						
+						<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
+					</div>
+				</div>
+
+				<div class="homepage_how_it_works_box_wrap_last">
+					<div class="homepage_how_it_works_box homepage_how_it_works_box_last">												
+						<div class="homepage_how_it_works_box_text_wrap">
+							<div class="homepage_how_it_works_box_title"><br/>Get Paid</div>
+							<div class="homepage_how_it_works_text">we send you a cheque the same day we receive your books</div>
+						</div>
+						<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/check.png'; ?>" class="homepage_how_it_works_box_third_image">
+					</div>
+				</div>
+			</div>
+
+			<div class="homepage_how_it_works_boxes_buttons_wrap">
+				
+				<div class="homepage_how_it_works_box_first_button_wrap">
 					<div id="where_is_my_isbn_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="homepage_how_it_works_box_button">
 						Where is My ISBN 
 						<span id="where_is_my_isbn_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="with-icon-down-arrow-for-how-it-works-button"></span>
 					</div>
-
 					<div id="where_is_my_isbn_toggle" class="homepage_how_it_works_box_button_expanded">
 						<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/where_is_my_isbn.png'; ?>" alt="how it works" class="homepage_how_it_works_box_button_expanded_image">
 						<div class="homepage_how_it_works_box_button_expanded_text">
@@ -99,25 +122,12 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="homepage_how_it_works_box_wrap">
-					
-					<div class="homepage_how_it_works_box">					
-						<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>						
-						<div class="with-icon-homepage-how-it-works-box-number-two"></div>						
-						<div class="homepage_how_it_works_box_text_wrap">
-							<div class="homepage_how_it_works_box_title">Freepost<br/>Your Books</div>
-							<div class="homepage_how_it_works_text">we send you a freepost pack and<br/> you send us your books</div>
-						</div>					
-						<img  src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/letter.png'; ?>" class="homepage_how_it_works_box_second_image">					
-					</div>
-
-					<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
+				
+				<div class="homepage_how_it_works_box_second_button_wrap">
 					<div id="freepost_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="homepage_how_it_works_box_button">
 						Freepost Options 
 						<span id="freepost_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="with-icon-down-arrow-for-how-it-works-button"></span>
 					</div>
-
 					<div id="freepost_toggle" class="homepage_how_it_works_box_button_expanded">
 						<div class="homepage_how_it_works_box_button_expanded_text">
 							We'll send you a postage pack, inside you'll get an envelope with which you can post your books for free
@@ -129,30 +139,18 @@
 						<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/freepost_options.png'; ?>" alt="how it works" class="homepage_how_it_works_box_button_expanded_image">
 					</div>
 				</div>
-
-				<div class="homepage_how_it_works_box_wrap_last">
-					<div class="homepage_how_it_works_box">
-						<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>
-						<div class="with-icon-homepage-how-it-works-box-number-three"></div>
-						<div class="homepage_how_it_works_box_text_wrap">
-							<div class="homepage_how_it_works_box_title"><br/>Get Paid</div>
-							<div class="homepage_how_it_works_text">we send you a cheque the same day we receive your books</div>
-						</div>
-						<img  src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/check.png'; ?>" class="homepage_how_it_works_box_third_image">
-					</div>
-
+				
+				<div class="homepage_how_it_works_box_third_button_wrap">
 					<div  id="paid_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="homepage_how_it_works_last_box_button">
 						How Am I Being Paid 
 						<span id="paid_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="with-icon-down-arrow-for-how-it-works-button"></span>						
 					</div>
-
 					<div id="paid_toggle" class="homepage_how_it_works_box_button_expanded">
 						<div class="homepage_how_it_works_box_button_expanded_text">
 							Dont worry about filling in your bank details, we'll send you a cheque the same day we recieve your books.
 						</div> 
 					</div>
 				</div>
-
 			</div>
 
 			<div class="with-icon-or-sticker-recyclabus"></div>
@@ -187,7 +185,6 @@
 				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/fsc.png'; ?>" alt="" class="homepage_ally_bar_image">
 				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recycle.png'; ?>" alt="" class="homepage_ally_bar_image">
 			</div>
-
 		</div>			
 	</section>
 	

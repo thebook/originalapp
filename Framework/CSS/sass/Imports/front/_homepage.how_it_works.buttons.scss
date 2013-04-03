@@ -1,6 +1,31 @@
+.homepage_how_it_works_boxes_buttons_wrap { 
+	
+	width: 100%;
+	float: left;
+}
+
+.homepage_how_it_works_box_button_wrap { 
+	width: 31.33%;
+	display: inline-block;
+	float: left;
+	margin: 0 1%;
+}
+
+.homepage_how_it_works_box_first_button_wrap {
+	@extend .homepage_how_it_works_box_button_wrap;
+}
+
+.homepage_how_it_works_box_second_button_wrap { 
+	@extend .homepage_how_it_works_box_button_wrap;
+}
+
+.homepage_how_it_works_box_third_button_wrap { 
+	@extend .homepage_how_it_works_box_button_wrap;
+}
+
 .homepage_how_it_works_box_button {
 	
-	width: 280px;
+	width: 96%;
 	font-family: MotorOil;
 	color: $light;
 	text-transform: uppercase;  
@@ -16,7 +41,7 @@
 
 .homepage_how_it_works_last_box_button { 
 	@extend .homepage_how_it_works_box_button;
-	width: 290px;
+	// width: 290px;
 }
 
 .with-icon-down-arrow-for-how-it-works-button { 
@@ -33,7 +58,7 @@
 
 .homepage_how_it_works_box_button_expanded {
 	position: relative;
-	width: 290px;
+	width: 100%;
 	float: left;
 	z-index: 3;
 	overflow: hidden;

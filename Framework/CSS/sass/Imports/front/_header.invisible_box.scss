@@ -3,7 +3,15 @@
 	display: inline-block;
 	float: left;
 	width: 27.5%;
-	margin: 20px 0 0 0;
+	margin: $header_text_boxes_top_margin 0 0 0;
+}
+
+.header_invisible_box_image_title { 
+	width: 98%;
+	height: auto;
+	float: left;
+	padding-bottom: 10px;
+	border-bottom: 1px solid $light;
 }
 
 .header_invisible_box_title_wrap {

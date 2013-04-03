@@ -1,11 +1,8 @@
 .recyclabus {
 
-	// @include width-model($content_width);
 	width: ($the_width + 11);
 	display: block; 
 	margin: 0 auto;
-	// float: right;
-	// background: $light_gray;
 }
 
 .recyclabus_half {

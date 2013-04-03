@@ -4,25 +4,27 @@
 	display: inline-block;
 	float: left;
 	width: 44%;
-	padding: 45px 4% 45px;
-	margin: 20px 0 0 0;
+	padding: 35px 4%;
+	margin: $header_text_boxes_top_margin 0 0 0;
 	@include border-radius(5px);
 	@include box-shadow( -1px, 1px, 5px, 1px, rgba(0,0,0, 0.1));
 }
 
 .with-icon-header-text-box-arrow { 
-	
+	$arrow_size: 30px;
+
 	width: 1px;
 	float: left;
 	display: inline-block;
 	height: 1px;
 	// background: $dark_gray;
-	margin-top: 20px;
-	margin-left: -4px;
+	margin-top: 30px;
+	margin-left: -11px;
 	border-top:    0px solid transparent;
-	border-bottom: 25px solid transparent;
+	border-bottom: $arrow_size solid transparent;
 	border-right:  0px solid transparent;
-	border-left:   25px solid $light;
+	border-left:   $arrow_size solid $light;
+	@include rotate(-28);
 }
 
 .header_text_box_title {

@@ -7,13 +7,17 @@
 	z-index: 0;
 }
 
-.header_image {
-	
+.header_image_wrap { 
 	float: right;
 	position: absolute;
-	height: 290px;
-	left: 65%;
+	left: 58%;
 	z-index: 0;
+	height: 290px;
+	overflow: hidden;
+}
+
+.header_image {
+	height: 423px;
 }
 
 .header_wrap {
@@ -23,6 +27,8 @@
 	position: relative;
 	z-index: 1;
 }
+
+$header_text_boxes_top_margin: 40px;
 
 @import "header.text_box";
 
