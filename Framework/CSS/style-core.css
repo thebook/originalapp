@@ -98,13 +98,13 @@ body {
 .header_image_wrap {
   float: right;
   position: absolute;
-  left: 58%;
+  left: 59%;
   z-index: 0;
   height: 290px;
   overflow: hidden; }
 
 .header_image {
-  height: 423px; }
+  height: 380px; }
 
 .header_wrap {
   width: 940px;
@@ -312,8 +312,8 @@ body {
   text-transform: uppercase; }
 
 .header_invisible_box_text {
-  font-size: 15px;
-  line-height: 19px;
+  font-size: 14px;
+  line-height: 18px;
   text-align: justify;
   margin: 5px 5px 0 0;
   width: 95%; }
@@ -391,7 +391,8 @@ body {
   float: left;
   width: 50%;
   height: 52px;
-  overflow: hidden; }
+  overflow: hidden;
+  margin-left: 42px; }
 
 .navigation_inner_wrap {
   position: relative;
@@ -787,7 +788,7 @@ body {
   height: 32px;
   width: 32px;
   cursor: pointer;
-  margin: 10px 6px 0;
+  margin: 10px 42px 0;
   background: #3f7986;
   float: right; }
 

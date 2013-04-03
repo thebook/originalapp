@@ -54,6 +54,7 @@
 	width: 50%;
 	height: $bar_height;
 	overflow: hidden;
+	margin-left: $bar_height - 10px;
 }
 
 .navigation_inner_wrap { 

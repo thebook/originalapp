@@ -2,7 +2,7 @@
 
 	@include circle($input_bar_size);
 	cursor: pointer;
-	margin: $input_margin_size 6px 0;
+	margin: $input_margin_size ($bar_height - 10px) 0;
 	background: $dark_blue;
 	float: right;
 }

@@ -36,12 +36,12 @@ var alpha = (function ( alpha, $ ) {
 						arrow : {
 							self : '<span class="with-icon-progress-pop-up-arrow"></span>'
 						},
-						logo : {
-							self   : '<div data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="logo_for_bar"></div>',
-							branch : {
-								logo : '<span data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="with-icon-logo"></span>'
-							}
-						},
+						// logo : {
+						// 	self   : '<div data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="logo_for_bar"></div>',
+						// 	branch : {
+						// 		logo : '<span data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="with-icon-logo"></span>'
+						// 	}
+						// },
 						navigation : {
 							self   : '<div class="navigation_wrap"></div>',
 							branch : {
@@ -186,13 +186,13 @@ var alpha = (function ( alpha, $ ) {
 							}
 						},
 						
-						// user_button : {
-						// 	self   : '<div class="button_for_user"></div>',
-						// 	branch : {
-						// 		icon  : '<span class="with-icon-user"></span>',
-						// 		arrow : '<span class="with-icon-user-arrow"></span>'
-						// 	}
-						// },
+						user_button : {
+							self   : '<div class="button_for_user"></div>',
+							branch : {
+								icon  : '<span class="with-icon-user"></span>',
+								arrow : '<span class="with-icon-user-arrow"></span>'
+							}
+						},
 						// input : {
 						// 	self   : '<div class="input_for_bar"></div>',
 						// 	branch : {
