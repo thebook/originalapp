@@ -98,13 +98,13 @@ body {
 .header_image_wrap {
   float: right;
   position: absolute;
-  left: 59%;
+  left: 60%;
   z-index: 0;
   height: 290px;
   overflow: hidden; }
 
 .header_image {
-  height: 380px; }
+  height: 390px; }
 
 .header_wrap {
   width: 940px;
