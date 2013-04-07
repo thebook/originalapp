@@ -15,15 +15,14 @@ abstract class alpha_tree_ticket extends alpha
 
 		$this->paramaters['manifestation'] = ( include $ticket_definiton_path );
 		$this->create_ticketing_table($this->paramaters['manifestation']['table_creation']);
-		$this->update_being();
 
 
 		add_action('admin_menu', array($this, 'create_ticketing_page') );
 		
 		add_action('wp_ajax_ticket_admin_creation',   array($this, 'ticket_creation_element' ));
 
-		add_action('wp_ajax_complete_ticket',        array($this, 'create_new_book_ticket' ));
-		add_action('wp_ajax_nopriv_complete_ticket', array($this, 'create_new_book_ticket' ));
+		add_action('wp_ajax_complete_ticket',         array($this, 'create_new_book_ticket' ));
+		add_action('wp_ajax_nopriv_complete_ticket',  array($this, 'create_new_book_ticket' ));
 
 		add_action('wp_ajax_nopriv_send_email',       array($this, 'email' ) );
 
@@ -36,11 +35,6 @@ abstract class alpha_tree_ticket extends alpha
 
 		add_action('wp_ajax_tickets_get_property',        array($this, 'get_class_property' ) );
 		add_action('wp_ajax_nopriv_tickets_get_property', array($this, 'get_class_property' ) );
-
-		// add_action('wp_ajax_nopriv_get_from_tickets_class', array($this, 'get_' ) );
-		// add_action('wp_ajax_get_from_tickets_class',        array($this, 'get_' ) );
-
-		// add_action('wp_ajax_show_users_for_ticket',   array($this, 'users_for_ticket' )  );
 	}
 
 	public function create_ticketing_page ()
@@ -56,18 +50,16 @@ abstract class alpha_tree_ticket extends alpha
 
 		$table = new table_creator;
 
-		$columns[] = 
-			array(
-				'column_name'    => 'ticket_id',
-				'data_type'      => 'INT',
-				'auto_increment' => true,
-				'unique'         => false );
+		$columns[] = array(
+			'column_name'    => 'ticket_id',
+			'data_type'      => 'INT',
+			'auto_increment' => true,
+			'unique'         => false );
 
-		$table->check_if_table_exists_if_not_create_one(
-			array(
-				'table_name'  => $table_name,
-				'primary_key' => 'ticket_id',
-				'fields' => $columns ));
+		$table->check_if_table_exists_if_not_create_one(array(
+			'table_name'  => $table_name,
+			'primary_key' => 'ticket_id',
+			'fields' => $columns ));
 	}
 
 	public function get_all_tickets ()
@@ -81,32 +73,26 @@ abstract class alpha_tree_ticket extends alpha
 	public function create_ticket ($ticket_to_create)
 	{
 		$table = new table_creator;
-
 		$ticket_to_create = $this->_seal_ticket($ticket_to_create);
-		
 		$table->add_row_to_table($this->table_name, $ticket_to_create );
 	}
 
 	public function alter_ticket ($ticket_id, $ticket_values_to_alter_with)
 	{
 		$table = new table_creator;
-
 		$ticket_values_to_alter_with = $this->_seal_ticket($ticket_values_to_alter_with);
-
 		$table->update_row($this->table_name, $ticket_values_to_alter_with, 'ticket_id', $ticket_id);
 	}
 
 	public function remove_ticket ($ticket_id)
 	{
 		$table = new table_creator;
-
 		$table->delete_row($this->table_name, 'ticket_id', $ticket_id );
 	}
 
 	public function delete_all_tickets ()
 	{
 		$table = new table_creator; 
-
 		$table->delete_all_table_rows($this->table_name);
 	}	
 
@@ -153,12 +139,11 @@ abstract class alpha_tree_ticket extends alpha
 		endforeach;
 	}
 
-	public function update_being () {
-
-		$tickets = $this->get_all_tickets();
-
-		return $this->being = $tickets;
-	}
+	// public function set_being () {
+	// 	$tickets = $this->get_all_tickets();
+	// 	$tickets = $this->_unseal_tickets($tickets);
+	// 	$this->being = $tickets;
+	// }
 
 	protected function _seal_ticket ($ticket)
 	{
@@ -196,17 +181,11 @@ abstract class alpha_tree_ticket extends alpha
 		return $tickets;
 	}
 
-	public function update_and_return_being ()
-	{	
-		echo json_encode($this->update_being());
-		exit;
-	}
-
 	public function get_class_property ()
 	{	
 		$property = $_GET['property_to_get'];
 		$report   = array(
-			'error' => true 
+			'error' => true
 		);
 
 		if (property_exists($this, $property)) :

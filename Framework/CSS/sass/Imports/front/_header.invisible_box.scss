@@ -2,14 +2,15 @@
 	
 	display: inline-block;
 	float: left;
-	width: 27.5%;
+	width: 25.5%;
 	margin: $header_text_boxes_top_margin 0 0 0;
 }
 
 .header_invisible_box_image_title { 
-	width: 98%;
+	width: 90%;
 	height: auto;
 	float: left;
+	padding-right: 10%;
 	padding-bottom: 10px;
 	border-bottom: 1px solid $light;
 }

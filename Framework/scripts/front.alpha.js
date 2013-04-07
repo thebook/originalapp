@@ -313,8 +313,6 @@ var alpha = (function ( alpha, $ ) {
 		}
 	};
 
-	
-
 	$.extend(alpha.front.prototype, old_front_prototype);
 
 	return alpha;

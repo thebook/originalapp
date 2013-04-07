@@ -24,8 +24,8 @@ var alpha = (function ( alpha, $ ) {
 							self   : '<div class="recyclabus_description_box"></div>',
 							branch : {
 								paragraph_one   : '<div class="recyclabus_description_box_title">What is recyclabus?</div>',
-								paragraph_two   : '<div class="recyclabus_description_box_paragraph">Eeach Recyclabus will be manned by one of our book buyers, ready with a barcode scanner to scan your books and pay your instantly.</div>',
-								paragraph_three : '<div class="recyclabus_description_box_paragraph">The bus will be coming to your university towords the end of your exams, we\'ll be accepting over 1 million titles, so please visit this page nearer the time so you dont miss the bus and don\'t miss getting some money for the books you no longer need.</div>',
+								paragraph_two   : '<div class="recyclabus_description_box_paragraph">Each Recyclabus will be manned by one of our book buyers, ready with a bar-code scanner to scan your books and pay your instantly.</div>',
+								paragraph_three : '<div class="recyclabus_description_box_paragraph">The bus will be coming to your university towards the end of your exams, we\'ll be accepting over 1 million titles, so please visit this page nearer the time so you don\'t miss the bus and don\'t miss getting some money for the books you no longer need.</div>',
 								paragraph_four  : '<div class="recyclabus_description_box_white_paragraph">On the day of the event we\'ll also have lots of exciting giveaways, so stay tuned to whats going on and what were giving away.</div>'
 							}
 						}
@@ -77,14 +77,14 @@ var alpha = (function ( alpha, $ ) {
 										}
 									},
 									dates_highlight : {
-										self : '<div class="recyclabus_dates_highlight">If you give us your email and uni well send you a reminder when were coming your way</div>'
+										self : '<div class="recyclabus_dates_highlight">If you give us your email and university well send you a reminder when were coming your way</div>'
 									},
 									inputs_wrap : {
 										self   : '<div class="recyclabus_dates_input_wrap"></div>',
 										branch : {
 											input_email      : '<input type="text" class="recyclabus_dates_first_input" placeholder="Email">',
 											input_university : '<input type="text" class="recyclabus_dates_seach_input" placeholder="University">',
-											text             : '<div class="recyclabus_dates_input_text"><strong class="with-icon-lock-for-strong">Dont worry,</strong> well only use this information to remind you when you can sell your books</div>'
+											text             : '<div class="recyclabus_dates_input_text"><strong class="with-icon-lock-for-strong">Don\'t worry,</strong> well only use this information to remind you when you can sell your books</div>'
 										}
 									},
 									buttons_wrap : {
