@@ -31,29 +31,30 @@
 	  		frameworkuri = "<?php echo FRAMEWORKURI; ?>",
 	  		ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
 
-		alpha.load_scripts_asynchronously_with_callback(
-			[
-			 scripts+"/native.extend.js", 
-			 scripts+"/front.recyclabus.alpha.js", 
-			 scripts+"/front.search.alpha.js", 
-			 scripts+"/front.books.alpha.js", 
-			 scripts+"/front.books.popup.alpha.js", 
-			 scripts+"/front.change_page.alpha.js", 
-			 scripts+"/front.basket.alpha.js", 
-			 scripts+"/front.registration.alpha.js", 
-			 scripts+"/front.account.alpha.js", 
-			 scripts+"/front.confirm.alpha.js", 
-			 scripts+"/front.thank_you.alpha.js", 
-			 scripts+"/utility.users.js", 
-			 scripts+"/utility.alpha.js", 
-			 scripts+"/front.test.alpha.js", 
-			 scripts+"/amazon.js", 
-			 scripts+"/ticket.alpha.js", 
-			 scripts+"/front.alpha.js"
-			],
-			function (error, result) { 				
-				alpha.front();
-			});
+		alpha.load_scripts_asynchronously_with_callback([
+			scripts+"/native.extend.js", 
+			scripts+"/front.recyclabus.alpha.js", 
+			scripts+"/front.search.alpha.js", 
+			scripts+"/front.books.alpha.js", 
+			scripts+"/front.books.popup.alpha.js", 
+			scripts+"/front.change_page.alpha.js", 
+			scripts+"/front.basket.alpha.js", 
+			scripts+"/front.registration.alpha.js", 
+			scripts+"/front.account.alpha.js", 
+			scripts+"/front.confirm.alpha.js", 
+			scripts+"/front.thank_you.alpha.js", 
+			scripts+"/utility.users.js", 
+			scripts+"/utility.alpha.js", 
+			scripts+"/front.test.alpha.js", 
+			scripts+"/amazon.js", 
+			scripts+"/ticket.alpha.js", 
+			scripts+"/route.alpha.js",
+			scripts+"/front.alpha.js"
+		],
+		function (error, result) { 
+
+			alpha.front();			
+		});
 	</script>
 
 </head>

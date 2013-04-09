@@ -50,6 +50,11 @@ $breakpoint_bar_width: 86%;
     src: url('#{$url}/Framework/CSS/Includes/fonts/vieira.ttf');
 }
 
+a { 
+
+	text-decoration: none;
+}
+
 body { 
 	font-family: Tahoma;
 	background: $light_gray; 
@@ -57,7 +62,7 @@ body {
 
 .wrap {
 	
-	width: 100%;	
+	width: 100%;
 }
 
 .recyclabook_footer {
@@ -69,6 +74,11 @@ body {
 	background: $light_blue;
 	color: $light;
 	font-size: 14px;   
+}
+
+.pages { 
+	
+	display: none;
 }
 
 @import "Imports/front/header";

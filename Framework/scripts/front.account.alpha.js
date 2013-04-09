@@ -4,21 +4,6 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.account = function () {
 
-		var parts = alpha.front.prototype.parts;
-
-		// Fade out welcome box and fade in progress popup box
-		parts.bar.wrap.branch.branch.welcome_popup.self.fadeOut(400);
-		parts.bar.wrap.branch.branch.progress_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 400);
-
-		alpha.front.prototype.registration.prototype.progress_to_icon(2);
-		alpha.front.prototype.registration.prototype.refill_popup_box({
-			title : "Create User",
-			icon  : "with-icon-account-progress-bar",
-			text  : "registration"
-		});
-
-		parts.registration_wrap.css({ 'margin-top': '2000px' }).animate({ 'margin-top': ( parts.bar.wrap.branch.branch.progress_popup.self.height() + 24 ) + 'px' }, 1200);
-
 		alpha.front.prototype.parts.account = { 
 			legend : { 
 				self   : '<div class="legend_wrap"></div>',
@@ -127,8 +112,6 @@ var alpha = (function ( alpha, $ ) {
 			var tick = alpha.front.prototype.parts.account.disclaimer.branch.branch.tick.branch.tick;
 				(tick.css('display') !== 'none')? tick.css({ display : 'none' }) : tick.css({ display : 'inline' });
 		});
-
-		alpha.front.prototype.being.on_page = 'account';	
 	};
 
 	alpha.front.prototype.register = function () {

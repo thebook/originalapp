@@ -2,27 +2,27 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front = alpha.front || function () {};
 
-	alpha.front.prototype.page_changer = function (property, old_page, page) {
+	// alpha.front.prototype.page_changer = function (property, old_page, page) {
 
-		if ( old_page.length < 1 ) old_page = 'pages';
+	// 	if ( old_page.length < 1 ) old_page = 'pages';
 
-		if ( old_page !== page )
-			$('.'+ old_page ).fadeOut(500, function () { $('.'+ page ).fadeIn(500); });
-			$('#navigation_for_'+ old_page ).removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');
-			$('#navigation_for_'+ page ).removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
+	// 	if ( old_page !== page )
+	// 		$('.'+ old_page ).fadeOut(500, function () { $('.'+ page ).fadeIn(500); });
+	// 		$('#navigation_for_'+ old_page ).removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');
+	// 		$('#navigation_for_'+ page ).removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
 
-		return page;
-	};
+	// 	return page;
+	// };
 
-	alpha.front.prototype.change_page = function (wake, callback) {
+	// alpha.front.prototype.change_page = function (wake, callback) {
 
-		callback = callback || false;
+	// 	callback = callback || false;
 
-		alpha.front.prototype.being.on_page = wake.instructions.page;
+	// 	alpha.front.prototype.being.on_page = wake.instructions.page;
 
-		if (callback)
-			callback(wake.instructions.page);	
-	};
+	// 	if (callback)
+	// 		callback(wake.instructions.page);	
+	// };
 
 	alpha.front.prototype.navigation = function () {
 
@@ -53,8 +53,9 @@ var alpha = (function ( alpha, $ ) {
 												navigation : {
 													self   : '<div class="navigation"></div>',
 													branch : {
-														how_it_works : '<div data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active" id="navigation_for_homepage_body_wrap" >How It Works</div>',
-														recyclabus   : '<div data-function-instructions="{\'page\' : \'recyclabus\' }" data-function-to-call="front.prototype.change_page" class="navigation_text_for_bar" id="navigation_for_recyclabus">Recyclabus</div>'
+														how_it_works : '<a href="/"          id="homepage_navigation"   class="navigation_button with-icon-for-navigation-text-for-bar-active">How It Works</a>',
+														recyclabus   : '<a href="recyclabus" id="recyclabus_navigation" class="navigation_button navigation_text_for_bar">Recyclabus</a>',
+														sell_books   : '<a href="sell"       id="sell_books_navigation"  class="navigation_button navigation_text_for_bar">Sell Books</a>'
 													}
 												},
 												progress : {
@@ -179,7 +180,7 @@ var alpha = (function ( alpha, $ ) {
 										self   : '<div class="progress_welcome_register_box"></div>',
 										branch : {
 											text   : '<div class="progress_welcome_register_box_text">New To Recyclabook >>></div>',
-											button : '<div data-function-to-call="front.prototype.account" class="progress_welcome_register_box_button">Sign Up</div>'
+											button : '<a href="create_account" class="progress_welcome_register_box_button">Sign Up</a>'
 										}
 									}
 								}

@@ -47,7 +47,7 @@ var alpha = (function ( alpha, $ ) {
 				books = alpha.amazon.prototype.remove_books_that_dont_have_given_properties(books, ['image', 'author', 'price']);
 
 				alpha.front.prototype.being.basket.items = books;	
-				alpha.front.prototype.being.on_page = 'body';			
+				alpha.front.prototype.router.change_url('sell');		
 			});
 	};
 

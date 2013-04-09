@@ -4,14 +4,14 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.registration = function () { 
 
-		alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'-52px' }, 300);
-		alpha.front.prototype.registration.prototype.progress_to_icon(1);
-		alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);		
-		alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);
-		alpha.animate_scroll(400, 250, false, 100);
-		$('.result_books').animate({ top : "800px" }, 500);
+		// alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'-52px' }, 300);
+		// alpha.front.prototype.registration.prototype.progress_to_icon(1);
+		// alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);		
+		// alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);
+		// alpha.animate_scroll(400, 250, false, 100);
+		// $('.result_books').animate({ top : "800px" }, 500);
 
-		alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch.back.self.css({ display : 'none', opacity : 0 });
+		// alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch.back.self.css({ display : 'none', opacity : 0 });
 	};
 
 	// Could be little better & (shared state perhaps )

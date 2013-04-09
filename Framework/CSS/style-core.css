@@ -72,6 +72,9 @@ header, section, time, hgroup, nav {
   font-family: 'Vieira';
   src: url("<?php echo get_template_directory_uri(); ?>/Framework/CSS/Includes/fonts/vieira.ttf"); }
 
+a {
+  text-decoration: none; }
+
 body {
   font-family: Tahoma;
   background: #f6f6f6; }
@@ -87,6 +90,9 @@ body {
   background: #9ad9e0;
   color: white;
   font-size: 14px; }
+
+.pages {
+  display: none; }
 
 .header {
   width: inherit;
@@ -710,7 +716,8 @@ body {
   padding: 20px 1.25%;
   font-size: 12px;
   font-family: MotorOil;
-  cursor: pointer; }
+  cursor: pointer;
+  text-decoration: none; }
   .navigation_text_for_bar:hover, .with-icon-for-navigation-text-for-bar-active:hover {
     color: #555555; }
 
@@ -727,6 +734,10 @@ body {
     content: "u";
     color: #f6f6f6;
     text-transform: lowercase; }
+
+#sell_books_navigation {
+  display: none;
+  opacity: 0; }
 
 .input_for_bar {
   background: white;
@@ -810,7 +821,6 @@ body {
   content: "d"; }
 
 .homepage_body_wrap {
-  display: block;
   margin: 0 auto;
   width: 930px;
   background: #f6f6f6; }
@@ -1199,7 +1209,6 @@ body {
 
 .recyclabus {
   width: 941px;
-  display: block;
   margin: 0 auto; }
 
 .recyclabus_half, .recyclabus_half_left {
@@ -1485,7 +1494,6 @@ body {
 
 .body {
   width: 859px;
-  display: block;
   margin: 0 auto; }
 
 .price_selection {
@@ -2857,6 +2865,12 @@ body {
   left: -20%;
   font-size: 16px;
   line-height: 20px; }
+
+.placeholder {
+  display: none;
+  width: 100%;
+  float: left;
+  height: 280px; }
 
 .homepage_blue_bar {
   width: 100%;

@@ -4,13 +4,118 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front = function () { 
 
+		alpha.front.prototype.router = new alpha.route({
+			on : function () { 
+				$('.homepage_body_wrap').fadeIn(500);
+				$('#homepage_navigation').removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
+			},
+			clean_up : function () { 
+				$('.homepage_body_wrap').fadeOut(500);
+				$('#homepage_navigation').removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');				
+			},
+			recyclabus : { 
+				on : function () { 					
+					$('.recyclabus').fadeIn(500);
+					$('#recyclabus_navigation').removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
+				},
+				clean_up : function () { 
+					$('.recyclabus').fadeOut(500);
+					$('#recyclabus_navigation').removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');
+				}
+			},
+			sell : { 
+				on : function () { 
+					var button  = $('#sell_books_navigation');
+
+					$('.body').fadeIn(500);
+					$('.result_books').css({ top : '0px', display : 'block' });
+					button.removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
+					if (button.css('display') === 'none' ) button.css({ display: 'inline-block' }).animate({ opacity : 1 }, 500);					
+				},
+				clean_up : function () { 
+					$('.body').fadeOut(500);
+					$('#sell_books_navigation').removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');
+					$('.result_books').animate({ top : '800px' }, 500, function () { 
+						$(this).css({ display : 'none' });
+					});
+				}
+			},
+			sign_in_or_sign_up : { 
+				on : function () { 
+					alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'-52px' }, 300);
+					alpha.front.prototype.registration.prototype.progress_to_icon(1);
+					alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);
+					alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);
+					alpha.animate_scroll(400, 250, false, 100);
+					alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch.back.self.css({ display : 'none', opacity : 0 });
+					$('.placeholder').css({ display: 'block' });
+				},
+				clean_up : function () {
+					$('.placeholder').css({ display: 'none' });
+					alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.animate({ opacity: 0 }, 300, function () { $(this).css({ display: 'none' }); });
+					if ( window.location.pathname === '/' || window.location.pathname === '/recyclabus' ||window.location.pathname === '/sell' ) { 
+						alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.animate({ opacity: 0 }, 300, function () { $(this).css({ display: 'none' }); });
+						alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'0px' }, 300);
+					}	
+				}
+			},
+			create_account : { 
+				on : function () { 
+					var parts = alpha.front.prototype.parts;
+
+					$('.account').fadeIn(500);
+					parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block' });
+					parts.bar.wrap.branch.branch.progress_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 400);
+					alpha.front.prototype.registration.prototype.progress_to_icon(2);
+					alpha.front.prototype.registration.prototype.refill_popup_box({
+						title : "Create User",
+						icon  : "with-icon-account-progress-bar",
+						text  : "registration"
+					});
+					parts.registration_wrap.css({ 'margin-top': '2000px' }).animate({ 'margin-top': ( parts.bar.wrap.branch.branch.progress_popup.self.height() + 24 ) + 'px' }, 1200);
+					
+					if (alpha.front.prototype.parts.account === undefined ) alpha.front.prototype.account();
+				},
+				clean_up : function () { 
+
+					$('.account').fadeOut(500);
+					alpha.front.prototype.parts.bar.wrap.branch.branch.progress_popup.self.fadeOut(300);
+
+					if ( window.location.pathname === '/' || window.location.pathname === '/recyclabus' ||window.location.pathname === '/sell' ) { 
+						alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.animate({ opacity: 0 }, 300, function () { $(this).css({ display: 'none' }); });
+						alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'0px' }, 300);
+					}					
+				}
+			},
+			confirm : { 
+				on : function () { 
+					if (alpha.front.prototype.parts.confirm === undefined ) alpha.front.prototype.confirm.prototype.manifest();
+			
+					alpha.front.prototype.confirm.prototype.animate();
+					alpha.front.prototype.confirm.prototype.display_address_and_make_editable();
+
+					setTimeout(function () {
+						alpha.front.prototype.confirm.prototype.display_basket(alpha.front.prototype.confirm.prototype.update_sidebar);
+						alpha.front.prototype.confirm.prototype.update_total();
+						alpha.front.prototype.confirm.prototype.make_basket_items_removable();
+					}, 1000 );
+				},
+				clean_up : function () {
+					if ( window.location.pathname === '/' || window.location.pathname === '/recyclabus' ||window.location.pathname === '/sell' ) { 
+						alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.animate({ opacity: 0 }, 300, function () { $(this).css({ display: 'none' }); });
+						alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'0px' }, 300);
+					} 
+				}
+			}
+		});
+
 		this.track_events_on_this('.wrap', 'click');
 
 		this.front.prototype.parts = {};
 		this.front.prototype.parts.book = {};
 
 		this.front.prototype.being = {};		
-		this.front.prototype.being.on_page      	 = '';
+		// this.front.prototype.being.on_page      	 = '';
 		this.front.prototype.being.first_search 	 = false;
 		this.front.prototype.being.user_info    	 = {};
 		this.front.prototype.being.user_info.id    	 = false;
@@ -92,7 +197,7 @@ var alpha = (function ( alpha, $ ) {
 		this.front.prototype.being.email.templates.created_user         = {};
 		this.front.prototype.being.email.templates.created_user.subject = "Welcome To Recyclabook";
 		this.front.prototype.being.email.templates.created_user.message = "<p>Hello and thank you for joining Recyclabook, now that you have an account you can track tickets on your account, edit your settings and keep an eye out on various other things, we hope that the time you spend using our services will be a pleasant one</p><p>All the best</p><p>The Recyclabook Team</p>";
-
+		this.front.prototype.account_manifested = false;
 
 		this.front.prototype.being.text = {};
 		this.front.prototype.being.text.registration = "This will not only create your profile hub that will let you track payments, check book orders and edit details but makes sure we make the payment out to the right person and send the freepost pack to the correct address.";
@@ -113,7 +218,6 @@ var alpha = (function ( alpha, $ ) {
 
 			return books;
 		});
-
 		this.front.prototype.being.basket.watch('total', function (property_name, old_total, total ) {
 
 			if (alpha.front.prototype.parts.confirm    !== undefined ) alpha.front.prototype.confirm.prototype.update_total();
@@ -121,14 +225,12 @@ var alpha = (function ( alpha, $ ) {
 			return total;
 		});
 
-		this.front.prototype.being.watch( 'on_page', alpha.front.prototype.page_changer );
-
 		this.front.prototype.navigation();
 		this.front.prototype.search_bar();
 		this.front.prototype.recyclabus();
 		this.front.prototype.initialize_basket();
 		this.front.prototype.popup_book();
-		this.front.prototype.being.on_page = 'homepage_body_wrap';
+		this.front.prototype.router.begin();
 	};
 
 	alpha.front.prototype.calculate_total_quote_for_sold_books = function (property_name, old_books, books) { 

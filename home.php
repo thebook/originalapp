@@ -48,7 +48,7 @@
 	<section class="bar_outer_wrap"></section>
 	
 	<!-- Homepage -->
-	<section class="homepage_body_wrap pages" style="display: none;">
+	<section class="homepage_body_wrap pages">
 
 		<div class="homepage_body_inner_wrap">
 
@@ -325,6 +325,8 @@
 		<div class="with-icon-your-account"></div> -->
 
 	</section>
+
+	<section class="placeholder"></section>
 	
 	<div class="homepage_blue_bar"></div>
 	<div class="homepage_bottom_navigation_wrap">
