@@ -4,18 +4,17 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.front.prototype.confirm = function () {
 
-		if (alpha.front.prototype.parts.confirm === undefined ) alpha.front.prototype.confirm.prototype.manifest();
+		// if (alpha.front.prototype.parts.confirm === undefined ) alpha.front.prototype.confirm.prototype.manifest();
 			
-		alpha.front.prototype.confirm.prototype.animate();
-		alpha.front.prototype.confirm.prototype.display_address_and_make_editable();
+		// alpha.front.prototype.confirm.prototype.animate();
+		// alpha.front.prototype.confirm.prototype.display_address_and_make_editable();
 
-		setTimeout(function () {
-			alpha.front.prototype.confirm.prototype.display_basket(alpha.front.prototype.confirm.prototype.update_sidebar);
-			alpha.front.prototype.confirm.prototype.update_total();
-			alpha.front.prototype.confirm.prototype.make_basket_items_removable();
-		}, 1000 );
+		// setTimeout(function () {
+		// 	alpha.front.prototype.confirm.prototype.display_basket(alpha.front.prototype.confirm.prototype.update_sidebar);
+		// 	alpha.front.prototype.confirm.prototype.update_total();
+		// 	alpha.front.prototype.confirm.prototype.make_basket_items_removable();
+		// }, 1000 );
 		
-		alpha.front.prototype.being.on_page = 'checkout';
 	};
 
 	alpha.front.prototype.confirm.prototype.animate = function () {
@@ -167,7 +166,7 @@ var alpha = (function ( alpha, $ ) {
 											}
 										},
 										button : {
-											self : '<div data-function-to-call="front.prototype.thank_you" class="checkout_button">Confirm & Complete</div>'
+											self : '<a href="thank_you" class="checkout_button">Confirm & Complete</a>'
 										}
 									}
 								}

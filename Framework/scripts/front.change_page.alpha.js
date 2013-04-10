@@ -119,7 +119,7 @@ var alpha = (function ( alpha, $ ) {
 																branch : {
 																	branch : {
 																		circle : {
-																			self   : '<div class="progress_icon_circle"></div>',
+																			self   : '<a href="sell" class="progress_icon_circle"></a>',
 																			branch : {
 																				icon : '<span data-function-to-call="front.prototype.go_back_to_shopping" class="with-icon-back-progress-bar"></span>'
 																			}

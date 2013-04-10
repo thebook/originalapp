@@ -5,26 +5,59 @@ var alpha = (function ( alpha, $ ) {
 	alpha.front = function () { 
 
 		alpha.front.prototype.router = new alpha.route({
-			on : function () { 
+			on : function () 
+			{ 	
+				console.log(this);
 				$('.homepage_body_wrap').fadeIn(500);
 				$('#homepage_navigation').removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
 			},
-			clean_up : function () { 
+			clean_up : function () 
+			{ 
 				$('.homepage_body_wrap').fadeOut(500);
 				$('#homepage_navigation').removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');				
 			},
+			clean_up_progress_bar_states : function () { 
+
+				var path = window.location.pathname;
+
+					if ( path !== '/confirm' && path !== '/sign_in_or_sign_up' && path !== '/create_account') {
+						alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.animate({ opacity: 0 }, 300, function () { $(this).css({ display: 'none' }); });
+						if ( path !== '/thank_you' ) {
+							alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'0px' }, 300);
+						}
+					}
+			},
+			clean_up_progress_bar_arrow : function () { 
+
+				var path = window.location.pathname;
+
+				if ( path !== '/confirm' && path !== '/create_account' ) {
+					 alpha.front.prototype.parts.bar.wrap.branch.branch.progress_popup.self.css({ display : 'none' });
+				}
+			},
+			start_progress : function () { 
+
+				var path = window.location.pathname;
+
+				if ( path === '/confirm' || path === '/sign_in_or_sign_up' || path === '/create_account' || path === '/thank_you' ) { 
+					alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'-52px' }, 300);
+				}
+			},
 			recyclabus : { 
-				on : function () { 					
+				on : function () 
+				{
 					$('.recyclabus').fadeIn(500);
 					$('#recyclabus_navigation').removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
 				},
-				clean_up : function () { 
+				clean_up : function () 
+				{ 
 					$('.recyclabus').fadeOut(500);
 					$('#recyclabus_navigation').removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');
 				}
 			},
 			sell : { 
-				on : function () { 
+				on : function () 
+				{ 
 					var button  = $('#sell_books_navigation');
 
 					$('.body').fadeIn(500);
@@ -32,7 +65,8 @@ var alpha = (function ( alpha, $ ) {
 					button.removeClass('navigation_text_for_bar').addClass('with-icon-for-navigation-text-for-bar-active');
 					if (button.css('display') === 'none' ) button.css({ display: 'inline-block' }).animate({ opacity : 1 }, 500);					
 				},
-				clean_up : function () { 
+				clean_up : function () 
+				{ 
 					$('.body').fadeOut(500);
 					$('#sell_books_navigation').removeClass('with-icon-for-navigation-text-for-bar-active').addClass('navigation_text_for_bar');
 					$('.result_books').animate({ top : '800px' }, 500, function () { 
@@ -40,9 +74,11 @@ var alpha = (function ( alpha, $ ) {
 					});
 				}
 			},
-			sign_in_or_sign_up : { 
-				on : function () { 
-					alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'-52px' }, 300);
+			sign_in_or_sign_up : 
+			{ 
+				on : function () 
+				{ 				
+					this.route.start_progress();
 					alpha.front.prototype.registration.prototype.progress_to_icon(1);
 					alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);
 					alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 300);
@@ -50,21 +86,24 @@ var alpha = (function ( alpha, $ ) {
 					alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.branch.branch.progress.branch.branch.back.self.css({ display : 'none', opacity : 0 });
 					$('.placeholder').css({ display: 'block' });
 				},
-				clean_up : function () {
+				clean_up : function () 
+				{
 					$('.placeholder').css({ display: 'none' });
 					alpha.front.prototype.parts.bar.wrap.branch.branch.welcome_popup.self.animate({ opacity: 0 }, 300, function () { $(this).css({ display: 'none' }); });
-					if ( window.location.pathname === '/' || window.location.pathname === '/recyclabus' ||window.location.pathname === '/sell' ) { 
-						alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.animate({ opacity: 0 }, 300, function () { $(this).css({ display: 'none' }); });
-						alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'0px' }, 300);
-					}	
+					this.route.clean_up_progress_bar_arrow();
+					this.route.clean_up_progress_bar_states();	
 				}
 			},
-			create_account : { 
-				on : function () { 
+			create_account : 
+			{ 
+				on : function () 
+				{ 
 					var parts = alpha.front.prototype.parts;
 
+					this.route.start_progress();
+
 					$('.account').fadeIn(500);
-					parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block' });
+					parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block', opacity : 1 });
 					parts.bar.wrap.branch.branch.progress_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 400);
 					alpha.front.prototype.registration.prototype.progress_to_icon(2);
 					alpha.front.prototype.registration.prototype.refill_popup_box({
@@ -72,26 +111,45 @@ var alpha = (function ( alpha, $ ) {
 						icon  : "with-icon-account-progress-bar",
 						text  : "registration"
 					});
+
 					parts.registration_wrap.css({ 'margin-top': '2000px' }).animate({ 'margin-top': ( parts.bar.wrap.branch.branch.progress_popup.self.height() + 24 ) + 'px' }, 1200);
 					
 					if (alpha.front.prototype.parts.account === undefined ) alpha.front.prototype.account();
 				},
-				clean_up : function () { 
-
-					$('.account').fadeOut(500);
-					alpha.front.prototype.parts.bar.wrap.branch.branch.progress_popup.self.fadeOut(300);
-
-					if ( window.location.pathname === '/' || window.location.pathname === '/recyclabus' ||window.location.pathname === '/sell' ) { 
-						alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.animate({ opacity: 0 }, 300, function () { $(this).css({ display: 'none' }); });
-						alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'0px' }, 300);
-					}					
+				clean_up : function () 
+				{ 	
+					$('.account').fadeOut();
+					this.route.clean_up_progress_bar_arrow();
+					this.route.clean_up_progress_bar_states();
 				}
 			},
-			confirm : { 
-				on : function () { 
+			confirm : 
+			{ 
+				on : function () 
+				{ 
 					if (alpha.front.prototype.parts.confirm === undefined ) alpha.front.prototype.confirm.prototype.manifest();
-			
-					alpha.front.prototype.confirm.prototype.animate();
+
+					this.route.start_progress();
+
+					alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.css({ display: 'block', opacity : 1 });
+					alpha.front.prototype.parts.bar.wrap.branch.branch.progress_popup.self.css({ display: 'block', opacity: 0 }).animate({ opacity: 1 }, 400);
+					alpha.front.prototype.registration.prototype.progress_to_icon(3);
+					alpha.front.prototype.registration.prototype.refill_popup_box({
+						title : "Sale Confirmation",
+						icon  : "with-icon-confirm-progress-bar",
+						text  : "confirmation"
+					});
+
+					alpha.front.prototype.parts.confirm.wrap.self
+					.css({ 
+						'margin-top': '2000px',
+						'display'   : 'block'
+					})
+					.animate({ 
+						'margin-top': ( alpha.front.prototype.parts.bar.wrap.branch.branch.progress_popup.self.height() + 50 ) + 'px',
+						'opacity'   : 1
+					}, 1200);
+
 					alpha.front.prototype.confirm.prototype.display_address_and_make_editable();
 
 					setTimeout(function () {
@@ -100,11 +158,46 @@ var alpha = (function ( alpha, $ ) {
 						alpha.front.prototype.confirm.prototype.make_basket_items_removable();
 					}, 1000 );
 				},
-				clean_up : function () {
-					if ( window.location.pathname === '/' || window.location.pathname === '/recyclabus' ||window.location.pathname === '/sell' ) { 
-						alpha.front.prototype.parts.bar.wrap.branch.branch.arrow.self.animate({ opacity: 0 }, 300, function () { $(this).css({ display: 'none' }); });
-						alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'0px' }, 300);
-					} 
+				clean_up : function () 
+				{						
+					alpha.front.prototype.parts.confirm.wrap.self.animate({ opacity : 0 }, 500, 
+					function () { 
+						$(this).css({ display : 'none' });
+					});
+
+					this.route.clean_up_progress_bar_arrow();
+					this.route.clean_up_progress_bar_states();
+				}
+			},
+			thank_you : 
+			{
+				on : function () 
+				{
+					this.route.start_progress();
+
+					if ( alpha.front.prototype.parts.thank_you === undefined ) {
+						alpha.front.prototype.thank_you.prototype.manifest();
+						alpha.front.prototype.parts.thank_you.banner.branch.branch.inner_banner.branch.branch.summary.branch.quote.text('£'+ alpha.front.prototype.being.basket.total/100 );
+					}
+
+					$('.thank_you').css({ display : 'block' });
+					alpha.front.prototype.registration.prototype.progress_to_icon(4);
+					alpha.front.prototype.registration.prototype.progress_to_icon(5);					
+					alpha.front.prototype.parts.thank_you.banner.self.animate({ top: '0px' }, 2000);
+
+					alpha.front.prototype.parts
+					.bar.wrap.branch.branch
+					.navigation.branch.branch.wrap.branch.branch
+					.progress.branch.branch.back.self.css({ display : 'block'}).animate({ opacity : 1 }, 400);
+				},
+				clean_up : function () 
+				{	
+					$('.thank_you').css({ display : 'none' });
+					this.route.clean_up_progress_bar_states();
+					alpha.front.prototype.parts
+					.bar.wrap.branch.branch
+					.navigation.branch.branch.wrap.branch.branch
+					.progress.branch.branch.back.self.css({ display : 'block'}).animate({ opacity : 0 }, 400);				
 				}
 			}
 		});
@@ -360,7 +453,6 @@ var alpha = (function ( alpha, $ ) {
 			});
 		}
 	};
-
 
 	alpha.front.prototype.go_back_to_shopping = function () {
 		alpha.front.prototype.parts.bar.wrap.branch.branch.navigation.branch.branch.wrap.self.animate({ top:'0px' }, 300);

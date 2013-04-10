@@ -201,7 +201,7 @@ var alpha = (function ( alpha, $ ) {
 				delete fields.password_confirm;
 
 				fields.recieve_newsletters = (alpha.front.prototype.parts.account.disclaimer.branch.branch.tick.branch.tick.css('display') !== 'none');
-				alpha.front.prototype.confirm();
+				alpha.front.prototype.router.change_url("confirm");
 			}
 			else {
 				alpha.front.prototype.parts.account.disclaimer.branch.branch.continue_button.self.text("Continue");
