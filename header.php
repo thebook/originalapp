@@ -53,7 +53,7 @@
 		],
 		function (error, result) { 
 
-			alpha.front();			
+			// alpha.front();			
 		});
 	</script>
 

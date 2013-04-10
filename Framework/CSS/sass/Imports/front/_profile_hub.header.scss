@@ -1,0 +1,21 @@
+.profile_hub_header {
+	margin: 10px 0;
+	border: 1px solid $middle_monochrome;
+	padding: 10px 0;
+	text-align: center;
+	// width: $the_width - 22;
+	// float: left;
+	color: $black_gray;
+}
+
+.profile_hub_header_title {
+	font-family: MotorOil;
+	font-size: 14px;
+	text-transform: uppercase;
+	display: inline;
+}
+
+.profile_hub_header_text {
+	font-size: 14px;
+	display: inline;
+}

@@ -1,0 +1,29 @@
+.profile_hub {
+
+	width: $the_width;
+	margin: 0 auto;
+	background: $light;
+	text-spacing: 1px;
+}
+
+.profile_hub_inner_wrap { 
+	
+	display: block;
+	float: left;
+	width: 100%;
+	background: $light;
+	padding: 0 10px;
+}
+
+.profile_hub_box {
+
+	width: ($the_width/2)- 30;
+	display: inline-block;
+	margin-right: 10px;
+	float: left;
+	// border: 1px solid $black_gray;
+} 
+
+@import "profile_hub.header.scss";
+
+@import "profile_hub.account";

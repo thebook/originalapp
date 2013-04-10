@@ -22,7 +22,7 @@ IF %go_through%==y (
 	call batch/set_style_css_to_new_version
 	call batch/create_a_filtered_copy_of_folder
 	:: call batch/zip_a_directory
-	call batch/create_ftp_connection_and_upload_files_to_server
+	:: call batch/create_ftp_connection_and_upload_files_to_server
 	echo. Going back to original path
 	cd %theme%
 )

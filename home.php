@@ -48,7 +48,7 @@
 	<section class="bar_outer_wrap"></section>
 	
 	<!-- Homepage -->
-	<section class="homepage_body_wrap pages">
+	<section class="homepage_body_wrap pages" style="display: none;">
 
 		<div class="homepage_body_inner_wrap">
 
@@ -327,9 +327,74 @@
 	</section>
 
 	<section class="placeholder"></section>
+
+
+	<section class="profile_hub">
+
+		<div class="profile_hub_inner_wrap">
+
+			<div class="profile_hub_header">
+				<div class="profile_hub_header_title">Profile Hub</div>
+				<div class="profile_hub_header_text">For withdrawals, tracking, order history and editing account details</div>
+			</div>
+			
+			<div class="profile_hub_account profile_hub_box">
+				<div class="profile_hub_account_bar">
+					<div class="with-icon-profile-hub-account"></div>
+					<div class="profile_hub_account_bar_greeting">Hi james</div>
+					<div class="profile_hub_account_bar_text">Account Details</div>
+				</div>
+				<div class="profile_hub_account_body">
+					<div class="profile_hub_account_main_details">
+						<input type="text" class="profile_hub_account_main_details_small_input">
+						<input type="text" class="profile_hub_account_main_details_small_input">
+						<input type="text" class="profile_hub_account_main_details_large_input">
+						<input type="text" class="profile_hub_account_main_details_small_input">
+						<input type="text" class="profile_hub_account_main_details_small_input">
+						<input type="text" class="profile_hub_account_main_details_small_input">
+					</div>
+					<div class="profile_hub_account_extra_buttons">
+						<div class="profile_hub_account_extra_buttons_small_button">
+							<div class="with-icon-plus-for-profile-hub-account-extra-buttons"></div>
+							<div class="profile_hub_account_extra_buttons_large_button">Edit Account Details</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+
+
+
+
+
 	
-	<div class="homepage_blue_bar"></div>
-	<div class="homepage_bottom_navigation_wrap">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+	<!-- <div class="homepage_blue_bar"></div> -->
+	<!-- <div class="homepage_bottom_navigation_wrap">
 
 		<div class="homepage_bottom_navigation">
 			<div class="homepage_bottom_navigation_button">Contact</div>
@@ -344,7 +409,6 @@
 				<div class="homepage_bottom_navigation_copyright_text">Recyclabook &copy. 2013</div>
 			</div>
 		</div>
-
-	</div>
+	</div> -->
 
 <?php get_footer(); ?>
