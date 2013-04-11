@@ -17,13 +17,22 @@
 
 .profile_hub_box {
 
-	width: ($the_width/2)- 30;
+	width: $profile_hub_box_width;
 	display: inline-block;
 	margin-right: 10px;
+	margin-bottom: 20px;
 	float: left;
-	// border: 1px solid $black_gray;
 } 
+
+.profile_hub_box_right { 
+	@extend .profile_hub_box;
+	margin-right: 0px;
+}
 
 @import "profile_hub.header.scss";
 
 @import "profile_hub.account";
+
+@import "profile_hub.order_history";
+
+@import "profile_hub.bank";

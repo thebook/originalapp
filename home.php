@@ -353,10 +353,88 @@
 						<input type="text" class="profile_hub_account_main_details_small_input">
 						<input type="text" class="profile_hub_account_main_details_small_input">
 					</div>
+
+					<div class="profile_hub_account_extra_details">
+						<div class="profile_hub_account_extra_details_title">Registered email</div>
+						<input type="text" class="profile_hub_account_extra_details_input">
+					</div>
 					<div class="profile_hub_account_extra_buttons">
 						<div class="profile_hub_account_extra_buttons_small_button">
 							<div class="with-icon-plus-for-profile-hub-account-extra-buttons"></div>
-							<div class="profile_hub_account_extra_buttons_large_button">Edit Account Details</div>
+						</div>
+						<div class="profile_hub_account_extra_buttons_large_button">Edit Account Details</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="profile_hub_box_right profile_hub_bank">
+				<div class="profile_hub_bank_bar">
+					<div class="with-icon-for-profile-hub-bank"></div>
+					<div class="profile_hub_bank_greeting">RecyclaBank</div>
+				</div>
+				<div class="profile_hub_bank_body">
+					<div class="profile_hub_bank_status">
+						<div class="profile_hub_bank_stats_first">
+							<div class="with-icon-pig-for-account-balance"></div>
+							<div class="profile_hub_bank_stats_label">Account balance</div>
+							<input type="text" class="profile_hub_bank_stats_input" value="£10.32" readonly>
+						</div>
+						<div class="profile_hub_bank_stats_middle">
+							<div class="with-icon-clock-for-account-withdrawal"></div>
+							<div class="profile_hub_bank_stats_label">Last withdrawal</div>
+							<input type="text" class="profile_hub_bank_stats_input" value="02/05/2013" readonly>
+						</div>
+						<div class="profile_hub_bank_stats_last">
+							<div class="with-icon-hand-for-account-donation"></div>
+							<div class="profile_hub_bank_stats_label">Total Donations</div>
+							<input type="text" class="profile_hub_bank_stats_input" value="0.01" readonly>
+						</div>
+						<div class="profile_hub_bank_buttons">
+							<div class="with-icon-for-bank-withdraw">Withdraw Funds</div>
+							<div class="with-icon-for-bank-donate">Donate to RAG</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="profile_hub_box profile_hub_history">
+				<div class="profile_hub_history_bar">
+					<div class="with-icon-for-profile-hub-history"></div>
+					<div class="profile_hub_history_bar_greeting">Order History</div>
+					<div class="profile_hub_history_notification"></div>
+				</div>
+				<div class="profile_hub_history_body">
+					<div class="profile_hub_history_inner_body">
+						<div class="profile_hub_history_scroll">
+							<div class="profile_hub_history_scroll_handle"></div>
+						</div>
+						<div class="profile_hub_history_items">
+							<div class="profile_hub_history_item">
+								<div class="profile_hub_history_item_image"></div>
+								<div class="profile_hub_history_item_text">
+									<div class="profile_hub_history_item_title">Jagganath</div>
+									<div class="profile_hub_history_item_author">by Author</div>
+									<div class="profile_hub_history_item_price">£7.32</div>
+									<div class="profile_hub_history_item_isbn">02930492</div>
+								</div>
+								<div class="profile_hub_history_item_icon">
+									<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/profilehub/sold.png" class="profile_hub_history_item_icon_image">
+									<div class="profile_hub_history_item_icon_date">02/05/2013</div>
+								</div>
+							</div>
+							<div class="profile_hub_history_item">
+								<div class="profile_hub_history_item_image"></div>
+								<div class="profile_hub_history_item_text">
+									<div class="profile_hub_history_item_title">Jagganath</div>
+									<div class="profile_hub_history_item_author">by Author</div>
+									<div class="profile_hub_history_item_price">£7.32</div>
+									<div class="profile_hub_history_item_isbn">02930492</div>
+								</div>
+								<div class="profile_hub_history_item_icon">
+									<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/profilehub/donated.png" class="profile_hub_history_item_icon_image">
+									<div class="profile_hub_history_item_icon_date">02/05/2013</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

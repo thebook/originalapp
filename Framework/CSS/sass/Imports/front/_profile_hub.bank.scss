@@ -1,0 +1,137 @@
+.profile_hub_bank {}
+
+.profile_hub_bank_bar {
+	@extend .profile_hub_account_bar;
+}
+
+.with-icon-for-profile-hub-bank {
+	@extend .with-icon-profile-hub-account;
+	&:before { 
+		content:"?";
+	}
+}
+
+.profile_hub_bank_greeting {
+	@extend .profile_hub_account_bar_greeting;
+	text-align: center;
+}
+
+.profile_hub_bank_body {
+	@extend .profile_hub_account_body;
+	background: $light_monochrome;
+}
+
+.profile_hub_bank_status {
+	width: 90%;
+	padding: 10px 5%;
+	float: left;
+	margin-top: 10px;
+}
+
+
+.profile_hub_bank_stats_first {
+	width: 30%;
+	display: inline-block;
+	float: left;
+	margin-right:5%;
+}
+
+.profile_hub_bank_stats_middle {
+	@extend.profile_hub_bank_stats_first;
+	margin-right:0;
+}
+
+.profile_hub_bank_stats_last {
+	@extend.profile_hub_bank_stats_first;
+	margin-left: 5%;
+	margin-right: 0;
+}
+
+
+.with-icon-pig-for-account-balance {
+	width: 100%;
+	text-align: center;
+	&:before { 
+		color: $middle_monochrome;
+		content:":";
+	}
+}
+
+.with-icon-hand-for-account-donation { 
+	@extend.with-icon-pig-for-account-balance;
+	&:before { 
+		content:"B";
+	}
+}
+
+.with-icon-clock-for-account-withdrawal { 
+	@extend.with-icon-pig-for-account-balance;
+	&:before { 
+		content:"C";
+	}
+}
+
+.profile_hub_bank_stats_label {
+	color: $black_gray;
+	font-size: 12px;
+	line-height: 12px;
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	margin-top: 2px;
+}
+
+.profile_hub_bank_stats_input {
+	@include reset-input;
+	border: 1px solid $middle_monochrome;
+	font-size: 16px;
+	line-height: 16px;
+	background: $light;
+	padding: 5px 5%;
+	text-align: center;	
+	color: $black_gray;
+	float: left;
+	width: 70%;
+	margin: 10px 10% 0;
+	@include border-radius(20px);
+
+	&:hover, &:focus { 
+		border: 1px solid $middle_monochrome;
+	}
+}
+
+.profile_hub_bank_buttons {
+	margin: 20px 0;
+	width: 100%;
+	float: left;
+	clear: both;	
+}
+
+.with-icon-for-bank-withdraw {
+	@include border-radius(30px);
+	background: $green;
+	color: $light;
+	font-size: 12px;
+	line-height: 20px;
+	padding: 5px 5%;
+	text-align: center;
+	display: inline-block;
+	float: left;
+	cursor:pointer;
+	font-weight: bold;
+	width: 37.5%;
+	margin-right: 2.5%;
+	&:before { 
+		content:"D";
+		margin-right: 7px;
+	}
+}
+
+.with-icon-for-bank-donate {
+	@extend.with-icon-for-bank-withdraw;
+	margin-right:0;
+	margin-left: 2.5%;
+	&:before { 
+		content:";";
+	}
+}
