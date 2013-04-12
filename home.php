@@ -41,7 +41,6 @@
 		<div class="header_image_wrap">
 			<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhonc.png'; ?>" class="header_image">
 		</div>
-
 	</section>
 	
 	<!-- Bar  -->
@@ -299,8 +298,7 @@
 				</div>
 				<div class="checkout_button">Confirm & Complete</div>
 			</div>
-		</div> -->
-		
+		</div> -->		
 	</section>
 
 	<section class="thank_you pages">
@@ -323,7 +321,6 @@
 			</div>
 		</div>
 		<div class="with-icon-your-account"></div> -->
-
 	</section>
 
 	<section class="placeholder"></section>
@@ -397,6 +394,76 @@
 				</div>
 			</div>
 
+			<div class="profile_hub_tracking profile_hub_box_right">
+				<div class="profile_hub_tracking_bar">
+					<div class="with-icon-for-profile-hub-tracking"></div>
+					<div class="profile_hub_tracking_bar_title">Book Tracking</div>
+					<div class="profile_hub_tracking_bar_sort">
+						<div class="profile_hub_tracking_bar_sort_drop">
+							<div class="with-icon-for-profile-hub-tracking-drop-arrow"></div>
+							<div class="profile_hub_tracking_bar_sort_drop_item">Order By</div>
+							<div class="profile_hub_tracking_bar_sort_drop_item">Show something</div>
+							<div class="profile_hub_tracking_bar_sort_drop_item">Something else</div>
+						</div>
+						<div class="with-icon-eye-for-profile-hub-tracking"></div>
+						<div class="with-icon-down-arrow-for-profile-hub-drop"></div>
+					</div>
+				</div>
+				<div class="profile_hub_tracking_body">
+					<div class="profile_hub_tracking_inner_body">
+						<div class="profile_hub_tracking_sroll">
+							<div class="profile_hub_tracking_sroll_handle"></div>
+						</div>
+						<div class="profile_hub_tracking_show_bar">
+							<div class="profile_hub_tracking_show_bar_text">Showing all</div>
+							<div class="with-icon-for-profile-hub-tracking-envelope"></div>
+						</div>
+						<div class="profile_hub_tracking_items">
+							<div class="profile_hub_tracking_title">Price promises</div>
+							<div class="profile_hub_tracking_item">
+								<div class="profile_hub_tracking_item_image"></div>
+								<div class="profile_hub_tracking_item_text">
+									<div class="profile_hub_tracking_item_text_title">Jaggernath</div>
+									<div class="profile_hub_tracking_item_text_author">by Author</div>
+									<div class="profile_hub_tracking_item_text_quote">£7.32</div>
+									<div class="profile_hub_tracking_item_text_isbn">09232145</div>
+								</div>
+								<div class="profile_hub_tracking_item_options">
+									<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/profilehub/freepost.png" alt="" class="profile_hub_tracking_item_options_image">
+									<div class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>
+								</div>
+							</div>
+							<div class="profile_hub_tracking_item">
+								
+								<div class="profile_hub_tracking_item_options_damaged_book_dropout">
+									<!-- <div class="with-icon-left-arrow-for-damaged-book-box"></div> -->
+									<div class="profile_hub_tracking_item_options_damaged_book_dropout_title">Comments</div>
+									<div class="profile_hub_tracking_item_options_damaged_book_dropout_text">It was a reall poopady pop, and a stuffed ystuff stuff stuff</div>
+								</div>
+
+								<div class="profile_hub_tracking_item_image"></div>
+								<div class="profile_hub_tracking_item_text">
+									<div class="profile_hub_tracking_item_text_title">Jaggernath</div>
+									<div class="profile_hub_tracking_item_text_author">by Author</div>
+									<div class="profile_hub_tracking_item_text_quote">£7.32</div>
+									<div class="profile_hub_tracking_item_text_isbn">09232145</div>
+								</div>
+
+								<div class="profile_hub_tracking_item_options">
+									<div class="profile_hub_tracking_item_options_damaged_book_info">
+										<div class="with-icon-for-damaged-book-info"></div>
+										<div class="profile_hub_tracking_item_options_damaged_book_info_text">Damaged book</div>
+									</div>								
+
+									<div class="with-icon-for-damaged-book-return">Return</div>
+									<div class="with-icon-for-damaged-book-donate">Donate</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="profile_hub_box profile_hub_history">
 				<div class="profile_hub_history_bar">
 					<div class="with-icon-for-profile-hub-history"></div>
@@ -439,7 +506,7 @@
 					</div>
 				</div>
 			</div>
-
+		
 		</div>
 	</section>
 
