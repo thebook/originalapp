@@ -27,7 +27,7 @@ class branch_users_initialize extends alpha_tree_users
 				 		'auto_increment' => true,
 				 		'unique'         => false				 									 				
 				 	))
-				 ));		
+				 ));
 	
 				$creator->create_table(
 				array(

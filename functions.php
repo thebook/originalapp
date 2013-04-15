@@ -31,13 +31,17 @@ new admin(
 		'definition' => FRAMEWORK .'/Definitions/admin.definition.php'
 		));
 
-$user = new branch_users_database( 
-	array(
-		'id' => 'lf-users',
-		'class' => 'lf-user-meta',
-		'default_type' => 'option',
-		'definition' => FRAMEWORK .'/Definitions/users.definition.php'
-		));
+include FRAMEWORK .'/Users/users.class.php';
+
+new users;
+
+// $user = new branch_users_database( 
+// 	array(
+// 		'id' => 'lf-users',
+// 		'class' => 'lf-user-meta',
+// 		'default_type' => 'option',
+// 		'definition' => FRAMEWORK .'/Definitions/users.definition.php'
+// 		));
 
 $books = new books(
 	array(

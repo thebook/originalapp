@@ -34,6 +34,7 @@ class table_creator
 	 * @param  array $passed_creation_paramaters Array of paramaters contaning "table name and reference fields"
 	 * @return mysql query Creates two new tables one with the after fix of "reference"
 	 */
+	# out of use i think should be remodled and fixed
 	public function create_reference_and_information_table ($passed_creation_paramaters)
 	{
 		if ( $this->params->does_table_exist($passed_creation_paramaters['table_name']) &&
@@ -127,7 +128,7 @@ class table_creator
 			$return_value .= $this->_convert_field_into_type($field, $field_numbers);
 			$field_numbers--;	
 
-		endforeach;
+		endforeach;		
 
 		return $return_value;
 	}
@@ -136,12 +137,13 @@ class table_creator
 	protected function  _convert_field_into_type ($field, $field_numbers = 1 )
 	{				
 		extract($field);
-
-			$auto_increment = ( $auto_increment? 'AUTO_INCREMENT' : '' );
+			
+			$auto_increment = ( (isset($auto_increment) and $auto_increment)? 'AUTO_INCREMENT' : '' );
 			$punctuation    = ( $field_numbers > 1 ? ',' : '' );
-			$unique 		= ( $unique? 'UNIQUE' : '' );			
-;
-			return strtolower($column_name) . " $data_type $unique NOT NULL $auto_increment $punctuation ";
+			$unique 		= ( (isset($unique) and $unique)? 'UNIQUE' : '' );			
+			$null           = ( (isset($null) and $null)?'NULL' : 'NOT NULL' );
+
+			return strtolower($column_name) . " $data_type $unique $null $auto_increment $punctuation ";
 	}
 
 	/**
