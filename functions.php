@@ -10,16 +10,15 @@ $global_admin_options_white_whale = get_option('main_options');
 
 include FRAMEWORK . '/include.php'; 
 
-include FRAMEWORK . '/Helpers/include.php';
-
 include FRAMEWORK . '/Options/include.php';
-
-include BOOK .'/include.php';
 
 include FRAMEWORK .'/Apis/include.php';
 
-include FRAMEWORK . '/Ticketing/include.php';
+include FRAMEWORK .'/data/include.php';
 
+// include BOOK .'/include.php';
+
+// include FRAMEWORK . '/Ticketing/include.php';
 
 new register_scripts;
 	
@@ -31,9 +30,8 @@ new admin(
 		'definition' => FRAMEWORK .'/Definitions/admin.definition.php'
 		));
 
-include FRAMEWORK .'/Users/users.class.php';
-
 new users;
+new ticket;
 
 // $user = new branch_users_database( 
 // 	array(
@@ -60,6 +58,6 @@ $amazon = new amazon(
 		'region'               => 'co.uk'
 	));
 
-new tickets( FRAMEWORK .'/Definitions/ticket.definition.php');
+// new tickets( FRAMEWORK .'/Definitions/ticket.definition.php');
 
 ?>

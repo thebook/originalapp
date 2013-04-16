@@ -107,7 +107,7 @@ class table_creator
 
 		extract($paramaters);
 
-		$primary_key = ($primary_key? "PRIMARY KEY ($primary_key), " : null );
+		$primary_key = ((isset($primary_key) and $primary_key )? "PRIMARY KEY ($primary_key), " : null );
 
 		$create_table_query = "
 		CREATE TABLE $wpdb->prefix{$table_name} (" 
