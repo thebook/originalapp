@@ -5,15 +5,13 @@
 */
 class alpha
 {
-	protected $report;
-
-	function __construct()
+	function __construct($class)
 	{
-		add_action('wp_ajax_nopriv_get_', array($this, 'get_' ) );
-		add_action('wp_ajax_get_', array($this, 'get_' ) );
+		add_action("wp_ajax_nopriv_get_$class", array($this, 'get_' ) );
+		add_action("wp_ajax_get_$class", array($this, 'get_' ) );
 
-		add_action('wp_ajax_nopriv_set_', array($this, 'set_' ) );
-		add_action('wp_ajax_set_', array($this, 'set_' ) );
+		add_action("wp_ajax_nopriv_set_$class", array($this, 'set_' ) );
+		add_action("wp_ajax_set_$class", array($this, 'set_' ) );
 	}
 
 	public function set_ ()

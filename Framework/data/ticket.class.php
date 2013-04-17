@@ -7,11 +7,126 @@ class ticket extends alpha
 {
 	var $freepost_table;
 	var $cheque_table;
+	var $donate_table;
+	var $return_table;
 
 	function __construct()
-	{
+	{	
+		parent::__construct('ticket');
 		$this->construct_freepost_table();
 		$this->construct_cheque_table();
+		$this->construct_donate_table();
+		$this->construct_return_table();
+	}
+
+	public function construct_donate_table ()
+	{
+		$this->donate_table = 'donate';
+		$table = new table_creator;
+		$table->check_if_table_exists_if_not_create_one(array(
+			'table_name'  => $this->donate_table,
+			'fields'      => array(
+				array(
+					'column_name' => 'section',
+					'data_type'   => 'varchar(5)',
+				),
+				array(
+					'column_name' => 'level',
+					'data_type'   => 'varchar(5)',
+				),
+				array(
+					'column_name' => 'number',
+					'data_type'   => 'smallint',
+				),
+				array(
+					'column_name' => 'item_name',
+					'data_type'   => 'varchar(100)',
+				),
+				array(
+					'column_name' => 'author',
+					'data_type'   => 'varchar(100)',
+				),
+				array(
+					'column_name' => 'user',
+					'data_type'   => 'INT'
+				),
+				array(
+					'column_name' => 'email',
+					'data_type'   => 'varchar(30)'
+				),
+				array(
+					'column_name' => 'first_name',
+					'data_type'   => 'varchar(22)'
+				),
+				array(
+					'column_name' => 'second_name',
+					'data_type'   => 'varchar(22)'
+				)
+			)
+		));
+	}
+
+	public function construct_return_table ()
+	{
+		$this->return_table = 'return';
+		$table = new table_creator;
+		$table->check_if_table_exists_if_not_create_one(array(
+			'table_name'  => $this->return_table,
+			'fields'      => array(
+				array(
+					'column_name' => 'section',
+					'data_type'   => 'varchar(5)',
+				),
+				array(
+					'column_name' => 'level',
+					'data_type'   => 'varchar(5)',
+				),
+				array(
+					'column_name' => 'number',
+					'data_type'   => 'smallint',
+				),
+				array(
+					'column_name' => 'item_name',
+					'data_type'   => 'varchar(100)',
+				),
+				array(
+					'column_name' => 'author',
+					'data_type'   => 'varchar(100)',
+				),
+				array(
+					'column_name' => 'user',
+					'data_type'   => 'INT'
+				),
+				array(
+					'column_name' => 'email',
+					'data_type'   => 'varchar(30)'
+				),
+				array(
+					'column_name' => 'first_name',
+					'data_type'   => 'varchar(22)'
+				),
+				array(
+					'column_name' => 'second_name',
+					'data_type'   => 'varchar(22)'
+				),
+				array(
+					'column_name' => 'address',
+					'data_type'   => 'varchar(200)',
+				),
+				array(
+					'column_name' => 'post_code',
+					'data_type'   => 'varchar(7)',
+				),
+				array(
+					'column_name' => 'town',
+					'data_type'   => 'varchar(30)',
+				),
+				array(
+					'column_name' => 'area',
+					'data_type'   => 'varchar(50)',
+				)
+			)
+		));
 	}
 
 	public function construct_freepost_table ()

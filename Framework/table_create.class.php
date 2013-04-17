@@ -254,7 +254,7 @@ class table_creator
 		return $result[0];
 	}
 
-	public function get_rowS ($table_name, $where_column, $where_value)
+	public function get_rows ($table_name, $where_column, $where_value)
 	{
 		global $wpdb;
 
@@ -262,7 +262,7 @@ class table_creator
 
 		return $result;
 	}
-
+	
 	/**
 	 * Takes an array of strings and checks if they are digits or strings and returns a %d for didigs and 
 	 * %s for string for the wpdb->insert() function format

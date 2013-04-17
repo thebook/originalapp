@@ -30,8 +30,9 @@ new admin(
 		'definition' => FRAMEWORK .'/Definitions/admin.definition.php'
 		));
 
-new users;
+new account;
 new ticket;
+new book;
 
 // $user = new branch_users_database( 
 // 	array(
