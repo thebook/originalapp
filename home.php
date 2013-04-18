@@ -1,53 +1,9 @@
 <?php get_header(); ?>
-
-	
-	<!-- Header -->
-	<section class="header">
-		<div class="header_wrap">
-			
-			<div class="header_invisible_box">
-				<!-- <div class="header_invisible_box_title_wrap">
-					<div class="header_invisible_box_title_logo"><span class="with-icon-invisible-title-logo"></span></div>
-					<div class="header_invisible_box_title">
-						<span class="header_invisible_box_title_one_and_two_wrap">
-							<span class="header_invisible_box_title_one">Recycla</span>
-							<span class="header_invisible_box_title_two">book</span>
-						</span>	
-						<span class="header_invisible_box_title_three">co.uk</span></div>
-				</div> -->
-				<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/header_logo.png" alt="" class="header_invisible_box_image_title">
-				<div class="header_invisible_box_text_wrap">
-					<div class="header_invisible_box_text_title">What We Do</div>
-					<div class="header_invisible_box_text">Recyclabook accepts over a million different titles, you can easily sell your book and get quick and safe payment</div>
-				</div>
-				<!-- <div class="header_invisible_box_arrow_text">Check and see!</div>
-				<div class="with-icon-down-arrow"></div> -->
-			</div>
-
-			<div class="header_text_box">
-				<div class="header_text_box_title">How <span class="header_text_box_title_highlight">much</span> is <br/><span class="header_text_box_title_highlight">your</span> book <span class="header_text_box_title_highlight">worth?</span></div>
-					<!-- <div class="header_text_box_text">use a comma to search for more than one book</div> -->
-				<div class="header_text_box_input">	
-					<div class="header_field_for_input">
-						<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">
-					</div>
-					<span data-function-instruction="{'type':'header'}" data-function-to-call="front.prototype.search_though_amazon" class="with-icon-header-search"></span>
-				</div>
-			</div>
-			<div class="with-icon-header-text-box-arrow"></div>
-
-		</div>
-		
-		<div class="header_image_wrap">
-			<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhonc.png'; ?>" class="header_image">
-		</div>
-	</section>
-	
 	<!-- Bar  -->
-	<section class="bar_outer_wrap"></section>
+	<!-- <section class="bar_outer_wrap"></section> -->
 	
 	<!-- Homepage -->
-	<section class="homepage_body_wrap pages" style="display: none;">
+<!-- 	<section class="homepage_body_wrap pages" style="display: none;">
 
 		<div class="homepage_body_inner_wrap">
 
@@ -185,21 +141,21 @@
 				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recycle.png'; ?>" alt="" class="homepage_ally_bar_image">
 			</div>
 		</div>			
-	</section>
+	</section> -->
 	
 	<!-- Recyclabus -->
-	<section class="recyclabus pages"></section>
+	<!-- <section class="recyclabus pages"></section> -->
 
 	<!-- User registration -->
-	<section class="input_box_body_wrap account pages">
+	<!-- <section class="input_box_body_wrap account pages">
 		<div class="account_wrap"></div>
-	</section>
+	</section> -->
 	
 	<!-- Selling -->
-	<section class="body pages"></section>
+	<!-- <section class="body pages"></section> -->
 
-	<section class="checkout pages">
-		<!-- <div class="checkout_wrap">
+<!-- 	<section class="checkout pages">
+		<div class="checkout_wrap">
 			<div class="confirmation_overview">
 				<div class="basket_overview_outer_wrap">
 
@@ -298,12 +254,12 @@
 				</div>
 				<div class="checkout_button">Confirm & Complete</div>
 			</div>
-		</div> -->		
-	</section>
+		</div>		
+	</section> -->
 
-	<section class="thank_you pages">
+<!-- 	<section class="thank_you pages">
 		
-		<!-- <div class="thank_you_banner_wrap">
+		<div class="thank_you_banner_wrap">
 			<div class="thank_you_banner">
 				<div class="with-icon-thank-you-icon-leaf"></div>
 				<div class="thank_you_banner_title_one">Thank you </div>
@@ -320,12 +276,12 @@
 				<div class="thank_you_circle_text">to the edge of earth and back dear friend and trips and trips till death</div>
 			</div>
 		</div>
-		<div class="with-icon-your-account"></div> -->
-	</section>
+		<div class="with-icon-your-account"></div>
+	</section> -->
 
-	<section class="placeholder"></section>
+	<!-- <section class="placeholder"></section> -->
 
-
+<!-- 
 	<section class="profile_hub">
 
 		<div class="profile_hub_inner_wrap">
@@ -436,8 +392,8 @@
 							<div class="profile_hub_tracking_item">
 								
 								<div class="profile_hub_tracking_item_options_damaged_book_dropout">
-									<!-- <div class="with-icon-left-arrow-for-damaged-book-box"></div> -->
-									<div class="profile_hub_tracking_item_options_damaged_book_dropout_title">Comments</div>
+									<div class="with-icon-left-arrow-for-damaged-book-box"></div> -->
+								<!-- <div class="profile_hub_tracking_item_options_damaged_book_dropout_title">Comments</div>
 									<div class="profile_hub_tracking_item_options_damaged_book_dropout_text">It was a reall poopady pop, and a stuffed ystuff stuff stuff</div>
 								</div>
 
@@ -508,7 +464,7 @@
 			</div>
 		
 		</div>
-	</section>
+	</section> -->
 
 
 

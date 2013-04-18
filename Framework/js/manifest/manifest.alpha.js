@@ -1,19 +1,15 @@
 var alpha = (function ( alpha, $ ) {
 
-	alpha.thought = function (thought) { 
+	alpha.thought = function () { 
 		
-		var return_object = {}
-
-		return_object.manifest = function (where) {
-			return alpha.thought.prototype.manifest.call(alpha.thought, { 
-				what  : this.thought, 
-				where : where
-			});
+		return { 
+			manifest : function (where) {
+				return alpha.thought.prototype.manifest.call(alpha.thought, { 
+					what  : this.thought, 
+					where : where
+				});
+			}
 		};
-
-		if (thought) return_object.thought = thought;
-
-		return return_object;
 	};
 
 	alpha.thought.prototype.manifest = function (passed) {

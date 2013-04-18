@@ -1,28 +1,32 @@
 <?php get_header(); ?>
 
-
-
+	
+	<!-- Header -->
 	<section class="header">
-		
-		<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhoncc.png'; ?>" class="header_image">
-
 		<div class="header_wrap">
 			
 			<div class="header_invisible_box">
-				<div class="header_invisible_box_title_wrap">
+				<!-- <div class="header_invisible_box_title_wrap">
 					<div class="header_invisible_box_title_logo"><span class="with-icon-invisible-title-logo"></span></div>
-					<div class="header_invisible_box_title">Recyclabook <br/>.com</div>
-				</div>
+					<div class="header_invisible_box_title">
+						<span class="header_invisible_box_title_one_and_two_wrap">
+							<span class="header_invisible_box_title_one">Recycla</span>
+							<span class="header_invisible_box_title_two">book</span>
+						</span>	
+						<span class="header_invisible_box_title_three">co.uk</span></div>
+				</div> -->
+				<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/header_logo.png" alt="" class="header_invisible_box_image_title">
 				<div class="header_invisible_box_text_wrap">
 					<div class="header_invisible_box_text_title">What We Do</div>
 					<div class="header_invisible_box_text">Recyclabook accepts over a million different titles, you can easily sell your book and get quick and safe payment</div>
 				</div>
-				<div class="with-icon-down-arrow"></div>
+				<!-- <div class="header_invisible_box_arrow_text">Check and see!</div>
+				<div class="with-icon-down-arrow"></div> -->
 			</div>
 
 			<div class="header_text_box">
 				<div class="header_text_box_title">How <span class="header_text_box_title_highlight">much</span> is <br/><span class="header_text_box_title_highlight">your</span> book <span class="header_text_box_title_highlight">worth?</span></div>
-				<div class="header_text_box_text">use a comma "," to search for more than one book</div>
+					<!-- <div class="header_text_box_text">use a comma to search for more than one book</div> -->
 				<div class="header_text_box_input">	
 					<div class="header_field_for_input">
 						<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">
@@ -33,587 +37,523 @@
 			<div class="with-icon-header-text-box-arrow"></div>
 
 		</div>
-
-	</section>
-
-	<section class="bar">
-
-		<!-- Logo  -->
-		<div class="logo_for_bar">
-			<span class="with-icon-logo"></span>
-		</div>
-
-		<!-- Progress bar  -->
-			<!-- Icon 1 -->
-			<!-- <div class="progress_icon_for_bar_done">
-				<div class="progress_icon_circle_done"><span class="with-icon-welcome-progress-bar"></span></div>
-				<span class="progress_icon_for_bar_text">Welcome</span>
-			</div> -->
-			<!-- Icon 2  -->
-			<!-- <div class="progress_icon_for_bar">
-				<div class="progress_icon_circle_doing"><span class="with-icon-account-progress-bar"></span></div>
-				<span class="progress_icon_for_bar_text">Account</span>
-			</div> -->
-			<!-- Icon 3  -->
-			<!-- <div class="progress_icon_for_bar">
-				<div class="progress_icon_circle"><span class="with-icon-confirm-progress-bar"></span></div>
-				<span class="progress_icon_for_bar_text">Confirm</span>
-			</div> -->
-			<!-- Icon 4 -->
-			<!-- <div class="progress_icon_for_bar">
-				<div class="progress_icon_circle"><span class="with-icon-thank-you-progress-bar"></span></div>
-				<span class="progress_icon_for_bar_text">Thank You</span>
-			</div> -->
-
-		<!-- Progress pop up -->
-		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
-		<div class="progress_pop_up">
-			<div class="progress_pop_up_title">
-				<span class="progress_pop_up_title_text">Welcome</span>
-				<span class="progress_pop_up_title_icon">
-					<span class="with-icon-welcome-progress-bar"></span>
-				</span>
-			</div>
-			<p class="progress_pop_up_text">
-				The wind blew up heathlciffs lower behind, as he rose up to meet the oncoming challenge, thunder, strorm, eath and fire to
-				the meeting of these elements to excelent to magnaminous, that the very being that held him together began to quake;
-				"Just a little longer" he though, as he began to rumage into the very ground which gave him birth, just what precious metals,
-				just what substance and essence lied beneath this rocky mountain, layed to be discovered... to be continued suckass
-				This will not only create your profile hub that will let your track payments, check books orders and edit details but makes sure we make the payment out to the right person and send the freepost pack to the correct address.
-			</p>
-		</div> -->
-
-		<!-- Welcome pop up -->
-		<!-- <span class="with-icon-progress-pop-up-arrow"></span>
-		<div class="progress_welcome_pop_up">
-			<div class="progress_welcome_sign_in_box">
-				<div class="progress_welcome_sign_in_box_title">Sign In</div>
-				<input type="text" class="progress_welcome_sign_in_box_input" placeholder="Email Address" value="">
-				<input type="password" class="progress_welcome_sign_in_box_input" placeholder="Password" value="">				
-				<span class="progress_welcome_sign_in_box_forgot_password">Forgoten Password?</span>
-			</div>
-			<div class="progress_welcome_register_box">
-				<div class="progress_welcome_register_box_text">New To Recyclabook >>></div>
-				<div class="progress_welcome_register_box_button">Sign Up</div>
-			</div>
-		</div> -->
-			
-		<!-- Navigation  -->
-		<div data-function-instructions="{'page' : 'homepage_body_wrap' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active">How It Works</div>
-
-		<div data-function-instructions="{'page' : 'recyclabus' }" data-function-to-call="front.prototype.change_page" class="with-icon-for-navigation-text-for-bar-active">Recyclabus</div>
-		<!-- <div class="navigation_text_for_bar">Recyclabus</div> -->
-
-		<!-- User registration or sign in button -->
-		<!-- <div class="button_for_user">
-			<span class="with-icon-user"></span>
-			<span class="with-icon-user-arrow"></span>
-		</div>		 -->
-
-		<!-- Search Input -->
-		<!-- <div class="input_for_bar">	
-			<div class="field_for_input">
-				<input type="text" class="input_block_for_search">
-			</div>
-			<div class="button_for_input"><span class="with-icon-search"></span></div>
-		</div> -->
-
-		<!-- User button pop up -->
-		<!-- <div class="user_pop_up_box">
-			<span class="with-icon-user-pop-up-box-arrow"></span>
-			<div class="user_pop_up_title">Hi, Mcgee</div>
-			<div class="user_pop_up_option">Edit Account</div>
-			<div class="user_pop_up_option">Tracking</div>
-			<div class="user_pop_up_option">Account History</div>
-
-			<span class="with-icon-user-pop-up-box-arrow"></span>
-			<div class="user_pop_up_title_white">
-				Sign in Or
-				<span class="user_pop_up_title_highlight">Register</span> 
-			</div>
-			<input type="text" class="user_pop_up_option_input" placeholder="Username">
-			<input type="password" class="user_pop_up_option_input" placeholder="Password">
-			<div class="user_pop_up_options_forgot_password">forgottten password?</div>
-		</div> -->		
-
-	</section>
-
-	<secton class="homepage_body_wrap pages">
 		
-		<div class="homepage_extra_text_box_first">
-			<div class="with-icon-arrow-for-extra-text-box"></div>
-			<div class="homepage_extra_text_box_title">Who We Are</div>
-			<div class="homepage_extra_text_box_text">
-				Were a student run, student focused and student friendly team, thats dedicated to making it 
-				as easy as possible for you to sell your book.
-			</div>
+		<div class="header_image_wrap">
+			<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/jhonc.png'; ?>" class="header_image">
 		</div>
-
-		<div class="homepage_extra_text_box">
-			<div class="homepage_extra_text_box_title">How It Works</div>
-			<div class="homepage_extra_text_box_text">
-				We have <strong>2 easy ways</strong> for you to sell your books, Freepost or our innovotive Recyclabus.
-				<strong>and here is how they both work.</strong>
-			</div>
-		</div>	
-
-		<div class="homepage_how_it_works_boxes_wrap">
-
-			<div class="homepage_how_it_works_box_wrap">
-				<div class="homepage_how_it_works_box">
-					<div class="with-icon-homepage-how-it-works-box-number-one"></div>
-					<div class="homepage_how_it_works_box_text_wrap">
-						<div class="homepage_how_it_works_box_title">Find Your Books</div>
-						<div class="homepage_how_it_works_text">find your books and add them to the sell basket</div>
-					</div>
-					<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/type.png'; ?>" class="homepage_how_it_works_box_first_image">
-				</div>
-				<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
-				<div class="homepage_how_it_works_box_button">Where is My ISBN <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
-			</div>
-
-			<div class="homepage_how_it_works_box_wrap">
-				
-				<div class="homepage_how_it_works_box">
-				
-					<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>
-					
-					<div class="with-icon-homepage-how-it-works-box-number-two"></div>
-					
-					<div class="homepage_how_it_works_box_text_wrap">
-						<div class="homepage_how_it_works_box_title">Freepost<br/>Your Books</div>
-						<div class="homepage_how_it_works_text">we send you a freepost pack and<br/> you send us your books</div>
-					</div>
-				
-					<img  src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/letter.png'; ?>" class="homepage_how_it_works_box_second_image">
-				
-				</div>
-
-				<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
-				<div class="homepage_how_it_works_box_button">Freepost Options <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
-			</div>
-
-			<div class="homepage_how_it_works_box_wrap_last">
-				<div class="homepage_how_it_works_box">
-					<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>
-					<div class="with-icon-homepage-how-it-works-box-number-three"></div>
-					<div class="homepage_how_it_works_box_text_wrap">
-						<div class="homepage_how_it_works_box_title"><br/>Get Paid</div>
-						<div class="homepage_how_it_works_text">we send you out a cheque the same day we recieve your books</div>
-					</div>
-					<img  src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/check.png'; ?>" class="homepage_how_it_works_box_third_image">
-				</div>
-				<div class="homepage_how_it_works_box_button">How Am I Being Paid <span class="with-icon-down-arrow-for-how-it-works-button"></span></div>
-			</div>
-
-		</div>
-
-		<div class="with-icon-or-sticker-recyclabus"></div>
-		<div class="homepage_recyclabus_box_wrap">
-			<div class="homepage_recyclabus_box_title">
-				Recycla<span class="homepage_recyclabus_box_title_color">Bus</span>
-			</div>
-			<div class="homepage_recyclabus_box_text_wrap">
-				<div class="homepage_recyclabus_box_point">
-					<div class="with-icon-recyclabus-point-leaf"></div>
-					<div class="homepage_recyclabus_box_point_text">Our bus is touring Universities all over the country, come along and get paid instantly</div>
-				</div>
-				<div class="homepage_recyclabus_box_point">
-					<div class="with-icon-recyclabus-point-leaf"></div>
-					<div class="homepage_recyclabus_box_point_text">It gives you an <strong>extra 20%</strong> on your sell quote</div>
-				</div>
-				<div class="homepage_recyclabus_box_point">
-					<div class="with-icon-recyclabus-point-leaf"></div>
-					<div class="homepage_recyclabus_box_point_text">No need to fill in any details <strong>just turn up on the day</strong></div>
-				</div>
-			</div>
-			<div class="homepage_recyclabus_box_button_wrap">
-				<div class="homepage_recyclabus_box_button_text">Find Out More</div>
-				<div class="with-icon-recyclabus-find-out-more-arrow"></div>
-			</div>
-			<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recyclabus.png'; ?>"class="homepage_recyclabus_box_image">
-		</div>
-
-	</secton>
-
-	<secton class="recyclabus pages">
-		<div class="recyclabus_half_left">
-			<div class="recyclabus_title">Recycla <span class="recyclabus_title_highlight">Bus</span></div>
-			<div class="recyclabus_title_description">The idea of Recyclabus is to make it as simple as possible for you to sell your textbooks.</div>
-			<div class="recyclabus_description_box">
-				<div class="recyclabus_description_box_title">What is recyclabus?</div>
-				<div class="recyclabus_description_box_paragraph">Eeach Recyclabus will be manned by one of our book buyers, ready with a barcode scanner to scan your books and pay your instantly.</div>
-				<div class="recyclabus_description_box_paragraph">The bus will be coming to your university towords the end of your exams, we'll be accepting over 1 million titles, so please visit this page nearer the time so you dont miss the bus and don't miss getting some money for the books you no longer need.</div>
-				<div class="recyclabus_description_box_white_paragraph">On the day of the event we'll also have lots of exciting giveaways, so stay tuned to whats going on and what were giving away.</div>
-			</div>
-		</div>
-		<div class="recyclabus_half">
-			<div class="recyclabus_half_dates_wrap">
-				<div class="recyclabus_dates_wrap">
-					<div class="recyclabus_dates_level_one">
-						<div class="recyclabus_dates_level_one_text_wrap">
-							<div class="recyclabus_dates_title_one">Dates</div>
-							<div class="recyclabus_dates_title_two">Released On</div>
-						</div>
-						<div class="recyclabus_dates_icon"><img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/calendar.png'; ?>"></div>
-					</div>
-					<div class="recyclabus_dates_level_two">
-						<div class="recyclabus_dates_title_three">1<span class="recyclabus_dates_title_three_superscript">st.</span></div>
-						<div class="recyclabus_dates_title_four">April</div>
-					</div>
-				</div>
-				<div class="recyclabus_dates_highlight">If you give us your email and uni well send you a reminder when were coming your way</div>
-				<div class="recyclabus_dates_input_wrap">
-					<input type="text" class="recyclabus_dates_first_input" placeholder="Email">
-					<input type="text" class="recyclabus_dates_seach_input" placeholder="University">
-					<div class="recyclabus_dates_input_text"><strong class="with-icon-lock-for-strong">Dont worry,</strong> well only use this information to remind you when you can sell your books</div>
-				</div>
-				<div class="recyclabus_dates_button_wrap">
-					<div class="recyclabus_dates_inner_wrap">
-						<div class="recyclabus_dates_first_button">Notify me about recyclabus</div>
-						<div class="recyclabus_dates_second_button">We've got your back :)</div>
-					</div>
-				</div>
-			</div>
-			<div class="with-icon-dates-down-arrow"></div>
-			<div class="recyclabus_dates_extra_box">
-				<div class="with-icon-dates-clock"></div>
-				<div class="recyclabus_dates_extra_text_wrap">
-					<div class="recyclabus_dates_extra_text_title">No Time To Lose?</div>
-					<div class="recyclabus_dates_extra_text">
-						Check out how to sell by freepost and sell to us now
-						<div class="recyclabus_dates_extra_text_icon"><span class="with-icon-recyclabus-dates-extra-text"></span></div>					
-					</div>
-				</div>
-			</div>
-		</div>
-		
 	</section>
 	
+	<!-- Bar  -->
+	<section class="bar_outer_wrap"></section>
+	
+	<!-- Homepage -->
+	<section class="homepage_body_wrap pages" style="display: none;">
+
+		<div class="homepage_body_inner_wrap">
+
+			<div class="homepage_how_it_works_option_title_wrap">
+				<div class="homepage_how_it_works_option_title_scrible">1st option</div>
+				<div class="homepage_how_it_works_option_title">
+					<span class="homepage_how_it_works_option_title_part_one">Free</span>
+					<span class="homepage_how_it_works_option_title_part_two">post</span>
+				</div>
+			</div>
+
+			<div class="homepage_how_it_works_boxes_numbers_wrap">
+				<div class="with-icon-homepage-how-it-works-box-number-one"></div>
+				 <div class="with-icon-homepage-how-it-works-box-number-two"></div>	
+				<div class="with-icon-homepage-how-it-works-box-number-three"></div>
+			</div>
+
+			<div class="homepage_how_it_works_boxes_wrap">
+				<div class="homepage_how_it_works_box_wrap_first">
+					<div class="homepage_how_it_works_box homepage_how_it_works_box_first">						
+						<div class="homepage_how_it_works_box_text_wrap">
+							<div class="homepage_how_it_works_box_title">Find Your Books</div>
+							<div class="homepage_how_it_works_text">find your books and add them to your sell basket</div>
+						</div>
+						<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/type.png'; ?>" class="homepage_how_it_works_box_first_image">
+					</div>
+					<div class="homepage_arrows_warp">
+						<div class="with-icon-homepage-how-it-works-box-left-blue-arrow"></div>
+						<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>						
+						<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
+					</div>
+				</div>				
+
+				<div class="homepage_how_it_works_box_wrap_second">				
+					<div class="homepage_how_it_works_box_second">											
+						<div class="homepage_how_it_works_box_text_wrap">
+							<div class="homepage_how_it_works_box_title">Freepost<br/>Your Books</div>
+							<div class="homepage_how_it_works_text">we send you a freepost pack and you send us your books</div>
+						</div>					
+						<img  src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/letter.png'; ?>" class="homepage_how_it_works_box_second_image">					
+					</div>
+					<div class="homepage_arrows_warp">
+						<div class="with-icon-homepage-how-it-works-box-left-blue-arrow"></div>
+						<div class="with-icon-homepage-how-it-works-box-right-arrow"></div>						
+						<div class="with-icon-homepage-how-it-works-box-left-arrow"></div>
+					</div>
+				</div>
+
+				<div class="homepage_how_it_works_box_wrap_last">
+					<div class="homepage_how_it_works_box homepage_how_it_works_box_last">												
+						<div class="homepage_how_it_works_box_text_wrap">
+							<div class="homepage_how_it_works_box_title"><br/>Get Paid</div>
+							<div class="homepage_how_it_works_text">we send you a cheque the same day we receive your books</div>
+						</div>
+						<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/check.png'; ?>" class="homepage_how_it_works_box_third_image">
+					</div>
+				</div>
+			</div>
+
+			<div class="homepage_how_it_works_boxes_buttons_wrap">
+				
+				<div class="homepage_how_it_works_box_first_button_wrap">
+					<div id="where_is_my_isbn_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="homepage_how_it_works_box_button">
+						Where is My ISBN 
+						<span id="where_is_my_isbn_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="with-icon-down-arrow-for-how-it-works-button"></span>
+					</div>
+					<div id="where_is_my_isbn_toggle" class="homepage_how_it_works_box_button_expanded">
+						<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/where_is_my_isbn.png'; ?>" alt="how it works" class="homepage_how_it_works_box_button_expanded_image">
+						<div class="homepage_how_it_works_box_button_expanded_text">
+							Just look at the back of your book and find the 13 or 9 digit number bellow the barcode.
+						</div>
+					</div>
+				</div>
+				
+				<div class="homepage_how_it_works_box_second_button_wrap">
+					<div id="freepost_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="homepage_how_it_works_box_button">
+						Freepost Options 
+						<span id="freepost_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="with-icon-down-arrow-for-how-it-works-button"></span>
+					</div>
+					<div id="freepost_toggle" class="homepage_how_it_works_box_button_expanded">
+						<div class="homepage_how_it_works_box_button_expanded_text">
+							We'll send you a postage pack, inside you'll get an envelope with which you can post your books for free
+						</div>
+						<div class="homepage_how_it_works_box_button_expanded_text_highlight">or</div>
+						<div class="homepage_how_it_works_box_button_expanded_text">
+							If you have your own package you can print off our own packaging label from this website
+						</div>
+						<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/freepost_options.png'; ?>" alt="how it works" class="homepage_how_it_works_box_button_expanded_image">
+					</div>
+				</div>
+				
+				<div class="homepage_how_it_works_box_third_button_wrap">
+					<div  id="paid_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="homepage_how_it_works_last_box_button">
+						How Am I Being Paid 
+						<span id="paid_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="with-icon-down-arrow-for-how-it-works-button"></span>						
+					</div>
+					<div id="paid_toggle" class="homepage_how_it_works_box_button_expanded">
+						<div class="homepage_how_it_works_box_button_expanded_text">
+							Dont worry about filling in your bank details, we'll send you a cheque the same day we recieve your books.
+						</div> 
+					</div>
+				</div>
+			</div>
+
+			<div class="with-icon-or-sticker-recyclabus"></div>
+			<div class="homepage_recyclabus_box_wrap">
+				<div class="homepage_recyclabus_box_title_scrible">2nd option</div>
+				<div class="homepage_recyclabus_box_title">
+					Recycla<span class="homepage_recyclabus_box_title_color">Bus</span>
+				</div>
+				<div class="homepage_recyclabus_box_text_wrap">
+					<div class="homepage_recyclabus_box_point">
+						<div class="with-icon-recyclabus-point-leaf"></div>
+						<div class="homepage_recyclabus_box_point_text">Our bus is touring Universities all over the country, come along and get paid instantly</div>
+					</div>
+					<div class="homepage_recyclabus_box_point">
+						<div class="with-icon-recyclabus-point-leaf"></div>
+						<div class="homepage_recyclabus_box_point_text">It gives you an <strong>extra 20%</strong> on your sell quote</div>
+					</div>
+					<div class="homepage_recyclabus_box_point">
+						<div class="with-icon-recyclabus-point-leaf"></div>
+						<div class="homepage_recyclabus_box_point_text">No need to fill in any details <strong>just turn up on the day</strong></div>
+					</div>
+				</div>
+				<div class="homepage_recyclabus_box_button_wrap">
+					<div data-function-instructions="{'page' : 'recyclabus' }" data-function-to-call="front.prototype.change_page" class="homepage_recyclabus_box_button_text">Find Out More</div>
+					<div class="with-icon-recyclabus-find-out-more-arrow"></div>
+				</div>
+				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recyclabus.png'; ?>"class="homepage_recyclabus_box_image">
+			</div>
+
+			<div class="homepage_alies_bar">
+				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/iod.png'; ?>" alt="" class="homepage_ally_bar_image">
+				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/fsc.png'; ?>" alt="" class="homepage_ally_bar_image">
+				<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recycle.png'; ?>" alt="" class="homepage_ally_bar_image">
+			</div>
+		</div>			
+	</section>
+	
+	<!-- Recyclabus -->
+	<section class="recyclabus pages"></section>
+
 	<!-- User registration -->
-	<!-- <section class="input_box_body_wrap">  -->
-		
-		<!-- Legend -->
-		<!-- <div class="legend_wrap">
-			<div class="legend_mark_green">mandatory fields*</div>
-			<div class="legend_mark_x_symbol">
-				<span class="with-icon-x-for-legend"></span>
-				This is not a valid email adress
-			</div>
-		</div> -->
-		
-		<!-- Field Box one -->
-		<!-- <div class="field_box_wrap">
-			
-			<div class="field_box_title_wrap">
-				<div class="with-icon-leaf-one"></div>
-				<div class="field_box_title">Name & Adress Details.*</div>
-			</div>
+	<section class="input_box_body_wrap account pages">
+		<div class="account_wrap"></div>
+	</section>
+	
+	<!-- Selling -->
+	<section class="body pages"></section>
 
-			<div class="field_box_input_wrap">
-				<div class="field_box_input_title">First Name and Last Name</div>
-				<input type="text" class="field_box_input" placeholder="First Name">
-				<input type="text" class="field_box_input" placeholder="Second Name">
-			</div>
+	<section class="checkout pages">
+		<!-- <div class="checkout_wrap">
+			<div class="confirmation_overview">
+				<div class="basket_overview_outer_wrap">
 
-			<div class="field_box_input_wrap">
-				<div class="field_box_input_title">Where shall we send your freepost pack</div>
-				<input type="text" class="field_box_input_small" placeholder="Post Code">
-				<div class="field_box_input_small_button">
-					Find Address
-					<span class="with-icon-field-box-house"></span>
-				</div>
-				<div class="field_box_input_extra_text">
-					<span class="field_box_input_extra_text_highlight">or</span> enter address manually</div>
-			</div>
-		</div> -->
-		
-		<!-- Input box 2 -->
-		<!-- <div class="field_box_wrap_left">
-			
-			<div class="field_box_title_wrap">
-				<div class="with-icon-leaf-two"></div>
-				<div class="field_box_title">Login Details.*</div>
-			</div>
-
-			<div class="field_box_input_wrap">
-				<div class="field_box_input_title">Email address</div>
-				<input type="text" class="field_box_input" placeholder="Email address">
-				<span class="with-icon-not-valid-field"></span>
-				<input type="text" class="field_box_input" placeholder="Confrim email address">
-			</div>
-
-			<div class="field_box_input_wrap">
-				<div class="field_box_input_title">Password</div>
-				<input type="text" class="field_box_input" placeholder="Password">
-				<span class="with-icon-not-valid-field"></span>
-				<input type="text" class="field_box_input" placeholder="Confirm Password">
-			</div>
-		</div> -->
-		
-		<!-- Input box 3 -->
-		<!-- <div class="field_box_wrap_full">
-
-			<div class="field_box_title_wrap">
-				<div class="with-icon-leaf-three"></div>
-				<div class="field_box_title">
-					Lets get better aquainted
-					<span class="field_box_title_highlight">
-						(this is to help us make the service smoother by anticipating books coming and goind)
-					</span>
-				</div>
-			</div>
-
-			<div class="field_box_input_half_wrap">
-				<div class="field_box_input_title">Question?</div>
-				<input type="text" class="field_box_input" placeholder="Question">
-			</div>
-
-			<div class="field_box_input_half_wrap">
-				<div class="field_box_input_title">Question?</div>
-				<input type="text" class="field_box_input" placeholder="Question">
-			</div>
-		</div> -->
-		
-		<!-- Disclaimer & Continue-->
-		<!-- <div class="input_box_disclaimer">
-			<div class="input_box_disclaimer_box"><span class="with-icon-input-box-disclaimer-tick"></span></div>
-			<div class="input_box_disclaimer_text_wrap">
-				<div class="input_box_disclaimer_text">If you don't want to recieve emails with exclusive offers and competitions from Recyclabook and our firends then untick this</div>
-				<div class="input_box_disclaimer_small">by pressing continue you aggre to</div>
-				<div class="input_box_disclaimer_highlight">terms & conditions</div>
-			</div>
-			<div class="input_box_button">Continue <span class="with-icon-input-box-continue"></span></div>
-		</div> -->
-
-	<!-- </section> -->
-
-	<section class="body pages">
-		
-		<!-- Price checker -->
-		<!-- <div class="price_selection">
-			
-			<div class="price_selection_quote">Quote</div>
-			
-			<div class="price_selection_selection">
-				<span class="price_selection_box">
-					<span class="with-icon-selection-tick"></span>
-				</span>
-				<span class="price_selection_text">Freepost</span>
-			</div>
-
-			<div class="price_selection_selection">
-				<span class="price_selection_box"></span>
-				<span class="price_selection_text">Recyclabus</span>
-			</div>
-		</div> -->	
-
-		<!-- Books description title -->
-		<!-- <div class="search_books_description_title">		
-
-			<span class="with-icon-description-title-thumbs-up"></span>
-			<span class="search_books_description_title_text">Our price promise guaranteed</span>
-
-			<div class="sell_and_buy_basket">
-				<div id="buy_basket" class="basket_stats"><span class="sell_basket_text">Sell : </span><span class="sell_basket_number">0</span></div>
-			</div>
-		</div> -->
-
-		<!-- <div class="store_basket_pop_up">
-			<div class="with-icon-store-basket-pop-up-arrow"></div>
-			
-			<div class="store_basket_pop_up_content">				
-				<div class="store_basket_pop_up_content_items_wrap">
+					<div class="basket_overview_wrap">
+						<div class="basket_overview_title">Basket Overview</div>
+						<div class="basket_overview_items">
+							<div class="basket_overview_item">
+								<img class="basket_overview_item_thumbnail" src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg">
+								<div class="basket_overview_item_text_wrap">
+									<div class="basket_overview_item_text_title">Jaggarnath</div>
+									<div class="basket_overview_item_text_author">by Kelsey McDolth</div>
+									<div class="basket_overview_item_isbn"><span class="basket_overview_item_isbn_highlight">isbn</span> 923495943</div>
+								</div>
+								<div class="basket_overview_item_price_wrap">
+									<div class="basket_overview_item_price_text">Sell for</div>
+									<div class="basket_overview_item_price">£ 12.20</div>
+								</div>
+							</div>
+								<div class="with-icon-x-for-overview-item"></div>
+							<div class="basket_overview_item">
+								<img class="basket_overview_item_thumbnail" src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg">
+								<div class="basket_overview_item_text_wrap">
+									<div class="basket_overview_item_text_title">Jaggarnath</div>
+									<div class="basket_overview_item_text_author">by Kelsey McDolth</div>
+									<div class="basket_overview_item_isbn"><span class="basket_overview_item_isbn_highlight">isbn</span> 923495943</div>
+								</div>
+								<div class="basket_overview_item_price_wrap">
+									<div class="basket_overview_item_price_text">Sell for</div>
+									<div class="basket_overview_item_price">£ 12.20</div>
+								</div>
+							</div>
+						</div>
+						<div class="basket_overview_bar">
+							<div class="basket_overview_bar_block"></div>
+						</div>
+					</div>
 					
-					<div class="store_basket_pop_up_content_item">
-						<div class="store_basket_pop_up_content_item_thumbnail"><img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" alt=""></div>
-						<div class="store_basket_pop_up_content_item_title">Jaggarnath</div>
-						<div class="store_basket_pop_up_content_item_author">by Kemery Mcgee</div>
-						<div class="store_basket_pop_up_content_item_isbn_wrap">
-							<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>
-							<div class="store_basket_pop_up_content_item_isbn">0293239219</div>
-						</div>
-						<div class="store_basket_pop_up_content_item_sell_price_wrap">
-							<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>
-							<div class="store_basket_pop_up_content_item_sell_price">£12.00</div>
-						</div>
-						<div class="with-icon-x-for-store-basket-pop-up-content-item"></div>
+					<div class="basket_overview_edit_button">Edit Basket</div>
+					<div class="basket_overview_total_wrap">
+						<div class="basket_overview_total">£12.20</div>
+						<div class="basket_overview_total_text">Total Sale:</div>
 					</div>
-
-					<div class="store_basket_pop_up_content_item">
-						<div class="store_basket_pop_up_content_item_thumbnail"><img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" alt=""></div>
-						<div class="store_basket_pop_up_content_item_title">Jaggarnath</div>
-						<div class="store_basket_pop_up_content_item_author">by Kemery Mcgee</div>
-						<div class="store_basket_pop_up_content_item_isbn_wrap">
-							<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>
-							<div class="store_basket_pop_up_content_item_isbn">0293239219</div>
-						</div>
-						<div class="store_basket_pop_up_content_item_sell_price_wrap">
-							<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>
-							<div class="store_basket_pop_up_content_item_sell_price">£12.00</div>
-						</div>
-						<div class="with-icon-x-for-store-basket-pop-up-content-item"></div>
-					</div>
-
+					
 				</div>
-
-				<div class="store_basket_pop_up_content_total_wrap">
-					<div class="store_basket_pop_up_content_total_text">Total:</div>
-					<div class="store_basket_pop_up_content_total_number">£12.00</div>
+				
+				<div class="address_overview_wrap_outer">
+					<div class="address_overview_wrap">
+						<div class="address_overview_title">Address Confirmation</div>
+						<div class="address_overview_inputs">
+							<input class="address_overview_input" 		readonly value="">
+							<input class="address_overview_input" 		readonly value="Country">
+							<input class="address_overview_input" 		readonly value="Region">
+							<input class="address_overview_input_small" readonly value="Post Code">
+						</div>
+					</div>
+					<div class="address_overview_edit">Edit Address</div>
 				</div>
 			</div>
 
-			<div class="store_basket_pop_up_button_wrap">
-				<div class="store_basket_pop_up_button_second">Convert To Recyclabus Quote</div>
-				<div class="store_basket_pop_up_button_first">Check And Continue</div>
-			</div>
-
-			<div class="store_basket_pop_up_text">Currently showing freepost prices</div>
-
-		</div> -->
-		
-		
-		
-		<!-- A result book -->
-		<!-- <div class="result_book_search_wrapper_left">
-			<div class="result_book_search_added">
-				
-				<span class="with-icon-info-for-book"></span>
-				
-				<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="result_book_thumbnail_image">
-				
-				<article class="result_book_search_text">
-					<strong class="result_book_title">Jaggarenath</strong>
-					<div class="result_book_author">by Karla Talb..</div>
-					<div class="result_book_price_wrap">
-						<span class="result_book_price_text">Sell for -</span>
-						<storng class="result_book_price">£5.30</storng>
-					</div>
-				</article>
-				
-				<div class="result_book_add_button">
-					<span class="with-icon-added-to-sell-basket-tick">
-						Added To Basket
-					</span>
+			<div class="how_would_you_like_wrap">
+				<div class="how_would_you_like_title">How would you like to send your books?</div>
+				<div class="how_would_you_like_titles_wrap">
+					<div class="how_would_you_like_tab_title_active ">We Send you a freepost pack</div>
+					<div class="how_would_you_like_tab_title active_tab_right">Print your own freepost pack</div>
 				</div>
-
-			</div>
-			
-			<div class="result_book_extra_options_buttons">
-
-				<span class="result_book_added_book_sell_button">
-					<span class="with-icon-sell-now-arrow"></span>
-					Sell now?
-				</span>
-
-				<span class="result_book_added_book_add_again_button">
-					<span class="with-icon-add-again"></span>
-					Add again+
-				</span>
-
-			</div>
-		</div> -->
-		
-		<!-- Middle wrapper -->
-		<!-- <div class="result_book_search_wrapper">
-			<div class="result_book_search">
-
-				<span class="with-icon-info-for-book"></span>
-
-				<img src="http://www.tangentbooks.co.uk/product_images/a/short_story_vol2__99344.jpg" class="result_book_thumbnail_image">
-
-				<article class="result_book_search_text">
-					<strong class="result_book_title">Bristol Short S...</strong>
-					<div class="result_book_author">by Guy Mcgee</div>
-					<div class="result_book_price_wrap">
-						<span class="result_book_price_text">Sell for -</span>
-						<storng class="result_book_price">£7.80</storng>
+				<div class="how_would_you_like_tab_wrap">
+					<div class="how_would_you_like_we_send_active_tab">
+						<img class="we_send_freepost_tab_image" src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/freepost_send.png">
+						<div class="we_send_freepost_tab_text_wrap">
+							<ul class="we_send_freepost_tab_text">
+								<li class="we_send_freepost_tab_paragraph">Youll get instructions to guide you through a Pre-paid Envelope for your books.</li>
+								<li class="we_send_freepost_tab_paragraph">Just pop them in the <strong>pre-paid</strong>, <strong>pre-addressed</strong> bag and send them to us for quick payment.</li>
+								<li class="we_send_freepost_tab_paragraph">Well send you a cheque on the day we recieve your books.</li>
+							</ul>
+							<div class="we_send_freepost_tab_tick_button">
+								<div class="with-icon-we-checkout-tick"></div>
+								<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>
+							</div>
+						</div>
 					</div>
-				</article>
 
-				<div class="result_book_add_button_wrap">
-					<div class="result_book_add_button">
-						<span class="result_book_add_button_text">
-							Add To Sell Basket
-						</span>
-					</div>
-					<div class="result_book_add_button_static">
-						<span class="with-icon-added-to-sell-basket-tick">
-							Added To Basket
-						</span>
+					<div class="how_would_you_like_we_send_tab">
+						<img class="we_send_freepost_tab_image" src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/print.png">
+						<div class="we_send_freepost_tab_text_wrap">
+							<ul class="we_send_freepost_tab_text">
+								<li class="we_send_freepost_tab_paragraph">Youll get instructions to guide you through a Pre-paid Envelope for your books.</li>
+								<li class="we_send_freepost_tab_paragraph">Just pop them in the <strong>pre-paid</strong>, <strong>pre-addressed</strong> bag and send them to us for quick payment.</li>
+								<li class="we_send_freepost_tab_paragraph">Well send you a cheque on the day we recieve your books.</li>
+							</ul>
+							<div class="we_send_freepost_tab_tick_button">
+								<div class="with-icon-we-checkout-tick-dark"></div>
+								<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>
+							</div>
+						</div>
 					</div>
 				</div>
-
+				<div class="checkout_button">Confirm & Complete</div>
 			</div>
-		</div> -->
-		
-		<!-- Last wrapper -->
-		<!-- <div class="result_book_search_wrapper_right">
-			<div class="result_book_search">
-
-				<span class="with-icon-info-for-book"></span>
-
-				<img src="http://1.bp.blogspot.com/_nXknRDZBs0E/STIHwAsUmwI/AAAAAAAACfA/hkB8fkCiGY0/s400/tongue.jpg" class="result_book_thumbnail_image">
-
-				<article class="result_book_search_text">
-					<strong class="result_book_title">The Mayors</strong>
-					<div class="result_book_author">by Nathaniel..</div>
-					<div class="result_book_price_wrap">
-						<span class="result_book_price_text">Sell for -</span>
-						<storng class="result_book_price">£5.80</storng>
-					</div>
-				</article>
-
-				<div class="result_book_add_button"><span class="result_book_add_button_text">Add To Sell Basket</span></div>
-			</div>
-		</div> -->
-
+		</div> -->		
 	</section>
 
-	<!-- <section class="recyclabook_footer">copyright recyclabook 2013, all rights reserved</section> -->
-
-	<!-- Pop out book -->
-		<!-- <div class="search_books_expanded_book_wrap">
-			<div class="search_books_expanded_book">
-
-				<span class="with-icon-info-close"></span>
-
-				<div class="search_books_expanded_image_wrap">
-					<img src="http://farm8.staticflickr.com/7278/8166869046_393e5eecf4.jpg" class="search_books_expanded_image">
-				</div>
-
-				<div class="search_books_expanded_text">
-					<div class="search_books_expanded_title">Jaggernath</div>
-					<span class="search_books_expanded_author">by Karla Tidberck</span>
-					<div class="search_books_expanded_isbn"><span class="search_books_expanded_isbn_highlight">isbn: </span>0239 2309 2310 20</div>
-
-					<div class="search_books_expanded_book_description">
-						<div class="search_books_expanded_book_description_title">Book Description</div>
-						<div class="search_books_expanded_book_description_text">
-							We walked thourgh the air those days, thousand and thousand of miles, upon the rocky cliff
-							where once upon we met, i smelled the dew still fresh within your hair, as i held you in my 
-							arms lost within the intoxicating aromas of your skin; "Oh, Lousie how i loved to hold you so"
-							i exclamed, and then from began to transform... <span class="search_books_expanded_book_description_see_more">See More</span>
-						</div>
-					</div>
-
-					<div class="search_books_expanded_book_price">
-						Well Buy For:
-						<span class="search_books_expanded_book_price_highlight">£5.30</span>
-					</div>
-
-					<div class="search_books_expanded_book_add_to_sell_basket_wrap">
-						<div data-function-instructions="{\'id\':\'{(id)}\'}" data-sfunction-to-call="front.prototype.add_to_basket" class="search_books_expanded_book_add_to_sell_basket_button">
-							<span class="search_books_expanded_book_add_to_sell_basket_button_text">Add To Basket</span>
-						</div>
-						<div class="search_books_expanded_book_add_to_sell_basket_add_again_button">
-							<span class="with-icon-added-to-sell-basket-expanded-tick">Add Again?</span>
-						</div>
-					</div>
-
-				</div>
-
+	<section class="thank_you pages">
+		
+		<!-- <div class="thank_you_banner_wrap">
+			<div class="thank_you_banner">
+				<div class="with-icon-thank-you-icon-leaf"></div>
+				<div class="thank_you_banner_title_one">Thank you </div>
+				<div class="thank_you_banner_title_two">For using recyclabook</div>
+				<div class="thank_you_banner_summary">You have sold your books. You will recieve a cheque for <span class="thank_you_banner_summary_underline">£xx.xx</span> as soon as we get your books</div>
+				<div class="thank_you_banner_paragraph">We'll be waiting for your books to arrive, in the meantime, <strong>you have an account now</strong>. You cna login and track the books and payments anytime, theres also an option to tell us when you've sent your books so we can get your payment out <strong>even quicker.</strong></div>
 			</div>
-		</div> -->
+			<div class="with-icon-thank-you-bottom-arrow"></div>
+		</div>
+		<div class="thank_you_circle_wrap">
+			<div class="with-icon-thank-you-corn"></div>
+			<div class="thank_you_circle_text_wrap">
+				<div class="thank_you_circle_text_header">Alas we shall</div>
+				<div class="thank_you_circle_text">to the edge of earth and back dear friend and trips and trips till death</div>
+			</div>
+		</div>
+		<div class="with-icon-your-account"></div> -->
+	</section>
+
+	<section class="placeholder"></section>
+
+
+	<section class="profile_hub">
+
+		<div class="profile_hub_inner_wrap">
+
+			<div class="profile_hub_header">
+				<div class="profile_hub_header_title">Profile Hub</div>
+				<div class="profile_hub_header_text">For withdrawals, tracking, order history and editing account details</div>
+			</div>
+			
+			<div class="profile_hub_account profile_hub_box">
+				<div class="profile_hub_account_bar">
+					<div class="with-icon-profile-hub-account"></div>
+					<div class="profile_hub_account_bar_greeting">Hi james</div>
+					<div class="profile_hub_account_bar_text">Account Details</div>
+				</div>
+				<div class="profile_hub_account_body">
+					<div class="profile_hub_account_main_details">
+						<input type="text" class="profile_hub_account_main_details_small_input">
+						<input type="text" class="profile_hub_account_main_details_small_input">
+						<input type="text" class="profile_hub_account_main_details_large_input">
+						<input type="text" class="profile_hub_account_main_details_small_input">
+						<input type="text" class="profile_hub_account_main_details_small_input">
+						<input type="text" class="profile_hub_account_main_details_small_input">
+					</div>
+
+					<div class="profile_hub_account_extra_details">
+						<div class="profile_hub_account_extra_details_title">Registered email</div>
+						<input type="text" class="profile_hub_account_extra_details_input">
+					</div>
+					<div class="profile_hub_account_extra_buttons">
+						<div class="profile_hub_account_extra_buttons_small_button">
+							<div class="with-icon-plus-for-profile-hub-account-extra-buttons"></div>
+						</div>
+						<div class="profile_hub_account_extra_buttons_large_button">Edit Account Details</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="profile_hub_box_right profile_hub_bank">
+				<div class="profile_hub_bank_bar">
+					<div class="with-icon-for-profile-hub-bank"></div>
+					<div class="profile_hub_bank_greeting">RecyclaBank</div>
+				</div>
+				<div class="profile_hub_bank_body">
+					<div class="profile_hub_bank_status">
+						<div class="profile_hub_bank_stats_first">
+							<div class="with-icon-pig-for-account-balance"></div>
+							<div class="profile_hub_bank_stats_label">Account balance</div>
+							<input type="text" class="profile_hub_bank_stats_input" value="£10.32" readonly>
+						</div>
+						<div class="profile_hub_bank_stats_middle">
+							<div class="with-icon-clock-for-account-withdrawal"></div>
+							<div class="profile_hub_bank_stats_label">Last withdrawal</div>
+							<input type="text" class="profile_hub_bank_stats_input" value="02/05/2013" readonly>
+						</div>
+						<div class="profile_hub_bank_stats_last">
+							<div class="with-icon-hand-for-account-donation"></div>
+							<div class="profile_hub_bank_stats_label">Total Donations</div>
+							<input type="text" class="profile_hub_bank_stats_input" value="0.01" readonly>
+						</div>
+						<div class="profile_hub_bank_buttons">
+							<div class="with-icon-for-bank-withdraw">Withdraw Funds</div>
+							<div class="with-icon-for-bank-donate">Donate to RAG</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="profile_hub_tracking profile_hub_box_right">
+				<div class="profile_hub_tracking_bar">
+					<div class="with-icon-for-profile-hub-tracking"></div>
+					<div class="profile_hub_tracking_bar_title">Book Tracking</div>
+					<div class="profile_hub_tracking_bar_sort">
+						<div class="profile_hub_tracking_bar_sort_drop">
+							<div class="with-icon-for-profile-hub-tracking-drop-arrow"></div>
+							<div class="profile_hub_tracking_bar_sort_drop_item">Order By</div>
+							<div class="profile_hub_tracking_bar_sort_drop_item">Show something</div>
+							<div class="profile_hub_tracking_bar_sort_drop_item">Something else</div>
+						</div>
+						<div class="with-icon-eye-for-profile-hub-tracking"></div>
+						<div class="with-icon-down-arrow-for-profile-hub-drop"></div>
+					</div>
+				</div>
+				<div class="profile_hub_tracking_body">
+					<div class="profile_hub_tracking_inner_body">
+						<div class="profile_hub_tracking_sroll">
+							<div class="profile_hub_tracking_sroll_handle"></div>
+						</div>
+						<div class="profile_hub_tracking_show_bar">
+							<div class="profile_hub_tracking_show_bar_text">Showing all</div>
+							<div class="with-icon-for-profile-hub-tracking-envelope"></div>
+						</div>
+						<div class="profile_hub_tracking_items">
+							<div class="profile_hub_tracking_title">Price promises</div>
+							<div class="profile_hub_tracking_item">
+								<div class="profile_hub_tracking_item_image"></div>
+								<div class="profile_hub_tracking_item_text">
+									<div class="profile_hub_tracking_item_text_title">Jaggernath</div>
+									<div class="profile_hub_tracking_item_text_author">by Author</div>
+									<div class="profile_hub_tracking_item_text_quote">£7.32</div>
+									<div class="profile_hub_tracking_item_text_isbn">09232145</div>
+								</div>
+								<div class="profile_hub_tracking_item_options">
+									<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/profilehub/freepost.png" alt="" class="profile_hub_tracking_item_options_image">
+									<div class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>
+								</div>
+							</div>
+							<div class="profile_hub_tracking_item">
+								
+								<div class="profile_hub_tracking_item_options_damaged_book_dropout">
+									<!-- <div class="with-icon-left-arrow-for-damaged-book-box"></div> -->
+									<div class="profile_hub_tracking_item_options_damaged_book_dropout_title">Comments</div>
+									<div class="profile_hub_tracking_item_options_damaged_book_dropout_text">It was a reall poopady pop, and a stuffed ystuff stuff stuff</div>
+								</div>
+
+								<div class="profile_hub_tracking_item_image"></div>
+								<div class="profile_hub_tracking_item_text">
+									<div class="profile_hub_tracking_item_text_title">Jaggernath</div>
+									<div class="profile_hub_tracking_item_text_author">by Author</div>
+									<div class="profile_hub_tracking_item_text_quote">£7.32</div>
+									<div class="profile_hub_tracking_item_text_isbn">09232145</div>
+								</div>
+
+								<div class="profile_hub_tracking_item_options">
+									<div class="profile_hub_tracking_item_options_damaged_book_info">
+										<div class="with-icon-for-damaged-book-info"></div>
+										<div class="profile_hub_tracking_item_options_damaged_book_info_text">Damaged book</div>
+									</div>								
+
+									<div class="with-icon-for-damaged-book-return">Return</div>
+									<div class="with-icon-for-damaged-book-donate">Donate</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="profile_hub_box profile_hub_history">
+				<div class="profile_hub_history_bar">
+					<div class="with-icon-for-profile-hub-history"></div>
+					<div class="profile_hub_history_bar_greeting">Order History</div>
+					<div class="profile_hub_history_notification"></div>
+				</div>
+				<div class="profile_hub_history_body">
+					<div class="profile_hub_history_inner_body">
+						<div class="profile_hub_history_scroll">
+							<div class="profile_hub_history_scroll_handle"></div>
+						</div>
+						<div class="profile_hub_history_items">
+							<div class="profile_hub_history_item">
+								<div class="profile_hub_history_item_image"></div>
+								<div class="profile_hub_history_item_text">
+									<div class="profile_hub_history_item_title">Jagganath</div>
+									<div class="profile_hub_history_item_author">by Author</div>
+									<div class="profile_hub_history_item_price">£7.32</div>
+									<div class="profile_hub_history_item_isbn">02930492</div>
+								</div>
+								<div class="profile_hub_history_item_icon">
+									<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/profilehub/sold.png" class="profile_hub_history_item_icon_image">
+									<div class="profile_hub_history_item_icon_date">02/05/2013</div>
+								</div>
+							</div>
+							<div class="profile_hub_history_item">
+								<div class="profile_hub_history_item_image"></div>
+								<div class="profile_hub_history_item_text">
+									<div class="profile_hub_history_item_title">Jagganath</div>
+									<div class="profile_hub_history_item_author">by Author</div>
+									<div class="profile_hub_history_item_price">£7.32</div>
+									<div class="profile_hub_history_item_isbn">02930492</div>
+								</div>
+								<div class="profile_hub_history_item_icon">
+									<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/profilehub/donated.png" class="profile_hub_history_item_icon_image">
+									<div class="profile_hub_history_item_icon_date">02/05/2013</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+	</section>
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+	<!-- <div class="homepage_blue_bar"></div> -->
+	<!-- <div class="homepage_bottom_navigation_wrap">
+
+		<div class="homepage_bottom_navigation">
+			<div class="homepage_bottom_navigation_button">Contact</div>
+			<div class="homepage_bottom_navigation_button">Got Questions?</div>
+			<div class="homepage_bottom_navigation_button">Media</div>
+			<div class="homepage_bottom_navigation_button">Jobs</div>
+			<div class="homepage_bottom_navigation_button">Word From Us</div>
+			<div class="homepage_bottom_navigation_button">T&C's</div>
+
+			<div class="homepage_bottom_navigation_copyright">
+				<div class="with-icon-bottom-navigation-copyright"></div>
+				<div class="homepage_bottom_navigation_copyright_text">Recyclabook &copy. 2013</div>
+			</div>
+		</div>
+	</div> -->
 
 <?php get_footer(); ?>
