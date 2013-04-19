@@ -1023,7 +1023,7 @@
 				}
 			};
 
-			world = world.manifest($('body'));
+			// world = world.manifest($('body'));
 		});
 	</script>
 

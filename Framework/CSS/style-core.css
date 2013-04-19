@@ -367,15 +367,170 @@ body {
   background: white;
   padding: 0 10px; }
 
+.profile_hub_left_boxes_wrap, .profile_hub_right_boxes_wrap {
+  width: 460px;
+  display: inline-block;
+  float: left;
+  margin-right: 10px; }
+
+.profile_hub_right_boxes_wrap {
+  margin-right: 0px; }
+
 .profile_hub_box, .profile_hub_box_right {
   width: 460px;
   display: inline-block;
-  margin-right: 10px;
   margin-bottom: 20px;
   float: left; }
 
-.profile_hub_box_right {
-  margin-right: 0px; }
+.profile_hub_popup_screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 11; }
+
+.profile_hub_withdraw {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  float: left;
+  width: 40%;
+  margin: 20px 28%;
+  background: white;
+  padding: 20px 2%;
+  -webkit-box-shadow: -1px 1px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: -1px 1px 5px 0px rgba(0, 0, 0, 0.2); }
+
+.profile_hub_withdraw_logo_wrap {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px; }
+
+.profile_hub_withdraw_logo {
+  height: 54px;
+  width: auto;
+  float: left;
+  display: inline; }
+
+.profile_hub_withdraw_description {
+  font-size: 14px;
+  line-height: 14px;
+  color: #d8d8d8;
+  float: right;
+  position: relative;
+  top: 40px; }
+
+.profile_hub_withdraw_body {
+  width: 100%;
+  float: left;
+  border-top: 1px solid whitesmoke;
+  padding: 10px 0 0; }
+
+.profile_hub_withdraw_line, .profile_hub_withdraw_mesure {
+  font-size: 13px;
+  line-height: 13px;
+  color: #555555;
+  float: left;
+  width: 100%;
+  margin-bottom: 10px; }
+
+.profile_hub_withdraw_line_description, .profile_hub_withdraw_mesure_text {
+  display: inline;
+  float: left;
+  width: 35%;
+  padding-right: 2%;
+  text-align: right; }
+
+.profile_hub_withdraw_line_text_wrap {
+  display: inline;
+  float: left;
+  width: 28%;
+  padding-right: 2%; }
+
+.profile_hub_withdraw_line_text, .profile_hub_withdraw_mesure_ammount {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font-size: 13px;
+  font-size: 13px;
+  width: 100%;
+  color: #555555;
+  display: inline;
+  float: left;
+  clear: both; }
+  .profile_hub_withdraw_line_text:hover, .profile_hub_withdraw_mesure_ammount:hover {
+    border: none; }
+  .profile_hub_withdraw_line_text:focus, .profile_hub_withdraw_mesure_ammount:focus {
+    border: none; }
+
+.profile_hub_withdraw_line_edit {
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  top: -3px;
+  background: whitesmoke;
+  display: inline;
+  float: left;
+  padding: 5px 18px 8px; }
+
+.profile_hub_withdraw_mesure {
+  margin-top: 10px;
+  margin-bottom: 20px; }
+
+.profile_hub_withdraw_mesure_ammount {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  clear: none;
+  width: 5%;
+  padding: 7px 2%;
+  background: whitesmoke;
+  text-align: center;
+  margin-top: -5px; }
+
+.profile_hub_withdraw_mesure_seperate {
+  display: inline;
+  float: left;
+  height: 29px;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: -5px; }
+  .profile_hub_withdraw_mesure_seperate:before {
+    position: relative;
+    top: 12px;
+    content: "."; }
+
+.profile_hub_withdraw_mesure_incrimentor {
+  display: inline;
+  float: left;
+  margin-top: -10px; }
+
+.profile_hub_withdraw_mesure_incrimentor_up, .profile_hub_withdraw_mesure_incrimentor_down {
+  background: #b4d65a;
+  color: white;
+  padding: 1px 5px;
+  margin-left: 10px;
+  margin-bottom: 4px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-border-radius: 15px 15px 0 0;
+  border-radius: 15px 15px 0 0; }
+  .profile_hub_withdraw_mesure_incrimentor_up:before, .profile_hub_withdraw_mesure_incrimentor_down:before {
+    content: "+"; }
+
+.profile_hub_withdraw_mesure_incrimentor_down {
+  margin-bottom: 0px;
+  -webkit-border-radius: 0 0 15px 15px;
+  border-radius: 0 0 15px 15px; }
+  .profile_hub_withdraw_mesure_incrimentor_down:before {
+    content: "-"; }
+
+.profile_hub_withdraw_cancel {
+  float: right !important;
+  margin-right: 2%; }
+
+.profile_hub_withdraw_and_send {
+  float: right !important; }
 
 .profile_hub_header {
   margin: 10px 0;
@@ -482,7 +637,7 @@ body {
   float: left;
   padding: 10px 0; }
 
-.profile_hub_account_extra_buttons_small_button, .profile_hub_account_extra_buttons_large_button {
+.profile_hub_account_extra_buttons_small_button, .profile_hub_withdraw_cancel, .profile_hub_withdraw_and_send, .profile_hub_account_extra_buttons_large_button {
   -webkit-border-radius: 30px;
   border-radius: 30px;
   background: #b4d65a;
