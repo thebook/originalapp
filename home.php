@@ -1,6 +1,55 @@
 <?php get_header(); ?>
 	
-	<div class="profile_hub_popup_screen">
+	<!-- <div class="profile_hub_popup_screen">
+
+		<div class="profile_hub_donate">
+			<div class="profile_hub_donate_logo_wrap">
+				<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/header_logo.png" class="profile_hub_donate_logo">
+				<div class="profile_hub_donate_description">Donation to your uni RAG</div>
+			</div>
+			<div class="profile_hub_donate_body">
+				<div class="profile_hub_donate_line">
+					<div class="profile_hub_donate_line_description">Cheque to be sent to :</div>
+					<div class="profile_hub_donate_line_text_wrap">
+						<select class="profile_hub_donate_line_select">
+							<option value="null">Donate to which uni?</option>
+						</select>
+					</div>
+				</div>
+				<div class="profile_hub_donate_mesure">
+					<div class="profile_hub_donate_mesure_text">Donate ammount :</div>
+					<input type="text" class="profile_hub_donate_mesure_ammount" value="" readonly>
+					<div class="profile_hub_donate_mesure_seperate"></div>
+					<input type="text" class="profile_hub_donate_mesure_ammount" value="" readonly>
+					<div class="profile_hub_donate_mesure_incrimentor">
+						<div class="profile_hub_donate_mesure_incrimentor_up"></div>
+						<div class="profile_hub_donate_mesure_incrimentor_down"></div>
+					</div>
+				</div>
+				<div class="profile_hub_donate_save">Donate now</div>
+				<div class="profile_hub_donate_cancel">Cancel</div>
+			</div>
+		</div>
+
+		<div class="profile_hub_reset">
+			<div class="profile_hub_reset_logo_wrap">
+				<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/header_logo.png" class="profile_hub_reset_logo">
+				<div class="profile_hub_reset_description">Password Change</div>
+			</div>
+			<div class="profile_hub_reset_body">
+				<div class="profile_hub_reset_input_wrap">
+					<div class="profile_hub_reset_notification">Passwords do not match</div>
+					<div class="profile_hub_reset_label">Current password</div>
+					<input type="password" class="profile_hub_reset_input">
+					<div class="profile_hub_reset_label">New password</div>
+					<input type="password" class="profile_hub_reset_input" placeholder="New password">
+					<input type="password" class="profile_hub_reset_input" placeholder="Confirm password">
+				</div>
+				<div class="profile_hub_reset_save">Save Changes</div>
+				<div class="profile_hub_reset_cancel">Cancel</div>
+			</div>
+		</div>
+
 		<div class="profile_hub_withdraw">
 			<div class="profile_hub_withdraw_logo_wrap">
 				<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/header_logo.png" class="profile_hub_withdraw_logo">
@@ -38,7 +87,8 @@
 				<div class="profile_hub_withdraw_cancel">Cancel</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
+	
 	<section class="profile_hub">
 		<div class="profile_hub_inner_wrap">
 
@@ -126,6 +176,12 @@
 					<div class="profile_hub_bank_bar">
 						<div class="with-icon-for-profile-hub-bank"></div>
 						<div class="profile_hub_bank_greeting">RecyclaBank</div>
+					</div>
+					<div class="profile_hub_bank_info">
+						<div class="profile_hub_bank_info_title">Recyclabank</div>
+						<div class="profile_hub_bank_info_text">All money made from your book sales is conviniently stored in your bank, ready to be withdrawn at any time. Simply select withdraw funds, confirm the name and address of the cheque and we\'ll send it your way. You can also donate a portion of all your balance to your university RAG campagin.</div>
+						<div class="with-icon-for-profile-hub-recyclabank-close"></div>
+						<div class="profile_hub_bank_info_reminder">Don\'t show this again</div>
 					</div>
 					<div class="profile_hub_bank_body">
 						<div class="profile_hub_bank_status">

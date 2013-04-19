@@ -96,12 +96,16 @@
 .profile_hub_withdraw_mesure_ammount {
 	@extend.profile_hub_withdraw_line_text;
 	@include border-radius(5px);
+	border: 1px solid $middle_monochrome;
 	clear:none;
 	width: 5%;
-	padding: 7px 2%;
+	padding: 5px 2%;
 	background: $light_monochrome;
 	text-align: center;
 	margin-top: -5px;
+	&:hover, &:focus { 
+		border: 1px solid $middle_monochrome;
+	}
 }
 
 .profile_hub_withdraw_mesure_seperate {

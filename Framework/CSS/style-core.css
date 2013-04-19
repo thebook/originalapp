@@ -389,7 +389,7 @@ body {
   background: rgba(0, 0, 0, 0.3);
   z-index: 11; }
 
-.profile_hub_withdraw {
+.profile_hub_withdraw, .profile_hub_reset, .profile_hub_donate {
   -webkit-border-radius: 3px;
   border-radius: 3px;
   float: left;
@@ -400,18 +400,18 @@ body {
   -webkit-box-shadow: -1px 1px 5px 0px rgba(0, 0, 0, 0.2);
   box-shadow: -1px 1px 5px 0px rgba(0, 0, 0, 0.2); }
 
-.profile_hub_withdraw_logo_wrap {
+.profile_hub_withdraw_logo_wrap, .profile_hub_reset_logo_wrap, .profile_hub_donate_logo_wrap {
   width: 100%;
   float: left;
   margin-bottom: 10px; }
 
-.profile_hub_withdraw_logo {
+.profile_hub_withdraw_logo, .profile_hub_reset_logo, .profile_hub_donate_logo {
   height: 54px;
   width: auto;
   float: left;
   display: inline; }
 
-.profile_hub_withdraw_description {
+.profile_hub_withdraw_description, .profile_hub_reset_description, .profile_hub_donate_description {
   font-size: 14px;
   line-height: 14px;
   color: #d8d8d8;
@@ -419,13 +419,13 @@ body {
   position: relative;
   top: 40px; }
 
-.profile_hub_withdraw_body {
+.profile_hub_withdraw_body, .profile_hub_reset_body, .profile_hub_donate_body {
   width: 100%;
   float: left;
   border-top: 1px solid whitesmoke;
   padding: 10px 0 0; }
 
-.profile_hub_withdraw_line, .profile_hub_withdraw_mesure {
+.profile_hub_withdraw_line, .profile_hub_withdraw_mesure, .profile_hub_donate_mesure, .profile_hub_donate_line {
   font-size: 13px;
   line-height: 13px;
   color: #555555;
@@ -433,20 +433,20 @@ body {
   width: 100%;
   margin-bottom: 10px; }
 
-.profile_hub_withdraw_line_description, .profile_hub_withdraw_mesure_text {
+.profile_hub_withdraw_line_description, .profile_hub_withdraw_mesure_text, .profile_hub_donate_mesure_text, .profile_hub_donate_line_description {
   display: inline;
   float: left;
   width: 35%;
   padding-right: 2%;
   text-align: right; }
 
-.profile_hub_withdraw_line_text_wrap {
+.profile_hub_withdraw_line_text_wrap, .profile_hub_donate_line_text_wrap {
   display: inline;
   float: left;
   width: 28%;
   padding-right: 2%; }
 
-.profile_hub_withdraw_line_text, .profile_hub_withdraw_mesure_ammount {
+.profile_hub_withdraw_line_text, .profile_hub_withdraw_mesure_ammount, .profile_hub_donate_mesure_ammount {
   background: transparent;
   border: none;
   outline: none;
@@ -458,9 +458,9 @@ body {
   display: inline;
   float: left;
   clear: both; }
-  .profile_hub_withdraw_line_text:hover, .profile_hub_withdraw_mesure_ammount:hover {
+  .profile_hub_withdraw_line_text:hover, .profile_hub_withdraw_mesure_ammount:hover, .profile_hub_donate_mesure_ammount:hover {
     border: none; }
-  .profile_hub_withdraw_line_text:focus, .profile_hub_withdraw_mesure_ammount:focus {
+  .profile_hub_withdraw_line_text:focus, .profile_hub_withdraw_mesure_ammount:focus, .profile_hub_donate_mesure_ammount:focus {
     border: none; }
 
 .profile_hub_withdraw_line_edit {
@@ -474,38 +474,41 @@ body {
   float: left;
   padding: 5px 18px 8px; }
 
-.profile_hub_withdraw_mesure {
+.profile_hub_withdraw_mesure, .profile_hub_donate_mesure {
   margin-top: 10px;
   margin-bottom: 20px; }
 
-.profile_hub_withdraw_mesure_ammount {
+.profile_hub_withdraw_mesure_ammount, .profile_hub_donate_mesure_ammount {
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  border: 1px solid #d8d8d8;
   clear: none;
   width: 5%;
-  padding: 7px 2%;
+  padding: 5px 2%;
   background: whitesmoke;
   text-align: center;
   margin-top: -5px; }
+  .profile_hub_withdraw_mesure_ammount:hover, .profile_hub_donate_mesure_ammount:hover, .profile_hub_withdraw_mesure_ammount:focus, .profile_hub_donate_mesure_ammount:focus {
+    border: 1px solid #d8d8d8; }
 
-.profile_hub_withdraw_mesure_seperate {
+.profile_hub_withdraw_mesure_seperate, .profile_hub_donate_mesure_seperate {
   display: inline;
   float: left;
   height: 29px;
   margin-left: 3px;
   margin-right: 3px;
   margin-top: -5px; }
-  .profile_hub_withdraw_mesure_seperate:before {
+  .profile_hub_withdraw_mesure_seperate:before, .profile_hub_donate_mesure_seperate:before {
     position: relative;
     top: 12px;
     content: "."; }
 
-.profile_hub_withdraw_mesure_incrimentor {
+.profile_hub_withdraw_mesure_incrimentor, .profile_hub_donate_mesure_incrimentor {
   display: inline;
   float: left;
   margin-top: -10px; }
 
-.profile_hub_withdraw_mesure_incrimentor_up, .profile_hub_withdraw_mesure_incrimentor_down {
+.profile_hub_withdraw_mesure_incrimentor_up, .profile_hub_withdraw_mesure_incrimentor_down, .profile_hub_donate_mesure_incrimentor_down, .profile_hub_donate_mesure_incrimentor_up {
   background: #b4d65a;
   color: white;
   padding: 1px 5px;
@@ -515,22 +518,67 @@ body {
   cursor: pointer;
   -webkit-border-radius: 15px 15px 0 0;
   border-radius: 15px 15px 0 0; }
-  .profile_hub_withdraw_mesure_incrimentor_up:before, .profile_hub_withdraw_mesure_incrimentor_down:before {
+  .profile_hub_withdraw_mesure_incrimentor_up:before, .profile_hub_withdraw_mesure_incrimentor_down:before, .profile_hub_donate_mesure_incrimentor_down:before, .profile_hub_donate_mesure_incrimentor_up:before {
     content: "+"; }
 
-.profile_hub_withdraw_mesure_incrimentor_down {
+.profile_hub_withdraw_mesure_incrimentor_down, .profile_hub_donate_mesure_incrimentor_down {
   margin-bottom: 0px;
   -webkit-border-radius: 0 0 15px 15px;
   border-radius: 0 0 15px 15px; }
-  .profile_hub_withdraw_mesure_incrimentor_down:before {
+  .profile_hub_withdraw_mesure_incrimentor_down:before, .profile_hub_donate_mesure_incrimentor_down:before {
     content: "-"; }
 
-.profile_hub_withdraw_cancel {
+.profile_hub_withdraw_cancel, .profile_hub_reset_cancel, .profile_hub_donate_cancel {
   float: right !important;
   margin-right: 2%; }
 
-.profile_hub_withdraw_and_send {
+.profile_hub_withdraw_and_send, .profile_hub_reset_save, .profile_hub_donate_save {
   float: right !important; }
+
+.profile_hub_reset {
+  width: 28%;
+  margin: 20px 34%; }
+
+.profile_hub_reset_notification {
+  background: #9ad9e0;
+  font-size: 13px;
+  line-height: 13px;
+  padding: 5px 0 7px;
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; }
+
+.profile_hub_reset_input_wrap {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px; }
+
+.profile_hub_reset_label {
+  font-size: 13px;
+  line-height: 13px;
+  width: 100%;
+  float: left;
+  color: #555555;
+  margin-bottom: 10px; }
+
+.profile_hub_donate_line {
+  margin-top: 10px;
+  margin-bottom: 15px; }
+
+.profile_hub_donate_line_select {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #d8d8d8;
+  clear: none;
+  padding: 5px 2%;
+  color: #555555;
+  background: whitesmoke;
+  text-align: center;
+  margin-top: -5px; }
+  .profile_hub_donate_line_select:hover, .profile_hub_donate_line_select:focus {
+    border: 1px solid #d8d8d8; }
 
 .profile_hub_header {
   margin: 10px 0;
@@ -595,7 +643,7 @@ body {
   width: 100%;
   float: left; }
 
-.profile_hub_account_main_details_small_input, .profile_hub_account_main_details_large_input, .profile_hub_account_extra_details_input {
+.profile_hub_account_main_details_small_input, .profile_hub_account_main_details_large_input, .profile_hub_reset_input, .profile_hub_account_extra_details_input {
   background: transparent;
   border: none;
   outline: none;
@@ -610,15 +658,15 @@ body {
   display: inline-block;
   float: left;
   color: #555555; }
-  .profile_hub_account_main_details_small_input:hover, .profile_hub_account_main_details_large_input:hover, .profile_hub_account_extra_details_input:hover {
+  .profile_hub_account_main_details_small_input:hover, .profile_hub_account_main_details_large_input:hover, .profile_hub_reset_input:hover, .profile_hub_account_extra_details_input:hover {
     border: none; }
-  .profile_hub_account_main_details_small_input:focus, .profile_hub_account_main_details_large_input:focus, .profile_hub_account_extra_details_input:focus {
+  .profile_hub_account_main_details_small_input:focus, .profile_hub_account_main_details_large_input:focus, .profile_hub_reset_input:focus, .profile_hub_account_extra_details_input:focus {
     border: none; }
-  .profile_hub_account_main_details_small_input:focus, .profile_hub_account_main_details_large_input:focus, .profile_hub_account_extra_details_input:focus {
+  .profile_hub_account_main_details_small_input:focus, .profile_hub_account_main_details_large_input:focus, .profile_hub_reset_input:focus, .profile_hub_account_extra_details_input:focus {
     -webkit-box-shadow: inset 1px 1px 3px 0px rgba(0, 0, 0, 0.1);
     box-shadow: inset 1px 1px 3px 0px rgba(0, 0, 0, 0.1); }
 
-.profile_hub_account_main_details_large_input, .profile_hub_account_extra_details_input {
+.profile_hub_account_main_details_large_input, .profile_hub_reset_input, .profile_hub_account_extra_details_input {
   width: 92%;
   padding: 10px 4%;
   clear: both; }
@@ -637,7 +685,7 @@ body {
   float: left;
   padding: 10px 0; }
 
-.profile_hub_account_extra_buttons_small_button, .profile_hub_withdraw_cancel, .profile_hub_withdraw_and_send, .profile_hub_account_extra_buttons_large_button {
+.profile_hub_account_extra_buttons_small_button, .profile_hub_withdraw_cancel, .profile_hub_reset_cancel, .profile_hub_donate_cancel, .profile_hub_withdraw_and_send, .profile_hub_reset_save, .profile_hub_donate_save, .profile_hub_account_extra_buttons_large_button {
   -webkit-border-radius: 30px;
   border-radius: 30px;
   background: #b4d65a;
@@ -781,6 +829,57 @@ body {
 
 .profile_hub_bank_greeting {
   text-align: center; }
+
+.profile_hub_bank_info {
+  position: absolute;
+  width: 420px;
+  padding: 10px;
+  border: 1px solid #d8d8d8;
+  margin: 50px 10px 0 10px;
+  float: left;
+  background: white;
+  -webkit-box-shadow: -1px 1px 2px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px 1px 2px 0px rgba(0, 0, 0, 0.1); }
+
+.profile_hub_bank_info_title {
+  font-size: 13px;
+  line-height: 13px;
+  color: #d8d8d8;
+  font-weight: bold;
+  margin-bottom: 5px; }
+
+.profile_hub_bank_info_text {
+  font-size: 13px;
+  line-height: 17px;
+  color: #555555; }
+
+.profile_hub_bank_info_reminder {
+  font-size: 13px;
+  line-height: 13px;
+  background: whitesmoke;
+  color: #555555;
+  cursor: pointer;
+  padding: 5px 15px 7px;
+  float: right;
+  display: inline;
+  -webkit-border-radius: 25px;
+  border-radius: 25px; }
+
+.with-icon-for-profile-hub-recyclabank-close {
+  border-radius: 20px;
+  height: 20px;
+  width: 20px;
+  background: #b4d65a;
+  color: white;
+  float: right;
+  margin-top: 1px;
+  margin-left: 5px;
+  cursor: pointer; }
+  .with-icon-for-profile-hub-recyclabank-close:before {
+    position: relative;
+    top: 1px;
+    left: 4px;
+    content: "X"; }
 
 .profile_hub_bank_body {
   background: whitesmoke; }
