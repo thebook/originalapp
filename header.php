@@ -736,10 +736,284 @@
 							}			
 						},
 						registration : {
+							self   : '<section class="input_box_body_wrap account pages"></section>',
+							branch : {
+								wrap   : {
+									self   : '<div class="account_wrap"></div>',
+									branch : {
+										legend : { 
+											self   : '<div class="legend_wrap"></div>',
+											last_branch : {
+												green    : '<div class="legend_mark_green">mandatory fields*</div>',
+												x_symbol : '<div class="legend_mark_x_wrap"></div>'
+											}
+										},
+										name_and_address : { 
+											self   : '<div class="field_box_wrap"></div>',
+											branch : {
+												title : {
+													self   : '<div class="field_box_title_wrap"></div>',
+													last_branch : {
+														icon  : '<div class="with-icon-leaf-one"></div>',
+														title : '<div class="field_box_title">Name & Adress Details.*</div>'
+													}
+												},
+												name : {
+													self   : '<div class="field_box_input_wrap"></div>',
+													last_branch : {
+														title           : '<div class="field_box_input_title">First Name and Last Name</div>',
+														name_input      : '<input type="text" class="field_box_input" placeholder="First Name">',
+														not_valid       : '<span class="with-icon-not-valid-field"></span>',
+														last_name_input : '<input type="text" class="field_box_input" placeholder="Second Name">',
+													}
+												},
+												address : {
+													self   : '<div class="field_box_input_wrap"></div>',
+													last_branch : {
+														title  			 : '<div class="field_box_input_title">Where shall we send your freepost pack</div>',
+														post_code_input  : '<input type="text" class="field_box_input" placeholder="Post Code">',
+														not_valid        : '<span class="with-icon-not-valid-field"></span>',
+														town_input       : '<input type="text" class="field_box_input" placeholder="Town/City">',
+														area_input       : '<input type="text" class="field_box_input" placeholder="Area">',
+														address_input    : '<input type="text" class="field_box_input" placeholder="Street And Address">'
+													}
+												}
+											}
+										},
+										password : {
+											self   : '<div class="field_box_wrap_left"></div>',
+											branch : {
+												title : {
+													self   : '<div class="field_box_title_wrap"></div>',
+													last_branch : {
+														icon  : '<div class="with-icon-leaf-two"></div>',
+														title : '<div class="field_box_title">Login Details.*</div>'
+													}
+												},
+												email : {
+													self   : '<div class="field_box_input_wrap"></div>',
+													last_branch : {
+														title 				: '<div class="field_box_input_title">Email address</div>',
+														emai_input          : '<input type="text" class="field_box_input" placeholder="Email address">',
+														not_valid           : '<span class="with-icon-not-valid-field"></span>',
+														confirm_email_input : '<input type="text" class="field_box_input" placeholder="Confrim email address">'
+													}						
+												},
+												password : {
+													self   : '<div class="field_box_input_wrap"></div>',
+													last_branch : {
+														title          		   : '<div class="field_box_input_title">Password</div>',
+														password 		       : '<input type="password" class="field_box_input" placeholder="Password">',
+														not_valid      		   : '<span class="with-icon-not-valid-field"></span>',
+														password_input_confirm : '<input type="password" class="field_box_input" placeholder="Confirm Password">'
+													}
+												}
+											}
+										},
+										disclaimer : {
+											self   : '<div class="input_box_disclaimer"></div>',
+											branch : {
+												tick : {
+													self   : '<div class="input_box_disclaimer_box"></div>',
+													last_branch : {
+														tick : '<span class="with-icon-input-box-disclaimer-tick"></span>'
+													}
+												},
+												text_wrap : {
+													self   : '<div class="input_box_disclaimer_text_wrap"></div>',
+													last_branch : {
+														text_one : '<div class="input_box_disclaimer_text">If you don\'t want to recieve emails with exclusive offers and competitions from Recyclabook and our firends then untick this</div>',
+														text_two : '<div class="input_box_disclaimer_small">by pressing continue you aggre to</div>',
+														link     : '<div class="input_box_disclaimer_highlight">terms & conditions</div>'
+													}
+												},
+												continue_button : {
+													self : '<div data-function-to-call="front.prototype.register" class="input_box_button">Continue <span class="with-icon-input-box-continue"></span></div>'
+												}
+											}
+										}
+									}
+								}
+							}
 						},
 						confirm : {
+							self : '<section class="checkout pages"></section>',
+							branch : {
+								wrap : {
+									self   : '<div class="checkout_wrap"></div>',
+									branch : {
+										confirmation_overview : {
+											self   : '<div class="confirmation_overview"></div>',
+											branch : {
+												basket_overview : {
+													self   : '<div class="basket_overview_outer_wrap"></div>',
+													branch : {
+														basket : {
+															self   : '<div class="basket_overview_wrap"></div>',
+															branch : {
+																title : {
+																	self : '<div class="basket_overview_title">Basket Overview</div>'
+																},
+																items : {
+																	self : '<div class="basket_overview_items"></div>'
+																},
+																bar : {
+																	self   : '<div class="basket_overview_bar"></div>',
+																	last_branch : {
+																		block : '<div class="basket_overview_bar_block"></div>'
+																	}
+																}
+															}
+														},
+														edit : {
+															self : '<div class="basket_overview_edit_button">Edit Basket</div>'
+														},
+														total : {
+															self  : '<div class="basket_overview_total_wrap"></div>',
+															last_branch : {
+																total : '<div class="basket_overview_total"></div>',
+																text  : '<div class="basket_overview_total_text">Total Sale: </div>'
+															}
+														}
+													}
+												},
+												address_overview : {
+													self   : '<div class="address_overview_wrap_outer"></div>',
+													branch : { 
+														address : {
+															self   : '<div class="address_overview_wrap"></div>',
+															branch : {
+																title : {
+																	self : '<div class="address_overview_title">Address Confirmation</div>'
+																},
+																inputs : {
+																	self   : '<div class="address_overview_inputs"></div>',
+																	last_branch : {
+																		address  : '<input readonly class="address_overview_input" value="Address">',
+																		area     : '<input readonly class="address_overview_input" value="Area">',
+																		town     : '<input readonly class="address_overview_input" value="Town">',
+																		post_code: '<input readonly class="address_overview_input_small" value="Post Code">'
+																	}
+																}
+															}
+														},
+														edit : {
+															self : '<div class="address_overview_edit">Edit Address</div>'
+														}
+													}
+												}
+											}
+										},
+										choice_wrap : {
+											self   : '<div class="how_would_you_like_wrap"></div>',
+											branch : {
+												title : {
+													self : '<div class="how_would_you_like_title">How would you like to send your books?</div>'
+												},
+												titles_tab : {
+													self   : '<div class="how_would_you_like_titles_wrap"></div>',
+													last_branch : {
+														tab_one : '<div class="how_would_you_like_tab_title_active">We Send you a freepost pack</div>'
+														// tab_two : '<div class="how_would_you_like_tab_title">Print your own freepost pack</div>'
+													}
+												},
+												tabs : {
+													self   : '<div class="how_would_you_like_tab_wrap"></div>',
+													branch : {
+														tab_one : {
+															self   : '<div class="how_would_you_like_we_send_active_tab"></div>',
+															branch : {
+																image : {
+																	self : '<img class="we_send_freepost_tab_image" src="'+ frameworkuri +'/CSS/Includes/works/freepost_send.png">'
+																},
+																text : {
+																	self   : '<div class="we_send_freepost_tab_text_wrap"></div>',
+																	branch : {
+																		text : {
+																			self   : '<ul class="we_send_freepost_tab_text"></ul>',
+																			last_branch : {
+																				paragraph_one   : '<li class="we_send_freepost_tab_paragraph">Youll get instructions to guide you through a Pre-paid Envelope for your books.</li>',
+																				paragraph_two   : '<li class="we_send_freepost_tab_paragraph">Just pop them in the <strong>pre-paid</strong>, <strong>pre-addressed</strong> bag and send them to us for quick payment.</li>',
+																				paragraph_three : '<li class="we_send_freepost_tab_paragraph">Well send you a cheque on the day we recieve your books.</li>'
+																			}
+																		},
+																		check : {
+																			self   : '<div class="we_send_freepost_tab_tick_button"></div>',
+																			last_branch : {
+																				tick : '<div class="with-icon-we-checkout-tick"></div>',
+																				text : '<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>'
+																			}
+																		}
+																	}
+																}														
+															}													
+														}
+													}
+												},
+												button : {
+													self : '<a href="thank_you" class="checkout_button">Confirm & Complete</a>'
+												}
+											}
+										}
+									}
+								}
+							}	
 						},
 						thank_you : {
+							self   : '<section class="thank_you pages"></section>',
+							branch : {
+								banner : {
+									self   : '<div class="thank_you_banner_wrap"></div>',
+									branch : {					
+										inner_banner : {
+											self   : '<div class="thank_you_banner"></div>',
+											branch : {
+												leaf : { 
+													self : '<div class="with-icon-thank-you-icon-leaf"></div>'
+												},
+												title_one : {
+													self :'<div class="thank_you_banner_title_one">Thank you </div>'
+												},
+												title_two : {
+													self : '<div class="thank_you_banner_title_two">For using recyclabook</div>'
+												},
+												summary : {
+													self   : '<div class="thank_you_banner_summary"></div>',
+													last_branch : {
+														text_one : '<span>You have sold your books. You will recieve a cheque for </span>',
+														quote    : '<span class="thank_you_banner_summary_underline">£xx.xx</span>',
+														text_two : '<span> as soon as we get your books</span>'
+													}
+												},
+												paragraph : {
+													self : '<div class="thank_you_banner_paragraph">We\'ll be waiting for your books to arrive, in the meantime, <strong>you have an account now</strong>. You can login and track the books and payments anytime, theres also an option to tell us when you\'ve sent your books so we can get your payment out <strong>even quicker.</strong></div>'
+												}
+											}
+										},
+										bottom : {
+											self : '<div class="with-icon-thank-you-bottom-arrow"></div>'
+										}
+									}
+								},
+								circle : {
+									self   :'<div class="thank_you_circle_wrap"></div>',
+									branch : {
+										corn : {
+											self :'<div class="with-icon-thank-you-corn"></div>'
+										},
+										text : {
+											self   : '<div class="thank_you_circle_text_wrap"></div>',
+											last_branch : {
+												header : '<div class="thank_you_circle_text_header">Alas we shall</div>',
+												text   : '<div class="thank_you_circle_text">to the edge of earth and back dear friend and trips and trips till death</div>		'
+											}
+										}
+									}
+								},
+								icon : {
+									self : '<div class="with-icon-your-account"></div>'
+								}
+							}
 						},
 						hub : {
 						},
