@@ -89,7 +89,7 @@
 		</div>
 	</div> -->
 	
-	<section class="profile_hub">
+	<!-- <section class="profile_hub">
 		<div class="profile_hub_inner_wrap">
 
 			<div class="profile_hub_header">
@@ -279,7 +279,7 @@
 				</div>
 			</div>		
 		</div>
-	</section>
+	</section> -->
 
 
 

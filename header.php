@@ -1015,7 +1015,422 @@
 								}
 							}
 						},
+						hub_popup : {
+							self : '<div class="profile_hub_popup_screen" style="display: none;"></div>',
+							branch : { 
+								donate : {
+									self : '<div class="profile_hub_donate"></div>',
+									branch : {
+										head : {
+											self : '<div class="profile_hub_donate_logo_wrap"></div>',
+											last_branch : {
+												logo : '<img src="'+ frameworkuri +'/CSS/Includes/works/header_logo.png" class="profile_hub_donate_logo">',
+												text : '<div class="profile_hub_donate_description">Donation to your uni RAG</div>'
+											}
+										},
+										body : {
+											self : '<div class="profile_hub_donate_body"></div>',
+											branch : {
+												send_to : {
+													self :'<div class="profile_hub_donate_line"></div>' ,
+													branch : {
+														description : { 
+															self : '<div class="profile_hub_donate_line_description">Cheque to be sent to :</div>'
+														},
+														text : {
+															self :'<div class="profile_hub_donate_line_text_wrap"></div>' ,
+															branch : { 
+																select : {
+																	self : '<select class="profile_hub_donate_line_select"></select>',
+																	last_branch : {
+																		none : '<option value="null">Donate to which uni?</option>'
+																	}
+																}
+															}
+														}
+													}
+												},
+												measure : {
+													self : '<div class="profile_hub_donate_mesure"></div>',
+													branch : {
+														text : {
+															self : '<div class="profile_hub_donate_mesure_text">Donate ammount :</div>'
+														},
+														first_ammount : {
+															self : '<input type="text" class="profile_hub_donate_mesure_ammount" value="" readonly>'
+														},
+														seperator : {
+															self :'<div class="profile_hub_donate_mesure_seperate"></div>'
+														},
+														second_ammount : {
+															self : '<input type="text" class="profile_hub_donate_mesure_ammount" value="" readonly>'
+														},
+														incrementor : {
+															self : '<div class="profile_hub_donate_mesure_incrimentor"></div>',
+															last_branch : {
+																up   : '<div class="profile_hub_donate_mesure_incrimentor_up"></div>',
+																down : '<div class="profile_hub_donate_mesure_incrimentor_down"></div>'
+															}
+														}
+													}
+												},
+												donate : {
+													self :'<div class="profile_hub_donate_save">Donate now</div>'
+												},
+												cancel : {
+													self : '<div class="profile_hub_donate_cancel">Cancel</div>'
+												}
+											}
+										}
+									}
+								},
+								reset : {
+									self   : '<div class="profile_hub_reset"></div>',
+									branch : {
+										head : {
+											self : '<div class="profile_hub_reset_logo_wrap"></div>',
+											last_branch : {
+												logo : '<img src="'+ frameworkuri +'/CSS/Includes/works/header_logo.png" class="profile_hub_reset_logo">',
+												text : '<div class="profile_hub_reset_description">Password Change</div>'
+											}
+										},
+										body : {
+											self : '<div class="profile_hub_reset_body"></div>',
+											branch : {
+												inner : {
+													self : '<div class="profile_hub_reset_input_wrap"></div>',
+													last_branch : {
+														notification : '<div class="profile_hub_reset_notification">Passwords do not match</div>',
+														old_password_label : '<div class="profile_hub_reset_label">Current password</div>',
+														old_password : '<input type="password" class="profile_hub_reset_input">',
+														new_password_label : '<div class="profile_hub_reset_label">New password</div>',
+														new_password : '<input type="password" class="profile_hub_reset_input" placeholder="New password">',
+														confirm_new_password : '<input type="password" class="profile_hub_reset_input" placeholder="Confirm password">'
+													}
+												},
+												save : {
+													self :'<div class="profile_hub_reset_save">Save Changes</div>'
+												},
+												cancel : {
+													self :'<div class="profile_hub_reset_cancel">Cancel</div>'
+												}
+											}
+										}
+									}
+								},
+								withdraw : {
+									self : '<div class="profile_hub_withdraw"></div>',
+									branch : {
+										head : {
+											self : '<div class="profile_hub_withdraw_logo_wrap"></div>',
+											last_branch : {
+												logo : '<img src="'+ frameworkuri +'/CSS/Includes/works/header_logo.png" class="profile_hub_withdraw_logo">',
+												text : '<div class="profile_hub_withdraw_description">Withdraw Funds</div>'
+											}
+										},
+										body : {
+											self : '<div class="profile_hub_withdraw_body"></div>',
+											branch : {
+												cheque_name : {
+													self : '<div class="profile_hub_withdraw_line"></div>',
+													branch : {
+														description : {
+															self : '<div class="profile_hub_withdraw_line_description">Cheque to me made out to :</div>'
+														},
+														text : {
+															self : '<div class="profile_hub_withdraw_line_text_wrap"></div>',
+															last_branch : {
+																input : '<input type="text" class="profile_hub_withdraw_line_text" value="Mcjoe Poopy" readonly>				'
+															}
+														},
+														edit : {
+															self : '<div class="profile_hub_withdraw_line_edit">edit</div>'
+														}
+													}
+												},
+												send_to : {
+													self : '<div class="profile_hub_withdraw_line"></div>',
+													branch : {
+														description : {
+															self : '<div class="profile_hub_withdraw_line_description">Cheque to be sent to :</div>'
+														},
+														text : {
+															self : '<div class="profile_hub_withdraw_line_text_wrap"></div>',
+															last_branch : {
+																address : '<input type="text" class="profile_hub_withdraw_line_text" value="Something somewhere">',
+																town    : '<input type="text" class="profile_hub_withdraw_line_text" value="East something">',
+																area    : '<input type="text" class="profile_hub_withdraw_line_text" value="Areaus">',
+																post_code : '<input type="text" class="profile_hub_withdraw_line_text" value="CF2LK2">				'
+															}
+														},
+														edit : {
+															self : '<div class="profile_hub_withdraw_line_edit">edit</div>			'
+														}
+													}
+												},
+												measure : {
+													self : '<div class="profile_hub_withdraw_mesure"></div>',
+													branch : {
+														text : {
+															self : '<div class="profile_hub_withdraw_mesure_text">Withdraw ammount :</div>'
+														},
+														first_ammount : {
+															self : '<input type="text" class="profile_hub_withdraw_mesure_ammount" value="" readonly>'
+														},
+														seperator : {
+															self : '<div class="profile_hub_withdraw_mesure_seperate"></div>'
+														},
+														second_ammount : {
+															self : '<input type="text" class="profile_hub_withdraw_mesure_ammount" value="" readonly>'
+														},
+														incrementor : {
+															self : '<div class="profile_hub_withdraw_mesure_incrimentor"></div>',
+															last_branch : {
+																up   : '<div class="profile_hub_withdraw_mesure_incrimentor_up"></div>',
+																down : '<div class="profile_hub_withdraw_mesure_incrimentor_down"></div>'
+															}
+														}
+													}
+												},
+												withdraw : {
+													self : '<div class="profile_hub_withdraw_and_send">Withdraw & Send</div>'
+												},
+												cancel : {
+													self : '<div class="profile_hub_withdraw_cancel">Cancel</div>'
+												}
+											}
+										}
+									}
+								}
+							}
+						},
 						hub : {
+							self : '<section class="profile_hub"></section>',
+							branch : { 
+								wrap : {
+									self : '<div class="profile_hub_inner_wrap"></div>',
+									branch : {
+										header : { 
+											self : '<div class="profile_hub_header"></div>',
+											last_branch : {
+												title : '<div class="profile_hub_header_title">Profile Hub</div>',
+												text  : '<div class="profile_hub_header_text">For withdrawals, tracking, order history and editing account details</div>'
+											}
+										},
+										left_boxes : {
+											self : '<div class="profile_hub_left_boxes_wrap"></div>',
+											branch : {
+												account : {
+													self : '<div class="profile_hub_account profile_hub_box"></div>',
+													branch : {
+														bar : {
+															self : '<div class="profile_hub_account_bar"></div>',
+															last_branch : {
+																icon : '<div class="with-icon-profile-hub-account"></div>',
+																greeting : '<div class="profile_hub_account_bar_greeting">Hi james</div>',
+																text : '<div class="profile_hub_account_bar_text">Account Details</div>'
+															}
+														},
+														body : {
+															self : '<div class="profile_hub_account_body"></div>',
+															branch : {
+																main_details : {
+																	self : '<div class="profile_hub_account_main_details"></div>',
+																	last_branch : {
+																		first_name : '<input type="text" class="profile_hub_account_main_details_small_input">',
+																		second_name: '<input type="text" class="profile_hub_account_main_details_small_input">',
+																		address : '<input type="text" class="profile_hub_account_main_details_large_input">',
+																		town : '<input type="text" class="profile_hub_account_main_details_small_input">',
+																		area : '<input type="text" class="profile_hub_account_main_details_small_input">',
+																		post_code :'<input type="text" class="profile_hub_account_main_details_small_input">'
+																	}
+																},
+																extra_details : {
+																	self : '<div class="profile_hub_account_extra_details"></div>',
+																	last_branch : {
+																		email_label : '<div class="profile_hub_account_extra_details_title">Registered email</div>',
+																		email_input : '<input type="text" class="profile_hub_account_extra_details_input">'
+																	}
+																},
+																buttons : {
+																	self : '<div class="profile_hub_account_extra_buttons"></div>',
+																	last_branch : { 
+																		more_fields : '<div class="profile_hub_account_extra_buttons_small_button"><div class="with-icon-plus-for-profile-hub-account-extra-buttons"></div></div>',
+																		edit : '<div class="profile_hub_account_extra_buttons_large_button">Edit Account Details</div>'
+																	}
+																}
+															}
+														}
+													}
+												},
+												history : {
+													self : '<div class="profile_hub_history profile_hub_box"></div>',
+													branch : {
+														bar : {
+															self : '<div class="profile_hub_history_bar"></div>',
+															last_branch : {
+																icon : '<div class="with-icon-for-profile-hub-history"></div>',
+																greeting : '<div class="profile_hub_history_bar_greeting">Order History</div>',
+																notification : '<div class="profile_hub_history_notification"></div>'
+															}
+														},
+														body : {
+															self : '<div class="profile_hub_history_body"></div>',
+															branch : {
+																inner : {
+																	self : '<div class="profile_hub_history_inner_body"></div>',
+																	branch : {
+																		sroll : {
+																			self : '<div class="profile_hub_history_scroll"></div>',
+																			last_branch : {
+																				handle : '<div class="profile_hub_history_scroll_handle"></div>'
+																			}
+																		},
+																		items : {
+																			self :'<div class="profile_hub_history_items"></div>'
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}				
+										},
+										right_boxes : {
+											self : '<div class="profile_hub_right_boxes_wrap"></div>',
+											branch : {
+												bank : {
+													self : '<div class="profile_hub_bank profile_hub_box_right"></div>',
+													branch : {
+														bar : {
+															self : '<div class="profile_hub_bank_bar"></div>',
+															last_branch : {
+																icon : '<div class="with-icon-for-profile-hub-bank"></div>',
+																greeting : '<div class="profile_hub_bank_greeting">RecyclaBank</div>'
+															}
+														},
+														information_box : {
+															self : '<div class="profile_hub_bank_info"></div>',
+															last_branch : {
+																title : '<div class="profile_hub_bank_info_title">Recyclabank</div>',
+																text : '<div class="profile_hub_bank_info_text">All money made from your book sales is conviniently stored in your bank, ready to be withdrawn at any time. Simply select withdraw funds, confirm the name and address of the cheque and we\'ll send it your way. You can also donate a portion of all your balance to your university RAG campagin.</div>',
+																close : '<div class="with-icon-for-profile-hub-recyclabank-close"></div>',
+																reminder : '<div class="profile_hub_bank_info_reminder">Don\'t show this again</div>'
+															}
+														},
+														body : {
+															self : '<div class="profile_hub_bank_body"></div>',
+															branch : {
+																stats : {
+																	self : '<div class="profile_hub_bank_status"></div>',
+																	branch : {
+																		balance : {
+																			self : '<div class="profile_hub_bank_stats_first"></div>',
+																			last_branch : {
+																				icon : '<div class="with-icon-pig-for-account-balance"></div>',
+																				label : '<div class="profile_hub_bank_stats_label">Account balance</div>',
+																				input : '<input type="text" class="profile_hub_bank_stats_input" value="£10.32" readonly>'
+																			}
+																		},
+																		withdrawal : {
+																			self : '<div class="profile_hub_bank_stats_middle"></div>',
+																			last_branch : {
+																				icon : '<div class="with-icon-clock-for-account-withdrawal"></div>',
+																				label: '<div class="profile_hub_bank_stats_label">Last withdrawal</div>',
+																				input:'<input type="text" class="profile_hub_bank_stats_input" value="02/05/2013" readonly>'
+																			}
+																		},
+																		donation : {
+																			self : '<div class="profile_hub_bank_stats_last"></div>',
+																			last_branch : {
+																				icon : '<div class="with-icon-hand-for-account-donation"></div>',
+																				label: '<div class="profile_hub_bank_stats_label">Total Donations</div>',
+																				input: '<input type="text" class="profile_hub_bank_stats_input" value="0.01" readonly>'
+																			}
+																		},
+																		button : {
+																			self : '<div class="profile_hub_bank_buttons"></div>',
+																			last_branch : {
+																				withdraw : '<div class="with-icon-for-bank-withdraw">Withdraw Funds</div>',
+																				donate :'<div class="with-icon-for-bank-donate">Donate to RAG</div>'
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												},
+												tracking : {
+													self : '<div class="profile_hub_tracking profile_hub_box_right"></div>',
+													branch : {
+														bar : {
+															self : '<div class="profile_hub_tracking_bar"></div>',
+															branch : {
+																icon : {
+																	self : '<div class="with-icon-for-profile-hub-tracking"></div>'
+																},
+																title : {
+																	self : '<div class="profile_hub_tracking_bar_title">Book Tracking</div>'
+																},
+																sort : {
+																	self : '<div class="profile_hub_tracking_bar_sort"></div>',
+																	branch : {
+																		drop : {
+																			self : '<div class="profile_hub_tracking_bar_sort_drop"></div>',
+																			last_branch : {
+																				drop_arrow : '<div class="with-icon-for-profile-hub-tracking-drop-arrow"></div>',
+																				order_by   : '<div class="profile_hub_tracking_bar_sort_drop_item">Order By</div>'
+																			},
+																		}
+																	},
+																	eye_icon : {
+																		self : '<div class="with-icon-eye-for-profile-hub-tracking"></div>'
+																	},
+																	arrow : {
+																		self : '<div class="with-icon-down-arrow-for-profile-hub-drop"></div>'
+																	}
+																}
+															}
+														},
+														body : {
+															self : '<div class="profile_hub_tracking_body"></div>',
+															branch : {
+																wrap : {
+																	self : '<div class="profile_hub_tracking_inner_body"></div>',
+																	branch : {
+																		srcoll : {
+																			self : '<div class="profile_hub_tracking_sroll"></div>',
+																			last_branch : {
+																				handle : '<div class="profile_hub_tracking_sroll_handle"></div>'
+																			}
+																		},
+																		show_bar : {
+																			self : '<div class="profile_hub_tracking_show_bar"></div>',
+																			last_branch : {
+																				text : '<div class="profile_hub_tracking_show_bar_text">Showing all</div>',
+																				send_freepost : '<div class="with-icon-for-profile-hub-tracking-envelope"></div>'
+																			}
+																		},
+																		items : {
+																			self : '<div class="profile_hub_tracking_items"></div>',
+																			last_branch : {
+																				price_promises_label :'<div class="profile_hub_tracking_title">Price promises</div>' ,
+																				unaccepted_label : '<div class="profile_hub_tracking_title">Unaccepted</div>'
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
 						},
 						stock : {
 						}
@@ -1023,7 +1438,7 @@
 				}
 			};
 
-			// world = world.manifest($('body'));
+			world = world.manifest($('body'));
 		});
 	</script>
 

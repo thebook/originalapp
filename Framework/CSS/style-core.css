@@ -824,8 +824,10 @@ body {
   position: relative;
   top: -3px; }
 
-.with-icon-for-profile-hub-bank:before {
-  content: "?"; }
+.with-icon-for-profile-hub-bank {
+  cursor: pointer; }
+  .with-icon-for-profile-hub-bank:before {
+    content: "?"; }
 
 .profile_hub_bank_greeting {
   text-align: center; }

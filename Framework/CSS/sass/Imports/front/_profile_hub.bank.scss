@@ -6,6 +6,7 @@
 
 .with-icon-for-profile-hub-bank {
 	@extend .with-icon-profile-hub-account;
+	cursor: pointer;
 	&:before { 
 		content:"?";
 	}
