@@ -60,6 +60,28 @@
 			var book  = {};
 				book.results = {};
 
+			var state = {};
+				state.account = {
+					is_signed_in   : false,
+					price_promise  : [],
+					history        : {},
+					details 	   : {
+						id 		   : null,
+						credit 	   : 0,
+						first_name : null,
+						second_name: null,
+						address    : null,
+						town 	   : null,
+						area 	   : null,
+						post_code  : null,
+						email      : null,
+						year       : null,
+						university : null,
+						recieve_newsletter : true						
+					}
+				};
+
+
 			var router = new alpha.route({
 				on       : function () {},
 				clean_up : function () {},
@@ -732,6 +754,23 @@
 											self : '<span class="search_books_description_title_text">Our price promise guaranteed</span>'
 										},
 										basket_box : {
+											instructions : {
+												open : false,
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														if ( this.basket_box.instructions.open ) {
+															world.wrap.branch.sell.branch.popup.self.css({ display : "none" });
+															this.basket_box.instructions.open = false;
+														} 
+														else { 
+															world.wrap.branch.sell.branch.popup.self.css({ display : "block" });
+															this.basket_box.instructions.open = true;
+														}
+													}
+												}
+											},
 											self   : '<div class="sell_and_buy_basket"></div>',
 											branch : {
 												stats : { 
@@ -751,10 +790,20 @@
 										arrow : { 
 											self : '<div class="with-icon-store-basket-pop-up-arrow"></div>'
 										},
-										content : {
+										items : {
 											self   : '<div class="store_basket_pop_up_content"></div>',
 											branch : {
 												items : {
+													instructions : { 
+														observe : {
+															who : state.account,
+															property : "price_promise",
+															call : function (change) {
+																console.log(change);
+																console.log(state);
+															}
+														}
+													},
 													self : '<div class="store_basket_pop_up_content_items_wrap"></div>'
 												},
 												total : { 
@@ -833,7 +882,9 @@
 																									.css({ position : "relative" })
 																									.animate({ top : "-45px" }, 400 );
 
-																									console.log(this);
+																									var promise = state.account.price_promise;
+																										promise.push(this.instructions.book);
+																										state.account.price_promise = promise;
 																								}
 																							}
 																						},
@@ -911,19 +962,6 @@
 														( wraps.on_wrap === 2? wraps.on_wrap = 0 : wraps.on_wrap++ );
 													});	
 													world.wrap.branch.sell.branch.items.branch = manifest;
-
-													console.log(world.wrap.branch.sell.branch.items.branch);
-											}
-										},
-										on : {
-											the_event : "click",
-											is_asslep : false, 
-											call      : function (change) { 
-												var target = $(change.event.target);
-
-												if ( $(change.event.target).hasClass('result_book_add_button_text') ) {
-													// target.	
-												}
 											}
 										}
 									},
