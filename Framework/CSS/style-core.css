@@ -355,6 +355,7 @@ body {
     content: "-"; }
 
 .profile_hub {
+  display: none;
   width: 930px;
   margin: 0 auto;
   background: white;
@@ -2944,7 +2945,6 @@ body {
   text-transform: lowercase; }
 
 .input_box_body_wrap {
-  display: block;
   width: 930px;
   margin: 0 auto;
   background: #f6f6f6; }
@@ -3209,7 +3209,6 @@ body {
   color: #555555; }
 
 .checkout {
-  display: block;
   width: 930px;
   margin: 0 auto;
   background: #f6f6f6; }
@@ -3546,7 +3545,6 @@ body {
     background: #abd146; }
 
 .thank_you {
-  display: block;
   width: 930px;
   margin: 0 auto;
   background: #f6f6f6; }

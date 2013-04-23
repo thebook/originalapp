@@ -34,7 +34,9 @@
 		alpha.load_scripts_asynchronously_with_callback([
 			scripts+'/manifest/manifest.alpha.js',
 			scripts+'/manifest/observe.alpha.js',
-			scripts+'/manifest/route.alpha.js'
+			scripts+'/manifest/route.alpha.js',
+			scripts+'/library/amazon.alpha.js',
+			scripts+'/library/book.alpha.js'
 			// scripts+"/native.extend.js", 
 			// scripts+"/front.recyclabus.alpha.js", 
 			// scripts+"/front.search.alpha.js", 
@@ -55,9 +57,23 @@
 			// scripts+"/front.alpha.js"
 		],
 		function (error, result) { 
+			var book  = {};
+				book.results = {};
+
+			var router = new alpha.route({
+				on       : function () {},
+				clean_up : function () {},
+				sell   : {
+					on   : function () {
+						world.wrap.branch.sell.self.css({ display : "block" });
+					},
+					clean_up : function () {
+						world.wrap.branch.sell.self.css({ display : "none" });
+					}
+				}
+			});
 
 			var world = new alpha.thought;
-
 			world.thought = { 
 				wrap : {
 					self   : '<div class="wrap"></div>',
@@ -96,11 +112,42 @@
 															self   : '<div class="header_field_for_input"></div>',
 															branch : {
 																input : {
-																	self  : '<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">					',
+																	instructions : {
+																		search : function (value) {
+																			var amazon = new alpha.amazon({
+																				typed    : value,
+																				callback : function (books) { 
+																					if ( books !== undefined ) {
+																						book.results = books;
+																						router.change_url("sell");
+																					}
+																				}
+																			});
+																		},
+																		on : {
+																			the_event : "keypress",
+																			is_asslep : false,
+																			call      : function (change) {												
+																				if ( change.event.keyCode === 13 ) {
+																					this.input.instructions.search(change.self.val());
+																				}
+																			}
+																		}
+																	},
+																	self  : '<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">',
 																}
 															}
 														},
 														search_button : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function () {
+																		this.input_wrap.branch.input.instructions.search(this.input_wrap.branch.input.self.val());
+																	}
+																}
+															},
 															self : '<span class="with-icon-header-search"></span>'
 														}
 													}
@@ -318,7 +365,7 @@
 							}
 						},
 						home_wrap : {
-							self   : '<section class="homepage_body_wrap pages" style="display:block;"></section>',
+							self   : '<section class="homepage_body_wrap pages"></section>',
 							branch : { 
 								home : { 
 									self   :'<div class="homepage_body_inner_wrap"></div>',
@@ -550,7 +597,7 @@
 							}
 						},
 						recyclabus : {
-							self   : '<section class="recyclabus pages" style="display: block;"></section>',
+							self   : '<section class="recyclabus pages"></section>',
 							branch : {
 								left : {
 									self   : '<div class="recyclabus_half_left"></div>',
@@ -673,7 +720,7 @@
 							}
 						},
 						sell : {
-							self : '<section class="body pages" style="display:block"></section>',
+							self : '<section class="body"></section>',
 							branch : {
 								basket : {
 									self   : '<div class="search_books_description_title"></div>',
@@ -732,11 +779,121 @@
 											self : '<div cass="searched_book_results"></div>'
 										}
 									}
-								}	
+								},
+								items : {
+									instructions : {
+										observe : {
+											who      : book,
+											property : "results",
+											call     : function (change) {
+												// alpha.book.show_searched_books(
+												// 	this.results, 
+												// 	world.wrap.branch.sell.branch.items.self,
+												// );
+												
+												// alpha.parse_format({
+												// 	format : {
+												// 		what : "class",
+												// 		by   : "wrapper"
+												// 	},
+												// 	self : '<div class=""></div>',
+												// 	branch : {
+												// 		wrap : {
+												// 			self : '<div class="result_book_search"></div>',
+												// 			branch : {
+												// 				info : {
+												// 					self : '<span class="with-icon-info-for-book"></span>'
+												// 				},
+												// 				image : {
+												// 					format : {
+												// 						what : "src",
+												// 						by   : "image"
+												// 					},
+												// 					self : '<img src="" class="result_book_thumbnail_image">'
+												// 				},
+												// 				description : {
+												// 					self : '<article class="result_book_search_text"></article>',
+												// 					branch : {
+												// 						title : {
+												// 							format : {
+												// 								what : "text",
+												// 								by   : "title"
+												// 							},
+												// 							self : '<strong class="result_book_title"></strong>'
+												// 						},
+												// 						author : {
+												// 							format : {
+												// 								what : "text",
+												// 								by   : "author"
+												// 							},
+												// 							self : '<div class="result_book_author"></div>'
+												// 						},
+												// 						price_wrap : {
+												// 							self : '<div class="result_book_price_wrap"></div>',
+												// 							branch : {
+												// 								text : {
+												// 									self : '<span class="result_book_price_text">Sell for - </span>'
+												// 								}
+												// 								price : {
+												// 									format : {
+												// 										what : "text",
+												// 										by   : "price"
+												// 									},
+												// 									self : '<storng class="result_book_price"></storng>'
+												// 								}
+												// 							}
+												// 						}
+												// 					}
+												// 				},
+												// 				button : {
+												// 					self : '<div class="result_book_add_button_wrap"></div>',
+												// 					branch : {
+												// 						wrap : {
+												// 							self : '<div class="result_book_inner_wrap"></div>',
+												// 							branch : {
+												// 								add_button : {
+												// 									self : '<div class="result_book_add_button"></div>',
+												// 									last_branch : {
+												// 										text :'<span class="result_book_add_button_text">Add To Sell Basket</span>'
+												// 									}
+												// 								},
+												// 								added_button :{
+												// 									self : '<div class="result_book_add_button_static"></div>',
+												// 									last_branch : {
+												// 										text : '<span class="with-icon-added-to-sell-basket-tick">Added To Basket</span>'
+												// 									}
+												// 								}
+												// 							}
+												// 						}
+												// 					}
+												// 				}
+												// 			}
+												// 		}
+												// 	}
+												// }, { title : "Some title", author : "some author", 
+
+
+												// console.log(world.wrap.branch.sell.branch.items)
+											}
+										},
+										on : {
+											the_event : "click",
+											is_asslep : false, 
+											call      : function (change) { 
+												var target = $(change.event.target);
+
+												if ( $(change.event.target).hasClass('result_book_add_button_text') ) {
+													// target.	
+												}
+											}
+										}
+									},
+									self : '<div class="result_books"></div>',
+								}
 							}			
 						},
 						registration : {
-							self   : '<section class="input_box_body_wrap account pages"></section>',
+							self   : '<section class="pages input_box_body_wrap account "></section>',
 							branch : {
 								wrap   : {
 									self   : '<div class="account_wrap"></div>',
@@ -1438,8 +1595,15 @@
 				}
 			};
 
+			$('.result_book_add_button').on('click', function () { 
+				console.log("click");
+			});	
+
 			world = world.manifest($('body'));
-		});
+			router.begin();
+
+				
+		});									
 	</script>
 
 </head>

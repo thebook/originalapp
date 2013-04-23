@@ -51,7 +51,7 @@ var alpha = (function ( alpha, $ ) {
 
 		instructions.to.on(instructions.for_the_event, 
 		function (event) {
-			if ( !instructions.is_slumbering ) instructions.call_function.call(instructions.parent, { self : instructions.to, instructions : instructions.paramaters });
+			if ( !instructions.is_slumbering ) instructions.call_function.call(instructions.parent, { self : instructions.to, instructions : instructions.paramaters, "event" : event });
 		});		
 	};
 
