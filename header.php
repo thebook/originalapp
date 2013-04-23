@@ -36,6 +36,7 @@
 			scripts+'/manifest/observe.alpha.js',
 			scripts+'/manifest/route.alpha.js',
 			scripts+'/library/amazon.alpha.js',
+			scripts+'/library/sidebar.alpha.js',
 			scripts+'/library/book.alpha.js'
 			// scripts+"/native.extend.js", 
 			// scripts+"/front.recyclabus.alpha.js", 
@@ -58,22 +59,20 @@
 		],
 		function (error, result) { 
 			var book  = {};
-				book.results = {};
+				book.results = [];
+				book.basket  = [];
 
 			var state = {};
 				state.account = {
-					is_signed_in   : false,
+					singed_in      : false,
 					price_promise  : [],
-					history        : {},
+					history        : [],
 					details 	   : {
 						id 		   : null,
 						credit 	   : 0,
 						first_name : null,
 						second_name: null,
-						address    : null,
-						town 	   : null,
-						area 	   : null,
-						post_code  : null,
+						adresses   : [],
 						email      : null,
 						year       : null,
 						university : null,
@@ -83,14 +82,44 @@
 
 
 			var router = new alpha.route({
-				on       : function () {},
-				clean_up : function () {},
-				sell   : {
-					on   : function () {
+				on  : function () {
+					world.wrap.branch.home_wrap.self.css({ display : "block" });
+				},
+				off : function () {
+					world.wrap.branch.home_wrap.self.css({ display : "none" });
+				},
+				recyclabus : {
+					on : function () {
+						world.wrap.branch.recyclabus.self.css({ display : "block" });
+					},
+					off: function () { 
+						world.wrap.branch.recyclabus.self.css({ display : "none" });
+					}
+				},
+				sell: {
+					on : function () {
 						world.wrap.branch.sell.self.css({ display : "block" });
 					},
-					clean_up : function () {
+					off: function () {
 						world.wrap.branch.sell.self.css({ display : "none" });
+					}
+				},
+				confirm_sign_in : {
+					on : function () {
+						world.wrap.branch.navigation.branch.wrap.branch.welcome_popup.self.css({ display : "block" });
+						world.wrap.branch.navigation.branch.wrap.branch.arrow.self.css({ display : "block" });
+					},
+					off: function () {
+						world.wrap.branch.navigation.branch.wrap.branch.welcome_popup.self.css({ display : "none" });
+						world.wrap.branch.navigation.branch.wrap.branch.arrow.self.css({ display : "none" });
+					}	
+				},
+				confirm : {
+					on : function () {
+						world.wrap.branch.confirm.self.css({ display : "block" });
+					},
+					off: function () {
+						world.wrap.branch.confirm.self.css({ display : "none" });
 					}
 				}
 			});
@@ -775,9 +804,22 @@
 											branch : {
 												stats : { 
 													self   : '<div id="buy_basket" class="basket_stats"></div>',
-													last_branch : {
-														sell_text : '<span class="sell_basket_text">Sell : </span>',
-														quote : '<span class="sell_basket_number">0</span>'
+													branch : {
+														sell_text : {
+															self : '<span class="sell_basket_text">Sell : </span>'
+														},
+														quote : {
+															instructions : {
+																observe : {
+																	who      : book,
+																	property : "basket",
+																	call     : function (change) { 
+																		world.wrap.branch.sell.branch.basket.branch.basket_box.branch.stats.branch.quote.self.text(change.new.length);
+																	}
+																}
+															},
+															self : '<span class="sell_basket_number">0</span>'
+														}
 													}
 												}
 											}
@@ -796,29 +838,152 @@
 												items : {
 													instructions : { 
 														observe : {
-															who : state.account,
-															property : "price_promise",
+															who : book,
+															property : "basket",
 															call : function (change) {
-																console.log(change);
-																console.log(state);
+																var format, manifest, map, append_to;
+
+																	format = {
+																		self : '<div class="store_basket_pop_up_content_item"></div>',
+																		branch : {
+																			thumbnail : {
+																				self : '<div class="store_basket_pop_up_content_item_thumbnail"></div>',
+																				branch : {
+																					image : {
+																						self : '<img src="">'
+																					}
+																				}
+																			},
+																			title : {
+																				self : '<div class="store_basket_pop_up_content_item_title"></div>'
+																			},
+																			author : {
+																				self :'<div class="store_basket_pop_up_content_item_author"></div>' 
+																			},
+																			isbn : {
+																				self : '<div class="store_basket_pop_up_content_item_isbn_wrap"></div>',
+																				branch : {
+																					text : {
+																						self : '<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>'
+																					},
+																					isbn : {
+																						self : '<div class="store_basket_pop_up_content_item_isbn"></div>'
+																					}
+																				}
+																			},
+																			price : {
+																				self : '<div class="store_basket_pop_up_content_item_sell_price_wrap"></div>',
+																				branch : {
+																					text  : {
+																						self : '<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>'
+																					},
+																					price : {
+																						self : '<div class="store_basket_pop_up_content_item_sell_price"></div>'
+																					}
+																				}
+																			},
+																			remove : {
+																				instructions : {
+																					on : {
+																						the_event : "click",
+																						is_asslep : false,
+																						call      : function (change) { 
+																							var index = change.self.attr('id');
+																								basket= book.basket;
+																								basket.splice(index, 1);
+																								book.basket = basket;
+																						}
+																					}
+																				},
+																				self : '<div id="" class="with-icon-x-for-store-basket-pop-up-content-item"></div>'
+																			}
+																		}
+																	};
+																	map = [
+																		{
+																			path : "branch.thumbnail.branch.image.self.src",
+																			value: "image"
+																		},
+																		{
+																			path : "branch.title.self.text",
+																			value: "title"
+																		},
+																		{
+																			path : "branch.author.self.text",
+																			value: "author"
+																		},
+																		{
+																			path : "branch.isbn.branch.isbn.self.text",
+																			value: "isbn"
+																		},
+																		{
+																			path : "branch.price.branch.price.self.text",
+																			value: "price"
+																		},
+																		{
+																			path : "branch.remove.self.id",
+																			value: "id"
+																		}
+																	];
+
+																	append_to = world.wrap.branch.sell.branch.popup.branch.items.branch.items.self;
+
+																	append_to.empty();
+																	manifest = alpha.format(format, append_to, book.basket.length );
+
+																	$.each(book.basket, function (index, book) { 
+																		book.id = index;
+																		alpha.parse(map, manifest[index+1], book);
+																	});	
+																	world.wrap.branch.sell.branch.popup.branch.items.branch.items.branch = manifest;
 															}
 														}
 													},
 													self : '<div class="store_basket_pop_up_content_items_wrap"></div>'
 												},
 												total : { 
+													instructions : {
+														observe : {
+															who      : book,
+															property : "basket",
+															call     : function (change) { 
+																var quote = 0;
+																for (var index = 0; index < change.new.length; index++) {
+																	quote += change.new[index].price * 100;
+																};
+																quote /= 100;
+																world.wrap.branch.sell.branch.popup.branch.items.branch.total.branch.number.self.text("£ "+quote);
+															}
+														}
+													},
 													self   : '<div class="store_basket_pop_up_content_total_wrap"></div>',
-													last_branch : {
-														text   : '<div class="store_basket_pop_up_content_total_text">Total:</div>',
-														number : '<div class="store_basket_pop_up_content_total_number"></div>'
+													branch : {
+														text   : {
+															self : '<div class="store_basket_pop_up_content_total_text">Total:</div>'
+														},
+														number : {
+															self : '<div class="store_basket_pop_up_content_total_number">£ 0.00</div>'
+														}
 													}
 												}									
 											}
 										},
 										buttons : { 
 											self   : '<div class="store_basket_pop_up_button_wrap"></div>',
-											last_branch : {
-												checkout : '<a href="sign_in_or_sign_up" class="store_basket_pop_up_button_first">Check And Continue</a>'
+											branch : {
+												checkout : {
+													instructions : {
+														on : { 
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) { 
+																state.account.signed_in = true;
+																(state.account.signed_in)? router.change_url("confirm") : router.change_url("confirm_sign_in");
+															}
+														}
+													},
+													self : '<div class="store_basket_pop_up_button_first">Check And Continue</div>'
+												}
 											}
 										},
 										popup_text : {
@@ -882,9 +1047,9 @@
 																									.css({ position : "relative" })
 																									.animate({ top : "-45px" }, 400 );
 
-																									var promise = state.account.price_promise;
+																									var promise = book.basket;
 																										promise.push(this.instructions.book);
-																										state.account.price_promise = promise;
+																										book.basket = promise;
 																								}
 																							}
 																						},
@@ -952,7 +1117,7 @@
 														book.wrap   = wraps.classes[wraps.on_wrap];
 														book.title  = book.title.slice(0, 10) +'...';
 														book.author = book.author.slice(0, 18) +'...';
-														book.price  = "£"+ book.price / 100;
+														book.price  = book.price / 100;
 														book.id     = index+1;
 
 														alpha.parse(map, manifest[index+1], book);
@@ -1071,7 +1236,7 @@
 							}
 						},
 						confirm : {
-							self : '<section class="checkout pages"></section>',
+							self : '<section class="checkout"></section>',
 							branch : {
 								wrap : {
 									self   : '<div class="checkout_wrap"></div>',
@@ -1089,12 +1254,118 @@
 																	self : '<div class="basket_overview_title">Basket Overview</div>'
 																},
 																items : {
+																	instructions : {
+																		observe : {
+																			who      : book,
+																			property : "basket",
+																			call     : function (change) { 
+																				var format, manifest, map, append_to;
+																					format = { 
+																						self : '<div class="basket_overview_item"></div>',
+																						branch : {
+																							thumbnail : {
+																								self : '<img class="basket_overview_item_thumbnail" src="">'
+																							},
+																							text : {
+																								self : '<div class="basket_overview_item_text_wrap"></div>',
+																								branch : {
+																									title : {
+																										self : '<div class="basket_overview_item_text_title"></div>'
+																									},
+																									author : {
+																										self : '<div class="basket_overview_item_text_author"></div>'
+																									},
+																									isbn : {
+																										self :'<div class="basket_overview_item_isbn"></div>'
+																									}
+																								}
+																							},
+																							price : {
+																								self : '<div class="basket_overview_item_price_wrap"></div>',
+																								branch : {
+																									text : {
+																										self :'<div class="basket_overview_item_price_text">Sell for</div>'
+																									},
+																									quote : {
+																										self :'<div class="basket_overview_item_price"></div>'
+																									}
+																								}
+																							},
+																							close : {
+																								instructions : {
+																									on : {
+																										the_event : "click",
+																										is_asslep : false,
+																										call      : function (change) { 
+																											var index = change.self.attr('id');
+																												basket= book.basket;
+																												basket.splice(index, 1);
+																												book.basket = basket;
+																										}
+																									}
+																								},
+																								self : '<div id="" style="display:block;" class="with-icon-x-for-overview-item confirm_basket_remove"></div>'
+																							}
+																						}
+																					};
+
+																					map = [
+																						{
+																							path : "branch.thumbnail.self.src",
+																							value: "image"
+																						},
+																						{
+																							path : "branch.text.branch.title.self.text",
+																							value: "title"
+																						},
+																						{
+																							path : "branch.text.branch.author.self.text",
+																							value: "author"
+																						},
+																						{
+																							path : "branch.text.branch.isbn.self.text",
+																							value: "isbn"
+																						},
+																						{
+																							path : "branch.price.branch.quote.self.text",
+																							value: "price"
+																						},
+																						{
+																							path : "branch.close.self.id",
+																							value: "id"
+																						}
+																					];
+
+																				append_to = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.items.self;
+
+																				append_to.empty();
+																				manifest = alpha.format(format, append_to, book.basket.length );
+
+																				$.each(book.basket, function (index, book) { 
+																					book.id = index;
+																					alpha.parse(map, manifest[index+1], book);
+																				});
+
+																				alpha.sidebar({
+																					content : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.items.self,
+																					bar     : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.bar.self,
+																					handle  : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.bar.branch.block.self,
+																					increase: 5,
+																					content_height : 180
+																				});
+
+																				world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.items.branch = manifest;
+																			}
+																		}
+																	},
 																	self : '<div class="basket_overview_items"></div>'
 																},
 																bar : {
 																	self   : '<div class="basket_overview_bar"></div>',
-																	last_branch : {
-																		block : '<div class="basket_overview_bar_block"></div>'
+																	branch : {
+																		block : {
+																			self : '<div class="basket_overview_bar_block"></div>'
+																		}
 																	}
 																}
 															}
@@ -1104,9 +1375,27 @@
 														},
 														total : {
 															self  : '<div class="basket_overview_total_wrap"></div>',
-															last_branch : {
-																total : '<div class="basket_overview_total"></div>',
-																text  : '<div class="basket_overview_total_text">Total Sale: </div>'
+															branch : {
+																total : {
+																	instructions : {
+																		observe : {
+																			who      : book,
+																			property : "basket",
+																			call     : function (change) { 
+																				var quote = 0;
+																					for (var index = 0; index < change.new.length; index++) {
+																						quote += change.new[index].price * 100;
+																					};
+																					quote /= 100;
+																					world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.total.branch.total.self.text("£"+ quote);
+																			}
+																		}
+																	},
+																	self : '<div class="basket_overview_total"></div>'
+																},
+																text  : {
+																	self : '<div class="basket_overview_total_text">Total Sale: </div>'
+																}
 															}
 														}
 													}

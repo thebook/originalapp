@@ -2321,52 +2321,6 @@ body {
   width: 859px;
   margin: 0 auto; }
 
-.price_selection {
-  width: 7%;
-  position: absolute;
-  padding: 15px 1% 20px;
-  margin: 84px 0 0;
-  left: 7%;
-  background: white; }
-
-.price_selection_quote {
-  font-family: MotorOil, Tahoma;
-  text-transform: uppercase;
-  font-size: 12px;
-  text-align: center;
-  color: #555555; }
-
-.price_selection_selection {
-  clear: both;
-  width: 100%;
-  float: left;
-  margin-top: 10px; }
-
-.price_selection_box {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  display: inline-block;
-  float: left;
-  background: #555555;
-  cursor: pointer; }
-
-.price_selection_text {
-  font-size: 12px;
-  line-height: 12px;
-  display: inline-block;
-  float: left;
-  margin: 2px 0 0;
-  vertical-align: top;
-  color: #9f9f9f; }
-
-.with-icon-selection-tick:before {
-  content: "t";
-  position: relative;
-  left: 1px;
-  font-size: 14px;
-  color: white; }
-
 .search_books_description_title {
   width: 100%;
   font-size: 12px;
@@ -3374,15 +3328,17 @@ body {
     transition: all 500ms ease; }
 
 .basket_overview_bar {
-  width: 27px;
-  border: 1px solid #dadada;
+  width: 15px;
   display: inline-block;
   float: left;
-  height: 180px; }
+  height: 180px;
+  background: whitesmoke; }
 
 .basket_overview_bar_block {
-  background: #efefef;
-  height: 10px; }
+  background: #3f7986;
+  height: 20px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px; }
 
 .address_overview_wrap_outer {
   width: 50%;

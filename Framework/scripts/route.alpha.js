@@ -46,7 +46,7 @@ var alpha = ( function ( alpha, $ ) {
 			callback = this.parse_route();
 
 			if ( previous_callback.clean_up && previous_callback.clean_up.constructor === Function ) { 
-				previous_callback.clean_up.call(this);
+				previous_callback.off.call(this);
 			}
 
 			if ( callback.on ) { 

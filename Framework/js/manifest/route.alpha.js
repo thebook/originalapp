@@ -1,8 +1,10 @@
 var alpha = ( function ( alpha, $ ) { 
-
+	// make sure to add a way to turn off calling back the lean up for the
+	//  previous function or even a clean up for the funciton before that
 	alpha.route = function (route) { 
 
-		alpha.route.prototype.route = route;
+		alpha.route.prototype.route   = route;
+		alpha.route.prototype.history = [];
 	};
 
 	alpha.route.prototype.begin = function () { 
@@ -40,10 +42,16 @@ var alpha = ( function ( alpha, $ ) {
 
 	alpha.route.prototype.call_route_callback = function () { 
 
-		var callback = this.parse_route();
+		var previous_callback = this.history[this.history.length -1] || false;
+			callback = this.parse_route();
+
+			if ( previous_callback.off && previous_callback.off.constructor === Function ) { 
+				previous_callback.off.call(this);
+			}
 
 			if ( callback.on ) { 
 				callback.on.call(this);
+				this.history.push(callback);
 			}
 			else { 
 				throw new Error("there is no 'on' function in the router branch for this url");
