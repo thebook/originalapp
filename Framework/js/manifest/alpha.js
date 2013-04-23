@@ -153,6 +153,28 @@ var alpha = (function ( alpha, $ ) {
     		});
     };
 
+        
+	alpha.string_to_object = function (path, object) {
+
+		if ( path.constructor === String ) path = path.split('.');
+		if ( path.constructor === Array ) {
+			while ( path.length ) {
+		    	var path_branch = path.shift();
+		    	if ( path_branch in object ) { 
+		    		object = object[path_branch];
+		    	}
+		    	else { 
+		    		return;
+		    	}
+		    }
+		    return object;
+		}
+		else { 
+			throw new Error("the path is not an array or a string");
+		}
+	};
+
+
 	return alpha;
 
 })(alpha || {}, jQuery );

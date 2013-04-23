@@ -786,94 +786,133 @@
 											who      : book,
 											property : "results",
 											call     : function (change) {
-												// alpha.book.show_searched_books(
-												// 	this.results, 
-												// 	world.wrap.branch.sell.branch.items.self,
-												// );
-												
-												// alpha.parse_format({
-												// 	format : {
-												// 		what : "class",
-												// 		by   : "wrapper"
-												// 	},
-												// 	self : '<div class=""></div>',
-												// 	branch : {
-												// 		wrap : {
-												// 			self : '<div class="result_book_search"></div>',
-												// 			branch : {
-												// 				info : {
-												// 					self : '<span class="with-icon-info-for-book"></span>'
-												// 				},
-												// 				image : {
-												// 					format : {
-												// 						what : "src",
-												// 						by   : "image"
-												// 					},
-												// 					self : '<img src="" class="result_book_thumbnail_image">'
-												// 				},
-												// 				description : {
-												// 					self : '<article class="result_book_search_text"></article>',
-												// 					branch : {
-												// 						title : {
-												// 							format : {
-												// 								what : "text",
-												// 								by   : "title"
-												// 							},
-												// 							self : '<strong class="result_book_title"></strong>'
-												// 						},
-												// 						author : {
-												// 							format : {
-												// 								what : "text",
-												// 								by   : "author"
-												// 							},
-												// 							self : '<div class="result_book_author"></div>'
-												// 						},
-												// 						price_wrap : {
-												// 							self : '<div class="result_book_price_wrap"></div>',
-												// 							branch : {
-												// 								text : {
-												// 									self : '<span class="result_book_price_text">Sell for - </span>'
-												// 								}
-												// 								price : {
-												// 									format : {
-												// 										what : "text",
-												// 										by   : "price"
-												// 									},
-												// 									self : '<storng class="result_book_price"></storng>'
-												// 								}
-												// 							}
-												// 						}
-												// 					}
-												// 				},
-												// 				button : {
-												// 					self : '<div class="result_book_add_button_wrap"></div>',
-												// 					branch : {
-												// 						wrap : {
-												// 							self : '<div class="result_book_inner_wrap"></div>',
-												// 							branch : {
-												// 								add_button : {
-												// 									self : '<div class="result_book_add_button"></div>',
-												// 									last_branch : {
-												// 										text :'<span class="result_book_add_button_text">Add To Sell Basket</span>'
-												// 									}
-												// 								},
-												// 								added_button :{
-												// 									self : '<div class="result_book_add_button_static"></div>',
-												// 									last_branch : {
-												// 										text : '<span class="with-icon-added-to-sell-basket-tick">Added To Basket</span>'
-												// 									}
-												// 								}
-												// 							}
-												// 						}
-												// 					}
-												// 				}
-												// 			}
-												// 		}
-												// 	}
-												// }, { title : "Some title", author : "some author", 
+												var format, manifest, map, wraps, append_to;
+													format = {
+														self : '<div class=""></div>',
+														branch : {
+															wrap : {
+																self : '<div class="result_book_search"></div>',
+																branch : {
+																	info : {
+																		self : '<span class="with-icon-info-for-book"></span>'
+																	},
+																	image : {
+																		self : '<img src="" class="result_book_thumbnail_image">'
+																	},
+																	description : {
+																		self : '<article class="result_book_search_text"></article>',
+																		branch : {
+																			title : {
+																				self : '<strong class="result_book_title"></strong>'
+																			},
+																			author : {
+																				self : '<div class="result_book_author"></div>'
+																			},
+																			price_wrap : {
+																				self : '<div class="result_book_price_wrap"></div>',
+																				branch : {
+																					text : {
+																						self : '<span class="result_book_price_text">Sell for - </span>'
+																					},
+																					price : {
+																						self : '<storng class="result_book_price"></storng>'
+																					}}}}},
+																	button : {
+																		self : '<div class="result_book_add_button_wrap"></div>',
+																		branch : {
+																			wrap : {
+																				self : '<div class="result_book_inner_wrap"></div>',
+																				branch : {											
+																					add_button : {
+																						instructions : {
+																							on : {
+																								the_event         : "click",
+																								is_asslep         : false,
+																								call              : function (change) {
+																									change.self.closest('.result_book_inner_wrap')
+																									.css({ position : "relative" })
+																									.animate({ top : "-45px" }, 400 );
 
+																									console.log(this);
+																								}
+																							}
+																						},
+																						self : '<div class="result_book_add_button"></div>',
+																						last_branch : {
+																							text :'<span class="result_book_add_button_text">Add To Sell Basket</span>'
+																						}},
+																					added_button :{
+																						self : '<div class="result_book_add_button_static"></div>',
+																						last_branch : {
+																							text : '<span class="with-icon-added-to-sell-basket-tick">Added To Basket</span>'
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													};
+													wraps = {};
+													wraps.on_wrap = 0;
+													wraps.classes = [
+														"result_book_search_wrapper_left", 
+														"result_book_search_wrapper", 
+														"result_book_search_wrapper_right"
+													];
+													map = [
+														{
+															path : "branch.wrap.branch.button.branch.wrap.branch.add_button.self.id",
+															value: "id"
+														},
+														{
+															path : "self.class",
+															value: "wrap"
+														},
+														{
+															path : "self.class",
+															value: "wrap"
+														},
+														{ 
+															path : "branch.wrap.branch.image.self.src",
+															value: "image"
+														},
+														{
+															path : "branch.wrap.branch.description.branch.title.self.text",
+															value: "title"
+														},
+														{
+															path : "branch.wrap.branch.description.branch.author.self.text",
+															value: "author"
+														},
+														{
+															path : "branch.wrap.branch.description.branch.price_wrap.branch.price.self.text",
+															value: "price"
+														}
+													];
+													append_to = world.wrap.branch.sell.branch.items.self;
 
-												// console.log(world.wrap.branch.sell.branch.items)
+													append_to.empty();
+													manifest = alpha.format(format, append_to, book.results.length );
+													$.each(book.results, function (index, book) { 
+														
+														book.wrap   = wraps.classes[wraps.on_wrap];
+														book.title  = book.title.slice(0, 10) +'...';
+														book.author = book.author.slice(0, 18) +'...';
+														book.price  = "£"+ book.price / 100;
+														book.id     = index+1;
+
+														alpha.parse(map, manifest[index+1], book);
+														manifest[index+1].branch.wrap.branch.button.branch.wrap.branch.instructions = {
+															book : book
+														};
+														( wraps.on_wrap === 2? wraps.on_wrap = 0 : wraps.on_wrap++ );
+													});	
+													world.wrap.branch.sell.branch.items.branch = manifest;
+
+													console.log(world.wrap.branch.sell.branch.items.branch);
 											}
 										},
 										on : {
