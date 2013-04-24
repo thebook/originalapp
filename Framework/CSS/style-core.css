@@ -1,3 +1,4 @@
+@charset "CP850";
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -2941,6 +2942,15 @@ body {
   font-size: 30px;
   content: "X"; }
 
+.account_registered {
+  padding: 30px 10%;
+  width: 80%;
+  background: white;
+  margin: 10px 0;
+  text-align: center;
+  float: left;
+  color: #555555; }
+
 .field_box_wrap, .field_box_wrap_left, .field_box_wrap_full, .basket_overview_wrap, .address_overview_wrap {
   background: white;
   width: 45%;
@@ -3241,10 +3251,15 @@ body {
   font-size: 12px;
   margin-bottom: 20px;
   color: #555555; }
+  .basket_overview_item_text_author:before {
+    content: "by "; }
 
 .basket_overview_item_isbn {
   color: #555555;
   font-size: 12px; }
+  .basket_overview_item_isbn:before {
+    font-weight: bold;
+    content: "ISBN:"; }
 
 .basket_overview_item_isbn_highlight {
   text-transform: uppercase;
@@ -3265,18 +3280,20 @@ body {
 .basket_overview_item_price {
   clear: both;
   font-weight: bold; }
+  .basket_overview_item_price:before {
+    content: "£"; }
 
 .with-icon-x-for-overview-item {
+  position: absolute;
+  margin-top: -5px;
+  margin-left: 350px;
   display: none;
   float: right;
   font-size: 22px;
-  position: relative;
-  margin-top: -22px;
-  margin-right: 10px;
   color: #b4d65a;
   cursor: pointer; }
   .with-icon-x-for-overview-item:before {
-    content: "!"; }
+    content: "x"; }
 
 .basket_overview_total_wrap {
   display: inline;

@@ -59,4 +59,14 @@
 	}
 }
 
+.account_registered { 
+	padding: 30px 10%;
+	width: 80%;
+	background: $light;
+	margin: 10px 0;
+	text-align: center;
+	float: left;
+	color: $black_gray;
+}
+
 @import "user.fields"; 

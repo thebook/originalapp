@@ -50,12 +50,19 @@
 	font-size: 12px; 
 	margin-bottom: 20px; 
 	color: $black_gray; 
+	&:before { 
+		content:"by ";
+	}
 }
 
 .basket_overview_item_isbn {
 
 	color: $black_gray; 
 	font-size: 12px; 
+	&:before { 
+		font-weight: bold;
+		content:"ISBN:";
+	}
 }
 
 .basket_overview_item_isbn_highlight {
@@ -84,23 +91,22 @@
 	
 	clear: both;
 	font-weight: bold;
+	&:before { 
+		content:"£";
+	}
 }
 
 .with-icon-x-for-overview-item {
 	
-	// position: relative;
-	// top: -10px;
-	// left: 5px;
+	position: absolute;
+	margin-top: -5px;
+	margin-left: 350px;
 	display: none;
 	float: right;
 	font-size: 22px; 
-	position: relative;
-	margin-top: -22px;
-	margin-right: 10px;  
 	color: $green; 
 	cursor: pointer;
 	&:before { 
-			
-		content: "!";
+		content: "x";
 	}
 }

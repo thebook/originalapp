@@ -95,7 +95,7 @@ class account extends alpha
 				),
 				array(
 					'column_name' => 'user',
-					'data_type'   => 'int',
+					'data_type'   => 'varchar(30)',
 				),
 				array(
 					'column_name' => 'address',
@@ -117,10 +117,10 @@ class account extends alpha
 		));
 	}
 
-	public function get_account ($account_id)
+	public function get_account ($account_email)
 	{
 		$table = new table_creator;
-		return $table->get_row($this->account_table, 'id', $account_id);
+		return $table->get_row($this->account_table, 'email', $account_email);
 	}
 
 	public function get_account_value ($account_id, $value_to_get )
@@ -129,10 +129,22 @@ class account extends alpha
 		return $account[$value_to_get];
 	}
 
+	public function get_is_email_in_use ($email)
+	{
+		$table = new table_creator;
+		return $table->check_if_value_is_in_column($this->account_table, "email", $email);
+	}
+
 	public function set_new_account ($array_of_information)
 	{
 		$table = new table_creator;
 		$table->add_row_to_table($this->account_table, $array_of_information );
+	}
+
+	public function set_new_address ($array_of_information)
+	{
+		$table = new table_creator;
+		$table->add_row_to_table($this->address_table, $array_of_information);
 	}
 }
 	

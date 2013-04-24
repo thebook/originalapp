@@ -63,22 +63,38 @@
 				book.basket  = [];
 
 			var state = {};
+				state.signed  = false;
+				state.addresses = [{}];
 				state.account = {
-					singed_in      : false,
-					price_promise  : [],
-					history        : [],
-					details 	   : {
-						id 		   : null,
-						credit 	   : 0,
-						first_name : null,
-						second_name: null,
-						adresses   : [],
-						email      : null,
-						year       : null,
-						university : null,
-						recieve_newsletter : true						
-					}
+					credit 	           : "0.00",
+					first_name         : "",
+					second_name        : "",
+					price_promise      : [],
+					history            : [],
+					email              : "",
+					year               : "",
+					university         : "",
+					password           : "",
+					recieve_newsletter : 1
 				};
+				state.registration = {
+					first_name : false,
+					last_name  : false,
+					post_code  : false,
+					town       : false,
+					area 	   : false,
+					address    : false,
+					email 	   : {
+						query : false,
+						size  : false,
+						unique: false,
+						match : false
+					},
+					password   : {
+						size : false,
+						match: false 
+					}
+				};				
 
 
 			var router = new alpha.route({
@@ -113,6 +129,14 @@
 						world.wrap.branch.navigation.branch.wrap.branch.welcome_popup.self.css({ display : "none" });
 						world.wrap.branch.navigation.branch.wrap.branch.arrow.self.css({ display : "none" });
 					}	
+				},
+				register : {
+					on : function () {
+						world.wrap.branch.registration.self.css({ display : "block" });
+					},
+					off: function () {
+						world.wrap.branch.registration.self.css({ display : "none" });					
+					}
 				},
 				confirm : {
 					on : function () {
@@ -364,7 +388,7 @@
 													self   : '<div class="progress_welcome_register_box"></div>',
 													last_branch : {
 														text   : '<div class="progress_welcome_register_box_text">New To Recyclabook >>></div>',
-														button : '<a href="create_account" class="progress_welcome_register_box_button">Sign Up</a>'
+														button : '<a href="register" class="progress_welcome_register_box_button">Sign Up</a>'
 													}
 												}
 											}
@@ -532,9 +556,24 @@
 													self   :  '<div class="homepage_how_it_works_box_first_button_wrap"></div>',
 													branch : { 
 														trigger : {
-															self :  '<div id="where_is_my_isbn_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="homepage_how_it_works_box_button">Where is My ISBN </div>',
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		if ( this.trigger.instructions.open ) {
+																			this.trigger.instructions.open = false;
+																			this.text_box.self.css({ display : "none" });
+																		} else { 
+																			this.trigger.instructions.open = true;
+																			this.text_box.self.css({ display : "block" });
+																		}
+																	}
+																}
+															},
+															self :  '<div id="where_is_my_isbn_trigger" class="homepage_how_it_works_box_button">Where is My ISBN </div>',
 															last_branch : {
-																arrow :  '<span id="where_is_my_isbn_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="with-icon-down-arrow-for-how-it-works-button"></span>'
+																arrow :  '<span id="where_is_my_isbn_trigger" class="with-icon-down-arrow-for-how-it-works-button"></span>'
 															}
 														},
 														text_box  : {
@@ -550,6 +589,21 @@
 													self   :  '<div class="homepage_how_it_works_box_second_button_wrap"></div>',
 													branch : { 
 														trigger : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		if ( this.trigger.instructions.open ) {
+																			this.trigger.instructions.open = false;
+																			this.text_box.self.css({ display : "none" });
+																		} else { 
+																			this.trigger.instructions.open = true;
+																			this.text_box.self.css({ display : "block" });
+																		}
+																	}
+																}
+															},
 															self :  '<div id="freepost_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="homepage_how_it_works_box_button">Freepost Options</div>',
 															last_branch : {
 																arrow :  '<span id="freepost_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="with-icon-down-arrow-for-how-it-works-button"></span>'
@@ -570,6 +624,21 @@
 													self   :  '<div class="homepage_how_it_works_box_third_button_wrap"></div>',
 													branch : { 
 														trigger : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		if ( this.trigger.instructions.open ) {
+																			this.trigger.instructions.open = false;
+																			this.text_box.self.css({ display : "none" });
+																		} else { 
+																			this.trigger.instructions.open = true;
+																			this.text_box.self.css({ display : "block" });
+																		}
+																	}
+																}
+															},
 															self :  '<div  id="paid_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="homepage_how_it_works_last_box_button">How Am I Being Paid</div>',
 															last_branch : {
 																arrow : '<span id="paid_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="with-icon-down-arrow-for-how-it-works-button"></span>' 
@@ -624,10 +693,10 @@
 													}
 												},
 												find_out_more : {
-													self : '<div class="homepage_recyclabus_box_button_wrap"></div>',
+													self : '<a href="recyclabus" class="homepage_recyclabus_box_button_wrap"></a>',
 													last_branch : {
-														text  : '<div data-function-instructions="{\'page\' : \'recyclabus\'}" data-function-to-call="front.prototype.change_page" class="homepage_recyclabus_box_button_text">Find Out More</div>',
-														arrow :'<div class="with-icon-recyclabus-find-out-more-arrow"></div>'
+														text  : '<span class="homepage_recyclabus_box_button_text">Find Out More</span>',
+														arrow :'<span class="with-icon-recyclabus-find-out-more-arrow"></span>'
 													},
 												},
 												recyclabus_image : {
@@ -771,7 +840,7 @@
 							}
 						},
 						sell : {
-							self : '<section class="body"></section>',
+							self : '<section class="body pages"></section>',
 							branch : {
 								basket : {
 									self   : '<div class="search_books_description_title"></div>',
@@ -977,8 +1046,8 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) { 
-																state.account.signed_in = true;
-																(state.account.signed_in)? router.change_url("confirm") : router.change_url("confirm_sign_in");
+																if ( book.basket.length === 0 ) return;
+																(state.signed)? router.change_url("confirm") : router.change_url("confirm_sign_in");
 															}
 														}
 													},
@@ -1135,16 +1204,110 @@
 							}			
 						},
 						registration : {
-							self   : '<section class="pages input_box_body_wrap account "></section>',
+							self   : '<section class="pages input_box_body_wrap account" style="display:block;"></section>',
 							branch : {
 								wrap   : {
 									self   : '<div class="account_wrap"></div>',
-									branch : {
+									branch : {										
 										legend : { 
 											self   : '<div class="legend_wrap"></div>',
-											last_branch : {
-												green    : '<div class="legend_mark_green">mandatory fields*</div>',
-												x_symbol : '<div class="legend_mark_x_wrap"></div>'
+											branch : {
+												green    : {
+													self : '<div class="legend_mark_green">mandatory fields*</div>'
+												},
+												incorrect : {
+													self : '<div class="legend_mark_x_wrap"></div>',
+													branch : {
+														first_name : {
+															self : '<div id="" class="legend_mark_x_symbol"></div>',
+															branch : {
+																x    : 	{
+																	self : '<span class="with-icon-x-for-legend"></span>'
+																},
+																text : 	{
+																	self : '<span>First Name is empty</span>'
+																}
+															}
+														},
+														last_name : {
+															self : '<div id="" class="legend_mark_x_symbol"></div>',
+															branch : {
+																x    : 	{
+																	self : '<span class="with-icon-x-for-legend"></span>'
+																},
+																text : 	{
+																	self : '<span>Second Name is empty</span>'
+																}
+															}
+														},
+														post_code : {
+															self : '<div id="" class="legend_mark_x_symbol"></div>',
+															branch : {
+																x    : 	{
+																	self : '<span class="with-icon-x-for-legend"></span>'
+																},
+																text : 	{
+																	self : '<span>Post Code is empty</span>'
+																}
+															}
+														},
+														town : {
+															self : '<div id="" class="legend_mark_x_symbol"></div>',
+															branch : {
+																x    : 	{
+																	self : '<span class="with-icon-x-for-legend"></span>'
+																},
+																text : 	{
+																	self : '<span>Town is empty</span>'
+																}
+															}
+														},
+														area : {
+															self : '<div id="" class="legend_mark_x_symbol"></div>',
+															branch : {
+																x    : 	{
+																	self : '<span class="with-icon-x-for-legend"></span>'
+																},
+																text : 	{
+																	self : '<span>Area is empty</span>'
+																}
+															}
+														},
+														address : {
+															self : '<div id="" class="legend_mark_x_symbol"></div>',
+															branch : {
+																x    : 	{
+																	self : '<span class="with-icon-x-for-legend"></span>'
+																},
+																text : 	{
+																	self : '<span>Address is empty</span>'
+																}
+															}
+														},
+														email : {
+															self : '<div id="" class="legend_mark_x_symbol"></div>',
+															branch : {
+																x    : 	{
+																	self : '<span class="with-icon-x-for-legend"></span>'
+																},
+																text : 	{
+																	self : '<span>Email is empty</span>'
+																}
+															}
+														},
+														password : {
+															self : '<div id="" class="legend_mark_x_symbol"></div>',
+															branch : {
+																x    : 	{
+																	self : '<span class="with-icon-x-for-legend"></span>'
+																},
+																text : 	{
+																	self : '<span>Password is empty</span>'
+																}
+															}
+														},
+													}
+												}
 											}
 										},
 										name_and_address : { 
@@ -1159,22 +1322,210 @@
 												},
 												name : {
 													self   : '<div class="field_box_input_wrap"></div>',
-													last_branch : {
-														title           : '<div class="field_box_input_title">First Name and Last Name</div>',
-														name_input      : '<input type="text" class="field_box_input" placeholder="First Name">',
-														not_valid       : '<span class="with-icon-not-valid-field"></span>',
-														last_name_input : '<input type="text" class="field_box_input" placeholder="Second Name">',
+													branch : {
+														title           : {
+															self : '<div class="field_box_input_title">First Name and Last Name</div>'
+														},
+														name_input      : {
+															instructions : {
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var correct, label, data, value;
+																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
+																		label   = correct.branch.first_name;
+																		value   = change.self.val().trim();
+
+																		if ( value.length < 2 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("One letter name, really?...were onto you...");
+																			state.registration.first_name = false;
+																		}
+																		if ( value.length === 0 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("First name is empty");
+																			state.registration.first_name = false;
+																		}
+																		if ( value.length > 1 ) {
+																			label.self.css({ display : "none" });
+																			state.registration.first_name = true;
+																		}
+																		state.account.first_name = value;
+																	}
+																}
+															},
+															self : '<input type="text" class="field_box_input" placeholder="First Name">'
+														},
+														not_valid       : {
+															self : '<span class="with-icon-not-valid-field"></span>'
+														},
+														last_name_input : {
+															instructions : {
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var correct, label, data, value;
+																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
+																		label   = correct.branch.last_name;
+																		value   = change.self.val().trim();
+
+																		if ( value.length < 2 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Last name to short");
+																			state.registration.last_name = false;
+																		}
+																		if ( value.length === 0 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Last name is empty");
+																			state.registration.last_name = false;
+																		}
+																		if ( value.length > 1 ) {
+																			label.self.css({ display : "none" });
+																			state.registration.last_name = true;
+																		}
+																		state.account.second_name = value;
+																	}
+																}
+															},
+															self : '<input type="text" class="field_box_input" placeholder="Second Name">'
+														}
 													}
 												},
 												address : {
 													self   : '<div class="field_box_input_wrap"></div>',
-													last_branch : {
-														title  			 : '<div class="field_box_input_title">Where shall we send your freepost pack</div>',
-														post_code_input  : '<input type="text" class="field_box_input" placeholder="Post Code">',
-														not_valid        : '<span class="with-icon-not-valid-field"></span>',
-														town_input       : '<input type="text" class="field_box_input" placeholder="Town/City">',
-														area_input       : '<input type="text" class="field_box_input" placeholder="Area">',
-														address_input    : '<input type="text" class="field_box_input" placeholder="Street And Address">'
+													branch : {
+														title  			 : {
+															self : '<div class="field_box_input_title">Where shall we send your freepost pack</div>'
+														},
+														post_code_input  : {
+															instructions : {
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var correct, label, data, value;
+																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
+																		label   = correct.branch.post_code;
+																		value   = change.self.val().trim();
+																		
+																		if ( value.length === 0 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Post Code is empty");
+																			state.registration.post_code = false;
+																		}
+																		if ( ( value.length < 6 || value.length > 7 ) && value.length !== 0 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Invalid Post Code");
+																			state.registration.post_code = false;
+																		}
+																		if (  value.length > 5 && value.length < 8 ) {
+																			label.self.css({ display : "none" });
+																			state.registration.post_code = true;
+																		}
+																		state.addresses[0].post_code = value;
+																	}
+																}
+															},
+															self : '<input type="text" class="field_box_input" placeholder="Post Code">'
+														},
+														not_valid        : {
+															self : '<span class="with-icon-not-valid-field"></span>'
+														},
+														town_input       : {
+															instructions : {
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var correct, label, data, value;
+																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
+																		label   = correct.branch.town;
+																		value   = change.self.val().trim();
+
+																		if ( value.length < 2 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Town too short");
+																			state.registration.town = false;
+																		}
+																		if ( value.length === 0 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Town is empty");
+																			state.registration.town = false;
+																		}
+																		if ( value.length > 1 ) {
+																			label.self.css({ display : "none" });
+																			state.registration.town = true;
+																		}
+																		state.addresses[0].town = value;
+																	}
+																}
+															},
+															self : '<input type="text" class="field_box_input" placeholder="Town/City">'
+														},
+														area_input       : {
+															instructions : {
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var correct, label, data, value;
+																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
+																		label   = correct.branch.area;
+																		value   = change.self.val().trim();
+
+																		if ( value.length < 2 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Area too short");
+																			state.registration.area = false;
+																		}
+																		if ( value.length === 0 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Area is empty");
+																			state.registration.area = false;
+																		}
+																		if ( value.length > 1 ) {
+																			label.self.css({ display : "none" });
+																			state.registration.area = true;
+																		}
+																		state.addresses[0].area = value;
+																	}
+																}
+															},
+															self : '<input type="text" class="field_box_input" placeholder="Area">'
+														},
+														address_input    : {
+															instructions : {
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var correct, label, data, value;
+																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
+																		label   = correct.branch.address;
+																		value   = change.self.val().trim();
+
+																		if ( value.length < 3 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Adress too short");
+																			state.registration.address = false;
+																		}
+																		if ( value.length === 0 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Address is empty");
+																			state.registration.address = false;
+																		}
+																		if ( value.length > 1 ) {
+																			label.self.css({ display : "none" });
+																			state.registration.address = true;
+																		}
+																		state.addresses[0].address = value;
+																	}
+																}
+															},
+															self : '<input type="text" class="field_box_input" placeholder="Street And Address">'
+														}
 													}
 												}
 											}
@@ -1191,20 +1542,166 @@
 												},
 												email : {
 													self   : '<div class="field_box_input_wrap"></div>',
-													last_branch : {
-														title 				: '<div class="field_box_input_title">Email address</div>',
-														emai_input          : '<input type="text" class="field_box_input" placeholder="Email address">',
-														not_valid           : '<span class="with-icon-not-valid-field"></span>',
-														confirm_email_input : '<input type="text" class="field_box_input" placeholder="Confrim email address">'
+													branch : {
+														title 				: {
+															self : '<div class="field_box_input_title">Email address</div>'
+														},
+														emai_input          : {
+															instructions : {																
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var correct, label, data, value;
+																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
+																		label   = correct.branch.email;
+																		value   = change.self.val().trim();
+
+																		if ( value.length === 0 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Email is empty");
+																			state.registration.email.size = false;
+																		}
+																		if ( value.length < 5 || value.search("@") === -1 ) { 
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Invalid Email");
+																			state.registration.email.size = false;
+																		}
+																		if ( value.length > 4 && value.search("@") !== -1 ) {
+																			label.self.css({ display : "none" });
+																			state.registration.email.size = true;
+																		}
+																		state.account.email = value;
+																	}
+																}
+															},
+															self : '<input type="text" class="field_box_input" placeholder="Email address">'
+														},
+														not_valid           : {
+															self : '<span class="with-icon-not-valid-field"></span>'
+														},
+														confirm_email_input : {
+															instructions : {
+																observe : {
+																	who : state.registration.email,
+																	property : "match",
+																	call     : function (change) {
+																		if ( this.match && !this.query ) {
+																			var email, label;
+																			label = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect.branch.email;
+																			state.registration.email.query = true;
+
+																				$.get(
+																					ajaxurl,
+																					{ 
+																						action     : "get_account",
+																						method     : "is_email_in_use",
+																						paramaters : {
+																							email : state.account.email,
+																						}
+																					},
+																					function (response) { 
+																						if (!response.return ) {
+																							label.self.css({ display : "none" });
+																							state.registration.email.unique = true;
+																						} else { 
+																							label.self.css({ display : "block" });
+																							label.branch.text.self.text("Email is already in use");
+																						}
+																						state.registration.email.query = false;
+																					},
+																					"json");
+																		}
+																	}
+																},
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var correct, label, data, value;
+																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
+																		label   = correct.branch.email;
+																		value   = change.self.val().trim();
+
+																		if ( value === state.account.email ) {
+																			label.self.css({ display : "none" });
+																			state.registration.email.match = true;
+																		} else { 
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Emails do not match");
+																			state.registration.email.match = false;
+																		}
+																	}
+																}
+															},
+															self : '<input type="text" class="field_box_input" placeholder="Confrim email address">'
+														}
 													}						
 												},
 												password : {
 													self   : '<div class="field_box_input_wrap"></div>',
-													last_branch : {
-														title          		   : '<div class="field_box_input_title">Password</div>',
-														password 		       : '<input type="password" class="field_box_input" placeholder="Password">',
-														not_valid      		   : '<span class="with-icon-not-valid-field"></span>',
-														password_input_confirm : '<input type="password" class="field_box_input" placeholder="Confirm Password">'
+													branch : {
+														title          		   : {
+															self : '<div class="field_box_input_title">Password</div>'
+														},
+														password 		       : {
+															instructions : {
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var correct, label, data, value;
+																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
+																		label   = correct.branch.password;
+																		value   = change.self.val().trim();
+
+																		if ( value.length < 6 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Password must be over five characters");
+																			state.registration.password.size = false;
+																		}
+																		if ( value.length === 0 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Password is empty");
+																			state.registration.password.size = false;
+																		}
+																		if ( value.length > 6 ) {
+																			label.self.css({ display : "none" });
+																			state.registration.password.size = true;
+																		}
+																		state.account.password = value;
+																	}
+																}
+															},
+															self : '<input type="password" class="field_box_input" placeholder="Password">'
+														},
+														not_valid      		   : {
+															self : '<span class="with-icon-not-valid-field"></span>'
+														},
+														password_input_confirm : {
+															instructions : {
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var correct, label, data, value;
+																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
+																		label   = correct.branch.password;
+																		value   = change.self.val().trim();
+
+																		if ( value === state.account.password ) {
+																			label.self.css({ display : "none" });
+																			state.registration.password.match = true;
+																		} else { 
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Passwords do not match");
+																			state.registration.password.match = false;
+																		}
+																	}
+																}
+															},
+															self : '<input type="password" class="field_box_input" placeholder="Confirm Password">'
+														}
 													}
 												}
 											}
@@ -1213,9 +1710,26 @@
 											self   : '<div class="input_box_disclaimer"></div>',
 											branch : {
 												tick : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																if ( state.account.recieve_newsletter === 1 ) {
+																	state.account.recieve_newsletter = 0;
+																	this.tick.branch.tick.self.css({ display : "none" });
+																} else {
+																	state.account.recieve_newsletter = 1;
+																	this.tick.branch.tick.self.css({ display : "inline" });
+																}
+															}
+														}
+													},
 													self   : '<div class="input_box_disclaimer_box"></div>',
-													last_branch : {
-														tick : '<span class="with-icon-input-box-disclaimer-tick"></span>'
+													branch : {
+														tick : {					
+															self : '<span class="with-icon-input-box-disclaimer-tick"></span>'
+														}
 													}
 												},
 												text_wrap : {
@@ -1227,12 +1741,66 @@
 													}
 												},
 												continue_button : {
-													self : '<div data-function-to-call="front.prototype.register" class="input_box_button">Continue <span class="with-icon-input-box-continue"></span></div>'
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) { 
+
+																var is_ready = (
+																	state.registration.first_name    
+																	&& state.registration.last_name   
+																	&& state.registration.post_code     
+																	&& state.registration.town          
+																	&& state.registration.area 	     
+																	&& state.registration.address       
+																	&& state.registration.email.size    
+																	&& state.registration.email.unique  
+																	&& state.registration.email.match   
+																	&& state.registration.password.size 
+																	&& state.registration.password.match
+																);
+																console.log(is_ready);
+																console.log(state.registration);
+
+																if ( is_ready && !state.registration.email.query ) {
+																	change.self.text("Registering please do not refresh the page");
+
+																	state.addresses.user = state.account.email;
+																	$.post(
+																		ajaxurl,
+																		{ 
+																			action     : "set_account",
+																			method     : "new_account",
+																			paramaters : {
+																				account : state.account
+																			}
+																		}, function (response) { 
+																			$.post(
+																				ajaxurl,
+																				{
+																					action : "set_account",
+																					method : "new_address",
+																					paramaters : {
+																						address : state.addresses
+																					}
+																				}, function (response) { 
+																					state.signed = true;
+																					state.addresses = state.addresses;
+																					router.change_url("confirm");
+																				},"json");
+																		},"json");
+																} 
+																
+															}
+														}
+													},
+													self : '<div class="input_box_button">Continue</div>'
 												}
 											}
 										}
 									}
-								}
+								}								
 							}
 						},
 						confirm : {
@@ -1260,81 +1828,83 @@
 																			property : "basket",
 																			call     : function (change) { 
 																				var format, manifest, map, append_to;
-																					format = { 
-																						self : '<div class="basket_overview_item"></div>',
-																						branch : {
-																							thumbnail : {
-																								self : '<img class="basket_overview_item_thumbnail" src="">'
-																							},
-																							text : {
-																								self : '<div class="basket_overview_item_text_wrap"></div>',
-																								branch : {
-																									title : {
-																										self : '<div class="basket_overview_item_text_title"></div>'
-																									},
-																									author : {
-																										self : '<div class="basket_overview_item_text_author"></div>'
-																									},
-																									isbn : {
-																										self :'<div class="basket_overview_item_isbn"></div>'
-																									}
-																								}
-																							},
-																							price : {
-																								self : '<div class="basket_overview_item_price_wrap"></div>',
-																								branch : {
-																									text : {
-																										self :'<div class="basket_overview_item_price_text">Sell for</div>'
-																									},
-																									quote : {
-																										self :'<div class="basket_overview_item_price"></div>'
-																									}
-																								}
-																							},
-																							close : {
-																								instructions : {
-																									on : {
-																										the_event : "click",
-																										is_asslep : false,
-																										call      : function (change) { 
+																				format = { 
+																					self : '<div class="basket_overview_item"></div>',
+																					branch : {
+																						close : {
+																							instructions : {
+																								on : {
+																									the_event : "click",
+																									is_asslep : false,
+																									call      : function (change) { 
+																										if (confirm("Are you sure you want to remove this book?")) {
 																											var index = change.self.attr('id');
 																												basket= book.basket;
 																												basket.splice(index, 1);
 																												book.basket = basket;
 																										}
 																									}
+																								}
+																							},
+																							self : '<div id="" style="display:block;" class="with-icon-x-for-overview-item confirm_basket_remove"></div>'
+																						},
+																						thumbnail : {
+																							self : '<img class="basket_overview_item_thumbnail" src="">'
+																						},
+																						text : {
+																							self : '<div class="basket_overview_item_text_wrap"></div>',
+																							branch : {
+																								title : {
+																									self : '<div class="basket_overview_item_text_title"></div>'
 																								},
-																								self : '<div id="" style="display:block;" class="with-icon-x-for-overview-item confirm_basket_remove"></div>'
+																								author : {
+																									self : '<div class="basket_overview_item_text_author"></div>'
+																								},
+																								isbn : {
+																									self :'<div class="basket_overview_item_isbn"></div>'
+																								}
+																							}
+																						},
+																						price : {
+																							self : '<div class="basket_overview_item_price_wrap"></div>',
+																							branch : {
+																								text : {
+																									self :'<div class="basket_overview_item_price_text">Sell for</div>'
+																								},
+																								quote : {
+																									self :'<div class="basket_overview_item_price"></div>'
+																								}
 																							}
 																						}
-																					};
+																					}
+																				};
 
-																					map = [
-																						{
-																							path : "branch.thumbnail.self.src",
-																							value: "image"
-																						},
-																						{
-																							path : "branch.text.branch.title.self.text",
-																							value: "title"
-																						},
-																						{
-																							path : "branch.text.branch.author.self.text",
-																							value: "author"
-																						},
-																						{
-																							path : "branch.text.branch.isbn.self.text",
-																							value: "isbn"
-																						},
-																						{
-																							path : "branch.price.branch.quote.self.text",
-																							value: "price"
-																						},
-																						{
-																							path : "branch.close.self.id",
-																							value: "id"
-																						}
-																					];
+																				map = [
+																					{
+																						path : "branch.thumbnail.self.src",
+																						value: "image"
+																					},
+																					{
+																						path : "branch.text.branch.title.self.text",
+																						value: "title"
+																					},
+																					{
+																						path : "branch.text.branch.author.self.text",
+																						value: "author"
+																					},
+																					{
+																						path : "branch.text.branch.isbn.self.text",
+																						value: "isbn"
+																					},
+																					{
+																						path : "branch.price.branch.quote.self.text",
+																						value: "price"
+																					},
+																					{
+																						path : "branch.close.self.id",
+																						value: "id"
+																					}
+																				];
 
 																				append_to = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.items.self;
 
@@ -1369,9 +1939,6 @@
 																	}
 																}
 															}
-														},
-														edit : {
-															self : '<div class="basket_overview_edit_button">Edit Basket</div>'
 														},
 														total : {
 															self  : '<div class="basket_overview_total_wrap"></div>',
@@ -1410,12 +1977,33 @@
 																	self : '<div class="address_overview_title">Address Confirmation</div>'
 																},
 																inputs : {
+																	instructions : {
+																		observe : {
+																			who      : state,
+																			property : "addresses",
+																			call     : function (change) {
+																				var inputs = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.address_overview.branch.address.branch.inputs.branch;
+																					inputs.address.self.val(change.new[0].address);
+																					inputs.area.self.val(change.new[0].area);
+																					inputs.town.self.val(change.new[0].town);
+																					inputs.post_code.self.val(change.new[0].post_code);
+																			}
+																		}
+																	},
 																	self   : '<div class="address_overview_inputs"></div>',
-																	last_branch : {
-																		address  : '<input readonly class="address_overview_input" value="Address">',
-																		area     : '<input readonly class="address_overview_input" value="Area">',
-																		town     : '<input readonly class="address_overview_input" value="Town">',
-																		post_code: '<input readonly class="address_overview_input_small" value="Post Code">'
+																	branch : {
+																		address  : {
+																			self : '<input readonly class="address_overview_input" value="Address">'
+																		},
+																		area     : {
+																			self : '<input readonly class="address_overview_input" value="Area">'
+																		},
+																		town     : {
+																			self : '<input readonly class="address_overview_input" value="Town">'
+																		},
+																		post_code: {
+																			self : '<input readonly class="address_overview_input_small" value="Post Code">'
+																		}
 																	}
 																}
 															}
@@ -1474,7 +2062,16 @@
 													}
 												},
 												button : {
-													self : '<a href="thank_you" class="checkout_button">Confirm & Complete</a>'
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) { 
+																state.account.price_promise = book.basket;
+															}
+														}
+													},
+													self : '<div class="checkout_button">Confirm & Complete</div>'
 												}
 											}
 										}
@@ -1960,10 +2557,6 @@
 					}
 				}
 			};
-
-			$('.result_book_add_button').on('click', function () { 
-				console.log("click");
-			});	
 
 			world = world.manifest($('body'));
 			router.begin();
