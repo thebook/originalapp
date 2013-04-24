@@ -123,6 +123,12 @@ class account extends alpha
 		return $table->get_row($this->account_table, 'email', $account_email);
 	}
 
+	public function get_address ($account_email)
+	{
+		$table = new table_creator;
+		return $table->get_rows($this->address_table, 'user', $account_email);
+	}
+
 	public function get_account_value ($account_id, $value_to_get )
 	{
 		$account = $this->get_account($account_id);

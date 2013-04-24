@@ -250,8 +250,8 @@ class table_creator
 		global $wpdb;
 
 		$result	= $wpdb->get_results("SELECT * FROM $wpdb->prefix$table_name WHERE $where_column = '$where_value'", ARRAY_A);
-
-		return $result[0];
+		
+		return (empty($result)? false : $result[0] );
 	}
 
 	public function get_rows ($table_name, $where_column, $where_value)
@@ -260,7 +260,7 @@ class table_creator
 
 		$result	= $wpdb->get_results("SELECT * FROM $wpdb->prefix$table_name WHERE $where_column = '$where_value'", ARRAY_A);
 
-		return $result;
+		return (empty($result)? false : $result );
 	}
 	
 	/**

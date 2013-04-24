@@ -1458,13 +1458,22 @@ body {
   width: 18%;
   padding: 10px 1%;
   margin: 72px 0 0;
-  left: 68%;
+  left: 65.6%;
   float: right;
   background: #3f7986;
   position: absolute;
   z-index: 2;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3); }
+
+.user_pop_up_settings_wrap {
+  float: left;
+  width: 100%;
+  display: none; }
+
+.user_pop_up_sign_in_wrap {
+  float: left;
+  width: 100%; }
 
 .user_pop_up_title, .user_pop_up_title_white {
   font-size: 16px;
@@ -2905,7 +2914,8 @@ body {
   background: #f6f6f6; }
 
 .account_wrap {
-  float: left; }
+  float: left;
+  position: relative; }
 
 .legend_wrap {
   float: right;
@@ -3178,7 +3188,8 @@ body {
   background: #f6f6f6; }
 
 .checkout_wrap {
-  float: left; }
+  float: left;
+  position: relative; }
 
 .confirmation_overview {
   width: 100%;

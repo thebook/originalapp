@@ -7,12 +7,23 @@
 	width: $user_pop_box_width;
 	padding: 10px $padding;
 	margin: $bar_height + 20px 0 0;
-	left: 100% - ( $user_pop_box_width + ( $padding *2 ) + 12% );
+	left: 100% - ( $user_pop_box_width + ( $padding *2 ) + 14.4% );
 	float: right;
 	background: $dark_blue; 
 	position: absolute;
 	z-index: 2;
 	@include box-shadow( 1px, 1px, 3px, 1px, rgba(0,0,0, 0.3));
+}
+
+.user_pop_up_settings_wrap {
+	float: left;
+	width: 100%;
+	display: none;
+}
+
+.user_pop_up_sign_in_wrap { 
+	float: left;
+	width: 100%;	
 }
 
 .user_pop_up_title { 
