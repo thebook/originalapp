@@ -47,6 +47,14 @@ class account extends alpha
 					'data_type'   => 'varchar(11)'
 				),
 				array(
+					'column_name' => 'donate',
+					'data_type'   => 'varchar(11)'
+				),
+				array(
+					'column_name' => 'last_withdraw',
+					'data_type'   => 'date'
+				),
+				array(
 					'column_name' => 'recieve_newsletter',
 					'data_type'   => 'varchar(1)'
 				),
@@ -120,7 +128,9 @@ class account extends alpha
 	public function get_account ($account_email)
 	{
 		$table = new table_creator;
-		return $table->get_row($this->account_table, 'email', $account_email);
+		$account = $table->get_row($this->account_table, 'email', $account_email);
+		$account['price_promise'] = json_decode($account['price_promise']);
+		return $account;
 	}
 
 	public function get_address ($account_email)
@@ -151,6 +161,12 @@ class account extends alpha
 	{
 		$table = new table_creator;
 		$table->add_row_to_table($this->address_table, $array_of_information);
+	}
+
+	public function set_price_promise ($email, $price_promise)
+	{	
+		$table = new table_creator;
+		$table->update_row($this->account_table, array('price_promise' => json_encode($price_promise) ), 'email', $email);
 	}
 }
 	

@@ -68,6 +68,8 @@
 
 			var default_account = {
 					credit 	           : "0.00",
+					donate 	           : "0.00",
+					last_withdraw      : "0000/00/00",
 					first_name         : "",
 					second_name        : "",
 					price_promise      : [],
@@ -80,6 +82,7 @@
 				};
 
 			var state = {};
+				state.edit_account = false;
 				state.log_in  = {};
 				state.log_in.where = "";
 				state.log_in.logging_in = false;
@@ -87,6 +90,8 @@
 				state.addresses = [{}];
 				state.account = {
 					credit 	           : "0.00",
+					donate 	           : "0.00",
+					last_withdraw      : "0000/00/00",
 					first_name         : "",
 					second_name        : "",
 					price_promise      : [],
@@ -211,7 +216,6 @@
 									}, function (account) {
 										if ( account.return ) {
 											if ( state.account.password === account.return.password ) {
-
 												$.get(ajaxurl, {
 													action : "get_account",
 													method : "address",
@@ -1669,6 +1673,9 @@
 														( wraps.on_wrap === 2? wraps.on_wrap = 0 : wraps.on_wrap++ );
 													});	
 													world.wrap.branch.sell.branch.items.branch = manifest;
+
+													append_to.css({ top : "800px"});
+													append_to.animate({ top : "0px" }, 900);
 											}
 										}
 									},
@@ -2271,7 +2278,7 @@
 																						address : state.addresses[0]
 																					}
 																				}, function (response) { 
-																					state.signed = true;
+																					state.signed    = true;
 																					state.addresses = state.addresses;
 																					router.change_url("confirm");
 																				},"json");
@@ -2591,6 +2598,19 @@
 																		}
 																	}
 																}, function () {}, "json");
+
+																$.post(ajaxurl, {
+																	action     : "set_account",
+																	method     : "price_promise",
+																	paramaters : {
+																		email   : state.account.email,
+																		promise : state.account.price_promise
+																	}
+																}, 
+																function (response) {
+																	console.log("price promise updated");
+																}, 
+																"json");
 															}
 														}
 													},
@@ -2840,7 +2860,7 @@
 							}
 						},
 						hub : {
-							self : '<section class="profile_hub"></section>',
+							self : '<section class="profile_hub pages"></section>',
 							branch : { 
 								wrap : {
 									self : '<div class="profile_hub_inner_wrap"></div>',
@@ -2860,10 +2880,27 @@
 													branch : {
 														bar : {
 															self : '<div class="profile_hub_account_bar"></div>',
-															last_branch : {
-																icon : '<div class="with-icon-profile-hub-account"></div>',
-																greeting : '<div class="profile_hub_account_bar_greeting">Hi james</div>',
-																text : '<div class="profile_hub_account_bar_text">Account Details</div>'
+															branch : {
+																icon : {
+																	self : '<div class="with-icon-profile-hub-account"></div>'
+																},
+																greeting : {
+																	instructions : {
+																		observe : {
+																			who     : state.account,
+																			property: "first_name",
+																			call    : function (change) {
+																				if ( state.edit_account ) return;
+																					var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.bar.branch.greeting.self;
+																					input.text("Hi, "+ change.new);
+																			}
+																		}
+																	},
+																	self : '<div class="profile_hub_account_bar_greeting"></div>'
+																},
+																text : {
+																	self : '<div class="profile_hub_account_bar_text">Account Details</div>'
+																}
 															}
 														},
 														body : {
@@ -2871,65 +2908,287 @@
 															branch : {
 																main_details : {
 																	self : '<div class="profile_hub_account_main_details"></div>',
-																	last_branch : {
-																		first_name : '<input type="text" class="profile_hub_account_main_details_small_input">',
-																		second_name: '<input type="text" class="profile_hub_account_main_details_small_input">',
-																		address : '<input type="text" class="profile_hub_account_main_details_large_input">',
-																		town : '<input type="text" class="profile_hub_account_main_details_small_input">',
-																		area : '<input type="text" class="profile_hub_account_main_details_small_input">',
-																		post_code :'<input type="text" class="profile_hub_account_main_details_small_input">'
+																	branch : {
+																		first_name : {
+																			instructions : {
+																				observe : {
+																					who     : state.account,
+																					property: "first_name",
+																					call    : function (change) {
+																						if ( state.edit_account ) return;
+																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.first_name.self;
+																							input.val(change.new);
+																					}
+																				}
+																			},
+																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
+																		},
+																		second_name: {
+																			instructions : {
+																				observe : {
+																					who     : state.account,
+																					property: "second_name",
+																					call    : function (change) {
+																						if ( state.edit_account ) return;
+																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.second_name.self;
+																							input.val(change.new);
+																					}
+																				}
+																			},
+																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
+																		},
+																		address : {
+																			instructions : {
+																				observe : {
+																					who     : state,
+																					property: "addresses",
+																					call    : function (change) {
+																						if ( state.edit_account ) return;
+																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.address.self;
+																							input.val(change.new[0].address);
+																					}
+																				}
+																			},
+																			self : '<input type="text" class="profile_hub_account_main_details_large_input" readonly>'
+																		},
+																		town : {
+																			instructions : {
+																				observe : {
+																					who     : state,
+																					property: "addresses",
+																					call    : function (change) {
+																						if ( state.edit_account ) return;
+																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.town.self;
+																							input.val(change.new[0].town);
+																					}
+																				}
+																			},
+																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
+																		},
+																		area : {
+																			instructions : {
+																				observe : {
+																					who     : state,
+																					property: "addresses",
+																					call    : function (change) {
+																						if ( state.edit_account ) return;
+																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.area.self;
+																							input.val(change.new[0].area);
+																					}
+																				}
+																			},
+																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
+																		},
+																		post_code: {
+																			instructions : {
+																				observe : {
+																					who     : state,
+																					property: "addresses",
+																					call    : function (change) {
+																						if ( state.edit_account ) return;
+																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.post_code.self;
+																							input.val(change.new[0].post_code);
+																					}
+																				}
+																			},
+																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
+																		}
 																	}
 																},
 																extra_details : {
+																	instructions : {
+																		open : false
+																	},
 																	self : '<div class="profile_hub_account_extra_details"></div>',
-																	last_branch : {
-																		email_label : '<div class="profile_hub_account_extra_details_title">Registered email</div>',
-																		email_input : '<input type="text" class="profile_hub_account_extra_details_input">'
+																	branch : {
+																		email : {
+																			self : "<div class=\"profile_hub_account_detail_wrap\"></div>",
+																			branch : {
+																				label : {
+																					self : '<div class="profile_hub_account_extra_details_title">Registered email</div>'
+																				},
+																				input : {
+																					instructions : {
+																						observe : {
+																							who     : state.account,
+																							property: "email",
+																							call    : function (change) {
+																								if ( state.edit_account ) return;
+																									var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.email.branch.input.self;
+																									input.val(change.new);
+																							}
+																						}
+																					},
+																					self : '<input type="text" class="profile_hub_account_extra_details_input" readonly>'
+																				}
+																			}
+																		},
+																		password : {
+																			self : "<div class=\"profile_hub_account_detail_wrap\"></div>",
+																			branch : {
+																				label : {
+																					self : '<div class="profile_hub_account_extra_details_title">Password</div>'
+																				},
+																				input : {
+																					instructions : {
+																						observe : {
+																							who     : state.account,
+																							property: "password",
+																							call    : function (change) {
+																								if ( state.edit_account ) return;
+																									var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.password.branch.input.self;
+																									input.val(change.new);
+																							}
+																						}
+																					},
+																					self : '<input type="password" class="profile_hub_account_extra_details_input" readonly>'
+																				},
+																				edit : {
+																					self : "<div class=\"profile_hub_account_extra_details_edit\">change</div>"
+																				}
+																			}
+																		},
+																		university : {
+																			self : "<div class=\"profile_hub_account_detail_wrap\"></div>",
+																			branch : {
+																				label : {
+																					self : '<div class="profile_hub_account_extra_details_title">University</div>'
+																				},
+																				input : {
+																					instructions : {
+																						observe : {
+																							who     : state.account,
+																							property: "university",
+																							call    : function (change) {
+																								if ( state.edit_account ) return;
+																									var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.university.branch.input.self;
+																									input.val(change.new);
+																							}
+																						}
+																					},
+																					self : '<input type="text" class="profile_hub_account_extra_details_input" readonly>'
+																				}
+																			}
+																		},
+																		year : {
+																			self : "<div class=\"profile_hub_account_detail_wrap\"></div>",
+																			branch : {
+																				label : {
+																					self : '<div class="profile_hub_account_extra_details_title">Year</div>'
+																				},
+																				input : {
+																					instructions : {
+																						observe : {
+																							who     : state.account,
+																							property: "year",
+																							call    : function (change) {
+																								if ( state.edit_account ) return;
+																									var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.year.branch.input.self;
+																									input.val(change.new);
+																							}
+																						}
+																					},
+																					self : '<input type="text" class="profile_hub_account_extra_details_input" readonly>'
+																				}
+																			}
+																		},
+																		subject : {
+																			self : "<div class=\"profile_hub_account_detail_wrap\"></div>",
+																			branch : {
+																				label : {
+																					self : '<div class="profile_hub_account_extra_details_title">Subject</div>'
+																				},
+																				input : {
+																					instructions : {
+																						observe : {
+																							who     : state.account,
+																							property: "subject",
+																							call    : function (change) {
+																								if ( state.edit_account ) return;
+																									var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.subject.branch.input.self;
+																									input.val(change.new);
+																							}
+																						}
+																					},
+																					self : '<input type="text" class="profile_hub_account_extra_details_input" readonly>'
+																				}
+																			}
+																		},
+
 																	}
 																},
 																buttons : {
-																	self : '<div class="profile_hub_account_extra_buttons"></div>',
-																	last_branch : { 
-																		more_fields : '<div class="profile_hub_account_extra_buttons_small_button"><div class="with-icon-plus-for-profile-hub-account-extra-buttons"></div></div>',
-																		edit : '<div class="profile_hub_account_extra_buttons_large_button">Edit Account Details</div>'
-																	}
-																}
-															}
-														}
-													}
-												},
-												history : {
-													self : '<div class="profile_hub_history profile_hub_box"></div>',
-													branch : {
-														bar : {
-															self : '<div class="profile_hub_history_bar"></div>',
-															last_branch : {
-																icon : '<div class="with-icon-for-profile-hub-history"></div>',
-																greeting : '<div class="profile_hub_history_bar_greeting">Order History</div>',
-																notification : '<div class="profile_hub_history_notification"></div>'
-															}
-														},
-														body : {
-															self : '<div class="profile_hub_history_body"></div>',
-															branch : {
-																inner : {
-																	self : '<div class="profile_hub_history_inner_body"></div>',
-																	branch : {
-																		sroll : {
-																			self : '<div class="profile_hub_history_scroll"></div>',
-																			last_branch : {
-																				handle : '<div class="profile_hub_history_scroll_handle"></div>'
+																	self   : '<div class="profile_hub_account_extra_buttons"></div>',
+																	branch : { 
+																		more_fields : {
+																			instructions : {
+																				open : false,
+																				on : { 
+																					the_event : "click", 
+																					is_asslep : false,
+																					call      : function (change) {
+																						var details = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.self;
+																							if ( this.more_fields.instructions.open ) {
+																								details.css({ display : "none" });
+																								this.more_fields.branch.icon.self.attr("class", "with-icon-plus-for-profile-hub-account-extra-buttons");
+																								this.more_fields.instructions.open = false;
+																							}
+																							else { 
+																								details.css({ display : "block" });
+																								this.more_fields.branch.icon.self.attr("class", "with-icon-minus-for-profile-hub-account-extra-buttons");
+																								this.more_fields.instructions.open = true;
+																							}
+																					}
+																				}
+																			},
+																			self : '<div class="profile_hub_account_extra_buttons_small_button"></div>',
+																			branch : {
+																				icon : {
+																					self : '<div class="with-icon-plus-for-profile-hub-account-extra-buttons"></div>'
+																				}
 																			}
 																		},
-																		items : {
-																			self :'<div class="profile_hub_history_items"></div>'
+																		edit : {
+																			self : '<div class="profile_hub_account_extra_buttons_large_button">Edit Account Details</div>'
 																		}
 																	}
 																}
 															}
 														}
 													}
-												}
+												},
+												// history : {
+												// 	self : '<div class="profile_hub_history profile_hub_box"></div>',
+												// 	branch : {
+												// 		bar : {
+												// 			self : '<div class="profile_hub_history_bar"></div>',
+												// 			last_branch : {
+												// 				icon : '<div class="with-icon-for-profile-hub-history"></div>',
+												// 				greeting : '<div class="profile_hub_history_bar_greeting">Order History</div>',
+												// 				notification : '<div class="profile_hub_history_notification"></div>'
+												// 			}
+												// 		},
+												// 		body : {
+												// 			self : '<div class="profile_hub_history_body"></div>',
+												// 			branch : {
+												// 				inner : {
+												// 					self : '<div class="profile_hub_history_inner_body"></div>',
+												// 					branch : {
+												// 						sroll : {
+												// 							self : '<div class="profile_hub_history_scroll"></div>',
+												// 							last_branch : {
+												// 								handle : '<div class="profile_hub_history_scroll_handle"></div>'
+												// 							}
+												// 						},
+												// 						items : {
+												// 							self :'<div class="profile_hub_history_items"></div>'
+												// 						}
+												// 					}
+												// 				}
+												// 			}
+												// 		}
+												// 	}
+												// }
 											}				
 										},
 										right_boxes : {
@@ -3007,26 +3266,78 @@
 																	branch : {
 																		balance : {
 																			self : '<div class="profile_hub_bank_stats_first"></div>',
-																			last_branch : {
-																				icon : '<div class="with-icon-pig-for-account-balance"></div>',
-																				label : '<div class="profile_hub_bank_stats_label">Account balance</div>',
-																				input : '<input type="text" class="profile_hub_bank_stats_input" value="£10.32" readonly>'
+																			branch : {
+																				icon :  {
+																					self : '<div class="with-icon-pig-for-account-balance"></div>'
+																				},
+																				label : {
+																					self : '<div class="profile_hub_bank_stats_label">Account balance</div>'
+																				},
+																				input : {
+																					instructions : { 
+																						observe : { 
+																							who      : state.account,
+																							property : "credit",
+																							call     : function (change) {	
+																								var self = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.bank.branch.body.branch.stats.branch.balance.branch.input.self;
+																									self.val(change.new);
+																							}
+																						}
+																					},
+																					self : '<input type="text" class="profile_hub_bank_stats_input" value="" readonly>'
+																				}
 																			}
 																		},
 																		withdrawal : {
-																			self : '<div class="profile_hub_bank_stats_middle"></div>',
-																			last_branch : {
-																				icon : '<div class="with-icon-clock-for-account-withdrawal"></div>',
-																				label: '<div class="profile_hub_bank_stats_label">Last withdrawal</div>',
-																				input:'<input type="text" class="profile_hub_bank_stats_input" value="02/05/2013" readonly>'
+																			self   : '<div class="profile_hub_bank_stats_middle"></div>',
+																			branch : {
+																				icon : {
+																					self : '<div class="with-icon-clock-for-account-withdrawal"></div>'
+																				},
+																				label: { 
+																					self : '<div class="profile_hub_bank_stats_label">Last withdrawal</div>'
+																				},
+																				input: { 
+																					instructions : { 
+																						observe : { 
+																							who      : state.account,
+																							property : "last_withdraw",
+																							call     : function (change) {	
+																								var self = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.bank.branch.body.branch.stats.branch.withdrawal.branch.input.self;
+																								if ( change.new === "0000-00-00") {
+																									self.val("never");
+																								} else { 
+																									self.val(change.new);
+																								}
+																							}
+																						}
+																					},
+																					self : '<input type="text" class="profile_hub_bank_stats_input" value="never" readonly>'
+																				}
 																			}
 																		},
 																		donation : {
-																			self : '<div class="profile_hub_bank_stats_last"></div>',
-																			last_branch : {
-																				icon : '<div class="with-icon-hand-for-account-donation"></div>',
-																				label: '<div class="profile_hub_bank_stats_label">Total Donations</div>',
-																				input: '<input type="text" class="profile_hub_bank_stats_input" value="0.01" readonly>'
+																			self   : '<div class="profile_hub_bank_stats_last"></div>',
+																			branch : {
+																				icon : {
+																					self : '<div class="with-icon-hand-for-account-donation"></div>'
+																				},
+																				label: {
+																					self : '<div class="profile_hub_bank_stats_label">Total Donations</div>'
+																				},
+																				input: {
+																					instructions : { 
+																						observe : { 
+																							who      : state.account,
+																							property : "donate",
+																							call     : function (change) {	
+																								var self = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.bank.branch.body.branch.stats.branch.donation.branch.input.self;
+																									self.val(change.new);
+																							}
+																						}
+																					},
+																					self : '<input type="text" class="profile_hub_bank_stats_input" value="0.00" readonly>'
+																				}
 																			}
 																		},
 																		button : {
@@ -3102,95 +3413,118 @@
 																				send_freepost : '<div class="with-icon-for-profile-hub-tracking-envelope"></div>'
 																			}
 																		},
-																		items : {
-																			instructions : { 
-																				observe : {
-																					who      : state.account,
-																					property : "price_promise",
-																					call     : function (change) {
-																							console.log("change");
-																							console.log(change.new);
-																						var format, manifest, map, append_to;
-																							format = { 
-																								self : '<div class="profile_hub_tracking_item"></div>',
-																								branch : {
-																									image : {
-																										self : '<img src="" class="profile_hub_tracking_item_image">'
-																									},
-																									text : {
-																										self : '<div class="profile_hub_tracking_item_text"></div>',
-																										branch : {
-																											title : {
-																												self : '<div class="profile_hub_tracking_item_text_title"></div>'
-																											},
-																											author : {
-																												self : '<div class="profile_hub_tracking_item_text_author"></div>'
-																											},
-																											quote : {
-																												self : '<div class="profile_hub_tracking_item_text_quote"></div>'
-																											},
-																											isbn : {
-																												self : '<div class="profile_hub_tracking_item_text_isbn"></div>	'
-																											}
-																										}
-																									},
-																									options : {
-																										image : {
-																											self : '<div class="profile_hub_tracking_item_options"></div>',
-																											branch : {
-																												image : {
-																													self : '<img src="'+frameworkuri+'/CSS/Includes/works/profilehub/freepost.png" alt="" class="profile_hub_tracking_item_options_image">'
-																												},
-																												remove : {
-																													self : '<div class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>'
+																		items : {																						
+																			self : '<div class="profile_hub_tracking_items"></div>',
+																			branch : {
+																				promise : {
+																					self : '<div class="profile_hub_tracking_items_group"></div>',
+																					branch : {
+																						title : {
+																							self : '<div class="profile_hub_tracking_title">Price promises</div>'
+																						},
+																						wrap : {
+																							instructions : { 
+																								observe : {
+																									who      : state.account,
+																									property : "price_promise",
+																									call     : function (change) {
+																										if ( state.account.price_promise === null ) return;
+																										var format, manifest, map, append_to;
+																											format = { 
+																												self : '<div class="profile_hub_tracking_item"></div>',
+																												branch : {
+																													image : {
+																														self : '<img src="" class="profile_hub_tracking_item_image">'
+																													},
+																													text : {
+																														self : '<div class="profile_hub_tracking_item_text"></div>',
+																														branch : {
+																															title : {
+																																self : '<div class="profile_hub_tracking_item_text_title"></div>'
+																															},
+																															author : {
+																																self : '<div class="profile_hub_tracking_item_text_author"></div>'
+																															},
+																															quote : {
+																																self : '<div class="profile_hub_tracking_item_text_quote"></div>'
+																															},
+																															isbn : {
+																																self : '<div class="profile_hub_tracking_item_text_isbn"></div>	'
+																															}
+																														}
+																													},
+																													options : {
+																														self : '<div class="profile_hub_tracking_item_options"></div>',
+																														branch : {
+																															image : {
+																																self : '<img src="'+frameworkuri+'/CSS/Includes/works/profilehub/freepost.png" class="profile_hub_tracking_item_options_image">'
+																															},
+																															remove : {
+																																instructions : {
+																																	on : {
+																																		the_event : "click",
+																																		is_asslep : false,
+																																		call      : function (change) { 
+																																			if (confirm("Are you sure you want to remove this book from the price promise list?")) {
+																																				var promise = state.account.price_promise,
+																																					index   = change.self.attr("id");
+																																					promise.splice(index, 1);
+																																					state.account.price_promise = promise;
+																																			}
+																																		}
+																																	}
+																																},
+																																self : '<div id="" class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>'
+																															}
+																														}
+																													}
 																												}
-																											}
-																										}
+																											};
+
+																											map = [
+																												{
+																													path : "branch.image.self.src",
+																													value: "image"
+																												},
+																												{
+																													path : "branch.text.branch.title.self.text",
+																													value: "title"
+																												},
+																												{
+																													path : "branch.text.branch.author.self.text",
+																													value: "author"
+																												},
+																												{
+																													path : "branch.text.branch.isbn.self.text",
+																													value: "isbn"
+																												},
+																												{
+																													path : "branch.text.branch.quote.self.text",
+																													value: "price"
+																												},
+																												{
+																													path : "branch.options.branch.remove.self.id",
+																													value: "id"
+																												}
+																											];
+																											console.log("reconstruct");
+																											append_to = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.branch.items.branch.promise.branch.wrap.self;
+																											append_to.empty();
+																											manifest = alpha.format(format, append_to, state.account.price_promise.length );
+																												
+																											for (var index = 0; index < state.account.price_promise.length; index++) {
+																												state.account.price_promise[index].id = index;
+																												alpha.parse(map, manifest[index+1], state.account.price_promise[index]);
+																											};
+																											world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.branch.items.branch.promise.branch.wrap.self.branch = manifest;
 																									}
 																								}
-																							};
-
-																							map = [
-																								{
-																									path : "branch.image.self.src",
-																									value: "image"
-																								},
-																								{
-																									path : "branch.text.branch.title.self.text",
-																									value: "title"
-																								},
-																								{
-																									path : "branch.text.branch.author.self.text",
-																									value: "author"
-																								},
-																								{
-																									path : "branch.text.branch.isbn.self.text",
-																									value: "isbn"
-																								},
-																								{
-																									path : "branch.text.branch.quote.self.text",
-																									value: "price"
-																								}
-																							];
-
-																							append_to = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.branch.items.self;
-
-																							append_to.empty();
-																							manifest = alpha.format(format, append_to, state.account.price_promise.length );
-
-																							$.each(state.account.price_promise, function (index, book) { 
-																								console.log(book);
-																								alpha.parse(map, manifest[index+1], book);
-																							});	
-																							world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.branch.items.branch = manifest;
+																							},		
+																							self : '<div class="profile_hub_tracking_items_sub_group"></div>'
+																						}
 																					}
 																				}
-																			},	
-																			self : '<div class="profile_hub_tracking_items"></div>'
-																			// last_branch : {
-																			// 	price_promises_label :'<div class="profile_hub_tracking_title">Price promises</div>' ,
-																			// 	unaccepted_label : '<div class="profile_hub_tracking_title">Unaccepted</div>'
-																			// }
+																			}
 																		}
 																	}
 																}
@@ -3243,9 +3577,6 @@
 					title:"Maths in M..."
 				}
 			];
-			
-
-			// console.log(state.account.price_promise);
 
 				
 		});									

@@ -672,13 +672,35 @@ body {
   padding: 10px 4%;
   clear: both; }
 
+.profile_hub_account_detail_wrap {
+  width: 100%;
+  float: left;
+  display: block; }
+
+.profile_hub_account_extra_details {
+  display: none;
+  float: left;
+  margin: 10px 0; }
+
 .profile_hub_account_extra_details_title {
   font-size: 14px;
   line-height: 16px;
   color: #555555;
   float: left;
   clear: both;
-  margin: 20px 0 10px 10px; }
+  margin: 10px 0 10px 10px; }
+
+.profile_hub_account_extra_details_input {
+  margin-bottom: 0px; }
+
+.profile_hub_account_extra_details_edit {
+  font-size: 12px;
+  line-height: 12px;
+  color: #d8d8d8;
+  text-decoration: underline;
+  float: right;
+  cursor: pointer;
+  margin: 5px 5px 0 0; }
 
 .profile_hub_account_extra_buttons {
   width: 100%;
@@ -2554,6 +2576,10 @@ body {
   margin: 12px 0 0 5px;
   float: left;
   color: #555555; }
+
+.result_books {
+  position: relative;
+  float: left; }
 
 .result_book_search_wrapper, .result_book_search_wrapper_left, .result_book_search_wrapper_right {
   width: 28.33%;

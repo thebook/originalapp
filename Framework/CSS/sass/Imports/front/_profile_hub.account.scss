@@ -75,17 +75,40 @@
 	clear: both;
 } 
 
+.profile_hub_account_detail_wrap { 
+	width: 100%;
+	float: left;
+	display: block;
+}
+
+.profile_hub_account_extra_details {
+	display: none;
+	float: left;
+	margin: 10px 0;
+}
+
 .profile_hub_account_extra_details_title {
 	font-size: 14px;
 	line-height: 16px;
 	color: $black_gray;
 	float: left;
 	clear: both;
-	margin: 20px 0 10px 10px;
+	margin: 10px 0 10px 10px;
 }
 
 .profile_hub_account_extra_details_input {
 	@extend.profile_hub_account_main_details_large_input;
+	margin-bottom: 0px;
+}
+
+.profile_hub_account_extra_details_edit { 
+	font-size: 12px;
+	line-height: 12px;
+	color: $middle_monochrome;
+	text-decoration: underline;
+	float: right;
+	cursor: pointer;
+	margin: 5px 5px 0 0;
 }
 
 .profile_hub_account_extra_buttons {
