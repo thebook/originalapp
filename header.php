@@ -63,6 +63,20 @@
 				book.basket  = [];
 			var animate = {};
 				animate.state = false;
+				// animate.number
+
+			var default_account = {
+					credit 	           : "0.00",
+					first_name         : "",
+					second_name        : "",
+					price_promise      : [],
+					history            : [],
+					email              : "",
+					year               : "",
+					university         : "",
+					password           : "",
+					recieve_newsletter : 1
+				};
 
 			var state = {};
 				state.log_in  = {};
@@ -156,7 +170,7 @@
 					}
 				}
 			});
-
+			
 			var world = new alpha.thought;
 			world.thought = {
 				wrap : {
@@ -184,8 +198,8 @@
 													}
 												}, function (address) { 
 													state.addresses = address.return;
+													state.signed = true;
 													if ( state.log_in.where === "welcome" ) router.change_url("confirm");
-													if ( state.log_in.where === "normal" )  router.change_url("hub");
 												}, "json");
 											} else {
 												console.log("invalid password");
@@ -350,9 +364,37 @@
 															self   : '<div class="progress_icons_for_bar_wrap"></div>',
 															branch : {								
 																welcome : {
+																	instructions : {
+																		observe : {
+																			who      : animate,
+																			property : "state",
+																			call     : function (change) {
+																				var icon = world.wrap.branch.navigation.branch.wrap.branch.navigation.branch.wrap.branch.progress.branch.welcome.self;
+																					if ( change.new === "welcome") {
+																						icon.attr("class", "progress_icon_for_bar");
+																					} else {
+																						icon.attr("class", "progress_icon_for_bar_done");
+																					}
+																			}
+																		}
+																	},
 																	self   : '<div class="progress_icon_for_bar"></div>',
 																	branch : {
 																		circle : {
+																			instructions : {
+																				observe : {
+																					who      : animate,
+																					property : "state",
+																					call     : function (change) {
+																						var circle = world.wrap.branch.navigation.branch.wrap.branch.navigation.branch.wrap.branch.progress.branch.welcome.branch.circle.self;
+																							if ( change.new === "welcome" ) {
+																								circle.attr("class", "progress_icon_circle_doing");
+																							} else { 
+																								circle.attr("class", "progress_icon_circle_done");
+																							}
+																					}
+																				}
+																			},		
 																			self   : '<div class="progress_icon_circle_doing"></div>',
 																			last_branch : {
 																				icon : '<span class="with-icon-welcome-progress-bar"></span>'
@@ -364,9 +406,39 @@
 																	}
 																},
 																account : {
+																	instructions : {
+																		observe : {
+																			who      : animate,
+																			property : "state",
+																			call     : function (change) {
+																				var icon = world.wrap.branch.navigation.branch.wrap.branch.navigation.branch.wrap.branch.progress.branch.account.self;
+																					if ( change.new === "welcome" || change.new === "register") {
+																						icon.attr("class", "progress_icon_for_bar");
+																					} else {
+																						icon.attr("class", "progress_icon_for_bar_done");
+																					}
+																			}
+																		}
+																	},
 																	self   : '<div class="progress_icon_for_bar"></div>',
 																	branch : {
 																		circle : {
+																			instructions : {
+																				observe : {
+																					who      : animate,
+																					property : "state",
+																					call     : function (change) {
+																						var circle = world.wrap.branch.navigation.branch.wrap.branch.navigation.branch.wrap.branch.progress.branch.account.branch.circle.self;
+																							if ( change.new === "welcome" ) {
+																								circle.attr("class", "progress_icon_circle");
+																							} else if ( change.new === "register" ) {
+																								circle.attr("class", "progress_icon_circle_doing");
+																							} else { 
+																								circle.attr("class", "progress_icon_circle_done");
+																							}
+																					}
+																				}
+																			},	
 																			self   : '<div class="progress_icon_circle"></div>',
 																			last_branch : {
 																				icon : '<span class="with-icon-account-progress-bar"></span>'
@@ -378,9 +450,39 @@
 																	}
 																},
 																confirm : {
+																	instructions : {
+																		observe : {
+																			who      : animate,
+																			property : "state",
+																			call     : function (change) {
+																				var icon = world.wrap.branch.navigation.branch.wrap.branch.navigation.branch.wrap.branch.progress.branch.confirm.self;
+																					if ( change.new === "welcome" || change.new === "register" || change.new === "confirm") {
+																						icon.attr("class", "progress_icon_for_bar");
+																					} else {
+																						icon.attr("class", "progress_icon_for_bar_done");
+																					}
+																			}
+																		}
+																	},
 																	self   : '<div class="progress_icon_for_bar"></div>',
 																	branch : {
 																		circle : {
+																			instructions : {
+																				observe : {
+																					who      : animate,
+																					property : "state",
+																					call     : function (change) {
+																						var circle = world.wrap.branch.navigation.branch.wrap.branch.navigation.branch.wrap.branch.progress.branch.confirm.branch.circle.self;
+																							if ( change.new === "welcome" || change.new === "register" ) {
+																								circle.attr("class", "progress_icon_circle");
+																							} else if ( change.new === "confirm" ) {
+																								circle.attr("class", "progress_icon_circle_doing");
+																							} else { 
+																								circle.attr("class", "progress_icon_circle_done");
+																							}
+																					}
+																				}
+																			},	
 																			self   : '<div class="progress_icon_circle"></div>',
 																			last_branch : {
 																				icon : '<span class="with-icon-confirm-progress-bar"></span>'
@@ -581,30 +683,82 @@
 												arrow : '<span class="with-icon-user-arrow"></span>'
 											}
 										},						
-										user_popup_box : {
+										user_popup_box : {											
 											self   :  '<div class="user_pop_up_box"></div>',
 											branch : {
 												popup_arrow : {
 													self : '<span class="with-icon-user-pop-up-box-arrow"></span>' 
 												},
-												setttings : {
+												settings : {
+													instructions : {
+														observe : {
+															who : state,
+															property : "signed",
+															call : function (change) { 
+																var settings = world.wrap.branch.navigation.branch.wrap.branch.user_popup_box.branch.settings.self;
+																if ( change.new ) {
+																	settings.css({ display : "block" });
+																} else {
+																	settings.css({ display : "none" });
+																}
+															}
+														}
+													},
 													self   : "<div class=\"user_pop_up_settings_wrap\"></div>",
 													branch : {
 														title : {
-															self : '<div class="user_pop_up_title">Hi, Mcgee</div>' 
+															instructions : {
+																observe : {
+																	who      : state,
+																	property : "account",
+																	call     : function (change) { 
+																		var title = world.wrap.branch.navigation.branch.wrap.branch.user_popup_box.branch.settings.branch.title.self;
+																			title.text("Hi, "+ change.new.first_name );
+																	}
+																}
+															},
+															self : '<div class="user_pop_up_title"></div>' 
 														},
 														edit_option : {
-															self : '<div class="user_pop_up_option">Edit Account</div>'
+															self : '<a href="hub" class="user_pop_up_option">View Account</a>'
 														},
-														tracking_option : {
-															self : '<div class="user_pop_up_option">Tracking</div>'
-														},
-														account : {
-															self : '<div class="user_pop_up_option">Account History</div>'
+														sign_out : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) { 
+																		state.signed    = false;
+																		state.account   = default_account;
+																		state.addresses = [{}];
+																	}
+																}
+															},
+															self : '<div class="user_pop_up_option">Sign Out</div>'
 														}
+														// tracking_option : {
+														// 	self : '<div class="user_pop_up_option">Tracking</div>'
+														// },
+														// account : {
+														// 	self : '<div class="user_pop_up_option">Account History</div>'
+														// }
 													}
 												},
 												sign_in : {
+													instructions : {
+														observe : {
+															who : state,
+															property : "signed",
+															call : function (change) { 
+																var sign_in = world.wrap.branch.navigation.branch.wrap.branch.user_popup_box.branch.sign_in.self;
+																if ( change.new ) {
+																	sign_in.css({ display : "none" });
+																} else {
+																	sign_in.css({ display : "block" });
+																}
+															}
+														}
+													},
 													self   : "<div class=\"user_pop_up_sign_in_wrap\"></div>",
 													branch : {
 														sign_in_wrap : {
@@ -616,9 +770,31 @@
 															}
 														},
 														email : {
+															instructions : {
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) {
+																		state.account.email = change.self.val();
+																	}
+																}
+															},
 															self : '<input type="text" class="user_pop_up_option_input" placeholder="Username">'
 														},
 														password : {
+															instructions : {
+																on : {
+																	the_event : "keypress",
+																	is_asslep : false,
+																	call      : function (change) {
+																		if ( change.event.keyCode === 13 ) {
+																			state.account.password  = change.self.val();
+																			state.log_in.where      = "normal";
+																			state.log_in.logging_in = true;
+																		}	
+																	}
+																}
+															},
 															self : '<input type="password" class="user_pop_up_option_input" placeholder="Password">'
 														},
 														forgotten_password : {
