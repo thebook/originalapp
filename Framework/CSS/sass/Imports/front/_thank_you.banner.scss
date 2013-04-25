@@ -86,6 +86,14 @@
 	}
 }
 
+.thank_you_banner_paragraph_link { 
+	color: $dark_blue;
+	font-weight: bold;
+	&:hover { 
+		text-decoration: underline;
+	}
+}
+
 .with-icon-thank-you-bottom-arrow {
 	
 	width: 100%;

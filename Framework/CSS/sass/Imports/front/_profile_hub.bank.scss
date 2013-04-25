@@ -19,6 +19,7 @@
 
 .profile_hub_bank_info {
 	position: absolute;
+	display: none;
 	width: $profile_hub_box_width - 40;
 	padding: 10px;
 	border: 1px solid $middle_monochrome;

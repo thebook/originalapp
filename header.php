@@ -63,6 +63,7 @@
 				book.basket  = [];
 			var animate = {};
 				animate.state = false;
+				animate.page  = "home";
 				// animate.number
 
 			var default_account = {
@@ -120,6 +121,7 @@
 				on  : function () {
 					world.wrap.branch.home_wrap.self.css({ display : "block" });
 					animate.state = false;
+					animate.page  = "home";
 				},
 				off : function () {
 					world.wrap.branch.home_wrap.self.css({ display : "none" });
@@ -128,6 +130,7 @@
 					on : function () {
 						world.wrap.branch.recyclabus.self.css({ display : "block" });
 						animate.state = false;
+						animate.page  = "recyclabus";
 					},
 					off: function () { 
 						world.wrap.branch.recyclabus.self.css({ display : "none" });
@@ -137,9 +140,19 @@
 					on : function () {
 						world.wrap.branch.sell.self.css({ display : "block" });
 						animate.state = false;
+						animate.page  = "sell";
 					},
 					off: function () {
 						world.wrap.branch.sell.self.css({ display : "none" });
+					}
+				},
+				hub : {
+					on : function () {
+						world.wrap.branch.hub.self.css({ display : "block" });
+						animate.state = false;
+					},
+					off: function () {
+						world.wrap.branch.hub.self.css({ display : "none" });
 					}
 				},
 				confirm_sign_in : {
@@ -168,6 +181,15 @@
 					off: function () {
 						world.wrap.branch.confirm.self.css({ display : "none" });
 					}
+				}, 
+				done : {
+					on : function () { 
+						animate.state = "done";
+						world.wrap.branch.thank_you.self.css({ display : "block" });
+					},
+					off: function () { 
+						world.wrap.branch.thank_you.self.css({ display : "none" });
+					}
 				}
 			});
 			
@@ -189,7 +211,7 @@
 									}, function (account) {
 										if ( account.return ) {
 											if ( state.account.password === account.return.password ) {
-												state.account = account.return;
+
 												$.get(ajaxurl, {
 													action : "get_account",
 													method : "address",
@@ -197,9 +219,12 @@
 														email : state.account.email
 													}
 												}, function (address) { 
+													
+													for ( var part in state.account ) state.account[part] = account.return[part];
 													state.addresses = address.return;
 													state.signed = true;
 													if ( state.log_in.where === "welcome" ) router.change_url("confirm");
+
 												}, "json");
 											} else {
 												console.log("invalid password");
@@ -319,8 +344,8 @@
 													property : "state",
 													call     : function (change) {
 														var arrow = world.wrap.branch.navigation.branch.wrap.branch.arrow.self;
-														if ( change.new === false ) 	 arrow.css({ display : "none" });
-														if ( change.new !== false )      arrow.css({ display : "block" });
+														if ( change.new === false || change.new === "done" ) arrow.css({ display : "none" });
+														if ( change.new !== false && change.new !== "done" ) arrow.css({ display : "block" });
 														if ( change.new === "welcome" )  arrow.animate({ left : "68px" });
 														if ( change.new === "register" ) arrow.animate({ left : "152px" });
 														if ( change.new === "confirm"  ) arrow.animate({ left : "234px" });
@@ -329,12 +354,6 @@
 											},
 											self : '<span class="with-icon-progress-pop-up-arrow"></span>'
 										},
-										// logo : {
-										// 	self   : '<div data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="logo_for_bar"></div>',
-										// 	last_branch : {
-										// 		logo : '<span data-function-instructions="{\'page\' : \'homepage_body_wrap\' }" data-function-to-call="front.prototype.change_page" class="with-icon-logo"></span>'
-										// 		}
-										// 	}
 										navigation : {
 											self   : '<div class="navigation_wrap"></div>',
 											branch : {
@@ -354,10 +373,49 @@
 													branch : {
 														navigation : {
 															self   : '<div class="navigation"></div>',
-															last_branch : {
-																how_it_works : '<a href="/"          id="homepage_navigation"   class="navigation_button with-icon-for-navigation-text-for-bar-active">How It Works</a>',
-																recyclabus   : '<a href="recyclabus" id="recyclabus_navigation" class="navigation_button navigation_text_for_bar">Recyclabus</a>',
-																sell_books   : '<a href="sell"       id="sell_books_navigation"  class="navigation_button navigation_text_for_bar">Sell Books</a>'
+															branch : {
+																how_it_works : {
+																	instructions : {
+																		observe : {
+																			who      : animate,
+																			property : "page",
+																			call     : function (change) {
+																				var self = world.wrap.branch.navigation.branch.wrap.branch.navigation.branch.wrap.branch.navigation.branch.how_it_works.self;
+																				if ( change.new === "home" ) self.attr("class", "with-icon-for-navigation-text-for-bar-active");
+																				if ( change.new !== "home" ) self.attr("class", "navigation_text_for_bar");
+																			}
+																		}
+																	},
+																	self : '<a href="/" id="homepage_navigation" class="with-icon-for-navigation-text-for-bar-active">How It Works</a>'
+																},
+																recyclabus : {
+																	instructions : {
+																		observe : {
+																			who      : animate,
+																			property : "page",
+																			call     : function (change) {
+																				var self = world.wrap.branch.navigation.branch.wrap.branch.navigation.branch.wrap.branch.navigation.branch.recyclabus.self;
+																				if ( change.new === "recyclabus" ) self.attr("class", "with-icon-for-navigation-text-for-bar-active");
+																				if ( change.new !== "recyclabus" ) self.attr("class", "navigation_text_for_bar");
+																			}
+																		}
+																	},
+																	self : '<a href="recyclabus" id="recyclabus_navigation" class="navigation_text_for_bar">Recyclabus</a>'
+																},
+																sell_books : {
+																	instructions : {
+																		observe : {
+																			who      : animate,
+																			property : "page",
+																			call     : function (change) {
+																				var self = world.wrap.branch.navigation.branch.wrap.branch.navigation.branch.wrap.branch.navigation.branch.sell_books.self;
+																				if ( change.new === "sell" ) self.attr("class", "with-icon-for-navigation-text-for-bar-active");
+																				if ( change.new !== "sell" ) self.attr("class", "navigation_text_for_bar");
+																			}
+																		}
+																	},
+																	self : '<a href="sell" class="navigation_text_for_bar">Sell Books</a>'
+																}
 															}
 														},
 														progress : {															
@@ -497,6 +555,20 @@
 																	self   : '<div class="progress_icon_for_bar"></div>',
 																	branch : {
 																		circle : {
+																			instructions : {
+																				observe : {
+																					who      : animate,
+																					property : "state",
+																					call     : function (change) {
+																						var circle = world.wrap.branch.navigation.branch.wrap.branch.navigation.branch.wrap.branch.progress.branch.thank_you.branch.circle.self;
+																							if ( change.new === "done" ) {
+																								circle.attr("class", "progress_icon_circle_doing");
+																							} else {
+																								circle.attr("class", "progress_icon_circle");
+																							}
+																					}
+																				}
+																			},	
 																			self   : '<div class="progress_icon_circle"></div>',
 																			last_branch : {
 																				icon : '<span class="with-icon-thank-you-progress-bar"></span>'
@@ -709,11 +781,11 @@
 														title : {
 															instructions : {
 																observe : {
-																	who      : state,
-																	property : "account",
+																	who      : state.account,
+																	property : "first_name",
 																	call     : function (change) { 
 																		var title = world.wrap.branch.navigation.branch.wrap.branch.user_popup_box.branch.settings.branch.title.self;
-																			title.text("Hi, "+ change.new.first_name );
+																			title.text("Hi, "+ change.new );
 																	}
 																}
 															},
@@ -729,8 +801,8 @@
 																	is_asslep : false,
 																	call      : function (change) { 
 																		state.signed    = false;
-																		state.account   = default_account;
 																		state.addresses = [{}];
+																		for ( var part in state.account ) state.account[part] = default_account[part];
 																	}
 																}
 															},
@@ -1157,12 +1229,44 @@
 												dates_highlight : {
 														self : '<div class="recyclabus_dates_highlight">If you give us your email and university well send you a reminder when were coming your way</div>'
 												},
-												inputs_wrap : {
+												inputs : {
 													self   : '<div class="recyclabus_dates_input_wrap"></div>',
-													last_branch : {
-														input_email      : '<input type="text" class="recyclabus_dates_first_input" placeholder="Email">',
-														input_university : '<input type="text" class="recyclabus_dates_seach_input" placeholder="University">',
-														text             : '<div class="recyclabus_dates_input_text"><strong class="with-icon-lock-for-strong">Don\'t worry,</strong> well only use this information to remind you when you can sell your books</div>'
+													branch : {
+														email : {
+															instructions : {
+																observe : {
+																	who      : state, 
+																	property : "signed",
+																	call     : function (change) {
+																		var input = world.wrap.branch.recyclabus.branch.right.branch.wrap.branch.inputs.branch.email.self;
+																		input.attr("readonly", change.new);
+																		input.val(state.account.email);
+																	}
+																}
+															},
+															self : '<input type="text" class="recyclabus_dates_first_input" placeholder="Email">'
+														},
+														university : {
+															instructions : {
+																observe : {
+																	who      : state, 
+																	property : "signed",
+																	call     : function (change) {
+																		var input = world.wrap.branch.recyclabus.branch.right.branch.wrap.branch.inputs.branch.university.self;
+																		if ( change.new && state.account.university !== "" ) {
+																			input.attr("readonly", true);
+																			input.val(state.account.university);
+																		} else {
+																			input.attr("readonly", false);
+																		}
+																	}
+																}
+															},
+															self : '<input type="text" class="recyclabus_dates_seach_input" placeholder="University">'
+														},
+														text : {
+															self : '<div class="recyclabus_dates_input_text"><strong class="with-icon-lock-for-strong">Don\'t worry,</strong> well only use this information to remind you when you can sell your books</div>'
+														}
 													}
 												},
 												buttons_wrap : {
@@ -2186,7 +2290,7 @@
 							}
 						},
 						confirm : {
-							self : '<section class="pages checkout"></section>',
+							self : '<section class="checkout pages"></section>',
 							branch : {
 								wrap : {
 									instructions : { 
@@ -2462,10 +2566,12 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) { 
-																var date;
+																console.log("confirm click");
+																var date, books;
+
 																state.account.price_promise = book.basket;
 																book.basket = [];
-																router.change_url("thank_you");
+																router.change_url("done");
 
 																date = new Date;
 																$.post(ajaxurl,
@@ -2484,8 +2590,7 @@
 																			date        : date.getFullYear() +"/"+ date.getMonth() +"/"+ date.getDate()
 																		}
 																	}
-																}, function () {
-																}, "json");
+																}, function () {}, "json");
 															}
 														}
 													},
@@ -2515,16 +2620,8 @@
 												title_two : {
 													self : '<div class="thank_you_banner_title_two">For using recyclabook</div>'
 												},
-												summary : {
-													self   : '<div class="thank_you_banner_summary"></div>',
-													last_branch : {
-														text_one : '<span>You have sold your books. You will recieve a cheque for </span>',
-														quote    : '<span class="thank_you_banner_summary_underline">£xx.xx</span>',
-														text_two : '<span> as soon as we get your books</span>'
-													}
-												},
 												paragraph : {
-													self : '<div class="thank_you_banner_paragraph">We\'ll be waiting for your books to arrive, in the meantime, <strong>you have an account now</strong>. You can login and track the books and payments anytime, theres also an option to tell us when you\'ve sent your books so we can get your payment out <strong>even quicker.</strong></div>'
+													self : '<div class="thank_you_banner_paragraph">We\'ll be waiting for your books to arrive, in the meantime, <a class="thank_you_banner_paragraph_link" href="hub">you have an account now</a>. You can login and track the books and payments anytime and request more freepost packs.</div>'
 												}
 											}
 										},
@@ -2949,6 +3046,15 @@
 													self : '<div class="profile_hub_tracking profile_hub_box_right"></div>',
 													branch : {
 														bar : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function () { 
+																		state.account.price_promise = test;
+																	}
+																}
+															},
 															self : '<div class="profile_hub_tracking_bar"></div>',
 															branch : {
 																icon : {
@@ -2997,11 +3103,94 @@
 																			}
 																		},
 																		items : {
-																			self : '<div class="profile_hub_tracking_items"></div>',
-																			last_branch : {
-																				price_promises_label :'<div class="profile_hub_tracking_title">Price promises</div>' ,
-																				unaccepted_label : '<div class="profile_hub_tracking_title">Unaccepted</div>'
-																			}
+																			instructions : { 
+																				observe : {
+																					who      : state.account,
+																					property : "price_promise",
+																					call     : function (change) {
+																							console.log("change");
+																							console.log(change.new);
+																						var format, manifest, map, append_to;
+																							format = { 
+																								self : '<div class="profile_hub_tracking_item"></div>',
+																								branch : {
+																									image : {
+																										self : '<img src="" class="profile_hub_tracking_item_image">'
+																									},
+																									text : {
+																										self : '<div class="profile_hub_tracking_item_text"></div>',
+																										branch : {
+																											title : {
+																												self : '<div class="profile_hub_tracking_item_text_title"></div>'
+																											},
+																											author : {
+																												self : '<div class="profile_hub_tracking_item_text_author"></div>'
+																											},
+																											quote : {
+																												self : '<div class="profile_hub_tracking_item_text_quote"></div>'
+																											},
+																											isbn : {
+																												self : '<div class="profile_hub_tracking_item_text_isbn"></div>	'
+																											}
+																										}
+																									},
+																									options : {
+																										image : {
+																											self : '<div class="profile_hub_tracking_item_options"></div>',
+																											branch : {
+																												image : {
+																													self : '<img src="'+frameworkuri+'/CSS/Includes/works/profilehub/freepost.png" alt="" class="profile_hub_tracking_item_options_image">'
+																												},
+																												remove : {
+																													self : '<div class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>'
+																												}
+																											}
+																										}
+																									}
+																								}
+																							};
+
+																							map = [
+																								{
+																									path : "branch.image.self.src",
+																									value: "image"
+																								},
+																								{
+																									path : "branch.text.branch.title.self.text",
+																									value: "title"
+																								},
+																								{
+																									path : "branch.text.branch.author.self.text",
+																									value: "author"
+																								},
+																								{
+																									path : "branch.text.branch.isbn.self.text",
+																									value: "isbn"
+																								},
+																								{
+																									path : "branch.text.branch.quote.self.text",
+																									value: "price"
+																								}
+																							];
+
+																							append_to = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.branch.items.self;
+
+																							append_to.empty();
+																							manifest = alpha.format(format, append_to, state.account.price_promise.length );
+
+																							$.each(state.account.price_promise, function (index, book) { 
+																								console.log(book);
+																								alpha.parse(map, manifest[index+1], book);
+																							});	
+																							world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.branch.items.branch = manifest;
+																					}
+																				}
+																			},	
+																			self : '<div class="profile_hub_tracking_items"></div>'
+																			// last_branch : {
+																			// 	price_promises_label :'<div class="profile_hub_tracking_title">Price promises</div>' ,
+																			// 	unaccepted_label : '<div class="profile_hub_tracking_title">Unaccepted</div>'
+																			// }
 																		}
 																	}
 																}
@@ -3023,6 +3212,40 @@
 
 			world = world.manifest($('body'));
 			router.begin();
+
+			var test = [
+				{	
+					asin : "1780873697",
+					author:"Paul Glendinning...",
+					binding : "Paperback",
+					id : 0,
+					image : "http://ecx.images-amazon.com/images/I/51-mYD0PU7L._SL160_.jpg",
+					isbn : "1780873697",
+					lowest_new_price:"243",
+					lowest_used_price:"207",
+					number_in_stock:"1",
+					pages:"416",
+					price:6.99	,
+					title:"Maths in M..."
+				},
+				{	
+					asin : "1780873697",
+					author:"Paul Glendinning...",
+					binding : "Paperback",
+					id : 0,
+					image : "http://ecx.images-amazon.com/images/I/51-mYD0PU7L._SL160_.jpg",
+					isbn : "1780873697",
+					lowest_new_price:"243",
+					lowest_used_price:"207",
+					number_in_stock:"1",
+					pages:"416",
+					price:6.99	,
+					title:"Maths in M..."
+				}
+			];
+			
+
+			// console.log(state.account.price_promise);
 
 				
 		});									

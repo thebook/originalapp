@@ -356,7 +356,6 @@ body {
     content: "-"; }
 
 .profile_hub {
-  display: none;
   width: 930px;
   margin: 0 auto;
   background: white;
@@ -836,6 +835,7 @@ body {
 
 .profile_hub_bank_info {
   position: absolute;
+  display: none;
   width: 420px;
   padding: 10px;
   border: 1px solid #d8d8d8;
@@ -3599,6 +3599,12 @@ body {
   text-align: justify; }
   .thank_you_banner_paragraph strong {
     font-weight: bold; }
+
+.thank_you_banner_paragraph_link {
+  color: #3f7986;
+  font-weight: bold; }
+  .thank_you_banner_paragraph_link:hover {
+    text-decoration: underline; }
 
 .with-icon-thank-you-bottom-arrow {
   width: 100%;
