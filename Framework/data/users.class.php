@@ -84,6 +84,12 @@ class account extends alpha
 					'null'        => true
 				),
 				array(
+
+
+
+
+
+
 					'column_name' => 'unaccepted_book',
 					'data_type'   => 'blob',
 					'null'        => true
@@ -149,6 +155,12 @@ class account extends alpha
 	{
 		$table = new table_creator;
 		return $table->check_if_value_is_in_column($this->account_table, "email", $email);
+	}
+
+	public function set_account ($update)
+	{
+		$table = new table_creator;
+		$table->update_row($this->account_table, $update, 'email', $update['email']); 
 	}
 
 	public function set_new_account ($array_of_information)

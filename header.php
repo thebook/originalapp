@@ -82,6 +82,7 @@
 				};
 
 			var state = {};
+				state.save_account = false;
 				state.edit_account = false;
 				state.log_in  = {};
 				state.log_in.where = "";
@@ -202,47 +203,68 @@
 			world.thought = {
 				wrap : {
 					instructions : {
-						observe : {
-							who      : state.log_in,
-							property : "logging_in",
-							call     : function (change) { 
-								if ( change.new === true && !state.signed ) {
-									$.get(ajaxurl, {
-										action : "get_account",
-										method : "account",
-										paramaters : {
-											email : state.account.email
-										}
-									}, function (account) {
-										if ( account.return ) {
-											if ( state.account.password === account.return.password ) {
-												$.get(ajaxurl, {
-													action : "get_account",
-													method : "address",
-													paramaters : {
-														email : state.account.email
-													}
-												}, function (address) { 
-													
-													for ( var part in state.account ) state.account[part] = account.return[part];
-													state.addresses = address.return;
-													state.signed = true;
-													if ( state.log_in.where === "welcome" ) router.change_url("confirm");
-
-												}, "json");
-											} else {
-												console.log("invalid password");
+						observers : [
+							{
+								who      : state.log_in,
+								property : "logging_in",
+								call     : function (change) { 
+									if ( change.new === true && !state.signed ) {
+										$.get(ajaxurl, {
+											action : "get_account",
+											method : "account",
+											paramaters : {
+												email : state.account.email
 											}
-										} 	
-										else { 
-											console.log("invalid email");
-										}
-									}, 
-									"json");
-									state.log_in.logging_in = false;
+										}, function (account) {
+											if ( account.return ) {
+												if ( state.account.password === account.return.password ) {
+													$.get(ajaxurl, {
+														action : "get_account",
+														method : "address",
+														paramaters : {
+															email : state.account.email
+														}
+													}, function (address) { 
+														
+														for ( var part in state.account ) state.account[part] = account.return[part];
+														state.addresses = address.return;
+														state.signed = true;
+														if ( state.log_in.where === "welcome" ) router.change_url("confirm");
+
+													}, "json");
+												} else {
+													console.log("invalid password");
+												}
+											} 	
+											else { 
+												console.log("invalid email");
+											}
+										}, 
+										"json");
+										state.log_in.logging_in = false;
+									}
+								}
+							},
+							{ 
+								who      : state, 
+								property : "save_account",
+								call     : function (change) { 
+
+									if ( change.new ) { 
+										$.post(ajaxurl,
+										{ 
+											action     : "set_account",
+											method     : "account",
+											paramaters : {
+												account : state.account
+											}
+										}, function (response) {
+											console.log(response);
+										}, "json");
+									}
 								}
 							}
-						}
+						]
 					},
 					self   : '<div class="wrap"></div>',
 					branch : {
@@ -1733,6 +1755,17 @@
 																}
 															}
 														},
+														address : {
+															self : '<div id="" class="legend_mark_x_symbol"></div>',
+															branch : {
+																x    : 	{
+																	self : '<span class="with-icon-x-for-legend"></span>'
+																},
+																text : 	{
+																	self : '<span>Address is empty</span>'
+																}
+															}
+														},
 														post_code : {
 															self : '<div id="" class="legend_mark_x_symbol"></div>',
 															branch : {
@@ -1766,17 +1799,7 @@
 																}
 															}
 														},
-														address : {
-															self : '<div id="" class="legend_mark_x_symbol"></div>',
-															branch : {
-																x    : 	{
-																	self : '<span class="with-icon-x-for-legend"></span>'
-																},
-																text : 	{
-																	self : '<span>Address is empty</span>'
-																}
-															}
-														},
+														
 														email : {
 															self : '<div id="" class="legend_mark_x_symbol"></div>',
 															branch : {
@@ -1892,7 +1915,10 @@
 														title  			 : {
 															self : '<div class="field_box_input_title">Where shall we send your freepost pack</div>'
 														},
-														post_code_input  : {
+														not_valid        : {
+															self : '<span class="with-icon-not-valid-field"></span>'
+														},
+														address_input    : {
 															instructions : {
 																on : {
 																	the_event : "keyup",
@@ -1900,31 +1926,28 @@
 																	call      : function (change) {
 																		var correct, label, data, value;
 																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.post_code;
+																		label   = correct.branch.address;
 																		value   = change.self.val().trim();
-																		
+
+																		if ( value.length < 3 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Adress too short");
+																			state.registration.address = false;
+																		}
 																		if ( value.length === 0 ) {
 																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Post Code is empty");
-																			state.registration.post_code = false;
+																			label.branch.text.self.text("Address is empty");
+																			state.registration.address = false;
 																		}
-																		if ( ( value.length < 6 || value.length > 7 ) && value.length !== 0 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Invalid Post Code");
-																			state.registration.post_code = false;
-																		}
-																		if (  value.length > 5 && value.length < 8 ) {
+																		if ( value.length > 1 ) {
 																			label.self.css({ display : "none" });
-																			state.registration.post_code = true;
+																			state.registration.address = true;
 																		}
-																		state.addresses[0].post_code = value;
+																		state.addresses[0].address = value;
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="Post Code">'
-														},
-														not_valid        : {
-															self : '<span class="with-icon-not-valid-field"></span>'
+															self : '<input type="text" class="field_box_input" placeholder="Street And Address">'
 														},
 														town_input       : {
 															instructions : {
@@ -1986,9 +2009,9 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="Area">'
+															self : '<input type="text" class="field_box_input" placeholder="County">'
 														},
-														address_input    : {
+														post_code_input  : {
 															instructions : {
 																on : {
 																	the_event : "keyup",
@@ -1996,28 +2019,28 @@
 																	call      : function (change) {
 																		var correct, label, data, value;
 																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.address;
+																		label   = correct.branch.post_code;
 																		value   = change.self.val().trim();
-
-																		if ( value.length < 3 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Adress too short");
-																			state.registration.address = false;
-																		}
+																		
 																		if ( value.length === 0 ) {
 																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Address is empty");
-																			state.registration.address = false;
+																			label.branch.text.self.text("Post Code is empty");
+																			state.registration.post_code = false;
 																		}
-																		if ( value.length > 1 ) {
+																		if ( ( value.length < 6 || value.length > 7 ) && value.length !== 0 ) {
+																			label.self.css({ display : "block" });
+																			label.branch.text.self.text("Invalid Post Code");
+																			state.registration.post_code = false;
+																		}
+																		if (  value.length > 5 && value.length < 8 ) {
 																			label.self.css({ display : "none" });
-																			state.registration.address = true;
+																			state.registration.post_code = true;
 																		}
-																		state.addresses[0].address = value;
+																		state.addresses[0].post_code = value;
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="Street And Address">'
+															self : '<input type="text" class="field_box_input" placeholder="Post Code">'
 														}
 													}
 												}
@@ -2930,7 +2953,14 @@
 
 																						}
 																					}
-																				]
+																				],
+																				on : {
+																					the_event : "keyup",
+																					is_asslep : false,
+																					call      : function (change) {
+																						state.account.first_name = change.self.val();
+																					}
+																				}
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
 																		},
@@ -2955,7 +2985,14 @@
 
 																						}
 																					}
-																				]
+																				],
+																				on : {
+																					the_event : "keyup",
+																					is_asslep : false,
+																					call      : function (change) {
+																						state.account.second_name = change.self.val();
+																					}
+																				}
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
 																		},
@@ -2979,7 +3016,14 @@
 																								input.attr("readonly", (!state.edit_account));
 																						}
 																					}
-																				]
+																				],
+																				on : {
+																					the_event : "keyup",
+																					is_asslep : false,
+																					call      : function (change) {
+																						state.addresses[0].address = change.self.val();
+																					}
+																				}
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_large_input" readonly>'
 																		},
@@ -3003,7 +3047,14 @@
 																								input.attr("readonly", (!state.edit_account));
 																						}
 																					}
-																				]
+																				],
+																				on : {
+																					the_event : "keyup",
+																					is_asslep : false,
+																					call      : function (change) {
+																						state.addresses[0].town = change.self.val();
+																					}
+																				}
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
 																		},
@@ -3027,7 +3078,14 @@
 																								input.attr("readonly", (!state.edit_account));
 																						}
 																					}
-																				]
+																				],
+																				on : {
+																					the_event : "keyup",
+																					is_asslep : false,
+																					call      : function (change) {
+																						state.addresses[0].area = change.self.val();
+																					}
+																				}
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
 																		},
@@ -3051,7 +3109,14 @@
 																								input.attr("readonly", (!state.edit_account));
 																						}
 																					}
-																				]
+																				],
+																				on : {
+																					the_event : "keyup",
+																					is_asslep : false,
+																					call      : function (change) {
+																						state.addresses[0].post_code = change.self.val();
+																					}
+																				}
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
 																		}
@@ -3135,6 +3200,13 @@
 																								}
 																							}
 																						],
+																						on : {
+																							the_event : "keyup",
+																							is_asslep : false,
+																							call      : function (change) {
+																								state.account.university = change.self.val();
+																							}
+																						}
 																					},
 																					self : '<input type="text" class="profile_hub_account_extra_details_input" readonly>'
 																				}
@@ -3168,6 +3240,13 @@
 																								}
 																							}
 																						],
+																						on : {
+																							the_event : "keyup",
+																							is_asslep : false,
+																							call      : function (change) {
+																								state.account.year = change.self.val();
+																							}
+																						}
 																					},
 																					self : '<input type="text" class="profile_hub_account_extra_details_input" readonly>'
 																				}
@@ -3201,6 +3280,13 @@
 																								}
 																							}
 																						],
+																						on : {
+																							the_event : "keyup",
+																							is_asslep : false,
+																							call      : function (change) {
+																								state.account.subject = change.self.val();
+																							}
+																						}
 																					},
 																					self : '<input type="text" class="profile_hub_account_extra_details_input" readonly>'
 																				}
@@ -3249,10 +3335,12 @@
 																						var details = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.self;
 																							if ( state.edit_account ) { 
 																								change.self.text("Edit Account Details");
-																								state.edit_account = false;		
+																								state.edit_account = false;
+																								state.save_account = true;
 																							} else { 
-																								change.self.text("Details Editable");
+																								change.self.text("Save Account Details");
 																								state.edit_account = true;
+																								state.save_account = false;
 																							}
 																					}
 																				}
