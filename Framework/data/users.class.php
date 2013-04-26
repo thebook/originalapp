@@ -135,7 +135,9 @@ class account extends alpha
 	{
 		$table = new table_creator;
 		$account = $table->get_row($this->account_table, 'email', $account_email);
-		$account['price_promise'] = json_decode($account['price_promise']);
+		$account['history']         = json_decode($account['history']);
+		$account['unaccepted_book'] = json_decode($account['unaccepted_book']);
+		$account['price_promise']   = json_decode($account['price_promise']);
 		return $account;
 	}
 
@@ -160,6 +162,9 @@ class account extends alpha
 	public function set_account ($update)
 	{
 		$table = new table_creator;
+		$update['history']         = json_encode($update['history']);
+		$update['unaccepted_book'] = json_encode($update['unaccepted_book']);
+		$update['price_promise']   = json_encode($update['price_promise']);
 		$table->update_row($this->account_table, $update, 'email', $update['email']); 
 	}
 

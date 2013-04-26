@@ -74,6 +74,7 @@
 					second_name        : "",
 					price_promise      : [],
 					history            : [],
+					unaccepted_book    : [],
 					email              : "",
 					year               : "",
 					university         : "",
@@ -97,6 +98,7 @@
 					second_name        : "",
 					price_promise      : [],
 					history            : [],
+					unaccepted_book    : [],
 					email              : "",
 					year               : "",
 					university         : "",
@@ -259,7 +261,9 @@
 												account : state.account
 											}
 										}, function (response) {
+											console.log("account saved");
 											console.log(response);
+											state.save_account = false;
 										}, "json");
 									}
 								}
@@ -2596,12 +2600,12 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) { 
-																console.log("confirm click");
-																var date, books;
-
+																var date, price_promise;
+																
 																state.account.price_promise = book.basket;
 																book.basket = [];
 																router.change_url("done");
+																state.save_account = true;
 
 																date = new Date;
 																$.post(ajaxurl,
@@ -2621,19 +2625,6 @@
 																		}
 																	}
 																}, function () {}, "json");
-
-																$.post(ajaxurl, {
-																	action     : "set_account",
-																	method     : "price_promise",
-																	paramaters : {
-																		email   : state.account.email,
-																		promise : state.account.price_promise
-																	}
-																}, 
-																function (response) {
-																	console.log("price promise updated");
-																}, 
-																"json");
 															}
 														}
 													},
@@ -3666,6 +3657,7 @@
 																																					index   = change.self.attr("id");
 																																					promise.splice(index, 1);
 																																					state.account.price_promise = promise;
+																																					state.save_account = true;
 																																			}
 																																		}
 																																	}
