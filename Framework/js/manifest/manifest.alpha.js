@@ -35,6 +35,10 @@ var alpha = (function ( alpha, $ ) {
 
 		if ( instructions.observe ) this.observe(instructions.observe);
 
+		if ( instructions.observers ) {
+			for (var index = 0; index < instructions.observers.length; index++) this.observe(instructions.observers[index]);
+		}
+
 		return instructions;
 	};
 

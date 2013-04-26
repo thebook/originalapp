@@ -2911,94 +2911,153 @@
 																	branch : {
 																		first_name : {
 																			instructions : {
-																				observe : {
-																					who     : state.account,
-																					property: "first_name",
-																					call    : function (change) {
-																						if ( state.edit_account ) return;
+																				observers : [
+																					{
+																						who     : state.account,
+																						property: "first_name",
+																						call    : function (change) {
+																							if ( state.edit_account ) return;
+																								var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.first_name.self;
+																								input.val(change.new);
+																						}
+																					},
+																					{
+																						who      : state,
+																						property : "edit_account",
+																						call     : function (change) {
 																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.first_name.self;
-																							input.val(change.new);
+																								input.attr("readonly", (!state.edit_account));
+
+																						}
 																					}
-																				}
+																				]
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
 																		},
 																		second_name: {
 																			instructions : {
-																				observe : {
-																					who     : state.account,
-																					property: "second_name",
-																					call    : function (change) {
-																						if ( state.edit_account ) return;
+																				observers : [
+																					{
+																						who     : state.account,
+																						property: "second_name",
+																						call    : function (change) {
+																							if ( state.edit_account ) return;
+																								var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.second_name.self;
+																								input.val(change.new);
+																						}
+																					},
+																					{
+																						who      : state,
+																						property : "edit_account",
+																						call     : function (change) {
 																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.second_name.self;
-																							input.val(change.new);
+																								input.attr("readonly", (!state.edit_account));
+
+																						}
 																					}
-																				}
+																				]
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
 																		},
 																		address : {
 																			instructions : {
-																				observe : {
-																					who     : state,
-																					property: "addresses",
-																					call    : function (change) {
-																						if ( state.edit_account ) return;
+																				observers : [
+																					{
+																						who     : state,
+																						property: "addresses",
+																						call    : function (change) {
+																							if ( state.edit_account ) return;
+																								var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.address.self;
+																								input.val(change.new[0].address);
+																						}
+																					},
+																					{
+																						who      : state,
+																						property : "edit_account",
+																						call     : function (change) {
 																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.address.self;
-																							input.val(change.new[0].address);
+																								input.attr("readonly", (!state.edit_account));
+																						}
 																					}
-																				}
+																				]
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_large_input" readonly>'
 																		},
 																		town : {
 																			instructions : {
-																				observe : {
-																					who     : state,
-																					property: "addresses",
-																					call    : function (change) {
-																						if ( state.edit_account ) return;
+																				observers : [
+																					{
+																						who     : state,
+																						property: "addresses",
+																						call    : function (change) {
+																							if ( state.edit_account ) return;
+																								var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.town.self;
+																								input.val(change.new[0].town);
+																						}
+																					},
+																					{
+																						who      : state,
+																						property : "edit_account",
+																						call     : function (change) {
 																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.town.self;
-																							input.val(change.new[0].town);
+																								input.attr("readonly", (!state.edit_account));
+																						}
 																					}
-																				}
+																				]
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
 																		},
 																		area : {
 																			instructions : {
-																				observe : {
-																					who     : state,
-																					property: "addresses",
-																					call    : function (change) {
-																						if ( state.edit_account ) return;
+																				observers : [
+																					{
+																						who     : state,
+																						property: "addresses",
+																						call    : function (change) {
+																							if ( state.edit_account ) return;
+																								var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.area.self;
+																								input.val(change.new[0].area);
+																						}
+																					},
+																					{
+																						who      : state,
+																						property : "edit_account",
+																						call     : function (change) {
 																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.area.self;
-																							input.val(change.new[0].area);
+																								input.attr("readonly", (!state.edit_account));
+																						}
 																					}
-																				}
+																				]
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
 																		},
 																		post_code: {
 																			instructions : {
-																				observe : {
-																					who     : state,
-																					property: "addresses",
-																					call    : function (change) {
-																						if ( state.edit_account ) return;
+																				observers : [
+																					{
+																						who     : state,
+																						property: "addresses",
+																						call    : function (change) {
+																							if ( state.edit_account ) return;
+																								var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.post_code.self;
+																								input.val(change.new[0].post_code);
+																						}
+																					},
+																					{
+																						who      : state,
+																						property : "edit_account",
+																						call     : function (change) {
 																							var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.post_code.self;
-																							input.val(change.new[0].post_code);
+																								input.attr("readonly", (!state.edit_account));
+																						}
 																					}
-																				}
+																				]
 																			},
 																			self : '<input type="text" class="profile_hub_account_main_details_small_input" readonly>'
 																		}
 																	}
 																},
 																extra_details : {
-																	instructions : {
-																		open : false
-																	},
 																	self : '<div class="profile_hub_account_extra_details"></div>',
 																	branch : {
 																		email : {
@@ -3056,15 +3115,26 @@
 																				},
 																				input : {
 																					instructions : {
-																						observe : {
-																							who     : state.account,
-																							property: "university",
-																							call    : function (change) {
-																								if ( state.edit_account ) return;
+																						observers : [
+																							{
+																								who     : state.account,
+																								property: "university",
+																								call    : function (change) {
+																									if ( state.edit_account ) return;
+																										var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.university.branch.input.self;
+																										input.val(change.new);
+																								}
+																							},
+																							{
+																								who      : state,
+																								property : "edit_account",
+																								call     : function (change) {
 																									var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.university.branch.input.self;
-																									input.val(change.new);
+																										input.attr("readonly", (!state.edit_account));
+
+																								}
 																							}
-																						}
+																						],
 																					},
 																					self : '<input type="text" class="profile_hub_account_extra_details_input" readonly>'
 																				}
@@ -3078,15 +3148,26 @@
 																				},
 																				input : {
 																					instructions : {
-																						observe : {
-																							who     : state.account,
-																							property: "year",
-																							call    : function (change) {
-																								if ( state.edit_account ) return;
+																						observers : [
+																							{
+																								who     : state.account,
+																								property: "year",
+																								call    : function (change) {
+																									if ( state.edit_account ) return;
+																										var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.year.branch.input.self;
+																										input.val(change.new);
+																								}
+																							},
+																							{
+																								who      : state,
+																								property : "edit_account",
+																								call     : function (change) {
 																									var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.year.branch.input.self;
-																									input.val(change.new);
+																										input.attr("readonly", (!state.edit_account));
+
+																								}
 																							}
-																						}
+																						],
 																					},
 																					self : '<input type="text" class="profile_hub_account_extra_details_input" readonly>'
 																				}
@@ -3100,15 +3181,26 @@
 																				},
 																				input : {
 																					instructions : {
-																						observe : {
-																							who     : state.account,
-																							property: "subject",
-																							call    : function (change) {
-																								if ( state.edit_account ) return;
+																						observers : [
+																							{
+																								who     : state.account,
+																								property: "subject",
+																								call    : function (change) {
+																									if ( state.edit_account ) return;
+																										var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.subject.branch.input.self;
+																										input.val(change.new);
+																								}
+																							},
+																							{
+																								who      : state,
+																								property : "edit_account",
+																								call     : function (change) {
 																									var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.branch.subject.branch.input.self;
-																									input.val(change.new);
+																										input.attr("readonly", (!state.edit_account));
+
+																								}
 																							}
-																						}
+																						],
 																					},
 																					self : '<input type="text" class="profile_hub_account_extra_details_input" readonly>'
 																				}
@@ -3149,6 +3241,22 @@
 																			}
 																		},
 																		edit : {
+																			instructions : {
+																				on : {
+																					the_event : "click",
+																					is_asslep : false,
+																					call      : function (change) { 
+																						var details = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.extra_details.self;
+																							if ( state.edit_account ) { 
+																								change.self.text("Edit Account Details");
+																								state.edit_account = false;		
+																							} else { 
+																								change.self.text("Details Editable");
+																								state.edit_account = true;
+																							}
+																					}
+																				}
+																			},
 																			self : '<div class="profile_hub_account_extra_buttons_large_button">Edit Account Details</div>'
 																		}
 																	}
