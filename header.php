@@ -2703,6 +2703,16 @@
 							self : '<div class="profile_hub_popup_screen"></div>',
 							branch : { 
 								donate : {
+									instructions : {
+										observe : {
+											who      : animate,
+											property : "popup",
+											call     : function (change) {
+												var popup = world.wrap.branch.hub_popup.branch.donate.self;
+												( change.new === "donate" )? popup.css({ display : "block" }) : popup.css({ display : "none" });
+											}
+										}
+									},
 									self : '<div class="profile_hub_donate"></div>',
 									branch : {
 										head : {
@@ -2741,19 +2751,67 @@
 															self : '<div class="profile_hub_donate_mesure_text">Donate ammount :</div>'
 														},
 														first_ammount : {
-															self : '<input type="text" class="profile_hub_donate_mesure_ammount" value="" readonly>'
+															instructions : {
+																observe : {
+																	who      : state,
+																	property : "withdraw",
+																	call     : function (change) { 
+																		var self = world.wrap.branch.hub_popup.branch.donate.branch.body.branch.measure.branch.first_ammount.self;
+																		self.val("£"+change.new.split(".").shift());
+																	}
+																}
+															},
+															self : '<input type="text" class="profile_hub_donate_mesure_ammount" value="£0" readonly>'
 														},
 														seperator : {
 															self :'<div class="profile_hub_donate_mesure_seperate"></div>'
 														},
 														second_ammount : {
-															self : '<input type="text" class="profile_hub_donate_mesure_ammount" value="" readonly>'
+															instructions : {
+																observe : {
+																	who      : state,
+																	property : "withdraw",
+																	call     : function (change) { 
+																		var self = world.wrap.branch.hub_popup.branch.donate.branch.body.branch.measure.branch.second_ammount.self;
+																		self.val(change.new.split(".").pop());
+																	}
+																}
+															},
+															self : '<input type="text" class="profile_hub_donate_mesure_ammount" value="00" readonly>'
 														},
 														incrementor : {
 															self : '<div class="profile_hub_donate_mesure_incrimentor"></div>',
-															last_branch : {
-																up   : '<div class="profile_hub_donate_mesure_incrimentor_up"></div>',
-																down : '<div class="profile_hub_donate_mesure_incrimentor_down"></div>'
+															branch : {
+																up   : {
+																	instructions : {
+																		on : {
+																			the_event : "click",
+																			is_asslep : false,
+																			call      : function (change) {
+																				var value = parseFloat(state.withdraw) + 0.5;
+																				if ( value > state.account.credit ) value = parseFloat(state.account.credit);
+																				value = value.toFixed(2);
+																				state.withdraw = value;
+																			}
+																		}
+																	},
+																	self : '<div class="profile_hub_donate_mesure_incrimentor_up"></div>'
+																},
+																down : {
+																	instructions : {
+																		on : {
+																			the_event : "click",
+																			is_asslep : false,
+																			call      : function (change) {
+																				var value = parseFloat(state.withdraw) - 0.5;
+																				if ( value < 0.00 ) value = 0.00
+																				value = value.toFixed(2);
+																				state.withdraw = value;
+																			}
+																		}
+																	},
+																	self : '<div class="profile_hub_donate_mesure_incrimentor_down"></div>'
+																}
 															}
 														}
 													}
@@ -2762,6 +2820,17 @@
 													self :'<div class="profile_hub_donate_save">Donate now</div>'
 												},
 												cancel : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function () { 
+																animate.popup = false;
+																// state.edit.withdraw.first_name = false;
+																// state.edit.withdraw.address    = false;
+															}
+														}
+													},
 													self : '<div class="profile_hub_donate_cancel">Cancel</div>'
 												}
 											}
@@ -3102,8 +3171,9 @@
 																			the_event : "click",
 																			is_asslep : false,
 																			call      : function (change) {
-																				var value = state.withdraw - 0.50;
+																				var value = parseFloat(state.withdraw) - 0.5;
 																				if ( value < 0.00 ) value = 0.00
+																				value = value.toFixed(2);
 																				state.withdraw = value;
 																			}
 																		}
@@ -3145,7 +3215,7 @@
 																animate.popup                  = false;
 																state.edit.withdraw.first_name = false;
 																state.edit.withdraw.address    = false;
-																state.account.last_withdraw    = date.getFullYear() +"/"+ date.getMonth() +"/"+ date.getDate();
+																state.account.last_withdraw    = date.getFullYear() +"-"+ date.getMonth() +"-"+ date.getDate();
 																state.save_account             = true;
 															}
 														}
@@ -3842,6 +3912,15 @@
 																					self : '<div class="with-icon-for-bank-withdraw">Withdraw Funds</div>'
 																				},
 																				donate : {
+																					instructions : {
+																						on : {
+																							the_event : "click",
+																							is_asslep : false,
+																							call      : function () { 
+																								animate.popup = "donate";
+																							}
+																						}
+																					},
 																					self : '<div class="with-icon-for-bank-donate">Donate to RAG</div>'
 																				}
 																			}

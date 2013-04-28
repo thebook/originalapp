@@ -8,6 +8,7 @@ class ticket extends alpha
 	var $freepost_table;
 	var $cheque_table;
 	var $donate_table;
+	var $rag_table;
 	var $return_table;
 
 	function __construct()
@@ -17,6 +18,7 @@ class ticket extends alpha
 		$this->construct_cheque_table();
 		$this->construct_donate_table();
 		$this->construct_return_table();
+		$this->construct_rag_table();
 	}
 
 	public function construct_donate_table ()
@@ -64,6 +66,48 @@ class ticket extends alpha
 				)
 			)
 		));
+	}
+
+	public function construct_rag_table ()
+	{
+		$this->rag_table = 'rag';
+		$table = new table_creator;
+		$table->check_if_table_exists_if_not_create_one(array(
+			'table_name'  => $this->rag_table,
+			'primary_key' => 'id',
+			'fields'      => array(
+				array(
+					'column_name'    => 'id',
+					'data_type'      => 'INT',
+					'auto_increment' => true,
+					'unique'         => false				 									 				
+				),
+				array(
+					'column_name'    => 'email',
+					'data_type'      => 'varchar(30)'
+				),
+				array(
+					'column_name'    => 'first_name',
+					'data_type'      => 'varchar(22)'
+				),
+				array(
+					'column_name'    => 'second_name',
+					'data_type'      => 'varchar(22)'
+				),
+				array(
+					'column_name'    => 'university',
+					'data_type'      => 'varchar(55)'
+				),
+				array(
+					'column_name'    => 'amount',
+					'data_type'      => 'varchar(11)'
+				),
+				array(
+					'column_name' => 'date',
+					'data_type'   => 'date'
+				)
+			)
+		));	
 	}
 
 	public function construct_return_table ()
