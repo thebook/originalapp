@@ -277,6 +277,12 @@ class ticket extends alpha
 		));			
 	}
 
+	public function set_rag_donate ($array_of_information)
+	{
+		$table = new table_creator;
+		$table->add_row_to_table($this->rag_table, $array_of_information );	
+	}
+
 	public function set_freepost ($array_of_information)
 	{
 		$table = new table_creator;
