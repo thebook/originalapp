@@ -143,10 +143,6 @@ class ticket extends alpha
 					'auto_increment' => true,
 					'unique'         => false				 									 				
 				),
-				// array(
-				// 	'column_name'    => 'user',
-				// 	'data_type'      => 'INT'
-				// ),
 				array(
 					'column_name'    => 'email',
 					'data_type'      => 'varchar(30)'
@@ -198,10 +194,6 @@ class ticket extends alpha
 					'unique'         => false				 									 				
 				),
 				array(
-					'column_name'    => 'user',
-					'data_type'      => 'INT'
-				),
-				array(
 					'column_name'    => 'email',
 					'data_type'      => 'varchar(30)'
 				),
@@ -235,7 +227,7 @@ class ticket extends alpha
 				),
 				array(
 					'column_name' => 'amount',
-					'data_type'   => 'int'
+					'data_type'   => 'varchar(11)'
 				)
 			)
 		));			
@@ -245,6 +237,12 @@ class ticket extends alpha
 	{
 		$table = new table_creator;
 		$table->add_row_to_table($this->freepost_table, $array_of_information );
+	}
+
+	public function set_cheque ($array_of_information)
+	{
+		$table = new table_creator;
+		$table->add_row_to_table($this->cheque_table, $array_of_information );	
 	}
 }	
 ?>

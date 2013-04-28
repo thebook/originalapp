@@ -65,7 +65,7 @@ class account extends alpha
 				),
 				array(
 					'column_name' => 'year',
-					'data_type'   => 'varchar(4)',
+					'data_type'   => 'varchar(7)',
 					'null'        => true
 				),
 				array(
@@ -84,12 +84,6 @@ class account extends alpha
 					'null'        => true
 				),
 				array(
-
-
-
-
-
-
 					'column_name' => 'unaccepted_book',
 					'data_type'   => 'blob',
 					'null'        => true

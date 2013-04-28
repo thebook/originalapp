@@ -64,6 +64,7 @@
 			var animate = {};
 				animate.state = false;
 				animate.page  = "home";
+				animate.popup = false;
 				// animate.number
 
 			var default_account = {
@@ -85,6 +86,11 @@
 			var state = {};
 				state.save_account = false;
 				state.edit_account = false;
+				state.edit = {};
+				state.edit.withdraw = {};
+				state.edit.withdraw.first_name = false;
+				state.edit.withdraw.address    = false;
+				state.withdraw     = 0.00;
 				state.log_in  = {};
 				state.log_in.where = "";
 				state.log_in.logging_in = false;
@@ -228,8 +234,9 @@
 														}
 													}, function (address) { 
 														
-														for ( var part in state.account ) state.account[part] = account.return[part];
-														state.addresses = address.return;
+														for ( var part in state.account )    state.account[part]      = account.return[part];
+														for ( var part in address.return[0]) state.addresses[0][part] = address.return[0][part];
+														// state.addresses = address.return;
 														state.signed = true;
 														if ( state.log_in.where === "welcome" ) router.change_url("confirm");
 
@@ -261,8 +268,6 @@
 												account : state.account
 											}
 										}, function (response) {
-											console.log("account saved");
-											console.log(response);
 											state.save_account = false;
 										}, "json");
 									}
@@ -2685,7 +2690,17 @@
 							}
 						},
 						hub_popup : {
-							self : '<div class="profile_hub_popup_screen" style="display: none;"></div>',
+							instructions : {
+								observe : {
+									who      : animate,
+									property : "popup",
+									call     : function (change) {
+										var popup = world.wrap.branch.hub_popup.self;
+										( !change.new )? popup.css({ display : "none" }) : popup.css({ display : "block" });
+									}
+								}
+							},
+							self : '<div class="profile_hub_popup_screen"></div>',
 							branch : { 
 								donate : {
 									self : '<div class="profile_hub_donate"></div>',
@@ -2788,6 +2803,16 @@
 									}
 								},
 								withdraw : {
+									instructions : {
+										observe : {
+											who      : animate,
+											property : "popup",
+											call     : function (change) {
+												var popup = world.wrap.branch.hub_popup.branch.withdraw.self;
+												( change.new === "withdraw" )? popup.css({ display : "block" }) : popup.css({ display : "none" });
+											}
+										}
+									},
 									self : '<div class="profile_hub_withdraw"></div>',
 									branch : {
 										head : {
@@ -2808,11 +2833,56 @@
 														},
 														text : {
 															self : '<div class="profile_hub_withdraw_line_text_wrap"></div>',
-															last_branch : {
-																input : '<input type="text" class="profile_hub_withdraw_line_text" value="Mcjoe Poopy" readonly>				'
+															branch : {
+																input : {
+																	instructions : {
+																		observers : [
+																			{
+																				who : state.account,
+																				property : "first_name",
+																				call : function (change) { 
+																					if ( state.edit.withdraw.first_name ) return;
+																						var self = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.cheque_name.branch.text.branch.input.self;
+																							self.val(change.new);
+																				}
+																			},
+																			{
+																				who      : state.edit.withdraw,
+																				property : "first_name",
+																				call : function (change) { 
+																					var self = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.cheque_name.branch.text.branch.input.self;
+																						self.attr("readonly", (!change.new));
+																				}
+																			}
+																		],
+																		on : {
+																			the_event : "keyup",
+																			is_asslep : false,
+																			call      : function (change) {
+																				state.account.first_name = change.self.val();
+																			}
+																		}
+																	},
+																	self : '<input type="text" class="profile_hub_withdraw_line_text" value="" readonly>'
+																}
 															}
 														},
 														edit : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) { 
+																		if ( state.edit.withdraw.first_name ) {
+																			state.edit.withdraw.first_name = false;
+																			change.self.text("edit");
+																		} else { 
+																			state.edit.withdraw.first_name = true;
+																			change.self.text("save");
+																		}
+																	}
+																}
+															},
 															self : '<div class="profile_hub_withdraw_line_edit">edit</div>'
 														}
 													}
@@ -2825,15 +2895,150 @@
 														},
 														text : {
 															self : '<div class="profile_hub_withdraw_line_text_wrap"></div>',
-															last_branch : {
-																address : '<input type="text" class="profile_hub_withdraw_line_text" value="Something somewhere">',
-																town    : '<input type="text" class="profile_hub_withdraw_line_text" value="East something">',
-																area    : '<input type="text" class="profile_hub_withdraw_line_text" value="Areaus">',
-																post_code : '<input type="text" class="profile_hub_withdraw_line_text" value="CF2LK2">				'
+															branch : {
+																address : {
+																	instructions : {
+																		observers : [
+																			{
+																				who     : state.addresses[0],
+																				property: "address",
+																				call    : function (change) {
+																					if ( state.edit.withdraw.address ) return;
+																						var input = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.send_to.branch.text.branch.address.self;
+																						input.val(change.new);
+																				}
+																			},
+																			{
+																				who      : state.edit.withdraw,
+																				property : "address",
+																				call     : function (change) {
+																					var input = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.send_to.branch.text.branch.address.self;
+																						input.attr("readonly", (!change.new));
+																				}
+																			}
+																		],
+																		on : {
+																			the_event : "keyup",
+																			is_asslep : false,
+																			call      : function (change) { 
+																				state.addresses[0].address = change.self.val();
+																			}
+																		}
+																	},
+																	self : '<input type="text" class="profile_hub_withdraw_line_text" value="" readonly>'
+																},
+																town    : {
+																	instructions : {
+																		observers : [
+																			{
+																				who     : state.addresses[0],
+																				property: "town",
+																				call    : function (change) {
+																					if ( state.edit.withdraw.address ) return;
+																						var input = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.send_to.branch.text.branch.town.self;
+																						input.val(change.new);
+																				}
+																			},
+																			{
+																				who      : state.edit.withdraw,
+																				property : "address",
+																				call     : function (change) {
+																					var input = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.send_to.branch.text.branch.town.self;
+																						input.attr("readonly", (!change.new));
+																				}
+																			}
+																		],
+																		on : {
+																			the_event : "keyup",
+																			is_asslep : false,
+																			call      : function (change) { 
+																				state.addresses[0].town = change.self.val();
+																			}
+																		}
+																	},
+																	self : '<input type="text" class="profile_hub_withdraw_line_text" value="" readonly>'
+																},
+																area    : {
+																	instructions : {
+																		observers : [
+																			{
+																				who     : state.addresses[0],
+																				property: "area",
+																				call    : function (change) {
+																					if ( state.edit.withdraw.address ) return;
+																						var input = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.send_to.branch.text.branch.area.self;
+																						input.val(change.new);
+																				}
+																			},
+																			{
+																				who      : state.edit.withdraw,
+																				property : "address",
+																				call     : function (change) {
+																					var input = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.send_to.branch.text.branch.area.self;
+																						input.attr("readonly", (!change.new));
+																				}
+																			}
+																		],
+																		on : {
+																			the_event : "keyup",
+																			is_asslep : false,
+																			call      : function (change) { 
+																				state.addresses[0].area = change.self.val();
+																			}
+																		}
+																	},
+																	self : '<input type="text" class="profile_hub_withdraw_line_text" value="" readonly>'
+																},
+																post_code : {
+																	instructions : {
+																		observers : [
+																			{
+																				who     : state.addresses[0],
+																				property: "post_code",
+																				call    : function (change) {
+																					if ( state.edit.withdraw.address ) return;
+																						var input = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.send_to.branch.text.branch.post_code.self;
+																						input.val(change.new);
+																				}
+																			},
+																			{
+																				who      : state.edit.withdraw,
+																				property : "address",
+																				call     : function (change) {
+																					var input = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.send_to.branch.text.branch.post_code.self;
+																						input.attr("readonly", (!change.new));
+																				}
+																			}
+																		],
+																		on : {
+																			the_event : "keyup",
+																			is_asslep : false,
+																			call      : function (change) { 
+																				state.addresses[0].post_code = change.self.val();
+																			}
+																		}
+																	},
+																	self : '<input type="text" class="profile_hub_withdraw_line_text" value="" readonly>'
+																}
 															}
 														},
 														edit : {
-															self : '<div class="profile_hub_withdraw_line_edit">edit</div>			'
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) { 
+																		if ( state.edit.withdraw.address ) {
+																			state.edit.withdraw.address = false;
+																			change.self.text("edit");
+																		} else { 
+																			state.edit.withdraw.address = true;
+																			change.self.text("save");
+																		}
+																	}
+																}
+															},
+															self : '<div class="profile_hub_withdraw_line_edit">edit</div>'
 														}
 													}
 												},
@@ -2844,27 +3049,121 @@
 															self : '<div class="profile_hub_withdraw_mesure_text">Withdraw ammount :</div>'
 														},
 														first_ammount : {
-															self : '<input type="text" class="profile_hub_withdraw_mesure_ammount" value="" readonly>'
+															instructions : {
+																observe : {
+																	who      : state,
+																	property : "withdraw",
+																	call     : function (change) { 
+																		var self = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.measure.branch.first_ammount.self;
+																		self.val("£"+change.new.split(".").shift());
+																	}
+																}
+															},
+															self : '<input type="text" class="profile_hub_withdraw_mesure_ammount" value="0" readonly>'
 														},
 														seperator : {
 															self : '<div class="profile_hub_withdraw_mesure_seperate"></div>'
 														},
 														second_ammount : {
-															self : '<input type="text" class="profile_hub_withdraw_mesure_ammount" value="" readonly>'
+															instructions : {
+																observe : {
+																	who      : state,
+																	property : "withdraw",
+																	call     : function (change) { 
+																		var self = world.wrap.branch.hub_popup.branch.withdraw.branch.body.branch.measure.branch.second_ammount.self;
+																		self.val(change.new.split(".").pop());
+																	}
+																}
+															},
+															self : '<input type="text" class="profile_hub_withdraw_mesure_ammount" value="00" readonly>'
 														},
 														incrementor : {
 															self : '<div class="profile_hub_withdraw_mesure_incrimentor"></div>',
-															last_branch : {
-																up   : '<div class="profile_hub_withdraw_mesure_incrimentor_up"></div>',
-																down : '<div class="profile_hub_withdraw_mesure_incrimentor_down"></div>'
+															branch : {
+																up   : {
+																	instructions : {
+																		on : {
+																			the_event : "click",
+																			is_asslep : false,
+																			call      : function (change) {
+																				var value = parseFloat(state.withdraw) + 0.5;
+																				if ( value > state.account.credit ) value = parseFloat(state.account.credit);
+																				value = value.toFixed(2);
+																				console.log(value);
+																				state.withdraw = value;
+																			}
+																		}
+																	},
+																	self : '<div class="profile_hub_withdraw_mesure_incrimentor_up"></div>'
+																},
+																down : {
+																	instructions : {
+																		on : {
+																			the_event : "click",
+																			is_asslep : false,
+																			call      : function (change) {
+																				var value = state.withdraw - 0.50;
+																				if ( value < 0.00 ) value = 0.00
+																				state.withdraw = value;
+																			}
+																		}
+																	},
+																	self : '<div class="profile_hub_withdraw_mesure_incrimentor_down"></div>'
+																}
 															}
 														}
 													}
 												},
 												withdraw : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																
+																var date = new Date();
+																$.post(ajaxurl, {
+																	action     : "set_ticket",
+																	method     : "cheque",
+																	paramaters : {
+																		cheque : {
+																			email      : state.account.email,
+																			first_name : state.account.first_name,
+																			second_name: state.account.second_name,
+																			date       : date.getFullYear() +"/"+ date.getMonth() +"/"+ date.getDate(),
+																			amount     : state.withdraw,
+																			address    : state.addresses[0].address,
+																			town       : state.addresses[0].town,
+																			area       : state.addresses[0].area,	
+																			post_code  : state.addresses[0].post_code
+																		}
+																	}
+																}, function () {}, "json");
+
+																state.account.credit          -= state.withdraw;
+																state.withdraw                 = "0.00";
+																animate.popup                  = false;
+																state.edit.withdraw.first_name = false;
+																state.edit.withdraw.address    = false;
+																state.account.last_withdraw    = date.getFullYear() +"/"+ date.getMonth() +"/"+ date.getDate();
+																state.save_account             = true;
+															}
+														}
+													},
 													self : '<div class="profile_hub_withdraw_and_send">Withdraw & Send</div>'
 												},
 												cancel : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function () { 
+																animate.popup = false;
+																state.edit.withdraw.first_name = false;
+																state.edit.withdraw.address    = false;
+															}
+														}
+													},
 													self : '<div class="profile_hub_withdraw_cancel">Cancel</div>'
 												}
 											}
@@ -2991,12 +3290,12 @@
 																			instructions : {
 																				observers : [
 																					{
-																						who     : state,
-																						property: "addresses",
+																						who     : state.addresses[0],
+																						property: "address",
 																						call    : function (change) {
 																							if ( state.edit_account ) return;
 																								var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.address.self;
-																								input.val(change.new[0].address);
+																								input.val(change.new);
 																						}
 																					},
 																					{
@@ -3022,12 +3321,12 @@
 																			instructions : {
 																				observers : [
 																					{
-																						who     : state,
-																						property: "addresses",
+																						who     : state.addresses[0],
+																						property: "town",
 																						call    : function (change) {
 																							if ( state.edit_account ) return;
 																								var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.town.self;
-																								input.val(change.new[0].town);
+																								input.val(change.new);
 																						}
 																					},
 																					{
@@ -3053,12 +3352,12 @@
 																			instructions : {
 																				observers : [
 																					{
-																						who     : state,
-																						property: "addresses",
+																						who     : state.addresses[0],
+																						property: "area",
 																						call    : function (change) {
 																							if ( state.edit_account ) return;
 																								var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.area.self;
-																								input.val(change.new[0].area);
+																								input.val(change.new);
 																						}
 																					},
 																					{
@@ -3084,12 +3383,12 @@
 																			instructions : {
 																				observers : [
 																					{
-																						who     : state,
-																						property: "addresses",
+																						who     : state.addresses[0],
+																						property: "post_code",
 																						call    : function (change) {
 																							if ( state.edit_account ) return;
 																								var input = world.wrap.branch.hub.branch.wrap.branch.left_boxes.branch.account.branch.body.branch.main_details.branch.post_code.self;
-																								input.val(change.new[0].post_code);
+																								input.val(change.new);
 																						}
 																					},
 																					{
@@ -3467,7 +3766,7 @@
 																							property : "credit",
 																							call     : function (change) {	
 																								var self = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.bank.branch.body.branch.stats.branch.balance.branch.input.self;
-																									self.val(change.new);
+																									self.val("£"+ change.new);
 																							}
 																						}
 																					},
@@ -3519,7 +3818,7 @@
 																							property : "donate",
 																							call     : function (change) {	
 																								var self = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.bank.branch.body.branch.stats.branch.donation.branch.input.self;
-																									self.val(change.new);
+																									self.val("£"+ change.new);
 																							}
 																						}
 																					},
@@ -3529,9 +3828,22 @@
 																		},
 																		button : {
 																			self : '<div class="profile_hub_bank_buttons"></div>',
-																			last_branch : {
-																				withdraw : '<div class="with-icon-for-bank-withdraw">Withdraw Funds</div>',
-																				donate :'<div class="with-icon-for-bank-donate">Donate to RAG</div>'
+																			branch : {
+																				withdraw : {
+																					instructions : {
+																						on : {
+																							the_event : "click",
+																							is_asslep : false,
+																							call      : function () { 
+																								animate.popup = "withdraw";
+																							}
+																						}
+																					},
+																					self : '<div class="with-icon-for-bank-withdraw">Withdraw Funds</div>'
+																				},
+																				donate : {
+																					self : '<div class="with-icon-for-bank-donate">Donate to RAG</div>'
+																				}
 																			}
 																		}
 																	}
