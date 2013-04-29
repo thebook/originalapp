@@ -36,7 +36,7 @@
 			scripts+'/manifest/observe.alpha.js',
 			scripts+'/manifest/route.alpha.js',
 			scripts+'/library/amazon.alpha.js',
-			scripts+'/library/sidebar.alpha.js',
+			scripts+'/library/scroll.alpha.js',
 			scripts+'/library/book.alpha.js'
 			// scripts+"/native.extend.js", 
 			// scripts+"/front.recyclabus.alpha.js", 
@@ -65,6 +65,9 @@
 				animate.state = false;
 				animate.page  = "home";
 				animate.popup = false;
+				animate.pop   = {};
+				animate.pop.outside = false;
+
 				// animate.number
 
 			var default_account = {
@@ -90,6 +93,11 @@
 				state.edit.withdraw = {};
 				state.edit.withdraw.first_name = false;
 				state.edit.withdraw.address    = false;
+				state.notification = {};
+				state.notification.reset = {};
+				state.notification.reset.notify = false;
+				state.notification.reset.text   = "";
+
 				state.withdraw     = 0.00;
 				state.log_in  = {};
 				state.log_in.where = "";
@@ -905,12 +913,95 @@
 															self : '<input type="password" class="user_pop_up_option_input" placeholder="Password">'
 														},
 														forgotten_password : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		animate.pop.outside = "forgotten";
+																	}
+																}
+															},
 															self : '<div class="user_pop_up_options_forgot_password">forgottten password?</div>' 
 														}
 													}
 												}																							
 											}
 										}
+									}
+								}
+							}
+						},
+						popup : {
+							instructions : {
+								observe : {
+									who      : animate.pop,
+									property : "outside",
+									call     : function (change) { 
+										var box = world.wrap.branch.popup.self;
+										if ( change.new !== false ) {
+											box.css({ display : "block" });
+										} else {
+											box.css({ display :"none" });
+										}
+									}
+								}
+							},
+							self : '<div class="popup_lightbox"></div>',
+							branch : {
+								box : {
+									self : '<div class="popup_box"></div>',
+									branch : {
+										close : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														animate.pop.outside = false;
+													}
+												}
+											},
+											self : '<div class="with-icon-outside-popup-close"></div>'
+										},
+										forgotten_password   : {
+											instructions : {
+												observe : {
+													who      : animate.pop,
+													property : "outside",
+													call     : function (change) { 
+														var box = world.wrap.branch.popup.branch.box.branch.forgotten_password.self;
+														( change.new === "forgotten" )? box.css({ display : "block" }) : box.css({ display :"none" });
+													}
+												}
+											},
+											self : '<div class="popup_forgotten"></div>',
+											branch : {
+												title : {
+													self : '<div class="popup_forgotten_title">Forgot Your Password?</div>'
+												},
+												text  : {
+													self : '<div class="popup_forgotten_description">Well\' send you an email with a password reminder</div>'
+												},
+												input : {
+													self : '<input type="text" class="popup_forgotten_input" placeholder="Email">'
+												},
+												send : {
+													self : '<div class="popup_forgotten_send">Recover My Password</div>'
+												}
+											}
+										},
+										terms_and_conditions : {
+											self : '<div class="popup_legal"></div>',
+											branch : {
+												title : {
+													self : '<div class="popup_legal_title">Terms & Conditions</div>'
+												},
+												text : {
+													self : '<div class="popup_legal_text"></div>'
+												}
+											}
+										}	
 									}
 								}
 							}
@@ -2455,18 +2546,22 @@
 																				});
 
 																				alpha.sidebar({
-																					content : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.items.self,
-																					bar     : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.bar.self,
-																					handle  : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.bar.branch.block.self,
-																					increase: 5,
-																					content_height : 180
+																					parent : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.items.self[0],
+																					scroll : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.bar.self[0],
+																					handle : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.bar.branch.block.self[0],
+																					size   : 180
 																				});
 
 																				world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.items.branch = manifest;
 																			}
 																		}
 																	},
-																	self : '<div class="basket_overview_items"></div>'
+																	self : '<div class="basket_overview_items"></div>', 
+																	branch : {
+																	 	wrap : {
+																	 		self : 
+																	 	}
+																	}
 																},
 																bar : {
 																	self   : '<div class="basket_overview_bar"></div>',
@@ -2818,6 +2913,37 @@
 													}
 												},
 												donate : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) { 
+
+																if ( state.withdraw === 0 || state.withdraw === "0.00" ) return;
+																var date = new Date();
+																$.post(ajaxurl, {
+																	action : "set_ticket",
+																	method : "rag_donate",
+																	paramaters : {
+																		array : {
+																			email      : state.account.email,
+																			first_name : state.account.first_name,
+																			second_name: state.account.second_name,
+																			university : this.send_to.branch.text.branch.select.self.val(),
+																			amount     : state.withdraw,
+																			date       : date.getFullYear() +"/"+ date.getMonth() +"/"+ date.getDate()
+																		}
+																	}
+																}, function (response) {}, "json");
+
+																state.account.credit          -= state.withdraw;
+																state.account.credit           = state.account.credit.toFixed(2);
+																state.withdraw                 = "0.00";
+																animate.popup                  = false;
+																state.save_account             = true;
+															}
+														}
+													},
 													self :'<div class="profile_hub_donate_save">Donate now</div>'
 												},
 												cancel : {
@@ -2827,8 +2953,6 @@
 															is_asslep : false,
 															call      : function () { 
 																animate.popup = false;
-																// state.edit.withdraw.first_name = false;
-																// state.edit.withdraw.address    = false;
 															}
 														}
 													},
@@ -2839,6 +2963,16 @@
 									}
 								},
 								reset : {
+									instructions : {
+										observe : {
+											who      : animate,
+											property : "popup",
+											call     : function (change) {
+												var popup = world.wrap.branch.hub_popup.branch.reset.self;
+												( change.new === "reset" )? popup.css({ display : "block" }) : popup.css({ display : "none" });
+											}
+										}
+									},
 									self   : '<div class="profile_hub_reset"></div>',
 									branch : {
 										head : {
@@ -2853,19 +2987,102 @@
 											branch : {
 												inner : {
 													self : '<div class="profile_hub_reset_input_wrap"></div>',
-													last_branch : {
-														notification : '<div class="profile_hub_reset_notification">Passwords do not match</div>',
-														old_password_label : '<div class="profile_hub_reset_label">Current password</div>',
-														old_password : '<input type="password" class="profile_hub_reset_input">',
-														new_password_label : '<div class="profile_hub_reset_label">New password</div>',
-														new_password : '<input type="password" class="profile_hub_reset_input" placeholder="New password">',
-														confirm_new_password : '<input type="password" class="profile_hub_reset_input" placeholder="Confirm password">'
+													branch : {
+														notification : {
+															instructions : {
+																observers : [
+																	{ 
+																		who      : state.notification.reset,
+																		property : "notify",
+																		call     : function (change) {
+																			var self = world.wrap.branch.hub_popup.branch.reset.branch.body.branch.inner.branch.notification.self;
+																			( change.new)? self.css({ display : "block" }) : self.css({ display : "none" });
+																		}
+																	},
+																	{ 
+																		who      : state.notification.reset,
+																		property : "text",
+																		call     : function (change) {
+																			var self = world.wrap.branch.hub_popup.branch.reset.branch.body.branch.inner.branch.notification.self;
+																			self.text(change.new);
+																		}
+																	}
+																]
+															},
+															self : '<div class="profile_hub_reset_notification">Passwords do not match</div>'
+														},
+														old_password_label : {
+															self : '<div class="profile_hub_reset_label">Current password</div>'
+														},
+														old_password : {
+															self : '<input type="password" class="profile_hub_reset_input" placeholder="Current Password">'
+														},
+														new_password_label : {
+															self : '<div class="profile_hub_reset_label">New password</div>'
+														},
+														new_password : {
+															self : '<input type="password" class="profile_hub_reset_input" placeholder="New password">'
+														},
+														confirm_new_password : {
+															self : '<input type="password" class="profile_hub_reset_input" placeholder="Confirm password">'
+														}
 													}
 												},
 												save : {
+													instructions : { 
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function () { 
+
+																var password         = this.inner.branch.old_password.self.val(), 
+																	new_password     = this.inner.branch.new_password.self.val().trim(), 
+																	confirm_password = this.inner.branch.confirm_new_password.self.val().trim();
+
+																state.notification.reset.notify = true;
+
+																if ( password !== state.account.password ) {
+																	state.notification.reset.text = "Old password is incorrect";
+																	return;
+																}
+																if ( password !== state.account.password ) {
+																	state.notification.reset.text = "Old password is incorrect";
+																	return;
+																}
+																if (new_password === "" ) { 
+																	state.notification.reset.text = "No new password set";
+																	return;
+																}
+																if (new_password !== confirm_password ) {
+																	state.notification.reset.text = "Passwords do not match";
+																	return;
+																}
+
+																state.notification.reset.text   = "Password Changed";
+																state.account.password          = new_password;
+																state.save_account              = true;
+																this.inner.branch.old_password.self.val("");
+																this.inner.branch.new_password.self.val("");
+																this.inner.branch.confirm_new_password.self.val("");
+															}
+														}
+													},
 													self :'<div class="profile_hub_reset_save">Save Changes</div>'
 												},
 												cancel : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function () { 
+																animate.popup = false;
+																state.notification.reset.notify = false;
+																this.inner.branch.old_password.self.val("");
+																this.inner.branch.new_password.self.val("");
+																this.inner.branch.confirm_new_password.self.val("");
+															}
+														}
+													},
 													self :'<div class="profile_hub_reset_cancel">Cancel</div>'
 												}
 											}
@@ -3192,6 +3409,7 @@
 															is_asslep : false,
 															call      : function (change) {
 																
+																if ( state.withdraw === 0 || state.withdraw === "0.00" ) return;
 																var date = new Date();
 																$.post(ajaxurl, {
 																	action     : "set_ticket",
@@ -3211,12 +3429,13 @@
 																	}
 																}, function () {}, "json");
 
-																state.account.credit          -= state.withdraw;
-																state.withdraw                 = "0.00";
-																animate.popup                  = false;
 																state.edit.withdraw.first_name = false;
 																state.edit.withdraw.address    = false;
 																state.account.last_withdraw    = date.getFullYear() +"-"+ date.getMonth() +"-"+ date.getDate();
+																state.account.credit          -= state.withdraw;
+																state.account.credit           = state.account.credit.toFixed(2);
+																state.withdraw                 = "0.00";
+																animate.popup                  = false;
 																state.save_account             = true;
 															}
 														}
@@ -3529,6 +3748,15 @@
 																					self : '<input type="password" class="profile_hub_account_extra_details_input" readonly>'
 																				},
 																				edit : {
+																					instructions : {
+																						on : {
+																							the_event : "click",
+																							is_asslep : false,
+																							call      : function () { 
+																								animate.popup = "reset";
+																							}
+																						}
+																					},
 																					self : "<div class=\"profile_hub_account_extra_details_edit\">change</div>"
 																				}
 																			}
@@ -4157,6 +4385,8 @@
 					title:"Maths in M..."
 				}
 			];
+
+		
 
 				
 		});									

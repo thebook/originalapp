@@ -1,0 +1,12 @@
+.popup_legal {
+	@extend.popup_forgotten;
+}
+
+.popup_legal_title {
+	@extend.popup_forgotten_title;
+}
+
+.popup_legal_text {
+	@extend.popup_forgotten_description;
+	line-height: 18px;
+}

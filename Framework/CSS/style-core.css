@@ -383,7 +383,7 @@ body {
   margin-bottom: 20px;
   float: left; }
 
-.profile_hub_popup_screen {
+.profile_hub_popup_screen, .popup_lightbox {
   display: none;
   position: fixed;
   width: 100%;
@@ -391,7 +391,7 @@ body {
   background: rgba(0, 0, 0, 0.3);
   z-index: 11; }
 
-.profile_hub_withdraw, .profile_hub_reset, .profile_hub_donate {
+.profile_hub_withdraw, .profile_hub_reset, .profile_hub_donate, .popup_box {
   display: none;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -551,7 +551,8 @@ body {
   margin-bottom: 10px;
   text-align: center;
   font-weight: bold;
-  width: 100%; }
+  width: 100%;
+  display: none; }
 
 .profile_hub_reset_input_wrap {
   width: 100%;
@@ -646,7 +647,7 @@ body {
   width: 100%;
   float: left; }
 
-.profile_hub_account_main_details_small_input, .profile_hub_account_main_details_large_input, .profile_hub_reset_input, .profile_hub_account_extra_details_input {
+.profile_hub_account_main_details_small_input, .profile_hub_account_main_details_large_input, .profile_hub_reset_input, .profile_hub_account_extra_details_input, .popup_forgotten_input {
   background: transparent;
   border: none;
   outline: none;
@@ -661,15 +662,15 @@ body {
   display: inline-block;
   float: left;
   color: #555555; }
-  .profile_hub_account_main_details_small_input:hover, .profile_hub_account_main_details_large_input:hover, .profile_hub_reset_input:hover, .profile_hub_account_extra_details_input:hover {
+  .profile_hub_account_main_details_small_input:hover, .profile_hub_account_main_details_large_input:hover, .profile_hub_reset_input:hover, .profile_hub_account_extra_details_input:hover, .popup_forgotten_input:hover {
     border: none; }
-  .profile_hub_account_main_details_small_input:focus, .profile_hub_account_main_details_large_input:focus, .profile_hub_reset_input:focus, .profile_hub_account_extra_details_input:focus {
+  .profile_hub_account_main_details_small_input:focus, .profile_hub_account_main_details_large_input:focus, .profile_hub_reset_input:focus, .profile_hub_account_extra_details_input:focus, .popup_forgotten_input:focus {
     border: none; }
-  .profile_hub_account_main_details_small_input:focus, .profile_hub_account_main_details_large_input:focus, .profile_hub_reset_input:focus, .profile_hub_account_extra_details_input:focus {
+  .profile_hub_account_main_details_small_input:focus, .profile_hub_account_main_details_large_input:focus, .profile_hub_reset_input:focus, .profile_hub_account_extra_details_input:focus, .popup_forgotten_input:focus {
     -webkit-box-shadow: inset 1px 1px 3px 0px rgba(0, 0, 0, 0.1);
     box-shadow: inset 1px 1px 3px 0px rgba(0, 0, 0, 0.1); }
 
-.profile_hub_account_main_details_large_input, .profile_hub_reset_input, .profile_hub_account_extra_details_input {
+.profile_hub_account_main_details_large_input, .profile_hub_reset_input, .profile_hub_account_extra_details_input, .popup_forgotten_input {
   width: 92%;
   padding: 10px 4%;
   clear: both; }
@@ -710,7 +711,7 @@ body {
   float: left;
   padding: 10px 0; }
 
-.profile_hub_account_extra_buttons_small_button, .profile_hub_withdraw_cancel, .profile_hub_reset_cancel, .profile_hub_donate_cancel, .profile_hub_withdraw_and_send, .profile_hub_reset_save, .profile_hub_donate_save, .profile_hub_account_extra_buttons_large_button {
+.profile_hub_account_extra_buttons_small_button, .profile_hub_withdraw_cancel, .profile_hub_reset_cancel, .profile_hub_donate_cancel, .profile_hub_withdraw_and_send, .profile_hub_reset_save, .profile_hub_donate_save, .profile_hub_account_extra_buttons_large_button, .popup_forgotten_send {
   -webkit-border-radius: 30px;
   border-radius: 30px;
   background: #b4d65a;
@@ -2670,6 +2671,8 @@ body {
 .result_book_price {
   display: inline-block;
   font-weight: bold; }
+  .result_book_price:before {
+    content: "£"; }
 
 .result_book_add_button_wrap {
   width: 100%;
@@ -3771,3 +3774,60 @@ body {
   margin: 0px 5px;
   float: left;
   display: inline-block; }
+
+.popup_lightbox {
+  overflow: auto; }
+
+.popup_box {
+  display: block; }
+
+.with-icon-outside-popup-close {
+  border-radius: 26px;
+  height: 26px;
+  width: 26px;
+  background: whitesmoke;
+  color: #555555;
+  float: right;
+  position: relative;
+  margin-bottom: -26px;
+  cursor: pointer; }
+  .with-icon-outside-popup-close:before {
+    content: "X";
+    position: relative;
+    left: 5px;
+    top: 2px;
+    font-size: 20px; }
+
+.popup_forgotten, .popup_legal {
+  width: 100%;
+  display: none;
+  float: left;
+  color: #555555; }
+
+.popup_forgotten_title, .popup_legal_title {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: bold;
+  float: left;
+  width: 100%;
+  margin-bottom: 5px; }
+
+.popup_forgotten_description, .popup_legal_text {
+  font-size: 14px;
+  line-height: 14px;
+  padding: 10px 0;
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #d8d8d8; }
+
+.popup_forgotten_input {
+  margin: 20px 0;
+  text-align: center; }
+
+.popup_forgotten_send {
+  width: 25%;
+  padding: 5px 2.5%;
+  margin: 0 35%; }
+
+.popup_legal_text {
+  line-height: 18px; }
