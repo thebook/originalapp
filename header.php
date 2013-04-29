@@ -63,6 +63,7 @@
 				book.basket  = [];
 			var animate = {};
 				animate.state = false;
+				animate.scroll= true;
 				animate.page  = "home";
 				animate.popup = false;
 				animate.pop   = {};
@@ -197,8 +198,9 @@
 				},
 				confirm : {
 					on : function () {
-						animate.state = "confirm";	
+						animate.state = "confirm";
 						world.wrap.branch.confirm.self.css({ display : "block" });
+						world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.basket.instructions.scroll.initiate_being();
 					},
 					off: function () {
 						world.wrap.branch.confirm.self.css({ display : "none" });
@@ -2450,127 +2452,145 @@
 																title : {
 																	self : '<div class="basket_overview_title">Basket Overview</div>'
 																},
-																items : {
+																basket : {
 																	instructions : {
-																		observe : {
-																			who      : book,
-																			property : "basket",
-																			call     : function (change) { 
-																				var format, manifest, map, append_to;
-																				format = { 
-																					self : '<div class="basket_overview_item"></div>',
-																					branch : {
-																						close : {
-																							instructions : {
-																								on : {
-																									the_event : "click",
-																									is_asslep : false,
-																									call      : function (change) { 
-																										if (confirm("Are you sure you want to remove this book?")) {
-																											var index = change.self.attr('id');
-																												basket= book.basket;
-																												basket.splice(index, 1);
-																												book.basket = basket;
+																		scroll : null
+																	},
+																	self   : '<div class="basket_overview_basket"></div>',
+																	branch : {
+																		items : {
+																			instructions : {
+																				observers : [
+																					{
+																						who      : book,
+																						property : "basket",
+																						call     : function (change) { 
+																							
+																							var format, manifest, map, append_to;
+																							append_to = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.basket.branch.items.branch.wrap;
+																							format = { 
+																								self : '<div class="basket_overview_item"></div>',
+																								branch : {
+																									close : {
+																										instructions : {
+																											on : {
+																												the_event : "click",
+																												is_asslep : false,
+																												call      : function (change) { 
+																													if (confirm("Are you sure you want to remove this book?")) {
+																														var index = change.self.attr('id');
+																															basket= book.basket;
+																															basket.splice(index, 1);
+																															book.basket = basket;
+																													}
+																												}
+																											}
+																										},
+																										self : '<div id="" style="display:block;" class="with-icon-x-for-overview-item confirm_basket_remove"></div>'
+																									},
+																									thumbnail : {
+																										self : '<img class="basket_overview_item_thumbnail" src="">'
+																									},
+																									text : {
+																										self : '<div class="basket_overview_item_text_wrap"></div>',
+																										branch : {
+																											title : {
+																												self : '<div class="basket_overview_item_text_title"></div>'
+																											},
+																											author : {
+																												self : '<div class="basket_overview_item_text_author"></div>'
+																											},
+																											isbn : {
+																												self :'<div class="basket_overview_item_isbn"></div>'
+																											}
+																										}
+																									},
+																									price : {
+																										self : '<div class="basket_overview_item_price_wrap"></div>',
+																										branch : {
+																											text : {
+																												self :'<div class="basket_overview_item_price_text">Sell for</div>'
+																											},
+																											quote : {
+																												self :'<div class="basket_overview_item_price"></div>'
+																											}
 																										}
 																									}
 																								}
-																							},
-																							self : '<div id="" style="display:block;" class="with-icon-x-for-overview-item confirm_basket_remove"></div>'
-																						},
-																						thumbnail : {
-																							self : '<img class="basket_overview_item_thumbnail" src="">'
-																						},
-																						text : {
-																							self : '<div class="basket_overview_item_text_wrap"></div>',
-																							branch : {
-																								title : {
-																									self : '<div class="basket_overview_item_text_title"></div>'
+																							};
+																							map = [
+																								{
+																									path : "branch.thumbnail.self.src",
+																									value: "image"
 																								},
-																								author : {
-																									self : '<div class="basket_overview_item_text_author"></div>'
+																								{
+																									path : "branch.text.branch.title.self.text",
+																									value: "title"
 																								},
-																								isbn : {
-																									self :'<div class="basket_overview_item_isbn"></div>'
+																								{
+																									path : "branch.text.branch.author.self.text",
+																									value: "author"
+																								},
+																								{
+																									path : "branch.text.branch.isbn.self.text",
+																									value: "isbn"
+																								},
+																								{
+																									path : "branch.price.branch.quote.self.text",
+																									value: "price"
+																								},
+																								{
+																									path : "branch.close.self.id",
+																									value: "id"
 																								}
-																							}
-																						},
-																						price : {
-																							self : '<div class="basket_overview_item_price_wrap"></div>',
-																							branch : {
-																								text : {
-																									self :'<div class="basket_overview_item_price_text">Sell for</div>'
-																								},
-																								quote : {
-																									self :'<div class="basket_overview_item_price"></div>'
-																								}
-																							}
+																							];
+																							append_to.self.empty();
+																							manifest = alpha.format(format, append_to.self, book.basket.length );
+																							$.each(book.basket, function (index, book) { 
+																								book.id = index;
+																								alpha.parse(map, manifest[index+1], book);
+																							});
+																							append_to.branch = manifest;
+																							
+																						}
+																					},
+																					{
+																						who      : animate,
+																						property : "scroll",
+																						call     : function (change) { 
+																							console.log("scroll on");
+																							var basket = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.basket;
+																								console.log(basket);
+																								basket.instructions.scroll = new alpha.scroll_bar({
+																									parent : basket.self[0],
+																									wrap   : basket.branch.items.self[0],
+																									holder : basket.branch.items.branch.wrap.self[0],
+																									scroll : basket.branch.bar.self[0],
+																									handle : basket.branch.bar.branch.block.self[0],
+																									size   : 182
+																								});
+																								console.log(basket);
 																						}
 																					}
-																				};
-
-																				map = [
-																					{
-																						path : "branch.thumbnail.self.src",
-																						value: "image"
-																					},
-																					{
-																						path : "branch.text.branch.title.self.text",
-																						value: "title"
-																					},
-																					{
-																						path : "branch.text.branch.author.self.text",
-																						value: "author"
-																					},
-																					{
-																						path : "branch.text.branch.isbn.self.text",
-																						value: "isbn"
-																					},
-																					{
-																						path : "branch.price.branch.quote.self.text",
-																						value: "price"
-																					},
-																					{
-																						path : "branch.close.self.id",
-																						value: "id"
-																					}
-																				];
-
-																				append_to = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.items.self;
-
-																				append_to.empty();
-																				manifest = alpha.format(format, append_to, book.basket.length );
-
-																				$.each(book.basket, function (index, book) { 
-																					book.id = index;
-																					alpha.parse(map, manifest[index+1], book);
-																				});
-
-																				alpha.sidebar({
-																					parent : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.items.self[0],
-																					scroll : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.bar.self[0],
-																					handle : world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.bar.branch.block.self[0],
-																					size   : 180
-																				});
-
-																				world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.items.branch = manifest;
+																				],
+																			},
+																			self : '<div class="basket_overview_items"></div>', 
+																			branch : {
+																			 	wrap : {
+																			 		self : '<div class="basket_overview_items_wrap"></div>'
+																			 	}
 																			}
-																		}
-																	},
-																	self : '<div class="basket_overview_items"></div>', 
-																	branch : {
-																	 	wrap : {
-																	 		self : 
-																	 	}
+																		},
+																		bar : {
+																			self   : '<div class="basket_overview_bar"></div>',
+																			branch : {
+																				block : {
+																					self : '<div class="basket_overview_bar_block"></div>'
+																				}
+																			}
+																		}	
 																	}
 																},
-																bar : {
-																	self   : '<div class="basket_overview_bar"></div>',
-																	branch : {
-																		block : {
-																			self : '<div class="basket_overview_bar_block"></div>'
-																		}
-																	}
-																}
 															}
 														},
 														total : {
@@ -4354,6 +4374,7 @@
 
 			world = world.manifest($('body'));
 			router.begin();
+			animate.scroll = true;
 
 			var test = [
 				{	

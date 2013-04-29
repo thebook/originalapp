@@ -21,7 +21,7 @@ var alpha = (function ( alpha, $ ) {
 				object   : self.part.handle,
 				property : "space_moved",
 				observer : function (change) {
-					self.part.holder.self.stop().animate({ top : "-"+change.new+"%" }, 200);
+					self.part.holder.self.css({ top : "-"+change.new+"%" });
 				}
 			});
 			
@@ -29,7 +29,7 @@ var alpha = (function ( alpha, $ ) {
 				object   : self.part.handle,
 				property : "space_moved",
 				observer : function (change) {
-					self.part.handle.self.stop().animate({ top : change.new+"%" }, 200);
+					self.part.handle.self.css({ top : change.new+"%" });
 				}
 			});
 
@@ -48,6 +48,7 @@ var alpha = (function ( alpha, $ ) {
 					if ( moved > self.part.handle.manuverable_space ) moved = self.part.handle.manuverable_space;
 					if ( moved < 0 ) moved = 0;
 					self.part.handle.space_moved = moved;
+					return false;
 			});
 
 	};
@@ -78,6 +79,7 @@ var alpha = (function ( alpha, $ ) {
 				height += parseInt(item.css("marginTop").replace("px", ""));
 				height += parseInt(item.css("marginBottom").replace("px", ""));
 				height += parseInt(item.css("paddingTop").replace("px", ""));
+				height += parseInt(item.css("paddingBottom").replace("px", ""));
 				height += parseInt(item.css("height").replace("px", ""));
 				size += height;
 		};

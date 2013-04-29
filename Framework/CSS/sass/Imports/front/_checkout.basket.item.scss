@@ -1,12 +1,25 @@
+.basket_overview_basket { 
+	width: 100%;
+	float: left;
+	overflow: hidden;
+	height: $confirm_item_wrap_height;
+	border-top: 1px solid $middle_gray;
+	border-bottom: 1px solid $middle_gray;
+	// overflow: hidden;
+}
+
 .basket_overview_items {
 	
 	display: inline-block;
 	float: left;
 	width: 93%;
-	overflow: hidden;
-	height: $confirm_item_wrap_height;
-	border-top: 1px solid $middle_gray;
-	border-bottom: 1px solid $middle_gray;
+	z-index: 1;
+}
+
+.basket_overview_items_wrap { 
+	float: left;
+	width: 100%;
+	position: relative;
 }
 
 .basket_overview_item {
@@ -106,6 +119,7 @@
 	font-size: 22px; 
 	color: $green; 
 	cursor: pointer;
+	z-index: 0;
 	&:before { 
 		content: "x";
 	}
