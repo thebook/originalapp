@@ -12,6 +12,8 @@
 .store_basket_pop_up { 
 
 	position: absolute;
+	display: none;
+	opacity: 0;
 	float: right;
 	background: $light;
 	width: 500px;

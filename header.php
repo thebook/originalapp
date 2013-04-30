@@ -62,6 +62,7 @@
 				book.results = [];
 				book.basket  = [];
 			var animate = {};
+				animate.load  = false;
 				animate.state = false;
 				animate.scroll= true;
 				animate.page  = "home";
@@ -71,7 +72,8 @@
 
 				// animate.number
 
-			var default_account = {
+			var preset = {
+				account : {
 					credit 	           : "0.00",
 					donate 	           : "0.00",
 					last_withdraw      : "0000/00/00",
@@ -85,12 +87,15 @@
 					university         : "",
 					password           : "",
 					recieve_newsletter : 1
-				};
+				}
+			}
 
 			var state = {};
 				state.save_account = false;
+				state.save_address = false;
 				state.edit_account = false;
 				state.edit = {};
+				state.edit.confirm  = false;
 				state.edit.withdraw = {};
 				state.edit.withdraw.first_name = false;
 				state.edit.withdraw.address    = false;
@@ -142,41 +147,41 @@
 
 			var router = new alpha.route({
 				on  : function () {
-					world.wrap.branch.home_wrap.self.css({ display : "block" });
+					world.wrap.branch.home_wrap.self.css({ display : "block" }).animate({ opacity : 1 });
 					animate.state = false;
 					animate.page  = "home";
 				},
 				off : function () {
-					world.wrap.branch.home_wrap.self.css({ display : "none" });
+					world.wrap.branch.home_wrap.self.css({ display : "none", opacity : 0 });
 				},
 				recyclabus : {
 					on : function () {
-						world.wrap.branch.recyclabus.self.css({ display : "block" });
+						world.wrap.branch.recyclabus.self.css({ display : "block" }).animate({ opacity : 1 });
 						animate.state = false;
 						animate.page  = "recyclabus";
 					},
 					off: function () { 
-						world.wrap.branch.recyclabus.self.css({ display : "none" });
+						world.wrap.branch.recyclabus.self.css({ display : "none", opacity : 0 });
 					}
 				},
 				sell: {
 					on : function () {
-						world.wrap.branch.sell.self.css({ display : "block" });
+						world.wrap.branch.sell.self.css({ display : "block" }).animate({ opacity : 1 });
 						animate.state = false;
 						animate.page  = "sell";
 					},
 					off: function () {
-						world.wrap.branch.sell.self.css({ display : "none" });
+						world.wrap.branch.sell.self.css({ display : "none", opacity : 0 });
 					}
 				},
 				hub : {
 					on : function () {
-						world.wrap.branch.hub.self.css({ display : "block" });
+						world.wrap.branch.hub.self.css({ display : "block" }).animate({ opacity : 1 });
 						animate.state = false;
 						world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.instructions.scroll.initiate_being();
 					},
 					off: function () {
-						world.wrap.branch.hub.self.css({ display : "none" });
+						world.wrap.branch.hub.self.css({ display : "none", opacity : 0  });
 					}
 				},
 				confirm_sign_in : {
@@ -190,30 +195,30 @@
 				},
 				register : {
 					on : function () {
-						world.wrap.branch.registration.self.css({ display : "block" });
+						world.wrap.branch.registration.self.css({ display : "block" }).animate({ opacity : 1 });
 						animate.state = "register";	
 					},
 					off: function () {
-						world.wrap.branch.registration.self.css({ display : "none" });					
+						world.wrap.branch.registration.self.css({ display : "none", opacity : 0  });					
 					}
 				},
 				confirm : {
 					on : function () {
 						animate.state = "confirm";
-						world.wrap.branch.confirm.self.css({ display : "block" });
+						world.wrap.branch.confirm.self.css({ display : "block" }).animate({ opacity : 1 });
 						world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.basket.instructions.scroll.initiate_being();
 					},
 					off: function () {
-						world.wrap.branch.confirm.self.css({ display : "none" });
+						world.wrap.branch.confirm.self.css({ display : "none", opacity : 0  });
 					}
 				}, 
 				done : {
 					on : function () { 
 						animate.state = "done";
-						world.wrap.branch.thank_you.self.css({ display : "block" });
+						world.wrap.branch.thank_you.self.css({ display : "block" }).animate({ opacity : 1 });
 					},
 					off: function () { 
-						world.wrap.branch.thank_you.self.css({ display : "none" });
+						world.wrap.branch.thank_you.self.css({ display : "none", opacity : 0  });
 					}
 				}
 			});
@@ -227,6 +232,7 @@
 								who      : state.log_in,
 								property : "logging_in",
 								call     : function (change) { 
+									animate.load = "logging you in...";
 									if ( change.new === true && !state.signed ) {
 										$.get(ajaxurl, {
 											action : "get_account",
@@ -247,21 +253,25 @@
 														
 														for ( var part in state.account )    state.account[part]      = account.return[part];
 														for ( var part in address.return[0]) state.addresses[0][part] = address.return[0][part];
-														// state.addresses = address.return;
 														state.signed = true;
+														state.log_in.logging_in = false;
+														animate.load = false;
 														if ( state.log_in.where === "welcome" ) router.change_url("confirm");
 
 													}, "json");
 												} else {
 													console.log("invalid password");
+													state.log_in.logging_in = false;
+													animate.load = false;
 												}
 											} 	
 											else { 
 												console.log("invalid email");
+												state.log_in.logging_in = false;
+												animate.load = false;
 											}
 										}, 
 										"json");
-										state.log_in.logging_in = false;
 									}
 								}
 							},
@@ -283,11 +293,53 @@
 										}, "json");
 									}
 								}
+							},
+							{ 
+								who      : state, 
+								property : "save_address",
+								call     : function (change) { 
+
+									var submit = state.addresses[0];
+										submit.user = state.account.email;
+									if ( change.new ) { 
+										$.post(ajaxurl,
+										{ 
+											action     : "set_account",
+											method     : "address",
+											paramaters : {
+												address : submit
+											}
+										}, function (response) {
+											state.save_address = false;
+										}, "json");
+									}
+								}
 							}
 						]
 					},
 					self   : '<div class="wrap"></div>',
 					branch : {
+						load : {
+							instructions : {
+								observers : [
+									 {
+										who      : animate,
+										property : "load",
+										call     : function (change) { 
+											var load = world.wrap.branch.load.self;
+											if ( change.new === false ) {
+												load.animate({ opacity : 0 }, 500, function () {
+													load.css({ display : "none" });
+												});
+											} else { 
+												load.text(change.new).css({ display : "block"}).animate({ opacity : 1 }, 200);
+											}
+										}
+									}
+								]
+							},
+							self : '<div class="load">Loading...</div>'
+						},
 						header : { 
 							self   : '<section class="header"></section>',
 							branch : {
@@ -324,12 +376,14 @@
 																input : {
 																	instructions : {
 																		search : function (value) {
+																			animate.load = "searching books...";
 																			var amazon = new alpha.amazon({
 																				typed    : value,
 																				callback : function (books) { 
 																					if ( books !== undefined ) {
 																						book.results = books;
 																						router.change_url("sell");
+																						animate.load = false;
 																					}
 																				}
 																			});
@@ -729,6 +783,42 @@
 											},
 											self   : '<div class="progress_welcome_pop_up"></div>',
 											branch : {
+												placeholder : {
+													instructions : {
+														observe : {
+															who      : state,
+															property : "signed",
+															call     : function (change) {
+																var holder = world.wrap.branch.navigation.branch.wrap.branch.welcome_popup.branch.placeholder.self;
+																	if ( change.new ) {
+																		holder.animate({ top : "0px", marginBottom : "20px" });
+																	} else {
+																		holder.animate({ top : "-220px", marginBottom : "-220px" });
+																	}
+															}
+														}
+													},
+													self : '<div class="progress_welcome_pop_up_placeholder"></div>',
+													branch : {
+														text : {
+															self : '<div class="progress_welcome_pop_up_placeholder_text">You are signed in...</div>'
+														},
+														sign_out : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function () { 
+																		state.signed    = false;
+																		for ( var part in state.addresses[0] ) state.addresses[0][part] = "";
+																		for ( var part in state.account )      state.account[part]      = preset.account[part];
+																	}
+																}
+															},
+															self : '<div class="progress_welcome_pop_up_placeholder_link">sign out?</div>'
+														}
+													}
+												},
 												sign_in : {
 													self   : '<div class="progress_welcome_sign_in_box"></div>',
 													branch : {
@@ -872,8 +962,8 @@
 																	is_asslep : false,
 																	call      : function (change) { 
 																		state.signed    = false;
-																		state.addresses = [{}];
-																		for ( var part in state.account ) state.account[part] = default_account[part];
+																		for ( var part in state.addresses[0] ) state.addresses[0][part] = "";
+																		for ( var part in state.account )      state.account[part]      = preset.account[part];
 																	}
 																}
 															},
@@ -1549,11 +1639,13 @@
 													is_asslep : false,
 													call      : function (change) {
 														if ( this.basket_box.instructions.open ) {
-															world.wrap.branch.sell.branch.popup.self.css({ display : "none" });
+															world.wrap.branch.sell.branch.popup.self.animate({ opacity : 0 }, 300, function () {
+																$(this).css({ display : "none" });
+															});
 															this.basket_box.instructions.open = false;
 														} 
 														else { 
-															world.wrap.branch.sell.branch.popup.self.css({ display : "block" });
+															world.wrap.branch.sell.branch.popup.self.css({ display : "block" }).animate({ opacity : 1 }, 200);
 															this.basket_box.instructions.open = true;
 														}
 													}
@@ -1586,7 +1678,7 @@
 									}
 								},
 								popup : {
-									self   : '<div style="display: none;" class="store_basket_pop_up"></div>',
+									self   : '<div class="store_basket_pop_up"></div>',
 									branch : { 
 										arrow : { 
 											self : '<div class="with-icon-store-basket-pop-up-arrow"></div>'
@@ -1802,10 +1894,8 @@
 																								the_event         : "click",
 																								is_asslep         : false,
 																								call              : function (change) {
-																									change.self.closest('.result_book_inner_wrap')
-																									.css({ position : "relative" })
-																									.animate({ top : "-45px" }, 400 );
-
+																									change.self.closest('.result_book_inner_wrap').css({ position : "relative" }).animate({ top : "-45px" }, 400 );
+																									change.self.closest('.result_book_search').next().animate({ opacity : 1 }, 500);
 																									var promise = book.basket;
 																										promise.push(this.instructions.book);
 																										book.basket = promise;
@@ -1825,6 +1915,39 @@
 																				}
 																			}
 																		}
+																	}
+																}
+															},
+															button : {
+																self : '<div class="result_book_extra_options_buttons"></div>',
+																branch : {
+																	sell : {
+																		instructions : {
+																			on : { 
+																				the_event : "click",
+																				is_asslep : false,
+																				call      : function (change) { 
+																					if ( book.basket.length === 0 ) return;
+																					(state.signed)? router.change_url("confirm") : router.change_url("confirm_sign_in");
+																				}
+																			}
+																		},
+																		self : '<span class="result_book_added_book_sell_button"><span class="with-icon-sell-now-arrow"></span>Sell now?</span>'
+																	},
+																	add : {
+																		instructions : { 
+																			book : null,
+																			on : {
+																				the_event : "click",
+																				is_asslep : false,
+																				call      : function (change) {
+																					var promise = book.basket;
+																						promise.push(this.add.instructions.book);
+																						book.basket = promise;
+																				}
+																			}
+																		},
+																		self : '<span class="result_book_added_book_add_again_button"><span class="with-icon-add-again"></span>Add again+</span>'
 																	}
 																}
 															}
@@ -1883,6 +2006,8 @@
 														manifest[index+1].branch.wrap.branch.button.branch.wrap.branch.instructions = {
 															book : book
 														};
+														manifest[index+1].branch.button.branch.add.instructions.book = book;
+
 														( wraps.on_wrap === 2? wraps.on_wrap = 0 : wraps.on_wrap++ );
 													});	
 													world.wrap.branch.sell.branch.items.branch = manifest;
@@ -1914,8 +2039,39 @@
 										}
 									},
 									self   : '<div class="account_wrap"></div>',
-									branch : {										
-										legend : { 
+									branch : {	
+										placeholder : {
+											instructions : {
+												observe : {
+													who      : state,
+													property : "signed",
+													call     : function (change) {
+														var self = world.wrap.branch.registration.branch.wrap.branch.name_and_address.self;
+														if ( change.new ) {
+															self.css({ display : "block" });
+														} else { 
+															self.css({ display : "none" });
+														}
+													}
+												}
+											},
+											self : '<div class="account_placeholder">You have been registered</div>'
+										},									
+										legend : {
+											instructions : {
+												observe : {
+													who      : state,
+													property : "signed",
+													call     : function (change) {
+														var self = world.wrap.branch.registration.branch.wrap.branch.legend.self;
+														if ( change.new ) {
+															self.css({ display : "none" });
+														} else { 
+															self.css({ display : "block" });
+														}
+													}
+												}
+											},
 											self   : '<div class="legend_wrap"></div>',
 											branch : {
 												green    : {
@@ -2018,6 +2174,20 @@
 											}
 										},
 										name_and_address : { 
+											instructions : {
+												observe : {
+													who      : state,
+													property : "signed",
+													call     : function (change) {
+														var self = world.wrap.branch.registration.branch.wrap.branch.name_and_address.self;
+														if ( change.new ) {
+															self.css({ display : "none" });
+														} else { 
+															self.css({ display : "block" });
+														}
+													}
+												}
+											},
 											self   : '<div class="field_box_wrap"></div>',
 											branch : {
 												title : {
@@ -2238,6 +2408,20 @@
 											}
 										},
 										password : {
+											instructions : {
+												observe : {
+													who      : state,
+													property : "signed",
+													call     : function (change) {
+														var self = world.wrap.branch.registration.branch.wrap.branch.password.self;
+														if ( change.new ) {
+															self.css({ display : "none" });
+														} else { 
+															self.css({ display : "block" });
+														}
+													}
+												}
+											},
 											self   : '<div class="field_box_wrap_left"></div>',
 											branch : {
 												title : {
@@ -2414,6 +2598,20 @@
 											}
 										},
 										disclaimer : {
+											instructions : {
+												observe : {
+													who      : state,
+													property : "signed",
+													call     : function (change) {
+														var self = world.wrap.branch.registration.branch.wrap.branch.disclaimer.self;
+														if ( change.new ) {
+															self.css({ display : "none" });
+														} else { 
+															self.css({ display : "block" });
+														}
+													}
+												}
+											},
 											self   : '<div class="input_box_disclaimer"></div>',
 											branch : {
 												tick : {
@@ -2467,12 +2665,10 @@
 																	&& state.registration.password.size 
 																	&& state.registration.password.match
 																);
-																console.log(is_ready);
-																console.log(state.registration);
 
 																if ( is_ready && !state.registration.email.query ) {
-																	change.self.text("Registering please do not refresh the page");
 
+																	animate.load = "Registering you...";
 																	state.addresses[0].user = state.account.email;
 																	$.post(
 																		ajaxurl,
@@ -2493,7 +2689,7 @@
 																					}
 																				}, function (response) { 
 																					state.signed    = true;
-																					state.addresses = state.addresses;
+																					state.load      = false;
 																					router.change_url("confirm");
 																				},"json");
 																		},"json");
@@ -2718,31 +2914,127 @@
 																	self : '<div class="address_overview_title">Address Confirmation</div>'
 																},
 																inputs : {
-																	instructions : {
-																		observe : {
-																			who      : state,
-																			property : "addresses",
-																			call     : function (change) {
-																				var inputs = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.address_overview.branch.address.branch.inputs.branch;
-																					inputs.address.self.val(change.new[0].address);
-																					inputs.area.self.val(change.new[0].area);
-																					inputs.town.self.val(change.new[0].town);
-																					inputs.post_code.self.val(change.new[0].post_code);
-																			}
-																		}
-																	},
 																	self   : '<div class="address_overview_inputs"></div>',
 																	branch : {
 																		address  : {
+																			instructions : {
+																				on : {
+																					the_event : "keyup",
+																					is_asslep : false,
+																					call      : function (change) {
+																						state.addresses[0].address = change.self.val();
+																					}
+																				},
+																				observers : [
+																					{
+																						who     : state.addresses[0],
+																						property: "address",
+																						call    : function (change) {
+																							var input = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.address_overview.branch.address.branch.inputs.branch.address.self;
+																								input.val(change.new);
+																								console.log(input);
+																						}
+																					},
+																					{
+																						who      : state.edit,
+																						property : "confirm",
+																						call     : function (change) {
+																							var input = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.address_overview.branch.address.branch.inputs.branch.address.self;
+																								input.attr("readonly", (!state.edit.confirm));
+																						}
+																					}
+																				],
+																			},
 																			self : '<input readonly class="address_overview_input" value="Address">'
 																		},
-																		area     : {
-																			self : '<input readonly class="address_overview_input" value="Area">'
-																		},
 																		town     : {
+																			instructions : {
+																				on : {
+																					the_event : "keyup",
+																					is_asslep : false,
+																					call      : function (change) {
+																						state.addresses[0].town = change.self.val();
+																					}
+																				},
+																				observers : [
+																					{
+																						who     : state.addresses[0],
+																						property: "town",
+																						call    : function (change) {
+																							var input = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.address_overview.branch.address.branch.inputs.branch.town.self;
+																								input.val(change.new);
+																						}
+																					},
+																					{
+																						who      : state.edit,
+																						property : "confirm",
+																						call     : function (change) {
+																							var input = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.address_overview.branch.address.branch.inputs.branch.town.self;
+																								input.attr("readonly", (!state.edit.confirm));
+																						}
+																					}
+																				],
+																			},
 																			self : '<input readonly class="address_overview_input" value="Town">'
 																		},
+																		area     : {
+																			instructions : {
+																				on : {
+																					the_event : "keyup",
+																					is_asslep : false,
+																					call      : function (change) {
+																						state.addresses[0].area = change.self.val();
+																					}
+																				},
+																				observers : [
+																					{
+																						who     : state.addresses[0],
+																						property: "area",
+																						call    : function (change) {
+																							var input = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.address_overview.branch.address.branch.inputs.branch.area.self;
+																								input.val(change.new);
+																						}
+																					},
+																					{
+																						who      : state.edit,
+																						property : "confirm",
+																						call     : function (change) {
+																							var input = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.address_overview.branch.address.branch.inputs.branch.area.self;
+																								input.attr("readonly", (!state.edit.confirm));
+																						}
+																					}
+																				],
+																			},
+																			self : '<input readonly class="address_overview_input" value="Area">'
+																		},
 																		post_code: {
+																			instructions : {
+																				on : {
+																					the_event : "keyup",
+																					is_asslep : false,
+																					call      : function (change) {
+																						state.addresses[0].post_code = change.self.val();
+																					}
+																				},
+																				observers : [
+																					{
+																						who     : state.addresses[0],
+																						property: "post_code",
+																						call    : function (change) {
+																							var input = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.address_overview.branch.address.branch.inputs.branch.post_code.self;
+																								input.val(change.new);
+																						}
+																					},
+																					{
+																						who      : state.edit,
+																						property : "confirm",
+																						call     : function (change) {
+																							var input = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.address_overview.branch.address.branch.inputs.branch.post_code.self;
+																								input.attr("readonly", (!state.edit.confirm));
+																						}
+																					}
+																				],
+																			},
 																			self : '<input readonly class="address_overview_input_small" value="Post Code">'
 																		}
 																	}
@@ -2750,6 +3042,22 @@
 															}
 														},
 														edit : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		if ( state.edit.confirm ) {
+																			state.save_address = true;
+																			change.self.text("Edit Address");
+																			state.edit.confirm = false;
+																		} else { 
+																			change.self.text("Save Edit");
+																			state.edit.confirm = true;
+																		}
+																	}
+																}
+															},
 															self : '<div class="address_overview_edit">Edit Address</div>'
 														}
 													}
@@ -2899,8 +3207,14 @@
 									who      : animate,
 									property : "popup",
 									call     : function (change) {
-										var popup = world.wrap.branch.hub_popup.self;
-										( !change.new )? popup.css({ display : "none" }) : popup.css({ display : "block" });
+										var box = world.wrap.branch.hub_popup.self;
+										if ( change.new !== false ) {
+											box.css({ display : "block" }).animate({ opacity : 1 });
+										} else {
+											box.animate({ opacity : 0 }, 500, function () {
+												box.css({ display :"none" });
+											});
+										}
 									}
 								}
 							},
@@ -2912,8 +3226,14 @@
 											who      : animate,
 											property : "popup",
 											call     : function (change) {
-												var popup = world.wrap.branch.hub_popup.branch.donate.self;
-												( change.new === "donate" )? popup.css({ display : "block" }) : popup.css({ display : "none" });
+												var box = world.wrap.branch.hub_popup.branch.donate.self;
+												if ( change.new === "donate" ) { 
+													box.css({ display : "block", top : window.screen.availHeight+"px" }).animate({ top : "0px" }, 300);
+												} else {
+													box.animate({ top : window.screen.availHeight+"px" }, 200, function () {
+														box.css({ display : "none" });
+													});
+												}
 											}
 										}
 									},
@@ -3077,8 +3397,14 @@
 											who      : animate,
 											property : "popup",
 											call     : function (change) {
-												var popup = world.wrap.branch.hub_popup.branch.reset.self;
-												( change.new === "reset" )? popup.css({ display : "block" }) : popup.css({ display : "none" });
+												var box = world.wrap.branch.hub_popup.branch.reset.self;
+												if ( change.new === "reset" ) {
+													box.css({ display : "block", top : window.screen.availHeight+"px" }).animate({ top : "0px" }, 300);
+												} else {
+													box.animate({ top : window.screen.availHeight+"px" }, 200, function () {
+														box.css({ display : "none" });
+													});
+												}
 											}
 										}
 									},
@@ -3204,8 +3530,14 @@
 											who      : animate,
 											property : "popup",
 											call     : function (change) {
-												var popup = world.wrap.branch.hub_popup.branch.withdraw.self;
-												( change.new === "withdraw" )? popup.css({ display : "block" }) : popup.css({ display : "none" });
+												var box = world.wrap.branch.hub_popup.branch.withdraw.self;
+												if ( change.new === "withdraw" ) {
+													box.css({ display : "block", top : window.screen.availHeight+"px" }).animate({ top : "0px" }, 300);
+												} else {
+													box.animate({ top : window.screen.availHeight+"px" }, 200, function () {
+														box.css({ display : "none" });
+													});
+												}
 											}
 										}
 									},

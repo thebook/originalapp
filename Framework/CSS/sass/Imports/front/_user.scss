@@ -19,6 +19,7 @@
 	font-size: 13px;
 }
 
+
 .legend_mark_green { 
 	
 	background: $green;
@@ -37,10 +38,17 @@
 	display: inline-block;
 }
 
+.account_placeholder {
+	@extend.legend_wrap;
+	@extend.legend_mark_green;
+	display: none;
+}
+
 .legend_mark_x_symbol { 
 	
 	background: $light_blue;
-	display: inline-block;
+	// display: inline-block;
+	display: none;
 	float: left;
 	width: 67%;
 	padding: 12px 10% 12px 12%;

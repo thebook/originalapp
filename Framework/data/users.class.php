@@ -168,6 +168,12 @@ class account extends alpha
 		$table->add_row_to_table($this->account_table, $array_of_information );
 	}
 
+	public function set_address ($update)
+	{	
+		$table = new table_creator;
+		$table->update_row($this->address_table, $update, 'user', $update['user']); 	
+	}
+
 	public function set_new_address ($array_of_information)
 	{
 		$table = new table_creator;

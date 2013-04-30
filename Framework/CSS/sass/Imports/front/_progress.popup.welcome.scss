@@ -18,7 +18,37 @@ $sign_in_box_height: $welcome_sign_in_box_title_size + $forgot_password_text_siz
 	height: $progress_welcome_pop_up_height;
 	z-index: 3;
 	font-family: Tahoma;
+	overflow: hidden;
 }
+
+.progress_welcome_pop_up_placeholder {
+	width: 100%;
+	float: left;
+	text-align: center;
+	position: relative;
+	font-size: 16px;
+	line-height: 16px;
+	height: 16px;
+	padding: 92px 0;
+	margin-bottom: 20px;
+	color: $light;
+	top: -220px;
+	margin-bottom: -220px;
+}
+
+.progress_welcome_pop_up_placeholder_text {
+	display: inline;
+}
+
+.progress_welcome_pop_up_placeholder_link {
+	display: inline;
+	font-weight: bold;
+	cursor: pointer;
+	&:hover { 
+		text-decoration: underline;
+	}
+}
+
 
 .progress_welcome_sign_in_box { 
 

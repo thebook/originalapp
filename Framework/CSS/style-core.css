@@ -93,7 +93,26 @@ body {
   font-size: 14px; }
 
 .pages {
-  display: none; }
+  display: none;
+  opacity: 0; }
+
+.load {
+  position: fixed;
+  padding: 10px;
+  background: white;
+  opacity: 0.8;
+  color: #9ad9e0;
+  font-family: MotorOil;
+  margin: 10px;
+  font-size: 14px;
+  line-height: 14px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: -1px 1px 1px 0px rgba(125, 125, 125, 0.1);
+  box-shadow: -1px 1px 1px 0px rgba(125, 125, 125, 0.1);
+  z-index: 100;
+  display: none;
+  opacity: 0; }
 
 .header {
   width: inherit;
@@ -389,6 +408,7 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
   z-index: 11; }
 
 .profile_hub_withdraw, .profile_hub_reset, .profile_hub_donate, .popup_box {
@@ -401,6 +421,7 @@ body {
   background: white;
   padding: 20px 2%;
   position: relative;
+  top: 800px;
   -webkit-box-shadow: -1px 1px 5px 0px rgba(0, 0, 0, 0.2);
   box-shadow: -1px 1px 5px 0px rgba(0, 0, 0, 0.2); }
 
@@ -1415,7 +1436,32 @@ body {
   width: 65%;
   height: 200px;
   z-index: 3;
-  font-family: Tahoma; }
+  font-family: Tahoma;
+  overflow: hidden; }
+
+.progress_welcome_pop_up_placeholder {
+  width: 100%;
+  float: left;
+  text-align: center;
+  position: relative;
+  font-size: 16px;
+  line-height: 16px;
+  height: 16px;
+  padding: 92px 0;
+  margin-bottom: 20px;
+  color: white;
+  top: -220px;
+  margin-bottom: -220px; }
+
+.progress_welcome_pop_up_placeholder_text {
+  display: inline; }
+
+.progress_welcome_pop_up_placeholder_link {
+  display: inline;
+  font-weight: bold;
+  cursor: pointer; }
+  .progress_welcome_pop_up_placeholder_link:hover {
+    text-decoration: underline; }
 
 .progress_welcome_sign_in_box {
   width: 50%;
@@ -1804,13 +1850,13 @@ body {
   font-family: MotorOil;
   text-transform: uppercase;
   font-size: 26px;
-  line-height: 26px; }
+  line-height: 26px;
+  width: 100%; }
 
 .homepage_how_it_works_option_title_part_one {
   color: #9ad9e0; }
 
 .homepage_how_it_works_option_title_part_two {
-  margin-left: -5px;
   color: #3f7986; }
 
 .homepage_how_it_works_boxes_wrap {
@@ -2494,6 +2540,8 @@ body {
 
 .store_basket_pop_up {
   position: absolute;
+  display: none;
+  opacity: 0;
   float: right;
   background: white;
   width: 500px;
@@ -2814,6 +2862,7 @@ body {
   float: left;
   clear: both;
   width: 100%;
+  opacity: 0;
   margin: 13px 0 0;
   font-size: 15px;
   color: #555555; }
@@ -3026,13 +3075,13 @@ body {
   float: left;
   position: relative; }
 
-.legend_wrap {
+.legend_wrap, .account_placeholder {
   float: right;
   width: 48%;
   margin: 0 2% 30px 50%;
   font-size: 13px; }
 
-.legend_mark_green {
+.legend_mark_green, .account_placeholder {
   background: #b4d65a;
   width: 28%;
   padding: 12px 1%;
@@ -3046,9 +3095,12 @@ body {
   width: 70%;
   display: inline-block; }
 
+.account_placeholder {
+  display: none; }
+
 .legend_mark_x_symbol {
   background: #9ad9e0;
-  display: inline-block;
+  display: none;
   float: left;
   width: 67%;
   padding: 12px 10% 12px 12%;
