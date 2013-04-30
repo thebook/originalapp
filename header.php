@@ -4224,20 +4224,26 @@
 														body : {
 															self : '<div class="profile_hub_tracking_body"></div>',
 															branch : {
+																show_bar : {
+																	self : '<div class="profile_hub_tracking_show_bar"></div>',
+																	branch : {
+																		text : {
+																			self : '<div class="profile_hub_tracking_show_bar_text">Showing all</div>'
+																		},
+																		send_freepost : {
+																			self : '<div class="with-icon-for-profile-hub-tracking-envelope"></div>'
+																		}
+																	}
+																},
 																wrap : {
 																	self : '<div class="profile_hub_tracking_inner_body"></div>',
 																	branch : {
-																		srcoll : {
+																		scroll : {
 																			self : '<div class="profile_hub_tracking_sroll"></div>',
-																			last_branch : {
-																				handle : '<div class="profile_hub_tracking_sroll_handle"></div>'
-																			}
-																		},
-																		show_bar : {
-																			self : '<div class="profile_hub_tracking_show_bar"></div>',
-																			last_branch : {
-																				text : '<div class="profile_hub_tracking_show_bar_text">Showing all</div>',
-																				send_freepost : '<div class="with-icon-for-profile-hub-tracking-envelope"></div>'
+																			branch : {
+																				handle : {
+																					self : '<div class="profile_hub_tracking_sroll_handle"></div>'
+																				}
 																			}
 																		},
 																		items : {																						

@@ -1075,8 +1075,8 @@ body {
 
 .profile_hub_tracking_show_bar {
   background: whitesmoke;
-  width: 95.5%;
-  margin-right: 1.5%;
+  width: 100%;
+  margin: 10px 0;
   font-size: 14px;
   line-height: 14px;
   color: #555555;
@@ -1097,6 +1097,10 @@ body {
     font-size: 10px;
     line-height: 10px;
     content: "E"; }
+
+.profile_hub_tracking_items_inner {
+  float: left;
+  width: 100%; }
 
 .profile_hub_tracking_title {
   width: 100%;
