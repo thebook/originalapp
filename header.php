@@ -785,11 +785,13 @@
 													is_asslep : false,
 													call      : function (change) {
 														if ( this.user_button.instructions.open ) {
-															this.user_popup_box.self.css({ display : "none" });
+															this.user_popup_box.self.animate({ opacity : 0 }, 300, function () {
+																$(this).css({ display : "none" });
+															});
 															this.user_button.instructions.open = false;
 														} 
 														else { 
-															this.user_popup_box.self.css({ display : "block" });
+															this.user_popup_box.self.css({ display : "block" }).animate({ opacity : 1 }, 200);
 															this.user_button.instructions.open = true;
 														}
 													}
@@ -913,7 +915,21 @@
 																	}
 																}
 															},
-															self : '<input type="password" class="user_pop_up_option_input" placeholder="Password">'
+															self : '<input type="password" class="user_pop_up_password_input" placeholder="Password">'
+														},
+														enter : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function () {
+																		state.account.password  = this.password.self.val();
+																		state.log_in.where      = "normal";
+																		state.log_in.logging_in = true;
+																	}
+																}
+															},
+															self : "<div title=\"log in\" class=\"with-icon-enter-for-user-popup\"></div>"
 														},
 														forgotten_password : {
 															instructions : {
@@ -943,9 +959,11 @@
 									call     : function (change) { 
 										var box = world.wrap.branch.popup.self;
 										if ( change.new !== false ) {
-											box.css({ display : "block" });
+											box.css({ display : "block" }).animate({ opacity : 1 });
 										} else {
-											box.css({ display :"none" });
+											box.animate({ opacity : 0 }, 500, function () {
+												box.css({ display :"none" });
+											});
 										}
 									}
 								}
@@ -953,6 +971,22 @@
 							self : '<div class="popup_lightbox"></div>',
 							branch : {
 								box : {
+									instructions : {
+										observe : {
+											who      : animate.pop,
+											property : "outside",
+											call     : function (change) { 
+												var box    = world.wrap.branch.popup.branch.box.self,
+													screen_height = window.screen.availHeight;
+
+												if ( change.new !== false ) {
+													box.css({ top : screen_height+"px" }).animate({ top : "0px" }, 300);
+												} else {
+													box.animate({ top : screen_height+"px" }, 200);
+												}
+											}
+										}
+									},
 									self : '<div class="popup_box"></div>',
 									branch : {
 										close : {
@@ -987,9 +1021,40 @@
 													self : '<div class="popup_forgotten_description">Well\' send you an email with a password reminder</div>'
 												},
 												input : {
+													instructions : {
+														on : {
+															the_event : "keyup",
+															is_asslep : false,
+															call      : function (change) { 
+																state.account.email = change.self.val();
+															}
+														}
+													},
 													self : '<input type="text" class="popup_forgotten_input" placeholder="Email">'
 												},
 												send : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																if ( state.account.email.trim() === "" ) return;
+																change.self.text("Sending...");
+																$.post(ajaxurl, {
+																	action : "set_email",
+																	method : "email",
+																	paramaters : {
+																		name    : state.account.email,
+																		email   : state.account.email,
+																		subject : "Password Reset",
+																		text    : "hello son"
+																	}
+																}, function () {
+																	change.self.text("Email sent");
+																}, "json");
+															}
+														}
+													},
 													self : '<div class="popup_forgotten_send">Recover My Password</div>'
 												}
 											}
@@ -2722,7 +2787,8 @@
 															call      : function (change) { 
 																var date, price_promise;
 																
-																state.account.price_promise = book.basket;
+																price_promise = state.account.price_promise.concat(book.basket);
+																state.account.price_promise = price_promise;
 																book.basket = [];
 																router.change_url("done");
 																state.save_account = true;

@@ -1,6 +1,7 @@
 .popup_lightbox {
 	@extend.profile_hub_popup_screen;
 	overflow: auto;
+	opacity: 0;
 }
 
 .popup_box {

@@ -33,6 +33,7 @@ new admin(
 new account;
 new ticket;
 new book;
+new email;
 
 // $user = new branch_users_database( 
 // 	array(
