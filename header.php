@@ -761,9 +761,32 @@
 																	}
 																}
 															},
-															self : '<input type="password" class="progress_welcome_sign_in_box_input" placeholder="Password" value="">'
+															self : '<input type="password" class="progress_welcome_sign_in_box_password" placeholder="Password" value="">'
+														},
+														enter : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function () {
+																		state.account.password = this.password.self.val();
+																		state.log_in.where      = "welcome";
+																		state.log_in.logging_in = true;
+																	}
+																}
+															},
+															self : '<div alt="Log in" class="with-icon-enter-for-welcome-box"></div>'
 														},
 														forgoten : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		animate.pop.outside = "forgotten";
+																	}
+																}
+															},
 															self : '<span class="progress_welcome_sign_in_box_forgot_password">Forgoten Password?</span>'
 														}
 													}

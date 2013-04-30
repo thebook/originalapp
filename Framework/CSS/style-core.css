@@ -1414,7 +1414,8 @@ body {
 .progress_welcome_pop_up {
   width: 65%;
   height: 200px;
-  z-index: 3; }
+  z-index: 3;
+  font-family: Tahoma; }
 
 .progress_welcome_sign_in_box {
   width: 50%;
@@ -1436,7 +1437,7 @@ body {
   .progress_welcome_sign_in_box_forgot_password:hover {
     text-decoration: underline; }
 
-.progress_welcome_sign_in_box_input {
+.progress_welcome_sign_in_box_input, .progress_welcome_sign_in_box_password, .with-icon-enter-for-welcome-box {
   background: transparent;
   border: none;
   outline: none;
@@ -1449,12 +1450,34 @@ body {
   line-height: 15px;
   -webkit-border-radius: 50px;
   border-radius: 50px; }
-  .progress_welcome_sign_in_box_input:hover {
+  .progress_welcome_sign_in_box_input:hover, .progress_welcome_sign_in_box_password:hover, .with-icon-enter-for-welcome-box:hover {
     border: none; }
-  .progress_welcome_sign_in_box_input:focus {
+  .progress_welcome_sign_in_box_input:focus, .progress_welcome_sign_in_box_password:focus, .with-icon-enter-for-welcome-box:focus {
     border: none; }
-  .progress_welcome_sign_in_box_input:focus {
+  .progress_welcome_sign_in_box_input:focus, .progress_welcome_sign_in_box_password:focus, .with-icon-enter-for-welcome-box:focus {
     color: #555555; }
+
+.progress_welcome_sign_in_box_password, .with-icon-enter-for-welcome-box {
+  -webkit-border-radius: 50px 0 0 50px;
+  border-radius: 50px 0 0 50px;
+  margin: 5px 0;
+  display: inline-block;
+  float: left;
+  width: 82%; }
+
+.with-icon-enter-for-welcome-box {
+  -webkit-border-radius: 0 50px 50px 0;
+  border-radius: 0 50px 50px 0;
+  height: 16px;
+  width: 5%;
+  cursor: pointer; }
+  .with-icon-enter-for-welcome-box:hover {
+    color: #555555; }
+  .with-icon-enter-for-welcome-box:before {
+    position: relative;
+    top: 2px;
+    left: 5px;
+    content: ">"; }
 
 .progress_welcome_register_box {
   width: 49%;
@@ -1462,7 +1485,8 @@ body {
   padding: 80px 0;
   display: inline-block;
   border-left: 1px solid white;
-  float: left; }
+  float: left;
+  font-family: Tahoma; }
 
 .progress_welcome_register_box_text {
   display: inline-block;
