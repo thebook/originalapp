@@ -1073,6 +1073,9 @@ body {
     color: #555555;
     content: "A"; }
 
+.profile_hub_tracking_inner_body {
+  overflow: hidden; }
+
 .profile_hub_tracking_show_bar {
   background: whitesmoke;
   width: 100%;
@@ -1097,6 +1100,14 @@ body {
     font-size: 10px;
     line-height: 10px;
     content: "E"; }
+
+.profile_hub_tracking_items_group {
+  float: left;
+  width: 100%; }
+
+.profile_hub_tracking_items_sub_group {
+  float: left;
+  width: 100%; }
 
 .profile_hub_tracking_items_inner {
   float: left;

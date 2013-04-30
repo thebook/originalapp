@@ -173,6 +173,7 @@
 					on : function () {
 						world.wrap.branch.hub.self.css({ display : "block" });
 						animate.state = false;
+						world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.instructions.scroll.initiate_being();
 					},
 					off: function () {
 						world.wrap.branch.hub.self.css({ display : "none" });
@@ -2560,7 +2561,6 @@
 																						call     : function (change) { 
 																							console.log("scroll on");
 																							var basket = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.basket;
-																								console.log(basket);
 																								basket.instructions.scroll = new alpha.scroll_bar({
 																									parent : basket.self[0],
 																									wrap   : basket.branch.items.self[0],
@@ -2569,7 +2569,7 @@
 																									handle : basket.branch.bar.branch.block.self[0],
 																									size   : 182
 																								});
-																								console.log(basket);
+																								console.log(basket.instructions.scroll);
 																						}
 																					}
 																				],
@@ -4236,6 +4236,27 @@
 																	}
 																},
 																wrap : {
+																	instructions : {
+																		scroll : null,
+																		observe : {
+																			who      : animate,
+																			property : "scroll",
+																			call     : function (change) { 
+
+																				var basket = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap;
+																					
+																					basket.instructions.scroll = new alpha.scroll_bar({
+																						parent : basket.self[0],
+																						wrap   : basket.branch.items.self[0],
+																						holder : basket.branch.items.branch.wrap.self[0],
+																						scroll : basket.branch.scroll.self[0],
+																						handle : basket.branch.scroll.branch.handle.self[0],
+																						size   : 200
+																					});
+																					console.log(basket.instructions.scroll);
+																			}
+																		}
+																	},
 																	self : '<div class="profile_hub_tracking_inner_body"></div>',
 																	branch : {
 																		scroll : {
@@ -4249,112 +4270,117 @@
 																		items : {																						
 																			self : '<div class="profile_hub_tracking_items"></div>',
 																			branch : {
-																				promise : {
-																					self : '<div class="profile_hub_tracking_items_group"></div>',
+																				wrap : {
+																					self : '<div class="profile_hub_tracking_items_inner"></div>',
 																					branch : {
-																						title : {
-																							self : '<div class="profile_hub_tracking_title">Price promises</div>'
-																						},
-																						wrap : {
-																							instructions : { 
-																								observe : {
-																									who      : state.account,
-																									property : "price_promise",
-																									call     : function (change) {
-																										if ( state.account.price_promise === null ) return;
-																										var format, manifest, map, append_to;
-																											format = { 
-																												self : '<div class="profile_hub_tracking_item"></div>',
-																												branch : {
-																													image : {
-																														self : '<img src="" class="profile_hub_tracking_item_image">'
-																													},
-																													text : {
-																														self : '<div class="profile_hub_tracking_item_text"></div>',
-																														branch : {
-																															title : {
-																																self : '<div class="profile_hub_tracking_item_text_title"></div>'
-																															},
-																															author : {
-																																self : '<div class="profile_hub_tracking_item_text_author"></div>'
-																															},
-																															quote : {
-																																self : '<div class="profile_hub_tracking_item_text_quote"></div>'
-																															},
-																															isbn : {
-																																self : '<div class="profile_hub_tracking_item_text_isbn"></div>	'
-																															}
-																														}
-																													},
-																													options : {
-																														self : '<div class="profile_hub_tracking_item_options"></div>',
+																						promise : {
+																							self : '<div class="profile_hub_tracking_items_group"></div>',
+																							branch : {
+																								title : {
+																									self : '<div class="profile_hub_tracking_title">Price promises</div>'
+																								},
+																								wrap : {
+																									instructions : { 
+																										observe : {
+																											who      : state.account,
+																											property : "price_promise",
+																											call     : function (change) {
+																												if ( state.account.price_promise === null ) return;
+																												var format, manifest, map, append_to;
+																													format = { 
+																														self : '<div class="profile_hub_tracking_item"></div>',
 																														branch : {
 																															image : {
-																																self : '<img src="'+frameworkuri+'/CSS/Includes/works/profilehub/freepost.png" class="profile_hub_tracking_item_options_image">'
+																																self : '<img src="" class="profile_hub_tracking_item_image">'
 																															},
-																															remove : {
-																																instructions : {
-																																	on : {
-																																		the_event : "click",
-																																		is_asslep : false,
-																																		call      : function (change) { 
-																																			if (confirm("Are you sure you want to remove this book from the price promise list?")) {
-																																				var promise = state.account.price_promise,
-																																					index   = change.self.attr("id");
-																																					promise.splice(index, 1);
-																																					state.account.price_promise = promise;
-																																					state.save_account = true;
-																																			}
-																																		}
+																															text : {
+																																self : '<div class="profile_hub_tracking_item_text"></div>',
+																																branch : {
+																																	title : {
+																																		self : '<div class="profile_hub_tracking_item_text_title"></div>'
+																																	},
+																																	author : {
+																																		self : '<div class="profile_hub_tracking_item_text_author"></div>'
+																																	},
+																																	quote : {
+																																		self : '<div class="profile_hub_tracking_item_text_quote"></div>'
+																																	},
+																																	isbn : {
+																																		self : '<div class="profile_hub_tracking_item_text_isbn"></div>	'
 																																	}
-																																},
-																																self : '<div id="" class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>'
+																																}
+																															},
+																															options : {
+																																self : '<div class="profile_hub_tracking_item_options"></div>',
+																																branch : {
+																																	image : {
+																																		self : '<img src="'+frameworkuri+'/CSS/Includes/works/profilehub/freepost.png" class="profile_hub_tracking_item_options_image">'
+																																	},
+																																	remove : {
+																																		instructions : {
+																																			on : {
+																																				the_event : "click",
+																																				is_asslep : false,
+																																				call      : function (change) { 
+																																					if (confirm("Are you sure you want to remove this book from the price promise list?")) {
+																																						var promise = state.account.price_promise,
+																																							index   = change.self.attr("id");
+																																							promise.splice(index, 1);
+																																							state.account.price_promise = promise;
+																																							state.save_account = true;
+																																					}
+																																				}
+																																			}
+																																		},
+																																		self : '<div id="" class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>'
+																																	}
+																																}
 																															}
 																														}
-																													}
-																												}
-																											};
+																													};
 
-																											map = [
-																												{
-																													path : "branch.image.self.src",
-																													value: "image"
-																												},
-																												{
-																													path : "branch.text.branch.title.self.text",
-																													value: "title"
-																												},
-																												{
-																													path : "branch.text.branch.author.self.text",
-																													value: "author"
-																												},
-																												{
-																													path : "branch.text.branch.isbn.self.text",
-																													value: "isbn"
-																												},
-																												{
-																													path : "branch.text.branch.quote.self.text",
-																													value: "price"
-																												},
-																												{
-																													path : "branch.options.branch.remove.self.id",
-																													value: "id"
-																												}
-																											];
-																											console.log("reconstruct");
-																											append_to = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.branch.items.branch.promise.branch.wrap.self;
-																											append_to.empty();
-																											manifest = alpha.format(format, append_to, state.account.price_promise.length );
-																												
-																											for (var index = 0; index < state.account.price_promise.length; index++) {
-																												state.account.price_promise[index].id = index;
-																												alpha.parse(map, manifest[index+1], state.account.price_promise[index]);
-																											};
-																											world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.branch.items.branch.promise.branch.wrap.self.branch = manifest;
-																									}
+																													map = [
+																														{
+																															path : "branch.image.self.src",
+																															value: "image"
+																														},
+																														{
+																															path : "branch.text.branch.title.self.text",
+																															value: "title"
+																														},
+																														{
+																															path : "branch.text.branch.author.self.text",
+																															value: "author"
+																														},
+																														{
+																															path : "branch.text.branch.isbn.self.text",
+																															value: "isbn"
+																														},
+																														{
+																															path : "branch.text.branch.quote.self.text",
+																															value: "price"
+																														},
+																														{
+																															path : "branch.options.branch.remove.self.id",
+																															value: "id"
+																														}
+																													];
+																													console.log("reconstruct");
+																													append_to = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.branch.items.branch.wrap.branch.promise.branch.wrap;
+																													append_to.self.empty();
+																													manifest = alpha.format(format, append_to.self, state.account.price_promise.length );
+																														
+																													for (var index = 0; index < state.account.price_promise.length; index++) {
+																														state.account.price_promise[index].id = index;
+																														alpha.parse(map, manifest[index+1], state.account.price_promise[index]);
+																													};
+																													append_to.branch = manifest;
+																											}
+																										}
+																									},		
+																									self : '<div class="profile_hub_tracking_items_sub_group"></div>'
 																								}
-																							},		
-																							self : '<div class="profile_hub_tracking_items_sub_group"></div>'
+																							}
 																						}
 																					}
 																				}

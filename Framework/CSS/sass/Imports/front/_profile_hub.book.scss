@@ -91,6 +91,7 @@
 
 .profile_hub_tracking_inner_body {
 	@extend.profile_hub_history_inner_body;
+	overflow: hidden;
 }
 
 .profile_hub_tracking_sroll {
@@ -132,6 +133,16 @@
 
 .profile_hub_tracking_items {
 	@extend.profile_hub_history_items;
+}
+
+.profile_hub_tracking_items_group {
+	float: left;
+	width: 100%;
+}
+
+.profile_hub_tracking_items_sub_group {
+	float: left;
+	width: 100%;
 }
 
 .profile_hub_tracking_items_inner {

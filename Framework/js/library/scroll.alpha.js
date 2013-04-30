@@ -2,7 +2,7 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.scroll_bar = function (wake) { 
 
-		var self = alpha.scroll_bar.prototype;
+		var self = this;
 			self.wake  = wake;
 			self.part  = {};
 			self.part.parent       = {};
