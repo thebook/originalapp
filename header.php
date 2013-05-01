@@ -1072,12 +1072,21 @@
 									call     : function (change) { 
 										var box = world.wrap.branch.popup.self;
 										if ( change.new !== false ) {
+											$('body').css({ overflow : "hidden"});
 											box.css({ display : "block" }).animate({ opacity : 1 });
 										} else {
 											box.animate({ opacity : 0 }, 500, function () {
+												$('body').css({ overflow : "auto"});
 												box.css({ display :"none" });
 											});
 										}
+									}
+								},
+								on : {
+									the_event : "click",
+									is_asslep : false,
+									call      : function (change) {
+										if ( change.event.target.className === "popup_lightbox" ) animate.pop.outside = false;
 									}
 								}
 							},
@@ -1121,7 +1130,13 @@
 													property : "outside",
 													call     : function (change) { 
 														var box = world.wrap.branch.popup.branch.box.branch.forgotten_password.self;
-														( change.new === "forgotten" )? box.css({ display : "block" }) : box.css({ display :"none" });
+														if ( change.new === "forgotten" ) { 
+															box.css({ display : "block" })
+														} else {
+															setTimeout(function () { 
+																box.css({ display :"none" });
+															}, 500 );
+														}
 													}
 												}
 											},
@@ -1172,14 +1187,208 @@
 												}
 											}
 										},
-										terms_and_conditions : {
+										advertising : {
+											instructions : {
+												observe : {
+													who      : animate.pop,
+													property : "outside",
+													call     : function (change) { 
+														var box = world.wrap.branch.popup.branch.box.branch.advertising.self;
+														if ( change.new === "advertising" ) { 
+															box.css({ display : "block" })
+														} else {
+															setTimeout(function () { 
+																box.css({ display :"none" });
+															}, 500 );
+														 }
+													}
+												}
+											},
+											self : '<div class="popup_advertising"></div>',
+											branch : {
+												title : {
+													self : '<div class="popup_advertising_title">Advertising</div>'
+												},
+												text : {
+													self : '<a href="http://recyclabook.com/advertising_pack.pdf" target="blank" data-dont-route="true" class="popup_advertising_download">Download the advertising pack pdf</div>'
+												},
+												one : {
+													self : '<img src="'+frameworkuri+'/CSS/Includes/works/advertising_one.jpg" class="popup_advertising_page">'
+												},
+												two : {
+													self : '<img src="'+frameworkuri+'/CSS/Includes/works/advertising_two.jpg" class="popup_advertising_page">'
+												},
+												three : {
+													self : '<img src="'+frameworkuri+'/CSS/Includes/works/advertising_three.jpg" class="popup_advertising_page">'
+												},
+												four : {
+													self : '<img src="'+frameworkuri+'/CSS/Includes/works/advertising_four.jpg" class="popup_advertising_page">'
+												}
+											}
+										},
+										media : {	
+											instructions : {
+												observe : {
+													who      : animate.pop,
+													property : "outside",
+													call     : function (change) { 
+														var box = world.wrap.branch.popup.branch.box.branch.media.self;
+														if ( change.new === "media" ) { 
+															box.css({ display : "block" })
+														} else {
+															setTimeout(function () { 
+																box.css({ display :"none" });
+															}, 500 );
+														 }
+													}
+												}
+											},
+											self   : '<div class="popup_media"></div>',
+											branch : {
+												bubble : {
+													self : '<img src="'+frameworkuri+'/CSS/Includes/works/media_bubble.png" class="popup_media_bubble">'
+												},
+												logos : {
+													self : '<img src="'+frameworkuri+'/CSS/Includes/works/media.png" class="popup_media_logos">'
+												},
+												email : {
+													self : '<div class="popup_media_email">Press@recyclabook.com</div>'
+												}
+											}
+										},
+										contact :{
+											instructions : {
+												observe : {
+													who      : animate.pop,
+													property : "outside",
+													call     : function (change) { 
+														var box = world.wrap.branch.popup.branch.box.branch.contact.self;
+														if ( change.new === "contact" ) { 
+															box.css({ display : "block" })
+														} else {
+															setTimeout(function () { 
+																box.css({ display :"none" });
+															}, 500 );
+														 }
+													}
+												}
+											},
+											self   : '<div class="popup_contact"></div>',
+											branch : {
+												image : {
+													self : '<img src="'+frameworkuri+'/CSS/Includes/works/contact.png" class="popup_contact_image">'
+												}, 
+												text : {
+													self : '<div class="popup_contact_text"></div>',
+													branch : {
+														left : {
+															self   : '<div class="popup_contact_text_left"></div>',
+															branch : {
+																email : {
+																	self : '<div class="popup_contact_text_left_text">Talk@recyclabook.com</div>'
+																},
+																phone : {
+																	self : '<div class="popup_contact_text_left_text">02921 202665</div>'
+																}
+															}
+														},
+														right : {
+															self   : '<div class="popup_contact_text_right"></div>',
+															branch : {
+																address : {
+																	self : '<div class="popup_contact_text_right_text">Britania House</div>'
+																},
+																area : {
+																	self : '<div class="popup_contact_text_right_text">Caerphilly bussines park</div>'
+																},
+																town : {
+																	self : '<div class="popup_contact_text_right_text">Caerphilly</div>'
+																},
+																post_code : {
+																	self : '<div class="popup_contact_text_right_text">CF83 3GG</div>'
+																}
+															}
+														}
+													}
+												}
+											}
+										},
+										word :{
+											instructions : {
+												observe : {
+													who      : animate.pop,
+													property : "outside",
+													call     : function (change) { 
+														var box = world.wrap.branch.popup.branch.box.branch.word.self;
+														if ( change.new === "word_from_us" ) { 
+															box.css({ display : "block" })
+														} else {
+															setTimeout(function () { 
+																box.css({ display :"none" });
+															}, 500 );
+														 }
+													}
+												}
+											},
+											self   : '<div class="popup_word"></div>',
+											branch : {
+												title : {
+													self : '<div class="popup_word_title">A Word From Us</div>'
+												},
+												text : {
+													self   : '<div class="popup_word_text"></div>',
+													branch : {
+														paragraph : {
+															self : '<div class="popup_word_paragraph">Recyclabook was founded by Tom Williams and James Seear with the aim of providing the easiest possible way for a student to sell their textbook.</div>'
+														},
+														paragraph_two : {
+															self : '<div class="popup_word_paragraph">After months of trials and tribulation and with the help of some great people along the way, we’ve grown to a team of six, spoken to universities across the world and created Recyclabook- a company that provides a service that we wanted when we were students!</div>'
+														},
+														paragraph_three : {
+															self : '<div class="popup_word_paragraph">We’ve tried to create a brand that embodies ease and trust at its core, this is where the ‘Recyclabus’ stems from, a van parked in a convenient location where students can bring their books and get paid instantly. </div>'
+														},
+														paragraph_four : {
+															self : '<div class="popup_word_paragraph">We’ve tried to create a brand that embodies ease and trust at its core, this is where the ‘Recyclabus’ stems from, a van parked in a convenient location where students can bring their books and get paid instantly. </div>'
+														},
+														thanks : {
+															self : '<div class="popup_word_paragraph">Thanks,</div>'
+														},
+														signed : {
+															self : '<div class="popup_word_paragraph">Tom and James</div>'
+														}
+													}
+												}
+											}
+										},
+										legal : {
+											instructions : {
+												observe : {
+													who      : animate.pop,
+													property : "outside",
+													call     : function (change) { 
+														var box = world.wrap.branch.popup.branch.box.branch.legal.self;
+														if ( change.new === "legal" ) { 
+															box.css({ display : "block" })
+														} else {
+															setTimeout(function () { 
+																box.css({ display :"none" });
+															}, 500 );
+														 }
+													}
+												}
+											},
 											self : '<div class="popup_legal"></div>',
 											branch : {
 												title : {
 													self : '<div class="popup_legal_title">Terms & Conditions</div>'
 												},
 												text : {
-													self : '<div class="popup_legal_text"></div>'
+													self   : '<div class="popup_legal_text"></div>',
+													branch : {
+														paragraph : {
+															self : '<div class="popup_legal_paragraph"></div>'
+														}
+													}
 												}
 											}
 										}	
@@ -1450,14 +1659,6 @@
 												recyclabus_image : {
 													self :'<img src="'+ frameworkuri +'/CSS/Includes/works/recyclabus.png"class="homepage_recyclabus_box_image">'
 												}
-											}
-										},
-										alies_bar : {
-											self : '<div class="homepage_alies_bar"></div>',
-											last_branch : {
-												iod : '<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/iod.png'; ?>" alt="" class="homepage_ally_bar_image">',
-												fsc : '<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/fsc.png'; ?>" alt="" class="homepage_ally_bar_image">',
-												recycle :'<img src="<?php echo FRAMEWORKURI .'/CSS/Includes/works/recycle.png'; ?>" alt="" class="homepage_ally_bar_image">'
 											}
 										}
 									}
@@ -3157,6 +3358,22 @@
 							self   : '<section class="thank_you pages"></section>',
 							branch : {
 								banner : {
+									instructions : { 
+										observe : {
+											who : animate,
+											property : "state",
+											call : function (change) {
+												var wrap   = world.wrap.branch.thank_you.branch.banner.self;
+													if ( change.new === "done" ) {
+														setTimeout( function () {
+															wrap.css({ display : "block" }).animate({ top : "0px" }, 1000);
+														}, 500 );
+													} else {
+														if ( change.new !== "done" ) wrap.css({ top : "-410px", display : "none" });
+													}
+											}
+										}
+									},
 									self   : '<div class="thank_you_banner_wrap"></div>',
 									branch : {					
 										inner_banner : {
@@ -4672,9 +4889,8 @@
 																						holder : basket.branch.items.branch.wrap.self[0],
 																						scroll : basket.branch.scroll.self[0],
 																						handle : basket.branch.scroll.branch.handle.self[0],
-																						size   : 200
+																						size   : 300
 																					});
-																					console.log(basket.instructions.scroll);
 																			}
 																		}
 																	},
@@ -4812,6 +5028,89 @@
 															}
 														}
 													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						footer : {
+							self   : '<div class="footer"></div>',
+							branch : { 
+								wrap : {
+									self : '<div class="footer_wrap"></div>',
+									branch : {
+										navigation : {
+											self   : '<div class="footer_navigation"></div>',
+											branch : {
+												contact : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																animate.pop.outside = "contact";
+															}
+														}
+													},
+													self : '<div class="footer_text">Contact Us</div>'
+												},
+												media : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																animate.pop.outside = "media";
+															}
+														}
+													},
+													self : '<div class="footer_text">Media</div>'
+												},
+												word : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																animate.pop.outside = "word_from_us";
+															}
+														}
+													},
+													self : '<div class="footer_text">Word From Us</div>'
+												},
+												// terms : {
+												// 	instructions : {
+												// 		on : {
+												// 			the_event : "click",
+												// 			is_asslep : false,
+												// 			call      : function (change) {
+												// 				animate.pop.outside = "legal";
+												// 			}
+												// 		}
+												// 	},
+												// 	self : '<div class="footer_text">Terms & Conditions</div>'
+												// },
+												advertising : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																animate.pop.outside = "advertising";
+															}
+														}
+													},
+													self : '<div class="footer_text">Advertising</div>'
+												}
+											}
+										},
+										logos : {
+											self : '<div class="footer_logos"></div>',
+											branch : {
+												logos : {
+													self : '<img src="'+frameworkuri+'/CSS/Includes/works/footer_logos.png" class="footer_logo">'
 												}
 											}
 										}

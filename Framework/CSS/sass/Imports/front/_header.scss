@@ -3,8 +3,9 @@
 	width:inherit;
 	float: left;
 	height: 290px;  
-	background: $light_blue;	
-	z-index: 0;
+	background: $light_blue;
+	position: relative;
+	z-index: 1;
 }
 
 .header_image_wrap { 

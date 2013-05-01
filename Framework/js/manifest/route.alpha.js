@@ -60,6 +60,7 @@ var alpha = ( function ( alpha, $ ) {
 
 	alpha.route.prototype.intercept_links_and_use_them_to_call_route_changes = function () { 
 		$('body').delegate("a", "click", function (event) { 
+			if ( $(this).attr("data-dont-route") ) return;
 			alpha.route.prototype.change_url($(this).attr('href'));
 			return false;
 		});

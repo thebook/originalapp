@@ -1,9 +1,12 @@
 .thank_you_banner_wrap {
 
-	width: 61.5%;
+	width: 61%;
+	margin: 0 19.5%;
 	margin: 0 auto;
 	position: relative;
-	z-index : -1;
+	top: -410px;
+	display: none;
+	z-index : 0;
 }
 
 .thank_you_banner {

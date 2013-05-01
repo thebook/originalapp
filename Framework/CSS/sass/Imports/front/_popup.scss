@@ -10,22 +10,26 @@
 }
 
 .with-icon-outside-popup-close {
-	@include circle(26px);
+	@include circle(20px);
 	background: $light_monochrome;
 	color: $black_gray;
 	float: right;
 	position: relative;
-	margin-bottom: -26px;
+	left: 15px;
+	top: -10px;
+	margin-bottom: -30px;
 	cursor: pointer;
 	&:before { 
 		content:"X";
 		position: relative;
-		left: 5px;
-		top: 2px;
-		font-size: 20px;
+		left: 3px;
+		font-size: 19px;
 	}
 }
 
 @import "popup.forgotten_password";
-
 @import "popup.legal";
+@import "popup.advertising";
+@import "popup.media";
+@import "popup.contact";
+@import "popup.word";
