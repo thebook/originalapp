@@ -8,6 +8,7 @@ $bus_left_width: 520px;
 .bus_image {
 	width: 100%;
 	height: auto;
+	margin-top: 20px;
 	margin-bottom: 30px;
 	float: left;
 } 
@@ -137,7 +138,9 @@ $bus_left_width: 520px;
 
 
 .bus_map {
-	
+	margin-bottom: 30px;
+	float: left;
+	@include border-radius(25px);
 } 
 
 .bus_signup {
