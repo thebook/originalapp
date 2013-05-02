@@ -4021,3 +4021,218 @@ body {
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 10px; }
+
+.bus {
+  width: 930px;
+  margin: 0 auto; }
+
+.bus_image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+  float: left; }
+
+.bus_left_split {
+  width: 520px;
+  float: left;
+  display: inline-block; }
+
+.bus_right_split {
+  width: 390px;
+  margin-left: 20px;
+  display: inline-block;
+  float: left; }
+
+.bus_dates {
+  width: 100%;
+  float: left; }
+
+.bus_bar, .bus_signup_bar {
+  background: #9ad9e0;
+  padding: 10px 2%;
+  float: left;
+  width: 96%;
+  -webkit-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0; }
+
+.bus_search {
+  width: 65%;
+  padding: 0 3% 0 0;
+  float: left;
+  background: #f6f6f6;
+  display: inline-block;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  -webkit-box-shadow: inset -1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: inset -1px 1px 1px 1px rgba(0, 0, 0, 0.1); }
+
+.with-icon-for-bus-dates-search {
+  float: left;
+  display: inline-block;
+  width: 8%;
+  color: #555555;
+  cursor: pointer;
+  height: 40px;
+  padding-left: 5%; }
+  .with-icon-for-bus-dates-search:hover {
+    color: #3b3b3b; }
+  .with-icon-for-bus-dates-search:before {
+    position: relative;
+    top: 12px;
+    content: "S"; }
+
+.bus_search_input {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: #555555;
+  float: left;
+  width: 80%;
+  padding: 12px 5% 12px 0; }
+  .bus_search_input:hover {
+    border: none; }
+  .bus_search_input:focus {
+    border: none; }
+
+.bus_body {
+  width: 488px;
+  padding: 15px;
+  float: left;
+  background: white;
+  border-bottom: 1px solid #d8d8d8;
+  border-left: 1px solid #d8d8d8;
+  border-right: 1px solid #d8d8d8; }
+
+.bus_body_wrap {
+  width: 100%;
+  min-height: 100px;
+  padding: 0;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  float: left;
+  background: whitesmoke;
+  -webkit-box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.1); }
+
+.bus_date {
+  width: 96%;
+  float: left;
+  padding: 10px 2%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #555555;
+  font-size: 14px;
+  line-height: 14px;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
+  .bus_date:hover {
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    background: rgba(255, 255, 255, 0.5); }
+
+.bus_date_place {
+  display: inline;
+  float: left;
+  width: 65%; }
+
+.bus_date_date {
+  display: inline;
+  float: left;
+  width: 30%; }
+
+.bus_date_mark {
+  display: inline;
+  float: left;
+  width: 5%; }
+
+.bus_twitter {
+  width: 100%;
+  float: left;
+  margin: 20px 0 20px; }
+
+.bus_signup {
+  width: 100%;
+  float: left; }
+
+.bus_signup_bar {
+  padding: 23px 2%;
+  color: white;
+  font-family: MotorOil;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center; }
+
+.bus_signup_body {
+  width: 328px;
+  float: left;
+  padding: 20px 30px;
+  background: white;
+  border-bottom: 1px solid #d8d8d8;
+  border-left: 1px solid #d8d8d8;
+  border-right: 1px solid #d8d8d8; }
+
+.bus_signup_text {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #555555;
+  text-align: center; }
+
+.bus_signup_input {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+  background: #efefef;
+  width: 95%;
+  padding: 10px 2.5%;
+  margin: 10px 0 0;
+  -webkit-box-shadow: inset -1px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: inset -1px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  color: #9f9f9f; }
+  .bus_signup_input:hover {
+    border: none; }
+  .bus_signup_input:focus {
+    border: none; }
+  .bus_signup_input:focus {
+    -webkit-box-shadow: inset -2px 2px 1px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset -2px 2px 1px 0px rgba(0, 0, 0, 0.2); }
+
+.bus_signup_submit {
+  margin: 20px 12.5% 0;
+  width: 65%;
+  cursor: pointer;
+  padding: 15px 5%;
+  font-size: 14px;
+  line-height: 14px;
+  color: white;
+  font-weight: bold;
+  background: #b4d65a;
+  text-transform: uppercase;
+  text-align: center;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
+  .bus_signup_submit:hover {
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    background: #abd146; }

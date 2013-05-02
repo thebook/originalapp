@@ -91,6 +91,7 @@
 			}
 
 			var state = {};
+				state.begin        = false;
 				state.save_account = false;
 				state.save_address = false;
 				state.edit_account = false;
@@ -1658,6 +1659,279 @@
 												},
 												recyclabus_image : {
 													self :'<img src="'+ frameworkuri +'/CSS/Includes/works/recyclabus.png"class="homepage_recyclabus_box_image">'
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						bus : {
+							self : '<section class="bus"></div>',
+							branch : {
+								image : {
+									self : '<img src="'+frameworkuri+'/CSS/Includes/works/bus.png" class="bus_image">'
+								},
+								left_split : {
+									self : '<div class="bus_left_split"></div>',
+									branch : {
+										dates : {
+											self   : '<div class="bus_dates"></div>',
+											branch : {
+												bar : {
+													self : '<div class="bus_bar"></div>',
+													branch : {
+														branch : {
+															search : {
+																self : '<div class="bus_search"></div>',
+																branch : {
+																	icon : {
+																		self : '<div class="with-icon-for-bus-dates-search"></div>'
+																	},
+																	input : {
+																		instructions : {
+																			on : {
+																				the_event : "keyup",
+																				is_asslep : false,
+																				call      : function (change) {
+																					var body, dates, value;
+																						value = change.self.val().toLowerCase().trim();
+																						body  = world.wrap.branch.bus.branch.left_split.branch.dates.branch.body.branch.wrap.branch;
+																						dates = [
+																							{
+																								place : "Swansea, Outside Fulton House",
+																								date  : "20th, 30th, 31st May"
+																							},
+																							{
+																								place : "Swansea Met, Outside students Union",
+																								date  : "29th May"
+																							},
+																							{
+																								place : "Cardiff, Outside Students Union",
+																								date  : "6th, 7th June"
+																							},
+																							{
+																								place : "Cardiff Met, Outside union",
+																								date  : "28th May"
+																							},
+																							{
+																								place : "Glamorgan, Outside Union",
+																								date  : "no date confirmed yet"
+																							},
+																							{
+																								place : "Bath, Next to Bus stop",
+																								date  : "22nd, 23rd May"
+																							},
+																							{
+																								place : "UWE, Outside union ",
+																								date  : "16th, 17th May"
+																							},
+																							{
+																								place : "Bristol Tyndale Avenue,",
+																								date  : "4th, 5th June"
+																							},
+																						];
+
+																						for (var index = 0; index < dates.length; index++) {
+																							var contains_text = ( dates[index].place.toLowerCase().indexOf(value) !== -1 || dates[index].date.toLowerCase().indexOf(value) !== -1 );
+																								if (contains_text) {
+																									body["date_"+index].self.css({ display : "block" });
+																								} else { 
+																									body["date_"+index].self.css({ display : "none" });
+																								}
+																						};
+
+																				}
+																			}
+																		},
+																		self : '<input type="text" class="bus_search_input" placeholder="Filters as you type">'
+																	}
+																}
+															}
+														}	
+													}
+												},
+												body : {
+													self : '<div class="bus_body"></div>',
+													branch : {
+														wrap : {
+															self : '<div class="bus_body_wrap"></div>',
+															branch : {
+																date_0 : {
+																	self : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Swansea, Outside Fulton House</div>'
+																		},
+																		date : {
+																			self : '<div class="bus_date_date">20th, 30th, 31st May</div>'
+																		},
+																		mark : {
+																			self : '<div class="bus_date_mark"></div>'
+																		}
+																	}
+																},
+																date_1 : {
+																	self : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Swansea Met, Outside students Union </div>'
+																		},
+																		date : {
+																			self : '<div class="bus_date_date">29th May</div>'
+																		},
+																		mark : {
+																			self : '<div class="bus_date_mark"></div>'
+																		}
+																	}
+																},
+																date_2 : {
+																	self : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Cardiff, Outside Students Union</div>'
+																		},
+																		date : {
+																			self : '<div class="bus_date_date">6th, 7th June</div>'
+																		},
+																		mark : {
+																			self : '<div class="bus_date_mark"></div>'
+																		}
+																	}
+																},
+																date_3 : {
+																	self : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Cardiff Met, Outside union</div>'
+																		},
+																		date : {
+																			self : '<div class="bus_date_date">28th May</div>'
+																		},
+																		mark : {
+																			self : '<div class="bus_date_mark"></div>'
+																		}
+																	}
+																},
+																date_4 : {
+																	self : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Glamorgan, Outside Union</div>'
+																		},
+																		date : {
+																			self : '<div class="bus_date_date">no date confirmed yet</div>'
+																		},
+																		mark : {
+																			self : '<div class="bus_date_mark"></div>'
+																		}
+																	}
+																},
+																date_5 : {
+																	self : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Bath, Next to Bus stop</div>'
+																		},
+																		date : {
+																			self : '<div class="bus_date_date">22nd, 23rd May </div>'
+																		},
+																		mark : {
+																			self : '<div class="bus_date_mark"></div>'
+																		}
+																	}
+																},
+																date_6 : {
+																	self : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">UWE, Outside union </div>'
+																		},
+																		date : {
+																			self : '<div class="bus_date_date">16th, 17th May </div>'
+																		},
+																		mark : {
+																			self : '<div class="bus_date_mark"></div>'
+																		}
+																	}
+																},
+																date_7 : {
+																	self : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Bristol Tyndale Avenue,</div>'
+																		},
+																		date : {
+																			self : '<div class="bus_date_date">4th, 5th June, </div>'
+																		},
+																		mark : {
+																			self : '<div class="bus_date_mark"></div>'
+																		}
+																	}
+																},
+															}
+														}
+													}
+												}
+											}
+										},
+										twitter : {
+											instructions : {
+												observe : {
+													who      : state,
+													property : "begin",
+													call     : function (change) {
+														var box = world.wrap.branch.bus.branch.left_split.branch.twitter.self,
+															js,
+															fjs =document.getElementsByTagName("script")[0],
+															p   =/^http:/.test(document.location)?'http':'https';
+
+															if( !document.getElementById("twitter-wjs") ) {
+																js     = document.createElement("script");
+																js.id  = "twitter-wjs";
+																js.src = p +"://platform.twitter.com/widgets.js";
+																fjs.parentNode.insertBefore(js,fjs);
+															}
+													}
+												}
+											},
+											self : '<div class="bus_twitter"></div>',
+											branch : {
+												box : {
+													self : '<a class="twitter-timeline" width="550" href="https://twitter.com/Recyclabook" data-widget-id="329948817518632962"></a>'
+												}
+											}
+										}
+									}
+								},
+								right_split : {
+									self : '<div class="bus_right_split"></div>',
+									branch : {
+										map : {
+											self : '<div class="bus_map"></div>'
+										},
+										notify : {
+											self : '<div class="bus_signup"></div>',
+											branch : {
+												bar : {
+													self : '<div class="bus_signup_bar">Dont Want To Miss Us?</div>'
+												},
+												body : {
+													self : '<div class="bus_signup_body"></div>',
+													branch : {
+														text : {
+															self : '<div class="bus_signup_text">Leave you email and university and we\'ll email you when we\'re coming your way. Dont\'t worry wel\'ll only use this for reminders and nothing else</div>'
+														},
+														email : {
+															self : '<input type="text" class="bus_signup_input" placeholder="Email">'
+														},
+														university : {
+															self : '<input type="text" class="bus_signup_input" placeholder="University">'
+														},
+														button : {
+															self : '<div class="bus_signup_submit">Submit For Reminders</div>'
+														}
+													}
 												}
 											}
 										}
@@ -5127,6 +5401,7 @@
 			world = world.manifest($('body'));
 			router.begin();
 			animate.scroll = true;
+			state.begin    = true;
 
 			var test = [
 				{	
