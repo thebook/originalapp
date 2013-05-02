@@ -1699,37 +1699,57 @@
 																						body  = world.wrap.branch.bus.branch.left_split.branch.dates.branch.body.branch.wrap.branch;
 																						dates = [
 																							{
-																								place : "Swansea, Outside Fulton House",
-																								date  : "20th, 30th, 31st May"
+																								place : "University of South Wales, Caerleon Campus",
+																								date  : "14th, 15th May"
 																							},
 																							{
-																								place : "Swansea Met, Outside students Union",
-																								date  : "29th May"
-																							},
-																							{
-																								place : "Cardiff, Outside Students Union",
-																								date  : "6th, 7th June"
-																							},
-																							{
-																								place : "Cardiff Met, Outside union",
-																								date  : "28th May"
-																							},
-																							{
-																								place : "Glamorgan, Outside Union",
-																								date  : "no date confirmed yet"
-																							},
-																							{
-																								place : "Bath, Next to Bus stop",
-																								date  : "22nd, 23rd May"
-																							},
-																							{
-																								place : "UWE, Outside union ",
+																								place : "University of West England, Frenchay Campus",	
 																								date  : "16th, 17th May"
 																							},
 																							{
-																								place : "Bristol Tyndale Avenue,",
+																								place : "Swansea",
+																								date  : "20th May"
+																							},
+																							{
+																								place : "University of West England, Treforest Campus",
+																								date  : "21st May"
+																							},
+																							{
+																								place : "Bath University",
+																								date  : "22nd, 32rd May"
+																							},
+																							{
+																								place : "University of West England, Frenchay Campus",
+																								date  : "24th May"
+																							},
+																							{
+																								place : "UWIC",
+																								date  : "28th May"
+																							},
+																							{
+																								place : "Swansea Metropolitan",
+																								date  : "29th May"
+																							},
+																							{
+																								place : "Swansea University",						
+																								date  : "30th, 31st May"
+																							},
+																							{
+																								place : "Bristol University",							
 																								date  : "4th, 5th June"
 																							},
+																							{
+																								place : "Cardiff University",							
+																								date  : "6th, 7th June"
+																							},
+																							{
+																								place : "Cardiff University",							
+																								date  : "13th June"
+																							},
+																							{
+																								place : "Bristol University",							
+																								date  : "14th June"
+																							}
 																						];
 
 																						for (var index = 0; index < dates.length; index++) {
@@ -1756,119 +1776,189 @@
 													branch : {
 														wrap : {
 															self : '<div class="bus_body_wrap"></div>',
-															branch : {
+															branch : {	
 																date_0 : {
-																	self : '<div class="bus_date"></div>',
+																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Swansea, Outside Fulton House</div>'
+																			self : '<div class="bus_date_place">University of South Wales, Caerleon Campus</div>'
 																		},
-																		date : {
-																			self : '<div class="bus_date_date">20th, 30th, 31st May</div>'
+																		date  : {
+																			self : '<div class="bus_date_date">14th, 15th May</div>'
 																		},
 																		mark : {
-																			self : '<div class="bus_date_mark"></div>'
+																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
 																date_1 : {
-																	self : '<div class="bus_date"></div>',
+																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Swansea Met, Outside students Union </div>'
+																			self : '<div class="bus_date_place">University of West England, Frenchay Campus</div>'
 																		},
-																		date : {
-																			self : '<div class="bus_date_date">29th May</div>'
+																		date  : {
+																			self : '<div class="bus_date_date">16th, 17th May</div>'
 																		},
 																		mark : {
-																			self : '<div class="bus_date_mark"></div>'
+																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
 																date_2 : {
-																	self : '<div class="bus_date"></div>',
+																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Cardiff, Outside Students Union</div>'
+																			self : '<div class="bus_date_place">Swansea</div>'
 																		},
-																		date : {
-																			self : '<div class="bus_date_date">6th, 7th June</div>'
+																		date  : {
+																			self : '<div class="bus_date_date">20th May</div>'
 																		},
 																		mark : {
-																			self : '<div class="bus_date_mark"></div>'
+																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
 																date_3 : {
-																	self : '<div class="bus_date"></div>',
+																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Cardiff Met, Outside union</div>'
+																			self : '<div class="bus_date_place">University of West England, Treforest Campus</div>'
 																		},
-																		date : {
-																			self : '<div class="bus_date_date">28th May</div>'
+																		date  : {
+																			self : '<div class="bus_date_date">21st May</div>'
 																		},
 																		mark : {
-																			self : '<div class="bus_date_mark"></div>'
+																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
 																date_4 : {
-																	self : '<div class="bus_date"></div>',
+																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Glamorgan, Outside Union</div>'
+																			self : '<div class="bus_date_place">Bath University</div>'
 																		},
-																		date : {
-																			self : '<div class="bus_date_date">no date confirmed yet</div>'
+																		date  : {
+																			self : '<div class="bus_date_date">22nd, 32rd May</div>'
 																		},
 																		mark : {
-																			self : '<div class="bus_date_mark"></div>'
+																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
 																date_5 : {
-																	self : '<div class="bus_date"></div>',
+																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Bath, Next to Bus stop</div>'
+																			self : '<div class="bus_date_place">University of West England, Frenchay Campus</div>'
 																		},
-																		date : {
-																			self : '<div class="bus_date_date">22nd, 23rd May </div>'
+																		date  : {
+																			self : '<div class="bus_date_date">24th May</div>'
 																		},
 																		mark : {
-																			self : '<div class="bus_date_mark"></div>'
+																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
 																date_6 : {
-																	self : '<div class="bus_date"></div>',
+																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">UWE, Outside union </div>'
+																			self : '<div class="bus_date_place">UWIC</div>'
 																		},
-																		date : {
-																			self : '<div class="bus_date_date">16th, 17th May </div>'
+																		date  : {
+																			self : '<div class="bus_date_date">28th May</div>'
 																		},
 																		mark : {
-																			self : '<div class="bus_date_mark"></div>'
+																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
 																date_7 : {
-																	self : '<div class="bus_date"></div>',
+																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Bristol Tyndale Avenue,</div>'
+																			self : '<div class="bus_date_place">Swansea Metropolitan</div>'
 																		},
-																		date : {
-																			self : '<div class="bus_date_date">4th, 5th June, </div>'
+																		date  : {
+																			self : '<div class="bus_date_date">29th May</div>'
 																		},
 																		mark : {
-																			self : '<div class="bus_date_mark"></div>'
+																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
+																date_8 : {
+																	self   : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Swansea University</div>'
+																		},
+																		date  : {
+																			self : '<div class="bus_date_date">30th, 31st May</div>'
+																		},
+																		mark : {
+																			self : '<div class="with-icon-bus-date-mark"></div>'
+																		}
+																	}
+																},
+																date_9 : {
+																	self   : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Bristol University</div>'
+																		},
+																		date  : {
+																			self : '<div class="bus_date_date">4th, 5th June</div>'
+																		},
+																		mark : {
+																			self : '<div class="with-icon-bus-date-mark"></div>'
+																		}
+																	}
+																},
+																date_10 : {
+																	self   : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Cardiff University</div>'
+																		},
+																		date  : {
+																			self : '<div class="bus_date_date">6th, 7th June</div>'
+																		},
+																		mark : {
+																			self : '<div class="with-icon-bus-date-mark"></div>'
+																		}
+																	}
+																},
+																date_11 : {
+																	self   : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Cardiff University</div>'
+																		},
+																		date  : {
+																			self : '<div class="bus_date_date">13th June</div>'
+																		},
+																		mark : {
+																			self : '<div class="with-icon-bus-date-mark"></div>'
+																		}
+																	}
+																},
+																date_12 : {
+																	self   : '<div class="bus_date"></div>',
+																	branch : {
+																		place : {
+																			self : '<div class="bus_date_place">Bristol University</div>'
+																		},
+																		date  : {
+																			self : '<div class="bus_date_date">14th June</div>'
+																		},
+																		mark : {
+																			self : '<div class="with-icon-bus-date-mark"></div>'
+																		}
+																	}
+																}
 															}
 														}
 													}
@@ -1970,161 +2060,6 @@
 								}
 							}
 						},
-						// recyclabus : {
-						// 	self   : '<section class="recyclabus pages"></section>',
-						// 	branch : {
-						// 		left : {
-						// 			self   : '<div class="recyclabus_half_left"></div>',
-						// 			branch : {
-						// 				title : {
-						// 					self : '<div class="recyclabus_title">Recycla</div>',
-						// 					last_branch : { 
-						// 						highlight : '<span class="recyclabus_title_highlight">Bus</span>'
-						// 					}
-						// 				},
-						// 				short_description : {
-						// 					self : '<div class="recyclabus_title_description">The idea of Recyclabus is to make it as simple as possible for you to sell your textbooks.</div>'
-						// 				},
-						// 				description : {
-						// 					self   : '<div class="recyclabus_description_box"></div>',
-						// 					last_branch : {
-						// 						paragraph_one   : '<div class="recyclabus_description_box_title">What is recyclabus?</div>',
-						// 						paragraph_two   : '<div class="recyclabus_description_box_paragraph">Each Recyclabus will be manned by one of our book buyers, ready with a bar-code scanner to scan your books and pay your instantly.</div>',
-						// 						paragraph_three : '<div class="recyclabus_description_box_paragraph">The bus will be coming to your university towards the end of your exams, we\'ll be accepting over 1 million titles, so please visit this page nearer the time so you don\'t miss the bus and don\'t miss getting some money for the books you no longer need.</div>',
-						// 						paragraph_four  : '<div class="recyclabus_description_box_white_paragraph">On the day of the event we\'ll also have lots of exciting giveaways, so stay tuned to whats going on and what were giving away.</div>'
-						// 					}
-						// 				}
-						// 			}
-						// 		},
-						// 		right : {
-						// 			self   : '<div class="recyclabus_half"></div>', 
-						// 			branch : {
-						// 				wrap : {
-						// 					self   : '<div class="recyclabus_half_dates_wrap"></div>',
-						// 					branch : {
-						// 						dates : {
-						// 							self   : '<div class="recyclabus_dates_wrap"></div>',
-						// 							branch : {
-						// 								level_one  : {
-						// 									self   : '<div class="recyclabus_dates_level_one"></div>',
-						// 									branch : {
-						// 										text : {
-						// 											self   : '<div class="recyclabus_dates_level_one_text_wrap"></div>',
-						// 											last_branch : {
-						// 												title_one : '<div class="recyclabus_dates_title_one">Dates</div>',
-						// 												title_two : '<div class="recyclabus_dates_title_two">Released On</div>'
-						// 											}
-						// 										},
-						// 										icon : {
-						// 											self   : '<div class="recyclabus_dates_icon"></div>',
-						// 											last_branch : {
-						// 												image : '<img src="'+ frameworkuri +'/CSS/Includes/works/calendar.png">'
-						// 											}
-						// 										}
-						// 									}
-						// 								},
-						// 								level_two : {
-						// 									self   : '<div class="recyclabus_dates_level_two"></div>',
-						// 									branch : {
-						// 										title_three : {
-						// 											self   : '<div class="recyclabus_dates_title_three">1</div>',
-						// 											last_branch : {
-						// 												super_script : '<span class="recyclabus_dates_title_three_superscript">st.</span>'
-						// 											}
-						// 										},
-						// 										title_four : {
-						// 											self : '<div class="recyclabus_dates_title_four">April</div>'
-						// 										}
-						// 									}
-						// 								}
-						// 							}
-						// 						},
-						// 						dates_highlight : {
-						// 								self : '<div class="recyclabus_dates_highlight">If you give us your email and university well send you a reminder when were coming your way</div>'
-						// 						},
-						// 						inputs : {
-						// 							self   : '<div class="recyclabus_dates_input_wrap"></div>',
-						// 							branch : {
-						// 								email : {
-						// 									instructions : {
-						// 										observe : {
-						// 											who      : state, 
-						// 											property : "signed",
-						// 											call     : function (change) {
-						// 												var input = world.wrap.branch.recyclabus.branch.right.branch.wrap.branch.inputs.branch.email.self;
-						// 												input.attr("readonly", change.new);
-						// 												input.val(state.account.email);
-						// 											}
-						// 										}
-						// 									},
-						// 									self : '<input type="text" class="recyclabus_dates_first_input" placeholder="Email">'
-						// 								},
-						// 								university : {
-						// 									instructions : {
-						// 										observe : {
-						// 											who      : state, 
-						// 											property : "signed",
-						// 											call     : function (change) {
-						// 												var input = world.wrap.branch.recyclabus.branch.right.branch.wrap.branch.inputs.branch.university.self;
-						// 												if ( change.new && state.account.university !== "" ) {
-						// 													input.attr("readonly", true);
-						// 													input.val(state.account.university);
-						// 												} else {
-						// 													input.attr("readonly", false);
-						// 												}
-						// 											}
-						// 										}
-						// 									},
-						// 									self : '<input type="text" class="recyclabus_dates_seach_input" placeholder="University">'
-						// 								},
-						// 								text : {
-						// 									self : '<div class="recyclabus_dates_input_text"><strong class="with-icon-lock-for-strong">Don\'t worry,</strong> well only use this information to remind you when you can sell your books</div>'
-						// 								}
-						// 							}
-						// 						},
-						// 						buttons_wrap : {
-						// 							self   : '<div class="recyclabus_dates_button_wrap"></div>',
-						// 							branch : {
-						// 								inner_wrap : {
-						// 									self   : '<div class="recyclabus_dates_inner_wrap"></div>',
-						// 									last_branch : { 
-						// 										first_button  : '<div class="recyclabus_dates_first_button">Notify me about recyclabus</div>',
-						// 										second_button : '<div class="recyclabus_dates_second_button">Thank you for signing up</div>'
-						// 									}
-						// 								}
-						// 							}
-						// 						}
-						// 					}
-						// 				},
-						// 				dates_decorational_arrow : {
-						// 					self : '<div class="with-icon-dates-down-arrow"></div>',
-						// 				},
-						// 				extra_box : {
-						// 					self   : '<div class="recyclabus_dates_extra_box"></div>',
-						// 					branch : {
-						// 						clock_icon : { 
-						// 							self : '<div class="with-icon-dates-clock"></div>'
-						// 						},
-						// 						text : {
-						// 							self   : '<div class="recyclabus_dates_extra_text_wrap"></div>',
-						// 							branch : {
-						// 								title : { 
-						// 									self : '<div class="recyclabus_dates_extra_text_title">No Time To Lose?</div>'
-						// 								},
-						// 								text : {
-						// 									self   : '<div class="recyclabus_dates_extra_text">Check out how to sell by freepost and sell to us now</div>',
-						// 									last_branch : {
-						// 										text_icon : '<div class="recyclabus_dates_extra_text_icon"><span data-function-instructions="{\'page\' : \'homepage_body_wrap\'}" data-function-to-call="front.prototype.change_page"  class="with-icon-recyclabus-dates-extra-text"></span></div>'
-						// 									}
-						// 								}
-						// 							}
-						// 						}
-						// 					}
-						// 				}
-						// 			}
-						// 		}
-						// 	}
-						// },
 						sell : {
 							self : '<section class="body pages"></section>',
 							branch : {
