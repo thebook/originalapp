@@ -4,7 +4,7 @@ setlocal
 
 set /p go_through="Go though with it?"
 set theme=%CD%
-set time_stamp=%date:~0,2%_%date:~3,2%_%date:~6,2%__%time:~0,2%_%time:~3,2%_%time:~6,2%
+set time_stamp=%date:~0,2%_%date:~3,2%_%date:~6,4%__%time:~0,2%_%time:~3,2%_%time:~6,2%
 set version=1.1
 set theme_name=Recyclabook
 set theme_uri=recyclabook.co.uk

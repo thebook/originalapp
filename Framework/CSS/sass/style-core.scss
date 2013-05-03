@@ -71,6 +71,9 @@ body {
 .wrap {
 	
 	width: 100%;
+	float: left;
+	min-height: 500px;
+	@include pie-clearfix;
 }
 
 .recyclabook_footer {
@@ -87,6 +90,7 @@ body {
 .pages { 
 	display: none;
 	opacity: 0;
+	@include pie-clearfix;
 }
 
 .load {

@@ -81,7 +81,13 @@ body {
   background: #f6f6f6; }
 
 .wrap {
-  width: 100%; }
+  width: 100%;
+  float: left;
+  min-height: 500px; }
+  .wrap:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .recyclabook_footer {
   padding: 10px 0;
@@ -95,6 +101,10 @@ body {
 .pages {
   display: none;
   opacity: 0; }
+  .pages:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .load {
   position: fixed;
@@ -403,7 +413,7 @@ body {
   margin-bottom: 20px;
   float: left; }
 
-.profile_hub_popup_screen, .popup_lightbox {
+.profile_hub_popup_screen, .search_books_expanded_book_wrap, .popup_lightbox {
   display: none;
   position: fixed;
   width: 100%;
@@ -2058,6 +2068,8 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #9f9f9f; }
+  .homepage_how_it_works_box_button_expanded_text strong {
+    font-weight: bold; }
 
 .homepage_how_it_works_box_button_expanded_text_highlight {
   font-size: 18px;
@@ -2907,20 +2919,14 @@ body {
   color: #efefef; }
 
 .search_books_expanded_book_wrap {
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  margin: 0 auto;
-  background-color: transparent;
-  z-index: 1;
   font-size: 16px; }
 
 .search_books_expanded_book {
-  width: 58.5%;
-  margin: 5% 20% 0;
-  padding: 2.3% 2%;
   position: absolute;
+  width: 58.5%;
+  top: -800px;
+  left: 20%;
+  padding: 2.3% 2%;
   background: white;
   -webkit-box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2); }
@@ -2987,10 +2993,10 @@ body {
   margin-bottom: 5%;
   color: #555555;
   clear: both; }
-
-.search_books_expanded_isbn_highlight {
-  font-weight: bold;
-  text-transform: uppercase; }
+  .search_books_expanded_isbn:before {
+    font-weight: bold;
+    text-transform: uppercase;
+    content: "isbn:"; }
 
 .search_books_expanded_book_description_title {
   font-weight: bold;
@@ -3008,12 +3014,18 @@ body {
   text-transform: lowercase; }
 
 .search_books_expanded_book_price {
-  color: #555555;
-  display: inline-block;
-  float: left;
-  margin-top: 2%;
-  width: 40%;
-  font-size: 1em; }
+  font-size: 16px;
+  margin-left: 1%;
+  color: #b4d65a;
+  font-weight: bold;
+  float: left; }
+  .search_books_expanded_book_price:before {
+    font-weight: normal;
+    color: #555555;
+    display: inline-block;
+    float: left;
+    content: "Well Buy For:";
+    margin-right: 5px; }
 
 .search_books_expanded_book_price_highlight {
   font-size: 1.25em;
@@ -3023,9 +3035,11 @@ body {
 
 .search_books_expanded_book_add_to_sell_basket_wrap {
   cursor: pointer;
-  font-size: 0.875em;
+  font-size: 14px;
   float: right;
   letter-spacing: 1px;
+  height: 48px;
+  overflow: hidden;
   font-family: MotorOil;
   text-transform: uppercase;
   display: inline-block;
@@ -3038,6 +3052,7 @@ body {
   clear: both;
   width: 100%;
   background: #9ad9e0;
+  position: relative;
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
@@ -3052,8 +3067,7 @@ body {
     transition: all 500ms ease; }
 
 .search_books_expanded_book_add_to_sell_basket_add_again_button {
-  background: #b4d65a;
-  display: none; }
+  background: #b4d65a; }
   .search_books_expanded_book_add_to_sell_basket_add_again_button:hover {
     background: #aed34e; }
 

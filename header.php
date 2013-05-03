@@ -91,6 +91,18 @@
 			}
 
 			var state = {};
+				state.viewed_item  = {};
+				state.viewed_item.book   = {};
+				state.viewed_item.parts  = {};
+				state.viewed_item.show   = false;
+				state.viewed_item.parts.isbn    = "";
+				state.viewed_item.parts.title   = "";
+				state.viewed_item.parts.author  = "";
+				state.viewed_item.parts.price   = "";
+				state.viewed_item.parts.image   = "";
+				state.viewed_item.parts.editorial_review = "";
+
+
 				state.begin        = false;
 				state.add_address  = false;
 				state.add_account  = false;
@@ -108,7 +120,7 @@
 				state.notification.reset.text   = "";
 
 				state.withdraw     = 0.00;
-				state.log_in  = {};
+				state.log_in       = {};
 				state.log_in.where = "";
 				state.log_in.logging_in = false;
 				state.signed  = false;
@@ -404,13 +416,13 @@
 											self   : '<div class="header_invisible_box"></div>',
 											branch : {
 												logo : {
-													self : '<img src="<?php echo FRAMEWORKURI; ?>/CSS/Includes/works/header_logo.png" alt="" class="header_invisible_box_image_title">',
+													self : '<img src="'+frameworkuri+'/CSS/Includes/works/header_logo.png" alt="" class="header_invisible_box_image_title">',
 												},
 												text : {
 													self : '<div class="header_invisible_box_text_wrap"></div>',
 													last_branch : { 
 														title : '<div class="header_invisible_box_text_title">What We Do</div>',
-														paragraph : '<div class="header_invisible_box_text">Recyclabook accepts over a million different titles, you can easily sell your book and get quick and safe payment</div>'
+														paragraph : '<div class="header_invisible_box_text">Recyclabook accepts over a million different titles, you can easily sell your book and get paid quickly and safely</div>'
 													}
 												}
 											}	
@@ -1354,7 +1366,7 @@
 																	self : '<div class="popup_contact_text_right_text">Britania House</div>'
 																},
 																area : {
-																	self : '<div class="popup_contact_text_right_text">Caerphilly bussines park</div>'
+																	self : '<div class="popup_contact_text_right_text">Caerphilly Bussines park</div>'
 																},
 																town : {
 																	self : '<div class="popup_contact_text_right_text">Caerphilly</div>'
@@ -1397,12 +1409,9 @@
 															self : '<div class="popup_word_paragraph">Recyclabook was founded by Tom Williams and James Seear with the aim of providing the easiest possible way for a student to sell their textbook.</div>'
 														},
 														paragraph_two : {
-															self : '<div class="popup_word_paragraph">After months of trials and tribulation and with the help of some great people along the way, we’ve grown to a team of six, spoken to universities across the world and created Recyclabook- a company that provides a service that we wanted when we were students!</div>'
+															self : '<div class="popup_word_paragraph">After months of trials and tribulations and with the help of some great people along the way, we’ve grown to a team of six, spoken to universities across the world and created Recyclabook - a company that provides a service that we wanted when we were students!</div>'
 														},
 														paragraph_three : {
-															self : '<div class="popup_word_paragraph">We’ve tried to create a brand that embodies ease and trust at its core, this is where the ‘Recyclabus’ stems from, a van parked in a convenient location where students can bring their books and get paid instantly. </div>'
-														},
-														paragraph_four : {
 															self : '<div class="popup_word_paragraph">We’ve tried to create a brand that embodies ease and trust at its core, this is where the ‘Recyclabus’ stems from, a van parked in a convenient location where students can bring their books and get paid instantly. </div>'
 														},
 														thanks : {
@@ -1592,7 +1601,7 @@
 															self :  '<div id="where_is_my_isbn_toggle" class="homepage_how_it_works_box_button_expanded"></div>',
 															last_branch : {
 																image :  '<img src="'+frameworkuri+'/CSS/Includes/works/where_is_my_isbn.png" alt="how it works" class="homepage_how_it_works_box_button_expanded_image">',
-																paragraph : '<div class="homepage_how_it_works_box_button_expanded_text">Just look at the back of your book and find the 13 or 9 digit number bellow the barcode.</div>'
+																paragraph : '<div class="homepage_how_it_works_box_button_expanded_text">Just look at the back of your book and find the 13 or 9 digit number bellow.</div>'
 															}
 														}
 													}
@@ -1624,10 +1633,10 @@
 														text_box  : {
 															self :  '<div id="freepost_toggle" class="homepage_how_it_works_box_button_expanded"></div>',
 															last_branch : {
-																paragraph_one :  '<div class="homepage_how_it_works_box_button_expanded_text">We\'ll send you a postage pack, inside you\'ll get an envelope with which you can post your books for free</div>',
-																paragraph_two :  '<div class="homepage_how_it_works_box_button_expanded_text_highlight">or</div>',
-																paragraph_three :  '<div class="homepage_how_it_works_box_button_expanded_text">If you have your own package you can print off our own packaging label from this website</div>',
-																image :  '<img src="'+frameworkuri+'/CSS/Includes/works/freepost_options.png" alt="how it works" class="homepage_how_it_works_box_button_expanded_image">'				
+																paragraph_one   :  '<div class="homepage_how_it_works_box_button_expanded_text">We\'ll send you a postage pack. You\'ll get a <strong>mailing bag</strong> with our freepost address sticker attached, so you won’t pay a penny to post your books to Recyclabook.</div>',
+																paragraph_two   :  '<div class="homepage_how_it_works_box_button_expanded_text_highlight">or</div>',
+																paragraph_three :  '<div class="homepage_how_it_works_box_button_expanded_text">If you have your own <strong>packaging</strong>, you can print off our own packaging label from this website. <strong>This will reduce the turnaround time of the order to give you peace of mind, while ensuring you get your payment even faster!</strong></div>',
+																image           :  '<img src="'+frameworkuri+'/CSS/Includes/works/freepost_options.png" alt="how it works" class="homepage_how_it_works_box_button_expanded_image">'				
 															}
 														}
 													}
@@ -1651,15 +1660,15 @@
 																	}
 																}
 															},
-															self :  '<div  id="paid_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="homepage_how_it_works_last_box_button">How Am I Being Paid</div>',
+															self :  '<div  id="paid_trigger" class="homepage_how_it_works_last_box_button">How Am I Being Paid?</div>',
 															last_branch : {
-																arrow : '<span id="paid_trigger" data-function-to-call="front.prototype.toggle_popup_boxes" class="with-icon-down-arrow-for-how-it-works-button"></span>' 
+																arrow : '<span id="paid_trigger" class="with-icon-down-arrow-for-how-it-works-button"></span>' 
 															}
 														},
 														text_box  : {
 															self :  '<div id="paid_toggle" class="homepage_how_it_works_box_button_expanded"></div>',
 															last_branch : {
-																paragraph : '<div class="homepage_how_it_works_box_button_expanded_text">Dont worry about filling in your bank details, we\'ll send you a cheque the same day we recieve your books.</div>'
+																paragraph : '<div class="homepage_how_it_works_box_button_expanded_text"><strong>Don’t</strong> worry about filling in your bank details. We\'ll send you a cheque on the same day we receive your books.</div>'
 															}
 														}
 													}
@@ -1753,7 +1762,7 @@
 																						body  = world.wrap.branch.bus.branch.left_split.branch.dates.branch.body.branch.wrap.branch;
 																						dates = [
 																							{
-																								place : "University of South Wales, Caerleon Campus",
+																								place : "The University of South Wales, Caerleon Campus",
 																								date  : "14th, 15th May"
 																							},
 																							{
@@ -1761,7 +1770,7 @@
 																								date  : "16th, 17th May"
 																							},
 																							{
-																								place : "Swansea",
+																								place : "Swansea University",
 																								date  : "20th May"
 																							},
 																							{
@@ -1770,10 +1779,10 @@
 																							},
 																							{
 																								place : "Bath University",
-																								date  : "22nd, 32rd May"
+																								date  : "23rd, 32rd May"
 																							},
 																							{
-																								place : "University of West England, Frenchay Campus",
+																								place : "The University of the West of England, Frenchay Campus",
 																								date  : "24th May"
 																							},
 																							{
@@ -1781,7 +1790,7 @@
 																								date  : "28th May"
 																							},
 																							{
-																								place : "Swansea Metropolitan",
+																								place : "Swansea Metropolitan University",
 																								date  : "29th May"
 																							},
 																							{
@@ -1835,7 +1844,7 @@
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">University of South Wales, Caerleon Campus</div>'
+																			self : '<div class="bus_date_place">The University of South Wales, Caerleon Campus</div>'
 																		},
 																		date  : {
 																			self : '<div class="bus_date_date">14th, 15th May</div>'
@@ -1849,7 +1858,7 @@
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">University of West England, Frenchay Campus</div>'
+																			self : '<div class="bus_date_place">The University of the West of England, Frenchay Campus</div>'
 																		},
 																		date  : {
 																			self : '<div class="bus_date_date">16th, 17th May</div>'
@@ -1863,7 +1872,7 @@
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Swansea</div>'
+																			self : '<div class="bus_date_place">Swansea University</div>'
 																		},
 																		date  : {
 																			self : '<div class="bus_date_date">20th May</div>'
@@ -1894,7 +1903,7 @@
 																			self : '<div class="bus_date_place">Bath University</div>'
 																		},
 																		date  : {
-																			self : '<div class="bus_date_date">22nd, 32rd May</div>'
+																			self : '<div class="bus_date_date">23rd, 32rd May</div>'
 																		},
 																		mark : {
 																			self : '<div class="with-icon-bus-date-mark"></div>'
@@ -1933,7 +1942,7 @@
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Swansea Metropolitan</div>'
+																			self : '<div class="bus_date_place">Swansea Metropolitan University</div>'
 																		},
 																		date  : {
 																			self : '<div class="bus_date_date">29th May</div>'
@@ -2063,13 +2072,13 @@
 											self : '<div class="bus_signup"></div>',
 											branch : {
 												bar : {
-													self : '<div class="bus_signup_bar">Dont Want To Miss Us?</div>'
+													self : '<div class="bus_signup_bar">Don\'t Want To Miss Us?</div>'
 												},
 												body : {
 													self : '<div class="bus_signup_body"></div>',
 													branch : {
 														text : {
-															self : '<div class="bus_signup_text">Leave you email and university and we\'ll email you when we\'re coming your way. Dont\'t worry wel\'ll only use this for reminders and nothing else</div>'
+															self : '<div class="bus_signup_text">Leave your email and university and we\'ll email you when we\'re coming your way. Don\'t worry, we\'ll only use this to send you reminders - nothing more!</div>'
 														},
 														email : {
 															instructions : {
@@ -2387,6 +2396,18 @@
 																self : '<div class="result_book_search"></div>',
 																branch : {
 																	info : {
+																		instructions : {
+																			on : {
+																				the_event : "click",
+																				is_asslep : false,
+																				call      : function (change) {
+																					var book      = this.button.branch.wrap.branch.instructions.book;
+																					for ( var part in state.viewed_item.parts ) state.viewed_item.parts[part] = book[part];
+																					state.viewed_item.book = book;
+																					state.viewed_item.show = true;
+																				}
+																			}
+																		},
 																		self : '<span class="with-icon-info-for-book"></span>'
 																	},
 																	image : {
@@ -2548,6 +2569,202 @@
 									self : '<div class="result_books"></div>',
 								}
 							}			
+						},
+						item : {
+							instructions : {
+								observe : {
+									who      : state.viewed_item,
+									property : "show",
+									call     : function (change) { 
+										var self = world.wrap.branch.item.self;
+
+											if ( change.new ) {
+												self.css({ display : "block" }).animate({ opacity : 1 }, 200 );
+											} else { 
+												self.animate({ opacity : 0 }, 300, function () {
+													self.css({ display : "none" });
+												});
+											}
+									}
+								}
+							},
+							self   : ' <div class="search_books_expanded_book_wrap"></div>',
+							branch : {
+								book : {
+									instructions : {
+										observe : {
+											who      : state.viewed_item,
+											property : "show",
+											call     : function (change) { 
+												var self = world.wrap.branch.item.branch.book.self;
+													if ( change.new ) {
+														self.animate({ top : "50px" }, 300);
+													} else { 
+														self.animate({ top : "-"+window.screen.availHeight+"px" }, 200);
+													}
+											}
+										}
+									},
+									self   : '<div class="search_books_expanded_book"></div>',
+									branch : {
+										close : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														state.viewed_item.show = false;
+													}
+												}
+											} ,
+											self : '<span class="with-icon-info-close"></span>'
+										},
+										image_wrap : {
+											self   : '<div class="search_books_expanded_image_wrap"></div>',
+											branch : {
+												image : {
+													instructions : {
+														observe : {
+															who      : state.viewed_item.parts,
+															property : "image",
+															call     : function (change) { 
+																var self = world.wrap.branch.item.branch.book.branch.image_wrap.branch.image.self;
+																self.attr("src", change.new);
+															}
+														}
+													},
+													self : '<img src="" class="search_books_expanded_image">'
+												}
+											}
+										},
+										books_text : {
+											self   : '<div class="search_books_expanded_text"></div>',
+											branch : {
+												title : {
+													instructions : {
+														observe : {
+															who      : state.viewed_item.parts,
+															property : "title",
+															call     : function (change) { 
+																var self = world.wrap.branch.item.branch.book.branch.books_text.branch.title.self;
+																self.text(change.new);
+															}
+														}
+													},
+													self : '<div class="search_books_expanded_title"></div>'
+												},
+												author : { 
+													instructions : {
+														observe : {
+															who      : state.viewed_item.parts,
+															property : "author",
+															call     : function (change) { 
+																var self = world.wrap.branch.item.branch.book.branch.books_text.branch.author.self;
+																self.text(change.new);
+															}
+														}
+													},
+													self : '<div class="search_books_expanded_author"></div>'
+												},
+												isbn : { 
+													instructions : {
+														observe : {
+															who      : state.viewed_item.parts,
+															property : "isbn",
+															call     : function (change) { 
+																var self = world.wrap.branch.item.branch.book.branch.books_text.branch.isbn.self;
+																self.text(change.new);
+															}
+														}
+													},
+													self   : '<div class="search_books_expanded_isbn"></div>'
+												},
+												quote : {
+													instructions : {
+														observe : {
+															who      : state.viewed_item.parts,
+															property : "price",
+															call     : function (change) { 
+																var self = world.wrap.branch.item.branch.book.branch.books_text.branch.quote.self;
+																self.text("£"+change.new);
+															}
+														}
+													},
+													self   : '<div class="search_books_expanded_book_price"></div>'
+												},
+												buttons : {
+													self   : '<div class="search_books_expanded_book_add_to_sell_basket_wrap"></div>',
+													branch : {
+														inner : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		var promise = book.basket;
+																			promise.push(state.viewed_item.book);
+																			book.basket = promise;
+																	}
+																}
+															},
+															self   : '<div class="search_books_expanded_book_add_to_sell_basket_inner_wrap"></div>',
+															branch : {
+																add : {
+																	instructions : {
+																		on : {
+																			the_event : "click",
+																			is_asslep : false,
+																			call      : function (change) {
+																				// var promise = book.basket;
+																				// 	promise.push(state.viewed_item.book);
+																				// 	book.basket = promise;
+																					change.self.animate({ top : "-49px", marginBottom : "-49px" }, 300);
+																			}
+																		},
+																		observe : {
+																			who      : state.viewed_item,
+																			property : "show",
+																			call     : function (change) { 
+																				var self = world.wrap.branch.item.branch.book.branch.books_text.branch.buttons.branch.inner.branch.add.self;
+																				if ( !change.new ) self.css({ top : "0px", marginBottom : "0px" });
+																			}
+																		}
+																	},
+																	self   : '<div class="search_books_expanded_book_add_to_sell_basket_button"></div>',
+																	branch : {
+																		text : {
+																			// instructions : {
+																			// 	on : {
+																			// 		the_event : "click",
+																			// 		is_asslep : false,
+																			// 		call      : function (change) {
+																			// 			var promise = book.basket;
+																			// 				promise.push(state.viewed_item.book);
+																			// 				book.basket = promise;
+																			// 		}
+																			// 	}
+																			// },
+																			self : '<span class="search_books_expanded_book_add_to_sell_basket_button_text">Add To Basket</span>'
+																		}
+																	}
+																},
+																add_again : {
+																	self   : '<div class="search_books_expanded_book_add_to_sell_basket_add_again_button"></div>',
+																	branch : {
+																		text : {
+																			self : '<span class="with-icon-added-to-sell-basket-expanded-tick">Add Again?</span>'
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
 						},
 						registration : {
 							self   : '<section class="pages input_box_body_wrap account"></section>',
@@ -5322,90 +5539,90 @@
 								}
 							}
 						},
-						footer : {
-							self   : '<div class="footer"></div>',
-							branch : { 
-								wrap : {
-									self : '<div class="footer_wrap"></div>',
+						stock : {
+						}
+					}
+				},
+				footer : {
+					self   : '<div class="footer"></div>',
+					branch : { 
+						wrap : {
+							self : '<div class="footer_wrap"></div>',
+							branch : {
+								navigation : {
+									self   : '<div class="footer_navigation"></div>',
 									branch : {
-										navigation : {
-											self   : '<div class="footer_navigation"></div>',
-											branch : {
-												contact : {
-													instructions : {
-														on : {
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) {
-																animate.pop.outside = "contact";
-															}
-														}
-													},
-													self : '<div class="footer_text">Contact Us</div>'
-												},
-												media : {
-													instructions : {
-														on : {
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) {
-																animate.pop.outside = "media";
-															}
-														}
-													},
-													self : '<div class="footer_text">Media</div>'
-												},
-												word : {
-													instructions : {
-														on : {
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) {
-																animate.pop.outside = "word_from_us";
-															}
-														}
-													},
-													self : '<div class="footer_text">Word From Us</div>'
-												},
-												// terms : {
-												// 	instructions : {
-												// 		on : {
-												// 			the_event : "click",
-												// 			is_asslep : false,
-												// 			call      : function (change) {
-												// 				animate.pop.outside = "legal";
-												// 			}
-												// 		}
-												// 	},
-												// 	self : '<div class="footer_text">Terms & Conditions</div>'
-												// },
-												advertising : {
-													instructions : {
-														on : {
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) {
-																animate.pop.outside = "advertising";
-															}
-														}
-													},
-													self : '<div class="footer_text">Advertising</div>'
+										contact : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														animate.pop.outside = "contact";
+													}
 												}
-											}
+											},
+											self : '<div class="footer_text">Contact Us</div>'
 										},
-										logos : {
-											self : '<div class="footer_logos"></div>',
-											branch : {
-												logos : {
-													self : '<img src="'+frameworkuri+'/CSS/Includes/works/footer_logos.png" class="footer_logo">'
+										media : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														animate.pop.outside = "media";
+													}
 												}
-											}
+											},
+											self : '<div class="footer_text">Media</div>'
+										},
+										word : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														animate.pop.outside = "word_from_us";
+													}
+												}
+											},
+											self : '<div class="footer_text">Word From Us</div>'
+										},
+										// terms : {
+										// 	instructions : {
+										// 		on : {
+										// 			the_event : "click",
+										// 			is_asslep : false,
+										// 			call      : function (change) {
+										// 				animate.pop.outside = "legal";
+										// 			}
+										// 		}
+										// 	},
+										// 	self : '<div class="footer_text">Terms & Conditions</div>'
+										// },
+										advertising : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														animate.pop.outside = "advertising";
+													}
+												}
+											},
+											self : '<div class="footer_text">Advertising</div>'
+										}
+									}
+								},
+								logos : {
+									self : '<div class="footer_logos"></div>',
+									branch : {
+										logos : {
+											self : '<img src="'+frameworkuri+'/CSS/Includes/works/footer_logos.png" class="footer_logo">'
 										}
 									}
 								}
 							}
-						},
-						stock : {
 						}
 					}
 				}
@@ -5419,7 +5636,7 @@
 			var test = [
 				{	
 					asin : "1780873697",
-					author:"Paul Glendinning...",
+					author:"Paul Glendinning",
 					binding : "Paperback",
 					id : 0,
 					image : "http://ecx.images-amazon.com/images/I/51-mYD0PU7L._SL160_.jpg",
@@ -5429,7 +5646,7 @@
 					number_in_stock:"1",
 					pages:"416",
 					price:6.99	,
-					title:"Maths in M..."
+					title:"Maths in Minutes"
 				},
 				{	
 					asin : "1780873697",
@@ -5447,6 +5664,8 @@
 				}
 			];
 
+			// for ( var part in state.viewed_item.parts ) state.viewed_item.parts[part] = test[0][part];
+			// 	state.viewed_item.show = true;
 		
 
 				

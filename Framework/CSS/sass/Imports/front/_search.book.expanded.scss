@@ -1,21 +1,17 @@
 .search_books_expanded_book_wrap {
-
-	display: block;
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	margin: 0 auto;
-	background-color: transparent; 
-	z-index:1;
+	@extend.profile_hub_popup_screen;
+	// display: block;	
+	// opacity: 1;
 	font-size: (16px/100)*100; 
 }
 
 .search_books_expanded_book {
 	
-	width: 58.5%;
-	margin: 5% 20% 0;
-	padding: 2.3% 2%;
 	position: absolute;
+	width: 58.5%;
+	top: -800px;
+	left: 20%;
+	padding: 2.3% 2%;
 	background: $light;		
  	@include box-shadow( 1px, 1px, 3px, 1px, rgba(0,0,0, 0.2));
 }
@@ -95,12 +91,11 @@ $search_books_expanded_image_wrap_padding: 3%;
 	margin-bottom: 5%;
 	color: $black_gray;
 	clear: both;
-}
-
-.search_books_expanded_isbn_highlight { 
-	
-	font-weight: bold;
-	text-transform: uppercase; 
+	&:before { 
+		font-weight: bold;
+		text-transform: uppercase; 
+		content:"isbn:";
+	}
 }
 
 .search_books_expanded_book_description_title { 
@@ -125,13 +120,19 @@ $search_books_expanded_image_wrap_padding: 3%;
 }
 
 .search_books_expanded_book_price { 
-	
-	color: $black_gray;
-	display: inline-block;
+	font-size: 16px;
+	margin-left: 1%;
+	color: $green;
+	font-weight: bold; 
 	float: left;
-	margin-top: 2%;
-	width: 40%;
-	font-size: to_em(16);
+	&:before { 
+		font-weight: normal;
+		color: $black_gray;
+		display: inline-block;
+		float: left;
+		content:"Well Buy For:";
+		margin-right: 5px;
+	}
 }	
 
 .search_books_expanded_book_price_highlight { 
@@ -146,9 +147,11 @@ $search_books_expanded_image_wrap_padding: 3%;
 .search_books_expanded_book_add_to_sell_basket_wrap {
 	
 	cursor: pointer;
-	font-size: to_em(14); 
+	font-size: 14px;
 	float: right;
 	letter-spacing: 1px; 
+	height: 48px;
+	overflow: hidden;
 	font-family: MotorOil;
 	text-transform: uppercase;
 	display: inline-block;
@@ -163,6 +166,7 @@ $search_books_expanded_image_wrap_padding: 3%;
 	clear: both;
 	width: 100%;
 	background: $light_blue;
+	position: relative;
 	@include transition;
 	
 	&:hover {
@@ -172,11 +176,9 @@ $search_books_expanded_image_wrap_padding: 3%;
 }
 
 .search_books_expanded_book_add_to_sell_basket_add_again_button { 
-	
 	@extend .search_books_expanded_book_add_to_sell_basket_button;
+
 	background: $green;
-	display: none;
-	
 	&:hover {
 		background: darken($green, 3%); 
 	}
