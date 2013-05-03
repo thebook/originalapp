@@ -92,6 +92,8 @@
 
 			var state = {};
 				state.begin        = false;
+				state.add_address  = false;
+				state.add_account  = false;
 				state.save_account = false;
 				state.save_address = false;
 				state.edit_account = false;
@@ -276,6 +278,57 @@
 									}
 								}
 							},
+							{
+								who      : state,
+								property : "add_address",
+								call     : function (change) { 
+									if (!change.new) return;
+
+									state.addresses[0].user = state.account.email;
+
+									$.post( ajaxurl, {
+										action : "set_account",
+										method : "new_address",
+										paramaters : {
+											address : state.addresses[0]
+										}
+									}, function () {
+										state.add_adress = false;
+									},"json");
+								}
+							},
+							{
+								who      : state,
+								property : "add_account",
+								call     : function (change) { 
+
+									if (
+										   state.registration.first_name    
+										&& state.registration.last_name   
+										&& state.registration.post_code     
+										&& state.registration.town          
+										&& state.registration.area 	     
+										&& state.registration.address       
+										&& state.registration.email.size    
+										&& state.registration.email.unique  
+										&& state.registration.email.match   
+										&& state.registration.password.size 
+										&& state.registration.password.match 
+										&& !state.registration.email.query 
+									) {
+										$.post( ajaxurl, { 
+											action      : "set_account",
+											method      : "new_account",
+											paramaters  : {
+												account : state.account
+											}
+										}, function () {
+											state.signed      = true;
+											state.add_account = false;
+										},"json");
+									}
+								}
+							},
 							{ 
 								who      : state, 
 								property : "save_account",
@@ -381,6 +434,7 @@
 																			var amazon = new alpha.amazon({
 																				typed    : value,
 																				callback : function (books) { 
+																					console.log(books);
 																					if ( books !== undefined ) {
 																						book.results = books;
 																						router.change_url("sell");
@@ -2027,7 +2081,14 @@
 																		input.attr("readonly", change.new);
 																		input.val(state.account.email);
 																	}
-																}
+																},
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) { 
+																		if ( !state.signed ) state.account.email = change.self.val();
+																	}	
+																}	
 															},
 															self : '<input type="text" class="bus_signup_input" placeholder="Email">'
 														},
@@ -2045,11 +2106,37 @@
 																			input.attr("readonly", false);
 																		}
 																	}
-																}
+																},
+																on : {
+																	the_event : "keyup",
+																	is_asslep : false,
+																	call      : function (change) { 
+																		if ( !state.signed ) state.account.university = change.self.val();
+																	}	
+																}	
 															},
 															self : '<input type="text" class="bus_signup_input" placeholder="University">'
 														},
 														button : {
+															instructions : {
+																on : { 
+																	the_event : "click", 
+																	is_asslep : false,
+																	call      : function (change) { 
+																		if ( !state.signed ) {
+																			if ( state.account.email.trim() === "") return;
+
+																			state.addresses[0].address   = "None";
+																			state.addresses[0].town      = "None";
+																			state.addresses[0].area      = "None";
+																			state.addresses[0].post_code = "None";
+																			state.account.password       = Math.random().toFixed(5).slice(2);
+																			state.add_account = true;
+																			state.add_address = true;
+																		}
+																	}
+																}
+															},
 															self : '<div class="bus_signup_submit">Submit For Reminders</div>'
 														}
 													}
@@ -2440,7 +2527,7 @@
 														book.wrap   = wraps.classes[wraps.on_wrap];
 														book.title  = book.title.slice(0, 10) +'...';
 														book.author = book.author.slice(0, 18) +'...';
-														book.price  = book.price / 100;
+														book.price  = book.price;
 														book.id     = index+1;
 
 														alpha.parse(map, manifest[index+1], book);
@@ -3093,48 +3180,8 @@
 															is_asslep : false,
 															call      : function (change) { 
 
-																var is_ready = (
-																	state.registration.first_name    
-																	&& state.registration.last_name   
-																	&& state.registration.post_code     
-																	&& state.registration.town          
-																	&& state.registration.area 	     
-																	&& state.registration.address       
-																	&& state.registration.email.size    
-																	&& state.registration.email.unique  
-																	&& state.registration.email.match   
-																	&& state.registration.password.size 
-																	&& state.registration.password.match
-																);
-
-																if ( is_ready && !state.registration.email.query ) {
-
-																	animate.load = "Registering you...";
-																	state.addresses[0].user = state.account.email;
-																	$.post(
-																		ajaxurl,
-																		{ 
-																			action     : "set_account",
-																			method     : "new_account",
-																			paramaters : {
-																				account : state.account
-																			}
-																		}, function (response) { 
-																			$.post(
-																				ajaxurl,
-																				{
-																					action : "set_account",
-																					method : "new_address",
-																					paramaters : {
-																						address : state.addresses[0]
-																					}
-																				}, function (response) { 
-																					state.signed    = true;
-																					state.load      = false;
-																					router.change_url("confirm");
-																				},"json");
-																		},"json");
-																} 
+																state.signed    = true;
+																router.change_url("confirm");
 																
 															}
 														}

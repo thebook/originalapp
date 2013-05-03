@@ -2,6 +2,7 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.amazon = function (wake) {
 
+		var self = this;
 		wake.search_by   = wake.search_by   || 'keywords';
 		wake.search_for  = wake.search_for  || 'books';
 		wake.filter_name = wake.filter_name || 'tiny';
@@ -14,8 +15,8 @@ var alpha = (function ( alpha, $ ) {
 				paramaters : wake
 			}, 
 			function (books) { 
-				books = alpha.amazon.prototype.clean_array(books);
-				books = alpha.amazon.prototype.pick_which_details_to_get_out_of_the_book_properties(books, 
+				books = self.clean_array(books);
+				books = self.pick_which_details_to_get_out_of_the_book_properties(books, 
 				{
 					lowest_used_price : 'Amount',
 					image             : 'URL',
@@ -23,12 +24,38 @@ var alpha = (function ( alpha, $ ) {
 					price  			  : 'Amount',
 					editorial_review  : 'EditorialReview'
 				});
-				books = alpha.amazon.prototype.remove_books_that_dont_have_given_properties(books, ['image', 'author', 'price']);
+				books = self.remove_books_that_dont_have_given_properties(books, ['image', 'author', 'lowest_used_price']);
+				books = self.algorithm(books);
 				wake.callback(books);
 			},
 			'json'
 		);
 	};
+
+	alpha.amazon.prototype.algorithm = function (books) { 
+		console.log(books);
+		var sorted = [];
+		for (var index = 0; index < books.length; index++) {
+
+			var price = parseInt( books[index]["lowest_used_price"] ),
+				weight= 1250;
+
+			if ( price > books[index]["lowest_new_price"] ) price = parseInt( books[index]["lowest_new_price"] )+ 200;
+			price /= 100;
+			price *= 0.85;
+			price -= 5/price;
+			price += 0.25;
+			if ( price < 0.20 ) price = 0;
+			price  = price.toFixed(2);
+			books[index].price = price;
+
+			if ( books[index].dimensions && books[index].dimensions.Weight && books[index].dimensions.Weight !== 0 ) weight = books[index].dimensions.Weight;
+			if ( weight > 1999 ) console.log("weight is past capacity");
+			if ( price !== "0.00") sorted.push(books[index]);
+		};
+		return sorted;
+	};
+
 
 	alpha.amazon.prototype.clean_array = function (books) { 
 

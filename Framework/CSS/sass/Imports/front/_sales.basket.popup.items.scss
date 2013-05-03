@@ -96,7 +96,10 @@
 .store_basket_pop_up_content_item_sell_price { 
 
 	font-weight: bold;
-	font-size: 14px; 
+	font-size: 14px;
+	&:before {
+		content:"£";
+	}
 }
 
 .store_basket_pop_up_content_item_sell_price_text { 

@@ -2629,6 +2629,8 @@ body {
 .store_basket_pop_up_content_item_sell_price {
   font-weight: bold;
   font-size: 14px; }
+  .store_basket_pop_up_content_item_sell_price:before {
+    content: "£"; }
 
 .store_basket_pop_up_content_item_sell_price_text {
   color: #555555; }
@@ -2710,6 +2712,7 @@ body {
 
 .result_books {
   position: relative;
+  width: 100%;
   float: left; }
 
 .result_book_search_wrapper, .result_book_search_wrapper_left, .result_book_search_wrapper_right {

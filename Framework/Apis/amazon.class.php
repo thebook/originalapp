@@ -87,7 +87,6 @@ class amazon extends alpha_tree_api
 		$return_array = array();
 
 		foreach ($xml->Items->Item as $item => $attributes) : 
-
 			$return_array[] = 
 				array(
 					'item_links'         => $attributes->ItemLinks,
