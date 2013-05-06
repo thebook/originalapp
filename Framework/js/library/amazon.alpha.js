@@ -78,11 +78,12 @@ var alpha = (function ( alpha, $ ) {
 
 			var price          = parseInt( books[index]["lowest_used_price"] ),
 				starting_price = 0,
+				new_price      = parseInt(books[index]["lowest_new_price"]),
 				weights        = [
 					{
 						range_one : 0,
 						range_two : 100,
-						price     : 0.9
+						price     : -5
 					},
 					{
 						range_one : 99,
@@ -125,21 +126,35 @@ var alpha = (function ( alpha, $ ) {
 						price     : -9.01
 					}
 				],
-				weight         = 1250;
+				weight = 0;
+				new_price     -= (new_price*0.1);
 
-			if ( price > books[index]["lowest_new_price"] ) price = parseInt( books[index]["lowest_new_price"] ) - 200;
-			if ( books[index].dimensions && books[index].dimensions.Weight && books[index].dimensions.Weight !== 0 ) weight = books[index].dimensions.Weight;
+			if ( price > new_price ) price = new_price;
+			console.log("newest :"+ new_price );
+			console.log("used :"+ books[index]["lowest_used_price"]);
+			if ( books[index].dimensions && books[index].dimensions.Weight && books[index].dimensions.Weight !== "0" ) weight = books[index].dimensions.Weight;
 			price /= 100;
+			console.log("starting price :"+ price);
 			price *= 0.85;
+			console.log("*0.85 :"+ price);
+			weight = (weight/100) * 453;
+			console.log(books[index].dimensions);
+			console.log("weight is : "+ weight );
 			for (var i = 0; i < weights.length; i++) {
 				if ( weight > weights[i].range_one && weight < weights[i].range_two ) {
 					price += weights[i].price;
 				}
 			};
+			console.log("minus weight :"+ price);
 			starting_price = price;
 			price *= 0.75;
-			price -= 5/starting_price;
-			price += 0.25;
+			console.log("*0.75 :"+ price);
+			if ( price > 0 ) {
+				price -= 5/starting_price;
+				console.log("- 5/price :"+ price);
+				price += 0.25;
+				console.log("+0.25 :"+ price);
+			}
 
 			if ( price < 0.20 ) price = 0;
 			price              = price.toFixed(2);
