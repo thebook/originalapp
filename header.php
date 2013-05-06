@@ -446,7 +446,7 @@
 																			var amazon = new alpha.amazon({
 																				typed    : value,
 																				callback : function (books) { 
-																					console.log(books);
+																					// console.log(books);
 																					if ( books !== undefined ) {
 																						book.results = books;
 																						router.change_url("sell");

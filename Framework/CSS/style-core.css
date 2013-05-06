@@ -101,10 +101,6 @@ body {
 .pages {
   display: none;
   opacity: 0; }
-  .pages:after {
-    content: "";
-    display: table;
-    clear: both; }
 
 .load {
   position: fixed;

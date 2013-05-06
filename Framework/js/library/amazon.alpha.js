@@ -32,26 +32,121 @@ var alpha = (function ( alpha, $ ) {
 		);
 	};
 
+	// alpha.amazon.prototype.algorithm = function (books) { 
+	// 	console.log(books);
+	// 	var sorted = [];
+	// 	for (var index = 0; index < books.length; index++) {
+
+	// 		var price = parseInt( books[index]["lowest_used_price"] ),
+	// 			// weight_prices = {
+	// 			// 	"0"   : 0.9,
+	// 			// 	"100" : 0.43,
+	// 			// 	"250" : -0.12,
+	// 			// 	"500" : -1,
+	// 			// 	"750" : -3.5,
+	// 			// 	"1000": -6,
+	// 			// 	"1250": -7.64,
+	// 			// 	"1500": -8.38,
+	// 			// 	"1750": -9.01
+	// 			// };
+	// 			weight= 1250;
+
+	// 		if ( books[index].dimensions && books[index].dimensions.Weight && books[index].dimensions.Weight !== 0 ) weight = books[index].dimensions.Weight;
+	// 		if ( price > books[index]["lowest_new_price"] ) price = parseInt( books[index]["lowest_new_price"] ) - 200;
+	// 		price /= 100;
+	// 		price *= 0.85;
+	// 		// for ( var price_weight in weight_prices ) {
+	// 		// 	if ( weight > price_weight ) price += price_weight;
+	// 		// }
+	// 		price *= 0.75;
+	// 		price -= 5/price;
+	// 		price += 0.25;
+
+	// 		if ( price < 0.20 ) price = 0;
+	// 		price  = price.toFixed(2);
+	// 		books[index].price = price;
+
+	// 		if ( weight > 1999 ) console.log("weight is past capacity");
+	// 		if ( price !== "0.00") sorted.push(books[index]);
+	// 	};
+	// 	return sorted;
+	// };
+
 	alpha.amazon.prototype.algorithm = function (books) { 
-		console.log(books);
 		var sorted = [];
 		for (var index = 0; index < books.length; index++) {
 
-			var price = parseInt( books[index]["lowest_used_price"] ),
-				weight= 1250;
+			var price          = parseInt( books[index]["lowest_used_price"] ),
+				starting_price = 0,
+				weights        = [
+					{
+						range_one : 0,
+						range_two : 100,
+						price     : 0.9
+					},
+					{
+						range_one : 99,
+						range_two : 250,
+						price     : 0.43
+					},
+					{
+						range_one : 249,
+						range_two : 500,
+						price     : -0.12
+					},
+					{
+						range_one : 499,
+						range_two : 750,
+						price     : -1
+					},
+					{
+						range_one : 749,
+						range_two : 1000,
+						price     : -3.5
+					},
+					{
+						range_one : 999,
+						range_two : 1250,
+						price     : -6
+					},
+					{
+						range_one : 1249,
+						range_two : 1500,
+						price     : -7.64
+					},
+					{
+						range_one : 1499,
+						range_two : 1750,
+						price     : -0.38
+					},
+					{
+						range_one : 1749,
+						range_two : 2000,
+						price     : -9.01
+					}
+				],
+				weight         = 1250;
 
-			if ( price > books[index]["lowest_new_price"] ) price = parseInt( books[index]["lowest_new_price"] )+ 200;
+			if ( price > books[index]["lowest_new_price"] ) price = parseInt( books[index]["lowest_new_price"] ) - 200;
+			if ( books[index].dimensions && books[index].dimensions.Weight && books[index].dimensions.Weight !== 0 ) weight = books[index].dimensions.Weight;
 			price /= 100;
 			price *= 0.85;
-			price -= 5/price;
+			for (var i = 0; i < weights.length; i++) {
+				if ( weight > weights[i].range_one && weight < weights[i].range_two ) {
+					price += weights[i].price;
+				}
+			};
+			starting_price = price;
+			price *= 0.75;
+			price -= 5/starting_price;
 			price += 0.25;
-			if ( price < 0.20 ) price = 0;
-			price  = price.toFixed(2);
-			books[index].price = price;
 
-			if ( books[index].dimensions && books[index].dimensions.Weight && books[index].dimensions.Weight !== 0 ) weight = books[index].dimensions.Weight;
+			if ( price < 0.20 ) price = 0;
+			price              = price.toFixed(2);
+			books[index].price = price;
+			
 			if ( weight > 1999 ) console.log("weight is past capacity");
-			if ( price !== "0.00") sorted.push(books[index]);
+			if ( price !== "0.00") sorted.push(books[index]);			
 		};
 		return sorted;
 	};
