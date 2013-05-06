@@ -32,46 +32,6 @@ var alpha = (function ( alpha, $ ) {
 		);
 	};
 
-	// alpha.amazon.prototype.algorithm = function (books) { 
-	// 	console.log(books);
-	// 	var sorted = [];
-	// 	for (var index = 0; index < books.length; index++) {
-
-	// 		var price = parseInt( books[index]["lowest_used_price"] ),
-	// 			// weight_prices = {
-	// 			// 	"0"   : 0.9,
-	// 			// 	"100" : 0.43,
-	// 			// 	"250" : -0.12,
-	// 			// 	"500" : -1,
-	// 			// 	"750" : -3.5,
-	// 			// 	"1000": -6,
-	// 			// 	"1250": -7.64,
-	// 			// 	"1500": -8.38,
-	// 			// 	"1750": -9.01
-	// 			// };
-	// 			weight= 1250;
-
-	// 		if ( books[index].dimensions && books[index].dimensions.Weight && books[index].dimensions.Weight !== 0 ) weight = books[index].dimensions.Weight;
-	// 		if ( price > books[index]["lowest_new_price"] ) price = parseInt( books[index]["lowest_new_price"] ) - 200;
-	// 		price /= 100;
-	// 		price *= 0.85;
-	// 		// for ( var price_weight in weight_prices ) {
-	// 		// 	if ( weight > price_weight ) price += price_weight;
-	// 		// }
-	// 		price *= 0.75;
-	// 		price -= 5/price;
-	// 		price += 0.25;
-
-	// 		if ( price < 0.20 ) price = 0;
-	// 		price  = price.toFixed(2);
-	// 		books[index].price = price;
-
-	// 		if ( weight > 1999 ) console.log("weight is past capacity");
-	// 		if ( price !== "0.00") sorted.push(books[index]);
-	// 	};
-	// 	return sorted;
-	// };
-
 	alpha.amazon.prototype.algorithm = function (books) { 
 		var sorted = [];
 		for (var index = 0; index < books.length; index++) {

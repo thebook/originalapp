@@ -102,7 +102,6 @@
 				state.viewed_item.parts.image   = "";
 				state.viewed_item.parts.editorial_review = "";
 
-
 				state.begin        = false;
 				state.add_address  = false;
 				state.add_account  = false;
@@ -148,8 +147,8 @@
 					area 	   : false,
 					address    : false,
 					email 	   : {
-						query : false,
 						size  : false,
+						text  : false,
 						unique: false,
 						match : false
 					},
@@ -315,18 +314,17 @@
 								call     : function (change) { 
 
 									if (
-										   state.registration.first_name    
-										&& state.registration.last_name   
-										&& state.registration.post_code     
-										&& state.registration.town          
-										&& state.registration.area 	     
-										&& state.registration.address       
-										&& state.registration.email.size    
-										&& state.registration.email.unique  
-										&& state.registration.email.match   
-										&& state.registration.password.size 
-										&& state.registration.password.match 
-										&& !state.registration.email.query 
+										   state.registration.first_name  
+										&& state.registration.last_name
+										&& state.registration.post_code
+										&& state.registration.town
+										&& state.registration.area  
+										&& state.registration.address
+										&& state.registration.email.size  
+										&& state.registration.email.unique
+										&& state.registration.email.match    === state.account.email
+										&& state.registration.password.size
+										&& state.registration.password.match === state.account.password
 									) {
 										$.post( ajaxurl, { 
 											action      : "set_account",
@@ -2095,7 +2093,9 @@
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) { 
-																		if ( !state.signed ) state.account.email = change.self.val();
+																		if ( state.signed ) return;
+																		state.account.email            = change.self.val();
+																		state.registration.email.match = state.account.email;
 																	}	
 																}	
 															},
@@ -2128,18 +2128,39 @@
 														},
 														button : {
 															instructions : {
+																observers : [
+																	{ 
+																		who      : state.account,
+																		property : "recieve_newsletter",
+																		call     : function (change) {
+																			var self = world.wrap.branch.bus.branch.right_split.branch.notify.branch.body.branch.button;
+																			if ( change.new === 1 || change.new === "1" ) { 
+																				self.self.text("You have signed up");
+																			} else { 
+																				self.self.text("Submit for reminders");
+																			}
+																		}
+																	}
+																],
 																on : { 
 																	the_event : "click", 
 																	is_asslep : false,
 																	call      : function (change) { 
-																		if ( !state.signed ) {
-																			if ( state.account.email.trim() === "") return;
-
-																			state.addresses[0].address   = "None";
-																			state.addresses[0].town      = "None";
-																			state.addresses[0].area      = "None";
-																			state.addresses[0].post_code = "None";
-																			state.account.password       = Math.random().toFixed(5).slice(2);
+																		if ( state.account.email.trim() === "") return;
+																		if ( state.account.recieve_newsletter === 1 || state.account.recieve_newsletter === "1" ) return;
+																		if ( state.signed ) {
+																			state.account.recieve_newsletter = 1;
+																			state.save_account = true;
+																		} else { 
+																			state.addresses[0].address        = "None";
+																			state.addresses[0].town           = "None";
+																			state.addresses[0].area           = "None";
+																			state.addresses[0].post_code      = "None..";
+																			state.account.recieve_newsletter  = 1;
+																			state.account.first_name          = state.account.email;
+																			state.account.second_name         = "None";
+																			state.account.password            = Math.random().toFixed(7).slice(2);
+																			state.registration.password.match = state.account.password;
 																			state.add_account = true;
 																			state.add_address = true;
 																		}
@@ -2950,30 +2971,38 @@
 														},
 														name_input      : {
 															instructions : {
+																observers : [
+																	{
+																		who      : state.account,
+																		property : "first_name",
+																		call     : function (change) {
+																			if ( change.new.length < 2 ) {
+																				state.registration.first_name = "First name too short";
+																			}
+																			if ( change.new.length === 0 ) {
+																				state.registration.first_name = "First name empty";
+																			}
+																			if ( change.new.length > 1 ) {
+																				state.registration.first_name = true;
+																			}
+																		}
+																	},
+																	{
+																		who      : state.registration,
+																		property : "first_name",
+																		call     : function (change) {
+																			var label = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect.branch.first_name;
+																				
+																				( change.new === true )? label.self.css({ display : "none" }) : label.self.css({ display : "block" });
+																				label.branch.text.self.text(change.new);
+																		}
+																	}
+																],
 																on : {
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		var correct, label, data, value;
-																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.first_name;
-																		value   = change.self.val().trim();
-
-																		if ( value.length < 2 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("One letter name, really?...were onto you...");
-																			state.registration.first_name = false;
-																		}
-																		if ( value.length === 0 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("First name is empty");
-																			state.registration.first_name = false;
-																		}
-																		if ( value.length > 1 ) {
-																			label.self.css({ display : "none" });
-																			state.registration.first_name = true;
-																		}
-																		state.account.first_name = value;
+																		state.account.first_name = change.self.val().trim();
 																	}
 																}
 															},
@@ -2984,30 +3013,38 @@
 														},
 														last_name_input : {
 															instructions : {
+																observers : [
+																	{
+																		who      : state.account,
+																		property : "second_name",
+																		call     : function (change) {
+																			if ( change.new.length < 2 ) {
+																				state.registration.last_name = "Last name too short";
+																			}
+																			if ( change.new.length === 0 ) {
+																				state.registration.last_name = "Last name empty";
+																			}
+																			if ( change.new.length > 1 ) {
+																				state.registration.last_name = true;
+																			}
+																		}
+																	},
+																	{
+																		who      : state.registration,
+																		property : "last_name",
+																		call     : function (change) {
+																			var label = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect.branch.last_name;
+																				
+																				( change.new === true )? label.self.css({ display : "none" }) : label.self.css({ display : "block" });
+																				label.branch.text.self.text(change.new);
+																		}
+																	}
+																],
 																on : {
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		var correct, label, data, value;
-																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.last_name;
-																		value   = change.self.val().trim();
-
-																		if ( value.length < 2 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Last name to short");
-																			state.registration.last_name = false;
-																		}
-																		if ( value.length === 0 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Last name is empty");
-																			state.registration.last_name = false;
-																		}
-																		if ( value.length > 1 ) {
-																			label.self.css({ display : "none" });
-																			state.registration.last_name = true;
-																		}
-																		state.account.second_name = value;
+																		state.account.second_name = change.self.val().trim();
 																	}
 																}
 															},
@@ -3026,30 +3063,37 @@
 														},
 														address_input    : {
 															instructions : {
+																observers : [
+																	{
+																		who      : state.addresses[0],
+																		property : "address",
+																		call     : function (change) {
+																			if ( change.new.length < 3 ) {
+																				state.registration.address = "Address too short";
+																			}
+																			if ( change.new.length === 0 ) {
+																				state.registration.address = "Address is empty";
+																			}
+																			if ( change.new.length > 2 ) {
+																				state.registration.address = true;
+																			}
+																		}
+																	},
+																	{
+																		who      : state.registration,
+																		property : "address",
+																		call     : function (change) {
+																			var label = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect.branch.address;
+																				( change.new === true )? label.self.css({ display : "none" }) : label.self.css({ display : "block" });
+																				label.branch.text.self.text(change.new);
+																		}
+																	}
+																],
 																on : {
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		var correct, label, data, value;
-																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.address;
-																		value   = change.self.val().trim();
-
-																		if ( value.length < 3 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Adress too short");
-																			state.registration.address = false;
-																		}
-																		if ( value.length === 0 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Address is empty");
-																			state.registration.address = false;
-																		}
-																		if ( value.length > 1 ) {
-																			label.self.css({ display : "none" });
-																			state.registration.address = true;
-																		}
-																		state.addresses[0].address = value;
+																		state.addresses[0].address = change.self.val().trim();
 																	}
 																}
 															},
@@ -3057,30 +3101,37 @@
 														},
 														town_input       : {
 															instructions : {
+																observers : [
+																	{
+																		who      : state.addresses[0],
+																		property : "town",
+																		call     : function (change) {
+																			if ( change.new.length < 2 ) {
+																				state.registration.town = "Town too short";
+																			}
+																			if ( change.new.length === 0 ) {
+																				state.registration.town = "Town is empty";
+																			}
+																			if ( change.new.length > 1 ) {
+																				state.registration.town = true;
+																			}
+																		}
+																	},
+																	{
+																		who      : state.registration,
+																		property : "town",
+																		call     : function (change) {
+																			var label = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect.branch.town;																				
+																				( change.new === true )? label.self.css({ display : "none" }) : label.self.css({ display : "block" });
+																				label.branch.text.self.text(change.new);
+																		}
+																	}
+																],
 																on : {
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		var correct, label, data, value;
-																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.town;
-																		value   = change.self.val().trim();
-
-																		if ( value.length < 2 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Town too short");
-																			state.registration.town = false;
-																		}
-																		if ( value.length === 0 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Town is empty");
-																			state.registration.town = false;
-																		}
-																		if ( value.length > 1 ) {
-																			label.self.css({ display : "none" });
-																			state.registration.town = true;
-																		}
-																		state.addresses[0].town = value;
+																		state.addresses[0].town = change.self.val().trim();
 																	}
 																}
 															},
@@ -3088,30 +3139,37 @@
 														},
 														area_input       : {
 															instructions : {
+																observers : [
+																	{
+																		who      : state.addresses[0],
+																		property : "area",
+																		call     : function (change) {
+																			if ( change.new.length < 2 ) {
+																				state.registration.area = "County too short";
+																			}
+																			if ( change.new.length === 0 ) {
+																				state.registration.area = "County is empty";
+																			}
+																			if ( change.new.length > 1 ) {
+																				state.registration.area = true;
+																			}
+																		}
+																	},
+																	{
+																		who      : state.registration,
+																		property : "area",
+																		call     : function (change) {
+																			var label = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect.branch.area;
+																				( change.new === true )? label.self.css({ display : "none" }) : label.self.css({ display : "block" });
+																				label.branch.text.self.text(change.new);
+																		}
+																	}
+																],
 																on : {
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		var correct, label, data, value;
-																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.area;
-																		value   = change.self.val().trim();
-
-																		if ( value.length < 2 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Area too short");
-																			state.registration.area = false;
-																		}
-																		if ( value.length === 0 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Area is empty");
-																			state.registration.area = false;
-																		}
-																		if ( value.length > 1 ) {
-																			label.self.css({ display : "none" });
-																			state.registration.area = true;
-																		}
-																		state.addresses[0].area = value;
+																		state.addresses[0].area = change.self.val().trim();
 																	}
 																}
 															},
@@ -3119,30 +3177,37 @@
 														},
 														post_code_input  : {
 															instructions : {
+																observers : [
+																	{
+																		who      : state.addresses[0],
+																		property : "post_code",
+																		call     : function (change) {
+																			if ( change.new.length === 0 ) {
+																				state.registration.post_code = "Post Code is empty";
+																			}
+																			if ( ( change.new.length < 6 || change.new.length > 7 ) && change.new.length !== 0 ) {
+																				state.registration.post_code = "Invalid Post Code";
+																			}
+																			if (  change.new.length > 5 && change.new.length < 8 ) {
+																				state.registration.post_code = true;
+																			}
+																		}
+																	},
+																	{
+																		who      : state.registration,
+																		property : "post_code",
+																		call     : function (change) {
+																			var label = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect.branch.post_code;
+																				( change.new === true )? label.self.css({ display : "none" }) : label.self.css({ display : "block" });
+																				label.branch.text.self.text(change.new);
+																		}
+																	}
+																],
 																on : {
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		var correct, label, data, value;
-																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.post_code;
-																		value   = change.self.val().trim();
-																		
-																		if ( value.length === 0 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Post Code is empty");
-																			state.registration.post_code = false;
-																		}
-																		if ( ( value.length < 6 || value.length > 7 ) && value.length !== 0 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Invalid Post Code");
-																			state.registration.post_code = false;
-																		}
-																		if (  value.length > 5 && value.length < 8 ) {
-																			label.self.css({ display : "none" });
-																			state.registration.post_code = true;
-																		}
-																		state.addresses[0].post_code = value;
+																		state.addresses[0].post_code = change.self.val().trim();
 																	}
 																}
 															},
@@ -3183,31 +3248,67 @@
 															self : '<div class="field_box_input_title">Email address</div>'
 														},
 														emai_input          : {
-															instructions : {																
+															instructions : {
+																observers : [
+																	{
+																		who      : state.registration.email,
+																		property : "match",
+																		call     : function (change) {
+
+																			if ( change.new !== state.account.email ) {
+																				state.registration.email.text = "Emails do not match";
+																			} else { 
+																				$.get(ajaxurl,{ 
+																					action     : "get_account",
+																					method     : "is_email_in_use",
+																					paramaters : {
+																						email : state.account.email,
+																					}
+																				}, function (response) { 
+																					if ( response.return ) {
+																						state.registration.email.unique = false;
+																						state.registration.email.text   = "Email is in use";
+																					} else { 
+																						state.registration.email.unique = true;
+																						state.registration.email.text   = true;
+																					}
+																				}, "json");
+																			}
+																		}
+																	},
+																	{
+																		who      : state.account,
+																		property : "email",
+																		call     : function (change) {
+
+																			if ( change.new.length === 0 ) {
+																				state.registration.email.size = false;
+																				state.registration.email.text = "Email is empty";
+																			}
+																			if ( change.new.length < 5 || change.new.search("@") === -1 ) { 
+																				state.registration.email.size = false;
+																				state.registration.email.text = "Invalid Email";
+																			}
+																			if ( change.new.length > 4 && change.new.search("@") !== -1 ) {
+																				state.registration.email.size = true;
+																			}
+																		}
+																	},
+																	{
+																		who      : state.registration.email,
+																		property : "text",
+																		call     : function (change) {
+																			var label = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect.branch.email;
+																				( change.new === true )? label.self.css({ display : "none" }) : label.self.css({ display : "block" });
+																				label.branch.text.self.text(change.new);
+																		}
+																	}
+																],
 																on : {
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		var correct, label, data, value;
-																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.email;
-																		value   = change.self.val().trim();
-
-																		if ( value.length === 0 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Email is empty");
-																			state.registration.email.size = false;
-																		}
-																		if ( value.length < 5 || value.search("@") === -1 ) { 
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Invalid Email");
-																			state.registration.email.size = false;
-																		}
-																		if ( value.length > 4 && value.search("@") !== -1 ) {
-																			label.self.css({ display : "none" });
-																			state.registration.email.size = true;
-																		}
-																		state.account.email = value;
+																		state.account.email = change.self.val().trim();
 																	}
 																}
 															},
@@ -3218,55 +3319,11 @@
 														},
 														confirm_email_input : {
 															instructions : {
-																observe : {
-																	who : state.registration.email,
-																	property : "match",
-																	call     : function (change) {
-																		if ( this.match && !this.query ) {
-																			var email, label;
-																			label = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect.branch.email;
-																			state.registration.email.query = true;
-
-																				$.get(
-																					ajaxurl,
-																					{ 
-																						action     : "get_account",
-																						method     : "is_email_in_use",
-																						paramaters : {
-																							email : state.account.email,
-																						}
-																					},
-																					function (response) { 
-																						if (!response.return ) {
-																							label.self.css({ display : "none" });
-																							state.registration.email.unique = true;
-																						} else { 
-																							label.self.css({ display : "block" });
-																							label.branch.text.self.text("Email is already in use");
-																						}
-																						state.registration.email.query = false;
-																					},
-																					"json");
-																		}
-																	}
-																},
 																on : {
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		var correct, label, data, value;
-																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.email;
-																		value   = change.self.val().trim();
-
-																		if ( value === state.account.email ) {
-																			label.self.css({ display : "none" });
-																			state.registration.email.match = true;
-																		} else { 
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Emails do not match");
-																			state.registration.email.match = false;
-																		}
+																		state.registration.email.match = change.self.val().trim();
 																	}
 																}
 															},
@@ -3282,30 +3339,52 @@
 														},
 														password 		       : {
 															instructions : {
+																observers : [
+																	{
+																		who      : state.registration.password,
+																		property : "match",
+																		call     : function (change) {
+
+																			if ( change.new !== state.account.password ) {
+																				state.registration.password.text = "Passwords do not match";
+																			} else { 
+																				state.registration.password.text = true;
+																			}
+																		}
+																	},
+																	{
+																		who      : state.account,
+																		property : "password",
+																		call     : function (change) {
+
+																			if ( change.new.length < 6 ) {
+																				state.registration.password.size = false;
+																				state.registration.password.text = "Password must be over five characters";
+																			}
+																			if ( change.new.length === 0 ) {
+																				state.registration.password.size = false;
+																				state.registration.password.text = "Password is empty";
+																			}
+																			if ( change.new.length > 6 ) {
+																				state.registration.password.size = true;
+																			}
+																		}
+																	},
+																	{
+																		who      : state.registration.password,
+																		property : "text",
+																		call     : function (change) {
+																			var label = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect.branch.password;
+																				( change.new === true )? label.self.css({ display : "none" }) : label.self.css({ display : "block" });
+																				label.branch.text.self.text(change.new);
+																		}
+																	}
+																],
 																on : {
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		var correct, label, data, value;
-																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.password;
-																		value   = change.self.val().trim();
-
-																		if ( value.length < 6 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Password must be over five characters");
-																			state.registration.password.size = false;
-																		}
-																		if ( value.length === 0 ) {
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Password is empty");
-																			state.registration.password.size = false;
-																		}
-																		if ( value.length > 6 ) {
-																			label.self.css({ display : "none" });
-																			state.registration.password.size = true;
-																		}
-																		state.account.password = value;
+																		state.account.password = change.self.val().trim();
 																	}
 																}
 															},
@@ -3320,19 +3399,7 @@
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		var correct, label, data, value;
-																		correct = world.wrap.branch.registration.branch.wrap.branch.legend.branch.incorrect;
-																		label   = correct.branch.password;
-																		value   = change.self.val().trim();
-
-																		if ( value === state.account.password ) {
-																			label.self.css({ display : "none" });
-																			state.registration.password.match = true;
-																		} else { 
-																			label.self.css({ display : "block" });
-																			label.branch.text.self.text("Passwords do not match");
-																			state.registration.password.match = false;
-																		}
+																		state.registration.password.match = change.self.val().trim();
 																	}
 																}
 															},
@@ -3397,8 +3464,12 @@
 															is_asslep : false,
 															call      : function (change) { 
 
-																state.signed    = true;
+																state.add_account = true;
+																state.add_address = true;
 																router.change_url("confirm");
+																console.log(state.registration);
+																console.log(state.account);
+																console.log(state);
 																
 															}
 														}
@@ -5665,10 +5736,7 @@
 			];
 
 			// for ( var part in state.viewed_item.parts ) state.viewed_item.parts[part] = test[0][part];
-			// 	state.viewed_item.show = true;
-		
-
-				
+			// 	state.viewed_item.show = true;				
 		});									
 	</script>
 
