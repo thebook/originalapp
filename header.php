@@ -102,6 +102,14 @@
 				state.viewed_item.parts.image   = "";
 				state.viewed_item.parts.editorial_review = "";
 
+				state.email = {};
+				state.email.freepost = "";
+
+				state.register_user      = false;
+				state.password_remind    = false;
+				state.give_freepost      = false;
+				state.give_price_promise = false;
+
 				state.begin        = false;
 				state.add_address  = false;
 				state.add_account  = false;
@@ -241,6 +249,18 @@
 			world.thought = {
 				wrap : {
 					instructions : {
+						email : function (wake) {
+							$.post(ajaxurl, {
+								action : "set_email",
+								method : "email",
+								paramaters : {
+									name    : wake.name,
+									email   : wake.email,
+									subject : wake.subject,
+									text    : wake.text
+								}
+							}, function () {}, "json");
+						},
 						observers : [
 							{
 								who      : state.log_in,
@@ -377,6 +397,46 @@
 											state.save_address = false;
 										}, "json");
 									}
+								}
+							},
+							{
+								who      : state,
+								property : "give_price_promise",
+								call     : function (change) {
+									if ( !change.new ) return;
+								}
+							},
+							{ 
+								who      : state,
+								property : "give_freepost",
+								call     : function (change) {
+									if ( !change.new ) return;
+
+									var date = new Date();
+									$.post(ajaxurl,
+									{
+										action : "set_ticket",
+										method : "freepost",
+										paramaters : {
+											array : {
+												email       : state.account.email,
+												first_name  : state.account.first_name,
+												second_name : state.account.second_name,
+												address     : state.addresses[0].address,
+												post_code   : state.addresses[0].post_code,
+												town        : state.addresses[0].town,
+												area        : state.addresses[0].area,
+												date        : date.getFullYear() +"/"+ date.getMonth() +"/"+ date.getDate()
+											}
+										}
+									}, function () {}, "json");
+
+									world.wrap.instructions.email({
+										email   : "aleksandar.andjelkovich@gmail.com",
+										name    : state.account.first_name +", "+ state.account.second_name,
+										subject : "Freepost pack",
+										text    : "<p>Hi "+ state.account.first_name +"</p><p>We will dispatch a freepost pack soon to : </p><ul><li>"+ state.addresses[0].address +"</li><li>"+ state.addresses[0].town +"</li><li>"+ state.addresses[0].town +"</li><li>"+ state.addresses[0].post_code +"</li></ul><p>When you receive the pack all you have to do is post your books in the freepost envelope provided.</p><p>Once we receive the books we will send you a cheque.</p><p>For more information visit <a href=\"Recyclabook.com\">Recyclabook.com</a>.</p>"
+									});
 								}
 							}
 						]
@@ -3892,32 +3952,14 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) { 
-																var date, price_promise;
-																
+																var price_promise;
 																price_promise = state.account.price_promise.concat(book.basket);
+																book.basket   = [];
 																state.account.price_promise = price_promise;
-																book.basket = [];
-																router.change_url("done");
-																state.save_account = true;
+ 																state.save_account = true;
 
-																date = new Date;
-																$.post(ajaxurl,
-																{
-																	action : "set_ticket",
-																	method : "freepost",
-																	paramaters : {
-																		array : {
-																			email       : state.account.email,
-																			first_name  : state.account.first_name,
-																			second_name : state.account.second_name,
-																			address     : state.addresses[0].address,
-																			post_code   : state.addresses[0].post_code,
-																			town        : state.addresses[0].town,
-																			area        : state.addresses[0].area,
-																			date        : date.getFullYear() +"/"+ date.getMonth() +"/"+ date.getDate()
-																		}
-																	}
-																}, function () {}, "json");
+ 																state.give_price_promise = true;
+ 																state.give_freepost      = true;
 															}
 														}
 													},
