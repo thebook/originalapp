@@ -10,7 +10,7 @@ $global_admin_options_white_whale = get_option('main_options');
 
 include FRAMEWORK . '/include.php'; 
 
-include FRAMEWORK . '/Options/include.php';
+// include FRAMEWORK . '/Options/include.php';
 
 include FRAMEWORK .'/Apis/include.php';
 
@@ -22,13 +22,13 @@ include FRAMEWORK .'/data/include.php';
 
 new register_scripts;
 	
-new admin( 
-	array(
-		'id' => 'lf-admin',
-		'class' => 'lf-admin-td', 
-		'default_type' => 'option',
-		'definition' => FRAMEWORK .'/Definitions/admin.definition.php'
-		));
+// new admin( 
+// 	array(
+// 		'id' => 'lf-admin',
+// 		'class' => 'lf-admin-td', 
+// 		'default_type' => 'option',
+// 		'definition' => FRAMEWORK .'/Definitions/admin.definition.php'
+// 		));
 
 new account;
 new ticket;

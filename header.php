@@ -105,7 +105,7 @@
 				state.email = {};
 				state.email.freepost = "";
 
-				state.register_user      = false;
+				state.register_account   = false;
 				state.password_remind    = false;
 				state.give_freepost      = false;
 				state.give_price_promise = false;
@@ -250,6 +250,9 @@
 				wrap : {
 					instructions : {
 						email : function (wake) {
+
+							wake.text += "<p>Many Thanks,</p><p>The Recyclabook Team</p><p>We give out some MAD prizes.</p><p>Give us a like, give us a follow and we’ll give you a pony (maybe).</p><p><a href="Facebook.com/Recyclabook">Facebook.com/Recyclabook</a></p><p><a href="Twitter.com/Recyclabook">Twitter.com/Recyclabook</a></p>";
+							
 							$.post(ajaxurl, {
 								action : "set_email",
 								method : "email",
@@ -404,6 +407,32 @@
 								property : "give_price_promise",
 								call     : function (change) {
 									if ( !change.new ) return;
+
+									var price_promise, added_books;
+										price_promise = state.account.price_promise.concat(book.basket);
+										state.account.price_promise = price_promise;
+										added_books   = "<ul>";
+										for (var index = 0; index < books.basket.length; index++) {
+											added_books += "<li>"+ books.basket[index].title +"</li>";
+										};
+										added_books   = "</ul>";
+										book.basket   = [];
+										state.save_account       = true;
+										state.give_price_promise = false;
+
+									world.wrap.instructions.email({
+										email   : state.account.email,
+										name    : state.account.first_name +", "+ state.account.second_name,
+										subject : "New books have been added to your price promise",
+										text    : "<p>Hi "+ state.account.first_name +"</p><p>You have added the following books to your price promise basket.</p>"+ text +"<p>Because, the prices of books and quotes we give can change, the price promise basket is our way of promising that we will give you the price quoted on that day for your books, so you dont have to worry</p><p> We will be expecting for your books to arrive </p><p> To check on your price promise basket, and add any new books, visit <a href="recyclabook.com">Recyclabook</a>, where you can log in and monitor what is going on with your books though your account hub.</p>"
+									});
+
+									world.wrap.instructions.email({
+										email   : "recyclabook@gmail.com",
+										name    : "Recyclaguys"
+										subject : "User added books",
+										text    : "<p>You guys a user with the username :"+ state.account.email +"</p><p> and name "+ state.account.first_name +", "+ state.account.second_name +"</p><p> has added these books to their price promise basket"+ added_books +"</p>"
+									});
 								}
 							},
 							{ 
@@ -432,11 +461,38 @@
 									}, function () {}, "json");
 
 									world.wrap.instructions.email({
-										email   : "aleksandar.andjelkovich@gmail.com",
+										email   : state.account.email,
 										name    : state.account.first_name +", "+ state.account.second_name,
 										subject : "Freepost pack",
 										text    : "<p>Hi "+ state.account.first_name +"</p><p>We will dispatch a freepost pack soon to : </p><ul><li>"+ state.addresses[0].address +"</li><li>"+ state.addresses[0].town +"</li><li>"+ state.addresses[0].town +"</li><li>"+ state.addresses[0].post_code +"</li></ul><p>When you receive the pack all you have to do is post your books in the freepost envelope provided.</p><p>Once we receive the books we will send you a cheque.</p><p>For more information visit <a href=\"Recyclabook.com\">Recyclabook.com</a>.</p>"
 									});
+									state.give_freepost = false;
+								}
+							},
+							{ 
+								who      : state,
+								property : "add_account",
+								call     : function () {
+									if ( !change.new ) return;
+									var text,
+										normal_registration = "<p>Hi there "+ state.account.first_name +"</p><p>Thank you for registering an account with Recyclabook.</p><p>We focus on giving students the easiest possible way to sell their textbooks.</p><p>With an account you can track your order, see how much you’ve made from selling your textbooks, donate to your RAG campaign and more.</p><p>Your account details:</p><ul><li>Username:"+ state.account.email +"</li><li>Password:"+ state.account.password +"</li></ul>",
+										bus_registration    = "<p>Hi there "+ state.account.email +"</p><p>Thank you for signing up to recieve updates about the Recyclabus.</p><p> We will make sure to email you as soon as our bus is coming new your University</p><p>Meanwhile we've gone and opened up an account for you, just in case you ever wish to use our onlline services</p><p>With an account you can track your orders, see how much you’ve made from selling your textbooks, donate to your RAG campaign and more.</p><p>Your account details:</p><ul><li>Username:"+ state.account.email +"</li><li>Password:"+ state.account.password +"</li></ul>";
+										text                = ( state.account.first_name === state.account.email? text.bus_registration : text.normal_registration );
+									
+									world.wrap.instructions.email({
+										email   : state.account.email,
+										name    : state.account.first_name
+										subject : "Welcome to Recyclabook",
+										text    : text
+									});
+
+									world.wrap.instructions.email({
+										email   : "recyclabook@gmail.com",
+										name    : "Recyclaguys"
+										subject : "User Registered",
+										text    : "You guys a user with the username :"+ state.account.email +" has registered for our services"
+									});
+									state.add_account = false;
 								}
 							}
 						]
@@ -3952,14 +4008,9 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) { 
-																var price_promise;
-																price_promise = state.account.price_promise.concat(book.basket);
-																book.basket   = [];
-																state.account.price_promise = price_promise;
- 																state.save_account = true;
-
  																state.give_price_promise = true;
  																state.give_freepost      = true;
+ 																// state.save_account       = true;
 															}
 														}
 													},
