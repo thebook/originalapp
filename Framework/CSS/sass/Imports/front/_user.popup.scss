@@ -4,10 +4,10 @@
 	$padding: 1%;
 
 	display: none;	
-	width: $user_pop_box_width;
-	padding: 10px $padding;
+	width: 242px;
+	padding: 10px 13px;
 	margin: $bar_height + 20px 0 0;
-	left: 100% - ( $user_pop_box_width + ( $padding *2 ) + 14.4% );
+	margin-left: 715px;
 	float: right;
 	background: $dark_blue; 
 	position: absolute;

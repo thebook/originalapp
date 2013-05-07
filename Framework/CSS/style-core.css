@@ -1574,10 +1574,10 @@ body {
 
 .user_pop_up_box {
   display: none;
-  width: 18%;
-  padding: 10px 1%;
+  width: 242px;
+  padding: 10px 13px;
   margin: 72px 0 0;
-  left: 65.6%;
+  margin-left: 715px;
   float: right;
   background: #3f7986;
   position: absolute;
@@ -2490,6 +2490,47 @@ body {
   width: 859px;
   margin: 0 auto; }
 
+.sell_quote_box {
+  position: fixed;
+  z-index: 8;
+  width: 120px;
+  float: left;
+  left: 20px;
+  top: 360px;
+  font-size: 14px;
+  line-height: 14px;
+  padding: 10px 15px;
+  color: #555555;
+  background: white;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: -1px 1px 3px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px 1px 3px 0px rgba(0, 0, 0, 0.1); }
+
+.sell_quote_box_title {
+  font-weight: bold;
+  margin-bottom: 10px; }
+
+.sell_quote_box_description {
+  float: left;
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 14px; }
+
+.sell_quote_box_freepost, .sell_quote_box_bus {
+  width: 100%;
+  float: left;
+  cursor: pointer;
+  padding-bottom: 5px;
+  text-decoration: underline; }
+  .sell_quote_box_freepost:hover, .sell_quote_box_bus:hover {
+    text-decoration: underline; }
+
+.sell_quote_box_bus {
+  padding-bottom: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid #d8d8d8; }
+
 .search_books_description_title {
   width: 100%;
   font-size: 12px;
@@ -2556,7 +2597,7 @@ body {
   background: white;
   width: 500px;
   top: 398px;
-  margin: 0 0 0 22.8%;
+  margin: 0 0 0 309px;
   padding: 20px 2%;
   z-index: 1;
   -webkit-box-shadow: -1px 1px 2px 0px rgba(0, 0, 0, 0.3);
@@ -3633,10 +3674,6 @@ body {
   background: #9ad9e0;
   color: #3f7986;
   display: none; }
-
-.how_would_you_like_we_send_tab {
-  background: #9ad9e0;
-  color: #3f7986; }
 
 .we_send_freepost_tab_image {
   width: 32%;

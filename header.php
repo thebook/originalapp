@@ -105,6 +105,8 @@
 				state.email = {};
 				state.email.freepost = "";
 
+				state.quote = "post";
+
 				state.register_account    = false;
 				state.password_remind     = false;
 				state.give_freepost       = false;
@@ -525,6 +527,27 @@
 										text    : "You guys a user with the username :"+ state.account.email +" has registered for our services"
 									});
 									state.add_account = false;
+								}
+							},
+							{ 
+								who      : state,
+								property : "quote",
+								call     : function (change) {
+									var labels = $('.result_book_price'),
+										basket = $('.store_basket_pop_up_content_item_sell_price');
+
+									for (var index = 0; index < labels.length; index++) {
+										var price       = {};
+											price.label = $(labels[index]);
+											price.quote = parseFloat(price.label.text().trim());
+											if ( change.new === "post" ) {
+												price.quote/= 1.5;
+											} else {
+												price.quote*= 1.5;
+											}
+											price.quote = price.quote.toFixed(2)
+											price.label.text(price.quote);
+									};
 								}
 							}
 						]
@@ -1208,12 +1231,12 @@
 													self   : "<div class=\"user_pop_up_sign_in_wrap\"></div>",
 													branch : {
 														sign_in_wrap : {
-															self   : '<div class="user_pop_up_title_white">Sign in Or </div>',
-															branch : {
-																register : {
-																	self : '<span class="user_pop_up_title_highlight">Register</span>'
-																}
-															}
+															self   : '<div class="user_pop_up_title_white">Sign in</div>'
+															// branch : {
+															// 	register : {
+															// 		self : '<span class="user_pop_up_title_highlight">Register</span>'
+															// 	}
+															// }
 														},
 														email : {
 															instructions : {
@@ -2328,6 +2351,75 @@
 						sell : {
 							self : '<section class="body pages"></section>',
 							branch : {
+								quote : {
+									self   : '<div class="sell_quote_box"></div>',
+									branch : {
+										title : {
+											self : '<div class="sell_quote_box_title">Prices Shown</div>',
+										},
+										post : {
+											instructions : {
+												current : true,
+												observe : {
+													who      : state,
+													property : "quote",
+													call     : function (change) {
+														var self = world.wrap.branch.sell.branch.quote.branch.post.self;
+
+														if ( change.new === "post") {
+															self.css({ "text-decoration" : "underline" });
+														} else {
+															self.css({ "text-decoration" : "none" });
+														}
+													}
+												},
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														if ( state.quote === "post" && this.post.instructions.current ) return;
+														this.bus.instructions.current  = false;
+														this.post.instructions.current = true; 
+														state.quote = "post";
+													}
+												}
+											},
+											self : '<div class="sell_quote_box_freepost">Freepost</div>'
+										},
+										bus : {
+											instructions : {
+												current : false,
+												observe : {
+													who      : state,
+													property : "quote",
+													call     : function (change) {
+														var self = world.wrap.branch.sell.branch.quote.branch.bus.self;
+
+														if ( change.new === "bus" ) {
+															self.css({ "text-decoration" : "underline" });
+														} else {
+															self.css({ "text-decoration" : "none" });
+														}
+													}
+												},
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														if ( state.quote === "bus" && this.bus.instructions.current ) return;
+														this.post.instructions.current = false; 
+														this.bus.instructions.current  = true;
+														state.quote = "bus";
+													}
+												}
+											},
+											self : '<div class="sell_quote_box_bus">Recyclabus</div>',
+										},
+										description : {
+											self : '<div class="sell_quote_box_description">Click Freepost or Recyclabus option to see what quote you would get for either</div>'
+										},
+									}
+								},	
 								basket : {
 									self   : '<div class="search_books_description_title"></div>',
 									branch : {
@@ -2546,9 +2638,12 @@
 										popup_text : {
 											self : '<div class="store_basket_pop_up_text">Currently showing freepost prices</div>'
 										},
-										content : { 
-											self : '<div cass="searched_book_results"></div>'
-										}
+										// post : {
+										// 	self : '<div class="store_basket_pop_up_change">See Freepost</div>',
+										// },
+										// bus : {
+
+										// }
 									}
 								},
 								items : {
@@ -4241,7 +4336,7 @@
 															}
 														}
 													},
-													self : '<div class="thank_you_banner_paragraph">You have chosen to send your books to us using your own packaging, <a class="thank_you_banner_paragraph_link" target="blank" data-dont-route="true" href="http://www.recyclabook.co.uk/packaging_label.pdf">here is a link</a> to the label which you need to print out.</div>'
+													self : '<div style="display:none" class="thank_you_banner_paragraph">You have chosen to send your books to us using your own packaging, <a class="thank_you_banner_paragraph_link" target="blank" data-dont-route="true" href="http://www.recyclabook.co.uk/packaging_label.pdf">here is a link</a> to the label which you need to print out.</div>'
 												},
 												paragraph : {
 													self : '<div class="thank_you_banner_paragraph">We\'ll be waiting for your books to arrive, in the meantime, <a class="thank_you_banner_paragraph_link" href="hub">you have an account now</a>. You can login and track the books and payments anytime and request more freepost packs.</div>'

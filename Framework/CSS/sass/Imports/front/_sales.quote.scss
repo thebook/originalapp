@@ -1,0 +1,46 @@
+.sell_quote_box {
+	position: fixed;
+	z-index: 8;
+	width: 120px;
+	float: left;
+	left: 20px;
+	top:  360px;
+	font-size: 14px;
+	line-height: 14px;
+	padding: 10px 15px;
+	color: $black_gray;
+	background: $light;
+	@include border-radius(5px);
+	@include box-shadow(-1px,1px,3px,0px, rgba(0,0,0,0.1));
+}
+
+.sell_quote_box_title {
+	// text-align: center;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.sell_quote_box_description {
+	float: left;
+	margin-top: 10px;
+	font-size: 12px;
+	line-height: 14px;
+}
+
+.sell_quote_box_freepost {
+	width: 100%;
+	float: left;
+	cursor: pointer;
+	padding-bottom: 5px;
+	text-decoration: underline;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.sell_quote_box_bus {
+	@extend.sell_quote_box_freepost;
+	padding-bottom: 10px;
+	text-decoration: none;
+	border-bottom: 1px solid $middle_monochrome;
+}
