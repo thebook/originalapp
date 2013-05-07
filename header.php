@@ -495,7 +495,7 @@
 											email   : state.account.email,
 											name    : state.account.first_name +", "+ state.account.second_name,
 											subject : "Freepost pack",
-											text    : "<p>Hi, "+ state.account.first_name +",</p><p>Thank you for selling your book with Recyclabook.</p><p>You have chosen to send your books to us with your own packaging.</p><p>All you have to do is now is post your books in the pre-paid envelope provided.</p><p>If you have one write this number on it: \""+ state.account.id +"\"; so that we know it came from you,</p><p>Or if you have your own packaging material, print off the freepost code attached</p><p>and send it attached to your package.</p><p>We are looking forward to receiving your books.</p>"
+											text    : "<p>Hi, "+ state.account.first_name +",</p><p>Thank you for selling your book with Recyclabook.</p><p>You have chosen to send your books to us with your own packaging.</p><p>All you have to do is now is post your books in the pre-paid envelope provided.</p><p>If you have one write this number on it: '"+ state.account.id +"'; so that we know it came from you,</p><p>Or if you have your own packaging material, print off the freepost code attached</p><p>and send it attached to your package.</p><p>We are looking forward to receiving your books.</p>"
 										});
 									}, "json");
 
