@@ -135,6 +135,12 @@ class account extends alpha
 		return $account;
 	}
 
+	public function get_table ()
+	{
+		$table = new table_creator;
+		return $table->get_all_rows($this->account_table);
+	}
+
 	public function get_address ($account_email)
 	{
 		$table = new table_creator;

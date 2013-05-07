@@ -105,10 +105,15 @@
 				state.email = {};
 				state.email.freepost = "";
 
-				state.register_account   = false;
-				state.password_remind    = false;
-				state.give_freepost      = false;
-				state.give_price_promise = false;
+				state.register_account    = false;
+				state.password_remind     = false;
+				state.give_freepost       = false;
+				state.give_price_promise  = false;
+				state.give_print_your_own = false;
+
+				state.confirm           = {};
+				state.confirm.tab       = 0;
+				state.confirm.postage   = false;
 
 				state.begin        = false;
 				state.add_address  = false;
@@ -251,8 +256,8 @@
 					instructions : {
 						email : function (wake) {
 
-							wake.text += "<p>Many Thanks,</p><p>The Recyclabook Team</p><p>We give out some MAD prizes.</p><p>Give us a like, give us a follow and we’ll give you a pony (maybe).</p><p><a href="Facebook.com/Recyclabook">Facebook.com/Recyclabook</a></p><p><a href="Twitter.com/Recyclabook">Twitter.com/Recyclabook</a></p>";
-							
+							wake.text += "<p>Many Thanks,</p><p>The Recyclabook Team</p><p>We give out some MAD prizes.</p><p>Give us a like, give us a follow and we’ll give you a pony (maybe).</p><p><a href=\"Facebook.com/Recyclabook\">Facebook.com/Recyclabook</a></p><p><a href=\"Twitter.com/Recyclabook\">Twitter.com/Recyclabook</a></p>";
+
 							$.post(ajaxurl, {
 								action : "set_email",
 								method : "email",
@@ -335,7 +340,7 @@
 								who      : state,
 								property : "add_account",
 								call     : function (change) { 
-
+									if ( !change.new ) return;
 									if (
 										   state.registration.first_name  
 										&& state.registration.last_name
@@ -412,10 +417,10 @@
 										price_promise = state.account.price_promise.concat(book.basket);
 										state.account.price_promise = price_promise;
 										added_books   = "<ul>";
-										for (var index = 0; index < books.basket.length; index++) {
-											added_books += "<li>"+ books.basket[index].title +"</li>";
+										for (var index = 0; index < book.basket.length; index++) {
+											added_books += "<li>"+ book.basket[index].title +"</li>";
 										};
-										added_books   = "</ul>";
+										added_books  += "</ul>";
 										book.basket   = [];
 										state.save_account       = true;
 										state.give_price_promise = false;
@@ -424,12 +429,12 @@
 										email   : state.account.email,
 										name    : state.account.first_name +", "+ state.account.second_name,
 										subject : "New books have been added to your price promise",
-										text    : "<p>Hi "+ state.account.first_name +"</p><p>You have added the following books to your price promise basket.</p>"+ text +"<p>Because, the prices of books and quotes we give can change, the price promise basket is our way of promising that we will give you the price quoted on that day for your books, so you dont have to worry</p><p> We will be expecting for your books to arrive </p><p> To check on your price promise basket, and add any new books, visit <a href="recyclabook.com">Recyclabook</a>, where you can log in and monitor what is going on with your books though your account hub.</p>"
+										text    : "<p>Hi "+ state.account.first_name +"</p><p>You have added the following books to your price promise basket.</p>"+ added_books +"<p>Because, the prices of books and quotes we give can change, the price promise basket is our way of promising that we will give you the price quoted on that day for your books, so you dont have to worry</p><p> We will be expecting for your books to arrive </p><p> To check on your price promise basket, and add any new books, visit <a href=\"recyclabook.com\">Recyclabook</a>, where you can log in and monitor what is going on with your books though your account hub.</p>"
 									});
 
 									world.wrap.instructions.email({
 										email   : "recyclabook@gmail.com",
-										name    : "Recyclaguys"
+										name    : "Recyclaguys",
 										subject : "User added books",
 										text    : "<p>You guys a user with the username :"+ state.account.email +"</p><p> and name "+ state.account.first_name +", "+ state.account.second_name +"</p><p> has added these books to their price promise basket"+ added_books +"</p>"
 									});
@@ -471,24 +476,51 @@
 							},
 							{ 
 								who      : state,
+								property : "give_print_your_own",
+								call     : function (change) {
+									if ( !change.new ) return;
+
+									$.get(ajaxurl, {
+										action : "get_account",
+										method : "account_value",
+										paramaters : {
+											email : state.account.email,
+											get   : "id" 
+										}
+									}, function (response) { 
+										console.log(response);
+										state.account.id = response.return;
+										state.give_print_your_own = false;
+										world.wrap.instructions.email({
+											email   : state.account.email,
+											name    : state.account.first_name +", "+ state.account.second_name,
+											subject : "Freepost pack",
+											text    : "<p>Hi, "+ state.account.first_name +",</p><p>Thank you for selling your book with Recyclabook.</p><p>You have chosen to send your books to us with your own packaging.</p><p>All you have to do is now is post your books in the pre-paid envelope provided.</p><p>If you have one write this number on it: \""+ state.account.id +"\"; so that we know it came from you,</p><p>Or if you have your own packaging material, print off the freepost code attached</p><p>and send it attached to your package.</p><p>We are looking forward to receiving your books.</p>"
+										});
+									}, "json");
+
+								}
+							},
+							{ 
+								who      : state,
 								property : "add_account",
-								call     : function () {
+								call     : function (change) {
 									if ( !change.new ) return;
 									var text,
 										normal_registration = "<p>Hi there "+ state.account.first_name +"</p><p>Thank you for registering an account with Recyclabook.</p><p>We focus on giving students the easiest possible way to sell their textbooks.</p><p>With an account you can track your order, see how much you’ve made from selling your textbooks, donate to your RAG campaign and more.</p><p>Your account details:</p><ul><li>Username:"+ state.account.email +"</li><li>Password:"+ state.account.password +"</li></ul>",
 										bus_registration    = "<p>Hi there "+ state.account.email +"</p><p>Thank you for signing up to recieve updates about the Recyclabus.</p><p> We will make sure to email you as soon as our bus is coming new your University</p><p>Meanwhile we've gone and opened up an account for you, just in case you ever wish to use our onlline services</p><p>With an account you can track your orders, see how much you’ve made from selling your textbooks, donate to your RAG campaign and more.</p><p>Your account details:</p><ul><li>Username:"+ state.account.email +"</li><li>Password:"+ state.account.password +"</li></ul>";
-										text                = ( state.account.first_name === state.account.email? text.bus_registration : text.normal_registration );
+										text                = ( state.account.first_name === state.account.email? bus_registration : normal_registration );
 									
 									world.wrap.instructions.email({
 										email   : state.account.email,
-										name    : state.account.first_name
+										name    : state.account.first_name,
 										subject : "Welcome to Recyclabook",
 										text    : text
 									});
 
 									world.wrap.instructions.email({
 										email   : "recyclabook@gmail.com",
-										name    : "Recyclaguys"
+										name    : "Recyclaguys",
 										subject : "User Registered",
 										text    : "You guys a user with the username :"+ state.account.email +" has registered for our services"
 									});
@@ -3964,16 +3996,52 @@
 												},
 												titles_tab : {
 													self   : '<div class="how_would_you_like_titles_wrap"></div>',
-													last_branch : {
-														tab_one : '<div class="how_would_you_like_tab_title_active">We Send you a freepost pack</div>'
-														// tab_two : '<div class="how_would_you_like_tab_title">Print your own freepost pack</div>'
+													branch : {
+														tab_one : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		state.confirm.tab = 0;
+																	}
+																}
+															},
+															self : '<div class="how_would_you_like_tab_title_active">We Send you a freepost pack</div>'
+														},
+														tab_two : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		state.confirm.tab = 1;	
+																	}
+																}
+															},
+															self : '<div class="how_would_you_like_tab_title">Use your own postage</div>'
+														}
 													}
 												},
 												tabs : {
 													self   : '<div class="how_would_you_like_tab_wrap"></div>',
 													branch : {
 														tab_one : {
-															self   : '<div class="how_would_you_like_we_send_active_tab"></div>',
+															instructions : {
+																observe : {
+																	who      : state.confirm,
+																	property : "tab",
+																	call     : function (change) {
+																		var self = world.wrap.branch.confirm.branch.wrap.branch.choice_wrap.branch.tabs.branch.tab_one.self;
+																		if ( change.new === 0 ) {
+																			self.css({ display : "block" });
+																		} else {
+																			self.css({ display : "none" });
+																		}
+																	}
+																}
+															},
+															self   : '<div class="how_would_you_like_we_send_dark_tab"></div>',
 															branch : {
 																image : {
 																	self : '<img class="we_send_freepost_tab_image" src="'+ frameworkuri +'/CSS/Includes/works/freepost_send.png">'
@@ -3991,9 +4059,105 @@
 																		},
 																		check : {
 																			self   : '<div class="we_send_freepost_tab_tick_button"></div>',
+																			branch : {
+																				tick : {
+																					instructions : {
+																						observe : {
+																							who     : state.confirm,
+																							property: "postage",
+																							call    : function (change) {
+																								if ( !change.new ) return;
+																								
+																								var self = world.wrap.branch.confirm.branch.wrap.branch.choice_wrap.branch.tabs.branch.tab_one.branch.text.branch.check.branch.tick.self;
+																									if ( change.new === "letter" ) {
+																										self.attr("class", "with-icon-we-checkout-tick" );
+																									} else {
+																										self.attr("class", "with-icon-we-checkout-tick-unticked" );
+																									}
+																							}
+																						},
+																						on : {
+																							the_event : "click",
+																							is_asslep : false,
+																							call      : function (change) {
+																								state.confirm.postage = "letter";
+																							}
+																						}
+																					},
+																					self : '<div class="with-icon-we-checkout-tick"></div>'
+																				},
+																				text : {
+																					self : '<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>'
+																				}
+																			}
+																		}
+																	}
+																}														
+															}													
+														},
+														tab_two : {
+															instructions : {
+																observe : {
+																	who      : state.confirm,
+																	property : "tab",
+																	call     : function (change) {
+																		var self = world.wrap.branch.confirm.branch.wrap.branch.choice_wrap.branch.tabs.branch.tab_two.self;
+																		if ( change.new === 1 ) {
+																			self.css({ display : "block" });
+																		} else {
+																			self.css({ display : "none" });
+																		}
+																	}
+																}
+															},
+															self   : '<div class="how_would_you_like_we_send_light_tab"></div>',
+															branch : {
+																image : {
+																	self : '<img class="we_send_freepost_tab_image" src="'+ frameworkuri +'/CSS/Includes/works/print.png">'
+																},
+																text : {
+																	self   : '<div class="we_send_freepost_tab_text_wrap"></div>',
+																	branch : {
+																		text : {
+																			self   : '<ul class="we_send_freepost_tab_text"></ul>',
 																			last_branch : {
-																				tick : '<div class="with-icon-we-checkout-tick"></div>',
-																				text : '<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>'
+																				paragraph_one   : '<li class="we_send_freepost_tab_paragraph">Select this option if your are using your own packaging material or if you already have a Recyclabook freepost envelope.</li>',
+																				paragraph_two   : '<li class="we_send_freepost_tab_paragraph">If you are using your own packaging material, <strong>print the freepost label</strong>,<strong>stick it on the package</strong>, then <strong>post your books</strong></li>',
+																				paragraph_three : '<li class="we_send_freepost_tab_paragraph">If you are using a Recyclabook Freepost Envelope, write your user id in space provided (send via email once you have pressed continue) and then post your books.</li>'
+																			}
+																		},
+																		check : {
+																			self   : '<div class="we_send_freepost_tab_tick_button"></div>',
+																			branch : {
+																				tick : {
+																					instructions : {
+																						observe : {
+																							who     : state.confirm,
+																							property: "postage",
+																							call    : function (change) {
+																								if ( !change.new ) return;
+																								
+																								var self = world.wrap.branch.confirm.branch.wrap.branch.choice_wrap.branch.tabs.branch.tab_two.branch.text.branch.check.branch.tick.self;
+																									if ( change.new === "own" ) {
+																										self.attr("class", "with-icon-we-checkout-dark-tick" );
+																									} else {
+																										self.attr("class", "with-icon-we-checkout-dark-tick-unticked" );
+																									}
+																							}
+																						},
+																						on : {
+																							the_event : "click",
+																							is_asslep : false,
+																							call      : function (change) {
+																								state.confirm.postage = "own";
+																							}
+																						}
+																					},
+																					self : '<div class="with-icon-we-checkout-dark-tick-unticked"></div>'
+																				},
+																				text : {
+																					self : '<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>'
+																				}
 																			}
 																		}
 																	}
@@ -4008,9 +4172,13 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) { 
- 																state.give_price_promise = true;
- 																state.give_freepost      = true;
- 																// state.save_account       = true;
+																if ( state.confirm.postage === "letter" ) {
+ 																	state.give_freepost = true;
+																} else { 
+ 																	state.give_print_your_own = true;
+ 																}
+																state.give_price_promise = true;
+ 																router.change_url("done");
 															}
 														}
 													},
@@ -4055,6 +4223,25 @@
 												},
 												title_two : {
 													self : '<div class="thank_you_banner_title_two">For using recyclabook</div>'
+												},
+												print_your_own : {
+													instructions : {
+														observe : {
+															who     : state.confirm,
+															property: "postage",
+															call    : function (change) {
+																if ( !change.new ) return;
+																
+																var self = world.wrap.branch.thank_you.branch.banner.branch.inner_banner.branch.print_your_own.self;
+																	if ( change.new === "own" ) {
+																		self.css({ display : "block" });
+																	} else {
+																		self.css({ display : "none" });
+																	}
+															}
+														}
+													},
+													self : '<div class="thank_you_banner_paragraph">You have chosen to send your books to us using your own packaging, <a class="thank_you_banner_paragraph_link" target="blank" data-dont-route="true" href="http://www.recyclabook.co.uk/packaging_label.pdf">here is a link</a> to the label which you need to print out.</div>'
 												},
 												paragraph : {
 													self : '<div class="thank_you_banner_paragraph">We\'ll be waiting for your books to arrive, in the meantime, <a class="thank_you_banner_paragraph_link" href="hub">you have an account now</a>. You can login and track the books and payments anytime and request more freepost packs.</div>'

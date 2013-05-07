@@ -14,7 +14,7 @@
 	color: $black_gray;
 	float: left;
 	background: $light; 
-	width: 47.5%;
+	width: 95%;
 	padding: 20px 0 10px 2.5%;
 }
 
@@ -67,12 +67,19 @@
 	z-index: 2;
 }
 
-.how_would_you_like_we_send_active_tab {
+.how_would_you_like_we_send_dark_tab {
 	
 	background: $dark_blue;
 	color: $light;
 	padding: 20px 0;
 	float: left;
+}
+
+.how_would_you_like_we_send_light_tab {
+	@extend.how_would_you_like_we_send_dark_tab;
+	background: $light_blue;
+	color: $dark_blue;
+	display: none;	
 }
 
 .how_would_you_like_we_send_tab {
@@ -121,6 +128,7 @@
 	float: left;
 }
 
+
 .with-icon-we-checkout-tick {
 	
 	width: 20px;
@@ -131,13 +139,34 @@
 	margin-right: 8px; 
 	cursor: pointer;
 	
-	&:before {
-		
+	&:before {	
 		color: $dark_blue;
 		position: relative;
 		top: 2px;
 		left: 2px;
 		content:"t";
+	}
+}
+
+.with-icon-we-checkout-tick-unticked {
+	@extend.with-icon-we-checkout-tick;
+	&:before {
+		content:"";
+	}
+}
+
+.with-icon-we-checkout-dark-tick {
+	@extend.with-icon-we-checkout-tick;
+	background: $dark_blue;
+	&:before {
+		color:$light_blue;
+	}	
+}
+
+.with-icon-we-checkout-dark-tick-unticked {
+	@extend.with-icon-we-checkout-dark-tick;
+	&:before {
+		content:"";
 	}
 }
 

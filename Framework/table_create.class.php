@@ -262,6 +262,15 @@ class table_creator
 
 		return (empty($result)? false : $result );
 	}
+
+	public function get_all_rows ($table_name)
+	{
+		global $wpdb;
+
+		$result	= $wpdb->get_results("SELECT * FROM $wpdb->prefix$table_name ", ARRAY_A);
+
+		return (empty($result)? false : $result );
+	}
 	
 	/**
 	 * Takes an array of strings and checks if they are digits or strings and returns a %d for didigs and 
