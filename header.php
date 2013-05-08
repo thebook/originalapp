@@ -591,7 +591,7 @@
 													self : '<div class="header_invisible_box_text_wrap"></div>',
 													last_branch : { 
 														title : '<div class="header_invisible_box_text_title">What We Do</div>',
-														paragraph : '<div class="header_invisible_box_text">Recyclabook accepts over a million different titles, you can easily sell your book and get paid quickly and safely</div>'
+														paragraph : '<div class="header_invisible_box_text">Recyclabook accepts over a million different titles, you can easily sell your book and get paid quickly and safely.</div>'
 													}
 												}
 											}	
@@ -1414,7 +1414,6 @@
 																		if ( !response.return ) { 
 																			change.self.text("Account not found, try again?");
 																		} else {
-																			console.log(reponse.return.password);
 																			$.post(ajaxurl, {
 																				action : "set_email",
 																				method : "email",
@@ -3222,7 +3221,7 @@
 													self   : '<div class="field_box_title_wrap"></div>',
 													last_branch : {
 														icon  : '<div class="with-icon-leaf-one"></div>',
-														title : '<div class="field_box_title">Name & Adress Details.*</div>'
+														title : '<div class="field_box_title">Adress Details.</div>'
 													}
 												},
 												name : {
@@ -3359,7 +3358,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="Street And Address">'
+															self : '<input type="text" class="field_box_input" placeholder="House name or number">'
 														},
 														town_input       : {
 															instructions : {
@@ -3589,7 +3588,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="Confrim email address">'
+															self : '<input type="text" class="field_box_input" placeholder="Confrim">'
 														}
 													}						
 												},
@@ -3665,7 +3664,7 @@
 																	}
 																}
 															},
-															self : '<input type="password" class="field_box_input" placeholder="Confirm Password">'
+															self : '<input type="password" class="field_box_input" placeholder="Confirm">'
 														}
 													}
 												}
@@ -3714,8 +3713,8 @@
 												text_wrap : {
 													self   : '<div class="input_box_disclaimer_text_wrap"></div>',
 													last_branch : {
-														text_one : '<div class="input_box_disclaimer_text">If you don\'t want to recieve emails with exclusive offers and competitions from Recyclabook and our firends then untick this</div>',
-														text_two : '<div class="input_box_disclaimer_small">by pressing continue you aggre to</div>',
+														text_one : '<div class="input_box_disclaimer_text">If you don\'t want to receive emails with exclusive offers and competitions from Recyclabook and our friends then untick this</div>',
+														text_two : '<div class="input_box_disclaimer_small">by pressing continue you agree to</div>',
 														link     : '<div class="input_box_disclaimer_highlight">terms & conditions</div>'
 													}
 												},
@@ -3725,14 +3724,9 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) { 
-
 																state.add_account = true;
 																state.add_address = true;
 																router.change_url("confirm");
-																console.log(state.registration);
-																console.log(state.account);
-																console.log(state);
-																
 															}
 														}
 													},
@@ -6051,7 +6045,7 @@
 													}
 												}
 											},
-											self : '<div class="footer_text">Word From Us</div>'
+											self : '<div class="footer_text">A Word From Us</div>'
 										},
 										// terms : {
 										// 	instructions : {
