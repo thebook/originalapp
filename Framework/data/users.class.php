@@ -129,9 +129,11 @@ class account extends alpha
 	{
 		$table = new table_creator;
 		$account = $table->get_row($this->account_table, 'email', $account_email);
-		$account['history']         = json_decode($account['history']);
-		$account['unaccepted_book'] = json_decode($account['unaccepted_book']);
-		$account['price_promise']   = json_decode($account['price_promise']);
+		if ( $account !== false ) :
+			$account['history']         = json_decode($account['history']);
+			$account['unaccepted_book'] = json_decode($account['unaccepted_book']);
+			$account['price_promise']   = json_decode($account['price_promise']);
+		endif;
 		return $account;
 	}
 

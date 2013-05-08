@@ -2795,6 +2795,15 @@ body {
 .result_book_search_wrapper_right {
   margin: 0 0 20px 3%; }
 
+.reslt_not_found {
+  width: 100%;
+  float: left;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 14px;
+  line-height: 14px;
+  color: #555555; }
+
 .result_book_search, .result_book_search_added {
   width: 100%;
   float: left;

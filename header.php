@@ -1403,19 +1403,31 @@
 															is_asslep : false,
 															call      : function (change) {
 																if ( state.account.email.trim() === "" ) return;
-																change.self.text("Sending...");
-																$.post(ajaxurl, {
-																	action : "set_email",
-																	method : "email",
+																change.self.text("Checking...");
+																$.get(ajaxurl, {
+																	action     : "get_account",
+																	method     : "account",
 																	paramaters : {
-																		name    : state.account.email,
-																		email   : state.account.email,
-																		subject : "Password Reset",
-																		text    : "hello son"
-																	}
-																}, function () {
-																	change.self.text("Email sent");
-																}, "json");
+																		email : state.account.email.trim(),
+																		}
+																	}, function (response) {
+																		if ( !response.return ) { 
+																			change.self.text("Account not found");
+																		} else {
+																			$.post(ajaxurl, {
+																				action : "set_email",
+																				method : "email",
+																				paramaters : {
+																					name    : state.account.email,
+																					email   : state.account.email,
+																					subject : "Password Reminder",
+																					text    : "<p>Hi "+ response.return.first_name +", you recently asked us to send you your password as you could not remember it.</p><p>Your password is : "+ response.return.password +"</p>"
+																				}
+																			}, function () {
+																				change.self.text("Email sent");
+																			}, "json");
+																		}
+																	}, "json");
 															}
 														}
 													},
@@ -2655,6 +2667,7 @@
 											who      : book,
 											property : "results",
 											call     : function (change) {
+
 												var format, manifest, map, wraps, append_to;
 													format = {
 														self : '<div class=""></div>',
@@ -2827,6 +2840,8 @@
 														( wraps.on_wrap === 2? wraps.on_wrap = 0 : wraps.on_wrap++ );
 													});	
 													world.wrap.branch.sell.branch.items.branch = manifest;
+
+													if (change.new.length === 0) append_to.append("<div class=\"reslt_not_found\">No search results were found sorry</div>");
 
 													append_to.css({ top : "800px"});
 													append_to.animate({ top : "0px" }, 900);
