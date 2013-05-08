@@ -2511,25 +2511,43 @@ body {
   font-weight: bold;
   margin-bottom: 10px; }
 
-.sell_quote_box_description {
+.sell_quote_box_description, .sell_quote_box_link {
   float: left;
   margin-top: 10px;
   font-size: 12px;
-  line-height: 14px; }
+  line-height: 14px;
+  text-align: center; }
 
-.sell_quote_box_freepost, .sell_quote_box_bus {
+.sell_quote_box_link {
+  font-weight: bold;
+  color: #555555; }
+  .sell_quote_box_link:hover {
+    text-decoration: underline; }
+
+.with-icon-sell-quote-freepost, .with-icon-sell-quote-freepost-unticked, .with-icon-sell-quote-bus, .with-icon-sell-quote-bus-unticked {
   width: 100%;
   float: left;
   cursor: pointer;
   padding-bottom: 5px;
-  text-decoration: underline; }
-  .sell_quote_box_freepost:hover, .sell_quote_box_bus:hover {
-    text-decoration: underline; }
+  margin-bottom: 5px; }
+  .with-icon-sell-quote-freepost:before, .with-icon-sell-quote-freepost-unticked:before, .with-icon-sell-quote-bus:before, .with-icon-sell-quote-bus-unticked:before {
+    background: whitesmoke;
+    padding: 3px;
+    text-align: center;
+    margin-right: 5px;
+    font-size: 12px;
+    content: "t"; }
 
-.sell_quote_box_bus {
+.with-icon-sell-quote-freepost-unticked:before {
+  color: whitesmoke; }
+
+.with-icon-sell-quote-bus, .with-icon-sell-quote-bus-unticked {
   padding-bottom: 10px;
   text-decoration: none;
   border-bottom: 1px solid #d8d8d8; }
+
+.with-icon-sell-quote-bus-unticked:before {
+  color: whitesmoke; }
 
 .search_books_description_title {
   width: 100%;

@@ -416,6 +416,7 @@
 									if ( !change.new ) return;
 
 									var price_promise, added_books;
+										if ( state.account.price_promise === null ) state.account.price_promise = [];
 										price_promise = state.account.price_promise.concat(book.basket);
 										state.account.price_promise = price_promise;
 										added_books   = "<ul>";
@@ -490,7 +491,6 @@
 											get   : "id" 
 										}
 									}, function (response) { 
-										console.log(response);
 										state.account.id = response.return;
 										state.give_print_your_own = false;
 										world.wrap.instructions.email({
@@ -541,9 +541,9 @@
 											price.label = $(labels[index]);
 											price.quote = parseFloat(price.label.text().trim());
 											if ( change.new === "post" ) {
-												price.quote/= 1.5;
+												price.quote/= 1.2;
 											} else {
-												price.quote*= 1.5;
+												price.quote*= 1.2;
 											}
 											price.quote = price.quote.toFixed(2)
 											price.label.text(price.quote);
@@ -615,8 +615,8 @@
 																			var amazon = new alpha.amazon({
 																				typed    : value,
 																				callback : function (books) { 
-																					// console.log(books);
 																					if ( books !== undefined ) {
+																						state.quote  = "post";
 																						book.results = books;
 																						router.change_url("sell");
 																						animate.load = false;
@@ -2367,9 +2367,9 @@
 														var self = world.wrap.branch.sell.branch.quote.branch.post.self;
 
 														if ( change.new === "post") {
-															self.css({ "text-decoration" : "underline" });
+															self.attr("class","with-icon-sell-quote-freepost");
 														} else {
-															self.css({ "text-decoration" : "none" });
+															self.attr("class","with-icon-sell-quote-freepost-unticked");
 														}
 													}
 												},
@@ -2384,7 +2384,7 @@
 													}
 												}
 											},
-											self : '<div class="sell_quote_box_freepost">Freepost</div>'
+											self : '<div class="with-icon-sell-quote-freepost">Freepost</div>'
 										},
 										bus : {
 											instructions : {
@@ -2396,9 +2396,9 @@
 														var self = world.wrap.branch.sell.branch.quote.branch.bus.self;
 
 														if ( change.new === "bus" ) {
-															self.css({ "text-decoration" : "underline" });
+															self.attr("class","with-icon-sell-quote-bus");
 														} else {
-															self.css({ "text-decoration" : "none" });
+															self.attr("class","with-icon-sell-quote-bus-unticked");
 														}
 													}
 												},
@@ -2413,10 +2413,13 @@
 													}
 												}
 											},
-											self : '<div class="sell_quote_box_bus">Recyclabus</div>',
+											self : '<div class="with-icon-sell-quote-bus-unticked">Recyclabus</div>',
 										},
 										description : {
-											self : '<div class="sell_quote_box_description">Click Freepost or Recyclabus option to see what quote you would get for either</div>'
+											self : '<div class="sell_quote_box_description">You get an extra 20% if you use Recyclabus</div>'
+										},
+										link : {
+											self : '<a href="recyclabus" class="sell_quote_box_link">Find out more about Recyclabus</a>'
 										},
 									}
 								},	

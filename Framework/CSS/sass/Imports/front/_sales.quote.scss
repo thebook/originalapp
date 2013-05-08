@@ -25,22 +25,51 @@
 	margin-top: 10px;
 	font-size: 12px;
 	line-height: 14px;
+	text-align: center;
 }
 
-.sell_quote_box_freepost {
-	width: 100%;
-	float: left;
-	cursor: pointer;
-	padding-bottom: 5px;
-	text-decoration: underline;
-	&:hover {
+.sell_quote_box_link { 
+	@extend.sell_quote_box_description;
+	font-weight: bold;
+	color: $black_gray;
+	&:hover { 
 		text-decoration: underline;
 	}
 }
 
-.sell_quote_box_bus {
-	@extend.sell_quote_box_freepost;
+.with-icon-sell-quote-freepost {
+	width: 100%;
+	float: left;
+	cursor: pointer;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	&:before {
+		background: $light_monochrome;
+		padding: 3px;
+		text-align: center;
+		margin-right: 5px;
+		font-size: 12px;
+		content:"t";
+	}
+}
+
+.with-icon-sell-quote-freepost-unticked {
+	@extend.with-icon-sell-quote-freepost;
+	&:before { 
+		color: $light_monochrome;
+	}
+}
+
+.with-icon-sell-quote-bus {
+	@extend.with-icon-sell-quote-freepost;
 	padding-bottom: 10px;
 	text-decoration: none;
 	border-bottom: 1px solid $middle_monochrome;
+}
+
+.with-icon-sell-quote-bus-unticked { 
+	@extend.with-icon-sell-quote-bus;
+	&:before { 
+		color: $light_monochrome;
+	}
 }

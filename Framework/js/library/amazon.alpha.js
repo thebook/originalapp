@@ -39,6 +39,7 @@ var alpha = (function ( alpha, $ ) {
 			var price          = parseInt( books[index]["lowest_used_price"] ),
 				starting_price = 0,
 				new_price      = parseInt(books[index]["lowest_new_price"]),
+				retail_price   = parseInt(books[index].price) / 100,
 				weights        = [
 					{
 						range_one : 0,
@@ -88,36 +89,23 @@ var alpha = (function ( alpha, $ ) {
 				],
 				weight = 0;
 				new_price     -= (new_price*0.1);
-
+			
 			if ( price > new_price ) price = new_price;
-			console.log("newest :"+ new_price );
-			console.log("used :"+ books[index]["lowest_used_price"]);
 			if ( books[index].dimensions && books[index].dimensions.Weight && books[index].dimensions.Weight !== "0" ) weight = books[index].dimensions.Weight;
 			price /= 100;
-			console.log("starting price :"+ price);
 			price *= 0.85;
-			console.log("*0.85 :"+ price);
+			if ( price > retail_price ) return;
 			weight = (weight/100) * 453;
-			console.log(books[index].dimensions);
-			console.log("weight is : "+ weight );
 			for (var i = 0; i < weights.length; i++) {
 				if ( weight > weights[i].range_one && weight < weights[i].range_two ) {
 					price += weights[i].price;
 				}
 			};
-			console.log("minus weight :"+ price);
-			starting_price = price;
-			price *= 0.75;
-			console.log("*0.75 :"+ price);
-			if ( price > 0 ) {
-				price -= 5/starting_price;
-				console.log("- 5/price :"+ price);
-				price += 0.25;
-				console.log("+0.25 :"+ price);
-			}
-
+			starting_price            = price;
+			price                    *= 0.75;
+			if ( price > 0 )    price = ( price - ( 5/starting_price ) ) + 0.25;
 			if ( price < 0.20 ) price = 0;
-			price              = price.toFixed(2);
+			price                     = price.toFixed(2);
 			books[index].price = price;
 			
 			if ( weight > 1999 ) console.log("weight is past capacity");
