@@ -140,6 +140,11 @@
 	text-align: center;
 	cursor: pointer;
 	@include border-radius(15px 15px 0 0);
+	@include transition;
+	&:hover { 
+		@include transition;
+		background: darken($green, 7%);
+	}
 	&:before {
 		content:"+";
 	}

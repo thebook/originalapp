@@ -110,6 +110,7 @@
 	line-height: 14px;
 	color: $black_gray;
 	float: left;
+	display: none;
 }
 
 .profile_hub_tracking_show_bar_text {
@@ -220,6 +221,11 @@
 	cursor:pointer;
 	font-weight: bold;
 	width: 90%;
+	@include transition;
+	&:hover { 
+		@include transition;
+		background: darken($green, 7%);
+	}
 	&:before { 
 		font-size: 16px;
 		line-height: 16px;

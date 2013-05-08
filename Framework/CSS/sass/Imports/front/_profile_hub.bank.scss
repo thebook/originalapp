@@ -177,6 +177,11 @@
 	font-weight: bold;
 	width: 37.5%;
 	margin-right: 2.5%;
+	@include transition;
+	&:hover { 
+		@include transition;
+		background: darken($green, 7%);
+	}
 	&:before { 
 		content:"D";
 		margin-right: 7px;

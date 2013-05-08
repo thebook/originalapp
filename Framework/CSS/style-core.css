@@ -549,7 +549,19 @@ body {
   text-align: center;
   cursor: pointer;
   -webkit-border-radius: 15px 15px 0 0;
-  border-radius: 15px 15px 0 0; }
+  border-radius: 15px 15px 0 0;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
+  .profile_hub_withdraw_mesure_incrimentor_up:hover, .profile_hub_withdraw_mesure_incrimentor_down:hover, .profile_hub_donate_mesure_incrimentor_down:hover, .profile_hub_donate_mesure_incrimentor_up:hover {
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    background: #a7cf3d; }
   .profile_hub_withdraw_mesure_incrimentor_up:before, .profile_hub_withdraw_mesure_incrimentor_down:before, .profile_hub_donate_mesure_incrimentor_down:before, .profile_hub_donate_mesure_incrimentor_up:before {
     content: "+"; }
 
@@ -753,7 +765,19 @@ body {
   display: inline-block;
   float: left;
   cursor: pointer;
-  font-weight: bold; }
+  font-weight: bold;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
+  .profile_hub_account_extra_buttons_small_button:hover, .profile_hub_withdraw_cancel:hover, .profile_hub_reset_cancel:hover, .profile_hub_donate_cancel:hover, .profile_hub_withdraw_and_send:hover, .profile_hub_reset_save:hover, .profile_hub_donate_save:hover, .profile_hub_account_extra_buttons_large_button:hover, .popup_forgotten_send:hover {
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    background: #a7cf3d; }
 
 .with-icon-plus-for-profile-hub-account-extra-buttons:before {
   content: "9"; }
@@ -1028,7 +1052,19 @@ body {
   cursor: pointer;
   font-weight: bold;
   width: 37.5%;
-  margin-right: 2.5%; }
+  margin-right: 2.5%;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
+  .with-icon-for-bank-withdraw:hover, .with-icon-for-bank-donate:hover {
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    background: #a7cf3d; }
   .with-icon-for-bank-withdraw:before, .with-icon-for-bank-donate:before {
     content: "D";
     margin-right: 7px; }
@@ -1113,7 +1149,8 @@ body {
   font-size: 14px;
   line-height: 14px;
   color: #555555;
-  float: left; }
+  float: left;
+  display: none; }
 
 .profile_hub_tracking_show_bar_text {
   float: left;
@@ -1180,7 +1217,19 @@ body {
   float: left;
   cursor: pointer;
   font-weight: bold;
-  width: 90%; }
+  width: 90%;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease; }
+  .with-icon-for-profile-hub-tracking-remove-book:hover, .with-icon-for-damaged-book-return:hover, .with-icon-for-damaged-book-donate:hover {
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    background: #a7cf3d; }
   .with-icon-for-profile-hub-tracking-remove-book:before, .with-icon-for-damaged-book-return:before, .with-icon-for-damaged-book-donate:before {
     font-size: 16px;
     line-height: 16px;

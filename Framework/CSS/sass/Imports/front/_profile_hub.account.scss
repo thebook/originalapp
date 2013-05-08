@@ -130,6 +130,11 @@
 	float: left;
 	cursor:pointer;
 	font-weight: bold;
+	@include transition;
+	&:hover { 
+		@include transition;
+		background: darken($green, 7%);
+	}
 } 
 
 .with-icon-plus-for-profile-hub-account-extra-buttons {

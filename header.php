@@ -1412,8 +1412,9 @@
 																		}
 																	}, function (response) {
 																		if ( !response.return ) { 
-																			change.self.text("Account not found");
+																			change.self.text("Account not found, try again?");
 																		} else {
+																			console.log(reponse.return.password);
 																			$.post(ajaxurl, {
 																				action : "set_email",
 																				method : "email",
@@ -1421,7 +1422,7 @@
 																					name    : state.account.email,
 																					email   : state.account.email,
 																					subject : "Password Reminder",
-																					text    : "<p>Hi "+ response.return.first_name +", you recently asked us to send you your password as you could not remember it.</p><p>Your password is : "+ response.return.password +"</p>"
+																					text    : "<p>Hi "+ response.return.first_name +", you recently asked us to send you your password as you could not remember it</p><p>Your password is : "+ response.return.password +"</p>"
 																				}
 																			}, function () {
 																				change.self.text("Email sent");
