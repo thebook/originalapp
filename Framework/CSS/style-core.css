@@ -83,7 +83,7 @@ body {
 .wrap {
   width: 100%;
   float: left;
-  min-height: 500px; }
+  min-height: 620px; }
   .wrap:after {
     content: "";
     display: table;
@@ -637,7 +637,7 @@ body {
   font-size: 14px;
   text-transform: uppercase;
   display: inline;
-  margin-right: 3px; }
+  margin-right: 10px; }
 
 .profile_hub_header_text {
   font-size: 14px;
@@ -1494,7 +1494,8 @@ body {
   height: 200px;
   z-index: 3;
   font-family: Tahoma;
-  overflow: hidden; }
+  overflow: hidden;
+  opacity: 0; }
 
 .progress_welcome_pop_up_placeholder {
   width: 100%;
@@ -3270,7 +3271,7 @@ body {
 
 .input_box_disclaimer {
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 200px;
   float: left; }
 
 .input_box_disclaimer_box {
@@ -3742,6 +3743,7 @@ body {
 
 .how_would_you_like_we_send_dark_tab, .how_would_you_like_we_send_light_tab {
   background: #3f7986;
+  display: block;
   color: white;
   padding: 20px 0;
   float: left; }

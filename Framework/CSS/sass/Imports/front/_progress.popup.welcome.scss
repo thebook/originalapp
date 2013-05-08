@@ -19,6 +19,7 @@ $sign_in_box_height: $welcome_sign_in_box_title_size + $forgot_password_text_siz
 	z-index: 3;
 	font-family: Tahoma;
 	overflow: hidden;
+	opacity: 0;
 }
 
 .progress_welcome_pop_up_placeholder {

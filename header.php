@@ -215,11 +215,11 @@
 				},
 				confirm_sign_in : {
 					on : function () {
-						world.wrap.branch.navigation.branch.wrap.branch.welcome_popup.self.css({ display : "block" });
+						world.wrap.branch.navigation.branch.wrap.branch.welcome_popup.self.css({ display : "block" }).animate({ opacity : 1 }, 700);
 						animate.state = "welcome";
 					},
 					off: function () {
-						world.wrap.branch.navigation.branch.wrap.branch.welcome_popup.self.css({ display : "none" });
+						world.wrap.branch.navigation.branch.wrap.branch.welcome_popup.self.css({ display : "none", opacity : 0 });
 					}	
 				},
 				register : {
@@ -585,7 +585,7 @@
 											self   : '<div class="header_invisible_box"></div>',
 											branch : {
 												logo : {
-													self : '<img src="'+frameworkuri+'/CSS/Includes/works/header_logo.png" alt="" class="header_invisible_box_image_title">',
+													self : '<a href="/"><img src="'+frameworkuri+'/CSS/Includes/works/header_logo.png" alt="" class="header_invisible_box_image_title"></a>',
 												},
 												text : {
 													self : '<div class="header_invisible_box_text_wrap"></div>',
@@ -3468,7 +3468,7 @@
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) {
-																		state.addresses[0].post_code = change.self.val().trim();
+																		state.addresses[0].post_code = change.self.val().replace(/\s+/g, '');;
 																	}
 																}
 															},
@@ -3750,7 +3750,7 @@
 												var wrap   = world.wrap.branch.confirm.branch.wrap.self,
 													box    = world.wrap.branch.navigation.branch.wrap.branch.progress_popup.self,
 													offset = box.height() + 50;
-													if ( change.new === "confirm" ) wrap.animate({ top : offset+"px" });
+													if ( change.new === "confirm" ) wrap.animate({ top : offset+"px" }).css({ marginBottom : offset+"px" });
 													if ( change.new !== "confirm" ) wrap.css({ top : "800px" });
 											}
 										}
@@ -4107,6 +4107,16 @@
 													branch : {
 														tab_one : {
 															instructions : {
+																observe : {
+																	who      : animate,
+																	property : "state",
+																	call     : function (change) { 
+																		if ( change.new === "confirm" ) {
+																			state.confirm.tab     = 0;
+																			state.confirm.postage = "letter";
+																		}
+																	}
+																},
 																on : {
 																	the_event : "click",
 																	is_asslep : false,
@@ -4115,7 +4125,7 @@
 																	}
 																}
 															},
-															self : '<div class="how_would_you_like_tab_title_active">We Send you a freepost pack</div>'
+															self : '<div class="how_would_you_like_tab_title_active">Contains: instructions and a freepost envelope"</div>'
 														},
 														tab_two : {
 															instructions : {
