@@ -6,10 +6,13 @@ $bus_left_width: 520px;
 } 
 
 .bus_image {
-	width: 100%;
+	width : 105.5%; 
+	z-index : 1;
+	position : relative;
+	left : -10px;
 	height: auto;
 	margin-top: 20px;
-	margin-bottom: 30px;
+	margin-bottom : -10px; 
 	float: left;
 } 
 

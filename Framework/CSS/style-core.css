@@ -854,10 +854,12 @@ body {
   display: inline-block;
   color: #555555;
   font-size: 12px;
-  line-height: 14px; }
+  line-height: 14px;
+  width: 180px; }
 
 .profile_hub_history_item_title, .profile_hub_tracking_item_text_title {
   font-size: 18px;
+  line-height: 18px;
   float: left;
   margin-bottom: 5px;
   clear: both; }
@@ -4171,10 +4173,13 @@ body {
   margin: 0 auto; }
 
 .bus_image {
-  width: 100%;
+  width: 105.5%;
+  z-index: 1;
+  position: relative;
+  left: -10px;
   height: auto;
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: -10px;
   float: left; }
 
 .bus_left_split {

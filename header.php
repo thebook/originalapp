@@ -2798,21 +2798,17 @@
 															path : "self.class",
 															value: "wrap"
 														},
-														{
-															path : "self.class",
-															value: "wrap"
-														},
 														{ 
 															path : "branch.wrap.branch.image.self.src",
 															value: "image"
 														},
 														{
 															path : "branch.wrap.branch.description.branch.title.self.text",
-															value: "title"
+															value: "short_title"
 														},
 														{
 															path : "branch.wrap.branch.description.branch.author.self.text",
-															value: "author"
+															value: "short_author"
 														},
 														{
 															path : "branch.wrap.branch.description.branch.price_wrap.branch.price.self.text",
@@ -2824,19 +2820,22 @@
 													append_to.empty();
 													manifest = alpha.format(format, append_to, book.results.length );
 													$.each(book.results, function (index, book) { 
+														book.wrap         = wraps.classes[wraps.on_wrap];
 														
-														book.wrap   = wraps.classes[wraps.on_wrap];
-														book.title  = book.title.slice(0, 10) +'...';
-														book.author = book.author.slice(0, 18) +'...';
-														book.price  = book.price;
-														book.id     = index+1;
+														book.title        = book.title.replace(/'s/g, "s");
+														book.author       = book.author.replace(/'s/g,"s");
+														book.short_title  = book.title.slice(0, 10) +'...';
+														book.short_author = book.author.slice(0, 18) +'...';
+														book.price        = book.price;
+														book.id           = index+1;
 
 														alpha.parse(map, manifest[index+1], book);
 														manifest[index+1].branch.wrap.branch.button.branch.wrap.branch.instructions = {
 															book : book
 														};
-														manifest[index+1].branch.button.branch.add.instructions.book = book;
+														console.log(book);
 
+														manifest[index+1].branch.button.branch.add.instructions.book = book;
 														( wraps.on_wrap === 2? wraps.on_wrap = 0 : wraps.on_wrap++ );
 													});	
 													world.wrap.branch.sell.branch.items.branch = manifest;
@@ -4380,8 +4379,8 @@
 										text : {
 											self   : '<div class="thank_you_circle_text_wrap"></div>',
 											last_branch : {
-												header : '<div class="thank_you_circle_text_header">Alas we shall</div>',
-												text   : '<div class="thank_you_circle_text">to the edge of earth and back dear friend and trips and trips till death</div>		'
+												header : '<div class="thank_you_circle_text_header">RAG</div>',
+												text   : '<div class="thank_you_circle_text">we also make it easy for you to donate directly to your University\'s RAG</div>		'
 											}
 										}
 									}
