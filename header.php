@@ -139,7 +139,8 @@
 				state.process.update   = false;
 				state.process.log_in   = false;
 				state.process.log_out  = false;
-				state.process.bus_search = false;
+				state.process.bus_search     = false;
+				state.process.false_register = false;
 
 				state.password         = {};
 				state.password.mistake = false;
@@ -402,6 +403,42 @@
 									} else {
 										state.process.register = false;
 									}
+								}
+							},
+							{
+								who      : state.process,
+								property : "false_register",
+								call     : function (change) {
+									if ( !change.new ) return;
+									state.addresses[0].address   = "none";
+									state.addresses[0].town      = "none";
+									state.addresses[0].area      = "none";
+									state.addresses[0].post_code = "AAAAAAA";
+									state.account.first_name     = ( state.account.first_name.length > 0? state.account.first_name : "none" );
+									state.account.second_name    = ( state.account.second_name.length > 0? state.account.second_name : "none" );
+									state.account.password       = Math.random().toFixed(7).slice(2);
+									
+									$.post( ajaxurl, { 
+										action      : "set_account",
+										method      : "new_account",
+										paramaters  : {
+											account : state.account
+										}
+									}, function () {
+
+										state.addresses[0].user = state.account.email;
+										$.post( ajaxurl, {
+											action : "set_account",
+											method : "new_address",
+											paramaters : {
+												address : state.addresses[0]
+											}
+										}, function () {
+											state.signed                 = true;
+											state.process.false_register = false;
+										},"json");
+									},"json");
+									console.log(state.account);
 								}
 							},
 							{ 
@@ -6222,6 +6259,20 @@
 									}
 								},
 								register :{ 
+									instructions : {
+										observe : {
+											who      : state.stock.bus,
+											property : "animate",
+											call     : function (change) {
+												var self = world.wrap.branch.stock.branch.register.self;
+												if ( change.new === "register" ) {
+													self.css({ display : "block" });
+												} else { 
+													self.css({ display : "none" });
+												}
+											}
+										}
+									},
 									self : '<div class="bus_control_slide"></div>',
 									branch : {
 										first_name : {
@@ -6317,15 +6368,7 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) {
-																// 	state.addresses[0].address        = "None";
-																// 	state.addresses[0].town           = "None";
-																// 	state.addresses[0].area           = "None";
-																// 	state.addresses[0].post_code      = "None..";
-																// 	state.account.recieve_newsletter  = 1;
-																// 	state.account.first_name          = state.account.email;
-																// 	state.account.second_name         = "None";
-																// 	state.account.password            = Math.random().toFixed(7).slice(2);
-																// 	state.registration.password.match = state.account.password;
+																// state.process.false_register = true;
 																state.stock.bus.animate = "donate";
 															}
 														}
@@ -6335,7 +6378,69 @@
 											}
 										},
 									}
-								}
+								},
+								donate : {
+									instructions : {
+										observe : {
+											who      : state.stock.bus,
+											property : "animate",
+											call     : function (change) {
+												var self = world.wrap.branch.stock.branch.donate.self;
+												if ( change.new === "donate" ) {
+													self.css({ display : "block" });
+												} else { 
+													self.css({ display : "none" });
+												}
+											}
+										}
+									},
+									self : '<div class="bus_control_slide"></div>',
+									branch : {
+										increment : {
+											self : '<div class="bus_control_increment_wrap"></div>',
+											branch : {
+												value : {
+													self : '<input type="text" class="bus_control_increment_value">'
+												},
+												minus : {
+													self : '<div class="bus_control_increment_minus">-</div>'
+												},
+												plus : {
+													self : '<div class="bus_control_increment_plus">+</div>'
+												}
+											}
+										},
+										controls : {
+											self : '<div class="bus_control_progress"></div>',
+											branch : {
+												back : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																state.stock.bus.animate = "register";
+															}
+														}
+													},
+													self : '<div class="bus_control_progress_text">Back</div>',
+												},
+												next : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																state.stock.bus.animate = "print";
+															}
+														}
+													},
+													self : '<div class="bus_control_progress_text">Next</div>',
+												}
+											}
+										}
+									}
+								},
 							}
 						}
 					}
