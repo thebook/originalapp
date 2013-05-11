@@ -4392,3 +4392,87 @@ body {
     -o-transition: all 500ms ease;
     transition: all 500ms ease;
     background: #abd146; }
+
+.bus_control_wrap {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  float: left;
+  background: whitesmoke;
+  color: #555555;
+  z-index: 99; }
+
+.bus_control_slide {
+  padding: 1% 0;
+  width: 100%;
+  height: 98%;
+  overflow: auto;
+  float: left; }
+
+.bus_control_items, .bus_control_total {
+  width: 40%;
+  margin: 5px 30%;
+  float: left; }
+
+.bus_control_item {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px; }
+
+.bus_control_item_part, .bus_control_item_isbn, .bus_control_item_title, .bus_control_item_total, .bus_control_remove {
+  display: inline-block;
+  float: left; }
+
+.bus_control_item_isbn {
+  width: 25%; }
+
+.bus_control_item_title {
+  width: 50%; }
+
+.bus_control_item_total {
+  width: 10%; }
+
+.bus_control_remove {
+  cursor: pointer;
+  text-align: right;
+  width: 15%; }
+  .bus_control_remove:hover {
+    text-decoration: underline; }
+
+.bus_control_input {
+  width: 20%;
+  margin: 40px 40% 0;
+  padding: 5px 1%;
+  font-size: 16px;
+  line-height: 16px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background: whitesmoke;
+  border: 1px solid #555555;
+  color: #555555;
+  float: left;
+  clear: both; }
+
+.bus_control_progress {
+  width: 20%;
+  margin: 10px 40% 50px;
+  padding: 5px 1%;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: right;
+  float: left;
+  clear: both;
+  color: #555555; }
+
+.bus_control_progress_text {
+  display: inline;
+  cursor: pointer;
+  margin-left: 5px; }
+  .bus_control_progress_text:hover {
+    text-decoration: underline; }
+
+.bus_control_total {
+  padding-top: 10px;
+  text-align: right;
+  border-top: 1px solid #555555; }
