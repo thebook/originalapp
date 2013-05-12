@@ -104,3 +104,37 @@ $bus_control_width: 40%;
 	text-align: right;
 	border-top: 1px solid $black_gray;
 }
+
+.bus_control_increment_wrap {
+	width: 50%;
+	float: left;
+	margin: 10px 25%;
+}
+
+.bus_control_increment_part {
+	display: inline-block;
+	float: left;
+}
+
+.bus_control_increment_value {
+	@extend.bus_control_increment_part;
+	padding: 5px 1%;
+	font-size: 16px;
+	line-height: 16px;
+	@include border-radius( 2px);
+	background: $light_monochrome;
+	border: 1px solid $black_gray;
+	color: $black_gray;
+	float: left;
+	clear: both;
+}
+
+.bus_control_increment_minus {
+	@extend.bus_control_increment_part;
+}
+
+.bus_control_increment_plus {
+	@extend.bus_control_increment_part;
+}
+
+@import "stock.bus.print";
