@@ -119,11 +119,13 @@
 				state.save_account = false;
 				state.save_address = false;
 				state.edit_account = false;
+
 				state.edit = {};
 				state.edit.confirm  = false;
 				state.edit.withdraw = {};
 				state.edit.withdraw.first_name = false;
 				state.edit.withdraw.address    = false;
+
 				state.notification = {};
 				state.notification.reset = {};
 				state.notification.reset.notify = false;
@@ -141,6 +143,8 @@
 				state.process.log_out  = false;
 				state.process.bus_search     = false;
 				state.process.false_register = false;
+				state.process.donate         = false;
+				state.process.add_book       = false;
 
 				state.password         = {};
 				state.password.mistake = false;
@@ -185,12 +189,16 @@
 					}
 				};
 
+				state.donate = {};
+				state.donate.university = null;
+
 				state.stock = {};
 				state.stock.bus = {};
 				state.stock.bus.search = "";
 				state.stock.bus.open   = false;
 				state.stock.bus.basket = [];
-				state.stock.bus.total  = 0;			
+				state.stock.bus.total  = 0;
+				state.stock.bus.cheque_spell = 0;	
 
 
 			var router = new alpha.route({
@@ -275,11 +283,12 @@
 							world.wrap.branch.stock.self.css({ display : "block" });
 							state.stock.bus.open    = true;
 							state.stock.bus.animate = "search";
+							state.process.sign_out  = true;
 						},
 						off : function () {
 							world.wrap.branch.stock.self.css({ display : "none" });
 							state.stock.bus.open    = false;
-							state.stock.bus.animate = "false";
+							state.stock.bus.animate = false;
 						}
 					}
 				}
@@ -403,6 +412,42 @@
 									} else {
 										state.process.register = false;
 									}
+								}
+							},
+							{
+								who      : state.process,
+								property : "false_register",
+								call     : function (change) {
+									if ( !change.new ) return;
+									state.addresses[0].address   = "none";
+									state.addresses[0].town      = "none";
+									state.addresses[0].area      = "none";
+									state.addresses[0].post_code = "AAAAAAA";
+									state.account.first_name     = ( state.account.first_name.length > 0? state.account.first_name : "none" );
+									state.account.second_name    = ( state.account.second_name.length > 0? state.account.second_name : "none" );
+									state.account.password       = Math.random().toFixed(7).slice(2);
+									
+									$.post( ajaxurl, { 
+										action      : "set_account",
+										method      : "new_account",
+										paramaters  : {
+											account : state.account
+										}
+									}, function () {
+
+										state.addresses[0].user = state.account.email;
+										$.post( ajaxurl, {
+											action : "set_account",
+											method : "new_address",
+											paramaters : {
+												address : state.addresses[0]
+											}
+										}, function () {
+											state.signed                 = true;
+											state.process.false_register = false;
+										},"json");
+									},"json");
+									console.log(state.account);
 								}
 							},
 							{
@@ -642,6 +687,35 @@
 							},
 							{
 								who      : state.process,
+								property : "donate",
+								call     : function (change) {
+
+									if ( state.withdraw === 0 || state.withdraw === "0.00" ) return;
+
+									var date = new Date();
+									$.post(ajaxurl, {
+										action : "set_ticket",
+										method : "rag_donate",
+										paramaters : {
+											array : {
+												email      : state.account.email,
+												first_name : state.account.first_name,
+												second_name: state.account.second_name,
+												university : state.donate.university,
+												amount     : state.withdraw,
+												date       : date.getFullYear() +"/"+ date.getMonth() +"/"+ date.getDate()
+											}
+										}
+									}, function (response) {}, "json");
+
+									state.account.credit = parseFloat( state.account.credit ) - state.withdraw;
+									state.account.credit = state.account.credit.toFixed(2);
+									state.withdraw       = "0.00";
+									state.save_account   = true;
+								}
+							},
+							{
+								who      : state.process,
 								property : "bus_search",
 								call     : function (change) {
 									if ( !change.new ) return;
@@ -688,7 +762,41 @@
 										total += parseFloat(change.new[index].price);
 									}
 									state.stock.bus.total = total.toFixed(2);
-									console.log(change.new);
+								}
+							},
+							{
+								who      : state.process,
+								property : "add_book",
+								call     : function (change) {
+									if ( !change.new ) return;
+
+									var basket = [];
+
+									for (var index = 0; index < state.stock.bus.basket.length; index++) {										
+										var book     = state.stock.bus.basket[index],
+											new_book = {};	
+
+											new_book.external_product_id      = book.isbn;
+											new_book.external_product_id_type = "ISBN";
+											new_book.item_name                = book.title.substring(0, 97);
+											new_book.author                   = book.author;
+											new_book.binding                  = book.binding;
+											new_book.publication_date         = "2013/01/01";
+											new_book.standard_price           = book.price;
+											new_book.quantaty                 = 1;
+											new_book.condition_type           = 3;
+											new_book.product_description      = "";
+											new_book.main_image_url           = book.image;
+											basket.push(new_book);
+									}
+
+									$.post(ajaxurl, {
+										action     : "set_book",
+										method     : "book",
+										paramaters : {
+											books : basket
+										}
+									}, function () {}, "json");
 								}
 							}
 						]
@@ -5157,7 +5265,6 @@
 																				var value = parseFloat(state.withdraw) + 0.5;
 																				if ( value > state.account.credit ) value = parseFloat(state.account.credit);
 																				value = value.toFixed(2);
-																				console.log(value);
 																				state.withdraw = value;
 																			}
 																		}
@@ -6174,293 +6281,454 @@
 							},
 							self   : '<div class="bus_control_wrap"></div>',
 							branch : {
+								input : {
+									instructions : {
+										observe : {
+											who      : state.stock.bus,
+											property : "animate",
+											call     : function (change) {
+												var self = world.wrap.branch.stock.branch.input.self;
+												if ( change.new === "search" ) {
+													self.css({ display : "block" });
+												} else { 
+													self.css({ display : "none" });
+												}
+											}
+										}
+									},
+									self : '<div class="bus_control_slide"></div>',
+									branch : {
+										items  : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														if ( change.event.target.className !== "bus_control_remove" ) return;
+														
+														$('#'+ change.event.target.id).parent().remove();
+
+														if ( change.event.target.id !== "remove" ) {
+															var basket = state.stock.bus.basket;
+															basket.splice(change.event.target.id - 1, 1);
+															state.stock.bus.basket = basket;
+														}
+													}
+												}
+											},
+											self : '<div class="bus_control_items"></div>'
+										},
+										total : {
+											instructions : {
+												observers : [
+													{
+														who      : state.stock.bus,
+														property : "total",
+														call     : function (change) {
+														 	world.wrap.branch.stock.branch.input.branch.total.self.text("£"+ change.new );	
+														}
+													}
+												]
+											},
+											self : '<div class="bus_control_total">£0.00</div>',
+										},
+										search : {
+											instructions : {
+												on : {
+													the_event : "keypress",
+													is_asslep : false,
+													call      : function (change) {
+														if ( change.event.keyCode === 13 ) {
+															state.stock.bus.search = change.self.val().trim();
+															state.process.bus_search = true;
+														}
+													}
+												}	
+											},
+											self : '<input type="text" class="bus_control_input">'
+										},
+										next : {
+											self : '<div class="bus_control_progress"></div>',
+											branch : {
+												next : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																if ( state.stock.bus.basket.length === 0 ) return;
+																state.stock.bus.animate = "register";
+															}
+														}
+													},
+													self : '<div class="bus_control_progress_text">Next</div>'
+												}
+											}
+										}
+									}
+								},
+								register :{ 
+									instructions : {
+										observe : {
+											who      : state.stock.bus,
+											property : "animate",
+											call     : function (change) {
+												var self = world.wrap.branch.stock.branch.register.self;
+												if ( change.new === "register" ) {
+													self.css({ display : "block" });
+												} else { 
+													self.css({ display : "none" });
+												}
+											}
+										}
+									},
+									self : '<div class="bus_control_slide"></div>',
+									branch : {
+										first_name : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.account.first_name = change.self.val().trim();
+													}
+												}
+											},
+											self : '<input maxlength="22" type="text" class="bus_control_input" placeholder="First Name">',
+										},
+										second_name : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.account.second_name = change.self.val().trim();
+													}
+												}
+											},
+											self : '<input maxlength="22" type="text" class="bus_control_input" placeholder="Second Name">',
+										},
+										email : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.account.email = change.self.val().trim();
+													}
+												}
+											},
+											self : '<input maxlength="30" type="text" class="bus_control_input" placeholder="Email">',
+										},
+										university : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.account.university = change.self.val().trim();
+													}
+												}
+											},
+											self : '<input maxlength="55" type="text" class="bus_control_input" placeholder="University">',
+										},
+										year : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.account.year = change.self.val().trim();
+													}
+												}
+											},
+											self : '<input maxlength="7" type="text" class="bus_control_input" placeholder="Year">',
+										},
+										subject : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.account.subject = change.self.val().trim();
+													}
+												}
+											},
+											self : '<input maxlength="30" type="text" class="bus_control_input" placeholder="Subject">',
+										},
+										controls : {
+											self : '<div class="bus_control_progress"></div>',
+											branch : {
+												back : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																state.stock.bus.animate = "search";
+															}
+														}
+													},
+													self : '<div class="bus_control_progress_text">Back </div>',
+												},
+												next : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																if ( state.account.email.length < 2 ) return;
+																state.process.false_register = true;
+																state.stock.bus.animate = "donate";
+															}
+														}
+													},
+													self : '<div class="bus_control_progress_text">Next</div>',
+												}
+											}
+										},
+									}
+								},
+								donate : {
+									instructions : {
+										observe : {
+											who      : state.stock.bus,
+											property : "animate",
+											call     : function (change) {
+												var self = world.wrap.branch.stock.branch.donate.self;
+												if ( change.new === "donate" ) {
+													self.css({ display : "block" });
+												} else { 
+													self.css({ display : "none" });
+												}
+											}
+										}
+									},
+									self : '<div class="bus_control_slide"></div>',
+									branch : {
+										increment : {
+											self : '<div class="bus_control_increment_wrap"></div>',
+											branch : {
+												value : {
+													instructions : {
+														observe : {
+															who      : state,
+															property : "withdraw",
+															call     : function (change) {
+																var self = world.wrap.branch.stock.branch.donate.branch.increment.branch.value.self;
+																self.val(change.new);
+															}
+														}
+													},
+													self : '<input type="text" class="bus_control_increment_value" value="0.00" readonly>'
+												},
+												minus : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																var value = parseFloat(state.withdraw) - 0.5;
+																	if ( value < 0.00 ) value = 0.00
+																	value = value.toFixed(2);
+																	state.withdraw = value;	
+															}
+														}
+													},
+													self : '<div class="bus_control_increment_minus">-</div>'
+												},
+												plus : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																var value = parseFloat(state.withdraw) + 0.5;
+																	if ( value > state.stock.bus.total ) value = parseFloat(state.stock.bus.total);
+																	value = value.toFixed(2);
+																	state.withdraw = value;
+															}
+														}
+													},
+													self : '<div class="bus_control_increment_plus">+</div>'
+												}
+											}
+										},
+										total_reminder : {
+											instructions : {
+												observers : [
+													{
+														who      : state,
+														property : "withdraw",
+														call     : function (change) {
+															var self = world.wrap.branch.stock.branch.donate.branch.total_reminder.self,
+															total= parseFloat( state.stock.bus.total ) - parseFloat( change.new );
+															self.val("£"+ total.toFixed(2) );
+														}
+													},
+												 	{
+														who      : state.stock.bus,
+														property : "total",
+														call     : function (change) {
+															var self = world.wrap.branch.stock.branch.donate.branch.total_reminder.self;
+															self.val("£"+ change.new);
+														}
+													}
+												]
+											},
+											self : '<input type="text" class="bus_control_spell_sum" value="0.00" readonly>'
+										},
+										spell_sum : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.stock.bus.cheque_spell = change.self.val();
+													}
+												}
+											},
+											self : '<input type="text" class="bus_control_spell_sum" placeholder="Type in total value here">'
+										},
+										controls : {
+											self : '<div class="bus_control_progress"></div>',
+											branch : {
+												back : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																state.stock.bus.animate = "register";
+															}
+														}
+													},
+													self : '<div class="bus_control_progress_text">Back</div>',
+												},
+												next : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																var total = parseFloat( state.stock.bus.total ) - parseFloat( state.withdraw );
+																state.stock.bus.total   = total.toFixed(2);
+																state.process.add_book  = true;
+																state.process.update    = true;
+																state.stock.bus.animate = "print";
+															}
+														}
+													},
+													self : '<div class="bus_control_progress_text">Next</div>',
+												}
+											}
+										}
+									}
+								},
 								print : {
+									instructions : {
+										observe : {
+											who      : state.stock.bus,
+											property : "animate",
+											call     : function (change) {
+												var self = world.wrap.branch.stock.branch.print.self;
+												if ( change.new === "print" ) {
+													self.css({ display : "block" });
+													window.print();	
+												} else { 
+													self.css({ display : "none" });
+												}
+											}
+										}
+									},
 									self : '<div class="bus_control_print"></div>',
 									branch : { 
 										name : {
-											self : '<div class="bus_control_print_name">40mm</div>'
+											instructions : {
+												observe : {
+													who      : state.account,
+													property : "first_name",
+													call     : function (change) {
+														world.wrap.branch.stock.branch.print.branch.name.self.text(change.new);
+													}
+												}
+											},
+											self : '<div class="bus_control_print_name"></div>'
+										},
+										books : {
+											self : '<div class="bus_control_print_books"></div>'
 										},
 										cheque_name : {
-											self : '<div class="bus_control_print_cheque_name">80mm</div>'
+											self : '<div class="bus_control_print_cheque_name"></div>',
+											branch : {
+												first_name : {
+													instructions : {
+														observe : {
+															who      : state.account,
+															property : "first_name",
+															call     : function (change) {
+																world.wrap.branch.stock.branch.print.branch.cheque_name.branch.first_name.self.text(change.new +" ");
+															}
+														}
+													},
+													self : '<span></span>'
+												},
+												second_name : {
+													instructions : {
+														observe : {
+															who      : state.account,
+															property : "second_name",
+															call     : function (change) {
+																world.wrap.branch.stock.branch.print.branch.cheque_name.branch.second_name.self.text(change.new);
+															}
+														}
+													},
+													self : '<span></span>'
+												}
+											}
 										},
 										cheque_sum_text : {
-											self : '<div class="bus_control_print_cheque_quote_text">120mm</div>'
+											instructions : {
+												observe : {
+													who      : state.stock.bus,
+													property : "cheque_spell",
+													call     : function (change) {
+														world.wrap.branch.stock.branch.print.branch.cheque_sum_text.self.text(change.new);
+													}
+												}
+											},
+											self : '<div class="bus_control_print_cheque_quote_text"></div>'
 										},
 										cheque_date : {
-											self : '<div class="bus_control_print_cheque_date">180mm</div>'
+											instructions : {
+												observe : {
+													who      : state.stock.bus,
+													property : "animate",
+													call     : function (change) {
+														if ( change.new !== "print" ) return;
+														var date, today;
+														date  = new Date();
+														today = date.getFullYear() +"/"+ date.getMonth() +"/"+ date.getDate();
+														world.wrap.branch.stock.branch.print.branch.cheque_date.self.text(today);
+													}
+												}
+											},
+											self : '<div class="bus_control_print_cheque_date">date </div>'
 										},
 										cheque_sum : {
-											self : '<div class="bus_control_print_cheque_quote">240mm</div>'
+											instructions : {
+												observe : {
+													who      : state.stock.bus,
+													property : "total",
+													call     : function (change) {
+														world.wrap.branch.stock.branch.print.branch.cheque_sum.self.text("£"+ change.new);
+													}
+												}
+											},
+											self : '<div class="bus_control_print_cheque_quote"></div>'
 										}
 									}
 								}
-								// input : {
-								// 	instructions : {
-								// 		observe : {
-								// 			who      : state.stock.bus,
-								// 			property : "animate",
-								// 			call     : function (change) {
-								// 				var self = world.wrap.branch.stock.branch.input.self;
-								// 				if ( change.new === "search" ) {
-								// 					self.css({ display : "block" });
-								// 				} else { 
-								// 					self.css({ display : "none" });
-								// 				}
-								// 			}
-								// 		}
-								// 	},
-								// 	self : '<div class="bus_control_slide"></div>',
-								// 	branch : {
-								// 		items  : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "click",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
-								// 						if ( change.event.target.className !== "bus_control_remove" ) return;
-														
-								// 						$('#'+ change.event.target.id).parent().remove();
-
-								// 						if ( change.event.target.id !== "remove" ) {
-								// 							var basket = state.stock.bus.basket;
-								// 							basket.splice(change.event.target.id - 1, 1);
-								// 							state.stock.bus.basket = basket;
-								// 						}
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<div class="bus_control_items"></div>'
-								// 		},
-								// 		total : {
-								// 			instructions : {
-								// 				observe : {
-								// 					who      : state.stock.bus,
-								// 					property : "total",
-								// 					call     : function (change) {
-								// 					 	world.wrap.branch.stock.branch.input.branch.total.self.text("£"+ change.new );	
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<div class="bus_control_total">£0.00</div>',
-								// 		},
-								// 		search : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "keypress",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
-								// 						if ( change.event.keyCode === 13 ) {
-								// 							state.stock.bus.search = change.self.val().trim();
-								// 							state.process.bus_search = true;
-								// 						}
-								// 					}
-								// 				}	
-								// 			},
-								// 			self : '<input type="text" class="bus_control_input">'
-								// 		},
-								// 		next : {
-								// 			self : '<div class="bus_control_progress"></div>',
-								// 			branch : {
-								// 				next : {
-								// 					instructions : {
-								// 						on : {
-								// 							the_event : "click",
-								// 							is_asslep : false,
-								// 							call      : function (change) {
-								// 								console.log("click");
-								// 								state.stock.bus.animate = "register";
-								// 							}
-								// 						}
-								// 					},
-								// 					self : '<div class="bus_control_progress_text">Next</div>'
-								// 				}
-								// 			}
-								// 		}
-								// 	}
-								// },
-								// register :{ 
-								// 	instructions : {
-								// 		observe : {
-								// 			who      : state.stock.bus,
-								// 			property : "animate",
-								// 			call     : function (change) {
-								// 				var self = world.wrap.branch.stock.branch.register.self;
-								// 				if ( change.new === "register" ) {
-								// 					self.css({ display : "block" });
-								// 				} else { 
-								// 					self.css({ display : "none" });
-								// 				}
-								// 			}
-								// 		}
-								// 	},
-								// 	self : '<div class="bus_control_slide"></div>',
-								// 	branch : {
-								// 		first_name : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "keyup",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
-								// 						state.account.first_name = change.self.val().trim();
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<input maxlength="22" type="text" class="bus_control_input" placeholder="First Name">',
-								// 		},
-								// 		second_name : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "keyup",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
-								// 						state.account.second_name = change.self.val().trim();
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<input maxlength="22" type="text" class="bus_control_input" placeholder="Second Name">',
-								// 		},
-								// 		email : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "keyup",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
-								// 						state.account.email = change.self.val().trim();
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<input maxlength="30" type="text" class="bus_control_input" placeholder="Email">',
-								// 		},
-								// 		university : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "keyup",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
-								// 						state.account.university = change.self.val().trim();
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<input maxlength="55" type="text" class="bus_control_input" placeholder="University">',
-								// 		},
-								// 		year : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "keyup",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
-								// 						state.account.year = change.self.val().trim();
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<input maxlength="7" type="text" class="bus_control_input" placeholder="Year">',
-								// 		},
-								// 		subject : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "keyup",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
-								// 						state.account.subject = change.self.val().trim();
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<input maxlength="30" type="text" class="bus_control_input" placeholder="Subject">',
-								// 		},
-								// 		controls : {
-								// 			self : '<div class="bus_control_progress"></div>',
-								// 			branch : {
-								// 				back : {
-								// 					instructions : {
-								// 						on : {
-								// 							the_event : "click",
-								// 							is_asslep : false,
-								// 							call      : function (change) {
-								// 								state.stock.bus.animate = "search";
-								// 							}
-								// 						}
-								// 					},
-								// 					self : '<div class="bus_control_progress_text">Back </div>',
-								// 				},
-								// 				next : {
-								// 					instructions : {
-								// 						on : {
-								// 							the_event : "click",
-								// 							is_asslep : false,
-								// 							call      : function (change) {
-								// 								// state.process.false_register = true;
-								// 								state.stock.bus.animate = "donate";
-								// 							}
-								// 						}
-								// 					},
-								// 					self : '<div class="bus_control_progress_text">Next</div>',
-								// 				}
-								// 			}
-								// 		},
-								// 	}
-								// },
-								// donate : {
-								// 	instructions : {
-								// 		observe : {
-								// 			who      : state.stock.bus,
-								// 			property : "animate",
-								// 			call     : function (change) {
-								// 				var self = world.wrap.branch.stock.branch.donate.self;
-								// 				if ( change.new === "donate" ) {
-								// 					self.css({ display : "block" });
-								// 				} else { 
-								// 					self.css({ display : "none" });
-								// 				}
-								// 			}
-								// 		}
-								// 	},
-								// 	self : '<div class="bus_control_slide"></div>',
-								// 	branch : {
-								// 		increment : {
-								// 			self : '<div class="bus_control_increment_wrap"></div>',
-								// 			branch : {
-								// 				value : {
-								// 					self : '<input type="text" class="bus_control_increment_value">'
-								// 				},
-								// 				minus : {
-								// 					self : '<div class="bus_control_increment_minus">-</div>'
-								// 				},
-								// 				plus : {
-								// 					self : '<div class="bus_control_increment_plus">+</div>'
-								// 				}
-								// 			}
-								// 		},
-								// 		controls : {
-								// 			self : '<div class="bus_control_progress"></div>',
-								// 			branch : {
-								// 				back : {
-								// 					instructions : {
-								// 						on : {
-								// 							the_event : "click",
-								// 							is_asslep : false,
-								// 							call      : function (change) {
-								// 								state.stock.bus.animate = "register";
-								// 							}
-								// 						}
-								// 					},
-								// 					self : '<div class="bus_control_progress_text">Back</div>',
-								// 				},
-								// 				next : {
-								// 					instructions : {
-								// 						on : {
-								// 							the_event : "click",
-								// 							is_asslep : false,
-								// 							call      : function (change) {
-								// 								state.stock.bus.animate = "print";
-								// 							}
-								// 						}
-								// 					},
-								// 					self : '<div class="bus_control_progress_text">Next</div>',
-								// 				}
-								// 			}
-								// 		}
-								// 	}
-								// },
 							}
 						}
 					}

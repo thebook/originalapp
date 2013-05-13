@@ -182,6 +182,18 @@ class book extends alpha
 			)
 		));
 	}
+
+	public function set_book ($array_of_books)
+	{
+		$table = new table_creator;
+
+		foreach ($array_of_books as $book) :
+			$book['section'] = 1;
+			$book['level']   = 1;
+			$book['number']  = 1;
+			$table->add_row_to_table($this->book_table, $book);
+		endforeach;
+	}
 }
 	
 ?>

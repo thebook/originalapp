@@ -4440,7 +4440,7 @@ body {
   .bus_control_remove:hover {
     text-decoration: underline; }
 
-.bus_control_input {
+.bus_control_input, .bus_control_spell_sum {
   width: 20%;
   margin: 40px 40% 0;
   padding: 5px 1%;
@@ -4478,9 +4478,10 @@ body {
   border-top: 1px solid #555555; }
 
 .bus_control_increment_wrap {
-  width: 50%;
+  width: 25%;
   float: left;
-  margin: 10px 25%; }
+  margin: 10px 37.5%;
+  text-align: center; }
 
 .bus_control_increment_part, .bus_control_increment_value, .bus_control_increment_minus, .bus_control_increment_plus {
   display: inline-block;
@@ -4494,31 +4495,53 @@ body {
   border-radius: 2px;
   background: whitesmoke;
   border: 1px solid #555555;
+  width: 70%;
   color: #555555;
   float: left;
   clear: both; }
 
+.bus_control_increment_minus, .bus_control_increment_plus {
+  width: 5%;
+  padding: 0 2.5%;
+  cursor: pointer; }
+
 .bus_control_print {
   width: 210mm;
   height: 297mm;
-  float: left; }
+  border-right: 1px solid #555555;
+  float: left;
+  display: none; }
 
 .bus_control_print_name {
-  position: relative;
-  top: 40mm; }
+  position: absolute;
+  top: 72.8mm;
+  left: 10mm; }
+
+.bus_control_print_books {
+  display: none;
+  position: absolute;
+  top: 71mm;
+  left: 100mm;
+  width: 109.9mm;
+  height: 80mm;
+  border: 1px solid #555555; }
 
 .bus_control_print_cheque_name {
-  position: relative;
-  top: 80mm; }
+  position: absolute;
+  top: 225mm;
+  left: 3mm; }
 
 .bus_control_print_cheque_quote_text {
-  position: relative;
-  top: 120mm; }
+  position: absolute;
+  top: 235mm;
+  left: 6mm; }
 
 .bus_control_print_cheque_date {
-  position: relative;
-  top: 180mm; }
+  position: absolute;
+  top: 210.2mm;
+  left: 154mm; }
 
 .bus_control_print_cheque_quote {
-  position: relative;
-  top: 240mm; }
+  position: absolute;
+  top: 229.8mm;
+  left: 152.5mm; }

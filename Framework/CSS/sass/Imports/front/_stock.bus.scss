@@ -106,9 +106,10 @@ $bus_control_width: 40%;
 }
 
 .bus_control_increment_wrap {
-	width: 50%;
+	width: 25%;
 	float: left;
-	margin: 10px 25%;
+	margin: 10px 37.5%;
+	text-align: center;
 }
 
 .bus_control_increment_part {
@@ -124,17 +125,25 @@ $bus_control_width: 40%;
 	@include border-radius( 2px);
 	background: $light_monochrome;
 	border: 1px solid $black_gray;
+	width: 70%;
 	color: $black_gray;
 	float: left;
 	clear: both;
 }
 
+.bus_control_spell_sum {
+	@extend.bus_control_input;
+}
+
 .bus_control_increment_minus {
 	@extend.bus_control_increment_part;
+	width: 5%;
+	padding: 0 2.5%;
+	cursor: pointer;
 }
 
 .bus_control_increment_plus {
-	@extend.bus_control_increment_part;
+	@extend.bus_control_increment_minus;
 }
 
 @import "stock.bus.print";
