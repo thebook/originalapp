@@ -2925,7 +2925,8 @@ body {
   text-align: center; }
 
 .result_book_price_text {
-  display: inline-block; }
+  display: inline-block;
+  margin-right: 5px; }
 
 .result_book_price {
   display: inline-block;
@@ -4172,13 +4173,39 @@ body {
   width: 930px;
   margin: 0 auto; }
 
+.bus_header_wrap {
+  width: 910px;
+  padding: 0 10px;
+  float: left;
+  background: white; }
+
+.bus_header {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+  border: 1px solid #d8d8d8;
+  padding: 10px 0;
+  text-align: center;
+  color: #555555;
+  float: left; }
+
+.bus_header_title {
+  font-family: MotorOil;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline;
+  margin-right: 10px; }
+
+.bus_header_text {
+  font-size: 14px;
+  display: inline; }
+
 .bus_image {
   width: 105.5%;
   z-index: 1;
   position: relative;
   left: -10px;
   height: auto;
-  margin-top: 20px;
   margin-bottom: -10px;
   float: left; }
 
@@ -4514,7 +4541,7 @@ body {
 
 .bus_control_print_name {
   position: absolute;
-  top: 72.8mm;
+  top: 70.8mm;
   left: 10mm; }
 
 .bus_control_print_books {
@@ -4533,15 +4560,15 @@ body {
 
 .bus_control_print_cheque_quote_text {
   position: absolute;
-  top: 235mm;
+  top: 234mm;
   left: 6mm; }
 
 .bus_control_print_cheque_date {
   position: absolute;
-  top: 210.2mm;
-  left: 154mm; }
+  top: 209.2mm;
+  left: 153.5mm; }
 
 .bus_control_print_cheque_quote {
   position: absolute;
-  top: 229.8mm;
+  top: 227.8mm;
   left: 152.5mm; }

@@ -27,9 +27,9 @@
 	<script src="<?php echo FRAMEWORKURI .'/js/manifest/alpha.js'; ?>"></script>
 
 	<script>	  
-	  	var scripts = "<?php echo FRAMEWORKURI .'/js'; ?>",
+	  	var scripts      = "<?php echo FRAMEWORKURI .'/js'; ?>",
 	  		frameworkuri = "<?php echo FRAMEWORKURI; ?>",
-	  		ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+	  		ajaxurl      = "<?php echo admin_url('admin-ajax.php'); ?>";
 
 		alpha.load_scripts_asynchronously_with_callback([
 			scripts+'/manifest/manifest.alpha.js',
@@ -38,24 +38,6 @@
 			scripts+'/library/amazon.alpha.js',
 			scripts+'/library/scroll.alpha.js',
 			scripts+'/library/book.alpha.js'
-			// scripts+"/native.extend.js", 
-			// scripts+"/front.recyclabus.alpha.js", 
-			// scripts+"/front.search.alpha.js", 
-			// scripts+"/front.books.alpha.js", 
-			// scripts+"/front.books.popup.alpha.js", 
-			// scripts+"/front.change_page.alpha.js", 
-			// scripts+"/front.basket.alpha.js", 
-			// scripts+"/front.registration.alpha.js", 
-			// scripts+"/front.account.alpha.js", 
-			// scripts+"/front.confirm.alpha.js", 
-			// scripts+"/front.thank_you.alpha.js", 
-			// scripts+"/utility.users.js", 
-			// scripts+"/utility.alpha.js", 
-			// scripts+"/front.test.alpha.js", 
-			// scripts+"/amazon.js", 
-			// scripts+"/ticket.alpha.js", 
-			// scripts+"/route.alpha.js",
-			// scripts+"/front.alpha.js"
 		],
 		function (error, result) { 
 			var book  = {};
@@ -1796,10 +1778,10 @@
 															self   : '<div class="popup_contact_text_right"></div>',
 															branch : {
 																address : {
-																	self : '<div class="popup_contact_text_right_text">Britania House</div>'
+																	self : '<div class="popup_contact_text_right_text">Britannia House</div>'
 																},
 																area : {
-																	self : '<div class="popup_contact_text_right_text">Caerphilly Bussines park</div>'
+																	self : '<div class="popup_contact_text_right_text">Caerphilly Business Park</div>'
 																},
 																town : {
 																	self : '<div class="popup_contact_text_right_text">Caerphilly</div>'
@@ -2134,7 +2116,7 @@
 															self : '<div class="homepage_recyclabus_box_point"></div>',
 															last_branch : {
 																leaf : '<div class="with-icon-recyclabus-point-leaf"></div>',
-																text : '<div class="homepage_recyclabus_box_point_text">It gives you an <strong>extra 20%</strong> on your sell quote</div>'
+																text : '<div class="homepage_recyclabus_box_point_text">You get paid <strong>20% extra</strong> when using the RecyclaBus</div>'
 															}
 														},
 														paragraph_three : {
@@ -2165,6 +2147,18 @@
 						bus : {
 							self : '<section class="bus pages"></div>',
 							branch : {
+								header : { 
+									self : '<div class="bus_header_wrap"></div>',
+									branch : {
+										wrap : {
+											self : '<div class="bus_header"></div>',
+											last_branch : {
+												title : '<div class="bus_header_title">Recyclabus</div>',
+												text  : '<div class="bus_header_text">Dates and Information</div>'
+											}
+										}
+									}
+								},
 								image : {
 									self : '<img src="'+frameworkuri+'/CSS/Includes/works/bus.png" class="bus_image">'
 								},
@@ -2195,32 +2189,16 @@
 																						body  = world.wrap.branch.bus.branch.left_split.branch.dates.branch.body.branch.wrap.branch;
 																						dates = [
 																							{
-																								place : "The University of South Wales, Caerleon Campus",
-																								date  : "14th, 15th May"
-																							},
-																							{
-																								place : "University of West England, Frenchay Campus",	
-																								date  : "16th, 17th May"
-																							},
-																							{
-																								place : "Swansea University",
-																								date  : "20th May"
-																							},
-																							{
-																								place : "University of West England, Treforest Campus",
-																								date  : "21st May"
-																							},
-																							{
 																								place : "Bath University",
 																								date  : "23rd, 32rd May"
 																							},
 																							{
-																								place : "The University of the West of England, Frenchay Campus",
-																								date  : "24th May"
+																								place : "Bristol University",							
+																								date  : "4th, 5th, 14th June"
 																							},
 																							{
-																								place : "UWIC",
-																								date  : "28th May"
+																								place : "Cardiff University",							
+																								date  : "6th, 7th, 13th June"
 																							},
 																							{
 																								place : "Swansea Metropolitan University",
@@ -2228,23 +2206,19 @@
 																							},
 																							{
 																								place : "Swansea University",						
-																								date  : "30th, 31st May"
+																								date  : "20th, 30th, 31st May"
 																							},
 																							{
-																								place : "Bristol University",							
-																								date  : "4th, 5th June"
+																								place : "The University of South Wales, Caerleon Campus",
+																								date  : "14th, 15th, 21st May"
 																							},
 																							{
-																								place : "Cardiff University",							
-																								date  : "6th, 7th June"
+																								place : "The University of the West of England, Frenchay Campus",	
+																								date  : "16th, 17th, 24th May"
 																							},
 																							{
-																								place : "Cardiff University",							
-																								date  : "13th June"
-																							},
-																							{
-																								place : "Bristol University",							
-																								date  : "14th June"
+																								place : "UWIC",
+																								date  : "28th May"
 																							}
 																						];
 
@@ -2272,64 +2246,8 @@
 													branch : {
 														wrap : {
 															self : '<div class="bus_body_wrap"></div>',
-															branch : {	
+															branch : {
 																date_0 : {
-																	self   : '<div class="bus_date"></div>',
-																	branch : {
-																		place : {
-																			self : '<div class="bus_date_place">The University of South Wales, Caerleon Campus</div>'
-																		},
-																		date  : {
-																			self : '<div class="bus_date_date">14th, 15th May</div>'
-																		},
-																		mark : {
-																			self : '<div class="with-icon-bus-date-mark"></div>'
-																		}
-																	}
-																},
-																date_1 : {
-																	self   : '<div class="bus_date"></div>',
-																	branch : {
-																		place : {
-																			self : '<div class="bus_date_place">The University of the West of England, Frenchay Campus</div>'
-																		},
-																		date  : {
-																			self : '<div class="bus_date_date">16th, 17th May</div>'
-																		},
-																		mark : {
-																			self : '<div class="with-icon-bus-date-mark"></div>'
-																		}
-																	}
-																},
-																date_2 : {
-																	self   : '<div class="bus_date"></div>',
-																	branch : {
-																		place : {
-																			self : '<div class="bus_date_place">Swansea University</div>'
-																		},
-																		date  : {
-																			self : '<div class="bus_date_date">20th May</div>'
-																		},
-																		mark : {
-																			self : '<div class="with-icon-bus-date-mark"></div>'
-																		}
-																	}
-																},
-																date_3 : {
-																	self   : '<div class="bus_date"></div>',
-																	branch : {
-																		place : {
-																			self : '<div class="bus_date_place">University of West England, Treforest Campus</div>'
-																		},
-																		date  : {
-																			self : '<div class="bus_date_date">21st May</div>'
-																		},
-																		mark : {
-																			self : '<div class="with-icon-bus-date-mark"></div>'
-																		}
-																	}
-																},
-																date_4 : {
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
@@ -2343,35 +2261,35 @@
 																		}
 																	}
 																},
-																date_5 : {
+																date_1 : {
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">University of West England, Frenchay Campus</div>'
+																			self : '<div class="bus_date_place">Bristol University</div>'
 																		},
 																		date  : {
-																			self : '<div class="bus_date_date">24th May</div>'
+																			self : '<div class="bus_date_date">4th, 5th, 14th June</div>'
 																		},
 																		mark : {
 																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
-																date_6 : {
+																date_2 : {
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">UWIC</div>'
+																			self : '<div class="bus_date_place">Cardiff University</div>'
 																		},
 																		date  : {
-																			self : '<div class="bus_date_date">28th May</div>'
+																			self : '<div class="bus_date_date">6th, 7th, 13th June</div>'
 																		},
 																		mark : {
 																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
-																date_7 : {
+																date_3 : {
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
@@ -2385,76 +2303,62 @@
 																		}
 																	}
 																},
-																date_8 : {
+																date_4 : {
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
 																			self : '<div class="bus_date_place">Swansea University</div>'
 																		},
 																		date  : {
-																			self : '<div class="bus_date_date">30th, 31st May</div>'
+																			self : '<div class="bus_date_date">20th, 29th, 30th, 31st May</div>'
 																		},
 																		mark : {
 																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
-																date_9 : {
+																date_5 : {
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Bristol University</div>'
+																			self : '<div class="bus_date_place">The University of South Wales, Caerleon Campus</div>'
 																		},
 																		date  : {
-																			self : '<div class="bus_date_date">4th, 5th June</div>'
+																			self : '<div class="bus_date_date">14th, 15th, 21st May</div>'
 																		},
 																		mark : {
 																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
-																date_10 : {
+																date_6 : {
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Cardiff University</div>'
+																			self : '<div class="bus_date_place">The University of the West of England, Frenchay Campus</div>'
 																		},
 																		date  : {
-																			self : '<div class="bus_date_date">6th, 7th June</div>'
+																			self : '<div class="bus_date_date">16th, 17th, 24th May</div>'
 																		},
 																		mark : {
 																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
 																},
-																date_11 : {
+																date_7 : {
 																	self   : '<div class="bus_date"></div>',
 																	branch : {
 																		place : {
-																			self : '<div class="bus_date_place">Cardiff University</div>'
+																			self : '<div class="bus_date_place">UWIC</div>'
 																		},
 																		date  : {
-																			self : '<div class="bus_date_date">13th June</div>'
+																			self : '<div class="bus_date_date">28th May</div>'
 																		},
 																		mark : {
 																			self : '<div class="with-icon-bus-date-mark"></div>'
 																		}
 																	}
-																},
-																date_12 : {
-																	self   : '<div class="bus_date"></div>',
-																	branch : {
-																		place : {
-																			self : '<div class="bus_date_place">Bristol University</div>'
-																		},
-																		date  : {
-																			self : '<div class="bus_date_date">14th June</div>'
-																		},
-																		mark : {
-																			self : '<div class="with-icon-bus-date-mark"></div>'
-																		}
-																	}
-																}
+																}	
 															}
 														}
 													}
@@ -2966,7 +2870,7 @@
 																				self : '<div class="result_book_price_wrap"></div>',
 																				branch : {
 																					text : {
-																						self : '<span class="result_book_price_text">Sell for - </span>'
+																						self : '<span class="result_book_price_text">Sell for </span>'
 																					},
 																					price : {
 																						self : '<storng class="result_book_price"></storng>'
@@ -3526,7 +3430,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="First Name">'
+															self : '<input maxlength="22" type="text" class="field_box_input" placeholder="First Name">'
 														},
 														not_valid       : {
 															self : '<span class="with-icon-not-valid-field"></span>'
@@ -3568,7 +3472,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="Second Name">'
+															self : '<input maxlength="22" type="text" class="field_box_input" placeholder="Second Name">'
 														}
 													}
 												},
@@ -3577,9 +3481,6 @@
 													branch : {
 														title  			 : {
 															self : '<div class="field_box_input_title">Where shall we send your freepost pack</div>'
-														},
-														not_valid        : {
-															self : '<span class="with-icon-not-valid-field"></span>'
 														},
 														address_input    : {
 															instructions : {
@@ -3617,7 +3518,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="House name or number">'
+															self : '<input maxlength="200" type="text" class="field_box_input" placeholder="House name or number">'
 														},
 														town_input       : {
 															instructions : {
@@ -3655,7 +3556,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="Town/City">'
+															self : '<input maxlength="30" type="text" class="field_box_input" placeholder="Town/City">'
 														},
 														area_input       : {
 															instructions : {
@@ -3693,7 +3594,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="County">'
+															self : '<input maxlength="50" type="text" class="field_box_input" placeholder="County">'
 														},
 														post_code_input  : {
 															instructions : {
@@ -3731,7 +3632,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="Post Code">'
+															self : '<input maxlength="8" type="text" class="field_box_input" placeholder="Post Code">'
 														}
 													}
 												}
@@ -3832,7 +3733,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="Email address">'
+															self : '<input maxlength="30" type="text" class="field_box_input" placeholder="Email address">'
 														},
 														not_valid           : {
 															self : '<span class="with-icon-not-valid-field"></span>'
@@ -3847,7 +3748,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="field_box_input" placeholder="Confrim">'
+															self : '<input maxlength="30" type="text" class="field_box_input" placeholder="Confrim">'
 														}
 													}						
 												},
@@ -3908,7 +3809,7 @@
 																	}
 																}
 															},
-															self : '<input type="password" class="field_box_input" placeholder="Password">'
+															self : '<input maxlength="30" type="password" class="field_box_input" placeholder="Password">'
 														},
 														not_valid      		   : {
 															self : '<span class="with-icon-not-valid-field"></span>'
@@ -3923,7 +3824,7 @@
 																	}
 																}
 															},
-															self : '<input type="password" class="field_box_input" placeholder="Confirm">'
+															self : '<input maxlength="30" type="password" class="field_box_input" placeholder="Confirm">'
 														}
 													}
 												}
@@ -6590,6 +6491,18 @@
 											},
 											self : '<input type="text" class="bus_control_spell_sum" placeholder="Type in total value here">'
 										},
+										type_sum : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.stock.bus.total = change.self.val();
+													}
+												}
+											},
+											self : '<input type="text" class="bus_control_spell_sum" placeholder="Type in total number here">'
+										},
 										controls : {
 											self : '<div class="bus_control_progress"></div>',
 											branch : {
@@ -6708,12 +6621,12 @@
 														if ( change.new !== "print" ) return;
 														var date, today;
 														date  = new Date();
-														today = date.getFullYear() +"/"+ date.getMonth() +"/"+ date.getDate();
+														today =  date.getDate() +"/"+ date.getMonth() +"/"+ date.getFullYear();
 														world.wrap.branch.stock.branch.print.branch.cheque_date.self.text(today);
 													}
 												}
 											},
-											self : '<div class="bus_control_print_cheque_date">date </div>'
+											self : '<div class="bus_control_print_cheque_date"></div>'
 										},
 										cheque_sum : {
 											instructions : {
@@ -6818,44 +6731,10 @@
 				}
 			};
 
-			world = world.manifest($('body'));
+			world          = world.manifest($('body'));
 			router.begin();
 			animate.scroll = true;
-			state.begin    = true;
-
-			var test = [
-				{	
-					asin : "1780873697",
-					author:"Paul Glendinning",
-					binding : "Paperback",
-					id : 0,
-					image : "http://ecx.images-amazon.com/images/I/51-mYD0PU7L._SL160_.jpg",
-					isbn : "1780873697",
-					lowest_new_price:"243",
-					lowest_used_price:"207",
-					number_in_stock:"1",
-					pages:"416",
-					price:6.99	,
-					title:"Maths in Minutes"
-				},
-				{	
-					asin : "1780873697",
-					author:"Paul Glendinning...",
-					binding : "Paperback",
-					id : 0,
-					image : "http://ecx.images-amazon.com/images/I/51-mYD0PU7L._SL160_.jpg",
-					isbn : "1780873697",
-					lowest_new_price:"243",
-					lowest_used_price:"207",
-					number_in_stock:"1",
-					pages:"416",
-					price:6.99	,
-					title:"Maths in M..."
-				}
-			];
-
-			// for ( var part in state.viewed_item.parts ) state.viewed_item.parts[part] = test[0][part];
-			// 	state.viewed_item.show = true;				
+			state.begin    = true;		
 		});									
 	</script>
 

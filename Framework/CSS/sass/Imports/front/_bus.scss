@@ -5,13 +5,44 @@ $bus_left_width: 520px;
 	margin: 0 auto;
 } 
 
+.bus_header_wrap {
+	width: 910px;
+	padding: 0 10px;
+	float: left;
+	background: $light;
+}
+
+.bus_header {
+	width: 100%;
+	text-align: center;
+	margin: 10px 0;
+	border: 1px solid $middle_monochrome;
+	padding: 10px 0;
+	text-align: center;
+	color: $black_gray;
+	float: left;
+}
+
+.bus_header_title {
+	font-family: MotorOil;
+	font-size: 14px;
+	text-transform: uppercase;
+	display: inline;
+	margin-right: 10px;
+}
+
+.bus_header_text {
+	font-size: 14px;
+	display: inline;
+}
+
 .bus_image {
 	width : 105.5%; 
 	z-index : 1;
 	position : relative;
 	left : -10px;
 	height: auto;
-	margin-top: 20px;
+	// margin-top: 20px;
 	margin-bottom : -10px; 
 	float: left;
 } 
