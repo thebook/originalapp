@@ -282,7 +282,7 @@
 					instructions : {
 						email : function (wake) {
 
-							wake.text += "<p>Many Thanks,</p><p>The Recyclabook Team</p><p>We give out some MAD prizes.</p><p>Give us a like, give us a follow and we’ll give you a pony (maybe).</p><p><a href=\"Facebook.com/Recyclabook\">Facebook.com/Recyclabook</a></p><p><a href=\"Twitter.com/Recyclabook\">Twitter.com/Recyclabook</a></p>";
+							wake.text += '<p>Many Thanks,</p><p>The Recyclabook Team</p><p>We give out some MAD prizes.</p><p>Like us on Facebook or follow us on Twitter for a chance to win some great prizes including a brand new Mango Bike</p><p><a target="_blank" href="www.Facebook.com/Recyclabook">Facebook.com/Recyclabook</a></p><p><a target="_blank" href="www.Twitter.com/Recyclabook">Twitter.com/Recyclabook</a></p>';
 
 							$.post(ajaxurl, {
 								action : "set_email",
@@ -301,8 +301,9 @@
 								property : "log_out",
 								call     : function (change) {
 									if ( !change.new ) return;
-									state.signed = false;
+									state.signed          = false;
 									state.process.log_out = false;
+									router.change_url("/");
 									for ( var part in state.addresses[0] ) state.addresses[0][part] = "";
 									for ( var part in state.account ) state.account[part] = preset.account[part];
 								}
@@ -432,42 +433,6 @@
 									console.log(state.account);
 								}
 							},
-							{
-								who      : state.process,
-								property : "false_register",
-								call     : function (change) {
-									if ( !change.new ) return;
-									state.addresses[0].address   = "none";
-									state.addresses[0].town      = "none";
-									state.addresses[0].area      = "none";
-									state.addresses[0].post_code = "AAAAAAA";
-									state.account.first_name     = ( state.account.first_name.length > 0? state.account.first_name : "none" );
-									state.account.second_name    = ( state.account.second_name.length > 0? state.account.second_name : "none" );
-									state.account.password       = Math.random().toFixed(7).slice(2);
-									
-									$.post( ajaxurl, { 
-										action      : "set_account",
-										method      : "new_account",
-										paramaters  : {
-											account : state.account
-										}
-									}, function () {
-
-										state.addresses[0].user = state.account.email;
-										$.post( ajaxurl, {
-											action : "set_account",
-											method : "new_address",
-											paramaters : {
-												address : state.addresses[0]
-											}
-										}, function () {
-											state.signed                 = true;
-											state.process.false_register = false;
-										},"json");
-									},"json");
-									console.log(state.account);
-								}
-							},
 							{ 
 								who      : state, 
 								property : "save_account",
@@ -514,31 +479,41 @@
 								call     : function (change) {
 									if ( !change.new ) return;
 
-									var price_promise, added_books;
-										if ( state.account.price_promise === null ) state.account.price_promise = [];
-										price_promise = state.account.price_promise.concat(book.basket);
-										state.account.price_promise = price_promise;
-										added_books   = "<ul>";
-										for (var index = 0; index < book.basket.length; index++) {
-											added_books += "<li>"+ book.basket[index].title +"</li>";
-										};
-										added_books             += "</ul>";
-										book.basket              = [];
-										state.save_account       = true;
-										state.give_price_promise = false;
+									var price_promise, added_books, email_text;
+									
+									if ( state.account.price_promise === null ) state.account.price_promise = [];
+									price_promise = state.account.price_promise.concat(book.basket);
+									state.account.price_promise = price_promise;
+									added_books   = "<ul>";
+									for (var index = 0; index < book.basket.length; index++) {
+										added_books += "<li>"+ book.basket[index].title +"</li>";
+									};
+									added_books             += "</ul>";
+									book.basket              = [];
+									state.save_account       = true;
+									state.give_price_promise = false;
+
+									email = "<p>Hi "+ state.account.first_name +"</p>"+
+									"<p>You have added the following books to your price promise basket.</p>"+ 
+										added_books +
+									"<p>"+
+										"The the prices of books and quotes we give can change,"+
+										"the price promise basket: is our way of promising that"+
+										"we will give you the price quoted on that day for your books,"+ 
+										"so you don't have to worry"+
+									"</p>"+
+									"<p> Your Price Promise Expires In Two Weeks.</p>"+
+									"<p>"+
+										"To check on your price promise basket, and add any new books, visit"+
+										"<a href=\"www.recyclabook.com\">Recyclabook</a>,"+
+										"where you can log in and monitor what is going on with your books though your account hub."+
+									"</p>";
 
 									world.wrap.instructions.email({
 										email   : state.account.email,
 										name    : state.account.first_name +", "+ state.account.second_name,
 										subject : "New books have been added to your price promise",
-										text    : "<p>Hi "+ state.account.first_name +"</p><p>You have added the following books to your price promise basket.</p>"+ added_books +"<p>Because, the prices of books and quotes we give can change, the price promise basket is our way of promising that we will give you the price quoted on that day for your books, so you dont have to worry</p><p> We will be expecting for your books to arrive </p><p> To check on your price promise basket, and add any new books, visit <a href=\"recyclabook.com\">Recyclabook</a>, where you can log in and monitor what is going on with your books though your account hub.</p>"
-									});
-
-									world.wrap.instructions.email({
-										email   : "recyclabook@gmail.com",
-										name    : "Recyclaguys",
-										subject : "User added books",
-										text    : "<p>You guys a user with the username :"+ state.account.email +"</p><p> and name "+ state.account.first_name +", "+ state.account.second_name +"</p><p> has added these books to their price promise basket"+ added_books +"</p>"
+										text    : email
 									});
 								}
 							},
@@ -1482,7 +1457,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="user_pop_up_option_input" placeholder="Username">'
+															self : '<input type="text" class="user_pop_up_option_input" placeholder="Email">'
 														},
 														password : {
 															instructions : {
@@ -2459,7 +2434,7 @@
 																	the_event : "keyup",
 																	is_asslep : false,
 																	call      : function (change) { 
-																		if ( !state.signed ) state.account.university = change.self.val();
+																		state.account.university = change.self.val();
 																	}	
 																}	
 															},
@@ -2472,45 +2447,32 @@
 																		who      : state.account,
 																		property : "recieve_newsletter",
 																		call     : function (change) {
-																			// var self = world.wrap.branch.bus.branch.right_split.branch.notify.branch.body.branch.button;
-																			// if ( change.new === 1 && state.account.university.length > 2 
-																			// if ( ( change.new === 1 || change.new === "1" ) && state.account.university.length > 2 ) { 
-																			// 	self.self.text("You have signed up");
-																			// } else { 
-																			// 	self.self.text("Submit for reminders");
-																			// }
+																			var self = world.wrap.branch.bus.branch.right_split.branch.notify.branch.body.branch.button;
+
+																			if ( change.new === "1" && state.account.university.length > 2 ) {
+																				self.self.text("You have signed up!");
+																			} 
+																			else if (change.new === "1" && state.account.university.length < 2 ) {
+																				self.self.text("You have not given us your University");
+																			} 
+																			else {
+																				self.self.text("Submit for reminders");
+																			}
 																		}
 																	}
 																],
 																on : { 
 																	the_event : "click", 
 																	is_asslep : false,
-																	call      : function (change) { 
-																		// if ( state.signed && state.account.recieve_newsletter === 1 ) return;
-																		// if ( state.signed && state.account.recieve_newsletter === 0 ) {
-																		// 	state.account.recieve_newsletter = 1;
-																		// 	state.save_account = true;
-																		// } else {
-
-																		// }
-
-																		// }
-																		// if ( state.account.email.trim() === "") return;
-																		// if ( state.account.recieve_newsletter === 1 || state.account.recieve_newsletter === "1" ) return;
-																		// if ( state.signed ) {
-																		// 	state.account.recieve_newsletter = 1;
-																		// 	state.save_account = true;
-																		// } else { 
-																		// 	state.addresses[0].address        = "None";
-																		// 	state.addresses[0].town           = "None";
-																		// 	state.addresses[0].area           = "None";
-																		// 	state.addresses[0].post_code      = "None..";
-																		// 	state.account.recieve_newsletter  = 1;
-																		// 	state.account.first_name          = state.account.email;
-																		// 	state.account.second_name         = "None";
-																		// 	state.account.password            = Math.random().toFixed(7).slice(2);
-																		// 	state.registration.password.match = state.account.password;
-																		// }
+																	call      : function (change) {
+																		if ( state.account.university.trim() === "") return;
+																		if ( state.account.email.trim() === "") return;
+																		if ( state.signed ) {
+																			state.account.recieve_newsletter = "1";
+																			state.save_account               = true;
+																		} else {	
+																			state.process.false_register = true;
+																		}
 																	}
 																}
 															},
@@ -4284,7 +4246,7 @@
 																	}
 																}
 															},
-															self : '<div class="how_would_you_like_tab_title_active">Contains: instructions and a freepost envelope"</div>'
+															self : '<div class="how_would_you_like_tab_title_active">We send you a freepost pack</div>'
 														},
 														tab_two : {
 															instructions : {
@@ -4296,7 +4258,7 @@
 																	}
 																}
 															},
-															self : '<div class="how_would_you_like_tab_title">Use your own postage</div>'
+															self : '<div class="how_would_you_like_tab_title">Use your own postage with freepost code</div>'
 														}
 													}
 												},
