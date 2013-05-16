@@ -6203,32 +6203,34 @@
 														observe : {
 															who      : state.stock,
 															property : "page",
-															call     : function () {
+															call     : function (change) {
+																if ( change.new !== "freepost" ) return;
+																$.get(ajaxurl, {
+																	action     : "get_ticket",
+																	method     : "freepost",
+																	paramaters : {}
+																}, function (response) {
+																	console.log(response);
+																	var items = world.wrap.branch.stock.branch.freepost.branch.ticket.branch.requests.self;
 
+																	for (var index = 0; index < response.return.length; index++) {
+																		var ticket = response.return[index];
+																		$('<div class="stock_freepost_ticket">'+
+																			'<div class="stock_freepost_ticket_name">'+ ticket.first_name +', '+ ticket.second_name +'</div>'+
+																			'<div class="stock_freepost_ticket_address">'+ ticket.address +'</div>'+
+																			'<div class="stock_freepost_ticket_town">'+ ticket.town +'</div>'+
+																			'<div class="stock_freepost_ticket_county">'+ ticket.area +'</div>'+
+																			'<div class="stock_freepost_ticket_post_code">'+ ticket.post_code +'</div>'+
+																			'<div class="stock_freepost_ticket_done">Done</div>'+
+																		'</div>').appendTo(items);
+																	};
+																	
+
+																}, "json");
 															}
 														}
 													},
-													self   : '<div class="stock_freepost_ticket_requests"></div>',
-													branch : {
-														name : {
-															self : '<div class="stock_freepost_ticket_name">Joe, Mc Joe</div>',
-														},
-														address :{
-															self : '<div class="stock_freepost_ticket_address">30 The Grange</div>'
-														},
-														town : {
-															self : '<div class="stock_freepost_ticket_town">Cardiff</div>'
-														},
-														country : {
-															self : '<div class="stock_freepost_ticket_address">Susexs</div>'
-														},
-														post_code : {
-															self : '<div class="stock_freepost_ticket_post_code">CF6LK</div>'
-														},
-														ticked : {
-															self : '<div class="stock_freepost_ticket_done">Done</div>'
-														}
-													}
+													self   : '<div class="stock_freepost_ticket_requests"></div>'
 												}
 											}
 										}

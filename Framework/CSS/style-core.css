@@ -4428,7 +4428,8 @@ body {
   float: left;
   background: whitesmoke;
   color: #555555;
-  z-index: 99; }
+  z-index: 99;
+  overflow: auto; }
 
 .stock_bar {
   width: 50%;
@@ -4600,7 +4601,8 @@ body {
 .stock_freepost {
   width: 70%;
   margin: 10px 15%;
-  float: left; }
+  float: left;
+  overflow: auto; }
 
 .stock_freepost_ticket {
   width: 100%;
@@ -4639,5 +4641,9 @@ body {
   font-weight: bold; }
 
 .stock_freepost_ticket_requests {
+  width: 100%;
+  float: left; }
+
+.stock_freepost_ticket {
   width: 100%;
   float: left; }

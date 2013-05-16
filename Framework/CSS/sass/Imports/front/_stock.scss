@@ -7,6 +7,7 @@
 	background: $light_monochrome;
 	color: $black_gray;
 	z-index: 99;
+	overflow: auto;
 }
 
 @import "stock.bar";

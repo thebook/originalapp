@@ -2,6 +2,7 @@
 	width: 70%;
 	margin: 10px 15%;
 	float: left;
+	overflow: auto;
 }
 
 .stock_freepost_ticket {
@@ -57,6 +58,11 @@
 }
 
 .stock_freepost_ticket_requests {
+	width: 100%;
+	float: left;
+}
+
+.stock_freepost_ticket {
 	width: 100%;
 	float: left;
 }
