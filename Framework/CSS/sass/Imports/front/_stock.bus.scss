@@ -1,14 +1,14 @@
 $bus_control_width: 40%;
 
 .bus_control_wrap {
-	position: fixed;
 	display: none;
 	width: 100%;
 	height: 100%;
 	float: left;
 	background: $light_monochrome;
 	color: $black_gray;
-	z-index: 99;
+	// position: fixed;
+	// z-index: 99;
 }
 
 .bus_control_slide {

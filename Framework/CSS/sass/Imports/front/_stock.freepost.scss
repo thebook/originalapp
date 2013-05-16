@@ -1,0 +1,86 @@
+.stock_freepost {
+	width: 70%;
+	margin: 10px 15%;
+	float: left;
+}
+
+.stock_freepost_ticket {
+	width: 100%;
+	float: left;
+	padding: 10px 0;
+}
+
+.stock_freepost_ticket_part { 
+	display: inline-block;
+	float: left;
+	width: 16%;
+	font-size: 14px;
+	line-height: 16px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+
+.stock_freepost_ticket_header {
+	float: left;
+	width: 100%;
+}
+
+.stock_freepost_ticket_name_header {
+	@extend.stock_freepost_ticket_part;
+	font-weight: bold;
+}
+
+.stock_freepost_ticket_address_header {
+	@extend.stock_freepost_ticket_part;
+	font-weight: bold;
+}
+
+.stock_freepost_ticket_town_header {
+	@extend.stock_freepost_ticket_part;
+	font-weight: bold;
+}
+
+.stock_freepost_ticket_county_header {
+	@extend.stock_freepost_ticket_part;
+	font-weight: bold;
+}
+
+.stock_freepost_ticket_post_code_header {
+	@extend.stock_freepost_ticket_part;
+	font-weight: bold;
+}
+
+.stock_freepost_ticket_done_header {
+	@extend.stock_freepost_ticket_part;	
+	font-weight: bold;
+}
+
+.stock_freepost_ticket_requests {
+	width: 100%;
+	float: left;
+}
+
+.stock_freepost_ticket_name {
+	@extend.stock_freepost_ticket_part;
+}
+
+.stock_freepost_ticket_address {
+	@extend.stock_freepost_ticket_part;
+}
+
+.stock_freepost_ticket_town {
+	@extend.stock_freepost_ticket_part;
+}
+
+.stock_freepost_ticket_county {
+	@extend.stock_freepost_ticket_part;
+}
+
+.stock_freepost_ticket_post_code {
+	@extend.stock_freepost_ticket_part;
+}
+
+.stock_freepost_ticket_done {
+	@extend.stock_freepost_ticket_part;	
+}

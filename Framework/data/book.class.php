@@ -183,6 +183,12 @@ class book extends alpha
 		));
 	}
 
+	public function get_table ()
+	{
+		$table = new table_creator;
+		return $table->get_all_rows($this->book_table);
+	}
+
 	public function set_book ($array_of_books)
 	{
 		$table = new table_creator;

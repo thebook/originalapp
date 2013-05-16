@@ -4420,7 +4420,7 @@ body {
     transition: all 500ms ease;
     background: #abd146; }
 
-.bus_control_wrap {
+.stock {
   position: fixed;
   display: none;
   width: 100%;
@@ -4429,6 +4429,30 @@ body {
   background: whitesmoke;
   color: #555555;
   z-index: 99; }
+
+.stock_bar {
+  width: 50%;
+  padding: 20px 25%;
+  float: left; }
+
+.stock_bar_navigation {
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  margin-right: 20px;
+  text-transform: uppercase;
+  font-style: 13px;
+  line-height: 13px; }
+  .stock_bar_navigation:hover {
+    text-decoration: underline; }
+
+.bus_control_wrap {
+  display: none;
+  width: 100%;
+  height: 100%;
+  float: left;
+  background: whitesmoke;
+  color: #555555; }
 
 .bus_control_slide {
   padding: 1% 0;
@@ -4572,3 +4596,48 @@ body {
   position: absolute;
   top: 227.8mm;
   left: 152.5mm; }
+
+.stock_freepost {
+  width: 70%;
+  margin: 10px 15%;
+  float: left; }
+
+.stock_freepost_ticket {
+  width: 100%;
+  float: left;
+  padding: 10px 0; }
+
+.stock_freepost_ticket_part, .stock_freepost_ticket_name_header, .stock_freepost_ticket_address_header, .stock_freepost_ticket_town_header, .stock_freepost_ticket_county_header, .stock_freepost_ticket_post_code_header, .stock_freepost_ticket_done_header, .stock_freepost_ticket_name, .stock_freepost_ticket_address, .stock_freepost_ticket_town, .stock_freepost_ticket_county, .stock_freepost_ticket_post_code, .stock_freepost_ticket_done {
+  display: inline-block;
+  float: left;
+  width: 16%;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  margin-bottom: 10px; }
+
+.stock_freepost_ticket_header {
+  float: left;
+  width: 100%; }
+
+.stock_freepost_ticket_name_header {
+  font-weight: bold; }
+
+.stock_freepost_ticket_address_header {
+  font-weight: bold; }
+
+.stock_freepost_ticket_town_header {
+  font-weight: bold; }
+
+.stock_freepost_ticket_county_header {
+  font-weight: bold; }
+
+.stock_freepost_ticket_post_code_header {
+  font-weight: bold; }
+
+.stock_freepost_ticket_done_header {
+  font-weight: bold; }
+
+.stock_freepost_ticket_requests {
+  width: 100%;
+  float: left; }

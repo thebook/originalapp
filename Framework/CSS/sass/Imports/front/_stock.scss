@@ -1,1 +1,14 @@
+.stock { 
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	float: left;
+	background: $light_monochrome;
+	color: $black_gray;
+	z-index: 99;
+}
+
+@import "stock.bar";
 @import "stock.bus";
+@import "stock.freepost";
