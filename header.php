@@ -6226,7 +6226,7 @@
 																	method     : "freepost",
 																	paramaters : {}
 																}, function (response) {
-																	console.log(response);
+
 																	var items = world.wrap.branch.stock.branch.freepost.branch.ticket.branch.requests.self;
 
 																	for (var index = 0; index < response.return.length; index++) {
@@ -6240,8 +6240,6 @@
 																			'<div class="stock_freepost_ticket_done">Done</div>'+
 																		'</div>').appendTo(items);
 																	};
-																	
-
 																}, "json");
 															}
 														}
@@ -6273,7 +6271,7 @@
 											self : '<div class="stock_book_header"></div>',
 											branch : {
 												sku : {
-														self : '<div class="stock_book_sku_header">sku</div>'
+														self : '<div class="stock_book_sku_header">item sku</div>'
 												},
 												section : {
 													self : '<div class="stock_book_section_header ">section</div>'
@@ -6318,6 +6316,46 @@
 													self : '<div class="stock_book_main_image_url_header ">main image url</div>'
 												}
 											}
+										},
+										books : {
+											instructions : {
+												observe : {
+													who      : state.stock,
+													property : "page",
+													call     : function (change) {
+														if ( change.new !== "book" ) return;
+														$.get(ajaxurl, {
+															action     : "get_book",
+															method     : "table",
+															paramaters : {}
+														}, function (response) {
+															console.log(response);
+															var items = world.wrap.branch.stock.branch.book.branch.books.self;
+															for (var index = 0; index < response.return.length; index++) {
+																var ticket = response.return[index];
+																$('<div class="stock_book_item">'+
+																	'<div class="stock_book_sku">'+                      ticket.item_sku                 +'</div>'+
+																	'<div class="stock_book_section">'+                  ticket.section                  +'</div>'+
+																	'<div class="stock_book_level">'+                    ticket.level                    +'</div>'+
+																	'<div class="stock_book_number">'+                   ticket.number                   +'</div>'+
+																	'<div class="stock_book_external_product_id">'+      ticket.external_product_id      +'</div>'+
+																	'<div class="stock_book_external_product_id_type">'+ ticket.external_product_id_type +'</div>'+
+																	'<div class="stock_book_item_name">'+                ticket.item_name                +'</div>'+
+																	'<div class="stock_book_author">'+                   ticket.author                   +'</div>'+
+																	'<div class="stock_book_binding">'+			         ticket.binding                  +'</div>'+
+																	'<div class="stock_book_publication_date">'+         ticket.publication_date         +'</div>'+
+																	'<div class="stock_book_standard_price">'+           ticket.standard_price           +'</div>'+
+																	'<div class="stock_book_quantaty">'+                 ticket.quantaty                 +'</div>'+
+																	'<div class="stock_book_condition_type">'+           ticket.condition_type           +'</div>'+
+																	'<div class="stock_book_product_description">'+      ticket.product_description      +'</div>'+
+																	'<div class="stock_book_main_image_url ">'+          ticket.main_image_url           +'</div>'+
+																'</div>').appendTo(items);
+															}
+														}, "json");
+													}
+												}
+											},
+											self : '<div class="stock_book_items"></div>'
 										}
 									}
 								},

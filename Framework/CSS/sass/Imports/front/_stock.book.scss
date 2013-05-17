@@ -2,7 +2,6 @@
 	width      : 90%;
 	margin     : 10px 5%;
 	float      : left;
-	overflow   : auto;
 	font-size  : 12px;
 	line-height: 14px;
 }
@@ -13,70 +12,145 @@
 	margin: 7px 0;
 }
 
-.stock_book_part {
+.stock_book_header_part {
 	float  : left;
 	display: inline-block;
 	width  : 6.5%;
 	font-weight: bold;
 }
 
+.stock_book_part {
+	float  : left;
+	display: inline-block;
+	width  : 6.5%;
+}
+
 .stock_book_sku_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_section_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_level_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_number_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_external_product_id_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_external_product_id_type_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_item_name_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_author_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_binding_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_publication_date_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_standard_price_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_quantaty_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_condition_type_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_product_description_header {
-	@extend.stock_book_part;
+	@extend.stock_book_header_part;
 }
 
 .stock_book_main_image_url_header {
+	@extend.stock_book_header_part;
+}
+
+.stock_book_item {
+
+	width: 100%;
+	float: left;
+	margin-top: 15px;
+	padding-bottom: 20px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid $middle_monochrome;
+}
+
+.stock_book_sku {
 	@extend.stock_book_part;
 }
 
+.stock_book_section {
+	@extend.stock_book_part;
+}
+
+.stock_book_level {
+	@extend.stock_book_part;
+}
+
+.stock_book_number {
+	@extend.stock_book_part;
+}
+
+.stock_book_external_product_id {
+	@extend.stock_book_part;
+}
+
+.stock_book_external_product_id_type {
+	@extend.stock_book_part;
+}
+
+.stock_book_item_name {
+	@extend.stock_book_part;
+}
+
+.stock_book_author {
+	@extend.stock_book_part;
+}
+
+.stock_book_binding {
+	@extend.stock_book_part;
+}
+
+.stock_book_publication_date {
+	@extend.stock_book_part;
+}
+
+.stock_book_standard_price {
+	@extend.stock_book_part;
+}
+
+.stock_book_quantaty {
+	@extend.stock_book_part;
+}
+
+.stock_book_condition_type {
+	@extend.stock_book_part;
+}
+
+.stock_book_product_description {
+	@extend.stock_book_part;
+}
+
+.stock_book_main_image_url {
+	@extend.stock_book_part;
+}

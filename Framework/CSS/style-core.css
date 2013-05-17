@@ -4652,7 +4652,6 @@ body {
   width: 90%;
   margin: 10px 5%;
   float: left;
-  overflow: auto;
   font-size: 12px;
   line-height: 14px; }
 
@@ -4661,8 +4660,21 @@ body {
   float: left;
   margin: 7px 0; }
 
-.stock_book_part, .stock_book_sku_header, .stock_book_section_header, .stock_book_level_header, .stock_book_number_header, .stock_book_external_product_id_header, .stock_book_external_product_id_type_header, .stock_book_item_name_header, .stock_book_author_header, .stock_book_binding_header, .stock_book_publication_date_header, .stock_book_standard_price_header, .stock_book_quantaty_header, .stock_book_condition_type_header, .stock_book_product_description_header, .stock_book_main_image_url_header {
+.stock_book_header_part, .stock_book_sku_header, .stock_book_section_header, .stock_book_level_header, .stock_book_number_header, .stock_book_external_product_id_header, .stock_book_external_product_id_type_header, .stock_book_item_name_header, .stock_book_author_header, .stock_book_binding_header, .stock_book_publication_date_header, .stock_book_standard_price_header, .stock_book_quantaty_header, .stock_book_condition_type_header, .stock_book_product_description_header, .stock_book_main_image_url_header {
   float: left;
   display: inline-block;
   width: 6.5%;
   font-weight: bold; }
+
+.stock_book_part, .stock_book_sku, .stock_book_section, .stock_book_level, .stock_book_number, .stock_book_external_product_id, .stock_book_external_product_id_type, .stock_book_item_name, .stock_book_author, .stock_book_binding, .stock_book_publication_date, .stock_book_standard_price, .stock_book_quantaty, .stock_book_condition_type, .stock_book_product_description, .stock_book_main_image_url {
+  float: left;
+  display: inline-block;
+  width: 6.5%; }
+
+.stock_book_item {
+  width: 100%;
+  float: left;
+  margin-top: 15px;
+  padding-bottom: 20px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #d8d8d8; }
