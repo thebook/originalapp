@@ -4647,3 +4647,22 @@ body {
 .stock_freepost_ticket {
   width: 100%;
   float: left; }
+
+.stock_book {
+  width: 90%;
+  margin: 10px 5%;
+  float: left;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 14px; }
+
+.stock_book_header {
+  width: 100%;
+  float: left;
+  margin: 7px 0; }
+
+.stock_book_part, .stock_book_sku_header, .stock_book_section_header, .stock_book_level_header, .stock_book_number_header, .stock_book_external_product_id_header, .stock_book_external_product_id_type_header, .stock_book_item_name_header, .stock_book_author_header, .stock_book_binding_header, .stock_book_publication_date_header, .stock_book_standard_price_header, .stock_book_quantaty_header, .stock_book_condition_type_header, .stock_book_product_description_header, .stock_book_main_image_url_header {
+  float: left;
+  display: inline-block;
+  width: 6.5%;
+  font-weight: bold; }

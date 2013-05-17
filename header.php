@@ -6156,6 +6156,18 @@
 												}
 											},
 											self : '<div class="stock_bar_navigation">Freepost</div>'
+										},
+										book : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														state.stock.page = "book";
+													}
+												}
+											},
+											self : '<div class="stock_bar_navigation">Book</div>'
 										}
 									}
 								},
@@ -6235,6 +6247,75 @@
 														}
 													},
 													self   : '<div class="stock_freepost_ticket_requests"></div>'
+												}
+											}
+										}
+									}
+								},
+								book : {
+									instructions : {
+										observe : {
+											who      : state.stock,
+											property : "page",
+											call     : function (change) {
+												var self = world.wrap.branch.stock.branch.book.self;
+												if ( change.new === "book" ) {
+													self.css({ display : "block" });
+												} else { 
+													self.css({ display : "none" });
+												}
+											}
+										}
+									},
+									self : '<div class="stock_book"></div>',
+									branch : {
+										header : {
+											self : '<div class="stock_book_header"></div>',
+											branch : {
+												sku : {
+														self : '<div class="stock_book_sku_header">sku</div>'
+												},
+												section : {
+													self : '<div class="stock_book_section_header ">section</div>'
+												},
+												level : {
+													self : '<div class="stock_book_level_header ">level</div>'
+												},
+												number : {
+													self : '<div class="stock_book_number_header ">number</div>'
+												},
+												external_product_id : {
+													self : '<div class="stock_book_external_product_id_header ">product id </div>'
+												},
+												external_product_id_type : {
+													self : '<div class="stock_book_external_product_id_type_header ">product id type</div>'
+												},
+												item_name : {
+													self : '<div class="stock_book_item_name_header ">item name</div>'
+												},
+												author : {
+													self : '<div class="stock_book_author_header ">author</div>'
+												},
+												binding : {
+													self : '<div class="stock_book_binding_header ">binding</div>'
+												},
+												publication_date : {
+													self : '<div class="stock_book_publication_date_header ">publication date</div>'
+												},
+												standard_price : {
+													self : '<div class="stock_book_standard_price_header ">standard price</div>'
+												},
+												quantaty : {
+													self : '<div class="stock_book_quantaty_header ">quantaty</div>'
+												},
+												condition_type : {
+													self : '<div class="stock_book_condition_type_header ">condition type</div>'
+												},
+												product_description : {
+													self : '<div class="stock_book_product_description_header ">product description</div>'
+												},
+												main_image_url : {
+													self : '<div class="stock_book_main_image_url_header ">main image url</div>'
 												}
 											}
 										}
