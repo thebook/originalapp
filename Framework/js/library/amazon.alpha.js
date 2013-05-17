@@ -93,7 +93,7 @@ var alpha = (function ( alpha, $ ) {
 			if ( price > new_price ) price = new_price;
 			if ( books[index].dimensions && books[index].dimensions.Weight && books[index].dimensions.Weight !== "0" ) weight = books[index].dimensions.Weight;
 			price /= 100;
-			price *= 0.8;
+			price *= 0.7;
 			if ( price > retail_price ) return;
 			weight = (weight/100) * 453;
 			for (var i = 0; i < weights.length; i++) {

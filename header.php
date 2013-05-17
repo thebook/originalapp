@@ -696,10 +696,14 @@
 													part.price = "0.00";
 													part.id    = "remove";
 												} else { 
-													part.price = books[0].price;
-													part.title = books[0].title;
-													part.isbn  = books[0].isbn;
-													part.id    = state.stock.bus.basket.length;
+													if ( books.length > 1 ) books.splice(1,1);
+													books[0].price  = parseFloat( books[0].price );
+													books[0].price *= 1.2;
+													books[0].price  = books[0].price.toFixed(2);
+													part.price  = books[0].price;
+													part.title  = books[0].title;
+													part.isbn   = books[0].isbn;
+													part.id     = state.stock.bus.basket.length;
 												}
 
 												basket                 = state.stock.bus.basket.concat(books)
@@ -6588,7 +6592,7 @@
 															the_event : "keyup",
 															is_asslep : false,
 															call      : function (change) {
-																state.stock.bus.total = change.self.val();
+																state.stock.bus.final_total = change.self.val();
 															}
 														}
 													},
