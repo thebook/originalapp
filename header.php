@@ -185,6 +185,9 @@
 				state.stock.bus.cheque_spell = 0;
 				state.stock.bus.test_mode    = true;
 
+				state.stock.book = {};
+				state.stock.book.books = [];
+
 
 			var router = new alpha.route({
 				on  : function () {
@@ -6267,6 +6270,53 @@
 									},
 									self : '<div class="stock_book"></div>',
 									branch : {
+										options : {
+											self : '<div class="stock_book_options"></div>',
+											branch : {
+												export_table : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																if ( state.stock.book.books.length === 0 ) return;
+																var books = state.stock.book.books,
+																	table = "<table><tbody>",
+																	heads = '<tr>'+
+																		'<td>item_sku</td>'+
+																		'<td>external_product_id</td>'+
+																		'<td>external_product_id_type</td>'+
+																		'<td>item_name</td>'+
+																		'<td>author</td>'+
+																		'<td>binding</td>'+
+																		'<td>publication_date</td>'+
+																		'<td>standard_price</td>'+
+																		'<td>quantaty</td>'+
+																		'<td>condition_type</td>'+
+																		'<td>product_description</td>'+
+																		'<td>main_image_url</td>';
+																	'</tr>';
+																	rows  = "";
+
+																	for (var index = 0; index < books.length; index++) {
+																		var row  = "<tr>", book = books[index];
+																		delete book.section;
+																		delete book.level;
+																		delete book.number;
+																		console.log(book);
+																		for ( var part in book ) row += "<td>"+ book[part] +"</td>"
+																		row  += "</tr>";
+																		rows += row;
+																	};
+																	table += heads + rows + "</tbody></table>";
+																	window.prompt("Copy this", table);
+															}
+														}
+													},
+													self : '<div class="stock_book_options_button">Export</div>'
+												}
+											}
+										},
 										header : {
 											self : '<div class="stock_book_header"></div>',
 											branch : {
@@ -6329,7 +6379,7 @@
 															method     : "table",
 															paramaters : {}
 														}, function (response) {
-															console.log(response);
+															state.stock.book.books = response.return;
 															var items = world.wrap.branch.stock.branch.book.branch.books.self;
 															for (var index = 0; index < response.return.length; index++) {
 																var ticket = response.return[index];

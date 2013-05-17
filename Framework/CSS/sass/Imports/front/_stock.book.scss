@@ -6,6 +6,24 @@
 	line-height: 14px;
 }
 
+.stock_book_options {
+	width: 100%;
+	float: left;
+	margin-bottom: 15px;
+	font-size: 11px;
+	line-height: 11px;
+}
+
+.stock_book_options_button { 
+	padding: 5px 10px;
+	background: $black_gray;
+	color  : $light_monochrome;
+	float  : left;
+	display: inline-block;
+	cursor : pointer;
+	@include border-radius(3px);
+}
+
 .stock_book_header {
 	width: 100%;
 	float: left;

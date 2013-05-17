@@ -4655,6 +4655,23 @@ body {
   font-size: 12px;
   line-height: 14px; }
 
+.stock_book_options {
+  width: 100%;
+  float: left;
+  margin-bottom: 15px;
+  font-size: 11px;
+  line-height: 11px; }
+
+.stock_book_options_button {
+  padding: 5px 10px;
+  background: #555555;
+  color: whitesmoke;
+  float: left;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; }
+
 .stock_book_header {
   width: 100%;
   float: left;
