@@ -2,7 +2,7 @@ var alpha = (function ( alpha, $ ) {
 	// stoping recursive calls of a observer might be a good idea for future
 	alpha.observe = function (wake) { 
 
-		var present_value = wake.object[wake.property]; 
+		var present_value = wake.object[wake.property];
 
 		if (!wake.object.observers) {
 
@@ -19,7 +19,7 @@ var alpha = (function ( alpha, $ ) {
 			if ( wake.object.observers[wake.property][index] === wake.observer ) return;
 		}
 
-		wake.object.observers[wake.property].push(wake.observer);
+		wake.object.observers[wake.property].push({ observer : wake.observer, context : { self : wake.self, parent : wake.parent } } );
 
 
 		alpha.observe.prototype.define_object_accessor_property({
@@ -73,9 +73,9 @@ var alpha = (function ( alpha, $ ) {
 		}
 	};
 
-	alpha.observe.prototype.call_observers_of_an_object = function (wake) { 
+	alpha.observe.prototype.call_observers_of_an_object = function (wake) {
 		for (var observer in wake.object.observers[wake.property] ) {
-			wake.object.observers[wake.property][observer].call(wake.object, wake);
+			wake.object.observers[wake.property][observer].observer.call(wake.object.observers[wake.property][observer].context, wake);
 		}
 	};
 

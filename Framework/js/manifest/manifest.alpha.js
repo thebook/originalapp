@@ -33,18 +33,19 @@ var alpha = (function ( alpha, $ ) {
 			});
 		}
 
-		if ( instructions.observe ) this.observe(instructions.observe);
+		if ( instructions.observe ) this.observe(parent, self, instructions.observe);
 
 		if ( instructions.observers ) {
-			for (var index = 0; index < instructions.observers.length; index++) this.observe(instructions.observers[index]);
+			for (var index = 0; index < instructions.observers.length; index++) this.observe(parent, self, instructions.observers[index]);
 		}
 
 		return instructions;
 	};
 
-	alpha.thought.prototype.observe = function (instructions) { 
-
+	alpha.thought.prototype.observe = function (parent, self, instructions) { 
 		var observer = new alpha.observe({
+			self     : self,
+			parent   : parent,
 			object   : instructions.who,
 			property : instructions.property,
 			observer : instructions.call
