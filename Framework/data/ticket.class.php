@@ -295,6 +295,12 @@ class ticket extends alpha
 		$table->add_row_to_table($this->freepost_table, $array_of_information );
 	}
 
+	public function set_remove_freepost ($id)
+	{
+		$table = new table_creator;
+		$table->delete_row($this->freepost_table, 'id', $id);
+	}
+
 	public function set_cheque ($array_of_information)
 	{
 		$table = new table_creator;

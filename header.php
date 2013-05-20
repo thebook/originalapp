@@ -6219,6 +6219,24 @@
 												},
 												requests : {
 													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+
+																if ( change.event.target.className !== "stock_freepost_ticket_done" ) return;
+																if ( confirm("Delete this freepost request?") ) {
+																	$.post(ajaxurl, {
+																		action : "set_ticket",
+																		method : "remove_freepost",
+																		paramaters : {
+																			id : change.event.target.id
+																		}
+																	}, function () {}, "json");
+																	$(change.event.target).parent().empty().remove();
+																}
+															}
+														},
 														observe : {
 															who      : state.stock,
 															property : "page",
@@ -6240,7 +6258,7 @@
 																			'<div class="stock_freepost_ticket_town">'+ ticket.town +'</div>'+
 																			'<div class="stock_freepost_ticket_county">'+ ticket.area +'</div>'+
 																			'<div class="stock_freepost_ticket_post_code">'+ ticket.post_code +'</div>'+
-																			'<div class="stock_freepost_ticket_done">Done</div>'+
+																			'<div id="'+ ticket.id +'" class="stock_freepost_ticket_done">Done</div>'+
 																		'</div>').appendTo(items);
 																	};
 																}, "json");
