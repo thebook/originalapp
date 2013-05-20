@@ -132,11 +132,8 @@
 				state.password         = {};
 				state.password.mistake = false;
 
-				state.withdraw     = 0.00;
-				state.log_in       = {};
-				state.log_in.where = "";
-				state.log_in.logging_in = false;
-				state.signed  = false;
+				state.withdraw  = 0.00;
+				state.signed    = false;
 				state.addresses = [{}];
 				state.account = {
 					credit 	           : "0.00",
@@ -184,6 +181,11 @@
 				state.stock.bus.final_total  = 0;
 				state.stock.bus.cheque_spell = 0;
 				state.stock.bus.test_mode    = true;
+
+				// state.lightbox      = false;
+				state.invisible_popup      = {};
+				state.invisible_popup.open = false;
+				state.invisible_popup.box  = false;
 
 				state.stock.book = {};
 				state.stock.book.books = [];
@@ -1347,21 +1349,22 @@
 										},							
 										user_button : {
 											instructions : {
-												open : false,
 												on : {
 													the_event : "click",
 													is_asslep : false,
 													call      : function (change) {
-														if ( this.user_button.instructions.open ) {
-															this.user_popup_box.self.animate({ opacity : 0 }, 300, function () {
-																$(this).css({ display : "none" });
-															});
-															this.user_button.instructions.open = false;
-														} 
-														else { 
-															this.user_popup_box.self.css({ display : "block" }).animate({ opacity : 1 }, 200);
-															this.user_button.instructions.open = true;
-														}
+														// if ( state.invisible_popup.open ) {
+															// this.user_popup_box.self.animate({ opacity : 0 }, 300, function () {
+															// 	$(this).css({ display : "none" });
+															// });
+															// state.invisible_popup.open = false;
+															// state.lightbox      = false;
+														// } 
+														// else { 
+															// this.user_popup_box.self.css({ display : "block" }).animate({ opacity : 1 }, 200);
+															state.invisible_popup.open = true;
+															// state.lightbox      = true;
+														// }
 													}
 												}
 											},
@@ -1370,9 +1373,47 @@
 												icon  : '<span class="with-icon-user"></span>',
 												arrow : '<span class="with-icon-user-arrow"></span>'
 											}
-										},						
+										},
+									}
+								}
+							}
+						},
+						invisible_popup : {
+							instructions : {
+								on : {
+									the_event : "click",
+									is_asslep : false,
+									call      : function (change) {
+										if ( change.event.target.className === "invisible_popup_lightbox" ) {
+											state.invisible_popup.open = false;
+											state.invisible_popup.box  = false;
+										}
+									}
+								},
+								observe : {
+									who      : state.invisible_popup,
+									property : "open",
+									call     : function (change) {
+										var self   = world.wrap.branch.invisible_popup.self,
+											height = $('.wrap').height();
+
+										if ( change.new ) {
+											self.css({ display : "block", height : height }).animate({ opacity : 1 }, 400 );
+										} else {
+											self.animate({ opacity : 0 }, 500, function () {
+												self.css({ display : "none" });
+											})
+										}
+									}
+								}
+							},
+							self : '<div class="invisible_popup_lightbox"></div>',
+							branch : {
+								wrap : {
+									self : '<div class="sign_popup_box_wrap"></div>',
+									branch : {
 										user_popup_box : {											
-											self   :  '<div class="user_pop_up_box"></div>',
+											self   :  '<div class="sign_popup_box"></div>',
 											branch : {
 												popup_arrow : {
 													self : '<span class="with-icon-user-pop-up-box-arrow"></span>' 
@@ -1392,7 +1433,7 @@
 															}
 														}
 													},
-													self   : "<div class=\"user_pop_up_settings_wrap\"></div>",
+													self   : "<div class=\"sign_popup_settings_wrap\"></div>",
 													branch : {
 														title : {
 															instructions : {
@@ -1405,10 +1446,10 @@
 																	}
 																}
 															},
-															self : '<div class="user_pop_up_title"></div>' 
+															self : '<div class="sign_popup_title"></div>' 
 														},
 														edit_option : {
-															self : '<a href="hub" class="user_pop_up_option">View Account</a>'
+															self : '<a href="hub" class="sign_popup_option">View Account</a>'
 														},
 														sign_out : {
 															instructions : {
@@ -1420,7 +1461,7 @@
 																	}
 																}
 															},
-															self : '<div class="user_pop_up_option">Sign Out</div>'
+															self : '<div class="sign_popup_option">Sign Out</div>'
 														}
 													}
 												},
@@ -1439,13 +1480,13 @@
 															}
 														}
 													},
-													self   : "<div class=\"user_pop_up_sign_in_wrap\"></div>",
+													self   : "<div class=\"sign_popup_sign_in_wrap\"></div>",
 													branch : {
 														sign_in_wrap : {
-															self   : '<div class="user_pop_up_title_white">Sign in</div>'
+															self   : '<div class="sign_popup_title_white">Sign in</div>'
 															// branch : {
 															// 	register : {
-															// 		self : '<span class="user_pop_up_title_highlight">Register</span>'
+															// 		self : '<span class="sign_popup_title_highlight">Register</span>'
 															// 	}
 															// }
 														},
@@ -1459,7 +1500,7 @@
 																	}
 																}
 															},
-															self : '<input type="text" class="user_pop_up_option_input" placeholder="Email">'
+															self : '<input type="text" class="sign_popup_option_input" placeholder="Email">'
 														},
 														password : {
 															instructions : {
@@ -1475,7 +1516,7 @@
 																	}
 																}
 															},
-															self : '<input type="password" class="user_pop_up_password_input" placeholder="Password">'
+															self : '<input type="password" class="sign_popup_password_input" placeholder="Password">'
 														},
 														enter : {
 															instructions : {
@@ -1501,7 +1542,7 @@
 																	}
 																}
 															},
-															self : '<div class="user_pop_up_options_forgot_password">forgottten password?</div>' 
+															self : '<div class="sign_popup_options_forgot_password">forgottten password?</div>' 
 														}
 													}
 												}																							
@@ -3444,7 +3485,7 @@
 													self   : '<div class="field_box_input_wrap"></div>',
 													branch : {
 														title  			 : {
-															self : '<div class="field_box_input_title">Where shall we send your freepost pack</div>'
+															self : '<div class="field_box_input_title">Where shall we send your freepost pack?</div>'
 														},
 														address_input    : {
 															instructions : {
