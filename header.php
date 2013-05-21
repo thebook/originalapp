@@ -182,7 +182,6 @@
 				state.stock.bus.cheque_spell = 0;
 				state.stock.bus.test_mode    = true;
 
-				// state.lightbox      = false;
 				state.invisible_popup      = {};
 				state.invisible_popup.open = false;
 				state.invisible_popup.box  = false;
@@ -689,8 +688,9 @@
 								call     : function (change) {
 									if ( !change.new ) return;
 									new alpha.amazon({
-										typed    : state.stock.bus.search,
-										callback : function (books) { 
+										typed         : state.stock.bus.search,
+										bus_algorithm : true,
+										callback      : function (books) { 
 											if ( books !== undefined ) {
 												var basket = [],
 													part   = {};
@@ -1228,7 +1228,7 @@
 															property : "state",
 															call : function (change) { 
 																var text = world.wrap.branch.navigation.branch.wrap.branch.progress_popup.branch.text.self;
-																	if ( change.new === "register" )  text.text("This will not only create your profile hub that will let you track payments, check book orders and edit details but makes sure we make the payment out to the right person and send the freepost pack to the correct address.");
+																	if ( change.new === "register" )  text.text("This will allow us to send the payment to the correct address, as well as allowing you to track these payments, check book orders and edit details.");
 																	if ( change.new === "confirm"  )  text.text("Better be safe than sorry, Just check the books and address are correct and edit any mistakes if need be, then chose which type of freepost you prefer and confirm your sale. Shazam!");
 															}
 														}
@@ -1340,9 +1340,22 @@
 												},
 												register : {
 													self   : '<div class="progress_welcome_register_box"></div>',
-													last_branch : {
-														text   : '<div class="progress_welcome_register_box_text">New To Recyclabook >>></div>',
-														button : '<a href="register" class="progress_welcome_register_box_button">Sign Up</a>'
+													branch : {
+														text   : {
+															self : '<div class="progress_welcome_register_box_text">New To Recyclabook >>></div>'
+														},
+														button : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		state.next_route = "confirm";
+																	}
+																}
+															},
+															self : '<a href="register" class="progress_welcome_register_box_button">Sign Up</a>'
+														}
 													}
 												}
 											}
@@ -1353,18 +1366,8 @@
 													the_event : "click",
 													is_asslep : false,
 													call      : function (change) {
-														// if ( state.invisible_popup.open ) {
-															// this.user_popup_box.self.animate({ opacity : 0 }, 300, function () {
-															// 	$(this).css({ display : "none" });
-															// });
-															// state.invisible_popup.open = false;
-															// state.lightbox      = false;
-														// } 
-														// else { 
-															// this.user_popup_box.self.css({ display : "block" }).animate({ opacity : 1 }, 200);
-															state.invisible_popup.open = true;
-															// state.lightbox      = true;
-														// }
+														state.invisible_popup.open = true;
+														state.invisible_popup.box  = "sign";
 													}
 												}
 											},
@@ -1394,15 +1397,11 @@
 									who      : state.invisible_popup,
 									property : "open",
 									call     : function (change) {
-										var self   = world.wrap.branch.invisible_popup.self,
-											height = $('.wrap').height();
-
+										height = $('.wrap').height();
 										if ( change.new ) {
-											self.css({ display : "block", height : height }).animate({ opacity : 1 }, 400 );
+											this.self.css({ display : "block", height : height });
 										} else {
-											self.animate({ opacity : 0 }, 500, function () {
-												self.css({ display : "none" });
-											})
+											this.self.css({ display : "none" });
 										}
 									}
 								}
@@ -1412,7 +1411,16 @@
 								wrap : {
 									self : '<div class="sign_popup_box_wrap"></div>',
 									branch : {
-										user_popup_box : {											
+										user_popup_box : {	
+											instructions : {
+												observe : {
+													who      : state.invisible_popup,
+													property : "box",
+													call     : function (change) {
+														( change.new === "sign" )? this.self.css({ display : "block" }) : this.self.css({ display : "none" });
+													}
+												}
+											},										
 											self   :  '<div class="sign_popup_box"></div>',
 											branch : {
 												popup_arrow : {
@@ -1424,8 +1432,6 @@
 															who : state,
 															property : "signed",
 															call : function (change) { 
-																console.log("signin");
-																console.log(this);
 																if ( change.new ) {
 																	this.self.css({ display : "block" });
 																} else {
@@ -1482,12 +1488,21 @@
 													self   : "<div class=\"sign_popup_sign_in_wrap\"></div>",
 													branch : {
 														sign_in_wrap : {
-															self   : '<div class="sign_popup_title_white">Sign in</div>'
-															// branch : {
-															// 	register : {
-															// 		self : '<span class="sign_popup_title_highlight">Register</span>'
-															// 	}
-															// }
+															self   : '<div class="sign_popup_title_white">Sign in </div>',
+															branch : {
+																register : {
+																	instructions : {
+																		on : {
+																			the_event : "click",
+																			is_asslep : false,
+																			call      : function (change) {
+																				state.next_route = "hub";
+																			}
+																		}
+																	},
+																	self : '<a href="register" class="sign_popup_title_highlight">Register</a>'
+																}
+															}
 														},
 														email : {
 															instructions : {
@@ -1546,7 +1561,182 @@
 													}
 												}																							
 											}
-										}
+										},
+										basket_popup : {
+											instructions : {
+												observe : {
+													who      : state.invisible_popup,
+													property : "box",
+													call     : function (change) {
+														( change.new === "basket" )? this.self.css({ display : "block", opacity : 1 }) : this.self.css({ display : "none" });
+													}
+												}
+											},	
+											self   : '<div class="store_basket_pop_up"></div>',
+											branch : { 
+												arrow : { 
+													self : '<div class="with-icon-store-basket-pop-up-arrow"></div>'
+												},
+												items : {
+													self   : '<div class="store_basket_pop_up_content"></div>',
+													branch : {
+														items : {
+															instructions : { 
+																observe : {
+																	who : book,
+																	property : "basket",
+																	call : function (change) {
+																		var format, manifest, map, append_to;
+
+																			format = {
+																				self : '<div class="store_basket_pop_up_content_item"></div>',
+																				branch : {
+																					thumbnail : {
+																						self : '<div class="store_basket_pop_up_content_item_thumbnail"></div>',
+																						branch : {
+																							image : {
+																								self : '<img src="">'
+																							}
+																						}
+																					},
+																					title : {
+																						self : '<div class="store_basket_pop_up_content_item_title"></div>'
+																					},
+																					author : {
+																						self :'<div class="store_basket_pop_up_content_item_author"></div>' 
+																					},
+																					isbn : {
+																						self : '<div class="store_basket_pop_up_content_item_isbn_wrap"></div>',
+																						branch : {
+																							text : {
+																								self : '<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>'
+																							},
+																							isbn : {
+																								self : '<div class="store_basket_pop_up_content_item_isbn"></div>'
+																							}
+																						}
+																					},
+																					price : {
+																						self : '<div class="store_basket_pop_up_content_item_sell_price_wrap"></div>',
+																						branch : {
+																							text  : {
+																								self : '<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>'
+																							},
+																							price : {
+																								self : '<div class="store_basket_pop_up_content_item_sell_price"></div>'
+																							}
+																						}
+																					},
+																					remove : {
+																						instructions : {
+																							on : {
+																								the_event : "click",
+																								is_asslep : false,
+																								call      : function (change) { 
+																									var index = change.self.attr('id');
+																										basket= book.basket;
+																										basket.splice(index, 1);
+																										book.basket = basket;
+																								}
+																							}
+																						},
+																						self : '<div id="" class="with-icon-x-for-store-basket-pop-up-content-item"></div>'
+																					}
+																				}
+																			};
+																			map = [
+																				{
+																					path : "branch.thumbnail.branch.image.self.src",
+																					value: "image"
+																				},
+																				{
+																					path : "branch.title.self.text",
+																					value: "title"
+																				},
+																				{
+																					path : "branch.author.self.text",
+																					value: "author"
+																				},
+																				{
+																					path : "branch.isbn.branch.isbn.self.text",
+																					value: "isbn"
+																				},
+																				{
+																					path : "branch.price.branch.price.self.text",
+																					value: "price"
+																				},
+																				{
+																					path : "branch.remove.self.id",
+																					value: "id"
+																				}
+																			];
+
+																			// append_to = world.wrap.branch.sell.branch.popup.branch.items.branch.items.self;
+
+																			this.self.empty();
+																			manifest = alpha.format(format, this.self, book.basket.length );
+
+																			$.each(book.basket, function (index, book) { 
+																				book.id = index;
+																				alpha.parse(map, manifest[index+1], book);
+																			});	
+																			// world.wrap.branch.sell.branch.popup.branch.items.branch.items.branch = manifest;
+																	}
+																}
+															},
+															self : '<div class="store_basket_pop_up_content_items_wrap"></div>'
+														},
+														total : { 
+															self   : '<div class="store_basket_pop_up_content_total_wrap"></div>',
+															branch : {
+																text   : {
+																	self : '<div class="store_basket_pop_up_content_total_text">Total:</div>'
+																},
+																number : {
+																	instructions : {
+																		observe : {
+																			who      : book,
+																			property : "basket",
+																			call     : function (change) { 
+																				var quote = 0;
+																				for (var index = 0; index < change.new.length; index++) {
+																					quote += change.new[index].price * 100;
+																				};
+																				quote /= 100;
+																				this.self.text("£ "+quote);
+																			}
+																		}
+																	},
+																	self : '<div class="store_basket_pop_up_content_total_number">£ 0.00</div>'
+																}
+															}
+														}									
+													}
+												},
+												buttons : { 
+													self   : '<div class="store_basket_pop_up_button_wrap"></div>',
+													branch : {
+														checkout : {
+															instructions : {
+																on : { 
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) { 
+																		if ( book.basket.length === 0 ) return;
+																		(state.signed)? router.change_url("confirm") : router.change_url("confirm_sign_in");
+																		state.invisible_popup.open = false;
+																	}
+																}
+															},
+															self : '<div class="store_basket_pop_up_button_first">Check And Continue</div>'
+														}
+													}
+												},
+												popup_text : {
+													self : '<div class="store_basket_pop_up_text">Currently showing freepost prices</div>'
+												}
+											}
+										},
 									}
 								}
 							}
@@ -2614,21 +2804,12 @@
 										},
 										basket_box : {
 											instructions : {
-												open : false,
 												on : {
 													the_event : "click",
 													is_asslep : false,
 													call      : function (change) {
-														if ( this.basket_box.instructions.open ) {
-															world.wrap.branch.sell.branch.popup.self.animate({ opacity : 0 }, 300, function () {
-																$(this).css({ display : "none" });
-															});
-															this.basket_box.instructions.open = false;
-														} 
-														else { 
-															world.wrap.branch.sell.branch.popup.self.css({ display : "block" }).animate({ opacity : 1 }, 200);
-															this.basket_box.instructions.open = true;
-														}
+														state.invisible_popup.open = true;
+														state.invisible_popup.box  = "basket";
 													}
 												}
 											},
@@ -2637,8 +2818,8 @@
 												stats : { 
 													self   : '<div id="buy_basket" class="basket_stats"></div>',
 													branch : {
-														sell_text : {
-															self : '<span class="sell_basket_text">Sell : </span>'
+														pig : {
+															self : '<span class="with-icon-sell-basket-piggy"> :</span>'
 														},
 														quote : {
 															instructions : {
@@ -2650,7 +2831,7 @@
 																	}
 																}
 															},
-															self : '<span class="sell_basket_number">0</span>'
+															self : '<span class="with-icon-sell-basket-number"> 0</span>'
 														}
 													}
 												}
@@ -2658,177 +2839,177 @@
 										}
 									}
 								},
-								popup : {
-									self   : '<div class="store_basket_pop_up"></div>',
-									branch : { 
-										arrow : { 
-											self : '<div class="with-icon-store-basket-pop-up-arrow"></div>'
-										},
-										items : {
-											self   : '<div class="store_basket_pop_up_content"></div>',
-											branch : {
-												items : {
-													instructions : { 
-														observe : {
-															who : book,
-															property : "basket",
-															call : function (change) {
-																var format, manifest, map, append_to;
+								// popup : {
+								// 	self   : '<div class="store_basket_pop_up"></div>',
+								// 	branch : { 
+								// 		arrow : { 
+								// 			self : '<div class="with-icon-store-basket-pop-up-arrow"></div>'
+								// 		},
+								// 		items : {
+								// 			self   : '<div class="store_basket_pop_up_content"></div>',
+								// 			branch : {
+								// 				items : {
+								// 					instructions : { 
+								// 						observe : {
+								// 							who : book,
+								// 							property : "basket",
+								// 							call : function (change) {
+								// 								var format, manifest, map, append_to;
 
-																	format = {
-																		self : '<div class="store_basket_pop_up_content_item"></div>',
-																		branch : {
-																			thumbnail : {
-																				self : '<div class="store_basket_pop_up_content_item_thumbnail"></div>',
-																				branch : {
-																					image : {
-																						self : '<img src="">'
-																					}
-																				}
-																			},
-																			title : {
-																				self : '<div class="store_basket_pop_up_content_item_title"></div>'
-																			},
-																			author : {
-																				self :'<div class="store_basket_pop_up_content_item_author"></div>' 
-																			},
-																			isbn : {
-																				self : '<div class="store_basket_pop_up_content_item_isbn_wrap"></div>',
-																				branch : {
-																					text : {
-																						self : '<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>'
-																					},
-																					isbn : {
-																						self : '<div class="store_basket_pop_up_content_item_isbn"></div>'
-																					}
-																				}
-																			},
-																			price : {
-																				self : '<div class="store_basket_pop_up_content_item_sell_price_wrap"></div>',
-																				branch : {
-																					text  : {
-																						self : '<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>'
-																					},
-																					price : {
-																						self : '<div class="store_basket_pop_up_content_item_sell_price"></div>'
-																					}
-																				}
-																			},
-																			remove : {
-																				instructions : {
-																					on : {
-																						the_event : "click",
-																						is_asslep : false,
-																						call      : function (change) { 
-																							var index = change.self.attr('id');
-																								basket= book.basket;
-																								basket.splice(index, 1);
-																								book.basket = basket;
-																						}
-																					}
-																				},
-																				self : '<div id="" class="with-icon-x-for-store-basket-pop-up-content-item"></div>'
-																			}
-																		}
-																	};
-																	map = [
-																		{
-																			path : "branch.thumbnail.branch.image.self.src",
-																			value: "image"
-																		},
-																		{
-																			path : "branch.title.self.text",
-																			value: "title"
-																		},
-																		{
-																			path : "branch.author.self.text",
-																			value: "author"
-																		},
-																		{
-																			path : "branch.isbn.branch.isbn.self.text",
-																			value: "isbn"
-																		},
-																		{
-																			path : "branch.price.branch.price.self.text",
-																			value: "price"
-																		},
-																		{
-																			path : "branch.remove.self.id",
-																			value: "id"
-																		}
-																	];
+								// 									format = {
+								// 										self : '<div class="store_basket_pop_up_content_item"></div>',
+								// 										branch : {
+								// 											thumbnail : {
+								// 												self : '<div class="store_basket_pop_up_content_item_thumbnail"></div>',
+								// 												branch : {
+								// 													image : {
+								// 														self : '<img src="">'
+								// 													}
+								// 												}
+								// 											},
+								// 											title : {
+								// 												self : '<div class="store_basket_pop_up_content_item_title"></div>'
+								// 											},
+								// 											author : {
+								// 												self :'<div class="store_basket_pop_up_content_item_author"></div>' 
+								// 											},
+								// 											isbn : {
+								// 												self : '<div class="store_basket_pop_up_content_item_isbn_wrap"></div>',
+								// 												branch : {
+								// 													text : {
+								// 														self : '<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>'
+								// 													},
+								// 													isbn : {
+								// 														self : '<div class="store_basket_pop_up_content_item_isbn"></div>'
+								// 													}
+								// 												}
+								// 											},
+								// 											price : {
+								// 												self : '<div class="store_basket_pop_up_content_item_sell_price_wrap"></div>',
+								// 												branch : {
+								// 													text  : {
+								// 														self : '<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>'
+								// 													},
+								// 													price : {
+								// 														self : '<div class="store_basket_pop_up_content_item_sell_price"></div>'
+								// 													}
+								// 												}
+								// 											},
+								// 											remove : {
+								// 												instructions : {
+								// 													on : {
+								// 														the_event : "click",
+								// 														is_asslep : false,
+								// 														call      : function (change) { 
+								// 															var index = change.self.attr('id');
+								// 																basket= book.basket;
+								// 																basket.splice(index, 1);
+								// 																book.basket = basket;
+								// 														}
+								// 													}
+								// 												},
+								// 												self : '<div id="" class="with-icon-x-for-store-basket-pop-up-content-item"></div>'
+								// 											}
+								// 										}
+								// 									};
+								// 									map = [
+								// 										{
+								// 											path : "branch.thumbnail.branch.image.self.src",
+								// 											value: "image"
+								// 										},
+								// 										{
+								// 											path : "branch.title.self.text",
+								// 											value: "title"
+								// 										},
+								// 										{
+								// 											path : "branch.author.self.text",
+								// 											value: "author"
+								// 										},
+								// 										{
+								// 											path : "branch.isbn.branch.isbn.self.text",
+								// 											value: "isbn"
+								// 										},
+								// 										{
+								// 											path : "branch.price.branch.price.self.text",
+								// 											value: "price"
+								// 										},
+								// 										{
+								// 											path : "branch.remove.self.id",
+								// 											value: "id"
+								// 										}
+								// 									];
 
-																	append_to = world.wrap.branch.sell.branch.popup.branch.items.branch.items.self;
+								// 									append_to = world.wrap.branch.sell.branch.popup.branch.items.branch.items.self;
 
-																	append_to.empty();
-																	manifest = alpha.format(format, append_to, book.basket.length );
+								// 									append_to.empty();
+								// 									manifest = alpha.format(format, append_to, book.basket.length );
 
-																	$.each(book.basket, function (index, book) { 
-																		book.id = index;
-																		alpha.parse(map, manifest[index+1], book);
-																	});	
-																	world.wrap.branch.sell.branch.popup.branch.items.branch.items.branch = manifest;
-															}
-														}
-													},
-													self : '<div class="store_basket_pop_up_content_items_wrap"></div>'
-												},
-												total : { 
-													instructions : {
-														observe : {
-															who      : book,
-															property : "basket",
-															call     : function (change) { 
-																var quote = 0;
-																for (var index = 0; index < change.new.length; index++) {
-																	quote += change.new[index].price * 100;
-																};
-																quote /= 100;
-																world.wrap.branch.sell.branch.popup.branch.items.branch.total.branch.number.self.text("£ "+quote);
-															}
-														}
-													},
-													self   : '<div class="store_basket_pop_up_content_total_wrap"></div>',
-													branch : {
-														text   : {
-															self : '<div class="store_basket_pop_up_content_total_text">Total:</div>'
-														},
-														number : {
-															self : '<div class="store_basket_pop_up_content_total_number">£ 0.00</div>'
-														}
-													}
-												}									
-											}
-										},
-										buttons : { 
-											self   : '<div class="store_basket_pop_up_button_wrap"></div>',
-											branch : {
-												checkout : {
-													instructions : {
-														on : { 
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) { 
-																if ( book.basket.length === 0 ) return;
-																(state.signed)? router.change_url("confirm") : router.change_url("confirm_sign_in");
-															}
-														}
-													},
-													self : '<div class="store_basket_pop_up_button_first">Check And Continue</div>'
-												}
-											}
-										},
-										popup_text : {
-											self : '<div class="store_basket_pop_up_text">Currently showing freepost prices</div>'
-										},
-										// post : {
-										// 	self : '<div class="store_basket_pop_up_change">See Freepost</div>',
-										// },
-										// bus : {
+								// 									$.each(book.basket, function (index, book) { 
+								// 										book.id = index;
+								// 										alpha.parse(map, manifest[index+1], book);
+								// 									});	
+								// 									world.wrap.branch.sell.branch.popup.branch.items.branch.items.branch = manifest;
+								// 							}
+								// 						}
+								// 					},
+								// 					self : '<div class="store_basket_pop_up_content_items_wrap"></div>'
+								// 				},
+								// 				total : { 
+								// 					instructions : {
+								// 						observe : {
+								// 							who      : book,
+								// 							property : "basket",
+								// 							call     : function (change) { 
+								// 								var quote = 0;
+								// 								for (var index = 0; index < change.new.length; index++) {
+								// 									quote += change.new[index].price * 100;
+								// 								};
+								// 								quote /= 100;
+								// 								world.wrap.branch.sell.branch.popup.branch.items.branch.total.branch.number.self.text("£ "+quote);
+								// 							}
+								// 						}
+								// 					},
+								// 					self   : '<div class="store_basket_pop_up_content_total_wrap"></div>',
+								// 					branch : {
+								// 						text   : {
+								// 							self : '<div class="store_basket_pop_up_content_total_text">Total:</div>'
+								// 						},
+								// 						number : {
+								// 							self : '<div class="store_basket_pop_up_content_total_number">£ 0.00</div>'
+								// 						}
+								// 					}
+								// 				}									
+								// 			}
+								// 		},
+								// 		buttons : { 
+								// 			self   : '<div class="store_basket_pop_up_button_wrap"></div>',
+								// 			branch : {
+								// 				checkout : {
+								// 					instructions : {
+								// 						on : { 
+								// 							the_event : "click",
+								// 							is_asslep : false,
+								// 							call      : function (change) { 
+								// 								if ( book.basket.length === 0 ) return;
+								// 								(state.signed)? router.change_url("confirm") : router.change_url("confirm_sign_in");
+								// 							}
+								// 						}
+								// 					},
+								// 					self : '<div class="store_basket_pop_up_button_first">Check And Continue</div>'
+								// 				}
+								// 			}
+								// 		},
+								// 		popup_text : {
+								// 			self : '<div class="store_basket_pop_up_text">Currently showing freepost prices</div>'
+								// 		},
+								// 		// post : {
+								// 		// 	self : '<div class="store_basket_pop_up_change">See Freepost</div>',
+								// 		// },
+								// 		// bus : {
 
-										// }
-									}
-								},
+								// 		// }
+								// 	}
+								// },
 								items : {
 									instructions : {
 										observe : {
@@ -3876,10 +4057,25 @@
 												},
 												text_wrap : {
 													self   : '<div class="input_box_disclaimer_text_wrap"></div>',
-													last_branch : {
-														text_one : '<div class="input_box_disclaimer_text">If you don\'t want to receive emails with exclusive offers and competitions from Recyclabook and our friends then untick this</div>',
-														text_two : '<div class="input_box_disclaimer_small">by pressing continue you agree to</div>',
-														link     : '<div class="input_box_disclaimer_highlight">terms & conditions</div>'
+													branch : {
+														text_one : {
+															self : '<div class="input_box_disclaimer_text">If you don\'t want to receive emails with exclusive offers and competitions from Recyclabook and our friends then untick this</div>'
+														},
+														text_two : {
+															self : '<div class="input_box_disclaimer_small">by pressing continue you agree to</div>'
+														},
+														link     : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		animate.pop.outside = "legal";
+																	}
+																}
+															},
+															self : '<div class="input_box_disclaimer_highlight">terms & conditions</div>'
+														}
 													}
 												},
 												continue_button : {
@@ -3889,7 +4085,6 @@
 															is_asslep : false,
 															call      : function (change) { 
 																state.process.register = true;
-																state.next_route       = "confirm";
 															}
 														}
 													},
@@ -4368,7 +4563,7 @@
 																					self : '<div class="with-icon-we-checkout-tick"></div>'
 																				},
 																				text : {
-																					self : '<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>'
+																					self : '<div class="we_send_freepost_tab_tick_button_text">I want this option</div>'
 																				}
 																			}
 																		}
@@ -4437,7 +4632,7 @@
 																					self : '<div class="with-icon-we-checkout-dark-tick-unticked"></div>'
 																				},
 																				text : {
-																					self : '<div class="we_send_freepost_tab_tick_button_text">Current Selection</div>'
+																					self : '<div class="we_send_freepost_tab_tick_button_text">I want this option</div>'
 																				}
 																			}
 																		}
@@ -5831,9 +6026,6 @@
 																	},
 																	self : '<div class="with-icon-for-profile-hub-recyclabank-close"></div>'
 																}
-																// reminder : { 
-																// 	self : '<div class="profile_hub_bank_info_reminder">Don\'t show this again</div>'
-																// }
 															}
 														},
 														body : {
@@ -5862,7 +6054,7 @@
 																							}
 																						}
 																					},
-																					self : '<input type="text" class="profile_hub_bank_stats_input" value="" readonly>'
+																					self : '<input type="text" class="profile_hub_bank_stats_input" value="£0.00" readonly>'
 																				}
 																			}
 																		},
@@ -5914,7 +6106,7 @@
 																							}
 																						}
 																					},
-																					self : '<input type="text" class="profile_hub_bank_stats_input" value="0.00" readonly>'
+																					self : '<input type="text" class="profile_hub_bank_stats_input" value="£0.00" readonly>'
 																				}
 																			}
 																		},

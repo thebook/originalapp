@@ -3,10 +3,11 @@ var alpha = (function ( alpha, $ ) {
 	alpha.amazon = function (wake) {
 
 		var self = this;
-		wake.search_by   = wake.search_by   || 'keywords';
-		wake.search_for  = wake.search_for  || 'books';
-		wake.filter_name = wake.filter_name || 'tiny';
-		wake.callback    = wake.callback    || false;
+		wake.search_by     = wake.search_by     || 'keywords';
+		wake.search_for    = wake.search_for    || 'books';
+		wake.filter_name   = wake.filter_name   || 'tiny';
+		wake.callback      = wake.callback      || false;
+		wake.bus_algorithm = wake.bus_algorithm || false;
 
 		$.post( 
 			ajaxurl, 
@@ -25,11 +26,83 @@ var alpha = (function ( alpha, $ ) {
 					editorial_review  : 'EditorialReview'
 				});
 				books = self.remove_books_that_dont_have_given_properties(books, ['image', 'author', 'lowest_used_price']);
-				books = self.algorithm(books);
+				books = ( wake.bus_algorithm? self.bus_algorithm(books) : self.algorithm(books) );
 				wake.callback(books);
 			},
 			'json'
 		);
+	};
+
+	alpha.amazon.prototype.bus_algorithm = function (books) { 
+		var sorted = [];
+		for (var index = 0; index < books.length; index++) {
+
+			var price          = parseInt( books[index]["lowest_used_price"] ),
+				starting_price = 0,
+				new_price      = parseInt(books[index]["lowest_new_price"]),
+				retail_price   = parseInt(books[index].price) / 100,
+				weights        = [
+					{
+						range_one : 0,
+						range_two : 100,
+						price     : 0
+					},
+					{
+						range_one : 99,
+						range_two : 250,
+						price     : 0
+					},
+					{
+						range_one : 249,
+						range_two : 500,
+						price     : 0
+					},
+					{
+						range_one : 499,
+						range_two : 750,
+						price     : -0.80
+					},
+					{
+						range_one : 749,
+						range_two : 1000,
+						price     : -1.5
+					},
+					{
+						range_one : 999,
+						range_two : 2000,
+						price     : -3.5
+					},
+					{
+						range_one : 1999,
+						range_two : 100000,
+						price     : -8
+					}
+				],
+				weight = 0;
+				new_price     -= (new_price*0.1);
+			
+			if ( price > new_price ) price = new_price;
+			if ( books[index].dimensions && books[index].dimensions.Weight && books[index].dimensions.Weight !== "0" ) weight = books[index].dimensions.Weight;
+			price /= 100;
+			price *= 0.7;
+			if ( price > retail_price ) return;
+			weight = (weight/100) * 453;
+			for (var i = 0; i < weights.length; i++) {
+				if ( weight > weights[i].range_one && weight < weights[i].range_two ) {
+					price += weights[i].price;
+				}
+			};
+			starting_price            = price;
+			price                    *= 0.75;
+			if ( price > 0 )    price = ( price - ( 5/starting_price ) ) + 0.25;
+			if ( price < 0.20 ) price = 0;
+			price                     = price.toFixed(2);
+			books[index].price = price;
+			
+			if ( weight > 1999 ) console.log("weight is past capacity");
+			if ( price !== "0.00") sorted.push(books[index]);			
+		};
+		return sorted;
 	};
 
 	alpha.amazon.prototype.algorithm = function (books) { 
