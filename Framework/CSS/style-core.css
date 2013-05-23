@@ -819,10 +819,11 @@ body {
   width: 3%;
   float: right;
   display: inline-block;
-  height: 300px;
+  height: 100%;
   background: whitesmoke; }
 
 .profile_hub_history_scroll_handle, .profile_hub_tracking_sroll_handle {
+  position: relative;
   background: #3f7986;
   height: 20px;
   -webkit-border-radius: 25px;
@@ -1179,6 +1180,7 @@ body {
   width: 100%; }
 
 .profile_hub_tracking_items_inner {
+  position: relative;
   float: left;
   width: 100%; }
 
@@ -3570,6 +3572,7 @@ body {
   background: whitesmoke; }
 
 .basket_overview_bar_block {
+  position: relative;
   background: #3f7986;
   height: 20px;
   -webkit-border-radius: 25px;

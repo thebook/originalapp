@@ -48,11 +48,12 @@
 	width: 3%;
 	float: right;
 	display: inline-block;
-	height: 300px;
+	height: 100%;
 	background: $light_monochrome;
 }
 
 .profile_hub_history_scroll_handle {
+	position: relative;
 	background: $dark_blue;
 	height: 20px;
 	@include border-radius(25px);	
@@ -76,7 +77,6 @@
 .profile_hub_history_item_image {
 	height: 90px;
 	width: 70px;
-	// width: auto;
 	background: $middle_monochrome;
 	float: left;
 	display: inline-block;

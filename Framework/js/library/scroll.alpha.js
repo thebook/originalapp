@@ -1,91 +1,142 @@
 var alpha = (function ( alpha, $ ) {
+// 
+	alpha.scroll_bar = function (wake) {
+		var prototype = this;
+		this.self = wake.self;
+		this.self.observers              = {};
+		this.self.self.scrolling         = 0;
+		this.self.self.scroll            = {};
+		this.self.self.scroll.height     = wake.height || 200;
+		this.self.self.style.height      = this.self.self.scroll.height + "px";
+		this.self.branch.holder.self.style.height         = this.self.self.style.height;
+		this.self.branch.holder.branch.inner.self.scroll  = {}
+		this.calculate_scroll_data();
 
-	alpha.scroll_bar = function (wake) { 
+		this.bind_mousewheel_observer(this.self.self, function (event) {
+			this.scrolling = event.deltaY;
+		});
+		alpha.observe({
+			self     : this.self.branch.scroll.branch.handle.self,
+			object   : this.self.self,
+			property : "scrolling",
+			observer : function (change) {
+				var move = ( change.new > 0? this.self.scroll.upper_percent - 5 : this.self.scroll.upper_percent + 5 );
 
-		var self = this;
-			self.wake  = wake;
-			self.part  = {};
-			self.part.parent       = {};
-			self.part.holder       = {};
-			self.part.handle       = {};
-			self.part.parent.self  = $(self.wake.parent);
-			self.part.holder.self  = $(self.wake.holder);
-			self.part.holder.wrap  = $(self.wake.wrap);
-			self.part.parent.size  = self.wake.size;
-			self.part.scroll       = $(self.wake.scroll);
-			self.part.handle.self = $(self.wake.handle);
-			self.part.handle.increment_by      = 5;
-			self.initiate_being();
-			
-			alpha.observe({
-				object   : self.part.handle,
-				property : "space_moved",
-				observer : function (change) {
-					self.part.holder.self.css({ top : "-"+change.new+"%" });
-				}
-			});
-			
-			alpha.observe({
-				object   : self.part.handle,
-				property : "space_moved",
-				observer : function (change) {
-					self.part.handle.self.css({ top : change.new+"%" });
-				}
-			});
+				if ( move > this.self.scroll.invisible_percent ) move = this.self.scroll.invisible_percent;
+				if ( move < 0 )  move          = 0;
+				this.self.scroll.upper_percent = move;
+				this.self.scroll.lower_percent = this.self.scroll.invisible_percent - move;
+				this.self.style.top            = this.self.scroll.upper_percent+"%";
+				// console.log(this.self.scroll);
+				if ( move < 0 || move >= this.self.scroll.invisible_percent ) return false;
+			}	
+		});
+		alpha.observe({
+			self     : this.self.branch.holder.branch.inner.self,
+			object   : this.self.self,
+			property : "scrolling",
+			observer : function (change) {
+				this.self.style.bottom = ( this.self.scroll.upper_percent * this.self.scroll.multiplier ) +"%";
+			}	
+		});
 
-			self.part.holder.self.on("DOMNodeInserted", function (event) { 
-				self.initiate_being();
-			});
-
-			self.part.holder.self.on("DOMNodeRemoved", function (event) { 
-				setTimeout(function () { 
-					self.initiate_being(); 
-				}, 100);
-			});
-
-			self.part.parent.self.on("mousewheel", function (event, delta) { 
-				var moved = ( delta === -1 ? self.part.handle.space_moved+self.part.handle.increment_by : self.part.handle.space_moved-self.part.handle.increment_by);
-					if ( moved > self.part.handle.manuverable_space ) moved = self.part.handle.manuverable_space;
-					if ( moved < 0 ) moved = 0;
-					self.part.handle.space_moved = moved;
-					return false;
-			});
-
+		this.self.observers.insert_element = new MutationObserver(function (change) {
+			console.log("mutation");
+			prototype.calculate_scroll_data();
+		});
+		this.self.observers.insert_element.observe(
+			this.self.branch.holder.branch.inner.self, {
+			childList : true,
+		});
 	};
 
-	alpha.scroll_bar.prototype.initiate_being = function () { 
-
-		this.part.holder.items = this.part.holder.self.children();
-		this.part.holder.size  = this.calculate_internal_height(this.part.holder.items);
-
-		this.part.handle.size = parseFloat((this.part.parent.size/this.part.holder.size).toFixed(4)*100);
-		if ( this.part.handle.size > 100 ) this.part.handle.size = 100;
-		this.part.handle.manuverable_space = 100 - this.part.handle.size;
-		this.part.handle.space_moved       = this.part.handle.space_moved || 0;
-		if ( this.part.handle.space_moved > this.part.handle.manuverable_space ) this.part.handle.space_moved = this.part.handle.manuverable_space;
+	alpha.scroll_bar.prototype.calculate_scroll_data = function () {
 		
-		this.part.handle.self.css({ position: "relative", height : this.part.handle.size+"%" });
-		this.part.parent.self.css({ height : this.part.parent.size+"px"});
-		this.part.holder.self.css({ position: "relative"});
-		this.part.holder.wrap.css({ height : this.part.holder.size+"px"});
+		this.self.branch.holder.branch.inner.self.scroll.multiplier      = (
+			this.self.branch.holder.branch.inner.self.offsetHeight / 
+			this.self.self.scroll.height
+		);
+
+		this.self.branch.holder.branch.inner.self.scroll.visible_percent = parseFloat(
+			(   this.self.self.scroll.height /	
+				this.self.branch.holder.branch.inner.self.offsetHeight 
+			).toFixed(2) * 100
+		);
+
+		if ( this.self.branch.holder.branch.inner.self.scroll.visible_percent > 100 )
+			this.self.branch.holder.branch.inner.self.scroll.visible_percent = 100;
+
+		this.self.branch.holder.branch.inner.self.scroll.invisible_percent = (
+			100 - this.self.branch.holder.branch.inner.self.scroll.visible_percent
+		);
+
+		this.self.branch.holder.branch.inner.self.scroll.upper_percent = this.self.branch.holder.branch.inner.self.scroll.upper_percent || 0;
+		
+		if ( this.self.branch.holder.branch.inner.self.scroll.upper_percent > 
+			 this.self.branch.holder.branch.inner.self.scroll.invisible_percent )
+			this.self.branch.holder.branch.inner.self.scroll.upper_percent = this.self.branch.holder.branch.inner.self.scroll.invisible_percent;
+
+		this.self.branch.holder.branch.inner.self.scroll.lower_percent = this.self.branch.holder.branch.inner.self.scroll.invisible_percent;
+		this.self.branch.holder.branch.inner.self.scroll.lower_percent = this.self.branch.holder.branch.inner.self.scroll.invisible_percent;
+		this.self.branch.scroll.branch.handle.self.style.height        = this.self.branch.holder.branch.inner.self.scroll.visible_percent +"%";
+		this.self.branch.scroll.branch.handle.self.scroll              = this.self.branch.holder.branch.inner.self.scroll;
+		this.self.self.scrolling = this.self.self.scrolling;
+		console.log(this.self.branch.scroll.branch.handle.self.scroll);
 	};
 
-	alpha.scroll_bar.prototype.calculate_internal_height = function (items) {
-		var size = 0;
+	alpha.scroll_bar.prototype.bind_mousewheel_observer = function (object, observer) {
 
-		for (var index = 0; index < items.length; index++) {
-			var item   = $(items[index]),
-				height = 0;
-				height += parseInt(item.css("marginTop").replace("px", ""));
-				height += parseInt(item.css("marginBottom").replace("px", ""));
-				height += parseInt(item.css("paddingTop").replace("px", ""));
-				height += parseInt(item.css("paddingBottom").replace("px", ""));
-				height += parseInt(item.css("height").replace("px", ""));
-				size += height;
+		var binders            = ( "onwheel" in document || document.documentMode >= 9 ? ["wheel"] : ["mousewheel", "DomMouseScroll", "MozMousePixelScroll"] );
+		var observer_enveloper = function (event) {
+			var mousewheel = {
+				altKey           : event.altKey,
+				bubbles          : event.bubbles,
+				button           : event.button,
+				cancelBubble     : event.cancelBubble,
+				cancelable       : event.cancelable,
+				clientX          : event.clientX,
+				clientY          : event.clientY,
+				ctrlKey          : event.ctrlKey,
+				currentTarget    : event.currentTarget,
+				defaultPrevented : event.defaultPrevented,
+				deltaMode        : event.deltaMode,
+				detail           : event.detail,
+				eventPhase       : event.eventPhase,
+				layerX           : event.layerX,
+				layerY           : event.layerY,
+				metaKey          : event.metaKey,
+				pageX            : event.pageX,
+				pageY            : event.pageY,
+				relatedTarget    : event.relatedTarget,
+				screenX          : event.screenX,
+				screenY          : event.screenY,
+				shiftKey         : event.shiftKey,
+				target           : event.target,
+				timeStamp        : event.timeStamp,
+				type             : event.type,
+				view             : event.view,
+				which            : event.which
+			};
+			if ( event.mozMovementX    || event.mozMovementX    === 0 ) mousewheel.movementX = event.mozMovementX;
+			if ( event.mozMovementY    || event.mozMovementY    === 0 ) mousewheel.movementY = event.mozMovementY; 
+			if ( event.webkitMovementX || event.webkitMovementX === 0 ) mousewheel.movementX = event.webkitMovementX;
+			if ( event.webkitMovementY || event.webkitMovementY === 0 ) mousewheel.movementY = event.webkitMovementY;
+			if ( event.deltaY )      mousewheel.deltaY = ( event.deltaY > 0? -1 : 1 );
+			if ( event.deltaX )      mousewheel.deltaX = ( event.deltaX > 0? -1 : 1 );
+			if ( event.wheelDeltaY ) mousewheel.deltaY = ( event.wheelDeltaY > 0? 1 : -1 );
+			if ( event.wheelDeltaX ) mousewheel.deltaX = ( event.wheelDeltaX > 0? 1 : -1 );			
+			event.preventDefault();
+			observer.call(object, mousewheel);
 		};
-		return size;
-	};
 
+		if ( object.addEventListener ) {
+			for (var index = binders.length - 1; index >= 0; --index) {
+				object.addEventListener(binders[index], observer_enveloper, true);
+			}
+		} else { 
+			object.onmousewheel = observer_enveloper;
+		}
+	};
 
 	return alpha;
 

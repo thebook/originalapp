@@ -46,7 +46,7 @@
 			var animate = {};
 				animate.load  = false;
 				animate.state = false;
-				animate.scroll= true;
+				animate.scroll= false;
 				animate.page  = "home";
 				animate.popup = false;
 				animate.pop   = {};
@@ -223,7 +223,7 @@
 					on : function () {
 						world.wrap.branch.hub.self.css({ display : "block" }).animate({ opacity : 1 });
 						animate.state = false;
-						world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.instructions.scroll.initiate_being();
+						animate.scroll= "hub";
 					},
 					off: function () {
 						world.wrap.branch.hub.self.css({ display : "none", opacity : 0  });
@@ -251,7 +251,7 @@
 					on : function () {
 						animate.state = "confirm";
 						world.wrap.branch.confirm.self.css({ display : "block" }).animate({ opacity : 1 });
-						world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.basket.instructions.scroll.initiate_being();
+						animate.scroll= "confirm";
 					},
 					off: function () {
 						world.wrap.branch.confirm.self.css({ display : "none", opacity : 0  });
@@ -4129,136 +4129,141 @@
 																},
 																basket : {
 																	instructions : {
-																		scroll : null
+																		scroll : false,
+																		observe: {
+																			who      : animate,
+																			property : "scroll",
+																			call     : function (change) { 
+																				var basket = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.basket;
+																				if ( change.new !== "confirm" ) return;
+																				if ( !basket.instructions.scroll ) {
+																					console.log("make basket");
+																					basket.self               = basket.self[0];
+																					basket.branch.scroll.self = basket.branch.scroll.self[0];
+																					basket.branch.scroll.branch.handle.self = basket.branch.scroll.branch.handle.self[0];
+																					basket.branch.holder.self = basket.branch.holder.self[0];
+																					basket.branch.holder.branch.inner.self  = basket.branch.holder.branch.inner.self[0];
+																					console.log(basket);
+																				
+																					basket.instructions.scroll = new alpha.scroll_bar({
+																						self   : basket,
+																						height : 182
+																					});
+																				} else { 
+																					basket.instructions.scroll.calculate_scroll_data();
+																				}
+																			}
+																		},
 																	},
 																	self   : '<div class="basket_overview_basket"></div>',
 																	branch : {
-																		items : {
-																			instructions : {
-																				observers : [
-																					{
-																						who      : book,
-																						property : "basket",
-																						call     : function (change) { 
-																							
-																							var format, manifest, map, append_to;
-																							append_to = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.basket.branch.items.branch.wrap;
-																							format = { 
-																								self : '<div class="basket_overview_item"></div>',
-																								branch : {
-																									close : {
-																										instructions : {
-																											on : {
-																												the_event : "click",
-																												is_asslep : false,
-																												call      : function (change) { 
-																													if (confirm("Are you sure you want to remove this book?")) {
-																														var index = change.self.attr('id');
-																															basket= book.basket;
-																															basket.splice(index, 1);
-																															book.basket = basket;
+																		holder : {
+																			self : '<div class="basket_overview_items"></div>', 
+																			branch : {
+																			 	inner : {
+																					instructions : {
+																						observers : [
+																							{
+																								who      : book,
+																								property : "basket",
+																								call     : function (change) { 
+																									
+																									var format, manifest, map;
+																									format = { 
+																										self : '<div class="basket_overview_item"></div>',
+																										branch : {
+																											close : {
+																												instructions : {
+																													on : {
+																														the_event : "click",
+																														is_asslep : false,
+																														call      : function (change) { 
+																															if (confirm("Are you sure you want to remove this book?")) {
+																																var index = change.self.attr('id');
+																																	basket= book.basket;
+																																	basket.splice(index, 1);
+																																	book.basket = basket;
+																															}
+																														}
+																													}
+																												},
+																												self : '<div id="" style="display:block;" class="with-icon-x-for-overview-item confirm_basket_remove"></div>'
+																											},
+																											thumbnail : {
+																												self : '<img class="basket_overview_item_thumbnail" src="">'
+																											},
+																											text : {
+																												self : '<div class="basket_overview_item_text_wrap"></div>',
+																												branch : {
+																													title : {
+																														self : '<div class="basket_overview_item_text_title"></div>'
+																													},
+																													author : {
+																														self : '<div class="basket_overview_item_text_author"></div>'
+																													},
+																													isbn : {
+																														self :'<div class="basket_overview_item_isbn"></div>'
+																													}
+																												}
+																											},
+																											price : {
+																												self : '<div class="basket_overview_item_price_wrap"></div>',
+																												branch : {
+																													text : {
+																														self :'<div class="basket_overview_item_price_text">Sell for</div>'
+																													},
+																													quote : {
+																														self :'<div class="basket_overview_item_price"></div>'
 																													}
 																												}
 																											}
+																										}
+																									};
+																									map = [
+																										{
+																											path : "branch.thumbnail.self.src",
+																											value: "image"
 																										},
-																										self : '<div id="" style="display:block;" class="with-icon-x-for-overview-item confirm_basket_remove"></div>'
-																									},
-																									thumbnail : {
-																										self : '<img class="basket_overview_item_thumbnail" src="">'
-																									},
-																									text : {
-																										self : '<div class="basket_overview_item_text_wrap"></div>',
-																										branch : {
-																											title : {
-																												self : '<div class="basket_overview_item_text_title"></div>'
-																											},
-																											author : {
-																												self : '<div class="basket_overview_item_text_author"></div>'
-																											},
-																											isbn : {
-																												self :'<div class="basket_overview_item_isbn"></div>'
-																											}
+																										{
+																											path : "branch.text.branch.title.self.text",
+																											value: "title"
+																										},
+																										{
+																											path : "branch.text.branch.author.self.text",
+																											value: "author"
+																										},
+																										{
+																											path : "branch.text.branch.isbn.self.text",
+																											value: "isbn"
+																										},
+																										{
+																											path : "branch.price.branch.quote.self.text",
+																											value: "price"
+																										},
+																										{
+																											path : "branch.close.self.id",
+																											value: "id"
 																										}
-																									},
-																									price : {
-																										self : '<div class="basket_overview_item_price_wrap"></div>',
-																										branch : {
-																											text : {
-																												self :'<div class="basket_overview_item_price_text">Sell for</div>'
-																											},
-																											quote : {
-																												self :'<div class="basket_overview_item_price"></div>'
-																											}
-																										}
-																									}
+																									];
+																									this.self.empty();
+																									manifest = alpha.format(format, this.self, book.basket.length );
+																									$.each(book.basket, function (index, book) { 
+																										book.id = index;
+																										alpha.parse(map, manifest[index+1], book);
+																									});
+																									
 																								}
-																							};
-																							map = [
-																								{
-																									path : "branch.thumbnail.self.src",
-																									value: "image"
-																								},
-																								{
-																									path : "branch.text.branch.title.self.text",
-																									value: "title"
-																								},
-																								{
-																									path : "branch.text.branch.author.self.text",
-																									value: "author"
-																								},
-																								{
-																									path : "branch.text.branch.isbn.self.text",
-																									value: "isbn"
-																								},
-																								{
-																									path : "branch.price.branch.quote.self.text",
-																									value: "price"
-																								},
-																								{
-																									path : "branch.close.self.id",
-																									value: "id"
-																								}
-																							];
-																							append_to.self.empty();
-																							manifest = alpha.format(format, append_to.self, book.basket.length );
-																							$.each(book.basket, function (index, book) { 
-																								book.id = index;
-																								alpha.parse(map, manifest[index+1], book);
-																							});
-																							append_to.branch = manifest;
-																							
-																						}
+																							}
+																						],
 																					},
-																					{
-																						who      : animate,
-																						property : "scroll",
-																						call     : function (change) { 
-																							console.log("scroll on");
-																							var basket = world.wrap.branch.confirm.branch.wrap.branch.confirmation_overview.branch.basket_overview.branch.basket.branch.basket;
-																								basket.instructions.scroll = new alpha.scroll_bar({
-																									parent : basket.self[0],
-																									wrap   : basket.branch.items.self[0],
-																									holder : basket.branch.items.branch.wrap.self[0],
-																									scroll : basket.branch.bar.self[0],
-																									handle : basket.branch.bar.branch.block.self[0],
-																									size   : 182
-																								});
-																								console.log(basket.instructions.scroll);
-																						}
-																					}
-																				],
-																			},
-																			self : '<div class="basket_overview_items"></div>', 
-																			branch : {
-																			 	wrap : {
 																			 		self : '<div class="basket_overview_items_wrap"></div>'
 																			 	}
 																			}
 																		},
-																		bar : {
+																		scroll : {
 																			self   : '<div class="basket_overview_bar"></div>',
 																			branch : {
-																				block : {
+																				handle : {
 																					self : '<div class="basket_overview_bar_block"></div>'
 																				}
 																			}
@@ -6202,24 +6207,31 @@
 																},
 																wrap : {
 																	instructions : {
-																		scroll : null,
-																		observe : {
-																			who      : animate,
-																			property : "scroll",
-																			call     : function (change) { 
-
-																				var basket = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap;
+																		scroll : false,
+																		observers : [
+																			{
+																				who      : animate,
+																				property : "scroll",
+																				call     : function (change) { 
+																					if ( change.new !== "hub" ) return;
+																					var basket = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap;
+																					if ( !basket.instructions.scroll ) {
+																						basket.self               = basket.self[0];
+																						basket.branch.scroll.self = basket.branch.scroll.self[0];
+																						basket.branch.scroll.branch.handle.self = basket.branch.scroll.branch.handle.self[0];
+																						basket.branch.holder.self = basket.branch.holder.self[0];
+																						basket.branch.holder.branch.inner.self  = basket.branch.holder.branch.inner.self[0];
 																					
-																					basket.instructions.scroll = new alpha.scroll_bar({
-																						parent : basket.self[0],
-																						wrap   : basket.branch.items.self[0],
-																						holder : basket.branch.items.branch.wrap.self[0],
-																						scroll : basket.branch.scroll.self[0],
-																						handle : basket.branch.scroll.branch.handle.self[0],
-																						size   : 300
-																					});
+																						basket.instructions.scroll = new alpha.scroll_bar({
+																							self   : basket,
+																							height : 300
+																						});
+																					} else { 
+																						basket.instructions.scroll.calculate_scroll_data();
+																					}
+																				}
 																			}
-																		}
+																		]
 																	},
 																	self : '<div class="profile_hub_tracking_inner_body"></div>',
 																	branch : {
@@ -6231,122 +6243,104 @@
 																				}
 																			}
 																		},
-																		items : {																						
+																		holder : {																						
 																			self : '<div class="profile_hub_tracking_items"></div>',
 																			branch : {
-																				wrap : {
-																					self : '<div class="profile_hub_tracking_items_inner"></div>',
-																					branch : {
-																						promise : {
-																							self : '<div class="profile_hub_tracking_items_group"></div>',
-																							branch : {
-																								title : {
-																									self : '<div class="profile_hub_tracking_title">Price promises</div>'
-																								},
-																								wrap : {
-																									instructions : { 
-																										observe : {
-																											who      : state.account,
-																											property : "price_promise",
-																											call     : function (change) {
-																												if ( state.account.price_promise === null ) return;
-																												var format, manifest, map, append_to;
-																													format = { 
-																														self : '<div class="profile_hub_tracking_item"></div>',
-																														branch : {
-																															image : {
-																																self : '<img src="" class="profile_hub_tracking_item_image">'
-																															},
-																															text : {
-																																self : '<div class="profile_hub_tracking_item_text"></div>',
-																																branch : {
-																																	title : {
-																																		self : '<div class="profile_hub_tracking_item_text_title"></div>'
-																																	},
-																																	author : {
-																																		self : '<div class="profile_hub_tracking_item_text_author"></div>'
-																																	},
-																																	quote : {
-																																		self : '<div class="profile_hub_tracking_item_text_quote"></div>'
-																																	},
-																																	isbn : {
-																																		self : '<div class="profile_hub_tracking_item_text_isbn"></div>	'
-																																	}
-																																}
-																															},
-																															options : {
-																																self : '<div class="profile_hub_tracking_item_options"></div>',
-																																branch : {
-																																	image : {
-																																		self : '<img src="'+frameworkuri+'/CSS/Includes/works/profilehub/freepost.png" class="profile_hub_tracking_item_options_image">'
-																																	},
-																																	remove : {
-																																		instructions : {
-																																			on : {
-																																				the_event : "click",
-																																				is_asslep : false,
-																																				call      : function (change) { 
-																																					if (confirm("Are you sure you want to remove this book from the price promise list?")) {
-																																						var promise = state.account.price_promise,
-																																							index   = change.self.attr("id");
-																																							promise.splice(index, 1);
-																																							state.account.price_promise = promise;
-																																							state.save_account = true;
-																																					}
-																																				}
-																																			}
-																																		},
-																																		self : '<div id="" class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>'
+																				inner : {
+																					instructions : { 
+																						observe : {
+																							who      : state.account,
+																							property : "price_promise",
+																							call     : function (change) {
+																								if ( state.account.price_promise === null ) return;
+																								var format, manifest, map, append_to;
+																									format = { 
+																										self : '<div class="profile_hub_tracking_item"></div>',
+																										branch : {
+																											image : {
+																												self : '<img src="" class="profile_hub_tracking_item_image">'
+																											},
+																											text : {
+																												self : '<div class="profile_hub_tracking_item_text"></div>',
+																												branch : {
+																													title : {
+																														self : '<div class="profile_hub_tracking_item_text_title"></div>'
+																													},
+																													author : {
+																														self : '<div class="profile_hub_tracking_item_text_author"></div>'
+																													},
+																													quote : {
+																														self : '<div class="profile_hub_tracking_item_text_quote"></div>'
+																													},
+																													isbn : {
+																														self : '<div class="profile_hub_tracking_item_text_isbn"></div>	'
+																													}
+																												}
+																											},
+																											options : {
+																												self : '<div class="profile_hub_tracking_item_options"></div>',
+																												branch : {
+																													image : {
+																														self : '<img src="'+frameworkuri+'/CSS/Includes/works/profilehub/freepost.png" class="profile_hub_tracking_item_options_image">'
+																													},
+																													remove : {
+																														instructions : {
+																															on : {
+																																the_event : "click",
+																																is_asslep : false,
+																																call      : function (change) { 
+																																	if (confirm("Are you sure you want to remove this book from the price promise list?")) {
+																																		var promise = state.account.price_promise,
+																																			index   = change.self.attr("id");
+																																			promise.splice(index, 1);
+																																			state.account.price_promise = promise;
+																																			// state.save_account = true;
 																																	}
 																																}
 																															}
-																														}
-																													};
-
-																													map = [
-																														{
-																															path : "branch.image.self.src",
-																															value: "image"
 																														},
-																														{
-																															path : "branch.text.branch.title.self.text",
-																															value: "title"
-																														},
-																														{
-																															path : "branch.text.branch.author.self.text",
-																															value: "author"
-																														},
-																														{
-																															path : "branch.text.branch.isbn.self.text",
-																															value: "isbn"
-																														},
-																														{
-																															path : "branch.text.branch.quote.self.text",
-																															value: "price"
-																														},
-																														{
-																															path : "branch.options.branch.remove.self.id",
-																															value: "id"
-																														}
-																													];
-																													console.log("reconstruct");
-																													append_to = world.wrap.branch.hub.branch.wrap.branch.right_boxes.branch.tracking.branch.body.branch.wrap.branch.items.branch.wrap.branch.promise.branch.wrap;
-																													append_to.self.empty();
-																													manifest = alpha.format(format, append_to.self, state.account.price_promise.length );
-																														
-																													for (var index = 0; index < state.account.price_promise.length; index++) {
-																														state.account.price_promise[index].id = index;
-																														alpha.parse(map, manifest[index+1], state.account.price_promise[index]);
-																													};
-																													append_to.branch = manifest;
+																														self : '<div id="" class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>'
+																													}
+																												}
 																											}
 																										}
-																									},		
-																									self : '<div class="profile_hub_tracking_items_sub_group"></div>'
-																								}
+																									};
+																									map = [
+																										{
+																											path : "branch.image.self.src",
+																											value: "image"
+																										},
+																										{
+																											path : "branch.text.branch.title.self.text",
+																											value: "title"
+																										},
+																										{
+																											path : "branch.text.branch.author.self.text",
+																											value: "author"
+																										},
+																										{
+																											path : "branch.text.branch.isbn.self.text",
+																											value: "isbn"
+																										},
+																										{
+																											path : "branch.text.branch.quote.self.text",
+																											value: "price"
+																										},
+																										{
+																											path : "branch.options.branch.remove.self.id",
+																											value: "id"
+																										}
+																									];
+																									this.self.empty();
+																									manifest = alpha.format(format, this.self, state.account.price_promise.length );	
+																									for (var index = 0; index < state.account.price_promise.length; index++) {
+																										state.account.price_promise[index].id = index;
+																										alpha.parse(map, manifest[index+1], state.account.price_promise[index]);
+																								};
 																							}
 																						}
-																					}
+																					},
+																					self : '<div class="profile_hub_tracking_items_inner"></div>'
 																				}
 																			}
 																		}
@@ -7251,7 +7245,7 @@
 
 			world          = world.manifest($('body'));
 			router.begin();
-			animate.scroll = true;
+			// animate.scroll = true;
 			state.begin    = true;		
 		});									
 	</script>
