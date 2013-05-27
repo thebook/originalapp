@@ -6522,6 +6522,29 @@
 										options : {
 											self : '<div class="stock_book_options"></div>',
 											branch : {
+												wipe : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																if (confirm("Wipe Table")) {
+																	if (confirm("Really, really Wipe The Table?")) {
+																		$.post(ajaxurl,
+																		{
+																			action : "set_book",
+																			method : "clear_table",
+																			paramaters : {},
+																		}, function () {
+																			alert("Table Wiped");
+																		}, "json");
+																	}
+																}
+															}
+														}
+													},
+													self : '<div style="margin-right:10px;" class="stock_book_options_button">Wipe</div>'
+												},
 												export_table : {
 													instructions : {
 														on : {

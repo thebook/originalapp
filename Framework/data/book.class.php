@@ -369,6 +369,12 @@ class book extends alpha
 		$table = new table_creator;
 		return $table->get_all_rows($this->unwanted_table);
 	}
+
+	public function set_clear_table ()
+	{
+		$table = new table_creator;
+		return $table->delete_all_table_rows($this->book_table);	
+	}
 	
 	public function get_unwanted_book_table_columns () {
 		$table = new table_creator;
