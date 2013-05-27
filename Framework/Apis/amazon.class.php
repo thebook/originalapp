@@ -112,6 +112,28 @@ class amazon extends alpha_tree_api
 		return (array)$return_array;
 	}
 
+	protected function _filter_books_by_sort ($xml)
+	{
+		$return_array = array();
+
+		foreach ($xml->Items->Item as $item => $attributes) : 
+			$return_array[] = 
+				array(
+					'external_product_id'=> $attributes->ASIN,
+					'item_name'			 => $attributes->ItemAttributes->Title,
+					'manufacturer' 		 => $attributes->ItemAttributes->Publisher,
+					'standard_price'	 => $attributes->OfferSummary->LowestUsedPrice,
+					'main_image_url'	 => $attributes->LargeImage->URL,
+					'author'			 => $attributes->ItemAttributes->Author,
+					'binding'  			 => $attributes->ItemAttributes->Binding,
+					'publication_date'	 => $attributes->ItemAttributes->PublicationDate
+				);
+
+		endforeach;
+
+		return (array)$return_array;
+	}
+
 	protected function _insert_credentials ($array_to_insert_credentials_in)
 	{
 		$array_to_insert_credentials_in['Service']           = $this->paramaters['service_name'];

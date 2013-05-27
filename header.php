@@ -188,6 +188,11 @@
 
 				state.stock.book = {};
 				state.stock.book.books = [];
+				state.stock.book.add   = {};
+				state.stock.book.add.isbn      = "";
+				state.stock.book.add.condition = "";
+				state.stock.book.add.book      = {};
+
 
 
 			var router = new alpha.route({
@@ -6523,134 +6528,169 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) {
-																if ( state.stock.book.books.length === 0 ) return;
-																var books = state.stock.book.books,
-																	table = "<table><tbody>",
-																	heads = '<tr>'+
-																		'<td>item_sku</td>'+
-																		'<td>external_product_id</td>'+
-																		'<td>external_product_id_type</td>'+
-																		'<td>item_name</td>'+
-																		'<td>author</td>'+
-																		'<td>binding</td>'+
-																		'<td>publication_date</td>'+
-																		'<td>standard_price</td>'+
-																		'<td>quantaty</td>'+
-																		'<td>condition_type</td>'+
-																		'<td>product_description</td>'+
-																		'<td>main_image_url</td>';
-																	'</tr>';
-																	rows  = "";
-
-																	for (var index = 0; index < books.length; index++) {
-																		var row  = "<tr>", book = books[index];
-																		delete book.section;
-																		delete book.level;
-																		delete book.number;
-																		console.log(book);
-																		for ( var part in book ) row += "<td>"+ book[part] +"</td>"
-																		row  += "</tr>";
-																		rows += row;
+																$.get(ajaxurl,
+																{
+																	action : "get_book",
+																	method : "book_table",
+																	paramaters : {},
+																}, function (response) {
+																	
+																	var table = "<table><tbody>";
+																	for (var index = 0; index < response.return.length; index++) {
+																		table += "<tr>";
+																		delete response.return[index].number;
+																		delete response.return[index].section;
+																		delete response.return[index].level;
+																		for (var column in response.return[index] ) table += "<td>"+ response.return[index][column] +"</td>";
+																		table += "</tr>";
 																	};
-																	table += heads + rows + "</tbody></table>";
+																	table += "</tbody></table>";
 																	window.prompt("Copy this", table);
+																}, "json");
 															}
 														}
 													},
 													self : '<div class="stock_book_options_button">Export</div>'
-												}
-											}
-										},
-										header : {
-											self : '<div class="stock_book_header"></div>',
-											branch : {
-												sku : {
-														self : '<div class="stock_book_sku_header">item sku</div>'
 												},
-												section : {
-													self : '<div class="stock_book_section_header ">section</div>'
-												},
-												level : {
-													self : '<div class="stock_book_level_header ">level</div>'
-												},
-												number : {
-													self : '<div class="stock_book_number_header ">number</div>'
-												},
-												external_product_id : {
-													self : '<div class="stock_book_external_product_id_header ">product id </div>'
-												},
-												external_product_id_type : {
-													self : '<div class="stock_book_external_product_id_type_header ">product id type</div>'
-												},
-												item_name : {
-													self : '<div class="stock_book_item_name_header ">item name</div>'
-												},
-												author : {
-													self : '<div class="stock_book_author_header ">author</div>'
-												},
-												binding : {
-													self : '<div class="stock_book_binding_header ">binding</div>'
-												},
-												publication_date : {
-													self : '<div class="stock_book_publication_date_header ">publication date</div>'
-												},
-												standard_price : {
-													self : '<div class="stock_book_standard_price_header ">standard price</div>'
-												},
-												quantaty : {
-													self : '<div class="stock_book_quantaty_header ">quantaty</div>'
-												},
-												condition_type : {
-													self : '<div class="stock_book_condition_type_header ">condition type</div>'
-												},
-												product_description : {
-													self : '<div class="stock_book_product_description_header ">product description</div>'
-												},
-												main_image_url : {
-													self : '<div class="stock_book_main_image_url_header ">main image url</div>'
-												}
-											}
-										},
-										books : {
-											instructions : {
-												observe : {
-													who      : state.stock,
-													property : "page",
-													call     : function (change) {
-														if ( change.new !== "book" ) return;
-														$.get(ajaxurl, {
-															action     : "get_book",
-															method     : "table",
-															paramaters : {}
-														}, function (response) {
-															state.stock.book.books = response.return;
-															var items = world.wrap.branch.stock.branch.book.branch.books.self;
-															for (var index = 0; index < response.return.length; index++) {
-																var ticket = response.return[index];
-																$('<div class="stock_book_item">'+
-																	'<div class="stock_book_sku">'+                      ticket.item_sku                 +'</div>'+
-																	'<div class="stock_book_section">'+                  ticket.section                  +'</div>'+
-																	'<div class="stock_book_level">'+                    ticket.level                    +'</div>'+
-																	'<div class="stock_book_number">'+                   ticket.number                   +'</div>'+
-																	'<div class="stock_book_external_product_id">'+      ticket.external_product_id      +'</div>'+
-																	'<div class="stock_book_external_product_id_type">'+ ticket.external_product_id_type +'</div>'+
-																	'<div class="stock_book_item_name">'+                ticket.item_name                +'</div>'+
-																	'<div class="stock_book_author">'+                   ticket.author                   +'</div>'+
-																	'<div class="stock_book_binding">'+			         ticket.binding                  +'</div>'+
-																	'<div class="stock_book_publication_date">'+         ticket.publication_date         +'</div>'+
-																	'<div class="stock_book_standard_price">'+           ticket.standard_price           +'</div>'+
-																	'<div class="stock_book_quantaty">'+                 ticket.quantaty                 +'</div>'+
-																	'<div class="stock_book_condition_type">'+           ticket.condition_type           +'</div>'+
-																	'<div class="stock_book_product_description">'+      ticket.product_description      +'</div>'+
-																	'<div class="stock_book_main_image_url ">'+          ticket.main_image_url           +'</div>'+
-																'</div>').appendTo(items);
+												condition : {
+													instructions : {
+														on : {
+															the_event : "keyup",
+															is_asslep : false,
+															call      : function (change) {
+																state.stock.book.add.condition = change.self.val();
 															}
-														}, "json");
-													}
+														}
+													},
+													self : '<input class="stock_book_options_small_input" placeholder="cond">'
+												},
+												isbn : {
+													instructions : {
+														on : {
+															the_event : "keypress",
+															is_asslep : false,
+															call      : function (change) {
+																if ( change.event.keyCode === 13 ) {
+																	state.stock.book.add.isbn = change.self.val();
+																	change.self.val("");
+																	new alpha.pure_amazon_search({
+																		typed       : state.stock.book.add.isbn,
+																		filter_name : "sort"
+																	},
+																	function (book) {
+																		console.log(book[0]);
+																		book[0].standard_price = ( book[0].standard_price.Amount? { 0 : book[0].standard_price.Amount } : { 0 : 245 });
+																		if (  book[0].standard_price[0] < 50 ) book[0].standard_price[0] = 245;
+																		book[0].standard_price[0] -= 1;
+																		book[0].standard_price[0] /= 100;
+																		for ( var part in book[0] ) book[0][part] = book[0][part][0];
+																		console.log(book[0]);
+																		$.post(ajaxurl, {
+																			action : "set_book",
+																			method : "book",
+																			paramaters : {
+																				book : book[0]
+																			},
+																		}, function () {}, "json");
+																	});
+																}
+															}
+														}
+													},
+													self : '<input class="stock_book_options_input" placeholder="isbn">'
 												}
-											},
-											self : '<div class="stock_book_items"></div>'
-										}
+											}
+										},
+										// header  : {
+										// 	self : '<div class="stock_book_header"></div>',
+										// 	branch : {
+										// 		sku : {
+										// 			self : '<div class="stock_book_sku_header">item sku</div>'
+										// 		},
+										// 		section : {
+										// 			self : '<div class="stock_book_section_header">section</div>'
+										// 		},
+										// 		level : {
+										// 			self : '<div class="stock_book_level_header">level</div>'
+										// 		},
+										// 		number : {
+										// 			self : '<div class="stock_book_number_header">number</div>'
+										// 		},
+										// 		external_product_id : {
+										// 			self : '<div class="stock_book_external_product_id_header">product id </div>'
+										// 		},
+										// 		external_product_id_type : {
+										// 			self : '<div class="stock_book_external_product_id_type_header">product id type</div>'
+										// 		},
+										// 		item_name : {
+										// 			self : '<div class="stock_book_item_name_header">item name</div>'
+										// 		},
+										// 		author : {
+										// 			self : '<div class="stock_book_author_header">author</div>'
+										// 		},
+										// 		binding : {
+										// 			self : '<div class="stock_book_binding_header">binding</div>'
+										// 		},
+										// 		publication_date : {
+										// 			self : '<div class="stock_book_publication_date_header">publication date</div>'
+										// 		},
+										// 		standard_price : {
+										// 			self : '<div class="stock_book_standard_price_header">standard price</div>'
+										// 		},
+										// 		quantaty : {
+										// 			self : '<div class="stock_book_quantaty_header">quantaty</div>'
+										// 		},
+										// 		condition_type : {
+										// 			self : '<div class="stock_book_condition_type_header">condition type</div>'
+										// 		},
+										// 		product_description : {
+										// 			self : '<div class="stock_book_product_description_header">product description</div>'
+										// 		},
+										// 		main_image_url : {
+										// 			self : '<div class="stock_book_main_image_url_header">main image url</div>'
+										// 		}
+										// 	}
+										// },
+										// books   : {
+										// 	instructions : {
+										// 		observe : {
+										// 			who      : state.stock,
+										// 			property : "page",
+										// 			call     : function (change) {
+										// 				if ( change.new !== "book" ) return;
+										// 				$.get(ajaxurl, {
+										// 					action     : "get_book",
+										// 					method     : "table",
+										// 					paramaters : {}
+										// 				}, function (response) {
+										// 					state.stock.book.books = response.return;
+										// 					var items = world.wrap.branch.stock.branch.book.branch.books.self;
+										// 					for (var index = 0; index < response.return.length; index++) {
+										// 						var ticket = response.return[index];
+										// 						$('<div class="stock_book_item">'+
+										// 							'<div class="stock_book_sku">'+                      ticket.item_sku                 +'</div>'+
+										// 							'<div class="stock_book_section">'+                  ticket.section                  +'</div>'+
+										// 							'<div class="stock_book_level">'+                    ticket.level                    +'</div>'+
+										// 							'<div class="stock_book_number">'+                   ticket.number                   +'</div>'+
+										// 							'<div class="stock_book_external_product_id">'+      ticket.external_product_id      +'</div>'+
+										// 							'<div class="stock_book_external_product_id_type">'+ ticket.external_product_id_type +'</div>'+
+										// 							'<div class="stock_book_item_name">'+                ticket.item_name                +'</div>'+
+										// 							'<div class="stock_book_author">'+                   ticket.author                   +'</div>'+
+										// 							'<div class="stock_book_binding">'+			         ticket.binding                  +'</div>'+
+										// 							'<div class="stock_book_publication_date">'+         ticket.publication_date         +'</div>'+
+										// 							'<div class="stock_book_standard_price">'+           ticket.standard_price           +'</div>'+
+										// 							'<div class="stock_book_quantaty">'+                 ticket.quantaty                 +'</div>'+
+										// 							'<div class="stock_book_condition_type">'+           ticket.condition_type           +'</div>'+
+										// 							'<div class="stock_book_product_description">'+      ticket.product_description      +'</div>'+
+										// 							'<div class="stock_book_main_image_url ">'+          ticket.main_image_url           +'</div>'+
+										// 						'</div>').appendTo(items);
+										// 					}
+										// 				}, "json");
+										// 			}
+										// 		}
+										// 	},
+										// 	self : '<div class="stock_book_items"></div>'
+										// }
 									}
 								},
 								bus : {

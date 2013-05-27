@@ -4719,6 +4719,17 @@ body {
   display: inline-block;
   width: 6.5%; }
 
+.stock_book_options_small_input, .stock_book_options_input {
+  margin-left: 10px;
+  width: 35px;
+  border: 1px solid #555555;
+  background: whitesmoke;
+  padding-top: 2px;
+  padding-bottom: 3px; }
+
+.stock_book_options_input {
+  width: 100px; }
+
 .stock_book_item {
   width: 100%;
   float: left;

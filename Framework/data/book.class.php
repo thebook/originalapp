@@ -380,18 +380,6 @@ class book extends alpha
 		return $table->show_all_columns_in_a_table($this->book_table);
 	}
 
-	// public function set_clear_table ()
-	// {
-	// 	$table = new table_creator;
-	// 	return $table->delete_all_table_rows($this->book_table);	
-	// }
-
-	// public function set_remove_table ()
-	// {
-	// 	$table = new table_creator;
-	// 	return $table->remove_table($this->book_table);	
-	// }
-
 	public function set_book ($book)
 	{
 		$table   = new table_creator;

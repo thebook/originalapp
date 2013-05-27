@@ -43,6 +43,20 @@
 	width  : 6.5%;
 }
 
+.stock_book_options_small_input {
+	margin-left: 10px;
+	width: 35px;
+	border: 1px solid $black_gray;
+	background: $light_monochrome;
+	padding-top: 2px;
+	padding-bottom: 3px;
+}
+
+.stock_book_options_input {
+	@extend.stock_book_options_small_input;
+	width: 100px;
+}
+
 .stock_book_sku_header {
 	@extend.stock_book_header_part;
 }
