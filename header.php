@@ -6294,7 +6294,7 @@
 																																			index   = change.self.attr("id");
 																																			promise.splice(index, 1);
 																																			state.account.price_promise = promise;
-																																			// state.save_account = true;
+																																			state.save_account = true;
 																																	}
 																																}
 																															}
@@ -7245,7 +7245,6 @@
 
 			world          = world.manifest($('body'));
 			router.begin();
-			// animate.scroll = true;
 			state.begin    = true;		
 		});									
 	</script>

@@ -37,134 +37,309 @@ class book extends alpha
 			'fields'      => array(
 				array( 
 					'column_name'    => 'item_sku',
+					'data_type'      => 'INT',
 					'auto_increment' => true,
-					'data_type'      => 'INT'
 				),
 				array( 
 					'column_name'    => 'section',
-					'data_type'      => 'varchar(5)'
+					'data_type'      => 'varchar(10)'
 				),
 				array( 
 					'column_name'    => 'level',
-					'data_type'      => 'varchar(5)'
+					'data_type'      => 'varchar(10)'
 				),
 				array( 
 					'column_name'    => 'number',
 					'data_type'      => 'tinyint'
 				),
 				array( 
-					'column_name'    => 'external_product_id',
-					'data_type'      => 'varchar(13)'
+					'column_name' => 'external_product_id',
+					'data_type'   => 'varchar(200)'
 				),
 				array( 
-					'column_name'    => 'external_product_id_type',
-					'data_type'      => 'varchar(13)'
+					'column_name' => 'external_product_id_type',
+					'data_type'   => 'varchar(200)'
 				),
 				array( 
-					'column_name'    => 'item_name',
-					'data_type'      => 'varchar(100)'
+					'column_name' => 'item_name',
+					'data_type'   => 'varchar(200)'
 				),
 				array( 
-					'column_name'    => 'author',
-					'data_type'      => 'varchar(100)'
+					'column_name' => 'manufacturer',
+					'data_type'   => 'varchar(200)'
 				),
 				array( 
-					'column_name'    => 'binding',
-					'data_type'      => 'varchar(22)'
+					'column_name' => 'product_description',
+					'data_type'   => 'varchar(200)'
 				),
 				array( 
-					'column_name'    => 'publication_date',
-					'data_type'      => 'date'
+					'column_name' => 'update_delete',
+					'data_type'   => 'varchar(200)'
 				),
 				array( 
-					'column_name'    => 'standard_price',
-					'data_type'      => 'varchar(11)'
+					'column_name' => 'standard_price',
+					'data_type'   => 'varchar(200)'
 				),
 				array( 
-					'column_name'    => 'quantaty',
-					'data_type'      => 'varchar(4)'
+					'column_name' => 'quantity',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name'    => 'condition_type',
-					'data_type'      => 'varchar(1)'
+				array( 
+					'column_name' => 'condition_type',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name'    => 'product_description',
-					'data_type'      => 'text'	
+				array( 
+					'column_name' => 'condition_note',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name'    => 'main_image_url',
-					'data_type'      => 'tinytext'
+				array( 
+					'column_name' => 'generic_keywords1',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'generic_keywords2',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'generic_keywords3',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'generic_keywords4',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'generic_keywords5',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'main_image_url',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'fulfillment_center_id',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_height',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_width',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_length',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_dimensions_unit_of_measure',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_weight',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_weight_unit_of_measure',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'author',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'binding',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'publication_date',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'edition',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'expedited_shipping',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'will_ship_internationally',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'unknown_subject',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'language_value',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'volume_base',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'illustrator',
+					'data_type'   => 'varchar(200)'
 				)
 			)
 		));
 
 		$table->check_if_table_exists_if_not_create_one(array(
 			'table_name'  => $this->unwanted_table,
-			'primary_key' => 'id',
+			'primary_key' => 'item_sku',
 			'fields'      => array(
 				array( 
-					'column_name'    => 'id',
+					'column_name'    => 'item_sku',
+					'data_type'      => 'INT',
 					'auto_increment' => true,
-					'data_type'      => 'INT'
 				),
-				array(
-					'column_name' => 'section',
-					'data_type'   => 'varchar(5)',
+				array( 
+					'column_name'    => 'section',
+					'data_type'      => 'varchar(10)'
 				),
-				array(
-					'column_name' => 'level',
-					'data_type'   => 'varchar(5)',
+				array( 
+					'column_name'    => 'level',
+					'data_type'      => 'varchar(10)'
 				),
-				array(
-					'column_name' => 'number',
-					'data_type'   => 'smallint',
+				array( 
+					'column_name'    => 'number',
+					'data_type'      => 'tinyint'
 				),
-				array(
+				array( 
+					'column_name' => 'external_product_id',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'external_product_id_type',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
 					'column_name' => 'item_name',
-					'data_type'   => 'varchar(100)',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
+				array( 
+					'column_name' => 'manufacturer',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'product_description',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'update_delete',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'standard_price',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'quantity',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'condition_type',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'condition_note',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'generic_keywords1',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'generic_keywords2',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'generic_keywords3',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'generic_keywords4',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'generic_keywords5',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'main_image_url',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'fulfillment_center_id',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_height',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_width',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_length',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_dimensions_unit_of_measure',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_weight',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
+					'column_name' => 'package_weight_unit_of_measure',
+					'data_type'   => 'varchar(200)'
+				),
+				array( 
 					'column_name' => 'author',
-					'data_type'   => 'varchar(100)',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name' => 'user',
-					'data_type'   => 'INT'
+				array( 
+					'column_name' => 'binding',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name' => 'email',
-					'data_type'   => 'varchar(30)'
+				array( 
+					'column_name' => 'publication_date',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name' => 'first_name',
-					'data_type'   => 'varchar(22)'
+				array( 
+					'column_name' => 'edition',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name' => 'second_name',
-					'data_type'   => 'varchar(22)'
+				array( 
+					'column_name' => 'expedited_shipping',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name' => 'address',
-					'data_type'   => 'varchar(200)',
+				array( 
+					'column_name' => 'will_ship_internationally',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name' => 'post_code',
-					'data_type'   => 'varchar(7)',
+				array( 
+					'column_name' => 'unknown_subject',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name' => 'town',
-					'data_type'   => 'varchar(30)',
+				array( 
+					'column_name' => 'language_value',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name' => 'area',
-					'data_type'   => 'varchar(50)',
+				array( 
+					'column_name' => 'volume_base',
+					'data_type'   => 'varchar(200)'
 				),
-				array(
-					'column_name' => 'reason_for_rejection',
-					'data_type'   => 'text',
+				array( 
+					'column_name' => 'illustrator',
+					'data_type'   => 'varchar(200)'
 				)
-
 			)
 		));
 
@@ -183,22 +358,87 @@ class book extends alpha
 		));
 	}
 
-	public function get_table ()
+	public function get_book_table ()
 	{
 		$table = new table_creator;
 		return $table->get_all_rows($this->book_table);
 	}
 
-	public function set_book ($array_of_books)
+	public function get_unwanted_book_table ()
 	{
 		$table = new table_creator;
+		return $table->get_all_rows($this->unwanted_table);
+	}
+	
+	public function get_unwanted_book_table_columns () {
+		$table = new table_creator;
+		return $table->show_all_columns_in_a_table($this->unwanted_table);	
+	}
 
-		foreach ($array_of_books as $book) :
-			$book['section'] = 1;
-			$book['level']   = 1;
-			$book['number']  = 1;
-			$table->add_row_to_table($this->book_table, $book);
+	public function get_book_table_columns () {
+		$table = new table_creator;
+		return $table->show_all_columns_in_a_table($this->book_table);
+	}
+
+	public function set_clear_table ()
+	{
+		$table = new table_creator;
+		return $table->delete_all_table_rows($this->book_table);	
+	}
+
+	public function set_remove_table ()
+	{
+		$table = new table_creator;
+		return $table->remove_table($this->unwanted_table);	
+	}
+
+	public function set_book ($book)
+	{
+		$table   = new table_creator;
+		$default = array(
+			'section'					=> 1,
+			'level'					    => 1,
+			'number'					=> 1,
+			'external_product_id'       => '',
+			'external_product_id_type'  => 'ASIN',
+			'item_name'                 => '',
+			'manufacturer'              => '',
+			'product_description'       => '',
+			'update_delete'             => '',
+			'standard_price'            => '',
+			'quantity'                  => 1,
+			'condition_type'            => 4,
+			'condition_note'            => '',
+			'generic_keywords1'         => '',
+			'generic_keywords2'         => '',
+			'generic_keywords3'         => '',
+			'generic_keywords4'         => '',
+			'generic_keywords5'         => '',
+			'main_image_url'            => '',
+			'fulfillment_center_id'     => '',
+			'package_height'            => '',
+			'package_width'             => '',
+			'package_length'            => '',
+			'package_dimensions_unit_of_measure' => '',
+			'package_weight'            => '',
+			'package_weight_unit_of_measure' => '',
+			'author'                    => '',
+			'binding' 	                => '',
+			'publication_date'          => '',
+			'edition'                   => '',
+			'expedited_shipping'        => '',
+			'will_ship_internationally' => '',
+			'unknown_subject'           => '',
+			'language_value'            => '',
+			'volume_base'               => '',
+			'illustrator'               => '',
+		);
+
+		foreach ($default as $book_property => $default_value) :
+			( !isset($book[$book_property]) ) and $book[$book_property] = $default_value;
 		endforeach;
+
+		$table->add_row_to_table($this->book_table, $book);
 	}
 }
 	

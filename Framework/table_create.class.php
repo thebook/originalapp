@@ -27,6 +27,12 @@ class table_creator
 		}	
 	}
 
+	public function remove_table ($table_name)
+	{
+		global $wpdb;
+		$wpdb->query("DROP TABLE IF EXISTS $wpdb->prefix$table_name");
+	}
+
 	/**
 	 * Unecessary ? 
 	 * Creates two tables, one for storing a name(or any other indeifier ) along with a id and the other for storing 

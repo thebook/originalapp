@@ -1,0 +1,60 @@
+$.post(ajaxurl,
+{
+	action : "set_book",
+	method : "clear_table",
+	paramaters : {},
+}, function () {}, "json");
+
+$.post(ajaxurl,
+{
+	action : "set_book",
+	method : "remove_table",
+	paramaters : {},
+}, function () {}, "json");
+
+$.get(ajaxurl,
+{
+	action : "get_book",
+	method : "book_table",
+	paramaters : {},
+}, function () {}, "json");
+
+$.get(ajaxurl,
+{
+	action : "get_book",
+	method : "book_table_columns",
+	paramaters : {},
+}, function () {}, "json");
+
+$.get(ajaxurl,
+{
+	action : "get_book",
+	method : "unwanted_book_table",
+	paramaters : {},
+}, function () {}, "json");
+
+$.get(ajaxurl,
+{
+	action : "get_book",
+	method : "unwanted_book_table_columns",
+	paramaters : {},
+}, function () {}, "json");
+
+
+$.post(ajaxurl,
+{
+	action : "set_book",
+	method : "book",
+	paramaters : {
+		book : {
+			'external_product_id' : "BF02LKSDK",
+			'item_name' : "SOme book",
+			'manufacturer' : "Booky Mc Book Jig",
+			'standard_price' : "6.32",
+			'main_image_url' : "http://sadsada.com",
+			'author' : "Booky Mc jiga book",
+			'binding' : "Paperjig",
+			'publication_date' : "1994",
+		}
+	},
+}, function () {}, "json");
