@@ -1,6 +1,9 @@
 .bus_control_print {
 	width : 210mm;
 	height: 297mm;
+	position: absolute;
+	top: 0px;
+	background: $light_monochrome;
 	border-right: 1px solid $black_gray;
 	float: left;
 	display: none;

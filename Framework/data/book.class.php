@@ -392,6 +392,13 @@ class book extends alpha
 		$table->update_row($this->book_table, array( $value_name => $value ), 'item_sku', $book_sku );
 	}
 
+	public function set_books ($books)
+	{
+		foreach ($books as $book) :
+			$this->set_book($book);
+		endforeach;
+	}
+
 	public function set_book ($book)
 	{
 		$table   = new table_creator;

@@ -33,6 +33,19 @@ var alpha = (function ( alpha, $ ) {
 			});
 		}
 
+		if ( instructions.on_events ) {
+			for (var index = 0; index < instructions.on_events.length; index++) {
+				this.bind_event({
+					to    	      : self, 
+					parent	      : parent,
+					for_the_event : instructions.on_events[index].the_event,
+					is_slumbering : instructions.on_events[index].is_slumbering,
+					call_function : instructions.on_events[index].call,
+					paramaters    : instructions.on_events[index].with_instructions,
+				});
+			}
+		}
+
 		if ( instructions.observe ) this.observe(parent, self, instructions.observe);
 
 		if ( instructions.observers ) {

@@ -184,6 +184,16 @@
 					done         : false,
 					search_query : "",
 					add_book     : false,
+					submit_expenses    : false,
+					submiting_expenses : false,
+					expenses_submited  : false,
+					expenses     : [],
+					add          : false,
+					adding       : false,
+					adding_books : [],
+					added_books  : false,
+					submit       : false,
+					print        : false,
 					books        : [],
 					total        : 0,
 					final_total  : 0,
@@ -298,18 +308,31 @@
 						world.wrap.branch.stock.self.css({ display : "block" });
 						state.stock.page         = "bus";
 						state.process.sign_out   = true;
-						// state.stock.bus.animate  = "search";
-						// $('body').css({ overflow : "hidden" });
-						// state.stock.bus.search   = "";
-						// state.stock.bus.basket   = [];
-						// state.stock.bus.total    = "0.00";
-						// world.wrap.branch.stock.branch.bus.branch.input.branch.items.self.empty();
+						state.stock.bus.print    = false;
+						search                             = false;
+						state.stock.bus.searching          = false;
+						state.stock.bus.done               = false;
+						state.stock.bus.search_query       = "";
+						state.stock.bus.add_book           = false;
+						state.stock.bus.submit_expenses    = false;
+						state.stock.bus.submiting_expenses = false;
+						state.stock.bus.expenses_submited  = false;
+						state.stock.bus.expenses           = [];
+						state.stock.bus.add                = false;
+						state.stock.bus.adding             = false;
+						state.stock.bus.adding_books       = [];
+						state.stock.bus.added_books        = false;
+						state.stock.bus.submit             = false;
+						state.stock.bus.print              = false;
+						state.stock.bus.books              = [];
+						state.stock.bus.total              = 0;
+						state.stock.bus.cheque_spell       = "";
+						$('body').css({ overflow : "hidden" });
 					},
 					off : function () {
 						world.wrap.branch.stock.self.css({ display : "none" });
 						state.stock.page         = false;
 						$('body').css({ overflow : "auto" });
-						// state.stock.bus.animate  = false;
 					}
 				}
 			});
@@ -468,7 +491,6 @@
 											state.process.false_register = false;
 										},"json");
 									},"json");
-									console.log(state.account);
 								}
 							},
 							{ 
@@ -7035,11 +7057,10 @@
 											who      : state.stock,
 											property : "page",
 											call     : function (change) {
-												var self = world.wrap.branch.stock.branch.bus.self;
 												if ( change.new === "bus" ) {
-													self.css({ display : "block" });
+													this.self.css({ display : "block" });
 												} else { 
-													self.css({ display : "none" });
+													this.self.css({ display : "none" });
 												}
 											}
 										}
@@ -7051,19 +7072,50 @@
 											branch : {
 												items  : {
 													instructions : {
-														on : {
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) {
-																if ( change.event.target.className !== "bus_control_remove" ) return;
+														on_events : [
+															{
+																the_event : "click",
+																is_asslep : false,
+																call      : function (change) {
+																	if ( change.event.target.className !== "bus_control_remove" ) return;
 
-																$('#'+ change.event.target.id).parent().remove();
-																if ( change.event.target.id !== "remove" ) {
-																	state.stock.bus.total = state.stock.bus.total - parseFloat( state.stock.bus.books[change.event.target.id-1].standard_price);
-																	state.stock.bus.books[change.event.target.id-1] = null;
+																	$('#'+ change.event.target.id).parent().remove();
+																	if ( change.event.target.id !== "remove" ) {
+																		state.stock.bus.total = state.stock.bus.total - parseFloat( state.stock.bus.books[change.event.target.id-1].standard_price);
+																		state.stock.bus.books[change.event.target.id-1] = null;
+																	}
+																}
+															},
+															{
+																the_event : "keypress",
+																is_asslep : false,
+																call      : function (change) {
+																	if ( change.event.keyCode === 13 ) {
+																		var part, id, value, target = $(change.event.target);
+																		if ( !target.attr("data-type-changeable") ) return;
+																		target.blur();
+																		value = target.val().trim();
+																		id    = target.attr("data-type-book");
+																		field = target.attr("data-type-field");
+
+																		if ( field === "condition_type" ) {
+																			state.stock.bus.books[id-1][field] = value;
+																		}
+
+																		if ( field === "standard_price" ) {
+																			value = parseFloat( value );
+																			if ( isNaN(value) ) {
+																				target.val(state.stock.bus.books[id-1][field]);
+																				return;
+																			}
+																			state.stock.bus.total = state.stock.bus.total - state.stock.bus.books[id-1][field];
+																			state.stock.bus.total = state.stock.bus.total + value;
+																			state.stock.bus.books[id-1][field] = value;
+																		}
+																	}
 																}
 															}
-														},
+														],
 														observers : [
 															{
 																who      : state.stock.bus,
@@ -7078,6 +7130,7 @@
 																		book[0].standard_price[0] /= 100;
 																		for ( var part in book[0] ) book[0][part] = book[0][part][0];
 																		book = alpha.algorithm(book[0]);
+																		book.condition_type = 1;
 																		state.stock.bus.books.push(book);
 																		state.stock.bus.add_book = book;
 																		console.log(state.stock.bus.books);
@@ -7088,17 +7141,116 @@
 																who      : state.stock.bus,
 																property : "add_book",
 																call     : function (change) {
+																	if ( !change.new ) return;
+																	var book_id = state.stock.bus.books.length;
 																	$('<div class="bus_control_item">'+
 																		'<div class="bus_control_item_isbn">'  + change.new.external_product_id     +'</div>'+
+																		'<input data-type-changeable="true" data-type-book="'+ book_id +'" data-type-field="condition_type" maxlength="2" class="bus_control_item_condition" value="'+ change.new.condition_type +'">'+
 																		'<div class="bus_control_item_title">' + change.new.item_name               +'</div>'+
-																		'<div class="bus_control_item_total">£'+ change.new.standard_price          +'</div>'+
-																		'<div class="bus_control_remove" id="' + state.stock.bus.books.length +'">Remove</div>'+
+																		'<input data-type-changeable="true" data-type-book="'+ book_id +'" data-type-field="standard_price" class="bus_control_item_total" maxlength="6" value="'+ change.new.standard_price +'">'+
+																		'<div class="bus_control_remove" id="' + book_id +'">Remove</div>'+
 																	'</div>').appendTo(this.self);
+																}
+															},
+															{
+																who      : state.stock.bus,
+																property : "submit_expenses",
+																call     : function (change) {
+																	if ( !change.new ) return;
+																	var index, book, get_date, date;
+
+																	get_date = new Date();
+																	date     = get_date.getFullYear() +"-"+ get_date.getMonth() +"-"+ get_date.getDay();
+
+																	for (index = 0; index < state.stock.bus.books.length; index++) {
+																		if ( state.stock.bus.books[index] === null ) {
+																			state.stock.bus.books.splice(index,1);
+																		}
+																	};
+
+																	for (index = 0; index < state.stock.bus.books.length; index++) {
+																		book = state.stock.bus.books[index];
+																		state.stock.bus.expenses.push({
+																			book      : book.item_name,
+																			book_asin : book.external_product_id,
+																			amount    : book.standard_price,
+																			date      : date
+																		});
+																	};
+																	state.stock.bus.submiting_expenses = true;
+																}
+															},
+															{
+																who      : state.stock.bus,
+																property : "submiting_expenses",
+																call     : function (change) {
+																	if ( !change.new ) return;
+																	console.log("expenses");
+																	console.log(state.stock.bus.expenses);
+																	$.post(ajaxurl, {
+																		action : "set_expense",
+																		method : "rows",
+																		paramaters : {
+																			rows : state.stock.bus.expenses
+																		}
+																	}, function () {
+																		state.stock.bus.submited_expenses = true;
+																	}, "json");
+																}
+															},
+															{
+																who      : state.stock.bus,
+																property : "submited_expenses",
+																call     : function (change) {
+																	if ( change.new ) state.stock.bus.add = true;
+																}
+															},
+															{
+																who      : state.stock.bus,
+																property : "add",
+																call     : function (change) {
+																	if ( !change.new ) return;
+																	var book_number = 0, index, book, amazon;
+
+																	for (index = 0; index < state.stock.bus.books.length; index++) {
+																		book_number++;
+																		book = state.stock.bus.books[index];
+																		amazon = new alpha.pure_amazon_search({
+																			typed       : book.external_product_id,
+																			filter_name : "sort"
+																		}, function (response) {
+																			var books;
+																			book.standard_price = ( parseFloat( response[0].standard_price.Amount ) -1 )/100;
+																			books = state.stock.bus.adding_books;
+																			books.push(book);
+																			state.stock.bus.adding_books = books;
+																			if ( book_number === state.stock.bus.adding_books.length ) state.stock.bus.added_books = true;
+																		}, "json");
+																	};
+																}	
+															},
+															{
+																who      : state.stock.bus,
+																property : "added_books",
+																call     : function (change) {
+																	if ( !change.new ) return;
+																	console.log("submit books");
+																	console.log(state.stock.bus.books);
+																	$.post(ajaxurl, {
+																		action     : "set_book",
+																		method     : "books",
+																		paramaters : {
+																			books : state.stock.bus.adding_books
+																		}
+																	}, function () {
+																		state.stock.bus.submit = true;
+																	},"json");
 																}
 															}
 														],
 													},
-													self : '<div class="bus_control_items"></div>'
+													self : 
+														'<div class="bus_control_items"></div>'
 												},
 												total : {
 													instructions : {
@@ -7114,12 +7266,27 @@
 																who      : state.stock.bus,
 																property : "total",
 																call     : function (change) {
-																	this.self.text(change.new.toFixed(2));
+																	this.self.val(change.new.toFixed(2));
 																}
 															},
-														]
+														],
+														on : {
+															the_event : "keypress",
+															is_asslep : false,
+															call      : function (change) {
+																if ( change.event.keyCode === 13 ) {
+																	change.self.blur();
+																	var value = parseFloat( change.self.val().trim() );
+																	if ( isNaN(value) ) {
+																		change.self.val(state.stock.bus.total);
+																		return;
+																	}
+																	state.stock.bus.total = value;
+																}
+															}
+														}
 													},
-													self : '<div class="bus_control_total">£0.00</div>',
+													self : '<input class="bus_control_total" maxlength="6" value="0.00">',
 												},
 												search : {
 													instructions : {
@@ -7135,43 +7302,11 @@
 															}
 														}	
 													},
-													self : '<input type="text" class="bus_control_input">'
+													self : '<input type="text" class="bus_search">'
 												},
-												next : {
-													self : '<div class="bus_control_progress"></div>',
-													branch : {
-														next : {
-															instructions : {
-																on : {
-																	the_event : "click",
-																	is_asslep : false,
-																	call      : function (change) {
-																		if ( state.stock.bus.basket.length === 0 ) return;
-																		state.stock.bus.animate = "register";
-																	}
-																}
-															},
-															self : '<div class="bus_control_progress_text">Next</div>'
-														}
-													}
-												}
 											}
 										},
 										register :{ 
-											instructions : {
-												observe : {
-													who      : state.stock.bus,
-													property : "animate",
-													call     : function (change) {
-														var self = world.wrap.branch.stock.branch.bus.branch.register.self;
-														if ( change.new === "register" ) {
-															self.css({ display : "block" });
-														} else { 
-															self.css({ display : "none" });
-														}
-													}
-												}
-											},
 											self : '<div class="bus_control_slide"></div>',
 											branch : {
 												first_name : {
@@ -7246,54 +7381,9 @@
 													},
 													self : '<input maxlength="30" type="text" class="bus_control_input" placeholder="Subject">',
 												},
-												controls : {
-													self : '<div class="bus_control_progress"></div>',
-													branch : {
-														back : {
-															instructions : {
-																on : {
-																	the_event : "click",
-																	is_asslep : false,
-																	call      : function (change) {
-																		state.stock.bus.animate = "search";
-																	}
-																}
-															},
-															self : '<div class="bus_control_progress_text">Back </div>',
-														},
-														next : {
-															instructions : {
-																on : {
-																	the_event : "click",
-																	is_asslep : false,
-																	call      : function (change) {
-																		if ( state.account.email.length < 2 ) return;
-																		state.process.false_register = true;
-																		state.stock.bus.animate = "donate";
-																	}
-																}
-															},
-															self : '<div class="bus_control_progress_text">Next</div>',
-														}
-													}
-												},
 											}
 										},
 										donate : {
-											instructions : {
-												observe : {
-													who      : state.stock.bus,
-													property : "animate",
-													call     : function (change) {
-														var self = world.wrap.branch.stock.branch.bus.branch.donate.self;
-														if ( change.new === "donate" ) {
-															self.css({ display : "block" });
-														} else { 
-															self.css({ display : "none" });
-														}
-													}
-												}
-											},
 											self : '<div class="bus_control_slide"></div>',
 											branch : {
 												increment : {
@@ -7301,14 +7391,24 @@
 													branch : {
 														value : {
 															instructions : {
-																observe : {
-																	who      : state,
-																	property : "withdraw",
-																	call     : function (change) {
-																		var self = world.wrap.branch.stock.branch.bus.branch.donate.branch.increment.branch.value.self;
-																		self.val("£"+ change.new);
-																	}
-																}
+																observers : [
+																	{
+																		who      : state,
+																		property : "withdraw",
+																		call     : function (change) {
+																			this.self.val("£"+ change.new);
+																		}
+																	},
+																	{
+																		who      : state.stock.bus,
+																		property : "total",
+																		call     : function (change) {
+																			if ( change.new < parseFloat( state.withdraw ) ) {
+																				state.withdraw = change.new.toFixed(2);
+																			}
+																		}
+																	},
+																]
 															},
 															self : '<input type="text" class="bus_control_increment_value" value="0.00" readonly>'
 														},
@@ -7351,19 +7451,27 @@
 																who      : state,
 																property : "withdraw",
 																call     : function (change) {
-																	var self, total;
-																	self  = world.wrap.branch.stock.branch.bus.branch.donate.branch.total_reminder.self;
-																	total = parseFloat( state.stock.bus.total ) - parseFloat( change.new );
+																	var total;
+																	total = state.stock.bus.total - parseFloat( change.new );
 																	total = total.toFixed(2);
 																	state.stock.bus.final_total = total;
-																	self.val("£"+ total );
+																}
+															},
+															{
+																who      : state.stock.bus,
+																property : "total",
+																call     : function (change) {
+																	var total;
+																	total = change.new - parseFloat( state.withdraw );
+																	total = total.toFixed(2);
+																	state.stock.bus.final_total = total;
 																}
 															},
 														 	{
 																who      : state.stock.bus,
 																property : "final_total",
 																call     : function (change) {
-																	world.wrap.branch.stock.branch.bus.branch.donate.branch.total_reminder.self.val("£"+ change.new);
+																	this.self.val("£"+ change.new);
 																}
 															}
 														]
@@ -7380,34 +7488,22 @@
 															}
 														}
 													},
-													self : '<input type="text" class="bus_control_spell_sum" placeholder="Type in total value here">'
-												},
-												type_sum : {
-													instructions : {
-														on : {
-															the_event : "keyup",
-															is_asslep : false,
-															call      : function (change) {
-																state.stock.bus.final_total = change.self.val();
-															}
-														}
-													},
-													self : '<input type="text" class="bus_control_spell_sum" placeholder="Type in total number here">'
+													self : '<input type="text" class="bus_control_spell_sum" placeholder="Price text">'
 												},
 												controls : {
 													self : '<div class="bus_control_progress"></div>',
 													branch : {
-														back : {
+														print : {
 															instructions : {
 																on : {
 																	the_event : "click",
 																	is_asslep : false,
 																	call      : function (change) {
-																		state.stock.bus.animate = "register";
+																		state.stock.bus.print = true;
 																	}
 																}
 															},
-															self : '<div class="bus_control_progress_text">Back</div>',
+															self : '<div class="bus_control_progress_text">Print  </div>',
 														},
 														next : {
 															instructions : {
@@ -7415,14 +7511,13 @@
 																	the_event : "click",
 																	is_asslep : false,
 																	call      : function (change) {
-																		state.process.add_book  = true;
-																		state.process.update    = true;
-																		state.stock.bus.animate = "print";
+																		state.process.false_register    = true;
+																		state.stock.bus.submit_expenses = true;
 																	}
 																}
 															},
-															self : '<div class="bus_control_progress_text">Next</div>',
-														}
+															self : '<div class="bus_control_progress_text">Save&Submit</div>',
+														},
 													}
 												}
 											}
@@ -7431,18 +7526,13 @@
 											instructions : {
 												observe : {
 													who      : state.stock.bus,
-													property : "animate",
+													property : "print",
 													call     : function (change) {
-														var self = world.wrap.branch.stock.branch.bus.branch.print.self,
-															bar  = world.wrap.branch.stock.branch.bar.self;
-
-														if ( change.new === "print" ) {
-															bar.css({ display : "none" });
-															self.css({ display : "block" });
+														if ( change.new  ) {
+															this.self.css({ display : "block" });
 															window.print();	
 														} else { 
-															bar.css({ display : "block" });
-															self.css({ display : "none" });
+															this.self.css({ display : "none" });
 														}
 													}
 												}
@@ -7499,7 +7589,7 @@
 															who      : state.stock.bus,
 															property : "cheque_spell",
 															call     : function (change) {
-																world.wrap.branch.stock.branch.bus.branch.print.branch.cheque_sum_text.self.text(change.new);
+																this.self.text(change.new);
 															}
 														}
 													},
@@ -7509,13 +7599,12 @@
 													instructions : {
 														observe : {
 															who      : state.stock.bus,
-															property : "animate",
+															property : "print",
 															call     : function (change) {
-																if ( change.new !== "print" ) return;
 																var date, today;
 																date  = new Date();
 																today =  date.getDate() +"/"+ date.getMonth() +"/"+ date.getFullYear();
-																world.wrap.branch.stock.branch.bus.branch.print.branch.cheque_date.self.text(today);
+																this.self.text(today);
 															}
 														}
 													},
@@ -7527,7 +7616,7 @@
 															who      : state.stock.bus,
 															property : "final_total",
 															call     : function (change) {
-																world.wrap.branch.stock.branch.bus.branch.print.branch.cheque_sum.self.text("£"+ change.new);
+																this.self.text("£"+ change.new);
 															}
 														}
 													},

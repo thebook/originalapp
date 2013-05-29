@@ -17,6 +17,7 @@ new account;
 new ticket;
 new book;
 new email;
+new expense;
 
 new amazon(
 	array(
