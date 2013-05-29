@@ -386,6 +386,12 @@ class book extends alpha
 		return $table->show_all_columns_in_a_table($this->book_table);
 	}
 
+	public function set_book_value ($book_sku, $value_name, $value)
+	{
+		$table = new table_creator;
+		$table->update_row($this->book_table, array( $value_name => $value ), 'item_sku', $book_sku );
+	}
+
 	public function set_book ($book)
 	{
 		$table   = new table_creator;

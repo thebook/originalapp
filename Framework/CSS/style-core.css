@@ -4708,13 +4708,13 @@ body {
   float: left;
   margin: 7px 0; }
 
-.stock_book_header_part, .stock_book_sku_header, .stock_book_section_header, .stock_book_level_header, .stock_book_number_header, .stock_book_external_product_id_header, .stock_book_external_product_id_type_header, .stock_book_item_name_header, .stock_book_author_header, .stock_book_binding_header, .stock_book_publication_date_header, .stock_book_standard_price_header, .stock_book_quantaty_header, .stock_book_condition_type_header, .stock_book_product_description_header, .stock_book_main_image_url_header {
+.stock_book_header_part {
   float: left;
   display: inline-block;
   width: 6.5%;
   font-weight: bold; }
 
-.stock_book_part, .stock_book_sku, .stock_book_section, .stock_book_level, .stock_book_number, .stock_book_external_product_id, .stock_book_external_product_id_type, .stock_book_item_name, .stock_book_author, .stock_book_binding, .stock_book_publication_date, .stock_book_standard_price, .stock_book_quantaty, .stock_book_condition_type, .stock_book_product_description, .stock_book_main_image_url {
+.stock_book_part {
   float: left;
   display: inline-block;
   width: 6.5%; }
@@ -4730,10 +4730,91 @@ body {
 .stock_book_options_input {
   width: 100px; }
 
-.stock_book_item {
+.stock_book_information {
+  width: 1080px;
+  margin: 10px auto; }
+
+.stock_book_information_pop {
+  cursor: pointer;
+  max-width: 98%;
+  background: #555555;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: white;
+  font-size: inherit;
+  padding: 10px 1%;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  line-height: inherit;
+  font-family: inherit;
+  clear: both;
+  float: left;
+  display: block; }
+
+.stock_book_export {
+  width: 1080px;
+  margin: 10px auto;
+  float: none;
+  display: block;
+  background: transparent;
+  padding: 0px;
+  border: 1px solid #555555; }
+
+.stock_book_list {
+  width: 1080px;
+  margin: 30px auto;
+  overflow: auto; }
+
+.stock_book_list_columns, .stock_book_list_rows {
+  width: 4440px;
+  float: left;
+  padding: 10px 0; }
+
+.stock_book_list_column {
+  width: 110px;
+  margin-right: 10px;
+  display: inline-block;
+  float: left;
+  font-weight: bold; }
+
+.stock_book_list_row {
   width: 100%;
   float: left;
-  margin-top: 15px;
-  padding-bottom: 20px;
-  margin-bottom: 15px;
+  padding: 0 0 30px 0;
+  margin-bottom: 29px;
   border-bottom: 1px solid #d8d8d8; }
+
+.stock_book_list_box_wrap {
+  width: 110px;
+  margin-right: 10px;
+  float: left;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 14px; }
+
+.stock_book_list_box {
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  resize: vertical;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-style: inherit;
+  border: none;
+  color: inherit; }
+
+.stock_book_list_box_info {
+  cursor: default;
+  font-size: 11px;
+  line-height: 14px;
+  margin-top: 10px;
+  display: inline;
+  float: left;
+  padding: 3px 5px;
+  background: #555555;
+  color: white;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; }
