@@ -171,20 +171,24 @@
 
 				state.donate = {};
 				state.donate.university = null;
-
-				state.stock = {};
-				state.stock.page = false;
-				state.stock.bus  = {};
-				state.stock.bus.search       = "";
-				state.stock.bus.basket       = [];
-				state.stock.bus.total        = 0;
-				state.stock.bus.final_total  = 0;
-				state.stock.bus.cheque_spell = 0;
-				state.stock.bus.test_mode    = true;
-
 				state.invisible_popup      = {};
 				state.invisible_popup.open = false;
 				state.invisible_popup.box  = false;
+
+				state.stock = {};
+				state.stock.page = false;
+
+				state.stock.bus  = {
+					search       : false,
+					searching    : false,
+					done         : false,
+					search_query : "",
+					add_book     : false,
+					books        : [],
+					total        : 0,
+					final_total  : 0,
+					cheque_spell : 0
+				};
 
 				state.stock.book = {};
 				state.stock.book.add = {
@@ -293,19 +297,19 @@
 					on : function () {
 						world.wrap.branch.stock.self.css({ display : "block" });
 						state.stock.page         = "bus";
-						state.stock.bus.animate  = "search";
 						state.process.sign_out   = true;
-						$('body').css({ overflow : "hidden" });
-						state.stock.bus.search   = "";
-						state.stock.bus.basket   = [];
-						state.stock.bus.total    = "0.00";
-						world.wrap.branch.stock.branch.bus.branch.input.branch.items.self.empty();
+						// state.stock.bus.animate  = "search";
+						// $('body').css({ overflow : "hidden" });
+						// state.stock.bus.search   = "";
+						// state.stock.bus.basket   = [];
+						// state.stock.bus.total    = "0.00";
+						// world.wrap.branch.stock.branch.bus.branch.input.branch.items.self.empty();
 					},
 					off : function () {
 						world.wrap.branch.stock.self.css({ display : "none" });
 						state.stock.page         = false;
-						state.stock.bus.animate  = false;
 						$('body').css({ overflow : "auto" });
+						// state.stock.bus.animate  = false;
 					}
 				}
 			});
@@ -6772,7 +6776,7 @@
 															var time = new Date();
 															this.self.prepend(
 																'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
-																	'book added to database at : '+ time.getHours() +'-'+ time.getMinutes() +' minutes'
+																	'book added to database at : '+ time.getHours() +'-'+ time.getMinutes() +' minutes'+
 																'</div>'
 															);
 														}
@@ -7042,22 +7046,7 @@
 									},
 									self   : '<div class="bus_control_wrap"></div>',
 									branch : {
-										input : {
-											instructions : {
-												observe : {
-													who      : state.stock.bus,
-													property : "animate",
-													call     : function (change) {
-														var self = world.wrap.branch.stock.branch.bus.branch.input.self;
-
-														if ( change.new === "search" ) {
-															self.css({ display : "block" });
-														} else { 
-															self.css({ display : "none" });
-														}
-													}
-												}
-											},
+										search : {
 											self : '<div class="bus_control_slide"></div>',
 											branch : {
 												items  : {
@@ -7067,16 +7056,47 @@
 															is_asslep : false,
 															call      : function (change) {
 																if ( change.event.target.className !== "bus_control_remove" ) return;
-																
-																$('#'+ change.event.target.id).parent().remove();
 
+																$('#'+ change.event.target.id).parent().remove();
 																if ( change.event.target.id !== "remove" ) {
-																	var basket = state.stock.bus.basket;
-																	basket[change.event.target.id] = null;
-																	state.stock.bus.basket         = basket;
+																	state.stock.bus.total = state.stock.bus.total - parseFloat( state.stock.bus.books[change.event.target.id-1].standard_price);
+																	state.stock.bus.books[change.event.target.id-1] = null;
 																}
 															}
-														}
+														},
+														observers : [
+															{
+																who      : state.stock.bus,
+																property : "search",
+																call : function (change) {
+																	if ( !change.new ) return;
+																	var amazon = new alpha.pure_amazon_search({
+																		typed       : state.stock.bus.search_query,
+																		filter_name : "sort"
+																	}, function (book) {
+																		book[0].standard_price = ( book[0].standard_price.Amount? { 0 : book[0].standard_price.Amount } : { 0 : "0" });
+																		book[0].standard_price[0] /= 100;
+																		for ( var part in book[0] ) book[0][part] = book[0][part][0];
+																		book = alpha.algorithm(book[0]);
+																		state.stock.bus.books.push(book);
+																		state.stock.bus.add_book = book;
+																		console.log(state.stock.bus.books);
+																	});
+																}
+															},
+															{
+																who      : state.stock.bus,
+																property : "add_book",
+																call     : function (change) {
+																	$('<div class="bus_control_item">'+
+																		'<div class="bus_control_item_isbn">'  + change.new.external_product_id     +'</div>'+
+																		'<div class="bus_control_item_title">' + change.new.item_name               +'</div>'+
+																		'<div class="bus_control_item_total">£'+ change.new.standard_price          +'</div>'+
+																		'<div class="bus_control_remove" id="' + state.stock.bus.books.length +'">Remove</div>'+
+																	'</div>').appendTo(this.self);
+																}
+															}
+														],
 													},
 													self : '<div class="bus_control_items"></div>'
 												},
@@ -7085,27 +7105,18 @@
 														observers : [
 															{ 
 																who      : state.stock.bus,
-																property : "basket",
+																property : "add_book",
 																call     : function (change) {
-																	var total = 0, final_total;
-
-																	for (var index = 0; index < change.new.length; index++) {
-																		if ( change.new[index] !== null ) {
-																			total += parseFloat(change.new[index].price);
-																		}
-																	}
-																	final_total                 = total - parseFloat( state.withdraw );
-																	state.stock.bus.total       = total.toFixed(2);
-																	state.stock.bus.final_total = final_total.toFixed(2);
+																	state.stock.bus.total += parseFloat( change.new.standard_price );
 																}
 															},
-															{
+															{ 
 																who      : state.stock.bus,
 																property : "total",
 																call     : function (change) {
-																 	world.wrap.branch.stock.branch.bus.branch.input.branch.total.self.text("£"+ change.new );
+																	this.self.text(change.new.toFixed(2));
 																}
-															}
+															},
 														]
 													},
 													self : '<div class="bus_control_total">£0.00</div>',
@@ -7117,8 +7128,8 @@
 															is_asslep : false,
 															call      : function (change) {
 																if ( change.event.keyCode === 13 ) {
-																	state.stock.bus.search   = change.self.val().trim();
-																	state.process.bus_search = true;
+																	state.stock.bus.search_query = change.self.val().trim();
+																	state.stock.bus.search       = true;
 																	change.self.val("");
 																}
 															}

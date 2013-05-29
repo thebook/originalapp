@@ -22,6 +22,20 @@ var alpha = (function ( alpha, $ ) {
 
 	};
 
+	alpha.algorithm = function (book) {
+
+		var starting_price = 0, price = parseFloat( book.standard_price);
+		price                    *= 0.7;
+		starting_price            = price;
+		price                    *= 0.75;
+		if ( price > 0 )    price = ( price - ( 5/starting_price ) ) + 0.25;
+		if ( price < 0.20 ) price = 0;
+		price                    *= 1.2;
+		price                     = price.toFixed(2);
+		book.standard_price       = price;
+		return book;
+	};
+
 	alpha.amazon = function (wake) {
 
 		var self = this;
