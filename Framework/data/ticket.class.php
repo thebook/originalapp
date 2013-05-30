@@ -281,6 +281,18 @@ class ticket extends alpha
 	{
 		$table = new table_creator;
 		return $table->get_all_rows($this->freepost_table);
+	}	
+
+	public function get_freepost_with_user_ids ()
+	{
+		global $account;
+		$return   = array();
+		$freepost = $this->get_freepost();
+		foreach ($freepost as $ticket) :
+			$ticket['user'] = $account->get_account_value($ticket['email'], 'id');
+			$return[] = $ticket;
+		endforeach;
+		return $return;
 	}
 
 	public function set_rag_donate ($array_of_information)

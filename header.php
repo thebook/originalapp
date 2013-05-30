@@ -181,7 +181,7 @@
 				state.stock.bus  = {
 					search       : false,
 					searching    : false,
-					done         : false,
+					found        : false,
 					search_query : "",
 					add_book     : false,
 					submit_expenses    : false,
@@ -197,7 +197,8 @@
 					books        : [],
 					total        : 0,
 					final_total  : 0,
-					cheque_spell : 0
+					cheque_spell : 0,
+					reset        : false
 				};
 
 				state.stock.book = {};
@@ -308,25 +309,6 @@
 						world.wrap.branch.stock.self.css({ display : "block" });
 						state.stock.page         = "bus";
 						state.process.sign_out   = true;
-						state.stock.bus.print    = false;
-						search                             = false;
-						state.stock.bus.searching          = false;
-						state.stock.bus.done               = false;
-						state.stock.bus.search_query       = "";
-						state.stock.bus.add_book           = false;
-						state.stock.bus.submit_expenses    = false;
-						state.stock.bus.submiting_expenses = false;
-						state.stock.bus.expenses_submited  = false;
-						state.stock.bus.expenses           = [];
-						state.stock.bus.add                = false;
-						state.stock.bus.adding             = false;
-						state.stock.bus.adding_books       = [];
-						state.stock.bus.added_books        = false;
-						state.stock.bus.submit             = false;
-						state.stock.bus.print              = false;
-						state.stock.bus.books              = [];
-						state.stock.bus.total              = 0;
-						state.stock.bus.cheque_spell       = "";
 						$('body').css({ overflow : "hidden" });
 					},
 					off : function () {
@@ -6472,6 +6454,9 @@
 												header : {
 													self : '<div class="stock_freepost_ticket_header"></div>',
 													branch : {
+														user : {
+															self : '<div class="stock_freepost_ticket_id_header">user</div>',
+														},
 														name : {
 															self : '<div class="stock_freepost_ticket_name_header">Name</div>',
 														},
@@ -6519,7 +6504,7 @@
 																if ( change.new !== "freepost" ) return;
 																$.get(ajaxurl, {
 																	action     : "get_ticket",
-																	method     : "freepost",
+																	method     : "freepost_with_user_ids",
 																	paramaters : {}
 																}, function (response) {
 
@@ -6528,6 +6513,7 @@
 																	for (var index = 0; index < response.return.length; index++) {
 																		var ticket = response.return[index];
 																		$('<div class="stock_freepost_ticket">'+
+																			'<div class="stock_freepost_ticket_id">'+ ticket.user +'</div>'+
 																			'<div class="stock_freepost_ticket_name">'+ ticket.first_name +', '+ ticket.second_name +'</div>'+
 																			'<div class="stock_freepost_ticket_address">'+ ticket.address +'</div>'+
 																			'<div class="stock_freepost_ticket_town">'+ ticket.town +'</div>'+
@@ -7053,20 +7039,178 @@
 								},
 								bus : {
 									instructions : {
-										observe : {
-											who      : state.stock,
-											property : "page",
-											call     : function (change) {
-												if ( change.new === "bus" ) {
-													this.self.css({ display : "block" });
-												} else { 
-													this.self.css({ display : "none" });
+										observers : [
+											{
+												who      : state.stock,
+												property : "page",
+												call     : function (change) {
+													if ( change.new === "bus" ) {
+														this.self.css({ display : "block" });
+													} else { 
+														this.self.css({ display : "none" });
+													}
 												}
-											}
-										}
+											},
+											{
+												who      : state.stock.bus,
+												property : "reset",
+												call     : function (change) {
+													if ( !change.new ) return;
+													for ( var part in state.addresses[0] ) state.addresses[0][part] = "";
+													for ( var part in state.account ) state.account[part] = preset.account[part];
+													state.signed                       = false;
+													state.stock.bus.print              = false;
+													state.stock.bus.search             = false;
+													state.stock.bus.searching          = false;
+													state.stock.bus.done               = false;
+													state.stock.bus.search_query       = "";
+													state.stock.bus.add_book           = false;
+													state.stock.bus.submit_expenses    = false;
+													state.stock.bus.submiting_expenses = false;
+													state.stock.bus.expenses_submited  = false;
+													state.stock.bus.expenses           = [];
+													state.stock.bus.add                = false;
+													state.stock.bus.adding             = false;
+													state.stock.bus.adding_books       = [];
+													state.stock.bus.added_books        = false;
+													state.stock.bus.submit             = false;
+													state.stock.bus.print              = false;
+													state.stock.bus.books              = [];
+													state.stock.bus.total              = 0.00;
+													state.stock.bus.cheque_spell       = "";
+												}
+											},
+										]
 									},
 									self   : '<div class="bus_control_wrap"></div>',
 									branch : {
+										notifications : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														var target = $(change.event.target);
+														if ( target.attr("data-type-removable") ) {
+															target.remove();
+														}
+													}
+												},
+												observers : [
+													{
+														who      : state.stock.bus,
+														property : "search",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Searching for : '+ state.stock.bus.search_query +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.bus,
+														property : "done",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Found book : '+ state.stock.bus.books[state.stock.bus.books.length-1].item_name +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.bus,
+														property : "total",
+														call     : function (change) {
+															if ( isNaN(change.new) ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Total is now : '+ change.new.toFixed(2) +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.bus,
+														property : "submit_expenses",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Preparing to submit how much we spent for these book/s'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.bus,
+														property : "submitting_expenses",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Submiting expenses to talbe'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.bus,
+														property : "submited_expenses",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Expenses submited total spent is : '+ state.stock.bus.total +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.bus,
+														property : "add",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Preparing to get new quotes on books'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.bus,
+														property : "adding",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Getting new prices from amazon for the books'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.bus,
+														property : "added_books",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Got prices from amazon, now submiting books to book table'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.bus,
+														property : "submit",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Is safe to print now'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.bus,
+														property : "reset",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Everything has been reset, can start again now'+
+															'</div>');
+														}
+													}
+												]
+											},
+											self : '<div class="stock_notifications"></div>'
+										},
 										search : {
 											self : '<div class="bus_control_slide"></div>',
 											branch : {
@@ -7122,19 +7266,33 @@
 																property : "search",
 																call : function (change) {
 																	if ( !change.new ) return;
+																	state.stock.bus.searching = true;
+																	
 																	var amazon = new alpha.pure_amazon_search({
 																		typed       : state.stock.bus.search_query,
 																		filter_name : "sort"
 																	}, function (book) {
+																		
 																		book[0].standard_price = ( book[0].standard_price.Amount? { 0 : book[0].standard_price.Amount } : { 0 : "0" });
 																		book[0].standard_price[0] /= 100;
 																		for ( var part in book[0] ) book[0][part] = book[0][part][0];
+
 																		book = alpha.algorithm(book[0]);
 																		book.condition_type = 1;
+
 																		state.stock.bus.books.push(book);
-																		state.stock.bus.add_book = book;
-																		console.log(state.stock.bus.books);
+																		state.stock.bus.add_book  = book;
+																		state.stock.bus.done      = true;
+																		state.stock.bus.searching = false;
 																	});
+																}
+															},
+															{
+																who      : state.stock.bus,
+																property : "books",
+																call     : function (change) {
+																	if ( change.new.length > 0 ) return;
+																	this.self.empty();
 																}
 															},
 															{
@@ -7185,8 +7343,7 @@
 																property : "submiting_expenses",
 																call     : function (change) {
 																	if ( !change.new ) return;
-																	console.log("expenses");
-																	console.log(state.stock.bus.expenses);
+
 																	$.post(ajaxurl, {
 																		action : "set_expense",
 																		method : "rows",
@@ -7211,7 +7368,9 @@
 																call     : function (change) {
 																	if ( !change.new ) return;
 																	var book_number = 0, index, book, amazon;
-
+																	
+																	state.stock.bus.adding = true;
+																	
 																	for (index = 0; index < state.stock.bus.books.length; index++) {
 																		book_number++;
 																		book = state.stock.bus.books[index];
@@ -7224,7 +7383,10 @@
 																			books = state.stock.bus.adding_books;
 																			books.push(book);
 																			state.stock.bus.adding_books = books;
-																			if ( book_number === state.stock.bus.adding_books.length ) state.stock.bus.added_books = true;
+																			if ( book_number === state.stock.bus.adding_books.length ) {
+																				state.stock.bus.adding      = false;
+																				state.stock.bus.added_books = true;
+																			}
 																		}, "json");
 																	};
 																}	
@@ -7234,8 +7396,7 @@
 																property : "added_books",
 																call     : function (change) {
 																	if ( !change.new ) return;
-																	console.log("submit books");
-																	console.log(state.stock.bus.books);
+
 																	$.post(ajaxurl, {
 																		action     : "set_book",
 																		method     : "books",
@@ -7317,6 +7478,13 @@
 															call      : function (change) {
 																state.account.first_name = change.self.val().trim();
 															}
+														},
+														observe : {
+															who      : state.account,
+															property : "first_name",
+															call     : function (change) {
+																this.self.val(change.new);
+															}
 														}
 													},
 													self : '<input maxlength="22" type="text" class="bus_control_input" placeholder="First Name">',
@@ -7328,6 +7496,13 @@
 															is_asslep : false,
 															call      : function (change) {
 																state.account.second_name = change.self.val().trim();
+															}
+														},
+														observe : {
+															who      : state.account,
+															property : "second_name",
+															call     : function (change) {
+																this.self.val(change.new);
 															}
 														}
 													},
@@ -7341,6 +7516,13 @@
 															call      : function (change) {
 																state.account.email = change.self.val().trim();
 															}
+														},
+														observe : {
+															who      : state.account,
+															property : "email",
+															call     : function (change) {
+																this.self.val(change.new);
+															}
 														}
 													},
 													self : '<input maxlength="30" type="text" class="bus_control_input" placeholder="Email">',
@@ -7352,6 +7534,13 @@
 															is_asslep : false,
 															call      : function (change) {
 																state.account.university = change.self.val().trim();
+															}
+														},
+														observe : {
+															who      : state.account,
+															property : "university",
+															call     : function (change) {
+																this.self.val(change.new);
 															}
 														}
 													},
@@ -7365,6 +7554,13 @@
 															call      : function (change) {
 																state.account.year = change.self.val().trim();
 															}
+														},
+														observe : {
+															who      : state.account,
+															property : "year",
+															call     : function (change) {
+																this.self.val(change.new);
+															}
 														}
 													},
 													self : '<input maxlength="4" type="text" class="bus_control_input" placeholder="Year">',
@@ -7376,6 +7572,13 @@
 															is_asslep : false,
 															call      : function (change) {
 																state.account.subject = change.self.val().trim();
+															}
+														},
+														observe : {
+															who      : state.account,
+															property : "subject",
+															call     : function (change) {
+																this.self.val(change.new);
 															}
 														}
 													},
@@ -7486,6 +7689,13 @@
 															call      : function (change) {
 																state.stock.bus.cheque_spell = change.self.val();
 															}
+														},
+														observe : {
+															who      : state.stock.bus,
+															property : "cheque_spell",
+															call     : function (change) {
+																this.self.val(change.new);
+															}
 														}
 													},
 													self : '<input type="text" class="bus_control_spell_sum" placeholder="Price text">'
@@ -7493,6 +7703,18 @@
 												controls : {
 													self : '<div class="bus_control_progress"></div>',
 													branch : {
+														reset : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		if(confirm("Reset?")) state.stock.bus.reset = true;
+																	}
+																}
+															},
+															self : '<div class="bus_control_progress_text">Reset</div>',
+														},
 														print : {
 															instructions : {
 																on : {
@@ -7503,9 +7725,9 @@
 																	}
 																}
 															},
-															self : '<div class="bus_control_progress_text">Print  </div>',
+															self : '<div class="bus_control_progress_text">Print</div>',
 														},
-														next : {
+														submit : {
 															instructions : {
 																on : {
 																	the_event : "click",
@@ -7530,7 +7752,6 @@
 													call     : function (change) {
 														if ( change.new  ) {
 															this.self.css({ display : "block" });
-															window.print();	
 														} else { 
 															this.self.css({ display : "none" });
 														}
@@ -7539,13 +7760,54 @@
 											},
 											self : '<div class="bus_control_print"></div>',
 											branch : { 
+												print_controls : {
+													self : '<div class="bus_control_print_controls"></div>',
+													branch : {
+														print : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		window.print();
+																	}
+																}
+															},
+															self : '<div class="bus_control_print_control">Print</div>'
+														},
+														back : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		state.stock.bus.print = false;
+																	}
+																}
+															},
+															self : '<div class="bus_control_print_control">Go Back</div>'
+														},
+														reset : {
+															instructions : {
+																on : {
+																	the_event : "click",
+																	is_asslep : false,
+																	call      : function (change) {
+																		if(confirm("Reset?")) state.stock.bus.reset = true;
+																	}
+																}
+															},
+															self : '<div class="bus_control_print_control">Reset everything & go back</div>'
+														}
+													}
+												},
 												name : {
 													instructions : {
 														observe : {
 															who      : state.account,
 															property : "first_name",
 															call     : function (change) {
-																world.wrap.branch.stock.branch.bus.branch.print.branch.name.self.text(change.new);
+																this.self.text(change.new);
 															}
 														}
 													},
@@ -7601,9 +7863,10 @@
 															who      : state.stock.bus,
 															property : "print",
 															call     : function (change) {
-																var date, today;
-																date  = new Date();
-																today =  date.getDate() +"/"+ date.getMonth() +"/"+ date.getFullYear();
+																var date, today, month;
+																date  = new Date();	
+																month = parseInt( date.getMonth() ) + 1;
+																today =  date.getDate() +"/"+ month +"/"+ date.getFullYear();
 																this.self.text(today);
 															}
 														}
@@ -7623,7 +7886,7 @@
 													self : '<div class="bus_control_print_cheque_quote"></div>'
 												}
 											}
-										}
+										},
 									}
 								}
 							}

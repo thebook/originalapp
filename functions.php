@@ -13,7 +13,7 @@ include FRAMEWORK .'/Apis/include.php';
 
 include FRAMEWORK .'/data/include.php';
 
-new account;
+$account = new account;
 new ticket;
 new book;
 new email;

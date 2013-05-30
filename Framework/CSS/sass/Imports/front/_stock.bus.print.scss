@@ -2,6 +2,7 @@
 	width : 210mm;
 	height: 297mm;
 	position: absolute;
+	z-index: 3;
 	top: 0px;
 	background: $light_monochrome;
 	border-right: 1px solid $black_gray;
@@ -47,4 +48,24 @@
 	position: absolute;
 	top: 227.8mm;
 	left: 152.5mm;
+}
+
+.bus_control_print_controls {
+	width       : 200px;
+	height      : 100px;
+	left        : 210mm;
+	padding     : 10px;
+	margin-left : 1px;
+	float       : left;
+	position    : absolute;
+	background  : $light_monochrome;
+	border-bottom: 1px solid $black_gray;
+}
+
+.bus_control_print_control {
+	cursor: pointer;
+	margin-bottom: 10px;
+	&:hover {
+		text-decoration: underline;
+	}
 }

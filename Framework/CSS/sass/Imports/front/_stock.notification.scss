@@ -1,0 +1,20 @@
+.stock_notifications {
+	position: absolute;
+	z-index: 1;
+	width: 190px;
+	font-size: 12px;
+	line-height: 14px;
+	margin-left: 2%;
+}
+
+.stock_notification {
+	cursor: pointer;
+	width: 170px;
+	padding: 10px;
+	float: left;
+	// margin-top: 10px;
+	// @include border-radius(3px);
+	color: $black_gray;
+	border-top: 1px solid $black_gray;
+	text-align: center;
+}
