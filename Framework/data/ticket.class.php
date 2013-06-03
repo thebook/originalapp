@@ -289,7 +289,9 @@ class ticket extends alpha
 		$return   = array();
 		$freepost = $this->get_freepost();
 		foreach ($freepost as $ticket) :
-			$ticket['user'] = $account->get_account_value($ticket['email'], 'id');
+			$user = $account->get_account($ticket['email']);
+			$ticket['user']       = $user['id'];
+			$ticket['book_count'] = count($user['price_promise']);
 			$return[] = $ticket;
 		endforeach;
 		return $return;

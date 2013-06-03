@@ -201,6 +201,30 @@
 					reset        : false
 				};
 
+				state.stock.post = {
+					finished            : false,
+					search_user_query   : "",
+					search_user         : false,
+					searching_user      : false,
+					found_user          : false,
+					user                : {},
+					search_book_query   : "",
+					search_book         : false,
+					searching_book      : false,
+					found_book          : false,
+					books               : [],
+					add_book            : false,
+					price_promise_match : [],
+					total               : 0,
+					error               : "",
+					submit_credit       : false,
+					submiting_credit    : false,
+					submited_credit     : false,
+					submit_book         : false,
+					submiting_book      : false,
+					submited_book       : false
+				}
+
 				state.stock.book = {};
 				state.stock.book.add = {
 					isbn      : "",
@@ -6405,6 +6429,18 @@
 											},
 											self : '<div class="stock_bar_navigation">Recyclabus</div>'
 										},
+										post : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														state.stock.page = "post";
+													}
+												}
+											},
+											self : '<div class="stock_bar_navigation">Post</div>'
+										},
 										freepost : {
 											instructions : {
 												on : {
@@ -6455,25 +6491,28 @@
 													self : '<div class="stock_freepost_ticket_header"></div>',
 													branch : {
 														user : {
-															self : '<div class="stock_freepost_ticket_id_header">user</div>',
+															self : '<div class="stock_freepost_ticket_header_column">user</div>',
+														},
+														count : {
+															self : '<div class="stock_freepost_ticket_header_column">count</div>',
 														},
 														name : {
-															self : '<div class="stock_freepost_ticket_name_header">Name</div>',
+															self : '<div class="stock_freepost_ticket_header_column">Name</div>',
 														},
 														address :{
-															self : '<div class="stock_freepost_ticket_address_header">Address</div>'
+															self : '<div class="stock_freepost_ticket_header_column">Address</div>'
 														},
 														town : {
-															self : '<div class="stock_freepost_ticket_town_header">Town</div>'
+															self : '<div class="stock_freepost_ticket_header_column">Town</div>'
 														},
 														country : {
-															self : '<div class="stock_freepost_ticket_county_header">Country</div>'
+															self : '<div class="stock_freepost_ticket_header_column">Country</div>'
 														},
 														post_code : {
-															self : '<div class="stock_freepost_ticket_post_code_header">Post Code</div>'
+															self : '<div class="stock_freepost_ticket_header_column">Post Code</div>'
 														},
 														ticked : {
-															self : '<div class="stock_freepost_ticket_done_header">Sent?</div>'
+															self : '<div class="stock_freepost_ticket_header_column">Sent?</div>'
 														}
 													}
 												},
@@ -6513,13 +6552,14 @@
 																	for (var index = 0; index < response.return.length; index++) {
 																		var ticket = response.return[index];
 																		$('<div class="stock_freepost_ticket">'+
-																			'<div class="stock_freepost_ticket_id">'+ ticket.user +'</div>'+
-																			'<div class="stock_freepost_ticket_name">'+ ticket.first_name +', '+ ticket.second_name +'</div>'+
-																			'<div class="stock_freepost_ticket_address">'+ ticket.address +'</div>'+
-																			'<div class="stock_freepost_ticket_town">'+ ticket.town +'</div>'+
-																			'<div class="stock_freepost_ticket_county">'+ ticket.area +'</div>'+
-																			'<div class="stock_freepost_ticket_post_code">'+ ticket.post_code +'</div>'+
-																			'<div id="'+ ticket.id +'" class="stock_freepost_ticket_done">Done</div>'+
+																			'<div class="stock_freepost_ticket_column">'+        ticket.user       +'</div>'+
+																			'<div class="stock_freepost_ticket_column">'+     ticket.book_count +'</div>'+
+																			'<div class="stock_freepost_ticket_column">'+      ticket.first_name +', '+ ticket.second_name +'</div>'+
+																			'<div class="stock_freepost_ticket_column">'+   ticket.address    +'</div>'+
+																			'<div class="stock_freepost_ticket_column">'+      ticket.town       +'</div>'+
+																			'<div class="stock_freepost_ticket_column">'+    ticket.area       +'</div>'+
+																			'<div class="stock_freepost_ticket_column">'+ ticket.post_code  +'</div>'+
+																			'<div id="'+ ticket.id +'" class="stock_freepost_ticket_column">Done</div>'+
 																		'</div>').appendTo(items);
 																	};
 																}, "json");
@@ -7082,7 +7122,7 @@
 											},
 										]
 									},
-									self   : '<div class="bus_control_wrap"></div>',
+									self   : '<div class="stock_bus"></div>',
 									branch : {
 										notifications : {
 											instructions : {
@@ -7267,19 +7307,15 @@
 																call : function (change) {
 																	if ( !change.new ) return;
 																	state.stock.bus.searching = true;
-																	
-																	var amazon = new alpha.pure_amazon_search({
+
+																	var algorithm, amazon;
+
+																	amazon    = new alpha.pure_amazon_search({
 																		typed       : state.stock.bus.search_query,
 																		filter_name : "sort"
 																	}, function (book) {
-																		
-																		book[0].standard_price = ( book[0].standard_price.Amount? { 0 : book[0].standard_price.Amount } : { 0 : "0" });
-																		book[0].standard_price[0] /= 100;
-																		for ( var part in book[0] ) book[0][part] = book[0][part][0];
-
-																		book = alpha.algorithm(book[0]);
-																		book.condition_type = 1;
-
+																		algorithm = new alpha.algorithm
+																		book      = algorithm.bus(book[0]);
 																		state.stock.bus.books.push(book);
 																		state.stock.bus.add_book  = book;
 																		state.stock.bus.done      = true;
@@ -7410,8 +7446,7 @@
 															}
 														],
 													},
-													self : 
-														'<div class="bus_control_items"></div>'
+													self : '<div class="bus_control_items"></div>'
 												},
 												total : {
 													instructions : {
@@ -7887,6 +7922,505 @@
 												}
 											}
 										},
+									}
+								},
+								post: {
+									instructions : {
+										observe : {
+											who      : state.stock,
+											property : "page",
+											call     : function (change) {
+												if ( change.new === "post" ) {
+													this.self.css({ display : "block" });
+												} else { 
+													this.self.css({ display : "none" });
+												}
+											}
+										}
+									},
+									self : '<div class="stock_post"></div>',
+									branch : {
+										notifications : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														var target = $(change.event.target);
+														if ( target.attr("data-type-removable") ) {
+															target.remove();
+														}
+													}
+												},
+												observers : [
+													{
+														who      : state.stock.post,
+														property : "searching_user",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Searching for user : '+ state.stock.post.search_user_query +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "found_user",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Found user : '+ state.stock.post.user.email +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "searching_book",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Searching for book : '+ state.stock.post.search_book_query +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "found_book",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Found book : '+ state.stock.post.books[state.stock.post.books.length-1].item_name +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "price_promise_match",
+														call     : function (change) {
+															if ( change.new.length === 0 ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Found price promise for : '+ state.stock.post.price_promise_match[state.stock.post.price_promise_match.length-1] +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "error",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																change.new +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "total",
+														call     : function (change) {
+															if ( isNaN(change.new) ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Total is now : '+ change.new.toFixed(2) +
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "submit_book",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Submitting books to table'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "submited_book",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Submited books to table'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "submit_credit",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Incresing the users credit'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "submited_credit",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'The users credit has been increased'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "finished",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Credit and books are now being submited, '+ 
+																'the user will gain a credit increase of : £'+ state.stock.post.total.toFixed(2) +
+																', and '+ state.stock.post.books.length +' new books shall be added to the table; '+
+																' to start again simply type in a new user id and begin a new session'+
+															'</div>');
+														}
+													},
+												]
+											},
+											self : '<div class="stock_notifications"></div>'
+										},
+										search : {
+											self : '<div class="post_search"></div>',
+											branch : {
+												user : {
+													instructions : {
+														observers : [
+															{
+																who      : state.stock.post,
+																property : "search_user",
+																call     : function (change) {
+																	if ( !change.new ) return;
+																	
+																	state.stock.post.searching_user = true;
+
+																	$.get(ajaxurl, {
+																		action : "get_account",
+																		method : "account_by_id",
+																		paramaters : {
+																			id : state.stock.post.search_user_query
+																		}
+																	}, function (response) {
+
+																		if ( !response.return ) {
+																			state.stock.post.error = "User not found, try something else";
+																			return;
+																		}
+
+																		state.stock.post.user          = response.return;
+																		state.stock.post.seaching_user = false;
+																		state.stock.post.found_user    = true;
+																	},"json");
+																}
+															},
+															{
+																who      : state.stock.post,
+																property : "found_user",
+																call     : function (change) {
+																	if ( !change.new ) return;
+																	state.stock.post.finished            = false;
+																	state.stock.post.search_book_query   = "";
+																	state.stock.post.search_book         = false;
+																	state.stock.post.searching_book      = false;
+																	state.stock.post.found_book          = false;
+																	state.stock.post.books               = [];
+																	state.stock.post.add_book            = false;
+																	state.stock.post.price_promise_match = [];
+																	state.stock.post.total               = 0;
+																	state.stock.post.error               = "";
+																	state.stock.post.submit_credit       = false;
+																	state.stock.post.submiting_credit    = false;
+																	state.stock.post.submited_credit     = false;
+																	state.stock.post.submit_book         = false;
+																	state.stock.post.submiting_book      = false;
+																	state.stock.post.submited_book       = false;
+																}
+															},
+															{
+																who      : state.stock.post,
+																property : "user",
+																call     : function (change) {
+																	this.self.empty();
+																	this.self.append(
+																	'<div class="post_user_id">'+ 
+																		change.new.id 
+																	+'</div>'+
+																	'<div class="post_user_name">'+ 
+																		change.new.first_name + change.new.second_name 
+																	+'</div>'+
+																	'<div class="post_user_email">'+
+																		change.new.email
+																	+'</div>');
+																}
+															}
+														]
+													},
+													self   : '<div class="post_user"></div>'
+												},
+												items  : {
+													instructions : {
+														on_events : [
+															{
+																the_event : "click",
+																is_asslep : false,
+																call      : function (change) {
+																	if ( change.event.target.className !== "post_book_remove" ) return;
+
+																	$('#'+ change.event.target.id).parent().remove();
+																	if ( change.event.target.id !== "remove" ) {
+																		state.stock.post.total = state.stock.post.total - parseFloat( state.stock.post.books[change.event.target.id-1].standard_price);
+																		state.stock.post.books[change.event.target.id-1] = null;
+																	}
+																}
+															},
+															{
+																the_event : "keypress",
+																is_asslep : false,
+																call      : function (change) {
+																	if ( change.event.keyCode === 13 ) {
+																		var part, id, value, target = $(change.event.target);
+																		if ( !target.attr("data-type-changeable") ) return;
+																		target.blur();
+																		value = target.val().trim();
+																		id    = target.attr("data-type-book");
+																		field = target.attr("data-type-field");
+
+																		if ( field === "condition_type" ) {
+																			state.stock.post.books[id-1][field] = value;
+																		}
+
+																		if ( field === "standard_price" ) {
+																			value = parseFloat( value );
+																			if ( isNaN(value) ) {
+																				target.val(state.stock.post.books[id-1][field]);
+																				return;
+																			}
+																			state.stock.post.total = state.stock.post.total - state.stock.post.books[id-1][field];
+																			state.stock.post.total = state.stock.post.total + value;
+																			state.stock.post.books[id-1][field] = value;
+																		}
+																	}
+																}
+															}
+														],
+														observers : [
+															{
+																who      : state.stock.post,
+																property : "search_book",
+																call : function (change) {
+																	if ( !change.new ) return;
+
+																	var algorithm, amazon, index, price_promise;
+
+																	state.stock.post.searching_book = true;
+
+																	amazon = new alpha.pure_amazon_search({
+																		typed       : state.stock.post.search_book_query,
+																		filter_name : "sort"
+																	}, function (book) {
+																		if ( book.length === 0 ) {
+																			state.stock.post.error = "Nothing found, if you typed in a valid value search again"
+																			return;
+																		}
+
+																		algorithm  = new alpha.algorithm
+																		book       = algorithm.post(book[0]);
+
+																		for (index = 0; index < state.stock.post.user.price_promise.length; index++) {
+																			if ( book.external_product_id === state.stock.post.user.price_promise[index].asin ) {
+																				book.standard_price = state.stock.post.user.price_promise[index].price;
+																				price_promise       = state.stock.post.price_promise_match;
+																				price_promise.push(book.item_name);
+																				state.stock.post.price_promise_match = price_promise;
+																				break;
+																			}
+																		};
+																		state.stock.post.books.push(book);
+																		state.stock.post.found_book     = true;
+																		state.stock.post.searching_book = false;
+																		state.stock.post.add_book 	    = book;
+																	});
+																}
+															},
+															{
+																who      : state.stock.post,
+																property : "books",
+																call     : function (change) {
+																	if ( change.new.length > 0 ) return;
+																	this.self.empty();
+																}
+															},
+															{
+																who      : state.stock.post,
+																property : "add_book",
+																call     : function (change) {
+																	if ( !change.new ) return;
+																	var book_id = state.stock.post.books.length;
+																	$('<div class="bus_control_item">'+
+																		'<div class="bus_control_item_isbn">'  + change.new.external_product_id     +'</div>'+
+																		'<input data-type-changeable="true" data-type-book="'+ book_id +'" data-type-field="condition_type" maxlength="2" class="bus_control_item_condition" value="'+ change.new.condition_type +'">'+
+																		'<div class="bus_control_item_title">' + change.new.item_name               +'</div>'+
+																		'<input data-type-changeable="true" data-type-book="'+ book_id +'" data-type-field="standard_price" class="bus_control_item_total" maxlength="6" value="'+ change.new.standard_price +'">'+
+																		'<div class="post_book_remove" id="'   + book_id +'">Remove</div>'+
+																	'</div>').appendTo(this.self);
+																}
+															},
+															{
+																who      : state.stock.post,
+																property : "submit_book",
+																call     : function (change) {
+																	if ( !change.new ) return;
+
+																	state.stock.post.submiting_book = true;
+
+																	$.post(ajaxurl, {
+																		action     : "set_book",
+																		method     : "books",
+																		paramaters : {
+																			books : state.stock.post.books
+																		}
+																	}, function () {
+																		state.stock.post.submited_book = true;
+																	},"json");
+																}
+															},
+															{
+																who      : state.stock.post,
+																property : "submit_credit",
+																call     : function (change) {
+																	if ( !change.new ) return;
+
+																	state.stock.post.submiting_credit = true;
+
+																	var credit = ( parseFloat( state.stock.post.user.credit ) + state.stock.post.total ).toFixed(2);
+
+																	$.post(ajaxurl, {
+																		action     : "set_account",
+																		method     : "account_value",
+																		paramaters : {
+																			id         : state.stock.post.user.email,
+																			value_name : "credit",
+																			value      : credit
+																		}
+																	}, function () {
+																		state.stock.post.submited_credit = true;
+																	},"json");
+																}
+															}
+														]
+													},
+													self : '<div class="post_books"></div>'
+												},
+												total : {
+													instructions : {
+														observers : [
+															{ 
+																who      : state.stock.post,
+																property : "add_book",
+																call     : function (change) {
+																	state.stock.post.total += parseFloat( change.new.standard_price );
+																}
+															},
+															{ 
+																who      : state.stock.post,
+																property : "total",
+																call     : function (change) {
+																	this.self.val(change.new.toFixed(2));
+																}
+															},
+														],
+														on : {
+															the_event : "keypress",
+															is_asslep : false,
+															call      : function (change) {
+																if ( change.event.keyCode === 13 ) {
+																	change.self.blur();
+																	var value = parseFloat( change.self.val().trim() );
+																	if ( isNaN(value) ) {
+																		change.self.val(state.stock.post.total);
+																		return;
+																	}
+																	state.stock.post.total = value;
+																}
+															}
+														}
+													},
+													self : '<input class="post_book_total" maxlength="6" value="0.00">',
+												},
+												user_search : {
+													instructions : {
+														on : {
+															the_event : "keypress",
+															is_asslep : false,
+															call      : function (change) {
+																if ( change.event.keyCode === 13 ) {
+																	state.stock.post.search_user_query = change.self.val();
+																	state.stock.post.search_user       = true;
+																	change.self.next().focus();
+																}
+															}
+														}
+													},
+													self : '<input type="text" class="post_user_search" placeholder="User">'
+												},
+												book_search : {
+													instructions : {
+														on : {
+															the_event : "keypress",
+															is_asslep : false,
+															call      : function (change) {
+																if ( change.event.keyCode === 13 ) {
+
+																	if ( state.stock.post.finished ) {
+																		state.stock.post.error = "This sessions and its books have been submited, to move onto the next user : type in a new user id in the user field";	
+																		return;
+																	}
+																	if ( !state.stock.post.user.id ) {
+																		state.stock.post.error = "User must be found before searching books"
+																		return;
+																	}
+																	state.stock.post.search_book_query = change.self.val();
+																	state.stock.post.search_book       = true;
+																	change.self.val("");
+																}
+															}
+														}
+													},
+													self : '<input type="text" class="post_book_search" placeholder="ISBN">'
+												},
+												submit : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+																if ( !state.stock.post.user.id ) {
+																	state.stock.post.error = "Find a user to submit to first";
+																	return;
+																}
+
+																if ( state.stock.post.books.length === 0 ) {
+																	state.stock.post.error = "There are no books to be paid for here";
+																	return;
+																}
+
+																if ( state.stock.post.finished ) {
+																	state.stock.post.error = "This sessions and its books have been submited, to move onto the next user : type in a new user id in the user field";
+																	return;
+																}
+
+																if ( confirm("Ready to submit?") ) {
+																	state.stock.post.finished      = true;
+																	state.stock.post.submit_book   = true;
+																	state.stock.post.submit_credit = true;
+																}
+															}
+														}
+													},
+													self : '<div class="post_submit_credit">Submit</div>'
+												},
+											}
+										}
 									}
 								}
 							}

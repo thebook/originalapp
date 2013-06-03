@@ -116,22 +116,48 @@ class amazon extends alpha_tree_api
 	{
 		$return_array = array();
 
+		if ( !is_object($xml) ) : return array(); endif;
+
 		foreach ($xml->Items->Item as $item => $attributes) : 
-			$return_array[] = 
-				array(
-					'external_product_id'=> $attributes->ASIN,
-					'item_name'			 => $attributes->ItemAttributes->Title,
-					'manufacturer' 		 => $attributes->ItemAttributes->Publisher,
-					'standard_price'	 => $attributes->OfferSummary->LowestUsedPrice,
-					'main_image_url'	 => $attributes->LargeImage->URL,
-					'author'			 => $attributes->ItemAttributes->Author,
-					'binding'  			 => $attributes->ItemAttributes->Binding,
-					'publication_date'	 => $attributes->ItemAttributes->PublicationDate
-				);
+
+			$book = array();		
+			$book['package_height']      = '0';
+			$book['package_width']       = '0';
+			$book['package_length']      = '0';
+			$book['package_dimensions_unit_of_measure'] = 'IN';
+			$book['package_weight']      = '0';
+			$book['package_weight_unit_of_measure'] = 'LB';
+			$book['external_product_id'] = (string)$attributes->ASIN;
+			$book['condition_type']      = '1';
+			$book['item_name']			 = (string)$attributes->ItemAttributes->Title;
+			$book['manufacturer'] 		 = (string)$attributes->ItemAttributes->Publisher;
+			$book['main_image_url']	     = (string)$attributes->LargeImage->URL;
+			$book['author']			     = (string)$attributes->ItemAttributes->Author;
+			$book['binding']  			 = (string)$attributes->ItemAttributes->Binding;
+			$book['publication_date']	 = (string)$attributes->ItemAttributes->PublicationDate;
+
+			if ( isset($attributes->ItemAttributes->ItemDimensions) ) :
+				$book['package_height']  = (string)$attributes->ItemAttributes->ItemDimensions->Height;
+				$book['package_width']   = (string)$attributes->ItemAttributes->ItemDimensions->Width;
+				$book['package_length']  = (string)$attributes->ItemAttributes->ItemDimensions->Length;
+				$book['package_dimensions_unit_of_measure'] = 'IN';
+				$book['package_weight']  = (string)$attributes->ItemAttributes->ItemDimensions->Weight;
+				$book['package_weight_unit_of_measure'] = 'LB';
+			endif;
+
+			if ( isset($attributes->OfferSummary->LowestUsedPrice) )    :
+				$book['standard_price'] = (string)($attributes->OfferSummary->LowestUsedPrice->Amount/100);
+			elseif ( isset($attributes->OfferSummary->LowestNewPrice) ) :
+				$book['standard_price'] = (string)($attributes->OfferSummary->LowestNewPrice->Amount/100);
+			else :
+				$book['standard_price'] = (string)($attributes->ItemAttributes->ListPrice->Amount/100);
+			endif;
+
+			$return_array[] = $book;
 
 		endforeach;
 
-		return (array)$return_array;
+		return $return_array;
 	}
 
 	protected function _insert_credentials ($array_to_insert_credentials_in)

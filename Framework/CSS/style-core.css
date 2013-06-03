@@ -4478,7 +4478,7 @@ body {
   .stock_bar_navigation:hover {
     text-decoration: underline; }
 
-.bus_control_wrap {
+.stock_bus, .stock_post {
   display: none;
   width: 100%;
   height: 100%;
@@ -4496,17 +4496,17 @@ body {
     display: table;
     clear: both; }
 
-.bus_control_items, .bus_control_total {
+.bus_control_items, .bus_control_total, .post_book_total, .post_user, .post_books {
   width: 100%;
   margin: 5px 0;
   float: left; }
 
-.bus_control_item {
+.bus_control_item, .post_book {
   width: 100%;
   float: left;
   margin-bottom: 10px; }
 
-.bus_control_item_part, .bus_control_item_isbn, .bus_control_item_condition, .bus_control_item_title, .bus_control_item_total, .bus_control_remove {
+.bus_control_item_part, .bus_control_item_isbn, .post_book_isbn, .bus_control_item_condition, .post_book_condition, .bus_control_item_title, .post_book_title, .bus_control_item_total, .post_book_quote, .bus_control_remove, .post_book_remove, .post_list_part, .post_user_id, .post_user_name, .post_user_email {
   display: inline-block;
   float: left;
   background: transparent;
@@ -4519,40 +4519,41 @@ body {
   margin: 0;
   padding: 0; }
 
-.bus_control_item_isbn {
+.bus_control_item_isbn, .post_book_isbn {
   width: 22%; }
 
-.bus_control_item_condition {
+.bus_control_item_condition, .post_book_condition {
   position: relative;
   top: -2px;
   width: 5%; }
 
-.bus_control_item_title {
+.bus_control_item_title, .post_book_title {
   width: 48%; }
 
-.bus_control_item_total {
+.bus_control_item_total, .post_book_quote {
   position: relative;
   top: -2px;
-  width: 10%; }
+  width: 8%;
+  margin-left: 2%; }
 
-.bus_control_remove {
+.bus_control_remove, .post_book_remove {
   cursor: pointer;
   text-align: right;
   width: 15%; }
-  .bus_control_remove:hover {
+  .bus_control_remove:hover, .post_book_remove:hover {
     text-decoration: underline; }
 
-.bus_control_input, .bus_search, .bus_control_spell_sum {
+.bus_control_input, .bus_search, .bus_control_spell_sum, .post_user_search, .post_book_search {
   width: 28%;
   margin: 40px 1% 0;
   padding: 5px 1%;
   font-size: 16px;
   line-height: 16px;
+  float: left;
+  display: inline-block;
   background: whitesmoke;
   border: 1px solid #555555;
   color: #555555;
-  display: inline-block;
-  float: left;
   box-shadow: none;
   -webkit-border-radius: 2px;
   border-radius: 2px; }
@@ -4578,7 +4579,7 @@ body {
   .bus_control_progress_text:hover {
     text-decoration: underline; }
 
-.bus_control_total {
+.bus_control_total, .post_book_total {
   background: transparent;
   border: none;
   outline: none;
@@ -4682,6 +4683,41 @@ body {
   .bus_control_print_control:hover {
     text-decoration: underline; }
 
+.post_user {
+  margin-top: 20px;
+  margin-bottom: 30px; }
+
+.post_user_id {
+  width: 22%; }
+
+.post_user_name {
+  width: 53%; }
+
+.post_user_email {
+  width: 25%; }
+
+.post_search {
+  margin-top: 50px;
+  width: 532px;
+  margin: 0 auto;
+  clear: both; }
+  .post_search:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.post_submit_credit {
+  width: 28%;
+  margin: 40px 1% 0;
+  padding: 5px 1%;
+  font-size: 16px;
+  line-height: 16px;
+  float: left;
+  display: inline-block;
+  cursor: pointer; }
+  .post_submit_credit:hover {
+    text-decoration: underline; }
+
 .stock_freepost {
   width: 70%;
   margin: 10px 15%;
@@ -4693,10 +4729,10 @@ body {
   float: left;
   padding: 10px 0; }
 
-.stock_freepost_ticket_part, .stock_freepost_ticket_id_header, .stock_freepost_ticket_name_header, .stock_freepost_ticket_address_header, .stock_freepost_ticket_town_header, .stock_freepost_ticket_county_header, .stock_freepost_ticket_post_code_header, .stock_freepost_ticket_done_header, .stock_freepost_ticket_id, .stock_freepost_ticket_name, .stock_freepost_ticket_address, .stock_freepost_ticket_town, .stock_freepost_ticket_county, .stock_freepost_ticket_post_code, .stock_freepost_ticket_done {
+.stock_freepost_ticket_part, .stock_freepost_ticket_header_column, .stock_freepost_ticket_column {
   display: inline-block;
   float: left;
-  width: 14%;
+  width: 12.5%;
   font-size: 14px;
   line-height: 16px;
   text-align: center;
@@ -4706,25 +4742,7 @@ body {
   float: left;
   width: 100%; }
 
-.stock_freepost_ticket_id_header {
-  font-weight: bold; }
-
-.stock_freepost_ticket_name_header {
-  font-weight: bold; }
-
-.stock_freepost_ticket_address_header {
-  font-weight: bold; }
-
-.stock_freepost_ticket_town_header {
-  font-weight: bold; }
-
-.stock_freepost_ticket_county_header {
-  font-weight: bold; }
-
-.stock_freepost_ticket_post_code_header {
-  font-weight: bold; }
-
-.stock_freepost_ticket_done_header {
+.stock_freepost_ticket_header_column {
   font-weight: bold; }
 
 .stock_freepost_ticket_requests {

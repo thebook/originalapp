@@ -125,6 +125,18 @@ class account extends alpha
 		));
 	}
 
+	public function get_account_by_id ($account_id) {
+		$table = new table_creator;
+		$account = $table->get_row($this->account_table, 'id', $account_id);
+		if ( $account !== false ) :
+			$account['history']         = json_decode($account['history']);
+			$account['unaccepted_book'] = json_decode($account['unaccepted_book']);
+			$account['price_promise']   = json_decode($account['price_promise']);
+		endif;
+		return $account;
+
+	}
+
 	public function get_account ($account_email)
 	{
 		$table = new table_creator;
@@ -168,6 +180,17 @@ class account extends alpha
 		$update['unaccepted_book'] = json_encode($update['unaccepted_book']);
 		$update['price_promise']   = json_encode($update['price_promise']);
 		$table->update_row($this->account_table, $update, 'email', $update['email']); 
+	}
+
+	public function set_account_value ($email, $value_name, $value)
+	{
+		$table = new table_creator;
+
+		if ( is_array($value) ) :
+			$value = json_encode($value);
+		endif;
+
+		$table->update_row($this->account_table, array($value_name => $value ), 'email', $email); 
 	}
 
 	public function set_new_account ($array_of_information)

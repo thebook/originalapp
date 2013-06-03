@@ -1,14 +1,12 @@
 $bus_control_width: 40%;
 
-.bus_control_wrap {
+.stock_bus {
 	display: none;
 	width: 100%;
 	height: 100%;
 	float: left;
 	background: $light_monochrome;
 	color: $black_gray;
-	// position: fixed;
-	// z-index: 99;
 }
 
 .bus_control_slide {
@@ -65,7 +63,8 @@ $bus_control_width: 40%;
 	@extend.bus_control_item_part;
 	position: relative;
 	top: -2px;
-	width: 10%;
+	width: 8%;
+	margin-left: 2%;
 }
 
 .bus_control_remove {
@@ -84,11 +83,11 @@ $bus_control_width: 40%;
 	padding     : 5px 1%; 
 	font-size   : 16px;
 	line-height : 16px;
+	float       : left;
+	display     : inline-block;
 	background  : $light_monochrome;
 	border      : 1px solid $black_gray;
 	color       : $black_gray;
-	display     : inline-block;
-	float       : left;
 	box-shadow  : none;
 	@include border-radius( 2px);
 }

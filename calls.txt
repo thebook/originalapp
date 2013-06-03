@@ -58,3 +58,58 @@ $.post(ajaxurl,
 		}
 	},
 }, function () {}, "json");
+
+$.get(ajaxurl, {
+	action : "get_account",
+	method : "table",
+	paramaters : {}, 
+}, function (users) {
+	console.log(users);
+}, "json");
+
+$.get(ajaxurl, {
+	action : "get_account",
+	method : "account",
+	paramaters : {
+		email : "tim@tamimimail.com"
+	}, 
+}, function (users) {
+	console.log(users);
+}, "json");
+
+$.get(ajaxurl, {
+	action : "get_account",
+	method : "address",
+	paramaters : {
+		email : "tim@tamimimail.com"
+	}, 
+}, function (users) {
+	console.log(users);
+}, "json");
+
+$.get(ajaxurl, {
+	action : "get_account",
+	method : "account_by_id",
+	paramaters : {
+		id : "14"
+	}, 
+}, function (users) {
+	console.log(users);
+}, "json");
+
+$.get(ajaxurl, {
+	action : "get_expense",
+	method : "table",
+	paramaters : {}, 
+}, function (response) {
+	var total = 0;
+	for (var index = 0; index < response.return.length; index++) {
+		var amount = response.return[index].amount;
+			console.log(amount);
+			amount = parseFloat(amount);
+			console.log(amount);
+			total += amount;
+	};
+	console.log(response.return);
+	console.log(total);
+}, "json");
