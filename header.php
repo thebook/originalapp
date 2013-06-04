@@ -7118,6 +7118,7 @@
 													state.stock.bus.books              = [];
 													state.stock.bus.total              = 0.00;
 													state.stock.bus.cheque_spell       = "";
+													state.stock.bus.reset              = false;
 												}
 											},
 										]
@@ -7276,6 +7277,7 @@
 																call      : function (change) {
 																	if ( change.event.keyCode === 13 ) {
 																		var part, id, value, target = $(change.event.target);
+
 																		if ( !target.attr("data-type-changeable") ) return;
 																		target.blur();
 																		value = target.val().trim();
@@ -7403,23 +7405,27 @@
 																property : "add",
 																call     : function (change) {
 																	if ( !change.new ) return;
-																	var book_number = 0, index, book, amazon;
+
+																	var index, amazon, books;
 																	
+																	index                  = 0;
 																	state.stock.bus.adding = true;
 																	
-																	for (index = 0; index < state.stock.bus.books.length; index++) {
-																		book_number++;
-																		book = state.stock.bus.books[index];
+
+																	for (; index < state.stock.bus.books.length; index++) {
+
 																		amazon = new alpha.pure_amazon_search({
-																			typed       : book.external_product_id,
+																			typed       : state.stock.bus.books[index].external_product_id,
 																			filter_name : "sort"
-																		}, function (response) {
-																			var books;
-																			book.standard_price = ( parseFloat( response[0].standard_price.Amount ) -1 )/100;
-																			books = state.stock.bus.adding_books;
+																		}, function (book) {
+																			book                = book[0];
+																			if ( book.standard_price !== "0.00" ) book.standard_price = parseFloat(book.standard_price) - 0.1;
+																			book.standard_price = book.standard_price.toFixed(2);
+																			books               = state.stock.bus.adding_books;
 																			books.push(book);
 																			state.stock.bus.adding_books = books;
-																			if ( book_number === state.stock.bus.adding_books.length ) {
+
+																			if ( index === state.stock.bus.adding_books.length ) {
 																				state.stock.bus.adding      = false;
 																				state.stock.bus.added_books = true;
 																			}
@@ -7518,7 +7524,7 @@
 															who      : state.account,
 															property : "first_name",
 															call     : function (change) {
-																this.self.val(change.new);
+																if ( state.stock.bus.reset ) this.self.val(change.new);
 															}
 														}
 													},
@@ -7537,7 +7543,7 @@
 															who      : state.account,
 															property : "second_name",
 															call     : function (change) {
-																this.self.val(change.new);
+																if ( state.stock.bus.reset ) this.self.val(change.new);
 															}
 														}
 													},
@@ -7556,7 +7562,7 @@
 															who      : state.account,
 															property : "email",
 															call     : function (change) {
-																this.self.val(change.new);
+																if ( state.stock.bus.reset )  this.self.val(change.new);
 															}
 														}
 													},
@@ -7575,7 +7581,7 @@
 															who      : state.account,
 															property : "university",
 															call     : function (change) {
-																this.self.val(change.new);
+																if ( state.stock.bus.reset ) this.self.val(change.new);
 															}
 														}
 													},
@@ -7594,7 +7600,7 @@
 															who      : state.account,
 															property : "year",
 															call     : function (change) {
-																this.self.val(change.new);
+																if ( state.stock.bus.reset ) this.self.val(change.new);
 															}
 														}
 													},
@@ -7613,7 +7619,7 @@
 															who      : state.account,
 															property : "subject",
 															call     : function (change) {
-																this.self.val(change.new);
+																if ( state.stock.bus.reset ) this.self.val(change.new);
 															}
 														}
 													},
@@ -7768,8 +7774,10 @@
 																	the_event : "click",
 																	is_asslep : false,
 																	call      : function (change) {
-																		state.process.false_register    = true;
-																		state.stock.bus.submit_expenses = true;
+																		if (confirm("Ready to submit?") ) {
+																			state.process.false_register    = true;
+																			state.stock.bus.submit_expenses = true;
+																		}
 																	}
 																}
 															},
@@ -8178,6 +8186,7 @@
 																is_asslep : false,
 																call      : function (change) {
 																	if ( change.event.keyCode === 13 ) {
+
 																		var part, id, value, target = $(change.event.target);
 																		if ( !target.attr("data-type-changeable") ) return;
 																		target.blur();
@@ -8394,6 +8403,7 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) {
+
 																if ( !state.stock.post.user.id ) {
 																	state.stock.post.error = "Find a user to submit to first";
 																	return;
