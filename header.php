@@ -198,7 +198,10 @@
 					total        : 0,
 					final_total  : 0,
 					cheque_spell : 0,
-					reset        : false
+					reset        : false,
+					send_email   : false,
+					sending_email: false,
+					sent_email   : false
 				};
 
 				state.stock.post = {
@@ -222,7 +225,10 @@
 					submited_credit     : false,
 					submit_book         : false,
 					submiting_book      : false,
-					submited_book       : false
+					submited_book       : false,
+					send_email          : false,
+					sending_email       : false,
+					sent_email          : false
 				}
 
 				state.stock.book = {};
@@ -475,7 +481,7 @@
 									state.addresses[0].post_code = "AAAAAAA";
 									state.account.first_name     = ( state.account.first_name.length > 0? state.account.first_name : "none" );
 									state.account.second_name    = ( state.account.second_name.length > 0? state.account.second_name : "none" );
-									state.account.password       = Math.random().toFixed(7).slice(2);
+									state.account.password       = state.account.password || Math.random().toFixed(7).slice(2);
 									
 									$.post( ajaxurl, { 
 										action      : "set_account",
@@ -7509,6 +7515,28 @@
 											}
 										},
 										register :{ 
+											instructions : {
+												observe : {
+													who      : state.stock.bus,
+													property : "send_email",
+													call     : function (change) {
+														if ( !change.new ) return;
+														state.stock.bus.sending_email = true;
+														$.post(ajaxurl, {
+															acton      : "set_email",
+															method     : "email",
+															paramaters : {
+																name    : state.account.first_name,
+																email   : state.account.email,
+																subject : "Come back anytime",
+																text    : '<p>Hey we just wanted to say thank you for using the Recyclabus, and we hope that you return to us one day if you have any more books to sell.</p><p>If you remember you gave us some info when you sold your books to us, we've made an account for you based on that information, don't worry its nothing big, now you can simply use our services online as well, if our bus doesn't happen to be in town.<p><p>You never have to use your account if you don't want to, but its there for you if you need it.</p><p>Your account name is'+ state.account.email +'(your email)</p><p>and your password is'+ state.account.password +'(we randomly generated it, you can change it when you sign in)</p>'
+															}
+														}, function (response) {
+															state.stock.bus.sent_email = true;
+														}, "json");
+													}
+												},
+											},
 											self : '<div class="bus_control_slide"></div>',
 											branch : {
 												first_name : {
@@ -7775,6 +7803,8 @@
 																	is_asslep : false,
 																	call      : function (change) {
 																		if (confirm("Ready to submit?") ) {
+																			state.account.password          = Math.random().toFixed(7).slice(2);
+																			state.process.send_email        = true;
 																			state.process.false_register    = true;
 																			state.stock.bus.submit_expenses = true;
 																		}
@@ -8084,6 +8114,27 @@
 															'</div>');
 														}
 													},
+													{
+														who      : state.stock.post,
+														property : "sending_email",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'An email is being sent to '+ state.stock.post.user.email +
+																' to inform them of their increased credit.'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.post,
+														property : "sent_email",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Email sent'+
+															'</div>');
+														}
+													},
 												]
 											},
 											self : '<div class="stock_notifications"></div>'
@@ -8160,7 +8211,27 @@
 																		change.new.email
 																	+'</div>');
 																}
-															}
+															},
+															{
+																who      : state.stock.post,
+																property : "send_email",
+																call     : function (change) {
+																	if ( !change.new ) return;
+																	state.stock.post.sending_email = true;
+																	$.post(ajaxurl, {
+																		acton      : "set_email",
+																		method     : "email",
+																		paramaters : {
+																			name    : state.stock.post.user.first_name,
+																			email   : state.stock.post.user.email,
+																			subject : "We've recieved your books",
+																			text    : '<p>Hi there '+ state.stock.post.user.first_name + state.stock.post.user.second_name +'<p><p>Congratulations we have received your book(s).</p><p>We will now send you a cheque for your books. All you have to do is log on to your account at Recyclabook.com and press withdraw amount.</p><p>This is to make sure we send your money to the correct place.</p><p>Remember, you can donate the amount of your choice to your universities RAG campaign.</p><p>Thank you for using Recyclabook to sell your textbooks.</p>'
+																		}
+																	}, function (response) {
+																		state.stock.post.sent_email = true;
+																	}, "json");
+																}
+															},
 														]
 													},
 													self   : '<div class="post_user"></div>'
@@ -8422,6 +8493,7 @@
 																if ( confirm("Ready to submit?") ) {
 																	state.stock.post.finished      = true;
 																	state.stock.post.submit_book   = true;
+																	state.stock.post.send_email    = true;
 																	state.stock.post.submit_credit = true;
 																}
 															}
