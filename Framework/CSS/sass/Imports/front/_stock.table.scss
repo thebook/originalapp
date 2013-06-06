@@ -1,0 +1,47 @@
+.stock_table_wrap {
+	width: $stock_width;
+	margin: 20px auto;
+	@include pie-clearfix;
+	// overflow: hidden;
+}
+
+.stock_table { 
+	width: 100%;
+	float: left;
+}
+
+.stock_table_move_wrap { 
+	float: left;
+	display: block;
+}
+
+.stock_table_titles {
+	width: auto;
+	float: left;
+	margin-bottom: 20px;
+}
+
+.stock_table_title {
+	display: inline-block;
+	float: left;
+	width: 171px;
+}
+
+.stock_table_row {
+
+}
+
+.stock_table_field {
+	background : none;
+	font-family: inherit;
+	font-size  : 12px;
+	line-height: 16px;
+	width      : 130px;
+	padding    : 10px;
+	height     : 100px;
+	resize     : none;
+	border     : none;
+	&:focus {
+		outline: 2px solid $black_gray;
+	}
+}

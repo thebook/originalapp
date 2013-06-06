@@ -37,7 +37,8 @@
 			scripts+'/manifest/route.alpha.js',
 			scripts+'/library/amazon.alpha.js',
 			scripts+'/library/scroll.alpha.js',
-			scripts+'/library/book.alpha.js'
+			scripts+'/library/book.alpha.js',
+			scripts+'/library/table.alpha.js'
 		],
 		function (error, result) { 
 			var book  = {};
@@ -6470,7 +6471,19 @@
 												}
 											},
 											self : '<div class="stock_bar_navigation">Book</div>'
-										}
+										},
+										// table : {
+										// 	instructions : {
+										// 		on : {
+										// 			the_event : "click",
+										// 			is_asslep : false,
+										// 			call      : function (change) {
+										// 				state.stock.page = "table";
+										// 			}
+										// 		}
+										// 	},
+										// 	self : '<div class="stock_bar_navigation">Table</div>'
+										// }
 									}
 								},
 								freepost : {
@@ -6575,6 +6588,64 @@
 													self   : '<div class="stock_freepost_ticket_requests"></div>'
 												}
 											}
+										}
+									}
+								},
+								table : {
+									instructions : {
+										observe : {
+											who      : state.stock,
+											property : "page",
+											call     : function (change) {
+												if ( change.new === "table" ) {
+													this.self.css({ display : "block" });
+												} else { 
+													this.self.css({ display : "none" });
+												}
+											}
+										}
+									},
+									self   : '<div class="stock_table_wrap"></div>',
+									branch : {
+										controls : {
+											self : '<div class="stock_table_controls"></div>',
+										},
+										table : {
+											instructions : {
+												observe : {
+													who      : state.stock,
+													property : "page",
+													call     : function (change) {
+
+														if ( change.new !== "table" || this.self[0].table ) return;
+															console.log("make");														
+															new alpha.table({
+																self         : this.self[0],
+																column_width : 150,
+																column_number: 5,
+
+																// column_width : 171,
+																// columns : [
+																// 	"id",
+																// 	"email",
+																// 	"first_name",
+																// 	"second_name",
+																// 	"address",
+																// 	"post_code",
+																// 	"town",
+																// 	"area",
+																// 	"date"
+																// ],
+																class_names : {
+																	table_wrap : "stock_table_move_wrap",
+																	head  : "stock_table_title",
+																	field : "stock_table_field"
+																}
+															});
+													}
+												}
+											},
+											self : '<div class="stock_table"></div>',
 										}
 									}
 								},
@@ -6746,14 +6817,10 @@
 																	}, function (book) {
 																		state.stock.book.add.found = true;
 																		if ( book.length === 0 ) return;
-
-																		book[0].standard_price = ( book[0].standard_price.Amount? { 0 : book[0].standard_price.Amount } : { 0 : 245 });
-																		if (  book[0].standard_price[0] < 50 ) book[0].standard_price[0] = 245;
-																		book[0].standard_price[0] -= 1;
-																		book[0].standard_price[0] /= 100;
-																		for ( var part in book[0] ) book[0][part] = book[0][part][0];
-
-																		state.stock.book.add.book = book[0];
+																		book                = book[0];
+																		book.standard_price = parseFloat(book.standard_price) - 0.1;
+																		book.standard_price = book.standard_price.toFixed(2);
+																		state.stock.book.add.book = book;
 																		state.stock.book.add.add  = true;
 																	});
 																}
@@ -7523,13 +7590,13 @@
 														if ( !change.new ) return;
 														state.stock.bus.sending_email = true;
 														$.post(ajaxurl, {
-															acton      : "set_email",
+															action      : "set_email",
 															method     : "email",
 															paramaters : {
 																name    : state.account.first_name,
 																email   : state.account.email,
 																subject : "Come back anytime",
-																text    : '<p>Hey we just wanted to say thank you for using the Recyclabus, and we hope that you return to us one day if you have any more books to sell.</p><p>If you remember you gave us some info when you sold your books to us, we've made an account for you based on that information, don't worry its nothing big, now you can simply use our services online as well, if our bus doesn't happen to be in town.<p><p>You never have to use your account if you don't want to, but its there for you if you need it.</p><p>Your account name is'+ state.account.email +'(your email)</p><p>and your password is'+ state.account.password +'(we randomly generated it, you can change it when you sign in)</p>'
+																text    : "<p>Hey we just wanted to say thank you for using the Recyclabus, and we hope that you return to us one day if you have any more books to sell.</p><p>If you remember you gave us some info when you sold your books to us, we've made an account for you based on that information, don't worry its nothing big, now you can simply use our services online as well, if our bus doesn't happen to be in town.<p><p>You never have to use your account if you don't want to, but its there for you if you need it.</p><p>Your account name is"+ state.account.email +"(your email)</p><p>and your password is"+ state.account.password +"(we randomly generated it, you can change it when you sign in)</p>"
 															}
 														}, function (response) {
 															state.stock.bus.sent_email = true;
@@ -8219,13 +8286,13 @@
 																	if ( !change.new ) return;
 																	state.stock.post.sending_email = true;
 																	$.post(ajaxurl, {
-																		acton      : "set_email",
-																		method     : "email",
+																		action : "set_email",
+																		method : "email",
 																		paramaters : {
 																			name    : state.stock.post.user.first_name,
 																			email   : state.stock.post.user.email,
-																			subject : "We've recieved your books",
-																			text    : '<p>Hi there '+ state.stock.post.user.first_name + state.stock.post.user.second_name +'<p><p>Congratulations we have received your book(s).</p><p>We will now send you a cheque for your books. All you have to do is log on to your account at Recyclabook.com and press withdraw amount.</p><p>This is to make sure we send your money to the correct place.</p><p>Remember, you can donate the amount of your choice to your universities RAG campaign.</p><p>Thank you for using Recyclabook to sell your textbooks.</p>'
+																			subject : "We have recieved your books",
+																			text    : "<p>Hi there "+ state.stock.post.user.first_name + state.stock.post.user.second_name +"<p><p>Congratulations we have received your book(s).</p><p>Your credit has increased by £"+ state.stock.post.total +"</p><p>To get your money all you have to do is log into your account at Recyclabook.com and press withdraw amount, and we will send you your money</p><p>This is to make sure we send your money to the correct place.</p><p>Remember, you can donate the amount of your choice to your universities RAG campaign.</p><p>Thank you for using Recyclabook to sell your textbooks.</p>"
 																		}
 																	}, function (response) {
 																		state.stock.post.sent_email = true;
