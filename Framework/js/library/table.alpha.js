@@ -13,12 +13,18 @@ var alpha = (function ( alpha, $ ) {
 				class_names  : wake.class_names,
 				length       : wake.column_number * wake.column_width
 			},
+			edit : {
+				change : false
+			},
 			change   : {
 				history : [],
 				value   : {
-					column : 0,
-					row    : 0,
-					value  : ""
+					changeing : false,
+					selected  : null,
+					changing  : false,
+					column    : 0,
+					row       : 0,
+					value     : ""
 				}
 			},
 			selected : {
@@ -76,12 +82,15 @@ var alpha = (function ( alpha, $ ) {
 		});
 
 		this.self.addEventListener("click", function (event) {
+
 			prototype.field_selection_value_changer(event);
+			if ( event.target !== prototype.self.table.change.value.selected ) prototype.come_out_of_field_editing();
 		});
 
 		this.self.addEventListener("dblclick", function (event) {
 			console.log("doubleclick");
 			console.log(event.target);
+			prototype.come_into_field_editing(event.target);
 		});
 
 		new alpha.observe({
@@ -93,8 +102,6 @@ var alpha = (function ( alpha, $ ) {
 		});
 
 		this.popuplate_table_rows();
-
-
 	};
 
 
@@ -116,8 +123,16 @@ var alpha = (function ( alpha, $ ) {
 	};
 
 	alpha.table.prototype.keypress_handler = function (event) {
-		// left 37, up 38, right 39, down 40, ctr 17, z 90, x 88, enter 13 
+
+		// left 37, up 38, right 39, down 40, ctr 17, z 90, x 88, enter 13, escape 27
 		
+		if ( event.keyCode === 27 ) {
+			if ( event.target.tagName !== "TEXTAREA"  ) return;
+			this.come_out_of_field_editing();		
+		}
+
+		if ( this.self.table.change.value.changeing ) return;
+
 		if ( event.keyCode === 37 ) this.change_selected_field_based_on_current_position("left");
 
 		if ( event.keyCode === 38 ) this.change_selected_field_based_on_current_position("up");
@@ -128,8 +143,7 @@ var alpha = (function ( alpha, $ ) {
 
 		if ( event.keyCode === 13 ) {
 			if ( event.target.tagName !== "TEXTAREA" ) return;
-			console.log(event.target);
-			event.target.removeAttribute("readonly");
+			this.come_into_field_editing(event.target);
 		}
 
 		console.log(this.self.table.selected.current);
@@ -160,6 +174,30 @@ var alpha = (function ( alpha, $ ) {
 		}
 
 		this.self.table.selected.current = current;
+	};
+
+
+	alpha.table.prototype.come_into_field_editing = function (target) { 
+
+		if ( this.self.table.change.value.changeing ) return;
+		target.removeAttribute("readonly");
+		this.self.table.change.value.selected  = target;
+		this.self.table.change.value.column    = target.getAttribute("data-type-column");
+		this.self.table.change.value.row       = target.getAttribute("data-type-row");
+		this.self.table.change.value.changeing = true;
+	};
+
+	alpha.table.prototype.come_out_of_field_editing = function () { 
+
+		if ( !this.self.table.change.value.changeing ) return;
+		this.self.table.change.value.selected.setAttribute("readonly");
+		this.self.table.change.value.value = this.self.table.change.value.selected.value;
+		this.self.table.rows[this.self.table.change.value.row][this.self.table.change.value.column] = this.self.table.change.value.value;
+		this.self.table.change.value.changeing = false;
+	};
+
+	alpha.table.prototype.submit_changed_value = function () { 
+
 	};
 
 	alpha.table.prototype.table_field_factory = function (wake) { 

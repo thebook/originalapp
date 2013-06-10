@@ -6472,18 +6472,18 @@
 											},
 											self : '<div class="stock_bar_navigation">Book</div>'
 										},
-										// table : {
-										// 	instructions : {
-										// 		on : {
-										// 			the_event : "click",
-										// 			is_asslep : false,
-										// 			call      : function (change) {
-										// 				state.stock.page = "table";
-										// 			}
-										// 		}
-										// 	},
-										// 	self : '<div class="stock_bar_navigation">Table</div>'
-										// }
+										table : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														state.stock.page = "table";
+													}
+												}
+											},
+											self : '<div class="stock_bar_navigation">Table</div>'
+										}
 									}
 								},
 								freepost : {
@@ -6818,7 +6818,7 @@
 																		state.stock.book.add.found = true;
 																		if ( book.length === 0 ) return;
 																		book                = book[0];
-																		book.standard_price = parseFloat(book.standard_price) - 0.1;
+																		book.standard_price = parseFloat(book.standard_price) + 1;
 																		book.standard_price = book.standard_price.toFixed(2);
 																		state.stock.book.add.book = book;
 																		state.stock.book.add.add  = true;
