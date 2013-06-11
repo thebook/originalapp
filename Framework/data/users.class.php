@@ -125,6 +125,13 @@ class account extends alpha
 		));
 	}
 
+	public function get_does_admin_user_exist ($name, $password)
+	{
+		$user = 'recyclabook';
+		$pass = 'thinkbigger1';
+		return ( $name === $user and $password === $pass ? true : false );
+	}
+
 	public function get_account_by_id ($account_id) {
 		$table = new table_creator;
 		$account = $table->get_row($this->account_table, 'id', $account_id);

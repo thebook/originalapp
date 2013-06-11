@@ -178,6 +178,12 @@
 
 				state.stock = {};
 				state.stock.page = false;
+				state.stock.user = {
+					notification : "",
+					loged_in : false,
+					name     : "",
+					password : ""
+				};
 
 				state.stock.bus  = {
 					search       : false,
@@ -6472,17 +6478,99 @@
 											},
 											self : '<div class="stock_bar_navigation">Book</div>'
 										},
-										table : {
+										// table : {
+										// 	instructions : {
+										// 		on : {
+										// 			the_event : "click",
+										// 			is_asslep : false,
+										// 			call      : function (change) {
+										// 				state.stock.page = "table";
+										// 			}
+										// 		}
+										// 	},
+										// 	self : '<div class="stock_bar_navigation">Table</div>'
+										// }
+									}
+								},
+								log : {
+									instructions :{
+										observe : {
+											who      : state.stock.user,
+											property : "loged_in",
+											call     : function (change) {
+												if ( change.new ) {
+													this.self.css({ display : "none" });
+												} else {
+													this.self.css({ display : "block" });
+												}
+											}
+										}
+									},
+									self   : '<div class="stock_log"></div>',
+									branch : {
+										notification : {
+											instructions : {
+												observe : {
+													who      : state.stock.user,
+													property : "notification",
+													call     : function (change) {
+														this.self.text(change.new);
+													}
+												}
+											},
+											self : '<div class="stock_log_notification">Enter Name & Password</div>',
+										},
+										user : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.stock.user.name = change.self.val();
+													}
+												}
+											},
+											self : '<input class="stock_log_user" placeholder="username">'
+										},
+										password : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.stock.user.password = change.self.val();
+													}
+												}
+											},
+											self : '<input type="password" class="stock_log_password" placeholder="password">'
+										},
+										submit : {
 											instructions : {
 												on : {
 													the_event : "click",
 													is_asslep : false,
 													call      : function (change) {
-														state.stock.page = "table";
+
+														state.stock.user.notification = "Signing in..";
+
+														$.get(ajaxurl, {
+															action : "get_account",
+															method : "does_admin_user_exist",
+															paramaters : {
+																name     : state.stock.user.name,
+																password : state.stock.user.password
+															}
+														}, function (response) {
+															if ( response.return ) {
+																state.stock.user.loged_in = true;
+															} else {
+																state.stock.user.notification = "Wrong password or name or both";
+															}
+														},"json");
 													}
 												}
 											},
-											self : '<div class="stock_bar_navigation">Table</div>'
+											self : '<div class="stock_log_submit">Go</div>'
 										}
 									}
 								},
@@ -6622,8 +6710,10 @@
 															new alpha.table({
 																self         : this.self[0],
 																column_width : 150,
-																column_number: 5,
+																column_number: 6,
+																submit : {
 
+																},
 																// column_width : 171,
 																// columns : [
 																// 	"id",

@@ -6,72 +6,85 @@ var alpha = (function ( alpha, $ ) {
 
 		prototype = this;
 		this.self = wake.self;
-		wake.self.table = {
-			wake    : {
-				column_width : wake.column_width,
-				column_number: wake.column_number-1,
-				class_names  : wake.class_names,
-				length       : wake.column_number * wake.column_width
+		wake.self.table = {};
+		wake.self.table.wake = {
+			column_width : wake.column_width,
+			column_number: wake.column_number-1,
+			class_names  : wake.class_names,
+			length       : wake.column_number * wake.column_width,
+			number_of_columns_that_can_show : Math.floor(wake.self.clientWidth/wake.column_width)-1
+		};
+		wake.self.table.visible = {
+			column : {
+				left  : 0,
+				right : wake.self.table.wake.number_of_columns_that_can_show
 			},
-			edit : {
-				change : false
-			},
-			change   : {
-				history : [],
-				value   : {
-					changeing : false,
-					selected  : null,
-					changing  : false,
-					column    : 0,
-					row       : 0,
-					value     : ""
-				}
-			},
-			selected : {
-				history: [],
-				current: {
-					column : 0,
-					row    : 0
-				}
-			},
-			rows : [
+			row : {
+				top    : 0,
+				bottom : 0
+			}
+		};
+		wake.self.table.change = {
+			history : [],
+			value   : {
+				changeing : false,
+				selected  : null,
+				changing  : false,
+				column    : 0,
+				row       : 0,
+				value     : ""
+			}
+		};
+		wake.self.table.selected = {
+			history: [],
+			current: {
+				column : 0,
+				row    : 0
+			}
+		};
+		wake.self.table.rows = [
 				{
 					id    : 1,
 					email   : "some@email",
 					address : "30 THe Grange",
 					town    : "Cardiff",
-					place   : "THe place"
+					place   : "THe place",
+					stuff   : "stuff"
 				},
 				{
 					id : 1,
 					email : "some@email",
 					address : "30 THe Grange",
 					town    : "Cardiff",
-					place   : "THe place"
+					place   : "THe place",
+					stuff   : "stuff"
 				},
 				{
 					id : 1,
 					email : "some@email",
 					address : "30 THe Grange",
 					town    : "Cardiff",
-					place   : "THe place"
+					place   : "THe place",
+					stuff   : "stuff"
 				},
 				{
 					id : 1,
 					email : "some@email",
 					address : "30 THe Grange",
 					town    : "Cardiff",
-					place   : "THe place"
+					place   : "THe place",
+					stuff   : "stuff"
 				},
 				{
 					id : 1,
 					email : "some@email",
 					address : "30 THe Grange",
 					town    : "Cardiff",
-					place   : "THe place"
+					place   : "THe place",
+					stuff   : "stuff"
 				},
-			],
-		};
+		];
+		console.log(this.self.table);
 
 		this.self.insertAdjacentHTML("afterbegin", 
 			'<div style="width:'+ this.self.table.wake.length                 +'px;"'+
@@ -97,13 +110,53 @@ var alpha = (function ( alpha, $ ) {
 			object   : this.self.table.selected,
 			property : "current",
 			observer : function (change) {
-				prototype.field_selection_mover(change);				
+				prototype.field_selection_mover(change);
+				prototype.visible_area_calculator(change);
+			}
+		});
+
+		new alpha.observe({
+			object   : this.self.table.visible,
+			property : "column",
+			observer : function (change) {
+				prototype.visible_area_mover(change);
+			}
+		});
+
+		new alpha.observe({
+			object   : this.self.table.change.value,
+			property : "value",
+			observer : function (change) {
+				prototype.submit_changed_value();
 			}
 		});
 
 		this.popuplate_table_rows();
 	};
 
+	alpha.table.prototype.visible_area_mover = function (change) {
+		this
+		console.log(this.self.firstChild);
+	};
+
+	alpha.table.prototype.visible_area_calculator = function (change) {
+
+		if ( change.new.column < this.self.table.visible.column.left ) { 
+			this.self.table.visible.column = {
+				left  : change.new.column,
+				right : this.self.table.wake.number_of_columns_that_can_show+change.new.column
+			};
+		}
+
+		if ( change.new.column > this.self.table.visible.column.right ) { 
+			this.self.table.visible.column = {
+				left  : change.new.column-this.self.table.wake.number_of_columns_that_can_show,
+				right : change.new.column
+			};
+		}
+
+		console.log(this.self.table.visible.column);
+	};
 
 	alpha.table.prototype.field_selection_value_changer = function (event) {
 
@@ -180,6 +233,7 @@ var alpha = (function ( alpha, $ ) {
 	alpha.table.prototype.come_into_field_editing = function (target) { 
 
 		if ( this.self.table.change.value.changeing ) return;
+
 		target.removeAttribute("readonly");
 		this.self.table.change.value.selected  = target;
 		this.self.table.change.value.column    = target.getAttribute("data-type-column");
@@ -190,19 +244,27 @@ var alpha = (function ( alpha, $ ) {
 	alpha.table.prototype.come_out_of_field_editing = function () { 
 
 		if ( !this.self.table.change.value.changeing ) return;
+
 		this.self.table.change.value.selected.setAttribute("readonly");
 		this.self.table.change.value.value = this.self.table.change.value.selected.value;
 		this.self.table.rows[this.self.table.change.value.row][this.self.table.change.value.column] = this.self.table.change.value.value;
 		this.self.table.change.value.changeing = false;
+		this.self.table.change.history.unshift({
+			row    : this.self.table.change.value.row,
+			column : this.self.table.change.value.column,
+			value  : this.self.table.change.value.value,
+		});
 	};
 
 	alpha.table.prototype.submit_changed_value = function () { 
-
+		console.log("change");
+		console.log(this.self.table.change.value.value);
 	};
 
 	alpha.table.prototype.table_field_factory = function (wake) { 
 
 		return '<textarea '+ 
+			'placeholder="empty"'+
 			'id="column_'+        wake.column_number +'_row_'+ wake.row +'" '+ 
 			'data-type-row="'+    wake.row +'" '+ 
 			'data-type-column="'+ wake.column_name +'" '+ 

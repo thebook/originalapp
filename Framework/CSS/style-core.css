@@ -4546,7 +4546,7 @@ body {
   .bus_control_remove:hover, .post_book_remove:hover {
     text-decoration: underline; }
 
-.bus_control_input, .bus_search, .bus_control_spell_sum, .post_user_search, .post_book_search {
+.bus_control_input, .bus_search, .bus_control_spell_sum, .post_user_search, .post_book_search, .stock_log_user, .stock_log_password {
   width: 28%;
   margin: 40px 1% 0;
   padding: 5px 1%;
@@ -4759,6 +4759,34 @@ body {
   border: none; }
   .stock_table_field:focus {
     outline: 2px solid #555555; }
+
+.stock_log {
+  width: 50%;
+  height: 100%;
+  padding: 40px 24%;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  background: whitesmoke; }
+
+.stock_log_user, .stock_log_password {
+  margin-top: 0px; }
+
+.stock_log_notification {
+  font-size: 14px;
+  line-height: 14px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  float: left; }
+
+.stock_log_submit {
+  float: left;
+  display: inline-block;
+  margin: 8px 0 0 15px;
+  cursor: pointer; }
+  .stock_log_submit:hover {
+    text-decoration: underline; }
 
 .stock_freepost {
   width: 70%;
