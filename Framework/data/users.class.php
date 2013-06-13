@@ -125,6 +125,12 @@ class account extends alpha
 		));
 	}
 
+	public function get_file ()
+	{
+		$file = file_get_contents('http://localhost:30102/wp-content/themes/recyclabook/inventory/inv.txt');
+		return $file;
+	}
+
 	public function get_does_admin_user_exist ($name, $password)
 	{
 		$user = 'recyclabook';

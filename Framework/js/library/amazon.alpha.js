@@ -112,6 +112,19 @@ var alpha = (function ( alpha, $ ) {
 		};
 	};
 
+	alpha.algorithm.prototype.recalculate = function (book) {
+
+		var weight, price;
+
+		weight                    = parseInt( book.package_weight );
+		weight                    = (weight/100) * 453;
+		price                     = parseFloat( book.standard_price);
+		price                    -= 0.01;
+		book.standard_price       = price.toFixed(2);
+		if ( price < 1 && weight > 75 ) book.refused = true;
+		return book;
+	};
+
 	alpha.algorithm.prototype.bus = function (book) {
 
 		var starting_price, price, weight;

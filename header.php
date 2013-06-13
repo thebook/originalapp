@@ -238,7 +238,15 @@
 					sent_email          : false
 				}
 
-				state.stock.book = {};
+				state.stock.book = {
+					recalculate_string   : "",
+					books_to_recalculate : 0,
+					books_recalculated   : 0,
+					books_uploaded       : 0,
+					refused_books        : [],
+					recalculate_books    : [],
+					recalculate_again    : []
+				};
 				state.stock.book.add = {
 					isbn      : "",
 					condition : "",
@@ -6492,88 +6500,88 @@
 										// }
 									}
 								},
-								log : {
-									instructions :{
-										observe : {
-											who      : state.stock.user,
-											property : "loged_in",
-											call     : function (change) {
-												if ( change.new ) {
-													this.self.css({ display : "none" });
-												} else {
-													this.self.css({ display : "block" });
-												}
-											}
-										}
-									},
-									self   : '<div class="stock_log"></div>',
-									branch : {
-										notification : {
-											instructions : {
-												observe : {
-													who      : state.stock.user,
-													property : "notification",
-													call     : function (change) {
-														this.self.text(change.new);
-													}
-												}
-											},
-											self : '<div class="stock_log_notification">Enter Name & Password</div>',
-										},
-										user : {
-											instructions : {
-												on : {
-													the_event : "keyup",
-													is_asslep : false,
-													call      : function (change) {
-														state.stock.user.name = change.self.val();
-													}
-												}
-											},
-											self : '<input class="stock_log_user" placeholder="username">'
-										},
-										password : {
-											instructions : {
-												on : {
-													the_event : "keyup",
-													is_asslep : false,
-													call      : function (change) {
-														state.stock.user.password = change.self.val();
-													}
-												}
-											},
-											self : '<input type="password" class="stock_log_password" placeholder="password">'
-										},
-										submit : {
-											instructions : {
-												on : {
-													the_event : "click",
-													is_asslep : false,
-													call      : function (change) {
+								// log : {
+								// 	instructions :{
+								// 		observe : {
+								// 			who      : state.stock.user,
+								// 			property : "loged_in",
+								// 			call     : function (change) {
+								// 				if ( change.new ) {
+								// 					this.self.css({ display : "none" });
+								// 				} else {
+								// 					this.self.css({ display : "block" });
+								// 				}
+								// 			}
+								// 		}
+								// 	},
+								// 	self   : '<div class="stock_log"></div>',
+								// 	branch : {
+								// 		notification : {
+								// 			instructions : {
+								// 				observe : {
+								// 					who      : state.stock.user,
+								// 					property : "notification",
+								// 					call     : function (change) {
+								// 						this.self.text(change.new);
+								// 					}
+								// 				}
+								// 			},
+								// 			self : '<div class="stock_log_notification">Enter Name & Password</div>',
+								// 		},
+								// 		user : {
+								// 			instructions : {
+								// 				on : {
+								// 					the_event : "keyup",
+								// 					is_asslep : false,
+								// 					call      : function (change) {
+								// 						state.stock.user.name = change.self.val();
+								// 					}
+								// 				}
+								// 			},
+								// 			self : '<input class="stock_log_user" placeholder="username">'
+								// 		},
+								// 		password : {
+								// 			instructions : {
+								// 				on : {
+								// 					the_event : "keyup",
+								// 					is_asslep : false,
+								// 					call      : function (change) {
+								// 						state.stock.user.password = change.self.val();
+								// 					}
+								// 				}
+								// 			},
+								// 			self : '<input type="password" class="stock_log_password" placeholder="password">'
+								// 		},
+								// 		submit : {
+								// 			instructions : {
+								// 				on : {
+								// 					the_event : "click",
+								// 					is_asslep : false,
+								// 					call      : function (change) {
 
-														state.stock.user.notification = "Signing in..";
+								// 						state.stock.user.notification = "Signing in..";
 
-														$.get(ajaxurl, {
-															action : "get_account",
-															method : "does_admin_user_exist",
-															paramaters : {
-																name     : state.stock.user.name,
-																password : state.stock.user.password
-															}
-														}, function (response) {
-															if ( response.return ) {
-																state.stock.user.loged_in = true;
-															} else {
-																state.stock.user.notification = "Wrong password or name or both";
-															}
-														},"json");
-													}
-												}
-											},
-											self : '<div class="stock_log_submit">Go</div>'
-										}
-									}
-								},
+								// 						$.get(ajaxurl, {
+								// 							action : "get_account",
+								// 							method : "does_admin_user_exist",
+								// 							paramaters : {
+								// 								name     : state.stock.user.name,
+								// 								password : state.stock.user.password
+								// 							}
+								// 						}, function (response) {
+								// 							if ( response.return ) {
+								// 								state.stock.user.loged_in = true;
+								// 							} else {
+								// 								state.stock.user.notification = "Wrong password or name or both";
+								// 							}
+								// 						},"json");
+								// 					}
+								// 				}
+								// 			},
+								// 			self : '<div class="stock_log_submit">Go</div>'
+								// 		}
+								// 	}
+								// },
 								freepost : {
 									instructions : {
 										observe : {
@@ -6759,56 +6767,185 @@
 										options : {
 											self : '<div class="stock_book_options"></div>',
 											branch : {
-												load : {
-													instructions : {
-														observers : [
-															{
-																who : state.stock.book.list.get_book,
-																property : "getting",
-																call : function (change) {
-																	if ( change.new ) this.self.text("loading");
-																}
+												upload : {
+													self   : '<div class="stock_book_upload_wrap"></div>',
+													branch : { 
+														upload : {
+															instructions : {
+																on : {
+																	the_event : "change",
+																	is_asslep : false,
+																	call      : function (change) {
+
+																		var file, read;
+
+																		file = change.event.target.files || change.event.dataTransfer.files;
+																		read = new FileReader();
+																		read.onloadend = function (data) {
+																			state.stock.book.recalculate_string = data.target.result;
+																		};
+																		read.readAsText(file[0]);
+																	}
+																},
+																observers : [
+																	{
+																		who      : state.stock.book,
+																		property : "recalculate_string",
+																		call     : function (change) {
+
+																			var inventory, column_count, books, index, sku, asin;
+
+																			inventory     = change.new.match(/\b[A-Za-z.0-9-]+/g);
+																			column_count  = 0;
+																			books         = {};
+																			inventory.splice(0,4);
+																			state.stock.book.books_to_recalculate = inventory.length/4;
+
+																			for ( index = 0; index < inventory.length;) {
+																		    	if ( column_count === 0 ) {
+																		    		sku  = inventory[index].match(/([a-zA-Z]+)|([0-9]+)|(-[0-9]+)/g);
+																		    		asin = inventory[index+1];
+																					books[asin] = {
+																						section             : sku[0],
+																						level               : sku[1],
+																						number              : sku[2].slice(1),
+																						external_product_id : asin,
+																						quantity            : inventory[index+3]
+																					};
+																		    	}
+																				index++;
+																		    	column_count = ( column_count > 2 ? 0 : column_count+1 );
+																			}
+																			state.stock.book.recalculate_books = books;
+																		}
+																	},
+																	{
+																		who      : state.stock.book,
+																		property : "recalculate_books",
+																		call     : function (change) {
+
+																			var algorithm, asin, search_version_of_the_book;
+
+																			algorithm = new alpha.algorithm;
+
+																			for ( asin in change.new ) {
+																				new alpha.pure_amazon_search({
+																					typed       : asin,
+																					filter_name : "sort"
+																				}, function (book) {
+																					if ( book.length === 0 ) console.warn("returned empty");
+																					state.stock.book.books_recalculated = state.stock.book.books_recalculated+1;
+																					book                                = algorithm.recalculate(book[0]);
+																					search_version_of_the_book          = state.stock.book.recalculate_books[book.external_product_id];
+																					book.quantity                       = search_version_of_the_book.quantity;
+																					book.section                        = search_version_of_the_book.section;
+																					book.level                          = search_version_of_the_book.level;
+																					book.number                         = search_version_of_the_book.number;
+																					if ( book.standard_price === "0.00" ) book.standard_price = "1.00";
+																					if ( book.refuse ) {
+																						state.stock.book.refused_books.push(book);
+																					} else {
+																						$.post(ajaxurl, {
+																							action     : "set_book",
+																							method     : "book",
+																							paramaters : {
+																								book : book
+																							}
+																						}, function (change) {
+																							state.stock.book.books_uploaded = state.stock.book.books_uploaded+1;
+																						}, "json");
+																					}
+																				});
+																			}
+																		}
+																	}
+																]
 															},
-															{
-																who : state.stock.book.list.get_book,
-																property : "done", 
-																call : function (change) {
-																	if ( change.new ) this.self.text("Load");
-																}
-															}
-														],
-														on : {
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) {
-																state.stock.book.list.get_book.get = true;
-															}
-														}
-													},
-													self : '<div style="margin-right:10px;" class="stock_book_options_button">Load</div>'
-												},
-												wipe : {
-													instructions : {
-														on : {
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) {
-																if (confirm("Wipe Table")) {
-																	if (confirm("Really, really Wipe The Table?")) {
-																		$.post(ajaxurl,
-																		{
-																			action : "set_book",
-																			method : "clear_table",
-																			paramaters : {},
-																		}, function () {
-																			alert("Table Wiped");
-																		}, "json");
+															self : '<input type="file" class="stock_book_upload">'
+														},
+														count : {
+															instructions : {
+																observe : {
+																	who      : state.stock.book,
+																	property : "books_to_recalculate",
+																	call     : function (change) {
+																		this.self.css({ display : "inline-block" });
 																	}
 																}
+															},
+															self   : '<div class="stock_book_recalculate_count">recalculate </div>',
+															branch : {
+																realculated : {
+																	instructions : {
+																		observe : {
+																			who      : state.stock.book,
+																			property : "books_recalculated",
+																			call     : function (change) {
+																				this.self.text(change.new);
+																			}
+																		}
+																	},
+																	self : '<span>0</span>',
+																},
+																out_of : {
+																	self : '<span> out of </span>'
+																},
+																to_recalculate : {
+																	instructions : {
+																		observe : {
+																			who      : state.stock.book,
+																			property : "books_to_recalculate",
+																			call     : function (change) {
+																				this.self.text(change.new);
+																			}
+																		}
+																	},
+																	self : "<span>none</span>"
+																}
 															}
-														}
-													},
-													self : '<div style="margin-right:10px;" class="stock_book_options_button">Wipe</div>'
+														},
+														uploaded : {
+															instructions : {
+																observe : {
+																	who      : state.stock.book,
+																	property : "books_to_recalculate",
+																	call     : function (change) {
+																		this.self.css({ display : "inline-block" });
+																	}
+																}
+															},
+															self   : '<div class="stock_book_upload_count">upload </div>',
+															branch : {
+																realculated : {
+																	instructions : {
+																		observe : {
+																			who      : state.stock.book,
+																			property : "books_uploaded",
+																			call     : function (change) {
+																				this.self.text(change.new);
+																			}
+																		}
+																	},
+																	self : '<span>0</span>',
+																},
+																out_of : {
+																	self : '<span> out of </span>'
+																},
+																to_recalculate : {
+																	instructions : {
+																		observe : {
+																			who      : state.stock.book,
+																			property : "books_to_recalculate",
+																			call     : function (change) {
+																				this.self.text(change.new);
+																			}
+																		}
+																	},
+																	self : "<span>none</span>"
+																}
+															}
+														},
+													}
 												},
 												export_table : {
 													instructions : {
@@ -6832,41 +6969,41 @@
 																	}, "json");
 																}
 															},
-															{
-																who      : state.stock.book.export,
-																property : "getting",
-																call     : function (change) {
-																	if ( change.new ) this.self.text("preparing");
-																}
-															},
-															{
-																who      : state.stock.book.export,
-																property : "done",
-																call     : function (change) {
-																	if ( change.new ) this.self.text("Export");
-																}
-															},
-															{
-																who      : state.stock.book.export,
-																property : "books",
-																call     : function (change) {
-																	var table = "<table><tbody>";
-																	for (var index = 0; index < change.new.length; index++) {
-																		table += "<tr>";
-																		delete change.new[index].number;
-																		delete change.new[index].section;
-																		delete change.new[index].level;
-																		for (var column in change.new[index] ) {
-																			var part = change.new[index][column];
-																			if ( column === "external_product_id" && part.length === 9 ) part = "0"+ part;
-																			table += "<td>"+ part +"</td>";
-																		}
-																		table += "</tr>";
-																	};
-																	table += "</tbody></table>";
-																	state.stock.book.export.table = table;
-																}
-															}
+															// {
+															// 	who      : state.stock.book.export,
+															// 	property : "getting",
+															// 	call     : function (change) {
+															// 		if ( change.new ) this.self.text("preparing");
+															// 	}
+															// },
+															// {
+															// 	who      : state.stock.book.export,
+															// 	property : "done",
+															// 	call     : function (change) {
+															// 		if ( change.new ) this.self.text("Export");
+															// 	}
+															// },
+															// {
+															// 	who      : state.stock.book.export,
+															// 	property : "books",
+															// 	call     : function (change) {
+															// 		var table = "<table><tbody>";
+															// 		for (var index = 0; index < change.new.length; index++) {
+															// 			table += "<tr>";
+															// 			delete change.new[index].number;
+															// 			delete change.new[index].section;
+															// 			delete change.new[index].level;
+															// 			for (var column in change.new[index] ) {
+															// 				var part = change.new[index][column];
+															// 				if ( column === "external_product_id" && part.length === 9 ) part = "0"+ part;
+															// 				table += "<td>"+ part +"</td>";
+															// 			}
+															// 			table += "</tr>";
+															// 		};
+															// 		table += "</tbody></table>";
+															// 		state.stock.book.export.table = table;
+															// 	}
+															// }
 														],
 														on : {
 															the_event : "click",
@@ -6878,366 +7015,417 @@
 													},
 													self : '<div class="stock_book_options_button">Export</div>'
 												},
-												condition : {
-													instructions : {
-														on : {
-															the_event : "keyup",
-															is_asslep : false,
-															call      : function (change) {
-																state.stock.book.add.condition = change.self.val();
-															}
-														}
-													},
-													self : '<input class="stock_book_options_small_input" placeholder="cond">'
-												},
-												isbn : {
-													instructions : {
-														observers : [
-															{
-																who      : state.stock.book.add,
-																property : "search",
-																call     : function (change) {
-																	if ( !change.new ) return;
-																	state.stock.book.add.search    = false;
-																	state.stock.book.add.searching = true;
+												// load : {
+												// 	instructions : {
+												// 		observers : [
+												// 			{
+												// 				who : state.stock.book.list.get_book,
+												// 				property : "getting",
+												// 				call : function (change) {
+												// 					if ( change.new ) this.self.text("loading");
+												// 				}
+												// 			},
+												// 			{
+												// 				who : state.stock.book.list.get_book,
+												// 				property : "done", 
+												// 				call : function (change) {
+												// 					if ( change.new ) this.self.text("Load");
+												// 				}
+												// 			}
+												// 		],
+												// 		on : {
+												// 			the_event : "click",
+												// 			is_asslep : false,
+												// 			call      : function (change) {
+												// 				state.stock.book.list.get_book.get = true;
+												// 			}
+												// 		}
+												// 	},
+												// 	self : '<div style="margin-right:10px;" class="stock_book_options_button">Load</div>'
+												// },
+												// wipe : {
+												// 	instructions : {
+												// 		on : {
+												// 			the_event : "click",
+												// 			is_asslep : false,
+												// 			call      : function (change) {
+												// 				if (confirm("Wipe Table")) {
+												// 					if (confirm("Really, really Wipe The Table?")) {
+												// 						$.post(ajaxurl,
+												// 						{
+												// 							action : "set_book",
+												// 							method : "clear_table",
+												// 							paramaters : {},
+												// 						}, function () {
+												// 							alert("Table Wiped");
+												// 						}, "json");
+												// 					}
+												// 				}
+												// 			}
+												// 		}
+												// 	},
+												// 	self : '<div style="margin-right:10px;" class="stock_book_options_button">Wipe</div>'
+												// },
+												// condition : {
+												// 	instructions : {
+												// 		on : {
+												// 			the_event : "keyup",
+												// 			is_asslep : false,
+												// 			call      : function (change) {
+												// 				state.stock.book.add.condition = change.self.val();
+												// 			}
+												// 		}
+												// 	},
+												// 	self : '<input class="stock_book_options_small_input" placeholder="cond">'
+												// },
+												// isbn : {
+												// 	instructions : {
+												// 		observers : [
+												// 			{
+												// 				who      : state.stock.book.add,
+												// 				property : "search",
+												// 				call     : function (change) {
+												// 					if ( !change.new ) return;
+												// 					state.stock.book.add.search    = false;
+												// 					state.stock.book.add.searching = true;
 
-																	new alpha.pure_amazon_search({
-																		typed       : state.stock.book.add.isbn,
-																		filter_name : "sort"
-																	}, function (book) {
-																		state.stock.book.add.found = true;
-																		if ( book.length === 0 ) return;
-																		book                = book[0];
-																		book.standard_price = parseFloat(book.standard_price) + 1;
-																		book.standard_price = book.standard_price.toFixed(2);
-																		state.stock.book.add.book = book;
-																		state.stock.book.add.add  = true;
-																	});
-																}
-															},
-															{
-																who      : state.stock.book.add,
-																property : "add",
-																call     : function (change) {
-																	if ( !change.new ) return;
-																	state.stock.book.add.add = false;
-																	state.stock.book.add.adding = true;
+												// 					new alpha.pure_amazon_search({
+												// 						typed       : state.stock.book.add.isbn,
+												// 						filter_name : "sort"
+												// 					}, function (book) {
+												// 						state.stock.book.add.found = true;
+												// 						if ( book.length === 0 ) return;
+												// 						book                = book[0];
+												// 						book.standard_price = parseFloat(book.standard_price) + 1;
+												// 						book.standard_price = book.standard_price.toFixed(2);
+												// 						state.stock.book.add.book = book;
+												// 						state.stock.book.add.add  = true;
+												// 					});
+												// 				}
+												// 			},
+												// 			{
+												// 				who      : state.stock.book.add,
+												// 				property : "add",
+												// 				call     : function (change) {
+												// 					if ( !change.new ) return;
+												// 					state.stock.book.add.add = false;
+												// 					state.stock.book.add.adding = true;
 
-																	$.post(ajaxurl, {
-																		action : "set_book",
-																		method : "book",
-																		paramaters : {
-																			book : state.stock.book.add.book
-																		},
-																	}, function () {
-																		state.stock.book.add.adding = false;
-																		state.stock.book.add.added  = true;
-																	}, "json");
-																}
-															}
-														],
-														on : {
-															the_event : "keypress",
-															is_asslep : false,
-															call      : function (change) {
-																if ( change.event.keyCode === 13 ) {
-																	state.stock.book.add.isbn = change.self.val();
-																	change.self.val("");
-																	state.stock.book.add.search = true;
-																}
-															}
-														}
-													},
-													self : '<input class="stock_book_options_input" placeholder="isbn">'
-												}
+												// 					$.post(ajaxurl, {
+												// 						action : "set_book",
+												// 						method : "book",
+												// 						paramaters : {
+												// 							book : state.stock.book.add.book
+												// 						},
+												// 					}, function () {
+												// 						state.stock.book.add.adding = false;
+												// 						state.stock.book.add.added  = true;
+												// 					}, "json");
+												// 				}
+												// 			}
+												// 		],
+												// 		on : {
+												// 			the_event : "keypress",
+												// 			is_asslep : false,
+												// 			call      : function (change) {
+												// 				if ( change.event.keyCode === 13 ) {
+												// 					state.stock.book.add.isbn = change.self.val();
+												// 					change.self.val("");
+												// 					state.stock.book.add.search = true;
+												// 				}
+												// 			}
+												// 		}
+												// 	},
+												// 	self : '<input class="stock_book_options_input" placeholder="isbn">'
+												// }
 											}
 										},
-										information_track : {
-											instructions : {
-												observers : [
-													{
-														who      : state.stock.book.add,
-														property : "searching",
-														call     : function (change) {
-															if ( !change.new ) return;
-															this.self.prepend(
-																'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
-																	'searching for isbn : '+ state.stock.book.add.isbn +
-																'</div>'
-															);
-														}
-													},
-													{
-														who      : state.stock.book.add,
-														property : "adding",
-														call     : function (change) {
-															if ( !change.new ) return;
-															this.self.prepend(
-																'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
-																	'adding book with isbn : '+ state.stock.book.add.isbn +', to database'+
-																'</div>'
-															);
-														}
-													},
-													{
-														who      : state.stock.book.add,
-														property : "added",
-														call     : function (change) {
-															if ( !change.new ) return;
-															var time = new Date();
-															this.self.prepend(
-																'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
-																	'book added to database at : '+ time.getHours() +'-'+ time.getMinutes() +' minutes'+
-																'</div>'
-															);
-														}
-													},
-													{
-														who      : state.stock.book.export,
-														property : "getting",
-														call     : function (change) {
-															if ( !change.new ) return;
-															this.self.prepend(
-																'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
-																	'Getting books from table'+
-																'</div>'
-															);
-														}
-													},
-													{
-														who      : state.stock.book.export,
-														property : "done",
-														call     : function (change) {
-															if ( !change.new ) return;
-															this.self.prepend(
-																'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
-																	'Extracted books now formating for excel'+
-																'</div>'
-															);
-														}
-													},
-													{
-														who      : state.stock.book.export,
-														property : "table",
-														call     : function (change) {
-															this.self.prepend(
-																'<textarea class="stock_book_information_pop" title="can not be removed" readonly="true">'+
-																	change.new +
-																'</div>'
-															);
-														}
-													}
-												],
-												on : {
-													the_event : "click",
-													is_asslep : false,
-													call      : function (change) {
-														var target = $(change.event.target);
-														if ( target.attr("data-type-removable-by-click") ) {
-															target.remove();
-														}
-													}
-												}
-											},
-											self : '<div class="stock_book_information"></div>'
-										},
-										books : {
-											self : '<div class="stock_book_list"></div>',
-											branch : {
-												column_names : {
-													self : '<div class="stock_book_list_columns"></div>',
-													branch : {
-														item_sku : {
-															self : '<div class="stock_book_list_column">item sku</div>'
-														},
-														section : {
-															self : '<div class="stock_book_list_column">section</div>'
-														},
-														level : {
-															self : '<div class="stock_book_list_column">level</div>'
-														},
-														number : {
-															self : '<div class="stock_book_list_column">number</div>'
-														},
-														external_product_id : {
-															self : '<div class="stock_book_list_column">external product id</div>'
-														},
-														external_product_id_type : {
-															self : '<div class="stock_book_list_column">external product id type</div>'
-														},
-														item_name : {
-															self : '<div class="stock_book_list_column">item_name</div>'
-														},
-														manufacturer : {
-															self : '<div class="stock_book_list_column">manufacturer</div>'
-														},
-														product_description : {
-															self : '<div class="stock_book_list_column">product description</div>'
-														},
-														update_delete : {
-															self : '<div class="stock_book_list_column">update delete</div>'
-														},
-														standard_price : {
-															self : '<div class="stock_book_list_column">standard price</div>'
-														},
-														quantity : {
-															self : '<div class="stock_book_list_column">quantity</div>'
-														},
-														condition_type : {
-															self : '<div class="stock_book_list_column">condition type</div>'
-														},
-														condition_note : {
-															self : '<div class="stock_book_list_column">condition note</div>'
-														},
-														generic_keywords1 : {
-															self : '<div class="stock_book_list_column">generic keywords1</div>'
-														},
-														generic_keywords2 : {
-															self : '<div class="stock_book_list_column">generic keywords2</div>'
-														},
-														generic_keywords3 : {
-															self : '<div class="stock_book_list_column">generic keywords3</div>'
-														},
-														generic_keywords4 : {
-															self : '<div class="stock_book_list_column">generic keywords4</div>'
-														},
-														generic_keywords5 : {
-															self : '<div class="stock_book_list_column">generic keywords5</div>'
-														},
-														main_image_url : {
-															self : '<div class="stock_book_list_column">main image url</div>'
-														},
-														fulfillment_center_id : {
-															self : '<div class="stock_book_list_column">fulfillment center id</div>'
-														},
-														package_height : {
-															self : '<div class="stock_book_list_column">package height</div>'
-														},
-														package_width : {
-															self : '<div class="stock_book_list_column">package width</div>'
-														},
-														package_length : {
-															self : '<div class="stock_book_list_column">package length</div>'
-														},
-														package_dimensions_unit_of_measure : {
-															self : '<div class="stock_book_list_column">package dimensions unit of_measure</div>'
-														},
-														package_weight : {
-															self : '<div class="stock_book_list_column">package weight</div>'
-														},
-														package_weight_unit_of_measure : {
-															self : '<div class="stock_book_list_column">package weight unit of measure</div>'
-														},
-														author : {
-															self : '<div class="stock_book_list_column">author</div>'
-														},
-														binding : {
-															self : '<div class="stock_book_list_column">binding</div>'
-														},
-														publication_date : {
-															self : '<div class="stock_book_list_column">publication date</div>'
-														},
-														edition : {
-															self : '<div class="stock_book_list_column">edition</div>'
-														},
-														expedited_shipping : {
-															self : '<div class="stock_book_list_column">expedited shipping</div>'
-														},
-														will_ship_internationally : {
-															self : '<div class="stock_book_list_column">will ship internationally</div>'
-														},
-														unknown_subject : {
-															self : '<div class="stock_book_list_column">unknown subject</div>'
-														},
-														language_value : {
-															self : '<div class="stock_book_list_column">language value</div>'
-														},
-														volume_base : {
-															self : '<div class="stock_book_list_column">volume base</div>'
-														},
-														illustrator : {
-															self : '<div class="stock_book_list_column">illustrator</div>'
-														},
-													}
-												},
-												rows : {
-													instructions : {
-														on : {
-															the_event : "keypress",
-															is_asslep : false,
-															call      : function (change) {
-																if ( change.event.target.className === 'stock_book_list_box' && change.event.keyCode === 13 ) {
-																	var field      = $(change.event.target),
-																		time       = new Date(),
-																		paramaters = {
-																			sku          : field.attr('data-type-row'),
-																	    	column       : field.attr('data-type-column'),
-																	    	column_value : field.val().trim()
-																		},
-																	    info       = $('<div class="stock_book_list_box_info" >Saving</div>');
-																	    info.insertAfter(field);
-																	    field.val(paramaters.column_value);
-																	    field.blur();
-																	    if ( field.val().length === 0 ) {
-																	    	info.text("field is empty and as such will not be saved");
-																	    	return;
-																	    }
-																		$.post(ajaxurl, {
-																	    	action     : "set_book",
-																	    	method     : "book_value",
-																	    	paramaters : paramaters
-																	    }, function (response) {
-																	    	info.text(
-																	    		"Saved book : "+ paramaters.sku +
-																	    		", column : "+  paramaters.column +
-																	    		"  to value : "+ paramaters.column_value +
-																	    		", at "+ time.getHours() +":"+ time.getMinutes() +" time");
-																	    }, "json");
-																}
-															}
-														},
-														observe : {
-															who      : state.stock.book.list.get_book,
-															property : "get",
-															call     : function (change) {
-																if ( !change.new ) return;
+										// information_track : {
+										// 	instructions : {
+										// 		observers : [
+										// 			{
+										// 				who      : state.stock.book.add,
+										// 				property : "searching",
+										// 				call     : function (change) {
+										// 					if ( !change.new ) return;
+										// 					this.self.prepend(
+										// 						'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
+										// 							'searching for isbn : '+ state.stock.book.add.isbn +
+										// 						'</div>'
+										// 					);
+										// 				}
+										// 			},
+										// 			{
+										// 				who      : state.stock.book.add,
+										// 				property : "adding",
+										// 				call     : function (change) {
+										// 					if ( !change.new ) return;
+										// 					this.self.prepend(
+										// 						'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
+										// 							'adding book with isbn : '+ state.stock.book.add.isbn +', to database'+
+										// 						'</div>'
+										// 					);
+										// 				}
+										// 			},
+										// 			{
+										// 				who      : state.stock.book.add,
+										// 				property : "added",
+										// 				call     : function (change) {
+										// 					if ( !change.new ) return;
+										// 					var time = new Date();
+										// 					this.self.prepend(
+										// 						'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
+										// 							'book added to database at : '+ time.getHours() +'-'+ time.getMinutes() +' minutes'+
+										// 						'</div>'
+										// 					);
+										// 				}
+										// 			},
+										// 			{
+										// 				who      : state.stock.book.export,
+										// 				property : "getting",
+										// 				call     : function (change) {
+										// 					if ( !change.new ) return;
+										// 					this.self.prepend(
+										// 						'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
+										// 							'Getting books from table'+
+										// 						'</div>'
+										// 					);
+										// 				}
+										// 			},
+										// 			{
+										// 				who      : state.stock.book.export,
+										// 				property : "done",
+										// 				call     : function (change) {
+										// 					if ( !change.new ) return;
+										// 					this.self.prepend(
+										// 						'<div class="stock_book_information_pop" data-type-removable-by-click="true" title="click to remove" >'+
+										// 							'Extracted books now formating for excel'+
+										// 						'</div>'
+										// 					);
+										// 				}
+										// 			},
+										// 			{
+										// 				who      : state.stock.book.export,
+										// 				property : "table",
+										// 				call     : function (change) {
+										// 					this.self.prepend(
+										// 						'<textarea class="stock_book_information_pop" title="can not be removed" readonly="true">'+
+										// 							change.new +
+										// 						'</div>'
+										// 					);
+										// 				}
+										// 			}
+										// 		],
+										// 		on : {
+										// 			the_event : "click",
+										// 			is_asslep : false,
+										// 			call      : function (change) {
+										// 				var target = $(change.event.target);
+										// 				if ( target.attr("data-type-removable-by-click") ) {
+										// 					target.remove();
+										// 				}
+										// 			}
+										// 		}
+										// 	},
+										// 	self : '<div class="stock_book_information"></div>'
+										// },
+										// books : {
+										// 	self : '<div class="stock_book_list"></div>',
+										// 	branch : {
+										// 		column_names : {
+										// 			self : '<div class="stock_book_list_columns"></div>',
+										// 			branch : {
+										// 				item_sku : {
+										// 					self : '<div class="stock_book_list_column">item sku</div>'
+										// 				},
+										// 				section : {
+										// 					self : '<div class="stock_book_list_column">section</div>'
+										// 				},
+										// 				level : {
+										// 					self : '<div class="stock_book_list_column">level</div>'
+										// 				},
+										// 				number : {
+										// 					self : '<div class="stock_book_list_column">number</div>'
+										// 				},
+										// 				external_product_id : {
+										// 					self : '<div class="stock_book_list_column">external product id</div>'
+										// 				},
+										// 				external_product_id_type : {
+										// 					self : '<div class="stock_book_list_column">external product id type</div>'
+										// 				},
+										// 				item_name : {
+										// 					self : '<div class="stock_book_list_column">item_name</div>'
+										// 				},
+										// 				manufacturer : {
+										// 					self : '<div class="stock_book_list_column">manufacturer</div>'
+										// 				},
+										// 				product_description : {
+										// 					self : '<div class="stock_book_list_column">product description</div>'
+										// 				},
+										// 				update_delete : {
+										// 					self : '<div class="stock_book_list_column">update delete</div>'
+										// 				},
+										// 				standard_price : {
+										// 					self : '<div class="stock_book_list_column">standard price</div>'
+										// 				},
+										// 				quantity : {
+										// 					self : '<div class="stock_book_list_column">quantity</div>'
+										// 				},
+										// 				condition_type : {
+										// 					self : '<div class="stock_book_list_column">condition type</div>'
+										// 				},
+										// 				condition_note : {
+										// 					self : '<div class="stock_book_list_column">condition note</div>'
+										// 				},
+										// 				generic_keywords1 : {
+										// 					self : '<div class="stock_book_list_column">generic keywords1</div>'
+										// 				},
+										// 				generic_keywords2 : {
+										// 					self : '<div class="stock_book_list_column">generic keywords2</div>'
+										// 				},
+										// 				generic_keywords3 : {
+										// 					self : '<div class="stock_book_list_column">generic keywords3</div>'
+										// 				},
+										// 				generic_keywords4 : {
+										// 					self : '<div class="stock_book_list_column">generic keywords4</div>'
+										// 				},
+										// 				generic_keywords5 : {
+										// 					self : '<div class="stock_book_list_column">generic keywords5</div>'
+										// 				},
+										// 				main_image_url : {
+										// 					self : '<div class="stock_book_list_column">main image url</div>'
+										// 				},
+										// 				fulfillment_center_id : {
+										// 					self : '<div class="stock_book_list_column">fulfillment center id</div>'
+										// 				},
+										// 				package_height : {
+										// 					self : '<div class="stock_book_list_column">package height</div>'
+										// 				},
+										// 				package_width : {
+										// 					self : '<div class="stock_book_list_column">package width</div>'
+										// 				},
+										// 				package_length : {
+										// 					self : '<div class="stock_book_list_column">package length</div>'
+										// 				},
+										// 				package_dimensions_unit_of_measure : {
+										// 					self : '<div class="stock_book_list_column">package dimensions unit of_measure</div>'
+										// 				},
+										// 				package_weight : {
+										// 					self : '<div class="stock_book_list_column">package weight</div>'
+										// 				},
+										// 				package_weight_unit_of_measure : {
+										// 					self : '<div class="stock_book_list_column">package weight unit of measure</div>'
+										// 				},
+										// 				author : {
+										// 					self : '<div class="stock_book_list_column">author</div>'
+										// 				},
+										// 				binding : {
+										// 					self : '<div class="stock_book_list_column">binding</div>'
+										// 				},
+										// 				publication_date : {
+										// 					self : '<div class="stock_book_list_column">publication date</div>'
+										// 				},
+										// 				edition : {
+										// 					self : '<div class="stock_book_list_column">edition</div>'
+										// 				},
+										// 				expedited_shipping : {
+										// 					self : '<div class="stock_book_list_column">expedited shipping</div>'
+										// 				},
+										// 				will_ship_internationally : {
+										// 					self : '<div class="stock_book_list_column">will ship internationally</div>'
+										// 				},
+										// 				unknown_subject : {
+										// 					self : '<div class="stock_book_list_column">unknown subject</div>'
+										// 				},
+										// 				language_value : {
+										// 					self : '<div class="stock_book_list_column">language value</div>'
+										// 				},
+										// 				volume_base : {
+										// 					self : '<div class="stock_book_list_column">volume base</div>'
+										// 				},
+										// 				illustrator : {
+										// 					self : '<div class="stock_book_list_column">illustrator</div>'
+										// 				},
+										// 			}
+										// 		},
+										// 		rows : {
+										// 			instructions : {
+										// 				on : {
+										// 					the_event : "keypress",
+										// 					is_asslep : false,
+										// 					call      : function (change) {
+										// 						if ( change.event.target.className === 'stock_book_list_box' && change.event.keyCode === 13 ) {
+										// 							var field      = $(change.event.target),
+										// 								time       = new Date(),
+										// 								paramaters = {
+										// 									sku          : field.attr('data-type-row'),
+										// 							    	column       : field.attr('data-type-column'),
+										// 							    	column_value : field.val().trim()
+										// 								},
+										// 							    info       = $('<div class="stock_book_list_box_info" >Saving</div>');
+										// 							    info.insertAfter(field);
+										// 							    field.val(paramaters.column_value);
+										// 							    field.blur();
+										// 							    if ( field.val().length === 0 ) {
+										// 							    	info.text("field is empty and as such will not be saved");
+										// 							    	return;
+										// 							    }
+										// 								$.post(ajaxurl, {
+										// 							    	action     : "set_book",
+										// 							    	method     : "book_value",
+										// 							    	paramaters : paramaters
+										// 							    }, function (response) {
+										// 							    	info.text(
+										// 							    		"Saved book : "+ paramaters.sku +
+										// 							    		", column : "+  paramaters.column +
+										// 							    		"  to value : "+ paramaters.column_value +
+										// 							    		", at "+ time.getHours() +":"+ time.getMinutes() +" time");
+										// 							    }, "json");
+										// 						}
+										// 					}
+										// 				},
+										// 				observe : {
+										// 					who      : state.stock.book.list.get_book,
+										// 					property : "get",
+										// 					call     : function (change) {
+										// 						if ( !change.new ) return;
 																
-																var self = this.self;
-																state.stock.book.list.get_book.getting = true;
+										// 						var self = this.self;
+										// 						state.stock.book.list.get_book.getting = true;
 
-																$.get(ajaxurl, {
-																	action : "get_book",
-																	method : "book_table",
-																	paramaters : {}
-																}, function (response) {
-																	var rows = "";
-																	state.stock.book.list.get_book.done = true;
-																	self.empty();
-																	for (var index = 0; index < response.return.length; index++) {
-																		var book, sku, part;
-																		book  = response.return[index],
-																		sku   = book.item_sku,
-																		part  = "";
-																		rows += '<div class="stock_book_list_row">'
-																		for ( part in book ) {
-																			rows += '<div class="stock_book_list_box_wrap">'+
-																				'<textarea data-type-row="'+ sku +'" data-type-column="'+ part +'" class="stock_book_list_box" placeholder="empty">'+
-																					book[part]+	
-																				'</textarea>'+
-																			'</div>';
-																		}
-																		rows += '</div>'
-																	};
-																	self.append(rows);
+										// 						$.get(ajaxurl, {
+										// 							action : "get_book",
+										// 							method : "book_table",
+										// 							paramaters : {}
+										// 						}, function (response) {
+										// 							var rows = "";
+										// 							state.stock.book.list.get_book.done = true;
+										// 							self.empty();
+										// 							for (var index = 0; index < response.return.length; index++) {
+										// 								var book, sku, part;
+										// 								book  = response.return[index],
+										// 								sku   = book.item_sku,
+										// 								part  = "";
+										// 								rows += '<div class="stock_book_list_row">'
+										// 								for ( part in book ) {
+										// 									rows += '<div class="stock_book_list_box_wrap">'+
+										// 										'<textarea data-type-row="'+ sku +'" data-type-column="'+ part +'" class="stock_book_list_box" placeholder="empty">'+
+										// 											book[part]+	
+										// 										'</textarea>'+
+										// 									'</div>';
+										// 								}
+										// 								rows += '</div>'
+										// 							};
+										// 							self.append(rows);
 
-																}, "json");
-															}
-														}
-													},
-													self : '<div class="stock_book_list_rows"></div>'
-												}
-											}
-										}
+										// 						}, "json");
+										// 					}
+										// 				}
+										// 			},
+										// 			self : '<div class="stock_book_list_rows"></div>'
+										// 		}
+										// 	}
+										// }
 									}
 								},
 								bus : {

@@ -65,7 +65,7 @@ class amazon extends alpha_tree_api
 			'Operation'     => 'ItemSearch',
 			'Keywords'      => "$search_words",
 			'SearchIndex'   => 'Books',
-			'ResponseGroup' => 'Offers, ItemAttributes, Images, EditorialReview',
+			'ResponseGroup' => 'Offers, ItemAttributes, Images, EditorialReview, OfferSummary',
 			'Condition'     => 'Used'
 		);
 	}

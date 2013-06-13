@@ -1,27 +1,44 @@
 .stock_book {
-	width      : 90%;
-	margin     : 10px 5%;
-	float      : left;
-	font-size  : 12px;
+	@extend.stock_slide;
+}
+
+.stock_book_upload_wrap {
+	width  : 100%;
+	float  : left;
+	margin : 20px 0;
+}
+
+.stock_book_upload { 
+	font-size  : 14px;
 	line-height: 14px;
+	color      : $black_gray;
+	margin     : 0px;
+	background : none;
+	display: inline-block;
+	float: left;
+}
+
+.stock_book_recalculate_count {
+	@extend.stock_text;
+	float: left;
+	display: none;
+}
+
+.stock_book_upload_count { 
+	@extend.stock_book_recalculate_count;
+	margin-left: 15px;
 }
 
 .stock_book_options {
 	width: 100%;
 	float: left;
-	margin-bottom: 15px;
-	font-size: 11px;
-	line-height: 11px;
+	margin-bottom: 20px;
 }
 
 .stock_book_options_button { 
-	padding: 5px 10px;
-	background: $black_gray;
-	color  : $light_monochrome;
-	float  : left;
+	@extend.stock_button;
+	float: left;
 	display: inline-block;
-	cursor : pointer;
-	@include border-radius(3px);
 }
 
 .stock_book_header {

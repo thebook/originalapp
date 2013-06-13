@@ -4462,6 +4462,31 @@ body {
   z-index: 99;
   overflow: auto; }
 
+.stock_slide, .stock_book {
+  margin-top: 50px;
+  width: 532px;
+  margin: 0 auto;
+  clear: both; }
+  .stock_slide:after, .stock_book:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.stock_text, .stock_book_recalculate_count, .stock_book_upload_count {
+  font-size: 14px;
+  line-height: 14px;
+  color: #555555; }
+
+.stock_button, .stock_book_options_button {
+  font-size: 14px;
+  line-height: 14px;
+  color: #555555;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-right: 10px; }
+  .stock_button:hover, .stock_book_options_button:hover {
+    text-decoration: underline; }
+
 .stock_bar {
   width: 685px;
   margin: 20px auto; }
@@ -4823,29 +4848,35 @@ body {
   width: 100%;
   float: left; }
 
-.stock_book {
-  width: 90%;
-  margin: 10px 5%;
+.stock_book_upload_wrap {
+  width: 100%;
   float: left;
-  font-size: 12px;
-  line-height: 14px; }
+  margin: 20px 0; }
+
+.stock_book_upload {
+  font-size: 14px;
+  line-height: 14px;
+  color: #555555;
+  margin: 0px;
+  background: none;
+  display: inline-block;
+  float: left; }
+
+.stock_book_recalculate_count, .stock_book_upload_count {
+  float: left;
+  display: none; }
+
+.stock_book_upload_count {
+  margin-left: 15px; }
 
 .stock_book_options {
   width: 100%;
   float: left;
-  margin-bottom: 15px;
-  font-size: 11px;
-  line-height: 11px; }
+  margin-bottom: 20px; }
 
 .stock_book_options_button {
-  padding: 5px 10px;
-  background: #555555;
-  color: whitesmoke;
   float: left;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-border-radius: 3px;
-  border-radius: 3px; }
+  display: inline-block; }
 
 .stock_book_header {
   width: 100%;

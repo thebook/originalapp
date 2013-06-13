@@ -10,6 +10,32 @@
 	overflow: auto;
 }
 
+.stock_slide { 
+	margin-top: 50px;
+	width: 532px;
+	margin: 0 auto;
+	clear: both;
+	@include pie-clearfix;
+}
+
+.stock_text { 
+	font-size: 14px;
+	line-height: 14px;
+	color: $black_gray;
+}
+
+.stock_button { 
+	font-size      : 14px;
+	line-height    : 14px;
+	color          : $black_gray;
+	text-transform : uppercase;
+	cursor         : pointer;
+	margin-right   : 10px;
+	&:hover { 
+		text-decoration: underline;
+	}
+}
+
 @import "stock.bar";
 @import "stock.bus";
 @import "stock.post";

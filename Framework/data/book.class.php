@@ -364,6 +364,37 @@ class book extends alpha
 		return $table->get_all_rows($this->book_table);
 	}
 
+
+	public function get_book_table_exported_as_tab_delimited_file ()
+	{
+		$table = $this->get_book_table();
+		$count = 0;
+		$date  = date('G_i_d_m_y');
+		$books = "TemplateType=BookLoader\tVersion=2012.1008\tThis row for Amazon.com use only.  Do not modify or delete.\t\t\t\t\tOffer - These attributes are required to make your item buyable for customers on the site\t\t\t\tDiscovery - These attributes have an effect on how customers can find your product on the site using browse or search\t\t\t\t\tImage - These attributes provide links to images for a product\t\"Fulfillment - Use these columns if you are participating in \"\"Fulfillment by Amazon\"\"\"\t\t\t\t\t\t\tUngrouped - These attributes create rich product listings for your buyers.\t\t\t\t\t\t\t\t\t\r\n";
+		$books.= "SKU\tProduct ID\tProduct ID Type\tTitle\tPublisher\tProduct Description\tUpdate Delete\tPrice\tQuantity\tItem Condition\tItem Note\tSearch Terms1\tSearch Terms2\tSearch Terms3\tSearch Terms4\tSearch Terms5\tMain Image URL\tFulfilment Center ID\tPackage Height\tPackage Width\tPackage Length\tPackage Dimensions Unit Of Measure\tPackage Weight\tPackage Weight Unit Of Measure\tAuthor\tBinding\tPublication Date\tEdition\tExpedited Shipping\tWill Ship Internationally\tSubject\tLanguage\tVolume\tIllustrator\r\n";
+		$books.= "item_sku\texternal_product_id\texternal_product_id_type\titem_name\tmanufacturer\tproduct_description\tupdate_delete\tstandard_price\tquantity\tcondition_type\tcondition_note\tgeneric_keywords1\tgeneric_keywords2\tgeneric_keywords3\tgeneric_keywords4\tgeneric_keywords5\tmain_image_url\tfulfillment_center_id\tpackage_height\tpackage_width\tpackage_length\tpackage_dimensions_unit_of_measure\tpackage_weight\tpackage_weight_unit_of_measure\tauthor\tbinding\tpublication_date\tedition\texpedited_shipping\twill_ship_internationally\tunknown_subject\tlanguage_value\tvolume_base\tillustrator\r\n";
+
+		foreach ( $table as $book ) :
+			$count  = 0;
+			$books .= "{$book['section']}{$book['level']}-{$book['number']}\t";		
+			$books .= ( strlen($book['external_product_id']) < 10 ? "0{$book['external_product_id']}\t" : "{$book['external_product_id']}\t" );
+			unset($book['section'], $book['level'], $book['number'], $book['item_sku'], $book['external_product_id'] );
+
+			foreach ( $book as $property ) :
+				$count++;
+				$books .= ( $count < 32 ? "$property\t" : "$property" );
+			endforeach;
+
+			$books .= "\r\n";
+		endforeach;
+		
+		$file = fopen( TEMPLATEPATH . "/inventory/$date.txt", 'w+');
+		fwrite($file, $books);
+		fclose($file);
+
+		return TEMPLATEURI ."/inventory/$date.txt";
+	}
+
 	public function get_unwanted_book_table ()
 	{
 		$table = new table_creator;

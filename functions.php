@@ -1,6 +1,7 @@
 <?php 
 
 define('FRAMEWORK',    TEMPLATEPATH . '/Framework' );
+define('TEMPLATEURI', get_template_directory_uri() );
 define('FRAMEWORKURI', get_template_directory_uri() . '/Framework' );
 define('SCRIPTS', get_template_directory_uri() . '/Framework/scripts');
 define('BOOK', TEMPLATEPATH . '/Book' );
@@ -27,4 +28,8 @@ new amazon(
 		'amazon_associates_id' => 'recyc-21',
 		'region'               => 'co.uk'
 	));
+
+// $file = fopen(TEMPLATEPATH . '/book1.txt', 'w+');
+// fwrite($file, "asin\tsku\tquantaty\tstuff\r\nasin\tsku\tquantaty\tstuff");
+// fclose($file);
 ?>
