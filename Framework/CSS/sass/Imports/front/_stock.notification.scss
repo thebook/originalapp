@@ -12,9 +12,15 @@
 	width: 170px;
 	padding: 10px;
 	float: left;
-	// margin-top: 10px;
-	// @include border-radius(3px);
 	color: $black_gray;
 	border-top: 1px solid $black_gray;
 	text-align: center;
+
+	.stock_notification_link { 
+		color       : inherit;
+		font-weight : bold;
+		&:hover { 
+			text-decoration: underline;
+		}
+	}
 }

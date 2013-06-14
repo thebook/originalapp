@@ -4462,12 +4462,12 @@ body {
   z-index: 99;
   overflow: auto; }
 
-.stock_slide, .stock_book {
+.stock_slide, .stock_book_control {
   margin-top: 50px;
   width: 532px;
   margin: 0 auto;
   clear: both; }
-  .stock_slide:after, .stock_book:after {
+  .stock_slide:after, .stock_book_control:after {
     content: "";
     display: table;
     clear: both; }
@@ -4827,7 +4827,7 @@ body {
 .stock_freepost_ticket_part, .stock_freepost_ticket_header_column, .stock_freepost_ticket_column {
   display: inline-block;
   float: left;
-  width: 12.5%;
+  width: 11%;
   font-size: 14px;
   line-height: 16px;
   text-align: center;
@@ -4845,6 +4845,10 @@ body {
   float: left; }
 
 .stock_freepost_ticket {
+  width: 100%;
+  float: left; }
+
+.stock_book {
   width: 100%;
   float: left; }
 
@@ -5010,3 +5014,8 @@ body {
   color: #555555;
   border-top: 1px solid #555555;
   text-align: center; }
+  .stock_notification .stock_notification_link {
+    color: inherit;
+    font-weight: bold; }
+    .stock_notification .stock_notification_link:hover {
+      text-decoration: underline; }

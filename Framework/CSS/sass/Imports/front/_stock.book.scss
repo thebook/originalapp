@@ -1,4 +1,9 @@
 .stock_book {
+	width: 100%;
+	float: left;
+}
+
+.stock_book_control { 
 	@extend.stock_slide;
 }
 
