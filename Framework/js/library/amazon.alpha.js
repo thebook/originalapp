@@ -118,7 +118,7 @@ var alpha = (function ( alpha, $ ) {
 
 		weight                    = parseInt( book.package_weight );
 		weight                    = (weight/100) * 453;
-		price                     = parseFloat( book.standard_price);
+		price                     = ( book.condition_type === "11" && book.prices.newest ? parseFloat(book.prices.newest) : parseFloat( book.standard_price) );
 		price                    -= 0.01;
 		book.standard_price       = price.toFixed(2);
 		if ( price < 1 && weight > 75 ) book.refused = true;

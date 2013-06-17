@@ -181,3 +181,31 @@
 	color: $light;
 	@include border-radius(3px);
 }
+
+.stock_book_list { 
+	width: 100%;
+	float: left;
+}
+
+.stock_book_list_item_title {
+	width: 100%;
+	float: left;
+	margin-bottom : 10px;
+	padding-bottom: 10px;
+}
+
+.stock_book_list_item {
+	@extend.stock_book_list_item_title;
+	border-bottom : 1px solid $black_gray;	
+}
+
+.stock_book_list_item_name {
+	font-size  : 14px;
+	line-height: 14px;
+}
+
+.stock_book_list_item_important {
+	font-size  : 14px;
+	line-height: 14px;
+	font-weight: bold;
+}

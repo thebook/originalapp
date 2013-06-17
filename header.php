@@ -247,6 +247,7 @@
 					refused_books        : [],
 					recalculate_books    : [],
 					recalculate_again    : [],
+					table_wiped          : false,
 					export_table         : false,
 					table_exported       : false,
 					exported_table_link  : ""
@@ -723,17 +724,6 @@
 
 									var pass_books, algorithm = new alpha.algorithm;
 									pass_books = [];
-									// new alpha.amazon({
-									// 	typed    : state.text.search,
-									// 	callback : function (books) { 
-									// 		if ( books !== undefined ) {
-									// 			state.quote  = "post";
-									// 			book.results = books;
-									// 			state.process.search = false;
-									// 			router.change_url("sell");
-									// 		}
-									// 	}
-									// });
 
 									new alpha.pure_amazon_search({
 										typed       : state.text.search,
@@ -962,7 +952,7 @@
 																			}
 																		}
 																	},
-																	self  : '<input type="text" class="header_input_block_for_search block_for_search" placeholder="isbn, book title, keyword, etc...">',
+																	self  : '<input type="text" class="header_input_block_for_search block_for_search" placeholder="please enter your ISBN here">',
 																}
 															}
 														},
@@ -2421,7 +2411,7 @@
 													branch : {
 														branch : {
 															search : {
-																self : '<div class="bus_search"></div>',
+																self : '<div class="bus_date_search"></div>',
 																branch : {
 																	icon : {
 																		self : '<div class="with-icon-for-bus-dates-search"></div>'
@@ -5961,95 +5951,54 @@
 																			branch : {
 																				inner : {
 																					instructions : { 
+																						on : {
+																							the_event : "click",
+																							is_asslep : false,
+																							call      : function (change) {
+																								var id, promises; 
+
+																								if ( change.event.target.className === "with-icon-for-profile-hub-tracking-remove-book" ) {
+
+																									id       = change.event.target.getAttribute("data-type-book");
+																									promises = state.account.price_promise;
+																									promises.splice((id-1), 1);
+																									state.account.price_promise = promises;
+																									state.save_account          = true;
+																								}
+																							}
+																						},
 																						observe : {
 																							who      : state.account,
 																							property : "price_promise",
 																							call     : function (change) {
+
 																								if ( state.account.price_promise === null ) return;
-																								var format, manifest, map, append_to;
-																									format = { 
-																										self : '<div class="profile_hub_tracking_item"></div>',
-																										branch : {
-																											image : {
-																												self : '<img src="" class="profile_hub_tracking_item_image">'
-																											},
-																											text : {
-																												self : '<div class="profile_hub_tracking_item_text"></div>',
-																												branch : {
-																													title : {
-																														self : '<div class="profile_hub_tracking_item_text_title"></div>'
-																													},
-																													author : {
-																														self : '<div class="profile_hub_tracking_item_text_author"></div>'
-																													},
-																													quote : {
-																														self : '<div class="profile_hub_tracking_item_text_quote"></div>'
-																													},
-																													isbn : {
-																														self : '<div class="profile_hub_tracking_item_text_isbn"></div>	'
-																													}
-																												}
-																											},
-																											options : {
-																												self : '<div class="profile_hub_tracking_item_options"></div>',
-																												branch : {
-																													image : {
-																														self : '<img src="'+frameworkuri+'/CSS/Includes/works/profilehub/freepost.png" class="profile_hub_tracking_item_options_image">'
-																													},
-																													remove : {
-																														instructions : {
-																															on : {
-																																the_event : "click",
-																																is_asslep : false,
-																																call      : function (change) { 
-																																	if (confirm("Are you sure you want to remove this book from the price promise list?")) {
-																																		var promise = state.account.price_promise,
-																																			index   = change.self.attr("id");
-																																			promise.splice(index, 1);
-																																			state.account.price_promise = promise;
-																																			state.save_account = true;
-																																	}
-																																}
-																															}
-																														},
-																														self : '<div id="" class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>'
-																													}
-																												}
-																											}
-																										}
-																									};
-																									map = [
-																										{
-																											path : "branch.image.self.src",
-																											value: "image"
-																										},
-																										{
-																											path : "branch.text.branch.title.self.text",
-																											value: "title"
-																										},
-																										{
-																											path : "branch.text.branch.author.self.text",
-																											value: "author"
-																										},
-																										{
-																											path : "branch.text.branch.isbn.self.text",
-																											value: "isbn"
-																										},
-																										{
-																											path : "branch.text.branch.quote.self.text",
-																											value: "price"
-																										},
-																										{
-																											path : "branch.options.branch.remove.self.id",
-																											value: "id"
-																										}
-																									];
-																									this.self.empty();
-																									manifest = alpha.format(format, this.self, state.account.price_promise.length );	
-																									for (var index = 0; index < state.account.price_promise.length; index++) {
-																										state.account.price_promise[index].id = index;
-																										alpha.parse(map, manifest[index+1], state.account.price_promise[index]);
+
+																								var book_string, index, book;
+
+																								book_string = "";
+
+																								for (index = 0; index < state.account.price_promise.length; index++) {
+																									state.account.price_promise[index].id = index;
+																									book                                  = state.account.price_promise[index];
+																									book_string                          += 
+																									'<div class="profile_hub_tracking_item">'+
+																										'<img src="'+ book.main_image_url +'" class="profile_hub_tracking_item_image">'+
+																										'<div class="profile_hub_tracking_item_text">'+
+																											'<div class="profile_hub_tracking_item_text_title">'+  book.item_name           +'</div>'+
+																											'<div class="profile_hub_tracking_item_text_author">'+ book.author              +'</div>'+
+																											'<div class="profile_hub_tracking_item_text_quote">'+  book.standard_price      +'</div>'+
+																											'<div class="profile_hub_tracking_item_text_isbn">'+   book.external_product_id +'</div>'+
+																										'</div>'+
+																										'<div class="profile_hub_tracking_item_options">'+
+																											'<img src="'+frameworkuri+'/CSS/Includes/works/profilehub/freepost.png" class="profile_hub_tracking_item_options_image">'+
+																											'<div  data-type-book="'+ ( index + 1 ) +'" class="with-icon-for-profile-hub-tracking-remove-book">Remove book</div>'+
+																										'</div>'+
+																									'</div>';
 																								};
+																								
+																								this.self.empty();
+																								this.self[0].insertAdjacentHTML("afterbegin", book_string );
 																							}
 																						}
 																					},
@@ -6420,6 +6369,16 @@
 												observers : [
 													{
 														who      : state.stock.book,
+														property : "table_wiped",
+														call     : function (change) {
+															if ( !change.new ) return;
+															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																'Table wiped'+
+															'</div>');
+														}
+													},
+													{
+														who      : state.stock.book,
 														property : "begin_recalculation",
 														call     : function (change) {
 															if ( !change.new ) return;
@@ -6436,6 +6395,15 @@
 															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
 																'Finished recalculation'+
 															'</div>');
+
+															for (var index = 0; index < state.stock.book.refused_books.length; index++) {
+																
+																this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
+																	'Book refused '+
+																	state.stock.book.refused_books[index].external_product_id +" - "+
+																	state.stock.book.refused_books[index].item_name           +
+																'</div>');
+															};
 														}
 													},
 													{
@@ -6485,92 +6453,120 @@
 																				file = change.event.target.files || change.event.dataTransfer.files;
 																				read = new FileReader();
 																				read.onloadend = function (data) {
-																					state.stock.book.recalculate_string = data.target.result;
+																					$.post(ajaxurl,{
+																						action     : "set_book",
+																						method     : "clear_table",
+																						paramaters : {},
+																					}, function () {
+																						state.stock.book.recalculate_string = data.target.result;
+																					}, "json");
 																				};
 																				read.readAsText(file[0]);
 																			}
 																		},
 																		observers : [
-																			{
-																				who      : state.stock.book,
-																				property : "recalculate_string",
-																				call     : function (change) {
+{
+	who      : state.stock.book,
+	property : "recalculate_string",
+	call     : function (change) {
 
-																					var inventory, column_count, books, index, sku, asin, calculated_index;
+		var inventory, column_count, books, index, sku, asin, calculated_index;
 
-																					inventory     = change.new.split(/\t|\n/);
-																					column_count  = 0;
-																					books         = {};
-																					inventory.splice(0,27);
-																					state.stock.book.begin_recalculation  = true;
-																					state.stock.book.books_recalculated   = 0;
-																					state.stock.book.books_uploaded       = 0;
-																					state.stock.book.books_to_recalculate = Math.round( inventory.length/27 );
+		inventory     = change.new.split(/\t|\n/);
+		column_count  = 0;
+		books         = {};   
+		inventory.splice(0,27);
+		state.stock.book.begin_recalculation  = true;
+		state.stock.book.books_recalculated   = 0;
+		state.stock.book.books_uploaded       = 0;
+		state.stock.book.books_to_recalculate = Math.round( inventory.length/27 );
 
-																					for ( index = 0; index < state.stock.book.books_to_recalculate; ) {
-																						calculated_index = index*27;
-																				    	if ( column_count === 0 ) {
-																				    		sku         = inventory[calculated_index+3].match(/([a-zA-Z]+)|([0-9]+)|(-[0-9]+)/g);
-																				    		sku         = ( sku.length === 2 ? sku : inventory[calculated_index+3] );
-																				    		asin        = inventory[calculated_index+22];
-																							books[asin] = {
-																								section             : sku[0],
-																								level               : sku[1],
-																								number              : sku[2].slice(1),
-																								external_product_id : asin,
-																								condition_type      : inventory[calculated_index+12],
-																								quantity            : inventory[calculated_index+5]
-																							};
-																				    	}
-																						index++;
-																					}
-																					state.stock.book.recalculate_books = books;
-																				}
-																			},
-																			{
-																				who      : state.stock.book,
-																				property : "recalculate_books",
-																				call     : function (change) {
+		for ( index = 0; index < state.stock.book.books_to_recalculate; ) {
+			calculated_index = index*27;
+	    	if ( column_count === 0 ) {
+	    		sku         = inventory[calculated_index+3].match(/([a-zA-Z]+)|([0-9]+)|(-[0-9]+)/g);
+	    		sku         = ( sku.length === 3 ? sku : ["A", "1", "-1"] );
+	    		asin        = inventory[calculated_index+22];
+				books[asin] = {
+					section             : sku[0],
+					level               : sku[1],
+					number              : sku[2].slice(1),
+					external_product_id : asin,
+					condition_type      : inventory[calculated_index+12],
+					quantity            : inventory[calculated_index+5]
+				};
+	    	}
+			index++;
+		}
+		state.stock.book.recalculate_books = books;
+	}
+},
+{
+	who      : state.stock.book,
+	property : "recalculate_books",
+	call     : function (change) {
 
-																					var algorithm, asin, search_version_of_the_book;
+		var algorithm, asin, search_version_of_the_book, index, count, refused;
 
-																					algorithm = new alpha.algorithm;
+		refused   = [];
+		count     = 0;
+		index     = 0;
+		algorithm = new alpha.algorithm;
 
-																					for ( asin in change.new ) {
-																						new alpha.pure_amazon_search({
-																							typed       : asin,
-																							filter_name : "sort"
-																						}, function (book) {
-																							if ( book.length === 0 ) console.warn("returned empty");
-																							state.stock.book.books_recalculated = state.stock.book.books_recalculated+1;
-																							book                                = algorithm.recalculate(book[0]);
-																							search_version_of_the_book          = state.stock.book.recalculate_books[book.external_product_id];
-																							book.quantity                       = search_version_of_the_book.quantity;
-																							book.condition_type                 = search_version_of_the_book.condition_type;
-																							book.section                        = search_version_of_the_book.section;
-																							book.level                          = search_version_of_the_book.level;
-																							book.number                         = search_version_of_the_book.number;
-																							if ( book.standard_price === "0.00" ) book.standard_price = "1.00";
-																							if ( book.refused ) {
-																								state.stock.book.refused_books.push(book);
-																								state.stock.book.books_recalculated   = state.stock.book.books_recalculated-1;
-																								state.stock.book.books_to_recalculate = state.stock.book.books_to_recalculate-1;
-																							} else {
-																								$.post(ajaxurl, {
-																									action     : "set_book",
-																									method     : "book",
-																									paramaters : {
-																										book : book
-																									}
-																								}, function (change) {
-																									state.stock.book.books_uploaded = state.stock.book.books_uploaded+1;
-																									if ( state.stock.book.books_uploaded === state.stock.book.books_to_recalculate ) state.stock.book.finish_recalculation = true;
-																								}, "json");
-																							}
-																						});
-																					}
-																				}
-																			}
+		for ( asin in change.new ) if ( change.new.hasOwnProperty(asin) ) count++;
+
+		state.stock.book.books_to_recalculate = count;
+
+		for ( asin in change.new ) {
+			new alpha.pure_amazon_search({
+				typed       : asin,
+				filter_name : "sort"
+			}, function (book) {
+
+				if ( book === undefined || book.length === 0 ) {
+					state.stock.book.recalculate_again.push("some book");
+					console.warn("book is undefined or empty");
+				} else { 
+					state.stock.book.books_recalculated = state.stock.book.books_recalculated+1;
+					book                                = book[0];
+					search_version_of_the_book          = state.stock.book.recalculate_books[book.external_product_id];
+					
+					if ( search_version_of_the_book === undefined ) {
+						console.error("bad asin; the asin is this "+ book.external_product_id );
+						state.stock.book.books_recalculated   = state.stock.book.books_recalculated-1;
+						state.stock.book.books_to_recalculate = state.stock.book.books_to_recalculate-1;
+					}
+
+					book.quantity                       = search_version_of_the_book.quantity;
+					book.condition_type                 = search_version_of_the_book.condition_type;
+					book.section                        = search_version_of_the_book.section;
+					book.level                          = search_version_of_the_book.level;
+					book.number                         = search_version_of_the_book.number;
+					book                                = algorithm.recalculate(book);
+					if ( book.standard_price === "0.00" ) book.standard_price = "1.00";
+					if ( book.refused ) {
+						refused.push(book);
+						state.stock.book.refused_books        = refused;
+						state.stock.book.books_recalculated   = state.stock.book.books_recalculated-1;
+						state.stock.book.books_to_recalculate = state.stock.book.books_to_recalculate-1;
+					} else {
+						$.post(ajaxurl, {
+							action     : "set_book",
+							method     : "book",
+							paramaters : {
+								book : book
+							}
+						}, function (change) {
+							state.stock.book.books_uploaded        = state.stock.book.books_uploaded+1;
+							if ( state.stock.book.books_uploaded === state.stock.book.books_to_recalculate ) state.stock.book.finish_recalculation = true;
+						}, "json");
+					}
+				}
+			});
+		}
+		console.log(count);
+	}
+}
 																		]
 																	},
 																	self : '<input type="file" class="stock_book_upload">'
@@ -6814,6 +6810,44 @@
 														// }
 													}
 												},
+												list : {
+													instructions : {
+														observe : {
+															who      : state.stock.book,
+															property : "finish_recalculation",
+															call     : function (change) {
+																if ( !change.new ) return;
+
+																this.self.empty();
+
+																this.self.append(
+																	'<div class="stock_book_list_item_title">'+
+																		'<div class="stock_book_list_item_important">Refused Books</div>'+
+																	'</div>');
+
+																for (var index = 0; index < state.stock.book.refused_books.length; index++) {																
+																	this.self.prepend(
+																		'<div class="stock_book_list_item">'+
+																			'<div class="stock_book_list_name">'+
+																	 			state.stock.book.refused_books[index].item_name +
+																	 		'</div>'+
+																	 	+'</div>');
+																};
+															}
+														},
+													},
+													self   : '<div class="stock_book_list"></div>',
+													branch : {
+														list_head : {
+															self   : '<div class="stock_book_list_item_title"></div>',
+															branch : {
+																refused_books : {
+																	self : '<div class="stock_book_list_item_important">Refused Books</div>'
+																},
+															}
+														}
+													}
+												}
 												// information_track : {
 												// 	instructions : {
 												// 		observers : [

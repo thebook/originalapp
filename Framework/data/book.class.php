@@ -433,6 +433,11 @@ class book extends alpha
 	public function set_book ($book)
 	{
 		$table   = new table_creator;
+		
+		if ( isset($book['prices']) ) :
+			unset($book['prices']); 
+		endif;
+
 		$default = array(
 			'section'					=> 1,
 			'level'					    => 1,

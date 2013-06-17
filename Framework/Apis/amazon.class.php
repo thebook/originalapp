@@ -153,6 +153,20 @@ class amazon extends alpha_tree_api
 				$book['standard_price'] = (string)($attributes->ItemAttributes->ListPrice->Amount/100);
 			endif;
 
+			$book['prices'] = array();
+			
+			if ( isset($attributes->OfferSummary->LowestUsedPrice) )  :
+				$book['prices']['lowest'] = (string)($attributes->OfferSummary->LowestUsedPrice->Amount/100);
+			endif;
+			
+			if ( isset($attributes->OfferSummary->LowestNewPrice) )  :
+				$book['prices']['newest'] = (string)($attributes->OfferSummary->LowestNewPrice->Amount/100);
+			endif;
+
+			if ( isset($attributes->OfferSummary->ListPrice) )  :
+				$book['prices']['listed'] = (string)($attributes->OfferSummary->ListPrice->Amount/100);
+			endif;
+
 			$return_array[] = $book;
 
 		endforeach;

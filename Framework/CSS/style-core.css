@@ -4263,7 +4263,7 @@ body {
   -webkit-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0; }
 
-.bus_search {
+.bus_date_search {
   width: 65%;
   padding: 0 3% 0 0;
   float: left;
@@ -4997,6 +4997,28 @@ body {
   color: white;
   -webkit-border-radius: 3px;
   border-radius: 3px; }
+
+.stock_book_list {
+  width: 100%;
+  float: left; }
+
+.stock_book_list_item_title, .stock_book_list_item {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px;
+  padding-bottom: 10px; }
+
+.stock_book_list_item {
+  border-bottom: 1px solid #555555; }
+
+.stock_book_list_item_name {
+  font-size: 14px;
+  line-height: 14px; }
+
+.stock_book_list_item_important {
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: bold; }
 
 .stock_notifications {
   position: absolute;
