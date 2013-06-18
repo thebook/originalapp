@@ -241,12 +241,21 @@
 					recalculate_string   : "",
 					begin_recalculation  : false,
 					finish_recalculation : false,
-					books_to_recalculate : 0,
-					books_recalculated   : 0,
-					books_uploaded       : 0,
-					refused_books        : [],
-					recalculate_books    : [],
+					number_of_books      : {
+						recalculated     : 0,
+						uploaded         : 0,
+						to_recalculate   : 0,
+						to_upload        : 0
+					},
+					books                : {
+						refused : [],
+					},
+					inventory_books_by   : {
+						asin  : [],
+						index : []
+					},
 					recalculate_again    : [],
+					erronious_books      : [],
 					table_wiped          : false,
 					export_table         : false,
 					table_exported       : false,
@@ -263,13 +272,6 @@
 					added     : false,
 					book_added: {}
 				};
-				// state.stock.book.export = {
-				// 	get     : false,
-				// 	getting : false,
-				// 	done    : false,
-				// 	books   : [],
-				// 	table   : ""
-				// };
 				state.stock.book.list = {
 					get_book : {
 						get     : false,
@@ -6393,17 +6395,8 @@
 														call     : function (change) {
 															if ( !change.new ) return;
 															this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
-																'Finished recalculation'+
+																'Recalculation finished'+
 															'</div>');
-
-															for (var index = 0; index < state.stock.book.refused_books.length; index++) {
-																
-																this.self.prepend('<div title="click to remove" data-type-removable="true" class="stock_notification">'+
-																	'Book refused '+
-																	state.stock.book.refused_books[index].external_product_id +" - "+
-																	state.stock.book.refused_books[index].item_name           +
-																'</div>');
-															};
 														}
 													},
 													{
@@ -6470,101 +6463,109 @@
 	property : "recalculate_string",
 	call     : function (change) {
 
-		var inventory, column_count, books, index, sku, asin, calculated_index;
+		var inventory, column_count, inventory_book, index, sku, asin, calculated_index, books_by;
 
 		inventory     = change.new.split(/\t|\n/);
 		column_count  = 0;
-		books         = {};   
+		books_by      = {
+			asin  : {},
+			index : []
+		};
 		inventory.splice(0,27);
 		state.stock.book.begin_recalculation  = true;
-		state.stock.book.books_recalculated   = 0;
-		state.stock.book.books_uploaded       = 0;
-		state.stock.book.books_to_recalculate = Math.round( inventory.length/27 );
+		state.stock.book.number_of_books.recalculated     = 0;
+		state.stock.book.number_of_books.uploaded         = 0;
+		state.stock.book.number_of_books.to_recalculate   = Math.round( inventory.length/27 );
+		state.stock.book.number_of_books.to_upload        = 0;
 
-		for ( index = 0; index < state.stock.book.books_to_recalculate; ) {
+		for ( index = 0; index < state.stock.book.number_of_books.to_recalculate; index++ ) {
 			calculated_index = index*27;
-	    	if ( column_count === 0 ) {
-	    		sku         = inventory[calculated_index+3].match(/([a-zA-Z]+)|([0-9]+)|(-[0-9]+)/g);
-	    		sku         = ( sku.length === 3 ? sku : ["A", "1", "-1"] );
-	    		asin        = inventory[calculated_index+22];
-				books[asin] = {
-					section             : sku[0],
-					level               : sku[1],
-					number              : sku[2].slice(1),
-					external_product_id : asin,
-					condition_type      : inventory[calculated_index+12],
-					quantity            : inventory[calculated_index+5]
-				};
-	    	}
-			index++;
+	    	sku              = inventory[calculated_index+3].match(/([a-zA-Z]+)|([0-9]+)|(-[0-9]+)/g);
+	    	sku              = ( sku.length === 3 ? sku : ["A", "1", "-1"] );
+	    	asin             = inventory[calculated_index+22];
+	    	inventory_book   = {
+				section             : sku[0],
+				level               : sku[1],
+				number              : sku[2].slice(1),
+				external_product_id : asin,
+				condition_type      : inventory[calculated_index+12],
+				quantity            : inventory[calculated_index+5]
+			};
+
+			books_by.index.push(inventory_book);
+			( books_by.asin[asin] ? books_by.asin[asin].push(inventory_book) : books_by.asin[asin] = [inventory_book] );
 		}
-		state.stock.book.recalculate_books = books;
+
+		state.stock.book.inventory_books_by = books_by;
 	}
 },
 {
 	who      : state.stock.book,
-	property : "recalculate_books",
+	property : "inventory_books_by",
 	call     : function (change) {
 
-		var algorithm, asin, search_version_of_the_book, index, count, refused;
+		var algorithm, asin, inventory_book, count, refused, old_book;
 
-		refused   = [];
-		count     = 0;
-		index     = 0;
-		algorithm = new alpha.algorithm;
+		refused      = [];
+		algorithm    = new alpha.algorithm;
 
-		for ( asin in change.new ) if ( change.new.hasOwnProperty(asin) ) count++;
+		for ( count = 0; count < change.new.index.length; count++)  {
 
-		state.stock.book.books_to_recalculate = count;
-
-		for ( asin in change.new ) {
 			new alpha.pure_amazon_search({
-				typed       : asin,
+				typed       : change.new.index[count].external_product_id,
 				filter_name : "sort"
 			}, function (book) {
 
-				if ( book === undefined || book.length === 0 ) {
-					state.stock.book.recalculate_again.push("some book");
-					console.warn("book is undefined or empty");
-				} else { 
-					state.stock.book.books_recalculated = state.stock.book.books_recalculated+1;
-					book                                = book[0];
-					search_version_of_the_book          = state.stock.book.recalculate_books[book.external_product_id];
-					
-					if ( search_version_of_the_book === undefined ) {
-						console.error("bad asin; the asin is this "+ book.external_product_id );
-						state.stock.book.books_recalculated   = state.stock.book.books_recalculated-1;
-						state.stock.book.books_to_recalculate = state.stock.book.books_to_recalculate-1;
-					}
+				old_book = book;
+				state.stock.book.number_of_books.recalculated = state.stock.book.number_of_books.recalculated+1;
 
-					book.quantity                       = search_version_of_the_book.quantity;
-					book.condition_type                 = search_version_of_the_book.condition_type;
-					book.section                        = search_version_of_the_book.section;
-					book.level                          = search_version_of_the_book.level;
-					book.number                         = search_version_of_the_book.number;
-					book                                = algorithm.recalculate(book);
-					if ( book.standard_price === "0.00" ) book.standard_price = "1.00";
-					if ( book.refused ) {
-						refused.push(book);
-						state.stock.book.refused_books        = refused;
-						state.stock.book.books_recalculated   = state.stock.book.books_recalculated-1;
-						state.stock.book.books_to_recalculate = state.stock.book.books_to_recalculate-1;
+				if ( book === undefined || book.length === 0 ) {
+					console.warn("book is undefined or empty");
+					return;
+				}
+
+				book = book[0];
+
+				if ( !change.new.asin[book.external_product_id] ) {				
+					if ( old_book.length > 1 ) {
+						for (var i = 0; i < old_book.length; i++) {
+							if ( change.new.asin[old_book[i].external_product_id] ) book = old_book[i];
+						};
+						if ( !change.new.asin[book.external_product_id] ) return;
 					} else {
-						$.post(ajaxurl, {
-							action     : "set_book",
-							method     : "book",
-							paramaters : {
-								book : book
-							}
-						}, function (change) {
-							state.stock.book.books_uploaded        = state.stock.book.books_uploaded+1;
-							if ( state.stock.book.books_uploaded === state.stock.book.books_to_recalculate ) state.stock.book.finish_recalculation = true;
-						}, "json");
+						return;
 					}
 				}
+
+				inventory_book      = change.new.asin[book.external_product_id].shift();
+				book.quantity       = inventory_book.quantity;
+				book.condition_type = inventory_book.condition_type;
+				book.section        = inventory_book.section;
+				book.level          = inventory_book.level;
+				book.number         = inventory_book.number;
+				book                = algorithm.recalculate(book);
+
+				if ( book.refused ) {
+					refused.push(book);
+					state.stock.book.books.refused = refused;
+					return;
+				}
+
+				state.stock.book.number_of_books.to_upload = state.stock.book.number_of_books.to_upload+1;
+
+				$.post(ajaxurl, {
+					action     : "set_book",
+					method     : "book",
+					paramaters : {
+						book : book
+					}
+				}, function (change) {
+					state.stock.book.number_of_books.uploaded = state.stock.book.number_of_books.uploaded+1;
+					if ( state.stock.book.number_of_books.uploaded === state.stock.book.number_of_books.to_upload ) state.stock.book.finish_recalculation = true;
+				}, "json");
+
 			});
 		}
-		console.log(count);
 	}
 }
 																		]
@@ -6574,8 +6575,8 @@
 																count : {
 																	instructions : {
 																		observe : {
-																			who      : state.stock.book,
-																			property : "books_to_recalculate",
+																			who      : state.stock.book.number_of_books,
+																			property : "to_recalculate",
 																			call     : function (change) {
 																				this.self.css({ display : "inline-block" });
 																			}
@@ -6586,8 +6587,8 @@
 																		realculated : {
 																			instructions : {
 																				observe : {
-																					who      : state.stock.book,
-																					property : "books_recalculated",
+																					who      : state.stock.book.number_of_books,
+																					property : "recalculated",
 																					call     : function (change) {
 																						this.self.text(change.new);
 																					}
@@ -6601,22 +6602,22 @@
 																		to_recalculate : {
 																			instructions : {
 																				observe : {
-																					who      : state.stock.book,
-																					property : "books_to_recalculate",
+																					who      : state.stock.book.number_of_books,
+																					property : "to_recalculate",
 																					call     : function (change) {
 																						this.self.text(change.new);
 																					}
 																				}
 																			},
-																			self : "<span>none</span>"
+																			self : "<span>0</span>"
 																		}
 																	}
 																},
 																upload_count : {
 																	instructions : {
 																		observe : {
-																			who      : state.stock.book,
-																			property : "books_to_recalculate",
+																			who      : state.stock.book.number_of_books,
+																			property : "to_upload",
 																			call     : function (change) {
 																				this.self.css({ display : "inline-block" });
 																			}
@@ -6627,8 +6628,8 @@
 																		realculated : {
 																			instructions : {
 																				observe : {
-																					who      : state.stock.book,
-																					property : "books_uploaded",
+																					who      : state.stock.book.number_of_books,
+																					property : "uploaded",
 																					call     : function (change) {
 																						this.self.text(change.new);
 																					}
@@ -6642,14 +6643,14 @@
 																		to_recalculate : {
 																			instructions : {
 																				observe : {
-																					who      : state.stock.book,
-																					property : "books_to_recalculate",
+																					who      : state.stock.book.number_of_books,
+																					property : "to_upload",
 																					call     : function (change) {
 																						this.self.text(change.new);
 																					}
 																				}
 																			},
-																			self : "<span>none</span>"
+																			self : "<span>0</span>"
 																		}
 																	}
 																},
@@ -6684,137 +6685,14 @@
 																]
 															},
 															self : '<div class="stock_book_options_button">Export</div>'
-														},
-														// load : {
-														// 	instructions : {
-														// 		observers : [
-														// 			{
-														// 				who : state.stock.book.list.get_book,
-														// 				property : "getting",
-														// 				call : function (change) {
-														// 					if ( change.new ) this.self.text("loading");
-														// 				}
-														// 			},
-														// 			{
-														// 				who : state.stock.book.list.get_book,
-														// 				property : "done", 
-														// 				call : function (change) {
-														// 					if ( change.new ) this.self.text("Load");
-														// 				}
-														// 			}
-														// 		],
-														// 		on : {
-														// 			the_event : "click",
-														// 			is_asslep : false,
-														// 			call      : function (change) {
-														// 				state.stock.book.list.get_book.get = true;
-														// 			}
-														// 		}
-														// 	},
-														// 	self : '<div style="margin-right:10px;" class="stock_book_options_button">Load</div>'
-														// },
-														// wipe : {
-														// 	instructions : {
-														// 		on : {
-														// 			the_event : "click",
-														// 			is_asslep : false,
-														// 			call      : function (change) {
-														// 				if (confirm("Wipe Table")) {
-														// 					if (confirm("Really, really Wipe The Table?")) {
-														// 						$.post(ajaxurl,
-														// 						{
-														// 							action : "set_book",
-														// 							method : "clear_table",
-														// 							paramaters : {},
-														// 						}, function () {
-														// 							alert("Table Wiped");
-														// 						}, "json");
-														// 					}
-														// 				}
-														// 			}
-														// 		}
-														// 	},
-														// 	self : '<div style="margin-right:10px;" class="stock_book_options_button">Wipe</div>'
-														// },
-														// condition : {
-														// 	instructions : {
-														// 		on : {
-														// 			the_event : "keyup",
-														// 			is_asslep : false,
-														// 			call      : function (change) {
-														// 				state.stock.book.add.condition = change.self.val();
-														// 			}
-														// 		}
-														// 	},
-														// 	self : '<input class="stock_book_options_small_input" placeholder="cond">'
-														// },
-														// isbn : {
-														// 	instructions : {
-														// 		observers : [
-														// 			{
-														// 				who      : state.stock.book.add,
-														// 				property : "search",
-														// 				call     : function (change) {
-														// 					if ( !change.new ) return;
-														// 					state.stock.book.add.search    = false;
-														// 					state.stock.book.add.searching = true;
-
-														// 					new alpha.pure_amazon_search({
-														// 						typed       : state.stock.book.add.isbn,
-														// 						filter_name : "sort"
-														// 					}, function (book) {
-														// 						state.stock.book.add.found = true;
-														// 						if ( book.length === 0 ) return;
-														// 						book                = book[0];
-														// 						book.standard_price = parseFloat(book.standard_price) + 1;
-														// 						book.standard_price = book.standard_price.toFixed(2);
-														// 						state.stock.book.add.book = book;
-														// 						state.stock.book.add.add  = true;
-														// 					});
-														// 				}
-														// 			},
-														// 			{
-														// 				who      : state.stock.book.add,
-														// 				property : "add",
-														// 				call     : function (change) {
-														// 					if ( !change.new ) return;
-														// 					state.stock.book.add.add = false;
-														// 					state.stock.book.add.adding = true;
-
-														// 					$.post(ajaxurl, {
-														// 						action : "set_book",
-														// 						method : "book",
-														// 						paramaters : {
-														// 							book : state.stock.book.add.book
-														// 						},
-														// 					}, function () {
-														// 						state.stock.book.add.adding = false;
-														// 						state.stock.book.add.added  = true;
-														// 					}, "json");
-														// 				}
-														// 			}
-														// 		],
-														// 		on : {
-														// 			the_event : "keypress",
-														// 			is_asslep : false,
-														// 			call      : function (change) {
-														// 				if ( change.event.keyCode === 13 ) {
-														// 					state.stock.book.add.isbn = change.self.val();
-														// 					change.self.val("");
-														// 					state.stock.book.add.search = true;
-														// 				}
-														// 			}
-														// 		}
-														// 	},
-														// 	self : '<input class="stock_book_options_input" placeholder="isbn">'
-														// }
+														}
 													}
 												},
 												list : {
 													instructions : {
 														observe : {
-															who      : state.stock.book,
-															property : "finish_recalculation",
+															who      : state.stock.book.books,
+															property : "refused",
 															call     : function (change) {
 																if ( !change.new ) return;
 
@@ -6825,13 +6703,14 @@
 																		'<div class="stock_book_list_item_important">Refused Books</div>'+
 																	'</div>');
 
-																for (var index = 0; index < state.stock.book.refused_books.length; index++) {																
-																	this.self.prepend(
+																for (var index = 0; index < change.new.length; index++) {																
+																	this.self.append(
 																		'<div class="stock_book_list_item">'+
 																			'<div class="stock_book_list_name">'+
-																	 			state.stock.book.refused_books[index].item_name +
+																	 			change.new[index].item_name +
+																	 			' sku - '+ change.new[index].section + change.new[index].level + "-"+ change.new[index].number +  
 																	 		'</div>'+
-																	 	+'</div>');
+																	 	'</div>');
 																};
 															}
 														},
