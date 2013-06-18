@@ -6536,7 +6536,10 @@
 						return;
 					}
 				}
-
+				if ( change.new.asin[book.external_product_id].length === 0 ) {
+					console.warn( book.external_product_id +" is empty");
+					return;
+				}
 				inventory_book      = change.new.asin[book.external_product_id].shift();
 				book.quantity       = inventory_book.quantity;
 				book.condition_type = inventory_book.condition_type;

@@ -369,6 +369,8 @@ class book extends alpha
 	{
 		$table = $this->get_book_table();
 		$count = 0;
+		$zeros = '';
+		$missing_zeros = 0;
 		$date  = date('G_i_d_m_y');
 		$books = "TemplateType=BookLoader\tVersion=2012.1008\tThis row for Amazon.com use only.  Do not modify or delete.\t\t\t\t\tOffer - These attributes are required to make your item buyable for customers on the site\t\t\t\tDiscovery - These attributes have an effect on how customers can find your product on the site using browse or search\t\t\t\t\tImage - These attributes provide links to images for a product\t\"Fulfillment - Use these columns if you are participating in \"\"Fulfillment by Amazon\"\"\"\t\t\t\t\t\t\tUngrouped - These attributes create rich product listings for your buyers.\t\t\t\t\t\t\t\t\t\r\n";
 		$books.= "SKU\tProduct ID\tProduct ID Type\tTitle\tPublisher\tProduct Description\tUpdate Delete\tPrice\tQuantity\tItem Condition\tItem Note\tSearch Terms1\tSearch Terms2\tSearch Terms3\tSearch Terms4\tSearch Terms5\tMain Image URL\tFulfilment Center ID\tPackage Height\tPackage Width\tPackage Length\tPackage Dimensions Unit Of Measure\tPackage Weight\tPackage Weight Unit Of Measure\tAuthor\tBinding\tPublication Date\tEdition\tExpedited Shipping\tWill Ship Internationally\tSubject\tLanguage\tVolume\tIllustrator\r\n";
@@ -376,8 +378,18 @@ class book extends alpha
 
 		foreach ( $table as $book ) :
 			$count  = 0;
-			$books .= "{$book['section']}{$book['level']}-{$book['number']}\t";		
-			$books .= ( strlen($book['external_product_id']) < 10 ? "0{$book['external_product_id']}\t" : "{$book['external_product_id']}\t" );
+			$books .= "{$book['section']}{$book['level']}-{$book['number']}\t";
+
+			if ( strlen($book['external_product_id']) < 10 ) :
+				$missing_zeros = 10 - strlen($book['external_product_id']);
+				$zeros = '';
+				for ( $index = 0; $index < $missing_zeros; $index++ ) :
+					$zeros .= '0';
+				endfor;
+			endif;
+
+			$books .= (strlen($book['external_product_id']) < 10  ? "$zeros{$book['external_product_id']}\t" : "{$book['external_product_id']}\t" );
+			
 			unset($book['section'], $book['level'], $book['number'], $book['item_sku'], $book['external_product_id'] );
 
 			foreach ( $book as $property ) :
@@ -465,7 +477,7 @@ class book extends alpha
 			'package_dimensions_unit_of_measure' => '',
 			'package_weight'            => '',
 			'package_weight_unit_of_measure' => '',
-			'author'                    => '',
+			'author'                    => 'N/A',
 			'binding' 	                => '',
 			'publication_date'          => '',
 			'edition'                   => '',
