@@ -152,14 +152,6 @@ class table_creator
 			return strtolower($column_name) . " $data_type $unique $null $auto_increment $punctuation ";
 	}
 
-	/**
-	 * Performs a check if a certain value is within a specific column; this is used if a certain column
-	 * is not allowed to have duplicates ( email, user name )
-	 * @param  string $table  The name of the table in which to look
-	 * @param  string $column the name of the column which to search
-	 * @param  string $value  The value to search for 
-	 * @return boolean        If the searched for value is found returns true if not returns false
-	 */
 	public function check_if_value_is_in_column ($table, $column, $value)
 	{
 		global $wpdb;
@@ -186,6 +178,20 @@ class table_creator
 		global $wpdb;
 
 		return $wpdb->get_results("SELECT * FROM $wpdb->prefix$name", ARRAY_A );
+	}
+
+	public function get_rows_from_one_point_to_another ($name, $column, $low_ammount, $high_ammount)
+	{
+		global $wpdb;
+
+		return $wpdb->get_results("SELECT * FROM $wpdb->prefix$name WHERE $column BETWEEN $low_ammount AND $high_ammount", ARRAY_A );
+	}
+
+	public function get_number_of_rows_from_table ($name)
+	{
+		global $wpdb;
+		$count = $wpdb->get_results("SELECT COUNT(*) FROM $wpdb->prefix$name", ARRAY_A );	
+		return $count[0]['COUNT(*)'];
 	}
 
 	public function unserialize_strings_in_an_array ($array)

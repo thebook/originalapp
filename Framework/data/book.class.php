@@ -367,14 +367,36 @@ class book extends alpha
 
 	public function get_book_table_exported_as_tab_delimited_file ()
 	{
-		$table = $this->get_book_table();
-		$count = 0;
-		$zeros = '';
-		$missing_zeros = 0;
-		$date  = date('G_i_d_m_y');
-		$books = "TemplateType=BookLoader\tVersion=2012.1008\tThis row for Amazon.com use only.  Do not modify or delete.\t\t\t\t\tOffer - These attributes are required to make your item buyable for customers on the site\t\t\t\tDiscovery - These attributes have an effect on how customers can find your product on the site using browse or search\t\t\t\t\tImage - These attributes provide links to images for a product\t\"Fulfillment - Use these columns if you are participating in \"\"Fulfillment by Amazon\"\"\"\t\t\t\t\t\t\tUngrouped - These attributes create rich product listings for your buyers.\t\t\t\t\t\t\t\t\t\r\n";
-		$books.= "SKU\tProduct ID\tProduct ID Type\tTitle\tPublisher\tProduct Description\tUpdate Delete\tPrice\tQuantity\tItem Condition\tItem Note\tSearch Terms1\tSearch Terms2\tSearch Terms3\tSearch Terms4\tSearch Terms5\tMain Image URL\tFulfilment Center ID\tPackage Height\tPackage Width\tPackage Length\tPackage Dimensions Unit Of Measure\tPackage Weight\tPackage Weight Unit Of Measure\tAuthor\tBinding\tPublication Date\tEdition\tExpedited Shipping\tWill Ship Internationally\tSubject\tLanguage\tVolume\tIllustrator\r\n";
-		$books.= "item_sku\texternal_product_id\texternal_product_id_type\titem_name\tmanufacturer\tproduct_description\tupdate_delete\tstandard_price\tquantity\tcondition_type\tcondition_note\tgeneric_keywords1\tgeneric_keywords2\tgeneric_keywords3\tgeneric_keywords4\tgeneric_keywords5\tmain_image_url\tfulfillment_center_id\tpackage_height\tpackage_width\tpackage_length\tpackage_dimensions_unit_of_measure\tpackage_weight\tpackage_weight_unit_of_measure\tauthor\tbinding\tpublication_date\tedition\texpedited_shipping\twill_ship_internationally\tunknown_subject\tlanguage_value\tvolume_base\tillustrator\r\n";
+		$creator = new table_creator;
+		$limit   = 1000;
+		$rows    = (int)$creator->get_number_of_rows_from_table($this->book_table);
+		$laps    = 0;
+		$number_of_rows_to_get = array(
+			'low_range'  => 1,
+			'high_range' => $limit
+		);
+		$table   = array();
+
+		if ( $rows/$limit > 1 ) :
+			$laps  = Floor($rows/$limit)+1;
+		else : 
+			$table = $creator->get_all_rows($this->book_table);
+		endif;
+
+		for ( $index = 0; $index < $laps; $index++ ) :
+			$row_selection                       = $creator->get_rows_from_one_point_to_another($this->book_table, 'item_sku', $number_of_rows_to_get['low_range'], $number_of_rows_to_get['high_range'] );
+			$table                               = array_merge( $table, $row_selection );
+			$number_of_rows_to_get['low_range']  = $number_of_rows_to_get['high_range'];
+			$number_of_rows_to_get['high_range'] = ( $index < $laps-1 ? $number_of_rows_to_get['high_range'] + $limit : $number_of_rows_to_get['high_range'] + ( $rows - ( $laps*$limit ) ) );
+		endfor;
+
+		$count          = 0;
+		$zeros          = '';
+		$missing_zeros  = 0;
+		$date           = date('G_i_d_m_y');
+		$books          = "TemplateType=BookLoader\tVersion=2012.1008\tThis row for Amazon.com use only.  Do not modify or delete.\t\t\t\t\tOffer - These attributes are required to make your item buyable for customers on the site\t\t\t\tDiscovery - These attributes have an effect on how customers can find your product on the site using browse or search\t\t\t\t\tImage - These attributes provide links to images for a product\t\"Fulfillment - Use these columns if you are participating in \"\"Fulfillment by Amazon\"\"\"\t\t\t\t\t\t\tUngrouped - These attributes create rich product listings for your buyers.\t\t\t\t\t\t\t\t\t\r\n";
+		$books         .= "SKU\tProduct ID\tProduct ID Type\tTitle\tPublisher\tProduct Description\tUpdate Delete\tPrice\tQuantity\tItem Condition\tItem Note\tSearch Terms1\tSearch Terms2\tSearch Terms3\tSearch Terms4\tSearch Terms5\tMain Image URL\tFulfilment Center ID\tPackage Height\tPackage Width\tPackage Length\tPackage Dimensions Unit Of Measure\tPackage Weight\tPackage Weight Unit Of Measure\tAuthor\tBinding\tPublication Date\tEdition\tExpedited Shipping\tWill Ship Internationally\tSubject\tLanguage\tVolume\tIllustrator\r\n";
+		$books         .= "item_sku\texternal_product_id\texternal_product_id_type\titem_name\tmanufacturer\tproduct_description\tupdate_delete\tstandard_price\tquantity\tcondition_type\tcondition_note\tgeneric_keywords1\tgeneric_keywords2\tgeneric_keywords3\tgeneric_keywords4\tgeneric_keywords5\tmain_image_url\tfulfillment_center_id\tpackage_height\tpackage_width\tpackage_length\tpackage_dimensions_unit_of_measure\tpackage_weight\tpackage_weight_unit_of_measure\tauthor\tbinding\tpublication_date\tedition\texpedited_shipping\twill_ship_internationally\tunknown_subject\tlanguage_value\tvolume_base\tillustrator\r\n";
 
 		foreach ( $table as $book ) :
 			$count  = 0;
@@ -392,8 +414,9 @@ class book extends alpha
 			
 			unset($book['section'], $book['level'], $book['number'], $book['item_sku'], $book['external_product_id'] );
 
-			foreach ( $book as $property ) :
+			foreach ( $book as $property_name => $property ) :
 				$count++;
+				( $property_name === 'author' and empty($property) ) and $property = 'n/a';
 				$books .= ( $count < 32 ? "$property\t" : "$property" );
 			endforeach;
 

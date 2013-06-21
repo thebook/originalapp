@@ -48,7 +48,7 @@ $.post(ajaxurl,
 	paramaters : {
 		book : {
 			'external_product_id' : "BF02LKSDK",
-			'item_name' : "SOme book",
+			'item_name' : "SOme book's of the",
 			'manufacturer' : "Booky Mc Book Jig",
 			'standard_price' : "6.32",
 			'main_image_url' : "http://sadsada.com",
@@ -71,7 +71,7 @@ $.get(ajaxurl, {
 	action : "get_account",
 	method : "account",
 	paramaters : {
-		email : "tim@tamimimail.com"
+		email : "emal@"
 	}, 
 }, function (users) {
 	console.log(users);
@@ -112,4 +112,42 @@ $.get(ajaxurl, {
 	};
 	console.log(response.return);
 	console.log(total);
+}, "json");
+
+account = {
+	credit 	           : "0.00",
+	donate 	           : "0.00",
+	last_withdraw      : "0000/00/00",
+	first_name         : "Jason ",
+	second_name        : "D'meri",
+	price_promise      : [
+		{
+			"external_product_id" : "BF02LKSDK",
+			"item_name"           : "SOme's book's of the bookiness fromth'd the froth books of the bookssss of the",
+			"manufacturer"        : "Booky Mc Book Jig",
+			"standard_price"      : "6.32",
+			"main_image_url"      : "http://sadsada.com",
+			"author"              : "Booky Mc jiga book",
+			"binding"             : "Paperjig",
+			"publication_date"    : "1994",
+		}
+	],
+	history            : [{}],
+	unaccepted_book    : [{}],
+	email              : "emal@",
+	year               : "",
+	university         : "",
+	password           : "password",
+	recieve_newsletter : 1
+};
+
+$.post(ajaxurl,
+{ 
+	action     : "set_account",
+	method     : "account",
+	paramaters : {
+		account : account
+	}
+}, function (response) {
+	console.log(response.return);
 }, "json");

@@ -6088,88 +6088,88 @@
 										// }
 									}
 								},
-								// log : {
-								// 	instructions :{
-								// 		observe : {
-								// 			who      : state.stock.user,
-								// 			property : "loged_in",
-								// 			call     : function (change) {
-								// 				if ( change.new ) {
-								// 					this.self.css({ display : "none" });
-								// 				} else {
-								// 					this.self.css({ display : "block" });
-								// 				}
-								// 			}
-								// 		}
-								// 	},
-								// 	self   : '<div class="stock_log"></div>',
-								// 	branch : {
-								// 		notification : {
-								// 			instructions : {
-								// 				observe : {
-								// 					who      : state.stock.user,
-								// 					property : "notification",
-								// 					call     : function (change) {
-								// 						this.self.text(change.new);
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<div class="stock_log_notification">Enter Name & Password</div>',
-								// 		},
-								// 		user : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "keyup",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
-								// 						state.stock.user.name = change.self.val();
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<input class="stock_log_user" placeholder="username">'
-								// 		},
-								// 		password : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "keyup",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
-								// 						state.stock.user.password = change.self.val();
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<input type="password" class="stock_log_password" placeholder="password">'
-								// 		},
-								// 		submit : {
-								// 			instructions : {
-								// 				on : {
-								// 					the_event : "click",
-								// 					is_asslep : false,
-								// 					call      : function (change) {
+								log : {
+									instructions :{
+										observe : {
+											who      : state.stock.user,
+											property : "loged_in",
+											call     : function (change) {
+												if ( change.new ) {
+													this.self.css({ display : "none" });
+												} else {
+													this.self.css({ display : "block" });
+												}
+											}
+										}
+									},
+									self   : '<div class="stock_log"></div>',
+									branch : {
+										notification : {
+											instructions : {
+												observe : {
+													who      : state.stock.user,
+													property : "notification",
+													call     : function (change) {
+														this.self.text(change.new);
+													}
+												}
+											},
+											self : '<div class="stock_log_notification">Enter Name & Password</div>',
+										},
+										user : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.stock.user.name = change.self.val();
+													}
+												}
+											},
+											self : '<input class="stock_log_user" placeholder="username">'
+										},
+										password : {
+											instructions : {
+												on : {
+													the_event : "keyup",
+													is_asslep : false,
+													call      : function (change) {
+														state.stock.user.password = change.self.val();
+													}
+												}
+											},
+											self : '<input type="password" class="stock_log_password" placeholder="password">'
+										},
+										submit : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
 
-								// 						state.stock.user.notification = "Signing in..";
+														state.stock.user.notification = "Signing in..";
 
-								// 						$.get(ajaxurl, {
-								// 							action : "get_account",
-								// 							method : "does_admin_user_exist",
-								// 							paramaters : {
-								// 								name     : state.stock.user.name,
-								// 								password : state.stock.user.password
-								// 							}
-								// 						}, function (response) {
-								// 							if ( response.return ) {
-								// 								state.stock.user.loged_in = true;
-								// 							} else {
-								// 								state.stock.user.notification = "Wrong password or name or both";
-								// 							}
-								// 						},"json");
-								// 					}
-								// 				}
-								// 			},
-								// 			self : '<div class="stock_log_submit">Go</div>'
-								// 		}
-								// 	}
-								// },
+														$.get(ajaxurl, {
+															action : "get_account",
+															method : "does_admin_user_exist",
+															paramaters : {
+																name     : state.stock.user.name,
+																password : state.stock.user.password
+															}
+														}, function (response) {
+															if ( response.return ) {
+																state.stock.user.loged_in = true;
+															} else {
+																state.stock.user.notification = "Wrong password or name or both";
+															}
+														},"json");
+													}
+												}
+											},
+											self : '<div class="stock_log_submit">Go</div>'
+										}
+									}
+								},
 								freepost : {
 									instructions : {
 										observe : {
@@ -6458,119 +6458,119 @@
 																			}
 																		},
 																		observers : [
-{
-	who      : state.stock.book,
-	property : "recalculate_string",
-	call     : function (change) {
+																			{
+																				who      : state.stock.book,
+																				property : "recalculate_string",
+																				call     : function (change) {
 
-		var inventory, column_count, inventory_book, index, sku, asin, calculated_index, books_by;
+																					var inventory, column_count, inventory_book, index, sku, asin, calculated_index, books_by;
 
-		inventory     = change.new.split(/\t|\n/);
-		column_count  = 0;
-		books_by      = {
-			asin  : {},
-			index : []
-		};
-		inventory.splice(0,27);
-		state.stock.book.begin_recalculation  = true;
-		state.stock.book.number_of_books.recalculated     = 0;
-		state.stock.book.number_of_books.uploaded         = 0;
-		state.stock.book.number_of_books.to_recalculate   = Math.round( inventory.length/27 );
-		state.stock.book.number_of_books.to_upload        = 0;
+																					inventory     = change.new.split(/\t|\n/);
+																					column_count  = 0;
+																					books_by      = {
+																						asin  : {},
+																						index : []
+																					};
+																					inventory.splice(0,27);
+																					state.stock.book.begin_recalculation  = true;
+																					state.stock.book.number_of_books.recalculated     = 0;
+																					state.stock.book.number_of_books.uploaded         = 0;
+																					state.stock.book.number_of_books.to_recalculate   = Math.round( inventory.length/27 );
+																					state.stock.book.number_of_books.to_upload        = 0;
 
-		for ( index = 0; index < state.stock.book.number_of_books.to_recalculate; index++ ) {
-			calculated_index = index*27;
-	    	sku              = inventory[calculated_index+3].match(/([a-zA-Z]+)|([0-9]+)|(-[0-9]+)/g);
-	    	sku              = ( sku.length === 3 ? sku : ["A", "1", "-1"] );
-	    	asin             = inventory[calculated_index+22];
-	    	inventory_book   = {
-				section             : sku[0],
-				level               : sku[1],
-				number              : sku[2].slice(1),
-				external_product_id : asin,
-				condition_type      : inventory[calculated_index+12],
-				quantity            : inventory[calculated_index+5]
-			};
+																					for ( index = 0; index < state.stock.book.number_of_books.to_recalculate; index++ ) {
+																						calculated_index = index*27;
+																				    	sku              = inventory[calculated_index+3].match(/([a-zA-Z]+)|([0-9]+)|(-[0-9]+)/g);
+																				    	if ( sku.length !== 3 ) sku = [inventory[calculated_index+3].substring(0,10), "0", "00"];
+																				    	asin             = inventory[calculated_index+22];
+																				    	inventory_book   = {
+																							section             : sku[0],
+																							level               : sku[1],
+																							number              : sku[2].slice(1),
+																							external_product_id : asin,
+																							condition_type      : inventory[calculated_index+12],
+																							quantity            : inventory[calculated_index+5]
+																						};
 
-			books_by.index.push(inventory_book);
-			( books_by.asin[asin] ? books_by.asin[asin].push(inventory_book) : books_by.asin[asin] = [inventory_book] );
-		}
+																						books_by.index.push(inventory_book);
+																						( books_by.asin[asin] ? books_by.asin[asin].push(inventory_book) : books_by.asin[asin] = [inventory_book] );
+																					}
 
-		state.stock.book.inventory_books_by = books_by;
-	}
-},
-{
-	who      : state.stock.book,
-	property : "inventory_books_by",
-	call     : function (change) {
+																					state.stock.book.inventory_books_by = books_by;
+																				}
+																			},
+																			{
+																				who      : state.stock.book,
+																				property : "inventory_books_by",
+																				call     : function (change) {
 
-		var algorithm, asin, inventory_book, count, refused, old_book;
+																					var algorithm, asin, inventory_book, count, refused, old_book;
 
-		refused      = [];
-		algorithm    = new alpha.algorithm;
+																					refused      = [];
+																					algorithm    = new alpha.algorithm;
 
-		for ( count = 0; count < change.new.index.length; count++)  {
+																					for ( count = 0; count < change.new.index.length; count++)  {
 
-			new alpha.pure_amazon_search({
-				typed       : change.new.index[count].external_product_id,
-				filter_name : "sort"
-			}, function (book) {
+																						new alpha.pure_amazon_search({
+																							typed       : change.new.index[count].external_product_id,
+																							filter_name : "sort"
+																						}, function (book) {
 
-				old_book = book;
-				state.stock.book.number_of_books.recalculated = state.stock.book.number_of_books.recalculated+1;
+																							old_book = book;
+																							state.stock.book.number_of_books.recalculated = state.stock.book.number_of_books.recalculated+1;
 
-				if ( book === undefined || book.length === 0 ) {
-					console.warn("book is undefined or empty");
-					return;
-				}
+																							if ( book === undefined || book.length === 0 ) {
+																								console.warn("book is undefined or empty");
+																								return;
+																							}
 
-				book = book[0];
+																							book = book[0];
 
-				if ( !change.new.asin[book.external_product_id] ) {				
-					if ( old_book.length > 1 ) {
-						for (var i = 0; i < old_book.length; i++) {
-							if ( change.new.asin[old_book[i].external_product_id] ) book = old_book[i];
-						};
-						if ( !change.new.asin[book.external_product_id] ) return;
-					} else {
-						return;
-					}
-				}
-				if ( change.new.asin[book.external_product_id].length === 0 ) {
-					console.warn( book.external_product_id +" is empty");
-					return;
-				}
-				inventory_book      = change.new.asin[book.external_product_id].shift();
-				book.quantity       = inventory_book.quantity;
-				book.condition_type = inventory_book.condition_type;
-				book.section        = inventory_book.section;
-				book.level          = inventory_book.level;
-				book.number         = inventory_book.number;
-				book                = algorithm.recalculate(book);
+																							if ( !change.new.asin[book.external_product_id] ) {				
+																								if ( old_book.length > 1 ) {
+																									for (var i = 0; i < old_book.length; i++) {
+																										if ( change.new.asin[old_book[i].external_product_id] ) book = old_book[i];
+																									};
+																									if ( !change.new.asin[book.external_product_id] ) return;
+																								} else {
+																									return;
+																								}
+																							}
+																							if ( change.new.asin[book.external_product_id].length === 0 ) {
+																								console.warn( book.external_product_id +" is empty");
+																								return;
+																							}
+																							inventory_book      = change.new.asin[book.external_product_id].shift();
+																							book.quantity       = inventory_book.quantity;
+																							book.condition_type = inventory_book.condition_type;
+																							book.section        = inventory_book.section;
+																							book.level          = inventory_book.level;
+																							book.number         = inventory_book.number;
+																							book                = algorithm.recalculate(book);
 
-				if ( book.refused ) {
-					refused.push(book);
-					state.stock.book.books.refused = refused;
-					return;
-				}
+																							if ( book.refused ) {
+																								refused.push(book);
+																								state.stock.book.books.refused = refused;
+																								return;
+																							}
 
-				state.stock.book.number_of_books.to_upload = state.stock.book.number_of_books.to_upload+1;
+																							state.stock.book.number_of_books.to_upload = state.stock.book.number_of_books.to_upload+1;
 
-				$.post(ajaxurl, {
-					action     : "set_book",
-					method     : "book",
-					paramaters : {
-						book : book
-					}
-				}, function (change) {
-					state.stock.book.number_of_books.uploaded = state.stock.book.number_of_books.uploaded+1;
-					if ( state.stock.book.number_of_books.uploaded === state.stock.book.number_of_books.to_upload ) state.stock.book.finish_recalculation = true;
-				}, "json");
+																							$.post(ajaxurl, {
+																								action     : "set_book",
+																								method     : "book",
+																								paramaters : {
+																									book : book
+																								}
+																							}, function (change) {
+																								state.stock.book.number_of_books.uploaded = state.stock.book.number_of_books.uploaded+1;
+																								if ( state.stock.book.number_of_books.uploaded === state.stock.book.number_of_books.to_upload ) state.stock.book.finish_recalculation = true;
+																							}, "json");
 
-			});
-		}
-	}
-}
+																						});
+																					}
+																				}
+																			}
 																		]
 																	},
 																	self : '<input type="file" class="stock_book_upload">'
