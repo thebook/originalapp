@@ -747,7 +747,7 @@
 										} else {
 											display_book = [];
 										}
-										
+
 										state.quote                 = "post";
 										book.results                = display_book;
 										state.process.search        = false;
@@ -3980,7 +3980,7 @@
 																												'<div class="basket_overview_item_text_wrap">'+
 																													'<div class="basket_overview_item_text_title"> '+ current_book.item_name        +'</div>'+
 																													'<div class="basket_overview_item_text_author">'+ current_book.author           +'</div>'+
-																													'<div class="basket_overview_item_isbn">       '+ current_book.external_item_id +'</div>'+
+																													'<div class="basket_overview_item_isbn">       '+ current_book.external_product_id +'</div>'+
 																												'</div>'+
 																												'<div class="basket_overview_item_price_wrap">'+
 																													'<div class="basket_overview_item_price_text">Sell for</div>'+
