@@ -735,16 +735,21 @@
 										search_by   : "ISBN",
 										filter_name : "sort"
 									}, function (books) {
+										if ( books.length > 0 ) {
+											for (var index = 0; index < books.length; index++) {
+												books[index] = algorithm.bus(books[index]);
+												prices.push(books[index].standard_price);
+											};
 
-										for (var index = 0; index < books.length; index++) {
-											books[index] = algorithm.bus(books[index]);
-											prices.push(books[index].standard_price);
-										};
-
-										display_book                = books[0];
-										display_book.standard_price = Math.min.apply(Math, prices);
+											display_book                = books[0];
+											display_book.standard_price = Math.min.apply(Math, prices);
+											display_book                = [display_book];
+										} else {
+											display_book = [];
+										}
+										
 										state.quote                 = "post";
-										book.results                = [display_book];
+										book.results                = display_book;
 										state.process.search        = false;
 
 										if ( router.get_route() !== "/sell" ) router.change_url("sell");
