@@ -2874,7 +2874,7 @@ body {
   .result_book_add_button_static:active {
     background: #b4d65a; }
 
-.result_book_add_button_text, .with-icon-added-to-sell-basket-tick {
+.result_book_add_button_text, .with-icon-added-to-sell-basket-tick, .result_book_refused_button {
   height: 13px;
   display: block;
   float: left;
@@ -4477,15 +4477,26 @@ body {
   line-height: 14px;
   color: #555555; }
 
-.stock_button, .stock_book_options_button {
+.stock_button, .stock_book_options_button, .stock_book_options_add_book_button {
   font-size: 14px;
   line-height: 14px;
   color: #555555;
   text-transform: uppercase;
   cursor: pointer;
-  margin-right: 10px; }
-  .stock_button:hover, .stock_book_options_button:hover {
+  margin: 8px 10px 8px 0;
+  display: inline-block; }
+  .stock_button:hover, .stock_book_options_button:hover, .stock_book_options_add_book_button:hover {
     text-decoration: underline; }
+
+.stock_input, .stock_book_options_add_book_input {
+  margin-right: 10px;
+  font-family: inherit;
+  color: #555555;
+  border: 1px solid #555555;
+  background: whitesmoke;
+  padding: 5px 3px;
+  font-size: 16px;
+  line-height: 16px; }
 
 .stock_bar {
   width: 685px;
@@ -4824,7 +4835,7 @@ body {
   float: left;
   padding: 10px 0; }
 
-.stock_freepost_ticket_part, .stock_freepost_ticket_header_column, .stock_freepost_ticket_column {
+.stock_freepost_ticket_part, .stock_freepost_ticket_header_column, .stock_freepost_ticket_column, .stock_freepost_ticket_column_link {
   display: inline-block;
   float: left;
   width: 11%;
@@ -4848,11 +4859,16 @@ body {
   width: 100%;
   float: left; }
 
+.stock_freepost_ticket_column_link {
+  cursor: pointer; }
+  .stock_freepost_ticket_column_link:hover {
+    text-decoration: underline; }
+
 .stock_book {
   width: 100%;
   float: left; }
 
-.stock_book_upload_wrap {
+.stock_book_upload_wrap, .stock_book_options_add_book_wrap {
   width: 100%;
   float: left;
   margin: 20px 0; }
@@ -4882,32 +4898,16 @@ body {
   float: left;
   display: inline-block; }
 
-.stock_book_header {
-  width: 100%;
-  float: left;
-  margin: 7px 0; }
+.stock_book_options_add_book_input {
+  float: left; }
 
-.stock_book_header_part {
-  float: left;
-  display: inline-block;
-  width: 6.5%;
-  font-weight: bold; }
+.stock_book_options_add_book_button {
+  float: left; }
 
 .stock_book_part {
   float: left;
   display: inline-block;
   width: 6.5%; }
-
-.stock_book_options_small_input, .stock_book_options_input {
-  margin-left: 10px;
-  width: 35px;
-  border: 1px solid #555555;
-  background: whitesmoke;
-  padding-top: 2px;
-  padding-bottom: 3px; }
-
-.stock_book_options_input {
-  width: 100px; }
 
 .stock_book_information {
   width: 1080px;

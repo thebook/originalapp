@@ -215,6 +215,10 @@ $add_button_font_size: 13px;
 	}
 }
 
+.result_book_refused_button {
+	@extend.result_book_add_button_text;
+}
+
 .result_book_extra_options_buttons { 
 	  
 	float: left;

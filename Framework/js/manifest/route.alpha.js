@@ -89,6 +89,11 @@ var alpha = ( function ( alpha, $ ) {
 		if ( route[0] !== '/' ) route = "/"+ route;
 		history.pushState({}, "", window.location.protocol +"//"+ window.location.host + route );
 		window.onpopstate();
+		this.on_route = route;
+	};
+
+	alpha.route.prototype.get_route = function () { 
+		return this.on_route;
 	};
 
 	alpha.route.prototype.is_history_supported = function () { 

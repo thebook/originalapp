@@ -724,22 +724,30 @@
 								call     : function (change) {
 									if ( !change.new ) return;
 
-									var pass_books, algorithm = new alpha.algorithm;
-									pass_books = [];
+									var display_book, prices, algorithm, search_query;
+
+									algorithm    = new alpha.algorithm;
+									prices       = [];
+									search_query = state.text.search.replace(/[-\s]+/g, "");
 
 									new alpha.pure_amazon_search({
-										typed       : state.text.search,
+										typed       : search_query,
+										search_by   : "ISBN",
 										filter_name : "sort"
 									}, function (books) {
+
 										for (var index = 0; index < books.length; index++) {
 											books[index] = algorithm.bus(books[index]);
-											if ( books[index].standard_price === "0.00" ) console.log("0.00");
-											if ( books[index].standard_price !== "0.00" ) pass_books.push(books[index]);
+											prices.push(books[index].standard_price);
 										};
-										state.quote  = "post";
-										book.results = pass_books;
-										state.process.search = false;
-										router.change_url("sell");
+
+										display_book                = books[0];
+										display_book.standard_price = Math.min.apply(Math, prices);
+										state.quote                 = "post";
+										book.results                = [display_book];
+										state.process.search        = false;
+
+										if ( router.get_route() !== "/sell" ) router.change_url("sell");
 									});
 								}
 							},
@@ -943,16 +951,22 @@
 															branch : {
 																input : {
 																	instructions : {
-																		on : {
-																			the_event : "keypress",
-																			is_asslep : false,
-																			call      : function (change) {												
-																				if ( change.event.keyCode === 13 ) {
-																					state.text.search = change.self.val().trim();
-																					state.process.search = true;
+																		on_events : [
+																			{
+																				the_event : "keyup",
+																				is_asslep : false,
+																				call      : function (change) {
+																					state.text.search = change.self.val();
+																				}
+																			},
+																			{
+																				the_event : "keypress",
+																				is_asslep : false,
+																				call      : function (change) {
+																					if ( change.event.keyCode === 13 ) state.process.search = true;
 																				}
 																			}
-																		}
+																		]
 																	},
 																	self  : '<input type="text" class="header_input_block_for_search block_for_search" placeholder="please enter your ISBN here">',
 																}
@@ -964,7 +978,6 @@
 																	the_event : "click",
 																	is_asslep : false,
 																	call      : function () {
-																		state.text.search    = this.input_wrap.branch.input.self.val().trim();
 																		state.process.search = true;
 																	}
 																}
@@ -1705,7 +1718,7 @@
 																					'<div class="store_basket_pop_up_content_item_author">'+ current_book.author    +'</div>'+
 																					'<div class="store_basket_pop_up_content_item_isbn_wrap">'+
 																						'<div class="store_basket_pop_up_content_item_isbn_highlight">ISBN: </div>'+
-																						'<div class="store_basket_pop_up_content_item_isbn">'+ current_book.external_item_id +'</div>'+
+																						'<div class="store_basket_pop_up_content_item_isbn">'+ current_book.external_product_id +'</div>'+
 																					'</div>'+
 																					'<div class="store_basket_pop_up_content_item_sell_price_wrap">'+
 																						'<div class="store_basket_pop_up_content_item_sell_price_text">Sell for:</div>'+
@@ -2878,10 +2891,8 @@
 											the_event : "click",
 											is_asslep : false,
 											call      : function (change) {
-												console.log(change.event.target);
-												var current_book, part, id, promises;
 
-												
+												var current_book, part, id, promises;
 
 												if ( change.event.target.className === "with-icon-info-for-book" ) {
 													id                     = change.event.target.getAttribute("data-type-book");
@@ -2931,17 +2942,20 @@
 
 													book_string +=
 														'<div class="'+ wraps.classes[wraps.on_wrap] +'">'+
-															'<div class="result_book_search">'+
-																'<span data-type-book="'+ ( index + 1 ) +'" class="with-icon-info-for-book">'+'</span>'+
+															'<div class="result_book_search">';
+													if ( book.results[index].standard_price ) book_string += 
+																'<span data-type-book="'+ ( index + 1 ) +'" class="with-icon-info-for-book">'+'</span>';
+													book_string +=
 																'<img src="'+ book.results[index].main_image_url +'" class="result_book_thumbnail_image">'+
 																'<article class="result_book_search_text">'+ 				
 																	'<strong class="result_book_title">'+ book.results[index].item_name.slice(0, 10) +'...</strong>'+
-																	'<div class="result_book_author">'+   book.results[index].author.slice(0, 18) +'...</div>'+
+																	'<div class="result_book_author">'+   book.results[index].author.slice(0, 18)    +'...</div>'+
 																	'<div class="result_book_price_wrap">'+
 																		'<span class="result_book_price_text">Sell for </span>'+
 																		'<storng class="result_book_price">'+ book.results[index].standard_price +'</storng>'+
 																	'</div>'+
-																'</article>'+
+																'</article>';
+													if ( book.results[index].standard_price ) book_string += 
 																'<div class="result_book_add_button_wrap">'+
 																	'<div class="result_book_inner_wrap">'+
 																		'<div class="result_book_add_button">'+
@@ -2951,8 +2965,18 @@
 																			'<span class="with-icon-added-to-sell-basket-tick">Added To Basket</span>'+
 																		'</div>'+
 																	'</div>'+
-																'</div>'+
-															'</div>'+
+																'</div>';
+													if ( ! book.results[index].standard_price ) book_string += 
+																'<div class="result_book_add_button_wrap">'+
+																	'<div class="result_book_inner_wrap">'+
+																		'<div class="result_book_add_button_static">'+
+																			'<span class="result_book_refused_button">We dont accept this book</span>'+
+																		'</div>'+
+																	'</div>'+
+																'</div>';
+													book_string += 
+															'</div>';
+													if ( book.results[index].standard_price ) book_string += 
 															'<div class="result_book_extra_options_buttons">'+
 																'<span class="result_book_added_book_sell_button">'+
 																	'<span class="with-icon-sell-now-arrow"></span>'+ 
@@ -2962,7 +2986,8 @@
 																	'<span class="with-icon-add-again"></span>'+
 																		'Add again'+ 
 																	'</span>'+
-															'</div>'+
+															'</div>';
+													book_string += 
 														'</div>';
 													( wraps.on_wrap === 2? wraps.on_wrap = 0 : wraps.on_wrap++ );
 												};
@@ -6088,88 +6113,88 @@
 										// }
 									}
 								},
-								log : {
-									instructions :{
-										observe : {
-											who      : state.stock.user,
-											property : "loged_in",
-											call     : function (change) {
-												if ( change.new ) {
-													this.self.css({ display : "none" });
-												} else {
-													this.self.css({ display : "block" });
-												}
-											}
-										}
-									},
-									self   : '<div class="stock_log"></div>',
-									branch : {
-										notification : {
-											instructions : {
-												observe : {
-													who      : state.stock.user,
-													property : "notification",
-													call     : function (change) {
-														this.self.text(change.new);
-													}
-												}
-											},
-											self : '<div class="stock_log_notification">Enter Name & Password</div>',
-										},
-										user : {
-											instructions : {
-												on : {
-													the_event : "keyup",
-													is_asslep : false,
-													call      : function (change) {
-														state.stock.user.name = change.self.val();
-													}
-												}
-											},
-											self : '<input class="stock_log_user" placeholder="username">'
-										},
-										password : {
-											instructions : {
-												on : {
-													the_event : "keyup",
-													is_asslep : false,
-													call      : function (change) {
-														state.stock.user.password = change.self.val();
-													}
-												}
-											},
-											self : '<input type="password" class="stock_log_password" placeholder="password">'
-										},
-										submit : {
-											instructions : {
-												on : {
-													the_event : "click",
-													is_asslep : false,
-													call      : function (change) {
+								// log : {
+								// 	instructions :{
+								// 		observe : {
+								// 			who      : state.stock.user,
+								// 			property : "loged_in",
+								// 			call     : function (change) {
+								// 				if ( change.new ) {
+								// 					this.self.css({ display : "none" });
+								// 				} else {
+								// 					this.self.css({ display : "block" });
+								// 				}
+								// 			}
+								// 		}
+								// 	},
+								// 	self   : '<div class="stock_log"></div>',
+								// 	branch : {
+								// 		notification : {
+								// 			instructions : {
+								// 				observe : {
+								// 					who      : state.stock.user,
+								// 					property : "notification",
+								// 					call     : function (change) {
+								// 						this.self.text(change.new);
+								// 					}
+								// 				}
+								// 			},
+								// 			self : '<div class="stock_log_notification">Enter Name & Password</div>',
+								// 		},
+								// 		user : {
+								// 			instructions : {
+								// 				on : {
+								// 					the_event : "keyup",
+								// 					is_asslep : false,
+								// 					call      : function (change) {
+								// 						state.stock.user.name = change.self.val();
+								// 					}
+								// 				}
+								// 			},
+								// 			self : '<input class="stock_log_user" placeholder="username">'
+								// 		},
+								// 		password : {
+								// 			instructions : {
+								// 				on : {
+								// 					the_event : "keyup",
+								// 					is_asslep : false,
+								// 					call      : function (change) {
+								// 						state.stock.user.password = change.self.val();
+								// 					}
+								// 				}
+								// 			},
+								// 			self : '<input type="password" class="stock_log_password" placeholder="password">'
+								// 		},
+								// 		submit : {
+								// 			instructions : {
+								// 				on : {
+								// 					the_event : "click",
+								// 					is_asslep : false,
+								// 					call      : function (change) {
 
-														state.stock.user.notification = "Signing in..";
+								// 						state.stock.user.notification = "Signing in..";
 
-														$.get(ajaxurl, {
-															action : "get_account",
-															method : "does_admin_user_exist",
-															paramaters : {
-																name     : state.stock.user.name,
-																password : state.stock.user.password
-															}
-														}, function (response) {
-															if ( response.return ) {
-																state.stock.user.loged_in = true;
-															} else {
-																state.stock.user.notification = "Wrong password or name or both";
-															}
-														},"json");
-													}
-												}
-											},
-											self : '<div class="stock_log_submit">Go</div>'
-										}
-									}
-								},
+								// 						$.get(ajaxurl, {
+								// 							action : "get_account",
+								// 							method : "does_admin_user_exist",
+								// 							paramaters : {
+								// 								name     : state.stock.user.name,
+								// 								password : state.stock.user.password
+								// 							}
+								// 						}, function (response) {
+								// 							if ( response.return ) {
+								// 								state.stock.user.loged_in = true;
+								// 							} else {
+								// 								state.stock.user.notification = "Wrong password or name or both";
+								// 							}
+								// 						},"json");
+								// 					}
+								// 				}
+								// 			},
+								// 			self : '<div class="stock_log_submit">Go</div>'
+								// 		}
+								// 	}
+								// },
 								freepost : {
 									instructions : {
 										observe : {
@@ -6228,8 +6253,7 @@
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) {
-
-																if ( change.event.target.className !== "stock_freepost_ticket_done" ) return;
+																if ( !change.event.target.getAttribute("data-type-ticket-remove") ) return;
 																if ( confirm("Delete this freepost request?") ) {
 																	$.post(ajaxurl, {
 																		action : "set_ticket",
@@ -6266,7 +6290,7 @@
 																			'<div class="stock_freepost_ticket_column">'+      ticket.town       +'</div>'+
 																			'<div class="stock_freepost_ticket_column">'+    ticket.area       +'</div>'+
 																			'<div class="stock_freepost_ticket_column">'+ ticket.post_code  +'</div>'+
-																			'<div id="'+ ticket.id +'" class="stock_freepost_ticket_column">Done</div>'+
+																			'<div id="'+ ticket.id +'" data-type-ticket-remove="true" class="stock_freepost_ticket_column_link">Done</div>'+
 																		'</div>').appendTo(items);
 																	};
 																}, "json");
@@ -6657,6 +6681,20 @@
 																		}
 																	}
 																},
+															}
+														},
+														add : {
+															self   : '<div class="stock_book_options_add_book_wrap"></div>',
+															branch : {
+																condition : {
+																	self : '<input type="text" class="stock_book_options_add_book_input" placeholder="Condition">'
+																},
+																isbn   : {
+																	self : '<input type="text" class="stock_book_options_add_book_input" placeholder="ISBN">'
+																},
+																submit : {
+																	self : '<div class="stock_book_options_add_book_button">Submit</div>'
+																}
 															}
 														},
 														export_table : {

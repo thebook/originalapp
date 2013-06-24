@@ -45,3 +45,11 @@
 .stock_freepost_ticket_column {
 	@extend.stock_freepost_ticket_part;
 }
+
+.stock_freepost_ticket_column_link { 
+	@extend.stock_freepost_ticket_column;
+	cursor: pointer;
+	&:hover { 
+		text-decoration: underline;
+	}
+}

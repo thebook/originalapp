@@ -46,37 +46,24 @@
 	display: inline-block;
 }
 
-.stock_book_header {
-	width: 100%;
-	float: left;
-	margin: 7px 0;
+.stock_book_options_add_book_wrap {
+	@extend.stock_book_upload_wrap;
 }
 
-.stock_book_header_part {
-	float  : left;
-	display: inline-block;
-	width  : 6.5%;
-	font-weight: bold;
+.stock_book_options_add_book_input { 
+	@extend.stock_input;
+	float: left;
+}
+
+.stock_book_options_add_book_button { 
+	@extend.stock_button;
+	float: left;
 }
 
 .stock_book_part {
 	float  : left;
 	display: inline-block;
 	width  : 6.5%;
-}
- 
-.stock_book_options_small_input {
-	margin-left: 10px;
-	width: 35px;
-	border: 1px solid $black_gray;
-	background: $light_monochrome;
-	padding-top: 2px;
-	padding-bottom: 3px;
-}
-
-.stock_book_options_input {
-	@extend.stock_book_options_small_input;
-	width: 100px;
 }
 
 .stock_book_information {
