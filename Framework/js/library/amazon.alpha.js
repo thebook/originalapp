@@ -3,7 +3,7 @@ var alpha = (function ( alpha, $ ) {
 	alpha.pure_amazon_search = function (wake, callback) {
 
 		var self = this;
-		wake.     = wake.search_by     || 'keywords';
+		wake.search_by     = wake.search_by     || 'keywords';
 		wake.search_for    = wake.search_for    || 'books';
 		wake.filter_name   = wake.filter_name   || 'tiny';
 		wake.bus_algorithm = wake.bus_algorithm || false;
