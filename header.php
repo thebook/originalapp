@@ -434,13 +434,11 @@
 
 												}, "json");
 											} else {
-												state.process.log_in   = false;
 												state.password.mistake = "Wrong password";
 											}
 										} 	
 										else { 
-											state.process.log_in   = false;
-											state.password.mistake = "Username does not exist";
+											state.password.mistake = "Username "+ state.account.email +" does not exist";
 										}
 									}, 
 									"json");
@@ -870,6 +868,17 @@
 						load : {
 							instructions : {
 								observers : [
+									{
+										who      : state.password,
+										property : "mistake",
+										call     : function (change) {
+
+											animate.load     = change.new;
+											setTimeout(function () {
+												animate.load = false;
+											}, 2000 );
+										}
+									},
 									{
 										who      : state.process,
 										property : "search",
