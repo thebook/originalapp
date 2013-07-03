@@ -10,9 +10,11 @@ var alpha = (function ( alpha, $ ) {
 		wake.self.table.wake = {
 			column_width : wake.column_width,
 			column_number: wake.column_number-1,
+			row_height   : wake.row_height,
 			class_names  : wake.class_names,
 			length       : wake.column_number * wake.column_width,
-			number_of_columns_that_can_show : Math.floor(wake.self.clientWidth/wake.column_width)-1
+			number_of_columns_that_can_show : Math.floor(wake.self.clientWidth/wake.column_width)-1,
+			number_of_rows_that_can_show    : Math.floor(wake.table_height/wake.row_height)-1
 		};
 		wake.self.table.visible = {
 			column : {
@@ -21,7 +23,7 @@ var alpha = (function ( alpha, $ ) {
 			},
 			row : {
 				top    : 0,
-				bottom : 0
+				bottom : wake.self.table.wake.number_of_rows_that_can_show
 			}
 		};
 		wake.self.table.change = {
@@ -84,6 +86,7 @@ var alpha = (function ( alpha, $ ) {
 					stuff   : "stuff"
 				},
 		];
+		console.log("rows that can show");
 		console.log(this.self.table);
 
 		this.self.insertAdjacentHTML("afterbegin", 
@@ -119,7 +122,15 @@ var alpha = (function ( alpha, $ ) {
 			object   : this.self.table.visible,
 			property : "column",
 			observer : function (change) {
-				prototype.visible_area_mover(change);
+				prototype.move_visisble_area_by_x_axis(change);
+			}
+		});
+
+		new alpha.observe({
+			object   : this.self.table.visible,
+			property : "row",
+			observer : function (change) {
+				prototype.move_visisble_area_by_y_axis(change);
 			}
 		});
 
@@ -127,16 +138,33 @@ var alpha = (function ( alpha, $ ) {
 			object   : this.self.table.change.value,
 			property : "value",
 			observer : function (change) {
-				prototype.submit_changed_value();
+				prototype.submit_changed_value(change);
 			}
 		});
 
 		this.popuplate_table_rows();
 	};
 
-	alpha.table.prototype.visible_area_mover = function (change) {
-		this
-		console.log(this.self.firstChild);
+	alpha.table.prototype.move_visisble_area_by_y_axis = function (change) {
+
+		var shift_by_this_much;
+
+		shift_by_this_much = 0 - ( this.self.table.wake.row_height * change.new.top );
+		this.self.firstChild.style.top = shift_by_this_much +"px";
+	};
+
+	alpha.table.prototype.move_visisble_area_by_x_axis = function (change) {
+
+		var shift_by_this_much;
+
+		shift_by_this_much = 0 - ( this.get_width_of_the_hidden_column() * change.new.left );
+		this.self.firstChild.style.left = shift_by_this_much +"px";
+	};
+
+	alpha.table.prototype.get_width_of_the_hidden_column = function () { 
+
+		var column_number = this.self.table.visible.column.right + this.self.table.visible.column.left - 1;
+		return this.self.firstChild.children[column_number].clientWidth;
 	};
 
 	alpha.table.prototype.visible_area_calculator = function (change) {
@@ -155,7 +183,21 @@ var alpha = (function ( alpha, $ ) {
 			};
 		}
 
-		console.log(this.self.table.visible.column);
+		if ( change.new.row < this.self.table.visible.row.top ) { 
+			this.self.table.visible.row = {
+				top    : change.new.row,
+				bottom : this.self.table.wake.number_of_rows_that_can_show+change.new.row
+			};
+		}
+
+		if ( change.new.row > this.self.table.visible.row.bottom ) { 
+			this.self.table.visible.row = {
+				top    : change.new.row-this.self.table.wake.number_of_rows_that_can_show,
+				bottom : change.new.row
+			};
+		}
+
+		console.log(this.self.table.visible.row);
 	};
 
 	alpha.table.prototype.field_selection_value_changer = function (event) {
@@ -198,8 +240,6 @@ var alpha = (function ( alpha, $ ) {
 			if ( event.target.tagName !== "TEXTAREA" ) return;
 			this.come_into_field_editing(event.target);
 		}
-
-		console.log(this.self.table.selected.current);
 	};
 
 	alpha.table.prototype.change_selected_field_based_on_current_position = function (direction) {
@@ -257,7 +297,7 @@ var alpha = (function ( alpha, $ ) {
 	};
 
 	alpha.table.prototype.submit_changed_value = function () { 
-		console.log("change");
+		console.log("submit change");
 		console.log(this.self.table.change.value.value);
 	};
 

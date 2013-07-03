@@ -6113,18 +6113,18 @@
 											},
 											self : '<div class="stock_bar_navigation">Book</div>'
 										},
-										// table : {
-										// 	instructions : {
-										// 		on : {
-										// 			the_event : "click",
-										// 			is_asslep : false,
-										// 			call      : function (change) {
-										// 				state.stock.page = "table";
-										// 			}
-										// 		}
-										// 	},
-										// 	self : '<div class="stock_bar_navigation">Table</div>'
-										// }
+										table : {
+											instructions : {
+												on : {
+													the_event : "click",
+													is_asslep : false,
+													call      : function (change) {
+														state.stock.page = "table";
+													}
+												}
+											},
+											self : '<div class="stock_bar_navigation">Table</div>'
+										}
 									}
 								},
 								// log : {
@@ -6348,6 +6348,8 @@
 															new alpha.table({
 																self         : this.self[0],
 																column_width : 150,
+																row_height   : 100,
+																table_height : 400,
 																column_number: 6,
 																submit : {
 
