@@ -6348,26 +6348,39 @@
 															new alpha.table({
 																self         : this.self[0],
 																column_width : 150,
-																row_height   : 100,
-																table_height : 400,
+																row_height   : 120,
+																table_height : 500,
 																column_number: 6,
 																submit : {
 
 																},
 																// column_width : 171,
-																// columns : [
-																// 	"id",
-																// 	"email",
-																// 	"first_name",
-																// 	"second_name",
-																// 	"address",
-																// 	"post_code",
-																// 	"town",
-																// 	"area",
-																// 	"date"
-																// ],
+																columns : [
+																	"id",
+																	"email",
+																	"first name",
+																	"second name",
+																	"address",
+																	"post code",
+																],
+																submision_column_names : [
+																	"id",
+																	"email",
+																	"first_name",
+																	"second_name",
+																	"address",
+																	"post_code",
+																],
+																submit_field_callback : function (data) {
+																	console.log(data);
+																},	
 																class_names : {
-																	table_wrap : "stock_table_move_wrap",
+																	row_options  : "stock_table_row_options",
+																	row_option   : "stock_table_row_option",
+																	selected_row : "stock_table_row_option_selected",
+																	table_titles : "stock_table_titles",
+																	title        : "stock_table_title",
+																	table_wrap   : "stock_table_move_wrap",
 																	head  : "stock_table_title",
 																	field : "stock_table_field"
 																}

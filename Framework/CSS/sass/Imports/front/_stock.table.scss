@@ -6,9 +6,10 @@
 }
 
 .stock_table { 
-	width : 100%;
-	height: 400px;
-	float : left;
+	width   : 100%;
+	height  : 500px;
+	padding-top: 120px;
+	float   : left;
 }
 
 .stock_table_move_wrap { 
@@ -18,20 +19,52 @@
 }
 
 .stock_table_titles {
-	width: auto;
-	float: left;
-	margin-bottom: 20px;
+	width         : auto;
+	float         : left;
+	position      : absolute;
+	margin-top    : -34px;
+	background    : $light_monochrome;
+	// margin-bottom : -34px;
 }
 
 .stock_table_title {
-	display: inline-block;
-	float: left;
-	width: 171px;
+	display   : inline-block;
+	font-size : 14px;
+	float     : left;
+	width     : 130px;
+	padding   : 10px;
+	text-transform: uppercase;
 }
 
-.stock_table_row {
-
+.stock_table_row_options {
+	width   : 20px;
+	position: absolute;
+	margin-left: -40px;
 }
+
+.stock_table_row_option { 
+	float     : left;
+	margin    : 51px 0;
+	border    : 3px solid $black_gray;
+	width     : 12px;
+	height    : 12px;
+	cursor    : pointer;
+	@include border-radius(50px);
+	&:hover { 
+		background: $black_gray;
+	}
+} 
+
+.stock_table_row_option_selected { 
+	float     : left;
+	background: $black_gray;
+	margin    : 51px 0;
+	border    : 3px solid $black_gray;
+	width     : 12px;
+	height    : 12px;
+	cursor    : pointer;
+	@include border-radius(50px);
+} 
 
 .stock_table_field {
 	background : none;

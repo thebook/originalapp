@@ -8,6 +8,8 @@ var alpha = (function ( alpha, $ ) {
 		this.self = wake.self;
 		wake.self.table = {};
 		wake.self.table.wake = {
+			submit_field_callback : wake.submit_field_callback,
+			columns      : wake.columns,
 			column_width : wake.column_width,
 			column_number: wake.column_number-1,
 			row_height   : wake.row_height,
@@ -15,6 +17,10 @@ var alpha = (function ( alpha, $ ) {
 			length       : wake.column_number * wake.column_width,
 			number_of_columns_that_can_show : Math.floor(wake.self.clientWidth/wake.column_width)-1,
 			number_of_rows_that_can_show    : Math.floor(wake.table_height/wake.row_height)-1
+		};
+		wake.self.table.component = {
+			box    : "",
+			titles : ""
 		};
 		wake.self.table.visible = {
 			column : {
@@ -44,6 +50,8 @@ var alpha = (function ( alpha, $ ) {
 				row    : 0
 			}
 		};
+		wake.self.table.selected_rows = [];
+		wake.self.table.submision_column_names = wake.submision_column_names,
 		wake.self.table.rows = [
 				{
 					id    : 1,
@@ -85,13 +93,51 @@ var alpha = (function ( alpha, $ ) {
 					place   : "THe place",
 					stuff   : "stuff"
 				},
+				{
+					id : 1,
+					email : "some@email",
+					address : "30 THe Grange",
+					town    : "Cardiff",
+					place   : "THe place",
+					stuff   : "stuff"
+				},	{
+					id : 1,
+					email : "some@email",
+					address : "30 THe Grange",
+					town    : "Cardiff",
+					place   : "THe place",
+					stuff   : "stuff"
+				},	{
+					id : 1,
+					email : "some@email",
+					address : "30 THe Grange",
+					town    : "Cardiff",
+					place   : "THe place",
+					stuff   : "stuff"
+				},	{
+					id : 1,
+					email : "some@email",
+					address : "30 THe Grange",
+					town    : "Cardiff",
+					place   : "THe place",
+					stuff   : "stuff"
+				},
 		];
-		console.log("rows that can show");
-		console.log(this.self.table);
+
+		// this.self.style.height = ( this.self.table.wake.number_of_rows_that_can_show * this.self.table.wake.row_height ) +"px";
 
 		this.self.insertAdjacentHTML("afterbegin", 
+			'<div style="width:'+ this.self.table.wake.length                   +'px;"'+
+			'class="'+            this.self.table.wake.class_names.table_titles +'"></div>'+
+			'<div '+
+			'class="'+            this.self.table.wake.class_names.row_options +'">'+
+			'</div>'+
 			'<div style="width:'+ this.self.table.wake.length                 +'px;"'+
-			'class="'+            this.self.table.wake.class_names.table_wrap +'">');
+			'class="'+            this.self.table.wake.class_names.table_wrap +'"></div>');
+
+		this.self.table.component.titles      = this.self.children[0];
+		this.self.table.component.row_options = this.self.children[1];
+		this.self.table.component.box         = this.self.children[2];
 
 		this.self.addEventListener("keydown", function (event) {
 			prototype.keypress_handler(event);
@@ -99,7 +145,8 @@ var alpha = (function ( alpha, $ ) {
 
 		this.self.addEventListener("click", function (event) {
 
-			prototype.field_selection_value_changer(event);
+			if ( event.target.tagName === "TEXTAREA" )           prototype.field_selection_value_changer(event);
+			if ( event.target.getAttribute("data-type-option") ) prototype.option_interaction(event);
 			if ( event.target !== prototype.self.table.change.value.selected ) prototype.come_out_of_field_editing();
 		});
 
@@ -143,6 +190,28 @@ var alpha = (function ( alpha, $ ) {
 		});
 
 		this.popuplate_table_rows();
+		this.popuplate_table_titles();
+
+	};
+
+	alpha.table.prototype.option_interaction = function (change) {
+
+		var row_number, index_of_row;
+
+		row_number = parseInt(change.target.getAttribute("data-type-row"));
+
+		if ( change.target.className === this.self.table.wake.class_names.selected_row ) {
+
+			change.target.className = this.self.table.wake.class_names.row_option;
+			change.target.setAttribute("title", "unselect row");
+			index_of_row = this.self.table.selected_rows.indexOf(row_number);
+			this.self.table.selected_rows.splice(index_of_row, 1);
+		} else { 
+
+			change.target.className = this.self.table.wake.class_names.selected_row;
+			change.target.setAttribute("title", "select row");
+			this.self.table.selected_rows.push(row_number);
+		}
 	};
 
 	alpha.table.prototype.move_visisble_area_by_y_axis = function (change) {
@@ -150,7 +219,8 @@ var alpha = (function ( alpha, $ ) {
 		var shift_by_this_much;
 
 		shift_by_this_much = 0 - ( this.self.table.wake.row_height * change.new.top );
-		this.self.firstChild.style.top = shift_by_this_much +"px";
+		this.self.table.component.box.style.top = shift_by_this_much +"px";
+		this.self.table.component.row_options.style.marginTop = shift_by_this_much +"px";
 	};
 
 	alpha.table.prototype.move_visisble_area_by_x_axis = function (change) {
@@ -158,13 +228,14 @@ var alpha = (function ( alpha, $ ) {
 		var shift_by_this_much;
 
 		shift_by_this_much = 0 - ( this.get_width_of_the_hidden_column() * change.new.left );
-		this.self.firstChild.style.left = shift_by_this_much +"px";
+		this.self.table.component.box.style.left = shift_by_this_much +"px";
+		this.self.table.component.titles.style.marginLeft = shift_by_this_much +"px";
 	};
 
 	alpha.table.prototype.get_width_of_the_hidden_column = function () { 
 
 		var column_number = this.self.table.visible.column.right + this.self.table.visible.column.left - 1;
-		return this.self.firstChild.children[column_number].clientWidth;
+		return this.self.table.component.box.children[column_number].clientWidth;
 	};
 
 	alpha.table.prototype.visible_area_calculator = function (change) {
@@ -196,8 +267,6 @@ var alpha = (function ( alpha, $ ) {
 				bottom : change.new.row
 			};
 		}
-
-		console.log(this.self.table.visible.row);
 	};
 
 	alpha.table.prototype.field_selection_value_changer = function (event) {
@@ -296,9 +365,11 @@ var alpha = (function ( alpha, $ ) {
 		});
 	};
 
-	alpha.table.prototype.submit_changed_value = function () { 
-		console.log("submit change");
-		console.log(this.self.table.change.value.value);
+	alpha.table.prototype.submit_changed_value = function (change) { 
+		this.self.table.wake.submit_field_callback({
+			row         : this.self.table.rows[this.self.table.selected.current.row],
+			column_name : this.self.table.submision_column_names[this.self.table.selected.current.column],
+		});
 	};
 
 	alpha.table.prototype.table_field_factory = function (wake) { 
@@ -314,13 +385,49 @@ var alpha = (function ( alpha, $ ) {
 		'</textarea>';
 	};
 
+	alpha.table.prototype.popuplate_table_row_options = function () { 
+
+		var options, index;
+
+		index   = 0;
+		options = "";
+
+		this.empty(this.self.table.component.row_options);
+		this.self.table.component.row_options.style.height = ( this.self.table.rows.length * this.self.table.wake.row_height ) +"px";
+
+		for (; index < this.self.table.rows.length; index++) {			
+			options += '<div data-type-row="'+ index +'" data-type-option="true" '+
+					   'title="select row" class="'+ this.self.table.wake.class_names.row_option +'"></div>';
+		};
+
+		this.self.table.component.row_options.insertAdjacentHTML("afterbegin", options );
+	};
+
+	alpha.table.prototype.popuplate_table_titles = function () { 
+
+		var index, titles;
+
+		index  = 0;
+		titles = "";
+
+		for (; index < this.self.table.wake.columns.length; index++) {
+			titles += '<div class="'+ this.self.table.wake.class_names.title +'">'+ 
+				this.self.table.wake.columns[index] +
+			'</div>';
+		};
+
+		this.self.table.component.titles.insertAdjacentHTML("afterbegin", titles );
+	};
+
 	alpha.table.prototype.popuplate_table_rows = function () { 
 
 		var column_number, rows, column_name;
 		
 		rows = "";
 
-		while ( this.self.firstChild.firstChild ) this.self.removeChild(this.self.firstChild.firstChild);
+		this.empty(this.self.table.component.box);
+		this.self.table.selected_rows = [];
+		// while ( this.self.firstChild.firstChild ) this.self.removeChild(this.self.firstChild.firstChild);
 
 		for (var index = 0; index < this.self.table.rows.length; index++) {
 
@@ -337,8 +444,12 @@ var alpha = (function ( alpha, $ ) {
 			}
 		};
 
-		this.self.firstChild.insertAdjacentHTML("afterbegin", rows );
+		this.self.table.component.box.insertAdjacentHTML("afterbegin", rows );
+		this.popuplate_table_row_options();
+	};
 
+	alpha.table.prototype.empty = function (what) {
+		while ( what.firstChild ) what.removeChild(what.firstChild);
 	};
 
 	return alpha;
