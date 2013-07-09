@@ -2,12 +2,15 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.table = function (wake) {
 
+		if ( wake.self.table ) return;
+
 		var prototype;
 
 		prototype = this;
 		this.self = wake.self;
 		wake.self.table = {};
 		wake.self.table.wake = {
+			width        : wake.columns.length * wake.column_width,
 			submit_field_callback : wake.submit_field_callback,
 			columns      : wake.columns,
 			column_width : wake.column_width,
@@ -51,88 +54,100 @@ var alpha = (function ( alpha, $ ) {
 			}
 		};
 		wake.self.table.selected_rows = [];
+		wake.self.table.set_rows      = function (rows) {
+			prototype.set_rows.call(prototype, rows);
+		};
+		wake.self.table.remove_rows   = function (rows) {
+			prototype.remove_rows.call(prototype, rows);
+		};
+
+		wake.self.table.get_selected_rows   = function (rows) {
+			return prototype.get_selected_rows.call(prototype);
+		};
 		wake.self.table.submision_column_names = wake.submision_column_names,
-		wake.self.table.rows = [
-				{
-					id    : 1,
-					email   : "some@email",
-					address : "30 THe Grange",
-					town    : "Cardiff",
-					place   : "THe place",
-					stuff   : "stuff"
-				},
-				{
-					id : 1,
-					email : "some@email",
-					address : "30 THe Grange",
-					town    : "Cardiff",
-					place   : "THe place",
-					stuff   : "stuff"
-				},
-				{
-					id : 1,
-					email : "some@email",
-					address : "30 THe Grange",
-					town    : "Cardiff",
-					place   : "THe place",
-					stuff   : "stuff"
-				},
-				{
-					id : 1,
-					email : "some@email",
-					address : "30 THe Grange",
-					town    : "Cardiff",
-					place   : "THe place",
-					stuff   : "stuff"
-				},
-				{
-					id : 1,
-					email : "some@email",
-					address : "30 THe Grange",
-					town    : "Cardiff",
-					place   : "THe place",
-					stuff   : "stuff"
-				},
-				{
-					id : 1,
-					email : "some@email",
-					address : "30 THe Grange",
-					town    : "Cardiff",
-					place   : "THe place",
-					stuff   : "stuff"
-				},	{
-					id : 1,
-					email : "some@email",
-					address : "30 THe Grange",
-					town    : "Cardiff",
-					place   : "THe place",
-					stuff   : "stuff"
-				},	{
-					id : 1,
-					email : "some@email",
-					address : "30 THe Grange",
-					town    : "Cardiff",
-					place   : "THe place",
-					stuff   : "stuff"
-				},	{
-					id : 1,
-					email : "some@email",
-					address : "30 THe Grange",
-					town    : "Cardiff",
-					place   : "THe place",
-					stuff   : "stuff"
-				},
-		];
+		wake.self.table.rows = [];
+
+		// wake.self.table.rows = [
+		// 		{
+		// 			id    : 1,
+		// 			email   : "some@email",
+		// 			address : "30 THe Grange",
+		// 			town    : "Cardiff",
+		// 			place   : "THe place",
+		// 			stuff   : "stuff"
+		// 		},
+		// 		{
+		// 			id : 1,
+		// 			email : "some@email",
+		// 			address : "30 THe Grange",
+		// 			town    : "Cardiff",
+		// 			place   : "THe place",
+		// 			stuff   : "stuff"
+		// 		},
+		// 		{
+		// 			id : 1,
+		// 			email : "some@email",
+		// 			address : "30 THe Grange",
+		// 			town    : "Cardiff",
+		// 			place   : "THe place",
+		// 			stuff   : "stuff"
+		// 		},
+		// 		{
+		// 			id : 1,
+		// 			email : "some@email",
+		// 			address : "30 THe Grange",
+		// 			town    : "Cardiff",
+		// 			place   : "THe place",
+		// 			stuff   : "stuff"
+		// 		},
+		// 		{
+		// 			id : 1,
+		// 			email : "some@email",
+		// 			address : "30 THe Grange",
+		// 			town    : "Cardiff",
+		// 			place   : "THe place",
+		// 			stuff   : "stuff"
+		// 		},
+		// 		{
+		// 			id : 1,
+		// 			email : "some@email",
+		// 			address : "30 THe Grange",
+		// 			town    : "Cardiff",
+		// 			place   : "THe place",
+		// 			stuff   : "stuff"
+		// 		},	{
+		// 			id : 1,
+		// 			email : "some@email",
+		// 			address : "30 THe Grange",
+		// 			town    : "Cardiff",
+		// 			place   : "THe place",
+		// 			stuff   : "stuff"
+		// 		},	{
+		// 			id : 1,
+		// 			email : "some@email",
+		// 			address : "30 THe Grange",
+		// 			town    : "Cardiff",
+		// 			place   : "THe place",
+		// 			stuff   : "stuff"
+		// 		},	{
+		// 			id : 1,
+		// 			email : "some@email",
+		// 			address : "30 THe Grange",
+		// 			town    : "Cardiff",
+		// 			place   : "THe place",
+		// 			stuff   : "stuff"
+		// 		},
+		// ];
 
 		// this.self.style.height = ( this.self.table.wake.number_of_rows_that_can_show * this.self.table.wake.row_height ) +"px";
 
 		this.self.insertAdjacentHTML("afterbegin", 
-			'<div style="width:'+ this.self.table.wake.length                   +'px;"'+
+			'<div style="width:'+ this.self.table.wake.width                   +'px;"'+
 			'class="'+            this.self.table.wake.class_names.table_titles +'"></div>'+
 			'<div '+
 			'class="'+            this.self.table.wake.class_names.row_options +'">'+
 			'</div>'+
-			'<div style="width:'+ this.self.table.wake.length                 +'px;"'+
+			'<div style="width:'+ this.self.table.wake.width                 +'px;"'+
 			'class="'+            this.self.table.wake.class_names.table_wrap +'"></div>');
 
 		this.self.table.component.titles      = this.self.children[0];
@@ -192,6 +207,44 @@ var alpha = (function ( alpha, $ ) {
 		this.popuplate_table_rows();
 		this.popuplate_table_titles();
 
+	};
+
+	alpha.table.prototype.set_rows    = function (rows) {
+		this.self.table.rows = rows;
+		this.popuplate_table_rows();
+	};
+
+	alpha.table.prototype.remove_rows = function (rows_to_be_removed) {
+
+		var rows, index, row;
+
+		rows  = [];
+		index = 0;
+
+		for (; index < this.self.table.rows.length; index++) {
+			if ( rows_to_be_removed.indexOf(index) < 0 ) {
+				row = this.self.table.rows.slice(index, index+1);
+				rows.push(row[0]);
+			}
+		};
+		
+		this.self.table.rows = rows;
+		this.popuplate_table_rows();
+	};
+
+	alpha.table.prototype.get_selected_rows  = function () {
+		
+		var index, rows, row_number, row;
+
+		index = 0;
+		rows  = [];
+		for (; index < this.self.table.selected_rows.length; index++) {
+			row_number = this.self.table.selected_rows[index];
+			row        = this.self.table.rows[row_number];
+			rows.push(row);
+		}
+
+		return rows;
 	};
 
 	alpha.table.prototype.option_interaction = function (change) {
@@ -366,7 +419,11 @@ var alpha = (function ( alpha, $ ) {
 	};
 
 	alpha.table.prototype.submit_changed_value = function (change) { 
+
+		// should be some method here to check if it has changed at all
+
 		this.self.table.wake.submit_field_callback({
+			value       : change.new,
 			row         : this.self.table.rows[this.self.table.selected.current.row],
 			column_name : this.self.table.submision_column_names[this.self.table.selected.current.column],
 		});

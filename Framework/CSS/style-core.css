@@ -4488,6 +4488,12 @@ body {
   .stock_button:hover, .stock_book_options_button:hover, .stock_book_options_add_book_button:hover {
     text-decoration: underline; }
 
+.stock_button_dropdown {
+  position: relative;
+  margin-top: 14px; }
+  .stock_button_dropdown:hover {
+    text-decoration: underline; }
+
 .stock_input, .stock_book_options_add_book_input {
   margin-right: 10px;
   font-family: inherit;

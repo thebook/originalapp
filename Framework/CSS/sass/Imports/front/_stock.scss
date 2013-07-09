@@ -32,6 +32,15 @@
 	cursor         : pointer;
 	margin         : 8px 10px 8px 0;
 	display        : inline-block;
+	// overflow       : hidden;
+	&:hover { 
+		text-decoration: underline;
+	}
+}
+
+.stock_button_dropdown { 
+	position  : relative;
+	margin-top: 14px;
 	&:hover { 
 		text-decoration: underline;
 	}

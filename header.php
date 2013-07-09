@@ -6224,95 +6224,217 @@
 											}
 										}
 									},
-									self : '<div class="stock_freepost"></div>',
+									self   : '<div class="stock_table_wrap"></div>',
 									branch : {
-										ticket : {
-											self : '<div class="stock_freepost_ticket"></div>',
+										controls : {
+											self   : '<div class="stock_table_controls"></div>',
 											branch : {
-												header : {
-													self : '<div class="stock_freepost_ticket_header"></div>',
-													branch : {
-														user : {
-															self : '<div class="stock_freepost_ticket_header_column">user</div>',
-														},
-														email : {
-															self : '<div class="stock_freepost_ticket_header_column">email</div>',
-														},
-														count : {
-															self : '<div class="stock_freepost_ticket_header_column">count</div>',
-														},
-														name : {
-															self : '<div class="stock_freepost_ticket_header_column">Name</div>',
-														},
-														address :{
-															self : '<div class="stock_freepost_ticket_header_column">Address</div>'
-														},
-														town : {
-															self : '<div class="stock_freepost_ticket_header_column">Town</div>'
-														},
-														country : {
-															self : '<div class="stock_freepost_ticket_header_column">Country</div>'
-														},
-														post_code : {
-															self : '<div class="stock_freepost_ticket_header_column">Post Code</div>'
-														},
-														ticked : {
-															self : '<div class="stock_freepost_ticket_header_column">Sent?</div>'
-														}
-													}
-												},
-												requests : {
+												actions : {
 													instructions : {
 														on : {
 															the_event : "click",
 															is_asslep : false,
 															call      : function (change) {
-																if ( !change.event.target.getAttribute("data-type-ticket-remove") ) return;
-																if ( confirm("Delete this freepost request?") ) {
-																	$.post(ajaxurl, {
-																		action : "set_ticket",
-																		method : "remove_freepost",
-																		paramaters : {
-																			id : change.event.target.id
-																		}
-																	}, function () {}, "json");
-																	$(change.event.target).parent().empty().remove();
-																}
-															}
-														},
-														observe : {
-															who      : state.stock,
-															property : "page",
-															call     : function (change) {
-																if ( change.new !== "freepost" ) return;
-																$.get(ajaxurl, {
-																	action     : "get_ticket",
-																	method     : "freepost_with_user_ids",
-																	paramaters : {}
-																}, function (response) {
 
-																	var items = world.wrap.branch.stock.branch.freepost.branch.ticket.branch.requests.self;
+																var table, rows, index, row_ids;
 
-																	for (var index = 0; index < response.return.length; index++) {
-																		var ticket = response.return[index];
-																		$('<div class="stock_freepost_ticket">'+
-																			'<div class="stock_freepost_ticket_column">'+        ticket.user       +'</div>'+
-																			'<div class="stock_freepost_ticket_column">'+        ticket.email       +'</div>'+
-																			'<div class="stock_freepost_ticket_column">'+     ticket.book_count +'</div>'+
-																			'<div class="stock_freepost_ticket_column">'+      ticket.first_name +', '+ ticket.second_name +'</div>'+
-																			'<div class="stock_freepost_ticket_column">'+   ticket.address    +'</div>'+
-																			'<div class="stock_freepost_ticket_column">'+      ticket.town       +'</div>'+
-																			'<div class="stock_freepost_ticket_column">'+    ticket.area       +'</div>'+
-																			'<div class="stock_freepost_ticket_column">'+ ticket.post_code  +'</div>'+
-																			'<div id="'+ ticket.id +'" data-type-ticket-remove="true" class="stock_freepost_ticket_column_link">Done</div>'+
-																		'</div>').appendTo(items);
-																	};
+																index   = 0;
+																table   = world.wrap.branch.stock.branch.freepost.branch.table.self[0];
+																rows    = table.table.get_selected_rows();
+																row_ids = [];
+
+																for (; index < rows.length; index++ ) row_ids.push(rows[index].id);
+
+																$.post(ajaxurl, {
+																	action : "set_ticket",
+																	method : "remove_freeposts",
+																	paramaters : {
+																		ids : row_ids
+																	}
+																}, function () {
+																	table.table.remove_rows(table.table.selected_rows);
 																}, "json");
 															}
 														}
 													},
-													self   : '<div class="stock_freepost_ticket_requests"></div>'
+													self   : '<div class="stock_button">Remove</div>',
+												},
+												load : {
+													instructions : {
+														on : {
+															the_event : "click",
+															is_asslep : false,
+															call      : function (change) {
+
+																var table;
+																table = world.wrap.branch.stock.branch.freepost.branch.table.self[0];
+
+																$.get(ajaxurl, {
+																	action : "get_ticket",
+																	method : "freepost"
+																}, function (response) { 
+																	table.table.set_rows(response.return);
+																}, "json");
+															}
+														}
+													},
+													self : '<div class="stock_button">Load</div>',
+
 												}
+											}
+										},
+										table : {
+											instructions : {
+												observe : {
+													who      : state.stock,
+													property : "page",
+													call     : function (change) {
+														if ( change.new !== "freepost" || this.self[0].table ) return;
+
+														new alpha.table({
+															self         : this.self[0],
+															column_width : 150,
+															row_height   : 120,
+															table_height : 500,
+															column_number: 9,
+															columns      : [
+																"id",
+																"email",
+																"first name",
+																"second name",
+																"address",
+																"post code",
+																"town",
+																"area",
+																"date"
+															],
+															submision_column_names : [
+																"id",
+																"email",
+																"first_name",
+																"second_name",
+																"address",
+																"post_code",
+																"town",
+																"area",
+																"date"
+															],
+															submit_field_callback : function (data) {
+
+																if ( data.column_name === "id" ) return;
+																$.post(ajaxurl, { 
+																	action     : "set_ticket",
+																	method     : "freepost_ticket_value",
+																	paramaters : {
+																		field : data.column_name,
+																		value : data.value,
+																		ticket: data.row["id"]
+																	}
+																}, function (response) {
+																	console.log(response);
+																}, "json");
+
+															},	
+															class_names : {
+																row_options  : "stock_table_row_options",
+																row_option   : "stock_table_row_option",
+																selected_row : "stock_table_row_option_selected",
+																table_titles : "stock_table_titles",
+																title        : "stock_table_title",
+																table_wrap   : "stock_table_move_wrap",
+																head  : "stock_table_title",
+																field : "stock_table_field"
+															}
+														});
+													}
+												}
+											},
+											self : '<div id="freepost_table" class="stock_table"></div>',
+											branch : {
+												// header : {
+												// 	self : '<div class="stock_freepost_ticket_header"></div>',
+												// 	branch : {
+												// 		user : {
+												// 			self : '<div class="stock_freepost_ticket_header_column">user</div>',
+												// 		},
+												// 		email : {
+												// 			self : '<div class="stock_freepost_ticket_header_column">email</div>',
+												// 		},
+												// 		count : {
+												// 			self : '<div class="stock_freepost_ticket_header_column">count</div>',
+												// 		},
+												// 		name : {
+												// 			self : '<div class="stock_freepost_ticket_header_column">Name</div>',
+												// 		},
+												// 		address :{
+												// 			self : '<div class="stock_freepost_ticket_header_column">Address</div>'
+												// 		},
+												// 		town : {
+												// 			self : '<div class="stock_freepost_ticket_header_column">Town</div>'
+												// 		},
+												// 		country : {
+												// 			self : '<div class="stock_freepost_ticket_header_column">Country</div>'
+												// 		},
+												// 		post_code : {
+												// 			self : '<div class="stock_freepost_ticket_header_column">Post Code</div>'
+												// 		},
+												// 		ticked : {
+												// 			self : '<div class="stock_freepost_ticket_header_column">Sent?</div>'
+												// 		}
+												// 	}
+												// },
+												// requests : {
+												// 	instructions : {
+												// 		on : {
+												// 			the_event : "click",
+												// 			is_asslep : false,
+												// 			call      : function (change) {
+												// 				if ( !change.event.target.getAttribute("data-type-ticket-remove") ) return;
+												// 				if ( confirm("Delete this freepost request?") ) {
+												// 					$.post(ajaxurl, {
+												// 						action : "set_ticket",
+												// 						method : "remove_freepost",
+												// 						paramaters : {
+												// 							id : change.event.target.id
+												// 						}
+												// 					}, function () {}, "json");
+												// 					$(change.event.target).parent().empty().remove();
+												// 				}
+												// 			}
+												// 		},
+												// 		observe : {
+												// 			who      : state.stock,
+												// 			property : "page",
+												// 			call     : function (change) {
+												// 				if ( change.new !== "freepost" ) return;
+												// 				$.get(ajaxurl, {
+												// 					action     : "get_ticket",
+												// 					method     : "freepost_with_user_ids",
+												// 					paramaters : {}
+												// 				}, function (response) {
+
+												// 					var items = world.wrap.branch.stock.branch.freepost.branch.ticket.branch.requests.self;
+
+												// 					for (var index = 0; index < response.return.length; index++) {
+												// 						var ticket = response.return[index];
+												// 						$('<div class="stock_freepost_ticket">'+
+												// 							'<div class="stock_freepost_ticket_column">'+        ticket.user       +'</div>'+
+												// 							'<div class="stock_freepost_ticket_column">'+        ticket.email       +'</div>'+
+												// 							'<div class="stock_freepost_ticket_column">'+     ticket.book_count +'</div>'+
+												// 							'<div class="stock_freepost_ticket_column">'+      ticket.first_name +', '+ ticket.second_name +'</div>'+
+												// 							'<div class="stock_freepost_ticket_column">'+   ticket.address    +'</div>'+
+												// 							'<div class="stock_freepost_ticket_column">'+      ticket.town       +'</div>'+
+												// 							'<div class="stock_freepost_ticket_column">'+    ticket.area       +'</div>'+
+												// 							'<div class="stock_freepost_ticket_column">'+ ticket.post_code  +'</div>'+
+												// 							'<div id="'+ ticket.id +'" data-type-ticket-remove="true" class="stock_freepost_ticket_column_link">Done</div>'+
+												// 						'</div>').appendTo(items);
+												// 					};
+												// 				}, "json");
+												// 			}
+												// 		}
+												// 	},
+												// 	self   : '<div class="stock_freepost_ticket_requests"></div>'
+												// }
 											}
 										}
 									}
