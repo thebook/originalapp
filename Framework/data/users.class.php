@@ -182,6 +182,12 @@ class account extends alpha
 		return $table->get_rows($this->address_table, 'user', $account_email);
 	}
 
+	public function get_addresses ()
+	{
+		$table = new table_creator;
+		return $table->get_all_rows($this->address_table);
+	}
+
 	public function get_account_value ($account_id, $value_to_get )
 	{
 		$account = $this->get_account($account_id);
