@@ -6125,18 +6125,18 @@
 											},
 											self : '<div class="stock_bar_navigation">Adress</div>'
 										},
-										table : {
-											instructions : {
-												on : {
-													the_event : "click",
-													is_asslep : false,
-													call      : function (change) {
-														state.stock.page = "table";
-													}
-												}
-											},
-											self : '<div class="stock_bar_navigation">Table</div>'
-										}
+										// table : {
+										// 	instructions : {
+										// 		on : {
+										// 			the_event : "click",
+										// 			is_asslep : false,
+										// 			call      : function (change) {
+										// 				state.stock.page = "table";
+										// 			}
+										// 		}
+										// 	},
+										// 	self : '<div class="stock_bar_navigation">Table</div>'
+										// }
 									}
 								},
 								// log : {
@@ -6275,9 +6275,10 @@
 
 														new alpha.table({
 															self         : this.self[0],
+															table_name   : "address",
 															column_width : 150,
 															row_height   : 120,
-															table_height : 500,
+															table_height : 400,
 															column_number: 6,
 															columns      : [
 																"id",
@@ -6319,7 +6320,8 @@
 																title        : "stock_table_title",
 																table_wrap   : "stock_table_move_wrap",
 																head  : "stock_table_title",
-																field : "stock_table_field"
+																field : "stock_table_field",
+																selected_field : "stock_table_field_selected"
 															}
 														});
 													}
@@ -6413,10 +6415,12 @@
 
 														new alpha.table({
 															self         : this.self[0],
+															table_name   : "freepost",
 															column_width : 150,
 															row_height   : 120,
 															table_height : 500,
 															column_number: 9,
+															max_row_load : 10,
 															columns      : [
 																"id",
 																"email",
@@ -6462,8 +6466,9 @@
 																table_titles : "stock_table_titles",
 																title        : "stock_table_title",
 																table_wrap   : "stock_table_move_wrap",
-																head  : "stock_table_title",
-																field : "stock_table_field"
+																head         : "stock_table_title",
+																field        : "stock_table_field",
+																option       : "stock_table_row_option"
 															}
 														});
 													}

@@ -10,6 +10,8 @@ var alpha = (function ( alpha, $ ) {
 		this.self = wake.self;
 		wake.self.table = {};
 		wake.self.table.wake = {
+			max_row_load : wake.max_row_load,
+			table_name   : wake.table_name,
 			width        : wake.columns.length * wake.column_width,
 			submit_field_callback : wake.submit_field_callback,
 			columns      : wake.columns,
@@ -67,92 +69,23 @@ var alpha = (function ( alpha, $ ) {
 		wake.self.table.submision_column_names = wake.submision_column_names,
 		wake.self.table.rows = [];
 
-		// wake.self.table.rows = [
-		// 		{
-		// 			id    : 1,
-		// 			email   : "some@email",
-		// 			address : "30 THe Grange",
-		// 			town    : "Cardiff",
-		// 			place   : "THe place",
-		// 			stuff   : "stuff"
-		// 		},
-		// 		{
-		// 			id : 1,
-		// 			email : "some@email",
-		// 			address : "30 THe Grange",
-		// 			town    : "Cardiff",
-		// 			place   : "THe place",
-		// 			stuff   : "stuff"
-		// 		},
-		// 		{
-		// 			id : 1,
-		// 			email : "some@email",
-		// 			address : "30 THe Grange",
-		// 			town    : "Cardiff",
-		// 			place   : "THe place",
-		// 			stuff   : "stuff"
-		// 		},
-		// 		{
-		// 			id : 1,
-		// 			email : "some@email",
-		// 			address : "30 THe Grange",
-		// 			town    : "Cardiff",
-		// 			place   : "THe place",
-		// 			stuff   : "stuff"
-		// 		},
-		// 		{
-		// 			id : 1,
-		// 			email : "some@email",
-		// 			address : "30 THe Grange",
-		// 			town    : "Cardiff",
-		// 			place   : "THe place",
-		// 			stuff   : "stuff"
-		// 		},
-		// 		{
-		// 			id : 1,
-		// 			email : "some@email",
-		// 			address : "30 THe Grange",
-		// 			town    : "Cardiff",
-		// 			place   : "THe place",
-		// 			stuff   : "stuff"
-		// 		},	{
-		// 			id : 1,
-		// 			email : "some@email",
-		// 			address : "30 THe Grange",
-		// 			town    : "Cardiff",
-		// 			place   : "THe place",
-		// 			stuff   : "stuff"
-		// 		},	{
-		// 			id : 1,
-		// 			email : "some@email",
-		// 			address : "30 THe Grange",
-		// 			town    : "Cardiff",
-		// 			place   : "THe place",
-		// 			stuff   : "stuff"
-		// 		},	{
-		// 			id : 1,
-		// 			email : "some@email",
-		// 			address : "30 THe Grange",
-		// 			town    : "Cardiff",
-		// 			place   : "THe place",
-		// 			stuff   : "stuff"
-		// 		},
-		// ];
+		this.self.style.height = wake.table_height + "px";
 
-		// this.self.style.height = ( this.self.table.wake.number_of_rows_that_can_show * this.self.table.wake.row_height ) +"px";
-
-		this.self.insertAdjacentHTML("afterbegin", 
+		this.self.insertAdjacentHTML("afterbegin",
+			'<div class="stock_table_option">'+
+				'<div class="stock_button">Load</div>'+			
+				'<div class="stock_button">Remove</div>'+			
+				'<div class="stock_button">Print</div>'+			
+			'</div>'+
 			'<div style="width:'+ this.self.table.wake.width                   +'px;"'+
 			'class="'+            this.self.table.wake.class_names.table_titles +'"></div>'+
-			'<div '+
-			'class="'+            this.self.table.wake.class_names.row_options +'">'+
-			'</div>'+
-			'<div style="width:'+ this.self.table.wake.width                 +'px;"'+
-			'class="'+            this.self.table.wake.class_names.table_wrap +'"></div>');
+			'<div style="width:685px; float:left; overflow:hidden; height:400px;">'+
+				'<div style="width:'+ this.self.table.wake.width                  +'px;"'+
+				'class="'+            this.self.table.wake.class_names.table_wrap +'"></div>'+
+			'</div>');
 
-		this.self.table.component.titles      = this.self.children[0];
-		this.self.table.component.row_options = this.self.children[1];
-		this.self.table.component.box         = this.self.children[2];
+		this.self.table.component.titles      = this.self.children[1];
+		this.self.table.component.box         = this.self.children[2].children[0];
 
 		this.self.addEventListener("keydown", function (event) {
 			prototype.keypress_handler(event);
@@ -166,8 +99,6 @@ var alpha = (function ( alpha, $ ) {
 		});
 
 		this.self.addEventListener("dblclick", function (event) {
-			console.log("doubleclick");
-			console.log(event.target);
 			prototype.come_into_field_editing(event.target);
 		});
 
@@ -336,7 +267,8 @@ var alpha = (function ( alpha, $ ) {
 			row    : change.old.row,
 			column : change.old.column
 		});
-		document.getElementById("column_"+ change.new.column +"_row_"+ change.new.row ).focus();
+
+		document.getElementById( this.self.table.wake.table_name +"_column_"+ change.new.column +"_row_"+ change.new.row ).focus();
 	};
 
 	alpha.table.prototype.keypress_handler = function (event) {
@@ -429,35 +361,23 @@ var alpha = (function ( alpha, $ ) {
 		});
 	};
 
+	alpha.table.prototype.table_row_option_factory = function (wake) { 
+		return '<div '+
+			'class="'+ this.self.table.wake.class_names.option +'">'+
+			'</div>';
+	};
+
 	alpha.table.prototype.table_field_factory = function (wake) { 
 
 		return '<textarea '+ 
 			'placeholder="empty"'+
-			'id="column_'+        wake.column_number +'_row_'+ wake.row +'" '+ 
+			'id="'+ this.self.table.wake.table_name +'_column_'+        wake.column_number +'_row_'+ wake.row +'" '+ 
 			'data-type-row="'+    wake.row +'" '+ 
 			'data-type-column="'+ wake.column_name +'" '+ 
 			'data-type-column-number="'+ wake.column_number +'" '+ 
 			'class="'+ this.self.table.wake.class_names.field +'" readonly="true">'+
 			wake.value +
 		'</textarea>';
-	};
-
-	alpha.table.prototype.popuplate_table_row_options = function () { 
-
-		var options, index;
-
-		index   = 0;
-		options = "";
-
-		this.empty(this.self.table.component.row_options);
-		this.self.table.component.row_options.style.height = ( this.self.table.rows.length * this.self.table.wake.row_height ) +"px";
-
-		for (; index < this.self.table.rows.length; index++) {			
-			options += '<div data-type-row="'+ index +'" data-type-option="true" '+
-					   'title="select row" class="'+ this.self.table.wake.class_names.row_option +'"></div>';
-		};
-
-		this.self.table.component.row_options.insertAdjacentHTML("afterbegin", options );
 	};
 
 	alpha.table.prototype.popuplate_table_titles = function () { 
@@ -484,10 +404,9 @@ var alpha = (function ( alpha, $ ) {
 
 		this.empty(this.self.table.component.box);
 		this.self.table.selected_rows = [];
-		// while ( this.self.firstChild.firstChild ) this.self.removeChild(this.self.firstChild.firstChild);
 
 		for (var index = 0; index < this.self.table.rows.length; index++) {
-
+			if ( index > this.self.table.wake.max_row_load -1 ) return;
 			column_number = -1;
 
 			for (column_name in this.self.table.rows[index] ) {
@@ -502,7 +421,6 @@ var alpha = (function ( alpha, $ ) {
 		};
 
 		this.self.table.component.box.insertAdjacentHTML("afterbegin", rows );
-		this.popuplate_table_row_options();
 	};
 
 	alpha.table.prototype.empty = function (what) {
