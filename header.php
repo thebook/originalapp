@@ -6300,10 +6300,31 @@
 																	}
 																},
 																{
+																	name : "select all",
+																	call : function () {
+
+																		this.select_all_rows();
+																	}
+																}
+																{
 																	name : "remove selected",
 																	call : function () { 
-																		console.log(this);
-																		console.log("call option index");
+
+																		if ( !confirm("Really Remove the rows?") ) return;
+
+																		var table, row_ids;
+
+																		table   = this;
+																		row_ids = this.get_selected_rows_property("id");
+																		$.post(ajaxurl, {
+																			action     : "set_account",
+																			method     : "remove_addresses_by_id",
+																			paramaters : {
+																				ids : row_ids
+																			}
+																		}, function () {
+																			table.remove_selected_rows();
+																		}, "json");
 																	}
 																},
 															],

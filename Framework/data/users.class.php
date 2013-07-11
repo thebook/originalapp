@@ -238,6 +238,19 @@ class account extends alpha
 		$table->update_row($this->address_table, $update, 'user', $update['user']); 	
 	}
 
+	public function set_remove_address_by_id ($address_id)
+	{
+		$table = new table_creator;
+		$table->delete_row($this->address_table, 'id', $address_id );
+	}
+
+	public function set_remove_addresses_by_id ($ids)
+	{
+		foreach ( $ids as $id ) :
+			$this->set_remove_address_by_id($id);
+		endforeach;
+	}
+
 	public function set_new_address ($array_of_information)
 	{
 		$table = new table_creator;

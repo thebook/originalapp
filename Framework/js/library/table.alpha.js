@@ -144,15 +144,16 @@ var alpha = (function ( alpha, $ ) {
 		this.popuplate_table_rows();
 	};
 
-	alpha.table.prototype.remove_rows = function (rows_to_be_removed) {
+	alpha.table.prototype.remove_selected_rows = function () {
 
 		var rows, index, row;
 
-		rows  = [];
-		index = 0;
+		selected_rows = this.self.table.selected_rows;
+		rows          = [];
+		index         = 0;
 
 		for (; index < this.self.table.rows.length; index++) {
-			if ( rows_to_be_removed.indexOf(index) < 0 ) {
+			if ( selected_rows.indexOf(index) < 0 ) {
 				row = this.self.table.rows.slice(index, index+1);
 				rows.push(row[0]);
 			}
@@ -184,6 +185,15 @@ var alpha = (function ( alpha, $ ) {
 		};
 	};
 
+	alpha.table.prototype.select_all_rows = function () {
+
+		this.self.table.selected_rows = [];
+
+		for (var index = 0; index < this.self.table.rows.length; index++) {
+			this.self.table.selected_rows.push(index);
+		};
+	};
+
 	alpha.table.prototype.get_selected_rows  = function () {
 		
 		var index, rows, row_number, row;
@@ -197,6 +207,21 @@ var alpha = (function ( alpha, $ ) {
 		}
 
 		return rows;
+	};
+
+	alpha.table.prototype.get_selected_rows_property  = function (property) {
+		var rows, desired_properties, index;
+
+		rows  = this.get_selected_rows();
+		index = 0;
+		desired_properties = [];
+
+		for (; index < rows.length; index++ ) {
+			if ( !rows[index][property] ) throw new Error("property does not exist in the row, aborting");
+			desired_properties.push(rows[index][property]);
+		}
+
+		return desired_properties;
 	};
 
 	alpha.table.prototype.move_visisble_area_by_y_axis = function (change) {
