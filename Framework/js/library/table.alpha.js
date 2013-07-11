@@ -10,6 +10,7 @@ var alpha = (function ( alpha, $ ) {
 		this.self = wake.self;
 		wake.self.table = {};
 		wake.self.table.wake = {
+			options      : wake.options,
 			max_row_load : wake.max_row_load,
 			table_name   : wake.table_name,
 			width        : wake.columns.length * wake.column_width,
@@ -56,27 +57,24 @@ var alpha = (function ( alpha, $ ) {
 			}
 		};
 		wake.self.table.selected_rows = [];
+
 		wake.self.table.set_rows      = function (rows) {
 			prototype.set_rows.call(prototype, rows);
 		};
 		wake.self.table.remove_rows   = function (rows) {
 			prototype.remove_rows.call(prototype, rows);
 		};
-
 		wake.self.table.get_selected_rows   = function (rows) {
 			return prototype.get_selected_rows.call(prototype);
 		};
+
 		wake.self.table.submision_column_names = wake.submision_column_names,
 		wake.self.table.rows = [];
 
 		this.self.style.height = wake.table_height + "px";
 
 		this.self.insertAdjacentHTML("afterbegin",
-			'<div class="stock_table_option">'+
-				'<div class="stock_button">Load</div>'+			
-				'<div class="stock_button">Remove</div>'+			
-				'<div class="stock_button">Print</div>'+			
-			'</div>'+
+			'<div class="'+ this.self.table.wake.class_names.option_wrap +'"></div>'+
 			'<div style="width:'+ this.self.table.wake.width                   +'px;"'+
 			'class="'+            this.self.table.wake.class_names.table_titles +'"></div>'+
 			'<div style="width:685px; float:left; overflow:hidden; height:400px;">'+
@@ -84,6 +82,7 @@ var alpha = (function ( alpha, $ ) {
 				'class="'+            this.self.table.wake.class_names.table_wrap +'"></div>'+
 			'</div>');
 
+		this.self.table.component.options     = this.self.children[0];
 		this.self.table.component.titles      = this.self.children[1];
 		this.self.table.component.box         = this.self.children[2].children[0];
 
@@ -94,7 +93,7 @@ var alpha = (function ( alpha, $ ) {
 		this.self.addEventListener("click", function (event) {
 
 			if ( event.target.tagName === "TEXTAREA" )           prototype.field_selection_value_changer(event);
-			if ( event.target.getAttribute("data-type-option") ) prototype.option_interaction(event);
+			if ( event.target.getAttribute("data-type-option-index") ) prototype.call_method_for_clicked_option(event);
 			if ( event.target !== prototype.self.table.change.value.selected ) prototype.come_out_of_field_editing();
 		});
 
@@ -137,7 +136,7 @@ var alpha = (function ( alpha, $ ) {
 
 		this.popuplate_table_rows();
 		this.popuplate_table_titles();
-
+		this.insert_table_options_html_into_the_table();
 	};
 
 	alpha.table.prototype.set_rows    = function (rows) {
@@ -163,6 +162,28 @@ var alpha = (function ( alpha, $ ) {
 		this.popuplate_table_rows();
 	};
 
+	alpha.table.prototype.calculate_the_order_number_of_the_first_field_in_the_currently_selected_row = function () {
+
+		return field_child_number = ( this.self.table.selected.current.row ) * ( this.self.table.wake.column_number + 1 );
+	};
+
+	alpha.table.prototype.get_the_first_field_of_a_selected_row = function () {
+		return this.self.table.component.box.children[this.calculate_the_order_number_of_the_first_field_in_the_currently_selected_row()];
+	};
+
+	alpha.table.prototype.add_or_remove_the_currently_selected_row_to_selected_rows = function () {
+
+		var current_rows_index_in_array = this.self.table.selected_rows.indexOf(this.self.table.selected.current.row);
+
+		if ( current_rows_index_in_array === -1 ) {
+			this.self.table.selected_rows.push(this.self.table.selected.current.row);
+			return true;
+		} else { 
+			this.self.table.selected_rows.splice(current_rows_index_in_array, 1 );
+			return false;
+		};
+	};
+
 	alpha.table.prototype.get_selected_rows  = function () {
 		
 		var index, rows, row_number, row;
@@ -178,33 +199,12 @@ var alpha = (function ( alpha, $ ) {
 		return rows;
 	};
 
-	alpha.table.prototype.option_interaction = function (change) {
-
-		var row_number, index_of_row;
-
-		row_number = parseInt(change.target.getAttribute("data-type-row"));
-
-		if ( change.target.className === this.self.table.wake.class_names.selected_row ) {
-
-			change.target.className = this.self.table.wake.class_names.row_option;
-			change.target.setAttribute("title", "unselect row");
-			index_of_row = this.self.table.selected_rows.indexOf(row_number);
-			this.self.table.selected_rows.splice(index_of_row, 1);
-		} else { 
-
-			change.target.className = this.self.table.wake.class_names.selected_row;
-			change.target.setAttribute("title", "select row");
-			this.self.table.selected_rows.push(row_number);
-		}
-	};
-
 	alpha.table.prototype.move_visisble_area_by_y_axis = function (change) {
 
 		var shift_by_this_much;
 
 		shift_by_this_much = 0 - ( this.self.table.wake.row_height * change.new.top );
 		this.self.table.component.box.style.top = shift_by_this_much +"px";
-		this.self.table.component.row_options.style.marginTop = shift_by_this_much +"px";
 	};
 
 	alpha.table.prototype.move_visisble_area_by_x_axis = function (change) {
@@ -378,6 +378,38 @@ var alpha = (function ( alpha, $ ) {
 			'class="'+ this.self.table.wake.class_names.field +'" readonly="true">'+
 			wake.value +
 		'</textarea>';
+	};
+
+	alpha.table.prototype.call_method_for_clicked_option = function (change) {
+
+		var option_index = change.target.getAttribute("data-type-option-index");
+
+		this.self.table.wake.options[option_index].call.call(this);
+	};
+
+	alpha.table.prototype.create_and_return_the_html_of_table_options = function () {
+
+		var options, html_of_options, index;
+
+		html_of_options = "";
+		index           = 0;
+
+		for (; index < this.self.table.wake.options.length; index++) {
+			html_of_options += '<div '+
+			'data-type-option-index="'+ index +'" '+
+			'class="'+ this.self.table.wake.class_names.option +'">'+ 
+				this.self.table.wake.options[index].name +
+			'</div>';
+		}
+
+		return html_of_options;
+	};
+
+	alpha.table.prototype.insert_table_options_html_into_the_table = function () {
+
+		var table_options_html = this.create_and_return_the_html_of_table_options();
+
+		this.self.table.component.options.insertAdjacentHTML( "afterbegin", table_options_html );
 	};
 
 	alpha.table.prototype.popuplate_table_titles = function () { 

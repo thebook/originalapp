@@ -6238,32 +6238,6 @@
 									},
 									self : '<div class="stock_table_wrap"></div>',
 									branch : {
-										controls : {
-											self   : '<div class="stock_table_controls"></div>',
-											branch : {
-												load : {
-													instructions : {
-														on : {
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) {
-
-																var table;
-																table = world.wrap.branch.stock.branch.address.branch.table.self[0];
-
-																$.get(ajaxurl, {
-																	action : "get_account",
-																	method : "addresses"
-																}, function (response) { 
-																	table.table.set_rows(response.return);
-																}, "json");
-															}
-														}
-													},
-													self : '<div class="stock_button">Load</div>',
-												}
-											}
-										},
 										table : {
 											instructions : {
 												observe : {
@@ -6296,6 +6270,43 @@
 																"town",
 																"area"
 															],
+															options : [
+																{
+																	name : "load",
+																	call : function () { 
+																		var table = this;
+
+																		$.get(ajaxurl, {
+																			action : "get_account",
+																			method : "addresses"
+																		}, function (response) { 
+																			table.set_rows(response.return);
+																		}, "json");
+																	}
+																},
+																{
+																	name : "un/select",
+																	call : function () {
+
+																		var row_field_index, las_row_field, selected, field;
+																		
+																		row_field_index = this.calculate_the_order_number_of_the_first_field_in_the_currently_selected_row();
+																		las_row_field   = row_field_index+this.self.table.wake.column_number+1;
+																		selected        = this.add_or_remove_the_currently_selected_row_to_selected_rows();
+																		for (; row_field_index < las_row_field; row_field_index++ ) {
+																			field = this.self.table.component.box.children[row_field_index];
+																			field.className = ( selected ? this.self.table.wake.class_names.selected_field : this.self.table.wake.class_names.field );
+																		}
+																	}
+																},
+																{
+																	name : "remove selected",
+																	call : function () { 
+																		console.log(this);
+																		console.log("call option index");
+																	}
+																},
+															],
 															submit_field_callback : function (data) {
 
 																// if ( data.column_name === "id" ) return;
@@ -6313,15 +6324,15 @@
 
 															},	
 															class_names : {
-																row_options  : "stock_table_row_options",
-																row_option   : "stock_table_row_option",
-																selected_row : "stock_table_row_option_selected",
-																table_titles : "stock_table_titles",
-																title        : "stock_table_title",
-																table_wrap   : "stock_table_move_wrap",
-																head  : "stock_table_title",
-																field : "stock_table_field",
-																selected_field : "stock_table_field_selected"
+																selected_row   : "stock_table_row_option_selected",
+																table_titles   : "stock_table_titles",
+																title          : "stock_table_title",
+																table_wrap     : "stock_table_move_wrap",
+																head           : "stock_table_title",
+																field          : "stock_table_field",
+																selected_field : "stock_table_field_selected",
+																option_wrap    : "stock_table_option",
+																option         : "stock_button"
 															}
 														});
 													}

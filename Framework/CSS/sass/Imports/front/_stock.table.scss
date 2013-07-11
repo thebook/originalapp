@@ -95,5 +95,10 @@
 }
 
 .stock_table_field_selected {
-	outline: 2px solid $black_gray;
+	@extend.stock_table_field;
+	background  : $middle_monochrome;
+	// color       : $light_monochrome;
+	// &:focus { 
+	// 	outline: 2px solid $light_monochrome;
+	// }
 }
