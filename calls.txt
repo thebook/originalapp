@@ -63,8 +63,23 @@ $.get(ajaxurl, {
 	action : "get_account",
 	method : "table",
 	paramaters : {}, 
-}, function (users) {
-	console.log(users);
+}, function (response) {
+
+	var text = "email\tfirst name\tsecond name\tpassword\tcredit\tdonate\tlast withdraw\trecieve newsletter\tuniversity\tyear\tsubject\n";
+	var data;
+	var users = response.return;
+
+	for (var index = 0; index < users.length; index++ ) {
+
+		for ( data in users[index] ) {
+			if ( data !== "price_promise" && data !== "history" && data !== "unaccepted_book" ) text += users[index][data] +"\t";
+		}
+		text += "\n";
+	}
+
+	document.body.textContent = text;
+	console.log(text);
+
 }, "json");
 
 $.get(ajaxurl, {

@@ -65,3 +65,11 @@
 
 * thank you page,
 * about us page, + meet the team page
+
+
+Seller account identifiers for RecyclaBook
+Merchant ID:	A23V8O7E1FAD10
+Marketplace ID:	A1F83G8C2ARO7P
+Developer account identifier and credentials for developer account number 8581-8303-1296*
+AWS Access Key ID:	AKIAJXIC2LYUUH2WLJJA
+Secret Key:	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

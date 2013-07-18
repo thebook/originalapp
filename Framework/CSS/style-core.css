@@ -4494,8 +4494,9 @@ body {
   .stock_button_dropdown:hover {
     text-decoration: underline; }
 
-.stock_input, .stock_book_options_add_book_input {
+.stock_input, .stock_table_option_box_input, .stock_book_options_add_book_input {
   margin-right: 10px;
+  margin-left: 0px;
   font-family: inherit;
   color: #555555;
   border: 1px solid #555555;
@@ -4813,18 +4814,41 @@ body {
   height: 20px;
   margin-left: -120px; }
 
-.stock_table_field, .stock_table_field_selected {
+.stock_table_option_box {
+  position: absolute;
+  float: left;
+  height: 180px;
+  width: 180px;
+  padding: 20px;
+  border: 1px solid #555555; }
+
+.stock_table_option_box_description {
+  float: left;
+  width: 100%;
+  font-style: italic;
+  color: #555555;
+  font-size: 12px;
+  line-height: 14px;
+  margin-bottom: 10px; }
+
+.stock_table_option_box_input {
+  float: left; }
+
+.stock_table_field, .stock_table_field_used, .stock_table_field_selected {
   background: none;
   font-family: inherit;
   font-size: 12px;
   line-height: 16px;
-  width: 130px;
+  width: 126px;
   padding: 10px;
-  height: 100px;
+  height: 96px;
   resize: none;
-  border: none; }
-  .stock_table_field:focus, .stock_table_field_selected:focus {
-    outline: 2px solid #555555; }
+  border: 2px solid whitesmoke; }
+  .stock_table_field:focus, .stock_table_field_used:focus, .stock_table_field_selected:focus {
+    outline: none; }
+
+.stock_table_field_used {
+  outline: 2px solid #555555; }
 
 .stock_table_field_selected {
   background: #d8d8d8; }

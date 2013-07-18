@@ -32,7 +32,6 @@
 	cursor         : pointer;
 	margin         : 8px 10px 8px 0;
 	display        : inline-block;
-	// overflow       : hidden;
 	&:hover { 
 		text-decoration: underline;
 	}
@@ -48,6 +47,7 @@
 
 .stock_input { 
 	margin-right: 10px;
+	margin-left : 0px;
 	font-family : inherit;
 	color       : $black_gray;
 	border      : 1px solid $black_gray;

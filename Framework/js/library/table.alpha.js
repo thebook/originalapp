@@ -10,6 +10,7 @@ var alpha = (function ( alpha, $ ) {
 		this.self = wake.self;
 		wake.self.table = {};
 		wake.self.table.wake = {
+			visuals      : wake.visuals,
 			options      : wake.options,
 			max_row_load : wake.max_row_load,
 			table_name   : wake.table_name,
@@ -56,16 +57,14 @@ var alpha = (function ( alpha, $ ) {
 				row    : 0
 			}
 		};
+		wake.self.table.revealed_rows = 0;
 		wake.self.table.selected_rows = [];
-
-		wake.self.table.set_rows      = function (rows) {
-			prototype.set_rows.call(prototype, rows);
-		};
-		wake.self.table.remove_rows   = function (rows) {
-			prototype.remove_rows.call(prototype, rows);
-		};
-		wake.self.table.get_selected_rows   = function (rows) {
-			return prototype.get_selected_rows.call(prototype);
+		wake.self.table.options = {
+			box : {
+				initialised : [],
+				open : false,
+				data : []
+			}
 		};
 
 		wake.self.table.submision_column_names = wake.submision_column_names,
@@ -91,10 +90,10 @@ var alpha = (function ( alpha, $ ) {
 		});
 
 		this.self.addEventListener("click", function (event) {
-
-			if ( event.target.tagName === "TEXTAREA" )           prototype.field_selection_value_changer(event);
+			
+			if ( event.target.tagName === "TEXTAREA" ) prototype.field_selection_value_changer(event);
 			if ( event.target.getAttribute("data-type-option-index") ) prototype.call_method_for_clicked_option(event);
-			if ( event.target !== prototype.self.table.change.value.selected ) prototype.come_out_of_field_editing();
+			if ( event.target.getAttribute("data-type-field") && prototype.self.table.change.value.selected ) prototype.come_out_of_field_editing();
 		});
 
 		this.self.addEventListener("dblclick", function (event) {
@@ -134,23 +133,24 @@ var alpha = (function ( alpha, $ ) {
 			}
 		});
 
-		this.popuplate_table_rows();
 		this.popuplate_table_titles();
-		this.insert_table_options_html_into_the_table();
+
+		this.initialise_table_options();
+		// this.insert_table_options_html_into_the_table();
 	};
 
-	alpha.table.prototype.set_rows    = function (rows) {
+	alpha.table.prototype.set_rows = function (rows) {
 		this.self.table.rows = rows;
 		this.popuplate_table_rows();
 	};
 
 	alpha.table.prototype.remove_selected_rows = function () {
 
-		var rows, index, row;
+		// var rows, index, row;
 
-		selected_rows = this.self.table.selected_rows;
-		rows          = [];
-		index         = 0;
+		// selected_rows = this.self.table.selected_rows;
+		// rows          = [];
+		// index         = 0;
 
 		for (; index < this.self.table.rows.length; index++) {
 			if ( selected_rows.indexOf(index) < 0 ) {
@@ -185,6 +185,16 @@ var alpha = (function ( alpha, $ ) {
 		};
 	};
 
+	alpha.table.prototype.select_or_unselect_all_rows = function () { 
+		if ( this.self.table.selected_rows.length === this.self.table.rows.length ) { 
+			this.unselect_all_rows();
+			return false;
+		} else { 
+			this.select_all_rows();
+			return true;
+		}
+	};
+
 	alpha.table.prototype.select_all_rows = function () {
 
 		this.self.table.selected_rows = [];
@@ -192,6 +202,11 @@ var alpha = (function ( alpha, $ ) {
 		for (var index = 0; index < this.self.table.rows.length; index++) {
 			this.self.table.selected_rows.push(index);
 		};
+	};
+
+	alpha.table.prototype.unselect_all_rows = function () {
+
+		this.self.table.selected_rows = [];
 	};
 
 	alpha.table.prototype.get_selected_rows  = function () {
@@ -288,12 +303,35 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.table.prototype.field_selection_mover = function (change) {
 
+		if ( change.new.row === change.old.row && change.new.column === change.old.column ) return;
+
+		var current_field, previous_field;
+
+		current_field  = this.get_a_field_node(change.new);
+		previous_field = this.get_a_field_node(change.old);
+
 		this.self.table.selected.history.unshift({
 			row    : change.old.row,
 			column : change.old.column
 		});
 
-		document.getElementById( this.self.table.wake.table_name +"_column_"+ change.new.column +"_row_"+ change.new.row ).focus();
+		if ( change.new.row > this.self.table.revealed_rows-2 ) this.reveal_rows();
+
+		current_field.focus();
+
+		this.apply_style_to_node(current_field, this.self.table.wake.visuals.on_field);
+		this.apply_style_to_node(previous_field, this.self.table.wake.visuals.not_on_field);
+	};
+
+	alpha.table.prototype.get_a_field_node = function (position) { 
+		return document.getElementById( this.self.table.wake.table_name +"_column_"+ position.column +"_row_"+ position.row )
+	};
+
+	alpha.table.prototype.apply_style_to_node = function (node, style) {
+
+		var property;
+
+		for (property in style ) node.style[property] = style[property];
 	};
 
 	alpha.table.prototype.keypress_handler = function (event) {
@@ -323,7 +361,10 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.table.prototype.change_selected_field_based_on_current_position = function (direction) {
 
-		var current = this.self.table.selected.current;
+		var current = {
+			row    : this.self.table.selected.current.row,
+			column : this.self.table.selected.current.column 
+		};
 
 		if ( direction === "up" ) {
 			var row = current.row-1;
@@ -377,7 +418,7 @@ var alpha = (function ( alpha, $ ) {
 
 	alpha.table.prototype.submit_changed_value = function (change) { 
 
-		// should be some method here to check if it has changed at all
+		if ( change.old === change.new ) return;
 
 		this.self.table.wake.submit_field_callback({
 			value       : change.new,
@@ -386,32 +427,282 @@ var alpha = (function ( alpha, $ ) {
 		});
 	};
 
-	alpha.table.prototype.table_row_option_factory = function (wake) { 
-		return '<div '+
-			'class="'+ this.self.table.wake.class_names.option +'">'+
-			'</div>';
-	};
-
-	alpha.table.prototype.table_field_factory = function (wake) { 
+	alpha.table.prototype.create_and_return_html_of_a_table_field = function (wake) { 
 
 		return '<textarea '+ 
 			'placeholder="empty"'+
-			'id="'+ this.self.table.wake.table_name +'_column_'+        wake.column_number +'_row_'+ wake.row +'" '+ 
-			'data-type-row="'+    wake.row +'" '+ 
-			'data-type-column="'+ wake.column_name +'" '+ 
-			'data-type-column-number="'+ wake.column_number +'" '+ 
+			'id="'+ this.self.table.wake.table_name +'_column_'+ wake.column_number +'_row_'+ wake.row +'" '+
+			'data-type-field="true"'+ 
+			'data-type-row="'+    wake.row +'" '+
+			'data-type-column="'+ wake.column_name +'" '+
+			'data-type-column-number="'+ wake.column_number +'" '+
 			'class="'+ this.self.table.wake.class_names.field +'" readonly="true">'+
 			wake.value +
 		'</textarea>';
 	};
 
-	alpha.table.prototype.call_method_for_clicked_option = function (change) {
+	alpha.table.prototype.initialise_table_options = function () {
 
-		var option_index = change.target.getAttribute("data-type-option-index");
+		var html_of_options, index;
 
-		this.self.table.wake.options[option_index].call.call(this);
+		html_of_options     = "";
+		index               = 0;
+
+		for (; index < this.self.table.wake.options.length; index++) {
+			this.self.table.options.box.data[index]   = {};
+			this.self.table.wake.options[index].index = index;
+			html_of_options += this.create_html_button_of_an_option(this.self.table.wake.options[index]);
+		}
+
+		this.self.table.component.options.insertAdjacentHTML("afterbegin", html_of_options );
 	};
 
+	alpha.table.prototype.create_html_button_of_an_option = function (option) { 
+
+		var option_html;
+
+		option_html = "";
+
+		if ( option.type.constructor !== Array && option.type.constructor !== String && option.type.constructor !== Function ) {
+			throw new Error("the table option type can only be an array or string it is a "+ typeof option.type );
+		}
+
+		if ( option.type.constructor === Function ) {
+
+			option_html = '<div '+
+				'data-type-option-index="'+ option.index +'" '+
+				'class="'+ this.self.table.wake.class_names.option.button +'">'+
+					option.name +
+			'</div>';
+		}
+
+		if ( option.type.constructor === Array ) {
+
+			option_html = '<div '+
+				'data-type-option-index="'+ option.index +'" '+
+				'data-type-option-open="true"'+
+				'class="'+ this.self.table.wake.class_names.option.button +'">'+
+					option.name +
+			'</div>';
+		}
+
+		if ( option.type.constructor === String ) {
+			console.log("is a preset");
+			return "";
+		}		
+
+		return option_html;
+	};
+
+	alpha.table.prototype.construct_an_box_option = function (option) {
+
+		var box, index, part;
+
+		index = 0;
+		box   = document.createElement("div");
+		box.id        = this.self.table.wake.table_name +'_option_'+ option.index;
+		box.className = this.self.table.wake.class_names.option.box;
+
+		for (; index < option.origin.type.length; index++ ) {
+
+			option.origin.type[index].instructions.index = option.index;
+
+			part = this.option_box_parts[option.origin.type[index].type].call(
+				this, option.origin.type[index].instructions
+			);
+
+			box.appendChild(part);
+		}
+		
+		option.button.insertAdjacentElement("afterend", box);
+	};
+
+	alpha.table.prototype.make_node = function (define_node) {
+
+		var node, property;
+
+		node = document.createElement(define_node.type);
+		for ( property in define_node.with ) node[property] = define_node.with[property];
+
+		return node;
+	};
+
+	alpha.table.prototype.add_events_to_node = function (instructions) { 
+
+		var index, events;
+		index = 0;
+
+		if ( instructions.events.constructor === Array ) {
+
+			for (; index < instructions.events.length; index++ ) this.add_option_part_event_listener({
+				index  : instructions.option_index,
+				node   : instructions.node,
+				event  : instructions.events[index].event,
+				call   : instructions.events[index].call
+			});
+		}
+
+		if ( instructions.events.constructor === Object ) {
+
+			events = ( instructions.events.event.constructor === String ? instructions.events.event.replace(/[\s]+/g, "").split(",") : instructions.events.event );
+
+			for (; index < events.length; index++ ) this.add_option_part_event_listener({
+				index : instructions.option_index,
+				node  : instructions.node,
+				event : events[index],
+				call  : instructions.events.call
+			});
+		}
+	};
+
+	alpha.table.prototype.add_option_part_event_listener = function (instructions) {
+
+		var self = this;
+
+		instructions.node.addEventListener(instructions.event, function (event) {
+			instructions.call.call(self, {
+				element        : instructions.node,
+				box_data       : self.self.table.options.box.data[instructions.index],
+				original_event : event
+			});
+		});
+	};
+
+	alpha.table.prototype.option_box_parts = {
+
+		text : function (instructions) {
+
+			return this.make_node({ 
+				type : "div",
+				with : {
+					className   : this.self.table.wake.class_names.option.description,
+					placeholder : instructions.placeholder,
+					textContent : instructions.content
+				}
+			});
+		},
+
+		input : function (instructions) {
+
+			var input = this.make_node({ 
+				type : "input",
+				with : {
+					className   : this.self.table.wake.class_names.option.input,
+					placeholder : instructions.placeholder
+				}
+			});
+
+			if ( instructions.on ) this.add_events_to_node({
+				option_index : instructions.index,
+				node         : input,
+				events       : instructions.on
+			});
+
+			return input;
+		},
+
+		button : function (instructions) {
+
+			var button = this.make_node({
+				type : "div",
+				with : {
+					className   : this.self.table.wake.class_names.option.button,
+					textContent : instructions.text
+				}
+			});
+
+			if ( instructions.on ) this.add_events_to_node({
+				option_index : instructions.index,
+				node         : button, 
+				events       : instructions.on
+			});
+
+			return button;
+		}
+	};
+
+	alpha.table.prototype.options = {
+		un_select : {
+			name : "un/select",
+			type : "button",
+			call : function () {
+
+				var row_field_index, last_row_field, selected, field;
+				
+				row_field_index = this.calculate_the_order_number_of_the_first_field_in_the_currently_selected_row();
+				last_row_field  = row_field_index+this.self.table.wake.column_number+1;
+				selected        = this.add_or_remove_the_currently_selected_row_to_selected_rows();
+
+				for (; row_field_index < last_row_field; row_field_index++ ) {
+					field = this.self.table.component.box.children[row_field_index];
+					field.className = ( selected ? this.self.table.wake.class_names.selected_field : this.self.table.wake.class_names.field );
+				}
+			}
+		},
+		remove : function () {
+
+			if ( !confirm("Really Remove the rows?") ) return;
+
+			var row_properties;
+			row_properties = this.get_selected_rows_property("id");
+			this.remove_selected_rows();
+			// callback();
+		},
+		un_select_all : function () {
+
+			var selected, index, fields_that_exist, field;
+
+			selected          = this.select_or_unselect_all_rows();
+			index             = 0;
+			fields_that_exist = this.self.table.rows.length * ( this.self.table.wake.column_number + 1 );
+
+			for (; index < fields_that_exist; index++ ) {
+				field           = this.self.table.component.box.children[index];
+				field.className = ( selected ? this.self.table.wake.class_names.selected_field : this.self.table.wake.class_names.field );
+			}
+		},
+		custom     : {
+
+		}
+	};
+
+	alpha.table.prototype.call_method_for_clicked_option = function (change) {
+
+		var option, option_index, box, previous_opened_option;
+
+		option_index = change.target.getAttribute("data-type-option-index");		
+
+		if ( change.target.getAttribute("data-type-option-open") ) {
+
+			option = {
+				index  : option_index,
+				button : change.target, 
+				origin : this.self.table.wake.options[option_index]
+			};
+
+			previous_opened_option = this.self.table.options.box.open;
+
+			if ( this.self.table.options.box.open !== false ) {
+				box = document.getElementById(this.self.table.wake.table_name +'_option_'+ option.index);
+				box.style.display = "none";
+				this.self.table.options.box.open = false;				
+			}
+
+			if ( previous_opened_option !== option_index && this.self.table.options.box.open === false ) {
+				if ( this.self.table.options.box.initialised.indexOf(option_index) === -1 ) {
+					this.construct_an_box_option(option);
+					this.self.table.options.box.initialised.push(option_index);
+				} else { 
+					box = document.getElementById(this.self.table.wake.table_name +'_option_'+ option.index);
+					box.style.display = "block";
+				}
+				this.self.table.options.box.open = option_index;
+			}
+		} else { 
+			this.self.table.wake.options[option_index].type.call(this, change );
+		}
+	};
+	//
 	alpha.table.prototype.create_and_return_the_html_of_table_options = function () {
 
 		var options, html_of_options, index;
@@ -429,7 +720,7 @@ var alpha = (function ( alpha, $ ) {
 
 		return html_of_options;
 	};
-
+	// 
 	alpha.table.prototype.insert_table_options_html_into_the_table = function () {
 
 		var table_options_html = this.create_and_return_the_html_of_table_options();
@@ -463,21 +754,63 @@ var alpha = (function ( alpha, $ ) {
 		this.self.table.selected_rows = [];
 
 		for (var index = 0; index < this.self.table.rows.length; index++) {
-			if ( index > this.self.table.wake.max_row_load -1 ) return;
-			column_number = -1;
 
-			for (column_name in this.self.table.rows[index] ) {
-				column_number++;
-				rows += this.table_field_factory({
-					column_number : column_number,
-					column_name   : column_name,
-					row           : index,
-					value         : this.self.table.rows[index][column_name]
-				});
+			if ( index < this.self.table.wake.max_row_load -1 ) {
+
+				column_number = -1;
+
+				for (column_name in this.self.table.rows[index] ) {
+					column_number++;
+					rows += this.create_and_return_html_of_a_table_field({
+						column_number : column_number,
+						column_name   : column_name,
+						row           : index,
+						value         : this.self.table.rows[index][column_name]
+					});
+				}
 			}
 		};
 
 		this.self.table.component.box.insertAdjacentHTML("afterbegin", rows );
+	};
+
+	// alpha.table.prototype.generate_rows_
+
+	alpha.table.prototype.reveal_rows = function () { 
+
+		var rows_to_reveal, number_of_rows_to_reveal, number_of_rows_revealed, index, column_number, html_of_rows;
+
+		html_of_rows                   = "";
+		index                          = 0;
+		number_of_rows_revealed        = this.self.table.revealed_rows;
+		number_of_rows_to_reveal       = this.self.table.rows.length - number_of_rows_revealed;
+		number_of_rows_to_reveal       = ( number_of_rows_to_reveal > this.self.table.wake.max_row_load ? this.self.table.wake.max_row_load : number_of_rows_to_reveal );
+		rows_to_reveal                 = this.self.table.rows.slice( number_of_rows_revealed, ( number_of_rows_revealed + number_of_rows_to_reveal ) );
+		this.self.table.revealed_rows += number_of_rows_to_reveal;
+
+		console.log(this.self.table.rows);
+		console.log(this.self.table.rows.slice(10, 10));
+		console.log(number_of_rows_to_reveal);
+		console.log(number_of_rows_revealed);
+		console.log(rows_to_reveal);
+		
+		for (; index < rows_to_reveal.length; index++) { 
+
+			column_number = -1;
+
+			for (column_name in rows_to_reveal[index] ) {
+				column_number++;
+				html_of_rows += this.create_and_return_html_of_a_table_field({
+					column_number : column_number,
+					column_name   : column_name,
+					row           : number_of_rows_revealed + index,
+					value         : rows_to_reveal[index][column_name]
+				});
+			}
+		}
+
+		this.self.table.component.box.insertAdjacentHTML("beforeend", html_of_rows );
+
 	};
 
 	alpha.table.prototype.empty = function (what) {

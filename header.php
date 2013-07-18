@@ -6254,6 +6254,7 @@
 															row_height   : 120,
 															table_height : 400,
 															column_number: 6,
+															max_row_load : 10,
 															columns      : [
 																"id",
 																"user",
@@ -6273,7 +6274,7 @@
 															options : [
 																{
 																	name : "load",
-																	call : function () { 
+																	type : function () { 
 																		var table = this;
 
 																		$.get(ajaxurl, {
@@ -6285,48 +6286,129 @@
 																	}
 																},
 																{
-																	name : "un/select",
-																	call : function () {
-
-																		var row_field_index, las_row_field, selected, field;
-																		
-																		row_field_index = this.calculate_the_order_number_of_the_first_field_in_the_currently_selected_row();
-																		las_row_field   = row_field_index+this.self.table.wake.column_number+1;
-																		selected        = this.add_or_remove_the_currently_selected_row_to_selected_rows();
-																		for (; row_field_index < las_row_field; row_field_index++ ) {
-																			field = this.self.table.component.box.children[row_field_index];
-																			field.className = ( selected ? this.self.table.wake.class_names.selected_field : this.self.table.wake.class_names.field );
-																		}
-																	}
-																},
-																{
-																	name : "select all",
-																	call : function () {
-
-																		this.select_all_rows();
-																	}
-																}
-																{
-																	name : "remove selected",
-																	call : function () { 
-
-																		if ( !confirm("Really Remove the rows?") ) return;
-
-																		var table, row_ids;
-
-																		table   = this;
-																		row_ids = this.get_selected_rows_property("id");
-																		$.post(ajaxurl, {
-																			action     : "set_account",
-																			method     : "remove_addresses_by_id",
-																			paramaters : {
-																				ids : row_ids
+																	name         : "add book",
+																	// preset       : "un_select",
+																	type         : [
+																		{
+																			type         : "text", 
+																			instructions : {
+																				content  : "to select or unselect the question is now? for whom so ever shall be found in the depths of getting down, shall cry for all to see 'Hail the gods and their mercy'"
+																			},
+																		},
+																		{	
+																			type         : "input",
+																			instructions : {
+																				placeholder : "isbn",
+																				on          : [
+																					{
+																						event : "keypress",
+																						call  : function (event) {
+																							console.log(event.box_data);
+																							event.box_data.code = event.original_event.keyCode;
+																							console.log(this.self.table.options.box.data);
+																							if ( event.original_event.keyCode === 13 ) {
+																							}
+																						}
+																					},
+																				]
 																			}
-																		}, function () {
-																			table.remove_selected_rows();
-																		}, "json");
-																	}
+																		},
+																		{	
+																			type         : "input",
+																			instructions : {
+																				placeholder : "isbn",
+																			}
+																		},
+																		{
+																			type         : "button",
+																			instructions : {
+																				text : "submit",
+																				on   : {
+																					event : "click",
+																					call  : function () {
+																					}
+																				}
+																			}
+																		}
+																	]
 																},
+																{
+																	name         : "remove",
+																	type         : "string"
+																},
+																// {
+																// 	name : "load",
+																// 	call : function () { 
+																// 		var table = this;
+
+																// 		$.get(ajaxurl, {
+																// 			action : "get_account",
+																// 			method : "addresses"
+																// 		}, function (response) { 
+																// 			table.set_rows(response.return);
+																// 		}, "json");
+																// 	}
+																// },
+																// {
+																// 	name : "un/select",
+																// 	call : function () {
+
+																// 		var row_field_index, last_row_field, selected, field;
+																		
+																// 		row_field_index = this.calculate_the_order_number_of_the_first_field_in_the_currently_selected_row();
+																// 		last_row_field  = row_field_index+this.self.table.wake.column_number+1;
+																// 		selected        = this.add_or_remove_the_currently_selected_row_to_selected_rows();
+
+																// 		for (; row_field_index < last_row_field; row_field_index++ ) {
+																// 			field = this.self.table.component.box.children[row_field_index];
+																// 			field.className = ( selected ? this.self.table.wake.class_names.selected_field : this.self.table.wake.class_names.field );
+																// 		}
+																// 	}
+																// },
+																// {
+																// 	name : "un/select all",
+																// 	call : function () {
+
+																// 		var selected, index, fields_that_exist, field;
+
+																// 		selected          = this.select_or_unselect_all_rows();
+																// 		index             = 0;
+																// 		fields_that_exist = this.self.table.rows.length * ( this.self.table.wake.column_number + 1 );
+
+																// 		for (; index < fields_that_exist; index++ ) {
+																// 			field           = this.self.table.component.box.children[index];
+																// 			field.className = ( selected ? this.self.table.wake.class_names.selected_field : this.self.table.wake.class_names.field );
+																// 		}
+																// 	}
+																// },
+																// {
+																// 	name : "remove selected",
+																// 	call : function () { 
+
+																// 		if ( !confirm("Really Remove the rows?") ) return;
+
+																// 		var table, row_ids;
+
+																// 		table   = this;
+																// 		row_ids = this.get_selected_rows_property("id");
+																// 		$.post(ajaxurl, {
+																// 			action     : "set_account",
+																// 			method     : "remove_addresses_by_id",
+																// 			paramaters : {
+																// 				ids : row_ids
+																// 			}
+																// 		}, function () {
+																// 			table.remove_selected_rows();
+																// 		}, "json");
+																// 	}
+																// },
+																// {
+																// 	name : "reveal",
+																// 	call : function () { 
+
+																// 		this.reveal_rows();
+																// 	}
+																// },
 															],
 															submit_field_callback : function (data) {
 
@@ -6343,7 +6425,16 @@
 																// 	console.log(response);
 																// }, "json");
 
-															},	
+															},
+															visuals : {
+																on_field : {
+																	border : "2px solid #222"
+																},
+																not_on_field : {
+																	border : "2px solid #f5f5f5"
+																},
+
+															},
 															class_names : {
 																selected_row   : "stock_table_row_option_selected",
 																table_titles   : "stock_table_titles",
@@ -6352,8 +6443,14 @@
 																head           : "stock_table_title",
 																field          : "stock_table_field",
 																selected_field : "stock_table_field_selected",
+																used_field     : "stock_table_field_used",
 																option_wrap    : "stock_table_option",
-																option         : "stock_button"
+																option         : {
+																	button      : "stock_button",
+																	box         : "stock_table_option_box",
+																	description : "stock_table_option_box_description",
+																	input       : "stock_table_option_box_input",
+																}
 															}
 														});
 													}
@@ -8504,7 +8601,9 @@
 																		book       = algorithm.post(book[0]);
 
 																		for (index = 0; index < state.stock.post.user.price_promise.length; index++) {
+
 																			if ( book.external_product_id === state.stock.post.user.price_promise[index].asin ) {
+
 																				book.standard_price = state.stock.post.user.price_promise[index].price;
 																				price_promise       = state.stock.post.price_promise_match;
 																				price_promise.push(book.item_name);
