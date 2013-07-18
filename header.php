@@ -6298,25 +6298,27 @@
 																		{	
 																			type         : "input",
 																			instructions : {
-																				placeholder : "isbn",
-																				on          : [
-																					{
-																						event : "keypress",
-																						call  : function (event) {
-																							console.log(event.box_data);
-																							event.box_data.code = event.original_event.keyCode;
-																							console.log(this.self.table.options.box.data);
-																							if ( event.original_event.keyCode === 13 ) {
-																							}
-																						}
-																					},
-																				]
+																				placeholder : "condition",
+																				on          : {
+																					event : "keyup",
+																					call  : function (event) {
+																						event.box_data.condition = event.element.value;
+																					}
+																				}
 																			}
 																		},
 																		{	
 																			type         : "input",
 																			instructions : {
 																				placeholder : "isbn",
+																				on          : [
+																					{
+																						event : "keyup",
+																						call  : function (event) {
+																							event.box_data.isbn = event.element.value;
+																						}
+																					},
+																				]
 																			}
 																		},
 																		{

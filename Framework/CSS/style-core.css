@@ -4783,8 +4783,8 @@ body {
   position: absolute;
   float: left;
   background: #555555;
+  z-index: 2;
   width: 20px;
-  height: 20px;
   margin-left: -20px; }
 
 .stock_table_move_wrap {
@@ -4820,7 +4820,8 @@ body {
   height: 180px;
   width: 180px;
   padding: 20px;
-  border: 1px solid #555555; }
+  border: 1px solid #555555;
+  z-index: 12; }
 
 .stock_table_option_box_description {
   float: left;

@@ -16,8 +16,8 @@
 	position   : absolute;
 	float      : left;
 	background : $black_gray;
+	z-index    : 2;
 	width      : 20px;
-	height     : 20px;
 	margin-left: -20px;
 }
 
@@ -61,6 +61,7 @@
 	width   : 180px;
 	padding : 20px;
 	border  : 1px solid $black_gray;
+	z-index : 12;
 }
 
 .stock_table_option_box_description { 
