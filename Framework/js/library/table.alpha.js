@@ -56,7 +56,7 @@ var alpha = (function ( alpha, $ ) {
 				row    : 0
 			}
 		};
-		wake.self.table.revealed_rows = 0;
+		wake.self.table.revealed_rows = wake.max_row_load;
 		wake.self.table.selected_rows = [];
 
 		wake.self.table.submision_column_names = wake.submision_column_names,
@@ -301,16 +301,16 @@ var alpha = (function ( alpha, $ ) {
 
 		var current_field, previous_field;
 
-		current_field  = this.get_a_field_node(change.new);
+		this.reveal_rows(change.new);
+
 		previous_field = this.get_a_field_node(change.old);
+		current_field  = this.get_a_field_node(change.new);
 
 		this.self.table.selected.history.unshift({
 			row    : change.old.row,
 			column : change.old.column
 		});
-
-		if ( change.new.row > this.self.table.revealed_rows-2 ) this.reveal_rows();
-
+		console.log(change.new);
 		current_field.focus();
 
 		this.apply_style_to_node(current_field, this.self.table.wake.visuals.on_field);
@@ -382,7 +382,6 @@ var alpha = (function ( alpha, $ ) {
 
 		this.self.table.selected.current = current;
 	};
-
 
 	alpha.table.prototype.come_into_field_editing = function (target) { 
 
@@ -481,9 +480,14 @@ var alpha = (function ( alpha, $ ) {
 		this.self.table.component.box.insertAdjacentHTML("afterbegin", rows );
 	};
 
-	// alpha.table.prototype.generate_rows_
+	alpha.table.prototype.reveal_rows = function (rows) { 
 
-	alpha.table.prototype.reveal_rows = function () { 
+		console.log(rows.row);
+		console.log(this.self.table.revealed_rows);
+
+		if ( rows.row !== this.self.table.revealed_rows-2 ) return;
+
+		console.log("reavel");
 
 		var rows_to_reveal, number_of_rows_to_reveal, number_of_rows_revealed, index, column_number, html_of_rows;
 
@@ -492,17 +496,17 @@ var alpha = (function ( alpha, $ ) {
 		number_of_rows_revealed        = this.self.table.revealed_rows;
 		number_of_rows_to_reveal       = this.self.table.rows.length - number_of_rows_revealed;
 		number_of_rows_to_reveal       = ( number_of_rows_to_reveal > this.self.table.wake.max_row_load ? this.self.table.wake.max_row_load : number_of_rows_to_reveal );
-		rows_to_reveal                 = this.self.table.rows.slice( number_of_rows_revealed, ( number_of_rows_revealed + number_of_rows_to_reveal ) );
-		this.self.table.revealed_rows += number_of_rows_to_reveal;
+		rows_to_reveal                 = this.self.table.rows.slice( number_of_rows_revealed-1, ( number_of_rows_revealed + number_of_rows_to_reveal ) );
+		this.self.table.revealed_rows += number_of_rows_to_reveal+1;
 
-		console.log(this.self.table.rows);
-		console.log(this.self.table.rows.slice(10, 10));
-		console.log(number_of_rows_to_reveal);
-		console.log(number_of_rows_revealed);
-		console.log(rows_to_reveal);
+		// console.log(this.self.table.rows);
+		// console.log(this.self.table.rows.slice(10, 10));
+		// console.log(number_of_rows_to_reveal);
+		// console.log(number_of_rows_revealed);
+		// console.log(rows_to_reveal);
 		
 		for (; index < rows_to_reveal.length; index++) { 
-
+			console.log("reveal row"+ index);
 			column_number = -1;
 
 			for (column_name in rows_to_reveal[index] ) {
@@ -510,7 +514,7 @@ var alpha = (function ( alpha, $ ) {
 				html_of_rows += this.create_and_return_html_of_a_table_field({
 					column_number : column_number,
 					column_name   : column_name,
-					row           : number_of_rows_revealed + index,
+					row           : ( number_of_rows_revealed + index ) -1,
 					value         : rows_to_reveal[index][column_name]
 				});
 			}
