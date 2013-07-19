@@ -4821,6 +4821,7 @@ body {
   width: 180px;
   padding: 20px;
   border: 1px solid #555555;
+  background: whitesmoke;
   z-index: 12; }
 
 .stock_table_option_box_description {

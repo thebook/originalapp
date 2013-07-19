@@ -6286,8 +6286,22 @@
 																	}
 																},
 																{
+																	name : "un/select",
+																	type : "un_select"
+																},
+																{
+																	name : "stuff",
+																	type : [
+																		{
+																			type         : "text", 
+																			instructions : {
+																				content : "ahh yes this be the summer of fruitfull joy"
+																			}
+																		}
+																	]
+																},
+																{
 																	name         : "add book",
-																	// preset       : "un_select",
 																	type         : [
 																		{
 																			type         : "text", 
@@ -6334,83 +6348,6 @@
 																		}
 																	]
 																},
-																{
-																	name         : "remove",
-																	type         : "string"
-																},
-																// {
-																// 	name : "load",
-																// 	call : function () { 
-																// 		var table = this;
-
-																// 		$.get(ajaxurl, {
-																// 			action : "get_account",
-																// 			method : "addresses"
-																// 		}, function (response) { 
-																// 			table.set_rows(response.return);
-																// 		}, "json");
-																// 	}
-																// },
-																// {
-																// 	name : "un/select",
-																// 	call : function () {
-
-																// 		var row_field_index, last_row_field, selected, field;
-																		
-																// 		row_field_index = this.calculate_the_order_number_of_the_first_field_in_the_currently_selected_row();
-																// 		last_row_field  = row_field_index+this.self.table.wake.column_number+1;
-																// 		selected        = this.add_or_remove_the_currently_selected_row_to_selected_rows();
-
-																// 		for (; row_field_index < last_row_field; row_field_index++ ) {
-																// 			field = this.self.table.component.box.children[row_field_index];
-																// 			field.className = ( selected ? this.self.table.wake.class_names.selected_field : this.self.table.wake.class_names.field );
-																// 		}
-																// 	}
-																// },
-																// {
-																// 	name : "un/select all",
-																// 	call : function () {
-
-																// 		var selected, index, fields_that_exist, field;
-
-																// 		selected          = this.select_or_unselect_all_rows();
-																// 		index             = 0;
-																// 		fields_that_exist = this.self.table.rows.length * ( this.self.table.wake.column_number + 1 );
-
-																// 		for (; index < fields_that_exist; index++ ) {
-																// 			field           = this.self.table.component.box.children[index];
-																// 			field.className = ( selected ? this.self.table.wake.class_names.selected_field : this.self.table.wake.class_names.field );
-																// 		}
-																// 	}
-																// },
-																// {
-																// 	name : "remove selected",
-																// 	call : function () { 
-
-																// 		if ( !confirm("Really Remove the rows?") ) return;
-
-																// 		var table, row_ids;
-
-																// 		table   = this;
-																// 		row_ids = this.get_selected_rows_property("id");
-																// 		$.post(ajaxurl, {
-																// 			action     : "set_account",
-																// 			method     : "remove_addresses_by_id",
-																// 			paramaters : {
-																// 				ids : row_ids
-																// 			}
-																// 		}, function () {
-																// 			table.remove_selected_rows();
-																// 		}, "json");
-																// 	}
-																// },
-																// {
-																// 	name : "reveal",
-																// 	call : function () { 
-
-																// 		this.reveal_rows();
-																// 	}
-																// },
 															],
 															submit_field_callback : function (data) {
 
@@ -6479,63 +6416,6 @@
 									},
 									self   : '<div class="stock_table_wrap"></div>',
 									branch : {
-										controls : {
-											self   : '<div class="stock_table_controls"></div>',
-											branch : {
-												actions : {
-													instructions : {
-														on : {
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) {
-
-																var table, rows, index, row_ids;
-
-																index   = 0;
-																table   = world.wrap.branch.stock.branch.freepost.branch.table.self[0];
-																rows    = table.table.get_selected_rows();
-																row_ids = [];
-
-																for (; index < rows.length; index++ ) row_ids.push(rows[index].id);
-
-																$.post(ajaxurl, {
-																	action : "set_ticket",
-																	method : "remove_freeposts",
-																	paramaters : {
-																		ids : row_ids
-																	}
-																}, function () {
-																	table.table.remove_rows(table.table.selected_rows);
-																}, "json");
-															}
-														}
-													},
-													self   : '<div class="stock_button">Remove</div>',
-												},
-												load : {
-													instructions : {
-														on : {
-															the_event : "click",
-															is_asslep : false,
-															call      : function (change) {
-
-																var table;
-																table = world.wrap.branch.stock.branch.freepost.branch.table.self[0];
-
-																$.get(ajaxurl, {
-																	action : "get_ticket",
-																	method : "freepost"
-																}, function (response) { 
-																	table.table.set_rows(response.return);
-																}, "json");
-															}
-														}
-													},
-													self : '<div class="stock_button">Load</div>',
-
-												}
-											}
-										},
 										table : {
 											instructions : {
 												observe : {
@@ -6549,7 +6429,7 @@
 															table_name   : "freepost",
 															column_width : 150,
 															row_height   : 120,
-															table_height : 500,
+															table_height : 400,
 															column_number: 9,
 															max_row_load : 10,
 															columns      : [
@@ -6574,9 +6454,88 @@
 																"area",
 																"date"
 															],
+															options : [
+																{
+																	name : "load",
+																	type : function () { 
+																		var table = this;
+
+																		$.get(ajaxurl, {
+																			action : "get_ticket",
+																			method : "freepost"
+																		}, function (response) { 
+																			table.set_rows(response.return);
+																		}, "json");
+																	}
+																},
+																{
+																	name : "un/select",
+																	type : "un_select"
+																},
+																{
+																	name : "stuff",
+																	type : [
+																		{
+																			type         : "text", 
+																			instructions : {
+																				content : "ahh yes this be the summer of fruitfull joy"
+																			}
+																		}
+																	]
+																},
+																{
+																	name         : "add book",
+																	type         : [
+																		{
+																			type         : "text", 
+																			instructions : {
+																				content  : "to select or unselect the question is now? for whom so ever shall be found in the depths of getting down, shall cry for all to see 'Hail the gods and their mercy'"
+																			},
+																		},
+																		{	
+																			type         : "input",
+																			instructions : {
+																				placeholder : "condition",
+																				on          : {
+																					event : "keyup",
+																					call  : function (event) {
+																						event.box_data.condition = event.element.value;
+																					}
+																				}
+																			}
+																		},
+																		{	
+																			type         : "input",
+																			instructions : {
+																				placeholder : "isbn",
+																				on          : [
+																					{
+																						event : "keyup",
+																						call  : function (event) {
+																							event.box_data.isbn = event.element.value;
+																						}
+																					},
+																				]
+																			}
+																		},
+																		{
+																			type         : "button",
+																			instructions : {
+																				text : "submit",
+																				on   : {
+																					event : "click",
+																					call  : function () {
+																					}
+																				}
+																			}
+																		}
+																	]
+																},
+															],
 															submit_field_callback : function (data) {
 
 																if ( data.column_name === "id" ) return;
+
 																$.post(ajaxurl, { 
 																	action     : "set_ticket",
 																	method     : "freepost_ticket_value",
@@ -6589,17 +6548,32 @@
 																	console.log(response);
 																}, "json");
 
-															},	
+															},
+															visuals : {
+																on_field : {
+																	border : "2px solid #222"
+																},
+																not_on_field : {
+																	border : "2px solid #f5f5f5"
+																},
+
+															},
 															class_names : {
-																row_options  : "stock_table_row_options",
-																row_option   : "stock_table_row_option",
-																selected_row : "stock_table_row_option_selected",
-																table_titles : "stock_table_titles",
-																title        : "stock_table_title",
-																table_wrap   : "stock_table_move_wrap",
-																head         : "stock_table_title",
-																field        : "stock_table_field",
-																option       : "stock_table_row_option"
+																selected_row   : "stock_table_row_option_selected",
+																table_titles   : "stock_table_titles",
+																title          : "stock_table_title",
+																table_wrap     : "stock_table_move_wrap",
+																head           : "stock_table_title",
+																field          : "stock_table_field",
+																selected_field : "stock_table_field_selected",
+																used_field     : "stock_table_field_used",
+																option_wrap    : "stock_table_option",
+																option         : {
+																	button      : "stock_button",
+																	box         : "stock_table_option_box",
+																	description : "stock_table_option_box_description",
+																	input       : "stock_table_option_box_input",
+																}
 															}
 														});
 													}

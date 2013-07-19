@@ -65,22 +65,40 @@ $.get(ajaxurl, {
 	paramaters : {}, 
 }, function (response) {
 
-	var text = "email\tfirst name\tsecond name\tpassword\tcredit\tdonate\tlast withdraw\trecieve newsletter\tuniversity\tyear\tsubject\n";
+	var text = "email\tfirst name\tsecond name\title\n";
 	var data;
 	var users = response.return;
+	var book_index = 0;
+	var property;
 
 	for (var index = 0; index < users.length; index++ ) {
 
 		for ( data in users[index] ) {
-			if ( data !== "price_promise" && data !== "history" && data !== "unaccepted_book" ) text += users[index][data] +"\t";
+			if ( data === "price_promise" ) {
+				// console.log(users[index][data]);
+				users[index][data] = JSON.parse(users[index][data]);
+				if ( users[index][data] ) for (book_index = 0; book_index < users[index][data].length; book_index++) {
+					text += users[index].email +"\t";
+					text += users[index].first_name +"\t";
+					text += users[index].second_name +"\t";
+					if ( users[index][data][book_index].title ) text += users[index][data][book_index].title +"";
+					text += "\n";
+				}
+			}
 		}
-		text += "\n";
 	}
 
 	document.body.textContent = text;
 	console.log(text);
 
 }, "json");
+
+text += users[index].first_name +"\t";
+					
+					// console.log(JSON.parse(users[index][data]));
+					// for ( property in users[index][data][book_index] ) {
+					// 	text += users[index][data][book_index][property] +"\t";
+					// }
 
 $.get(ajaxurl, {
 	action : "get_account",
