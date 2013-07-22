@@ -6316,7 +6316,7 @@
 																				on          : {
 																					event : "keyup",
 																					call  : function (event) {
-																						event.box_data.condition = event.element.value;
+																						console.log("someting");
 																					}
 																				}
 																			}
@@ -6341,7 +6341,8 @@
 																				text : "submit",
 																				on   : {
 																					event : "click",
-																					call  : function () {
+																					call  : function (event) {
+																						console.log(event.box_data);
 																					}
 																				}
 																			}
@@ -6473,25 +6474,8 @@
 																	type : "un_select"
 																},
 																{
-																	name : "stuff",
-																	type : [
-																		{
-																			type         : "text", 
-																			instructions : {
-																				content : "ahh yes this be the summer of fruitfull joy"
-																			}
-																		}
-																	]
-																},
-																{
 																	name         : "add book",
 																	type         : [
-																		{
-																			type         : "text", 
-																			instructions : {
-																				content  : "to select or unselect the question is now? for whom so ever shall be found in the depths of getting down, shall cry for all to see 'Hail the gods and their mercy'"
-																			},
-																		},
 																		{	
 																			type         : "input",
 																			instructions : {
@@ -6519,12 +6503,56 @@
 																			}
 																		},
 																		{
+																			type         : "audio",
+																			instructions : {
+																				source : "mixdown.wav"
+																			}
+																		},
+																		{
+																			type         : "audio",
+																			instructions : {
+																				source : "mixdown2.wav"
+																			}
+																		},
+																		{
 																			type         : "button",
 																			instructions : {
 																				text : "submit",
 																				on   : {
 																					event : "click",
-																					call  : function () {
+																					call  : function (event) {
+
+																						new alpha.pure_amazon_search({
+																							typed       : event.box_data.isbn,
+																							filter_name : "sort"
+																						}, function (book) {
+
+																							var algorithm = new alpha.algorithm();
+
+																							if ( book === undefined || book.length === 0 ) {
+																								event.box.children[3].play();
+																								return;
+																							}
+
+																							book                = book[0];
+																							book.condition_type = event.box_data.condition,
+																							book                = algorithm.recalculate(book);
+
+																							if ( book.refused ) {
+																								event.box.children[3].play();
+																								return;
+																							}
+
+																							$.post(ajaxurl, {
+																								action     : "set_book",
+																								method     : "book",
+																								paramaters : {
+																									book : book
+																								}
+																							}, function (change) {
+																								event.box.children[4].play();
+																							}, "json");
+																						});															
 																					}
 																				}
 																			}

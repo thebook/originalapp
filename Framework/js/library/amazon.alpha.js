@@ -17,8 +17,52 @@ var alpha = (function ( alpha, $ ) {
 			function (books) {
 				callback(books);
 			},
+			'json');
+
+	};
+
+	alpha.search_book = function (wake, callback) {
+
+		var self = this;
+		wake.search_by     = wake.search_by     || 'isbn';
+		wake.search_for    = wake.search_for    || 'books';
+		wake.filter_name   = wake.filter_name   || 'sort';
+		wake.algorithm     = wake.algorithm     || "post";
+
+		$.post( 
+			ajaxurl, 
+			{ 
+				action     : 'amazon', 
+				paramaters : wake
+			}, 
+			function (book) {
+
+				console.log(book); 
+				var response, original_response, algorithm, index, final_book;
+
+				response   = false;
+				index      = 0;
+				algorithm  = new alpha.algorithm();
+
+				if ( book !== undefined || book.length > 0 ) {
+
+					original_response = book;
+
+					for (; index < original_response.length; index++) 
+						if ( original_response[index].external_product_id === wake.typed ) 
+							response = original_response[index];
+
+					if ( response ) response = algorithm[wake.algorithm]();
+
+				}
+
+				callback(response);
+			},
 			'json'
 		);
+	};
+
+	alpha.audio = function (wake) {
 
 	};
 

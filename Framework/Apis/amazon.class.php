@@ -19,15 +19,10 @@ class amazon extends alpha_tree_api
 	public function create ()
 	{
 		$paramaters        = $_POST['paramaters'];	
-		// Get search function
 		$search            = "_search_for_{$paramaters['search_for']}_by_{$paramaters['search_by']}";
-		// Get filter function 
 		$filter_by         = "_filter_{$paramaters['search_for']}_by_{$paramaters['filter_name']}";
-		// Get search parmaters
 		$search_paramaters = $this->{$search}($paramaters['typed']);
-		// Get response 
 		$response          = $this->_make_the_call($search_paramaters);
-		// Filter Response
 		$response          = $this->{$filter_by}($response);
 
 		echo json_encode($response);
@@ -77,7 +72,19 @@ class amazon extends alpha_tree_api
 			'IdType'        => 'ISBN',
 			'ItemId'        => "$search_number",
 			'SearchIndex'   => 'Books',
-			'ResponseGroup' => 'Offers, ItemAttributes, Images, EditorialReview',
+			'ResponseGroup' => 'Offers, ItemAttributes, Images, EditorialReview, OfferSummary',
+			'Condition'     => 'Used'
+		);
+	}
+
+	protected function _search_for_books_by_asin ($search_number)
+	{
+		return array(
+			'Operation'     => 'ItemLookup', 
+			'IdType'        => 'ASIN',
+			'ItemId'        => "$search_number",
+			'SearchIndex'   => 'Books',
+			'ResponseGroup' => 'Offers, ItemAttributes, Images, EditorialReview, OfferSummary',
 			'Condition'     => 'Used'
 		);
 	}
@@ -121,6 +128,10 @@ class amazon extends alpha_tree_api
 		foreach ($xml->Items->Item as $item => $attributes) : 
 
 			$book = array();		
+			// $book['detail']              = array();
+			// $book['detail']['isbn']      = (string)$attributes->ItemAttributes->ISBN;
+			// $book['detail']['asin']      = (string)$attributes->ASIN;
+			$book['prices']              = array();
 			$book['package_height']      = '0';
 			$book['package_width']       = '0';
 			$book['package_length']      = '0';
@@ -152,8 +163,6 @@ class amazon extends alpha_tree_api
 			else :
 				$book['standard_price'] = (string)($attributes->ItemAttributes->ListPrice->Amount/100);
 			endif;
-
-			$book['prices'] = array();
 			
 			if ( isset($attributes->OfferSummary->LowestUsedPrice) )  :
 				$book['prices']['lowest'] = (string)($attributes->OfferSummary->LowestUsedPrice->Amount/100);

@@ -56,6 +56,10 @@ var alpha = (function ( alpha, $ ) {
 				row    : 0
 			}
 		};
+		wake.self.table.notification  = {
+			current : {},
+			history : []
+		};
 		wake.self.table.revealed_rows = wake.max_row_load;
 		wake.self.table.selected_rows = [];
 
@@ -138,13 +142,17 @@ var alpha = (function ( alpha, $ ) {
 		this.popuplate_table_rows();
 	};
 
+	alpha.table.prototype.add_row = function (row) { 
+
+	};
+
 	alpha.table.prototype.remove_selected_rows = function () {
 
-		// var rows, index, row;
+		var rows, index, row;
 
-		// selected_rows = this.self.table.selected_rows;
-		// rows          = [];
-		// index         = 0;
+		selected_rows = this.self.table.selected_rows;
+		rows          = [];
+		index         = 0;
 
 		for (; index < this.self.table.rows.length; index++) {
 			if ( selected_rows.indexOf(index) < 0 ) {
@@ -152,8 +160,8 @@ var alpha = (function ( alpha, $ ) {
 				rows.push(row[0]);
 			}
 		};
-		
-		this.self.table.rows = rows;
+		this.self.table.selected_rows = [];
+		this.self.table.rows          = rows;
 		this.popuplate_table_rows();
 	};
 
@@ -310,7 +318,7 @@ var alpha = (function ( alpha, $ ) {
 			row    : change.old.row,
 			column : change.old.column
 		});
-		console.log(change.new);
+
 		current_field.focus();
 
 		this.apply_style_to_node(current_field, this.self.table.wake.visuals.on_field);
@@ -409,6 +417,39 @@ var alpha = (function ( alpha, $ ) {
 		});
 	};
 
+	alpha.table.prototype.reveal_rows = function (rows) { 
+
+		if ( rows.row !== this.self.table.revealed_rows-2 ) return;
+
+		var rows_to_reveal, number_of_rows_to_reveal, number_of_rows_revealed, index, column_number, html_of_rows;
+
+		html_of_rows                   = "";
+		index                          = 0;
+		number_of_rows_revealed        = this.self.table.revealed_rows;
+		number_of_rows_to_reveal       = this.self.table.rows.length - number_of_rows_revealed;
+		number_of_rows_to_reveal       = ( number_of_rows_to_reveal > this.self.table.wake.max_row_load ? this.self.table.wake.max_row_load : number_of_rows_to_reveal );
+		rows_to_reveal                 = this.self.table.rows.slice( number_of_rows_revealed-1, ( number_of_rows_revealed + number_of_rows_to_reveal ) );
+		this.self.table.revealed_rows += number_of_rows_to_reveal+1;
+		
+		for (; index < rows_to_reveal.length; index++) { 
+
+			column_number = -1;
+
+			for (column_name in rows_to_reveal[index] ) {
+				column_number++;
+				html_of_rows += this.create_and_return_html_of_a_table_field({
+					column_number : column_number,
+					column_name   : column_name,
+					row           : ( number_of_rows_revealed + index ) -1,
+					value         : rows_to_reveal[index][column_name]
+				});
+			}
+		}
+
+		this.self.table.component.box.insertAdjacentHTML("beforeend", html_of_rows );
+
+	};
+
 	alpha.table.prototype.submit_changed_value = function (change) { 
 
 		if ( change.old === change.new ) return;
@@ -419,6 +460,8 @@ var alpha = (function ( alpha, $ ) {
 			column_name : this.self.table.submision_column_names[this.self.table.selected.current.column],
 		});
 	};
+
+	// Creating 
 
 	alpha.table.prototype.create_and_return_html_of_a_table_field = function (wake) { 
 
@@ -478,50 +521,6 @@ var alpha = (function ( alpha, $ ) {
 		};
 
 		this.self.table.component.box.insertAdjacentHTML("afterbegin", rows );
-	};
-
-	alpha.table.prototype.reveal_rows = function (rows) { 
-
-		console.log(rows.row);
-		console.log(this.self.table.revealed_rows);
-
-		if ( rows.row !== this.self.table.revealed_rows-2 ) return;
-
-		console.log("reavel");
-
-		var rows_to_reveal, number_of_rows_to_reveal, number_of_rows_revealed, index, column_number, html_of_rows;
-
-		html_of_rows                   = "";
-		index                          = 0;
-		number_of_rows_revealed        = this.self.table.revealed_rows;
-		number_of_rows_to_reveal       = this.self.table.rows.length - number_of_rows_revealed;
-		number_of_rows_to_reveal       = ( number_of_rows_to_reveal > this.self.table.wake.max_row_load ? this.self.table.wake.max_row_load : number_of_rows_to_reveal );
-		rows_to_reveal                 = this.self.table.rows.slice( number_of_rows_revealed-1, ( number_of_rows_revealed + number_of_rows_to_reveal ) );
-		this.self.table.revealed_rows += number_of_rows_to_reveal+1;
-
-		// console.log(this.self.table.rows);
-		// console.log(this.self.table.rows.slice(10, 10));
-		// console.log(number_of_rows_to_reveal);
-		// console.log(number_of_rows_revealed);
-		// console.log(rows_to_reveal);
-		
-		for (; index < rows_to_reveal.length; index++) { 
-			console.log("reveal row"+ index);
-			column_number = -1;
-
-			for (column_name in rows_to_reveal[index] ) {
-				column_number++;
-				html_of_rows += this.create_and_return_html_of_a_table_field({
-					column_number : column_number,
-					column_name   : column_name,
-					row           : ( number_of_rows_revealed + index ) -1,
-					value         : rows_to_reveal[index][column_name]
-				});
-			}
-		}
-
-		this.self.table.component.box.insertAdjacentHTML("beforeend", html_of_rows );
-
 	};
 
 	alpha.table.prototype.empty = function (what) {
@@ -662,9 +661,11 @@ var alpha = (function ( alpha, $ ) {
 		var self = this;
 
 		instructions.node.addEventListener(instructions.event, function (event) {
+			
 			instructions.call.call(self, {
+				box            : document.getElementById(self.self.table.wake.table_name +'_option_'+ instructions.index),
 				element        : instructions.node,
-				box_data       : self.self.table.options.box.data[instructions.index],
+				box_data       : self.self.table.options.data[instructions.index],
 				original_event : event
 			});
 		});
@@ -720,6 +721,18 @@ var alpha = (function ( alpha, $ ) {
 			});
 
 			return button;
+		},
+
+		audio : function (instructions) {
+
+			var audio = this.make_node({
+				type : "audio",
+				with : {
+					src : instructions.source
+				}
+			});
+
+			return audio;					
 		}
 	};
 
