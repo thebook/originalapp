@@ -113,6 +113,8 @@ var alpha = (function ( alpha, $ ) {
 			object   : this.self.table.visible,
 			property : "column",
 			observer : function (change) {
+				console.log(prototype.self.table.visible.row)
+				console.log(prototype.self.table.visible.column)
 				prototype.move_visisble_area_by_x_axis(change);
 			}
 		});
@@ -138,11 +140,31 @@ var alpha = (function ( alpha, $ ) {
 	};
 
 	alpha.table.prototype.set_rows = function (rows) {
+		console.log(rows);
 		this.self.table.rows = rows;
 		this.popuplate_table_rows();
 	};
 
-	alpha.table.prototype.add_row = function (row) { 
+	alpha.table.prototype.set_row = function (row) { 
+
+		// var row_html, column_number, column_name;
+
+		// row_html      = "";
+		// column_number = 0;
+
+		// for (column_name in row ) {
+		// 	column_number++;
+		// 	row_html += this.create_and_return_html_of_a_table_field({
+		// 		column_number : column_number,
+		// 		column_name   : column_name,
+		// 		row           : this.self.table.rows.length,
+		// 		value         : row[column_name]
+		// 	});
+		// }
+
+		this.self.table.rows.push(row);
+		this.self.table.visible.row.bottom++;
+		// this.self.table.component.box.insertAdjacentHTML("beforeend", row_html );
 
 	};
 
@@ -261,7 +283,9 @@ var alpha = (function ( alpha, $ ) {
 	alpha.table.prototype.get_width_of_the_hidden_column = function () { 
 
 		var column_number = this.self.table.visible.column.right + this.self.table.visible.column.left - 1;
-		return this.self.table.component.box.children[column_number].clientWidth;
+		console.log(column_number);
+		// return this.self.table.component.box.children[column_number].clientWidth;
+		return this.self.table.wake.column_width;
 	};
 
 	alpha.table.prototype.visible_area_calculator = function (change) {

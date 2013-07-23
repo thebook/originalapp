@@ -4817,7 +4817,6 @@ body {
 .stock_table_option_box {
   position: absolute;
   float: left;
-  height: 180px;
   width: 180px;
   padding: 20px;
   border: 1px solid #555555;
