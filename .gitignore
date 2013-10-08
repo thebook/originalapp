@@ -1,0 +1,4 @@
+# Ignore sass caches and thumbs.db and sorts
+sass-cache/
+*.scssc
+*.db

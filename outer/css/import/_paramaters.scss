@@ -1,0 +1,28 @@
+$url              : #{"<?php echo get_template_directory_uri(); ?>"};
+$bar_height       : 52px;
+$light_blue       :#9ad9e0;
+$green            : #b4d65a;
+$light_gray       : #f6f6f6;
+$middle_gray      : #dadada;
+$darkest_gray     : #9F9F9F;
+$even_darker_gray : #d1d1d1;
+$dark_gray        : #efefef;
+$black_gray       : #555;
+$light            : #fff;
+$dark_blue        : #3f7986;
+
+$the_width                : 930px;
+$profile_hub_box_width    : ($the_width/2)- 5;
+$the_bar_width            : 1010px;
+$width                    : 64%;
+$content_width            : 70%;
+$breakpoint_content_width : 79%;
+$breakpoint_bar_width     : 86%;
+
+$hover_light_blue  : darken($light_blue, 10%);
+$click_light_blue  : darken($light_blue, 17%);
+$hover_dark_blue   : lighten($dark_blue, 2%);
+$click_dark_blue   : lighten($dark_blue, 3%);
+$light_monochrome  : #f5f5f5;
+$middle_monochrome : #d8d8d8;
+$stock_width       : 685px;
