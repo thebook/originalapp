@@ -1,4 +1,16 @@
 @charset "CP850";
+@font-face {
+  font-family: 'MotorOil';
+  src: url("<?php echo get_template_directory_uri(); ?>/outer/css/include/font/MotorOil.ttf"); }
+
+@font-face {
+  font-family: 'HandWritten';
+  src: url("<?php echo get_template_directory_uri(); ?>/outer/css/include/font/handwritten.ttf"); }
+
+@font-face {
+  font-family: 'Vieira';
+  src: url("<?php echo get_template_directory_uri(); ?>/outer/css/include/font/vieira.ttf"); }
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -60,18 +72,6 @@ header, section, time, hgroup, nav {
   font-family: 'recyclabook-icons';
   font-style: normal;
   font-weight: normal; }
-
-@font-face {
-  font-family: 'MotorOil';
-  src: url("<?php echo get_template_directory_uri(); ?>/Framework/CSS/Includes/fonts/MotorOil.ttf"); }
-
-@font-face {
-  font-family: 'HandWritten';
-  src: url("<?php echo get_template_directory_uri(); ?>/Framework/CSS/Includes/fonts/handwritten.ttf"); }
-
-@font-face {
-  font-family: 'Vieira';
-  src: url("<?php echo get_template_directory_uri(); ?>/Framework/CSS/Includes/fonts/vieira.ttf"); }
 
 a {
   text-decoration: none; }

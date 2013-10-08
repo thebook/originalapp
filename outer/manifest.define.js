@@ -2,10 +2,11 @@ define({
 	main : {
 		app              : "app",
 		manifest         : "manifest/manifest",
-		// manifest_modules : ["library/extend", "library/extend.tailor"],
 		manifest_modules : {
-			mains : ["library/extend"], 
-			second_level : ["library/extend.tailor"],
+			mains : ["library/extend"],
+			extentions : [
+				"library/extend.foot"
+			]			
 		}
 	},
 	sorter  : {
@@ -16,10 +17,10 @@ define({
 		default_sorter    : "basic"
 	},
 	module  : {
-		libraries  : [],
+		libraries  : [
+			"library/node_making_tools",
+			"library/observe"
+		],
 		parts      : [],
-		data       : [], 	
-		other      : ["library/extend.tailor"],
-		components : ["library/observe","library/extend"]
 	}
 });
