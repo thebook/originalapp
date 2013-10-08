@@ -7264,79 +7264,79 @@
 																							event : "click",
 																							call  : function (event) {
 
-	console.log(event.box.children);
-	var self = this;
+																								console.log(event.box.children);
+																								var self = this;
 
-	new alpha.pure_amazon_search({
-		typed       : event.box_data.isbn,
-		filter_name : "sort"
-	}, function (book) {
+																								new alpha.pure_amazon_search({
+																									typed       : event.box_data.isbn,
+																									filter_name : "sort"
+																								}, function (book) {
 
-		var algorithm = new alpha.algorithm();
+																									var algorithm = new alpha.algorithm();
 
-		if ( book === undefined || book.length === 0 ) {
-			event.box.children[2].play();
-			return;
-		}
+																									if ( book === undefined || book.length === 0 ) {
+																										event.box.children[2].play();
+																										return;
+																									}
 
-		book                = book[0];
-		book.condition_type = event.box_data.condition,
-		book                = algorithm.recalculate(book);
+																									book                = book[0];
+																									book.condition_type = event.box_data.condition,
+																									book                = algorithm.recalculate(book);
 
-		if ( book.refused ) {
-			event.box.children[2].play();
-			return;
-		}
-		self.set_row({
-			"sku"     : "",
-			"section" : "",
-			"level"   : "",
-			"number"  : "",
-			"external_product_id" : book.external_product_id,
-			"external_product_id_type" : "ASIN",
-			"item_name" : book.item_name,
-			"manufacturer" : book.manufacturer,
-			"product_description" : "",
-			"update_delete" : "",
-			"standard_price" : book.standard_price,
-			"quantity" : "",
-			"condition_type" : book.condition_type,
-			"condition_note" : "",
-			"generic_keywords1" : "",
-			"generic_keywords2" : "",
-			"generic_keywords3" : "",
-			"generic_keywords4" : "",
-			"generic_keywords5" : "",
-			"main_image_url" : book.main_image_url,
-			"fulfillment_center_id" : "",
-			"package_height" : book.package_height,
-			"package_width"  : book.package_weight,
-			"package_length" : book.package_length,
-			"package_dimensions_unit_of_measure" : book.package_dimensions_unit_of_measure,
-			"package_weight" : "",
-			"package_weight_unit_of_measure" : book.package_weight_unit_of_measure, 
-			"author" : book.author,
-			"binding" : book.binding,
-			"publication_date" : book.publication_date,
-			"edition" : "",
-			"expedited_shipping" : "",
-			"will_ship_internationally" : "",
-			"unknown_subject" : "",
-			"language_value" : "",
-			"volume_base" : "",
-			"illustrator" : ""
-		});
+																									if ( book.refused ) {
+																										event.box.children[2].play();
+																										return;
+																									}
+																									self.set_row({
+																										"sku"     : "",
+																										"section" : "",
+																										"level"   : "",
+																										"number"  : "",
+																										"external_product_id" : book.external_product_id,
+																										"external_product_id_type" : "ASIN",
+																										"item_name" : book.item_name,
+																										"manufacturer" : book.manufacturer,
+																										"product_description" : "",
+																										"update_delete" : "",
+																										"standard_price" : book.standard_price,
+																										"quantity" : "",
+																										"condition_type" : book.condition_type,
+																										"condition_note" : "",
+																										"generic_keywords1" : "",
+																										"generic_keywords2" : "",
+																										"generic_keywords3" : "",
+																										"generic_keywords4" : "",
+																										"generic_keywords5" : "",
+																										"main_image_url" : book.main_image_url,
+																										"fulfillment_center_id" : "",
+																										"package_height" : book.package_height,
+																										"package_width"  : book.package_weight,
+																										"package_length" : book.package_length,
+																										"package_dimensions_unit_of_measure" : book.package_dimensions_unit_of_measure,
+																										"package_weight" : "",
+																										"package_weight_unit_of_measure" : book.package_weight_unit_of_measure, 
+																										"author" : book.author,
+																										"binding" : book.binding,
+																										"publication_date" : book.publication_date,
+																										"edition" : "",
+																										"expedited_shipping" : "",
+																										"will_ship_internationally" : "",
+																										"unknown_subject" : "",
+																										"language_value" : "",
+																										"volume_base" : "",
+																										"illustrator" : ""
+																									});
 
-		$.post(ajaxurl, {
-			action     : "set_book",
-			method     : "book",
-			paramaters : {
-				book : book
-			}
-		}, function (change) {
-			event.box.children[3].play();
-		}, "json");
-	});															
+																									$.post(ajaxurl, {
+																										action     : "set_book",
+																										method     : "book",
+																										paramaters : {
+																											book : book
+																										}
+																									}, function (change) {
+																										event.box.children[3].play();
+																									}, "json");
+																								});															
 																							}
 																						}
 																					}
