@@ -1,0 +1,54 @@
+.admin {
+	position: fixed;
+	float   : left;
+	width   : 100%;
+	color   : $light;
+	height  : 100%;
+	overflow: hidden;
+	background : $dark_blue;
+}
+
+.admin_wrap {
+	float: left;
+	width: 100%;
+}
+
+.admin_list {
+	width        : 20%;
+	padding-top  : 20px;
+	float        : left;
+	display      : inline-block;
+}
+
+.admin_back_button {
+	font-size      : 14px;
+	margin-left    : 10%;
+	margin-bottom  : 15px;
+	padding        : 5px 5%;
+	float          : left;
+	background     : darken($dark_blue, 20%);
+	cursor         : pointer;
+	&:hover { 
+		padding    : 5px 5% 5px 15%;
+		margin-left: 0%;
+	}
+}
+
+.admin_list_item {
+	text-transform: uppercase;
+	width   : 80%;
+	padding : 10px 10%;
+	float   : left;
+	cursor: pointer;
+	&:hover { 
+		background: darken($dark_blue, 20%);
+	}
+}
+
+.admin_content {
+	background : $dark_blue;
+	width      : 80%;
+	display    : inline-block;
+	float      : left;
+	height     : 100%;
+}

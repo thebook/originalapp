@@ -79,6 +79,62 @@ define(function () {
 								}
 							},
 							self : ".footer"
+						},
+						backend : {
+							instructions : {
+								extend : {
+									into : "backend",
+									pass : {
+										use : [
+											{
+												module : "data",
+												title  : "View Users",
+												pass   : {
+													settings : {
+														tabs : {
+															users : {
+																type : "table",
+																pass : {
+
+																}
+															},
+															expecting_books : {
+																type : "recreate",
+																pass : {
+																	from       : ["price_promise"],
+																	add_fields : ["first_name"],
+																	formating  : function () {}
+																}
+															},
+															issues : {
+																type : "filter",
+																pass : {
+																	by        : "any",
+																	that_has  : {
+																		"status" : "issue"
+																	},
+																	formating : function () {}
+																}
+															},
+														}
+													},
+													model : {
+														retrieve : {
+															users : {
+																paramaters : {
+																	action : "get_account",
+																	method : "table",
+																}
+															}
+														},
+													}
+												}
+											}
+										]
+									}
+								}
+							},
+							self : ".admin"
 						}
 					}
 				},

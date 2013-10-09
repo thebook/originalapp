@@ -5,7 +5,9 @@ define({
 		manifest_modules : {
 			mains : ["library/extend"],
 			extentions : [
-				"library/extend.foot"
+				"library/extend.foot",
+				"library/extend.backend",
+				"library/extend.backend.data",
 			]			
 		}
 	},

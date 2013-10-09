@@ -6,7 +6,6 @@
 @import "import/profile_hub";
 @import "import/bar";
 @import "import/homepage";
-@import "import/recyclabus";
 @import "import/sales";
 @import "import/search.book";
 @import "import/user";
@@ -14,5 +13,8 @@
 @import "import/thank_you";
 @import "import/footer";
 @import "import/popup";
-@import "import/bus";
-@import "import/stock";
+
+@import "import/admin"
+// @import "import/recyclabus";
+// @import "import/bus";
+// @import "import/stock";
