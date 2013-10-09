@@ -18,9 +18,51 @@ define(function () {
 									into : "foot",
 									pass : {
 										settings : {
+											navigation_text : {
+												contact : "Contact Us",
+												media   : "Media",
+												word    : "A Word From Us",
+												terms   : "Terms & Conditions",
+												advert  : "Advertising"
+											},
+											media       : {
+												email      : "Press@recylabook.com",
+												bubble_path: "http://recyclabook.co.uk/wp-content/themes/recyclabook_23_07_2013__16_54_50/Framework/CSS/Includes/works/media_bubble.png",
+												logo_path  : "http://recyclabook.co.uk/wp-content/themes/recyclabook_23_07_2013__16_54_50/Framework/CSS/Includes/works/media.png",
+											},
+											contact       : {
+												image_path : "http://recyclabook.co.uk/wp-content/themes/recyclabook_23_07_2013__16_54_50/Framework/CSS/Includes/works/contact.png",
+												left_paragraph : [
+													"Talk@recyclabook.com",
+													"02921 202665"
+												],
+												right_paragraph : [
+													"Britannia House",
+													"Caerphilly Business Park",
+													"Caerphilly",
+													"CF83 3GG",
+												]
+											},
+											word : {
+												title : "A word from us",
+												paragraph : [
+													"Recyclabook was founded by Tom Williams and James Seear with the aim of providing the easiest possible way for a student to sell their textbook",
+													"After months of trials and tribulations and with the help of some great people along the way, we’ve grown to a team of six, spoken to universities across the world and created Recyclabook - a company that provides a service that we wanted when we were students",
+													"We’ve tried to create a brand that embodies ease and trust at its core, this is where the ‘Recyclabus’ stems from, a van parked in a convenient location where students can bring their books and get paid instantly. ",
+													"Thanks",
+													"Tom and James",
+												]
+											},
+											logo_path     : "http://recyclabook.co.uk/wp-content/themes/recyclabook_23_07_2013__16_54_50/Framework/CSS/Includes/works/footer_logos.png",
 											advert_title  : "Advertising",
 											pdf_link      : "",
-											advert_images : [],
+											advert_download_text : "Download Advertising Pack",
+											advert_images : [
+												"http://recyclabook.co.uk/wp-content/themes/recyclabook_23_07_2013__16_54_50/Framework/CSS/Includes/works/advertising_one.jpg",
+												"http://recyclabook.co.uk/wp-content/themes/recyclabook_23_07_2013__16_54_50/Framework/CSS/Includes/works/advertising_two.jpg",
+												"http://recyclabook.co.uk/wp-content/themes/recyclabook_23_07_2013__16_54_50/Framework/CSS/Includes/works/advertising_three.jpg",
+												"http://recyclabook.co.uk/wp-content/themes/recyclabook_23_07_2013__16_54_50/Framework/CSS/Includes/works/advertising_four.jpg"
+											],
 										}
 									}
 								}

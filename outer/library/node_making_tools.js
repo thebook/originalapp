@@ -48,7 +48,7 @@ define({
 
 		var node, style_property, property, attribute, method;
 
-		node = document.createElement(of.type);
+		node = document.createElement(of.type||"div");
 
 		for ( style_property in of.style )
 			if ( of.style.hasOwnProperty(style_property) )
