@@ -1,12 +1,17 @@
 define(function () {
 
 	var app = function (thought, modules) {
+		
+		var word, animator;
 
-		world = Object.create(thought);
+		animator = Object.create(modules.libraries.animator)
+		world    = Object.create(thought)
+		animator.make()
 
 		world.make({
 			parts   : {
-				node_making_tools : modules.libraries.node_making_tools
+				node_making_tools : modules.libraries.node_making_tools,
+				animation         : animator
 			},
 			thought : {
 				wrap : {
@@ -18,6 +23,8 @@ define(function () {
 									into : "foot",
 									pass : {
 										settings : {
+											animation_speed : 250,
+											popup_pushdown  : 800,
 											navigation_text : {
 												contact : "Contact Us",
 												media   : "Media",
@@ -52,6 +59,10 @@ define(function () {
 													"Thanks",
 													"Tom and James",
 												]
+											},
+											legal : {
+												title : "Terms & Conditions",
+												text  : modules.data.terms_and_conditions.text
 											},
 											logo_path     : "http://recyclabook.co.uk/wp-content/themes/recyclabook_23_07_2013__16_54_50/Framework/CSS/Includes/works/footer_logos.png",
 											advert_title  : "Advertising",

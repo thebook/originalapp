@@ -3,6 +3,7 @@ define({
 	make : function (instructions, modules) { 
 
 		var self         = this;
+		this.animation   = modules.animation
 		this.maker       = Object.create(modules.node_making_tools)
 		this.settings    = instructions.settings
 		this.class_names = {
@@ -33,6 +34,9 @@ define({
 			word_title         : "popup_word_title",
 			word_text          : "popup_word_text",
 			word_line          : "popup_word_paragraph",
+			legal              : "popup_legal", 
+			legal_title        : "popup_legal_title",       
+			legal_text         : "popup_legal_text",      
 		}
 		this.popup       = this.maker.create_parts({
 			wrap : {
@@ -51,6 +55,11 @@ define({
 								type : "div",
 								attribute : {
 									"class" : this.class_names.popup_close
+								},
+								methods : {
+									addEventListener : ["click", function () {
+										self.close_popup();
+									}]
 								}
 							},
 							advert : {
@@ -229,7 +238,7 @@ define({
 									}
 								}
 							},
-							legal  : {
+							terms  : {
 								attribute : {
 									"class" : this.class_names.legal
 								},
@@ -239,13 +248,29 @@ define({
 											textContent : this.settings.legal.title
 										},
 										attribute : {
-											"class" : this.class_names.word_title
+											"class" : this.class_names.legal_title
 										},
 									},
 									paragraph : {
 										attribute : {
-											"class" : this.class_names.word_text
+											"class" : this.class_names.legal_text
 										},
+										children : function (parent) {
+
+											for (var index = 0; index < self.settings.legal.text.length; index++)
+												parent["line_"+index] = {
+													node : this.create_and_return_node({
+														type : ( self.settings.legal.text[index].type === "title" ? "h3" : "p" ),
+														property : {
+															textContent : self.settings.legal.text[index].content
+														}
+													})
+												}
+
+											return parent
+										}
+									}
+								}
 							},
 						},
 					}
@@ -258,6 +283,11 @@ define({
 				attribute : {
 					"class" : this.class_names.wrap
 				},
+				methods : {
+					addEventListener : ["click", function (event) {
+						self.show_popup(event)
+					}]
+				},
 				children : {
 					navigation : {
 						attribute : {
@@ -269,7 +299,8 @@ define({
 									textContent : this.settings.navigation_text.contact
 								},
 								attribute : {
-									"class" : this.class_names.navigation_button
+									"class" : this.class_names.navigation_button,
+									"data-navigation" : "contact"
 								}
 							},
 							media : {
@@ -277,7 +308,8 @@ define({
 									textContent : this.settings.navigation_text.media
 								},
 								attribute : {
-									"class" : this.class_names.navigation_button
+									"class" : this.class_names.navigation_button,
+									"data-navigation" : "media"
 								}
 							},
 							word : {
@@ -285,7 +317,8 @@ define({
 									textContent : this.settings.navigation_text.word
 								},
 								attribute : {
-									"class" : this.class_names.navigation_button
+									"class" : this.class_names.navigation_button,
+									"data-navigation" : "word"
 								}
 							},
 							terms : {
@@ -293,7 +326,8 @@ define({
 									textContent : this.settings.navigation_text.terms
 								},
 								attribute : {
-									"class" : this.class_names.navigation_button
+									"class" : this.class_names.navigation_button,
+									"data-navigation" : "terms"
 								}
 							},
 							advert : {
@@ -301,7 +335,8 @@ define({
 									textContent : this.settings.navigation_text.advert
 								},
 								attribute : {
-									"class" : this.class_names.navigation_button
+									"class" : this.class_names.navigation_button,
+									"data-navigation" : "advert"
 								}
 							}
 						}
@@ -328,7 +363,7 @@ define({
 				}
 			}
 		})
-		console.log(this.popup);
+		
 		this.maker.append_parts({
 			parts : this.popup
 		})
@@ -342,8 +377,57 @@ define({
 		return this.foot.wrap.node
 	},
 
-	show_window : function () {
-
+	show_popup : function (event) {
+		
+		if ( event.target.getAttribute("data-navigation" ) ) {
+			
+			this.open_popup                    = event.target.getAttribute("data-navigation")
+			document.body.style.overflow       = "hidden"
+			this.popup.wrap.node.style.display = "block"
+			this.popup.wrap.box[this.open_popup].node.style.display = "block"
+			this.animation.animate({
+				element : this.popup.wrap.node,
+				property: ["opacity"],
+				from    : [0],
+				to      : [1],
+				how_long: this.settings.animation_speed,
+				easing  : "easeInQuad",
+			})
+			this.animation.animate({
+				element : this.popup.wrap.box.node,
+				property: ["top"],
+				from    : [this.settings.popup_pushdown],
+				to      : [0],
+				how_long: this.settings.animation_speed,
+				easing  : "easeInQuad",
+			})
+		}
 	},
 
+	close_popup : function () {	
+
+		var self = this;	
+		
+		this.animation.animate({
+			element : this.popup.wrap.node,
+			property: ["opacity"],
+			from    : [1],
+			to      : [0],
+			how_long: this.settings.animation_speed,
+			easing  : "easeInQuad",
+		})
+		this.animation.animate({
+			element : this.popup.wrap.box.node,
+			property: ["top"],
+			from    : [0],
+			to      : [this.settings.popup_pushdown],
+			how_long: this.settings.animation_speed,
+			easing  : "easeInQuad",
+		})
+		window.setTimeout(function () {
+			document.body.style.overflow       = "auto"
+			self.popup.wrap.node.style.display = "none"
+			self.popup.wrap.box[self.open_popup].node.style.display = "none"
+		}, this.settings.animation_speed );
+	}
 });	

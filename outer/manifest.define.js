@@ -19,8 +19,11 @@ define({
 	module  : {
 		libraries  : [
 			"library/node_making_tools",
-			"library/observe"
+			"library/observe",
+			"library/animator"
 		],
-		parts      : [],
+		data : [
+			"library/terms_and_conditions"
+		],
 	}
 });
