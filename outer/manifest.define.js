@@ -8,6 +8,7 @@ define({
 				"library/extend.foot",
 				"library/extend.backend",
 				"library/extend.backend.data",
+				"library/extend.backend.data.table",
 			]			
 		}
 	},

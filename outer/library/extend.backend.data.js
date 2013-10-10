@@ -3,6 +3,7 @@ define({
 	make : function (data, modules) {
 
 		var self         = this
+		this.modules     = modules
 		this.maker       = Object.create(modules.node_making_tools)
 		this.settings    = data.settings
 		this.class_names = {
@@ -62,8 +63,13 @@ define({
 		return parent
 	},
 
-	show_content : function (content) {
-		console.log(content)
+	show_content : function (component) {
+		
+		if ( !this.components[component.type] ) throw new Error("backend data extention does not have a component "+ component.type +" added check to see if it is included in the manifest.define or if you have spelt it correctly")
+
+		var module = Object.create(this.components[component.type]).make(component.pass, this.modules )
+
+		this.content.wrap.content.node.appendChild(module)
 	},
 
 	components : {}

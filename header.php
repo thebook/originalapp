@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html lang="en-UK">
 <head>
 	
 	<title>Recyclabook</title>
@@ -10,6 +10,7 @@
 	<script 
 			data-path="<?php echo STARTING_PATH ?>" 
 			src="<?php echo STARTING_PATH; ?>/manifest/start.js"></script>
+
 </head>
 <body>
 </body>

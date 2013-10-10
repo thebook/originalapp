@@ -41,6 +41,7 @@ Our staff can: download stock in the correct format for the amazon upload
 Our staff can: use the price reduction system easily
 Our staff can: add/ remove edit books that have been added
 Our staff can: change the status of books from: -expecting, -received, -problem and leave a comment by each status
+
 Our staff can: easily scan in books that have been received, giving them the opportunity to change the quality and value of the item
 
 Barcodes for the 'freepost pack' letter are generated and correspond to the user id number

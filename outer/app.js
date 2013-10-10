@@ -2,10 +2,11 @@ define(function () {
 
 	var app = function (thought, modules) {
 		
-		var word, animator;
+		var word, animator, ajax_path;
 
-		animator = Object.create(modules.libraries.animator)
-		world    = Object.create(thought)
+		ajax_path = window.location.origin + "wp-admin/admin-ajax.php"
+		animator  = Object.create(modules.libraries.animator)
+		world     = Object.create(thought)
 		animator.make()
 
 		world.make({
@@ -96,7 +97,44 @@ define(function () {
 																name : "users",
 																type : "table",
 																pass : {
-
+																	data : {
+																		retrieve : {
+																			path       : ajax_path,
+																			paramaters : {
+																				action     : "",
+																				method     : "",
+																				paramaters : {}
+																			}
+																		}
+																	},
+																	fields : {
+																		shown : [
+																			"first_name", 
+																			"email", 
+																			"id",
+																			"password",
+																			"university",
+																			"year",
+																			"subject",
+																			"status"
+																		],
+																		changeable : [
+																			{
+																				field : "status",
+																				how   : {
+																					through : "dropdown",
+																					choices : [
+																						"ordered pack",
+																						"sent pack",
+																						"received",
+																						"paid",
+																						"problem",
+																						"passive"
+																					],
+																				}
+																			}
+																		]
+																	}
 																}
 															},
 															{

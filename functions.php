@@ -11,28 +11,25 @@ define("STARTING_PATH", get_template_directory_uri() . '/outer');
 
 // $global_admin_options_white_whale = get_option('main_options');
 
-include FRAMEWORK . '/include.php';
-	
-include FRAMEWORK .'/Apis/include.php';
+// include FRAMEWORK . '/include.php';
+// include FRAMEWORK .'/Apis/include.php';
+// include FRAMEWORK .'/data/include.php';
 
-include FRAMEWORK .'/data/include.php';
+// $account = new account;
+// new ticket;
 
-$account = new account;
-new ticket;
+include INNER .'/include.php';
+new account;
 new book;
 new email;
-new expense;
+// new amazon(
+// 	array(
+// 		'ajax_handler_function' => 'amazon',
+// 		'amazon_access_key'     => 'AKIAJUAOUYTIWMMCXY6Q',
+// 		'amazon_secret_key'     => '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',
+// 		'amazon_associates_id'  => 'recyc-21',
+// 		'region'                => 'co.uk'
+// 	)
+// );
 
-new amazon(
-	array(
-		'ajax_handler_function' => 'amazon',
-		'amazon_access_key'    => 'AKIAJUAOUYTIWMMCXY6Q',
-		'amazon_secret_key'    => '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',
-		'amazon_associates_id' => 'recyc-21',
-		'region'               => 'co.uk'
-	));
-
-// $file = fopen(TEMPLATEPATH . '/book1.txt', 'w+');
-// fwrite($file, "asin\tsku\tquantaty\tstuff\r\nasin\tsku\tquantaty\tstuff");
-// fclose($file);
 ?>
