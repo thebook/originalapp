@@ -52,3 +52,29 @@
 	float      : left;
 	height     : 100%;
 }
+
+.admin_content_wrap {
+	width: 80%;
+	padding : 20px 10%;
+	float: left;
+}
+
+.admin_content_menu {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin: 10px 0px;
+	@include border-radius(5px);
+	background : darken($dark_blue, 20%);
+}
+
+.admin_content_menu_item {
+	display: inline-block;
+	padding: 10px 2.5%;
+	cursor: pointer;
+	@include border-radius(2px);
+	&:hover { 
+		padding: 6px 2.5%;
+		background : $dark_blue;
+	}
+}

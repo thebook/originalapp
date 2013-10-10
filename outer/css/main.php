@@ -3961,3 +3961,27 @@ body {
   display: inline-block;
   float: left;
   height: 100%; }
+
+.admin_content_wrap {
+  width: 80%;
+  padding: 20px 10%;
+  float: left; }
+
+.admin_content_menu {
+  width: 100%;
+  float: left;
+  text-align: center;
+  margin: 10px 0px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: #1e3a41; }
+
+.admin_content_menu_item {
+  display: inline-block;
+  padding: 10px 2.5%;
+  cursor: pointer;
+  -webkit-border-radius: 2px;
+  border-radius: 2px; }
+  .admin_content_menu_item:hover {
+    padding: 6px 2.5%;
+    background: #3f7986; }

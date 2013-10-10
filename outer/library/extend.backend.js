@@ -6,6 +6,7 @@ define({
 		this.settings    = {
 			use : instructions.use
 		}
+		this.modules     = modules
 		this.animate     = modules.animator
 		this.maker       = Object.create(modules.node_making_tools)
 		this.class_names = {
@@ -87,7 +88,12 @@ define({
 
 		if ( !this.components[component.module] ) throw new Error("backend extention does not have a component "+ component.module +" added check to see if it is included in the manifest.define or if you have spelt it correctly")
 
-		console.log(component);
+		var module = Object.create(this.components[component.module]).make(component.pass, this.modules )
+		
+		if ( this.main.wrap.content.node.firstChild ) 
+			this.main.wrap.content.node.firstChild.remove()
+		
+		this.main.wrap.content.node.appendChild(module)
 	},
 
 	components : {}

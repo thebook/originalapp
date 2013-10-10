@@ -91,14 +91,16 @@ define(function () {
 												title  : "View Users",
 												pass   : {
 													settings : {
-														tabs : {
-															users : {
+														tabs : [
+															{
+																name : "users",
 																type : "table",
 																pass : {
 
 																}
 															},
-															expecting_books : {
+															{
+																name : "price promises",
 																type : "recreate",
 																pass : {
 																	from       : ["price_promise"],
@@ -106,7 +108,8 @@ define(function () {
 																	formating  : function () {}
 																}
 															},
-															issues : {
+															{
+																name : "issues",
 																type : "filter",
 																pass : {
 																	by        : "any",
@@ -116,7 +119,7 @@ define(function () {
 																	formating : function () {}
 																}
 															},
-														}
+														]
 													},
 													model : {
 														retrieve : {
