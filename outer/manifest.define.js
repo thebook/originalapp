@@ -23,7 +23,9 @@ define({
 		libraries  : [
 			"library/node_making_tools",
 			"library/observe",
-			"library/animator"
+			"library/animator",
+			"library/model",
+			"library/table",
 		],
 		data : [
 			"library/terms_and_conditions"

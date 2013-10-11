@@ -4,7 +4,7 @@ define(function () {
 		
 		var word, animator, ajax_path;
 
-		ajax_path = window.location.origin + "wp-admin/admin-ajax.php"
+		ajax_path = window.location.origin + "/wp-admin/admin-ajax.php"
 		animator  = Object.create(modules.libraries.animator)
 		world     = Object.create(thought)
 		animator.make()
@@ -12,7 +12,9 @@ define(function () {
 		world.make({
 			parts   : {
 				node_making_tools : modules.libraries.node_making_tools,
-				animation         : animator
+				animation         : animator,
+				model             : modules.libraries.model,
+				table             : modules.libraries.table
 			},
 			thought : {
 				wrap : {
