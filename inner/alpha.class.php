@@ -40,7 +40,7 @@ class alpha
 		if (isset($request['method'])) : 
 
 			$method     = $prefix.$request['method'];
-			$paramaters = (isset($request['paramaters'])? $request['paramaters'] : false );
+			$paramaters = (isset($request['paramaters'])? json_decode(stripslashes($request['paramaters'])) : false );
 
 			try {
 				
@@ -50,7 +50,7 @@ class alpha
 					
 					if ($paramaters) :
 						$array_of_paramaters = array();
-
+						
 						foreach ($paramaters as $paramater) :
 							$array_of_paramaters[] = $paramater;
 						endforeach;

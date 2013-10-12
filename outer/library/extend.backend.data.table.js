@@ -8,6 +8,9 @@ define({
 		this.maker = Object.create(modules.node_making_tools)
 
 		this.table.make({
+			setup      : {
+				row_id : "email"
+			},
 			dimensions : {
 				box_height : 100,
 				box_width  : 100,
@@ -15,6 +18,21 @@ define({
 				width      : "",
 			},
 			box : {
+				submit : function (data) {
+					self.model.submit_model_as({
+						properties : function () {
+							return {
+								action : "set_account",
+								method : "account_value",
+								paramaters : {
+									email       : data.row_id,
+									column_name : data.column_name,
+									value       : data.box_value
+								}
+							}
+						}
+					})
+				},
 				definitions : [
 					{
 						title: "first name",
@@ -90,7 +108,7 @@ define({
 					"table",
 				],
 			},
-			retrieve : {
+			retrieve  : {    
 				table : {
 					paramaters : instructions.data.retrieve.paramaters,
 					map        : function (data) {
@@ -99,14 +117,15 @@ define({
 					}
 				}
 			},
+			submit : {
+				field : {
+					properties : {}
+				}
+			},
 			model : {
 				table : []
 			}
 		})
-
-
-
-		// this.model.retrieve_model_as("table")
 
 		return this.table.main.wrap.node
 	},

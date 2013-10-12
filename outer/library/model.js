@@ -53,20 +53,49 @@ define({
 		})
 	},
 
+	merge_objects : function (sort) {
+
+		var final_object, property
+
+		final_object = {}
+
+		for ( property in sort.default_object ) {
+
+			if ( sort.default_object[property].constructor === Object && sort.new_object[property] ) 
+				final_object[property] = this.merge_objects({ 
+					default_object : sort.default_object[property],
+					new_object     : sort.new_object[property]
+				})
+
+			if ( sort.default_object[property].constructor !== Object ) 
+				final_object[property] = sort.new_object[property] || sort.default_object[property]
+
+		}
+
+		return final_object
+	},
+
 	submit_model_as : function (what) {
 		
 		var submit, data;
 
-		submit = this.submit[what]
+		if ( what.constructor === String ) 
+			submit = ( what.constructor === String ? this.submit[what] : what )
+		if ( what.constructor === Object )
+			submit = ( what.preset ? 
+				this.merge_objects({
+					default_object : this.submit[what.preset], 
+					new_object     : what.definition
+				}) : what )
 
-		if ( submit.properties.constructor === Array )    
+		if ( submit.properties.constructor !== Array && submit.properties.constructor !== Function ) 
+			throw new Error("the submit \""+ what +"\" properties key must be either an array of a function")
+
+		if ( submit.properties.constructor === Array )
 			data = this.get_model_properties_based_on_map(submit.properties)
 		
 		if ( submit.properties.constructor === Function ) 
 			data = submit.properties.call(this.data)
-
-		if ( submit.properties.constructor !== Array && submit.properties.constructor !== Function ) 
-			throw new Error("the submit \""+ what +"\" properties key must be either an array of a function")
 
 		if ( submit.paramaters ) data = { 
 			instructions : submit.paramaters,
@@ -76,7 +105,7 @@ define({
 		this.send_ajax_request({
 			type         : "POST",
 			data         : data,
-			url          : submit.path,
+			url          : submit.path || this.settings.main_path,
 			request_name : what
 		})
 	},
@@ -109,7 +138,7 @@ define({
 	},
 
 	send_ajax_request : function (send) {
-
+		
 		var request, self;
 		
 		self    = this
@@ -139,7 +168,7 @@ define({
 		},
 
 		send : function (send) {
-
+			console.log(send)
 			var request, data, self;
 
 			self                       = this
@@ -169,7 +198,7 @@ define({
 			if ( send.type === "POST" ) 
 				request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
 
-			request.send(( send.type === "GET" && send.data ? data : null ))
+			request.send(( send.type === "POST" && send.data ? data : null ))
 
 			send.after_send.call(this, send)
 

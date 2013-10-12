@@ -6,10 +6,12 @@ define({
 
 		this.maker       = Object.create(modules.node_making_tools)
 		this.setup       = {
+			row_id       : instructions.setup.row_id           || "id",
 			box_height   : instructions.dimensions.box_height  || 100,
 			box_width    : instructions.dimensions.box_width   || 100,
 			content_width: ( instructions.dimensions.box_width || 100 ) * instructions.box.definitions.length
 		}
+		this.data        = []
 		this.box         = instructions.box
 		this.class_names = {
 			wrap                : "table_wrap",
@@ -91,15 +93,20 @@ define({
 
 	update : function (data) {
 
+		this.data = data
+
 		for (var index = 0; index < data.length; index++)
-			this.main.wrap.content.node.appendChild(this.create_row(data[index]))
+			this.main.wrap.content.node.appendChild(this.create_row({
+				data : data[index],
+				id   : index
+			}))
 
 	},
 
 	create_row : function (row) { 
 
 		var self, node
-
+		console.log(row)
 		self = this
 		node = this.maker.create_parts({	
 			row : {
@@ -110,12 +117,14 @@ define({
 
 					var column, definition
 
-					for ( var column in row )
+					for ( var column in row.data )
 						if ( definition = self.get_box_definition_by_name(column) )
 							parent[column] = {
 								node : self.create_box_based_on_definition({
+									row_id     : row.data[self.setup.row_id],
+									column_name: column,
 									definition : definition,
-									data       : row[column]
+									data       : row.data[column]
 								})
 							}
 
@@ -144,7 +153,9 @@ define({
 					width : self.setup.box_width +"px"
 				},
 				attribute  : {
-					"class": this.class_names.box
+					"class"            : this.class_names.box,
+					"data-row-id"      : box.row_id,
+					"data-column-name" : box.column_name,
 				},
 				children : {
 					text : {
@@ -156,27 +167,63 @@ define({
 			}
 		}
 
-		if ( box.definition.changeable && box.definition.changeable.by === "dropdown" ) {
-			definition.field.style = {
-				cursor : "pointer"
+		if ( box.definition.changeable && box.definition.changeable.by === "dropdown" )
+			definition.field = this.extend_box_definition_into_dropdown(definition.field, box)
+
+		box_node = this.maker.create_parts(definition)
+
+		this.maker.append_parts({
+			parts : box_node 
+		})
+
+		return box_node.field.node
+	},
+
+	extend_box_definition_into_dropdown : function (definition, box) {
+
+			var self = this
+
+			definition.style.cursor = "pointer"
+			definition.methods      = {
+				addEventListener : ["click", function (event) {
+
+					if ( !event.target.nextElementSibling || !event.target.nextElementSibling.getAttribute("data-open") ) return
+
+					var is_open, dropdown
+
+					dropdown = event.target.nextElementSibling
+					is_open  = dropdown.getAttribute("data-open")
+
+					if ( is_open === "false" ) {
+						dropdown.style.display = "block"
+						dropdown.setAttribute("data-open", "true" )
+					}
+					else {
+						dropdown.setAttribute("data-open", "false" )
+						dropdown.style.display = "none"
+					}
+				}]
 			}
-			definition.field.children.dropdown = {
+			definition.children.dropdown = {
 				style     : {
 					display : "none"
 				},
 				attribute : {
-					"class" : self.class_names.box_dropdown
+					"class"     : this.class_names.box_dropdown,
+					"data-open" : false
 				},
 				methods : {
 					addEventListener : ["click", function (event) {
 						
-						var option
 
 						if ( event.target.getAttribute("data-option") ) {
-
-							option = box.definition.changeable.choices[event.target.getAttribute("data-option")]
-							box_node.field.text.node.textContent = option.title
-							self.assign_box_change_to_database();
+							
+							event.target.parentElement.previousSibling.textContent = box.definition.changeable.choices[event.target.getAttribute("data-option")].title
+							self.assign_box_change_to_database({
+								row_id      : event.target.parentNode.parentNode.getAttribute("data-row-id"),
+								column_name : event.target.parentNode.parentNode.getAttribute("data-column-name"),
+								box_value   : box.definition.changeable.choices[event.target.getAttribute("data-option")].title
+							});
 						}
 					}]
 				},
@@ -197,33 +244,13 @@ define({
 
 					return parent 
 				}
-			}			
-			definition.field.methods = {
-				addEventListener : ["click", function () {
-					
-					if ( open === false ) {
-						open = true
-						box_node.field.dropdown.node.style.display = "block"
-					}
-					else {
-						open = false
-						box_node.field.dropdown.node.style.display = "none"
-					}
-				}]
 			}
-		}
-		console.log(definition)
-		box_node = this.maker.create_parts(definition)
 
-		this.maker.append_parts({
-			parts : box_node 
-		})
-
-		return box_node.field.node
+		return definition
 	},
 
-	assign_box_change_to_database : function () {
-		console.log("field change")
+	assign_box_change_to_database : function (box) {
+		this.box.submit.call(this, box)
 	},
 
 	get_box_definition_by_name : function (name) {
