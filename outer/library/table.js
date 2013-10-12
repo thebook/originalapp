@@ -1,31 +1,272 @@
 define({
 
-	make : function (wake) {
+	make : function (instructions, modules) {
+
+		var self = this
+
+		this.maker       = Object.create(modules.node_making_tools)
+		this.setup       = {
+			box_height   : instructions.dimensions.box_height  || 100,
+			box_width    : instructions.dimensions.box_width   || 100,
+			content_width: ( instructions.dimensions.box_width || 100 ) * instructions.box.definitions.length
+		}
+		this.box         = instructions.box
+		this.class_names = {
+			wrap                : "table_wrap",
+			boxes               : "table_boxes",
+			names               : "table_names",
+			name                : "table_name",
+			row                 : "table_row",
+			box                 : "table_box",
+			box_dropdown        : "table_box_dropdown",
+			box_dropdown_option : "table_box_dropdown_option",
+
+			selected_row   : "",
+			table_titles   : "",
+			title          : "",
+			table_wrap     : "",
+			head           : "",
+			field          : "",
+			selected_field : "",
+			used_field     : "",
+			option_wrap    : "",
+			option         : {
+				button      : "",
+				box         : "",
+				description : "",
+				input       : "",
+			}
+		}		
+		this.main       = this.maker.create_parts({
+			wrap : {
+				attribute : {
+					"class" : this.class_names.wrap
+				},
+				children : {
+					names   : {
+						style : {
+							width : this.setup.content_width +"px"
+						},
+						attribute : {
+							"class" : this.class_names.names
+						},
+						children : function (parent) {
+
+							for (var index = 0; index < self.box.definitions.length; index++)
+								parent["column_"+self.box.definitions[index].name] = {
+									node : this.create_and_return_node({
+										style : {
+											height : self.setup.box_height +"px",
+											width  : self.setup.box_width +"px"
+										},
+										property  : {
+											textContent : self.box.definitions[index].title
+										},
+										attribute : {
+											"class" : self.class_names.name
+										}
+									})
+								}
+
+							return parent
+						}
+					},
+					content : {
+						style : {
+							width : this.setup.content_width +"px"
+						},
+						attribute  : {
+							"class": this.class_names.boxes
+						},
+					},
+				}
+			}
+		})
+		this.maker.append_parts({
+			parts : this.main
+		})
+
+		return this
+	},
+
+	update : function (data) {
+
+		for (var index = 0; index < data.length; index++)
+			this.main.wrap.content.node.appendChild(this.create_row(data[index]))
+
+	},
+
+	create_row : function (row) { 
+
+		var self, node
+
+		self = this
+		node = this.maker.create_parts({	
+			row : {
+				attribute : {
+					"class" : this.class_names.row
+				},
+				children : function (parent) {
+
+					var column, definition
+
+					for ( var column in row )
+						if ( definition = self.get_box_definition_by_name(column) )
+							parent[column] = {
+								node : self.create_box_based_on_definition({
+									definition : definition,
+									data       : row[column]
+								})
+							}
+
+					return parent
+				}
+			}
+		})
+
+		this.maker.append_parts({
+			parts : node
+		})
+
+		return node.row.node
+	},
+
+	create_box_based_on_definition : function (box) {
+
+		var definition, self, box_node, open
+
+		open       = false
+		self       = this
+		definition = {
+			field : {
+				style : {
+					height: self.setup.box_height +"px",
+					width : self.setup.box_width +"px"
+				},
+				attribute  : {
+					"class": this.class_names.box
+				},
+				children : {
+					text : {
+						property : {
+							textContent : box.data
+						}
+					}
+				}
+			}
+		}
+
+		if ( box.definition.changeable && box.definition.changeable.by === "dropdown" ) {
+			definition.field.style = {
+				cursor : "pointer"
+			}
+			definition.field.children.dropdown = {
+				style     : {
+					display : "none"
+				},
+				attribute : {
+					"class" : self.class_names.box_dropdown
+				},
+				methods : {
+					addEventListener : ["click", function (event) {
+						
+						var option
+
+						if ( event.target.getAttribute("data-option") ) {
+
+							option = box.definition.changeable.choices[event.target.getAttribute("data-option")]
+							box_node.field.text.node.textContent = option.title
+							self.assign_box_change_to_database();
+						}
+					}]
+				},
+				children : function (parent) {
+
+					for (var index = 0; index < box.definition.changeable.choices.length; index++) 
+						parent["option_"+index] = {
+							node : this.create_and_return_node({
+								property : {
+									textContent : box.definition.changeable.choices[index].title
+								},
+								attribute : {
+									"data-option" : index,
+									"class"       : self.class_names.box_dropdown_option
+								}
+							})
+						}
+
+					return parent 
+				}
+			}			
+			definition.field.methods = {
+				addEventListener : ["click", function () {
+					
+					if ( open === false ) {
+						open = true
+						box_node.field.dropdown.node.style.display = "block"
+					}
+					else {
+						open = false
+						box_node.field.dropdown.node.style.display = "none"
+					}
+				}]
+			}
+		}
+		console.log(definition)
+		box_node = this.maker.create_parts(definition)
+
+		this.maker.append_parts({
+			parts : box_node 
+		})
+
+		return box_node.field.node
+	},
+
+	assign_box_change_to_database : function () {
+		console.log("field change")
+	},
+
+	get_box_definition_by_name : function (name) {
+
+		var index, definition
+
+		index = 0
+		definition = false
+
+		for (; index < this.box.definitions.length; index++)
+			if ( this.box.definitions[index].name === name )
+				definition = this.box.definitions[index]
+
+		return definition
+	},
+
+	old_make : function (wake) {
 
 		var prototype;
 
-		prototype = this;
-		this.self = wake.self;
-		wake.self.table = {};
+		prototype            = this;
+		this.self            = wake.self;
+		wake.self.table      = {};
 		wake.self.table.wake = {
-			visuals      : wake.visuals,
-			max_row_load : wake.max_row_load,
-			table_name   : wake.table_name,
-			width        : wake.columns.length * wake.column_width,
-			submit_field_callback : wake.submit_field_callback,
-			columns      : wake.columns,
-			column_width : wake.column_width,
-			column_number: wake.column_number-1,
-			row_height   : wake.row_height,
-			class_names  : wake.class_names,
-			length       : wake.column_number * wake.column_width,
+			visuals                         : wake.visuals,
+			max_row_load                    : wake.max_row_load,
+			table_name                      : wake.table_name,
+			width                           : wake.columns.length * wake.column_width,
+			submit_field_callback           : wake.submit_field_callback,
+			columns                         : wake.columns,
+			column_width                    : wake.column_width,
+			column_number                   : wake.column_number-1,
+			row_height                      : wake.row_height,
+			class_names                     : wake.class_names,
+			length                          : wake.column_number * wake.column_width,
 			number_of_columns_that_can_show : Math.floor(wake.self.clientWidth/wake.column_width)-1,
 			number_of_rows_that_can_show    : Math.floor(wake.table_height/wake.row_height)-1
-		};
+		}
+
 		wake.self.table.component = {
 			box    : "",
 			titles : ""
-		};
+		}
 		wake.self.table.visible = {
 			column : {
 				left  : 0,
@@ -35,7 +276,7 @@ define({
 				top    : 0,
 				bottom : wake.self.table.wake.number_of_rows_that_can_show
 			}
-		};
+		}
 		wake.self.table.change = {
 			history : [],
 			value   : {
@@ -46,25 +287,25 @@ define({
 				row       : 0,
 				value     : ""
 			}
-		};
+		}
 		wake.self.table.selected = {
 			history: [],
 			current: {
 				column : 0,
 				row    : 0
 			}
-		};
+		}
 		wake.self.table.notification  = {
 			current : {},
 			history : []
-		};
-		wake.self.table.revealed_rows = wake.max_row_load;
-		wake.self.table.selected_rows = [];
+		}
+		wake.self.table.revealed_rows = wake.max_row_load
+		wake.self.table.selected_rows = []
 
-		wake.self.table.submision_column_names = wake.submision_column_names,
-		wake.self.table.rows = [];
+		wake.self.table.submision_column_names = wake.submision_column_names
+		wake.self.table.rows = []
 
-		this.self.style.height = wake.table_height + "px";
+		this.self.style.height = wake.table_height + "px"
 
 		this.self.insertAdjacentHTML("afterbegin",
 			'<div class="'+ this.self.table.wake.class_names.option_wrap +'"></div>'+

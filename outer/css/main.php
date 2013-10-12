@@ -3985,3 +3985,41 @@ body {
   .admin_content_menu_item:hover {
     padding: 6px 2.5%;
     background: #3f7986; }
+
+.table_wrap {
+  width: 100%;
+  float: left;
+  overflow: hidden; }
+
+.table_names {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px; }
+
+.table_name {
+  float: left;
+  display: inline-block; }
+
+.table_row {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px; }
+
+.table_box {
+  float: left;
+  display: inline-block; }
+
+.table_box_dropdown {
+  margin-top: 10px;
+  width: 100px;
+  background: #1e3a41;
+  padding: 5px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  position: absolute; }
+
+.table_box_dropdown_option {
+  padding: 10px;
+  cursor: pointer; }
+  .table_box_dropdown_option:hover {
+    background: #3f7986; }

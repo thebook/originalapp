@@ -103,9 +103,8 @@ define(function () {
 																		retrieve : {
 																			path       : ajax_path,
 																			paramaters : {
-																				action     : "",
-																				method     : "",
-																				paramaters : {}
+																				action : "get_account",
+																				method : "table",
 																			}
 																		}
 																	},

@@ -1,62 +1,111 @@
 define({
 
-	make : function (paramaters) {
+	make : function (make) {
 
 		this.state         = {
 			submitting : false,
 			retrieving : false
-		};
+		}
 
 		this.processes     = {
 			submissions : [],
 			retrievals  : []
-		};
+		}
 
-		this.submit   = paramaters.submit;
-		this.retrieve = paramaters.retrieve;
-		this.data     = this.create_model_variables_following_definition({}, paramaters.model);
+		this.settings = make.settings
+		this.submit   = make.submit
+		this.retrieve = make.retrieve
+		this.data     = this.create_model_variables_following_definition({}, make.model)
+
+		if ( this.settings.retrieve_on_make) 
+			this.retrieve_multiple_as(this.settings.retrieve_on_make)
+
 	},
 
-	retrieve_model_as : function () { 
+	retrieve_multiple_as  : function (retrieve_models) {
 
+		for (var index = 0; index < retrieve_models.length; index++)
+			this.retrieve_model_as(retrieve_models[index])
+	},
+
+	retrieve_model_as : function (what) { 
+
+		var retrieve, data;
+
+		retrieve = this.retrieve[what]
+
+		this.send_ajax_request({
+			type         : "GET",
+			data         : retrieve.paramaters || null,
+			url          : retrieve.path || this.settings.main_path,
+			request_name : what,
+			callback     : function (event) {
+				
+				if ( retrieve.map.constructor === Array ) 
+					console.log("constructor is an array")
+				
+				if ( retrieve.map.constructor === Object )
+					console.log("consturtor is an object")
+
+				if ( retrieve.map.constructor === Function )
+					retrieve.map.call(this.data, event.currentTarget.response)
+			}
+		})
 	},
 
 	submit_model_as : function (what) {
 		
 		var submit, data;
 
-		submit = this.submit[what];
+		submit = this.submit[what]
 
-		if ( submit.properties.constructor === Array )    data = this.get_model_properties_based_on_map(submit.properties);
-		if ( submit.properties.constructor === Function ) data = submit.properties.call(this.data);
-		if ( submit.properties.constructor !== Array &&
-			 submit.properties.constructor !== Function ) throw new Error("the submit \""+ what +"\" must be either an array of a function");
+		if ( submit.properties.constructor === Array )    
+			data = this.get_model_properties_based_on_map(submit.properties)
+		
+		if ( submit.properties.constructor === Function ) 
+			data = submit.properties.call(this.data)
+
+		if ( submit.properties.constructor !== Array && submit.properties.constructor !== Function ) 
+			throw new Error("the submit \""+ what +"\" properties key must be either an array of a function")
 
 		if ( submit.paramaters ) data = { 
 			instructions : submit.paramaters,
 			model        : data
-		};
+		}
 
 		this.send_ajax_request({
 			type         : "POST",
 			data         : data,
-			url          : submit.url,
+			url          : submit.path,
 			request_name : what
-		});
+		})
 	},
 
 	notify_module_of_a_commenced_request : function ( request_name, request_type ) { 
 
-		var process = ( request_type === "POST" ? ["submitting", "submissions"] : ["retrieving", "retrievals"] );
+		var process = ( 
+			request_type === "POST" ? 
+				["submitting", "submissions"] : 
+				["retrieving", "retrievals"] 
+		)
+		
 		this.state[process[0]] = true;
+		
 		this.processes[process[1]].push(request_name);
 	},
 	
 	notify_module_of_a_finished_request : function ( request_name, request_type ) {
 
-		var process = ( request_type === "POST" ? ["submitting", "submissions"] : ["retrieving", "retrievals"] );
+		var process = ( 
+			request_type === "POST" ? 
+				["submitting", "submissions"] : 
+				["retrieving", "retrievals"] 
+		)
+		
 		this.processes[process[1]].splice(this.processes[process[1]].indexOf(request_name));
-		if ( this.processes.submissions.length === 0 ) this.state[process[0]] = false;
+		
+		if ( this.processes.submissions.length === 0 ) 
+			this.state[process[0]] = false;
 	},
 
 	send_ajax_request : function (send) {
@@ -73,8 +122,11 @@ define({
 			after_send : function () {
 				self.notify_module_of_a_commenced_request( send.request_name, send.type )
 			}
-		}).then(function () {
+		}).then(function (event) {
 			self.notify_module_of_a_finished_request( send.request_name, send.type )
+
+			if ( send.callback ) 
+				send.callback.call(self, event )
 		})
 	},
 

@@ -1,0 +1,52 @@
+.table_wrap { 
+	width: 100%;
+	float: left;
+	overflow: hidden;
+}
+
+.table_boxes { 
+
+}
+
+.table_names  {
+	width: 100%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.table_name {
+	float       : left;
+	display     : inline-block;
+	// padding     : 10px;
+	// margin-right: 10px;
+}
+
+.table_row { 
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.table_box { 
+	float        : left;
+	display      : inline-block;
+	// padding      : 10px;
+	// margin-right : 10px;
+}
+
+.table_box_dropdown { 
+	margin-top : 10px;
+	width      : 100px;
+	background : darken($dark_blue, 20%);
+	padding    : 5px;
+	@include border-radius(2px);
+	position: absolute;
+}
+
+.table_box_dropdown_option { 
+	padding    : 10px;
+	cursor: pointer;
+	&:hover { 
+		background : $dark_blue;
+	}
+}
