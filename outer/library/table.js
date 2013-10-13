@@ -6,11 +6,11 @@ define({
 
 		this.maker       = Object.create(modules.node_making_tools)
 		this.setup       = {
-			padding      : instructions.dimensions             || 0,
-			row_id       : instructions.setup.row_id           || "id",
-			box_height   : instructions.dimensions.box_height  || 100,
-			box_width    : instructions.dimensions.box_width   || 100,
-			height       : instructions.dimensions.height      || 400,
+			padding      : instructions.dimensions               || 0,
+			row_id       : instructions.setup.row_id             || "id",
+			box_height   : instructions.dimensions.box_height    || 100,
+			box_width    : instructions.dimensions.box_width     || 100,
+			height       : instructions.dimensions.height        || 400,
 			content_width: ( ( instructions.dimensions.box_width || 100 ) + ( instructions.dimensions.padding || 0 ) ) * instructions.box.definitions.length
 		}
 		this.data        = []
@@ -47,7 +47,8 @@ define({
 						},
 						children : function (parent) {
 
-							for (var index = 0; index < self.box.definitions.length; index++)
+							for (var index = 0; index < self.box.definitions.length; index++) { 
+
 								parent["column_"+self.box.definitions[index].name] = {
 									node : this.create_and_return_node({
 										style : {
@@ -61,6 +62,7 @@ define({
 										}
 									})
 								}
+							}
 
 							return parent
 						}

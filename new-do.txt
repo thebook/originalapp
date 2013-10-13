@@ -21,7 +21,7 @@ Back end
 We can view: registered users
 	We can view: books expected to come in/ price promised
 	We can view: users that have issues
-	Our staff can: change the status of users from; -ordered pack, -sent pack expecting books, to received books and paid, to problem. and leave a comment by each status
+	- Our staff can: change the status of users from; -ordered pack, -sent pack expecting books, to received books and paid, to problem. and leave a comment by each status - done
 
 		+ New Field Status
 		+ New Field Comment 

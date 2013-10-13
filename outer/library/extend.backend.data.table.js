@@ -2,10 +2,11 @@ define({
 
 	make : function (instructions, modules) {
 
-		var self   = this
-		this.model = Object.create(modules.model)
-		this.table = Object.create(modules.table)
-		this.maker = Object.create(modules.node_making_tools)
+		var self      = this
+		this.settings = instructions
+		this.model    = Object.create(modules.model)
+		this.table    = Object.create(modules.table)
+		this.maker    = Object.create(modules.node_making_tools)
 
 		this.table.make({
 			setup      : {
@@ -22,95 +23,18 @@ define({
 				submit : function (data) {
 					self.model.submit_model_as({
 						properties : function () {
-							return {
-								action : "set_account",
-								method : "account_value",
-								paramaters : {
-									email       : data.row_id,
-									column_name : data.column_name,
-									value       : data.box_value
-								}
-							}
+							return self.settings.submit_changed_value(data)
 						}
 					})
 				},
-				definitions : [
-					{
-						title: "first name",
-						name : "first_name",
-					},
-					{
-						title: "email",
-						name : "email",
-					},
-					{
-						title: "id",
-						name : "id",
-					},
-					{
-						title: "password",
-						name : "password",
-					},
-					{
-						title: "university",
-						name : "university",
-					},
-					{
-						title: "year",
-						name : "year",
-					},
-					{
-						title      : "subject",
-						name       : "subject",
-					},
-					{
-						title      : "status",
-						name       : "status",
-						changeable : {
-							by      : "dropdown",
-							choices : [
-								{
-									title : "ordered pack",
-									name  : "ordered_pack"
-								},
-								{ 
-									title : "sent pack",
-									name  : "sent_pack"
-								},
-								{ 
-									title : "received",
-									name  : "received"
-								},
-								{ 
-									title : "paid",
-									name  : "paid"
-								},
-								{ 
-									title : "problem",
-									name  : "problem"
-								},
-								{ 
-									title : "passive",
-									name  : "passive"
-								}
-							]
-						}
-					},
-					{
-						title : "comment",
-						name  : "comment",
-						changeable : { 
-							by     : "text"
-						}
-					}
-				]	
+				definitions : this.settings.fields
 			}	
 		}, modules )
 
 
 		this.model.make({
 			settings : {
-				main_path        : instructions.data.retrieve.path,
+				main_path        : this.settings.data.retrieve.path,
 				main_extension   : "",
 				retrieve_on_make : [
 					"table",
@@ -118,9 +42,9 @@ define({
 			},
 			retrieve  : {    
 				table : {
-					paramaters : instructions.data.retrieve.paramaters,
+					paramaters : this.settings.data.retrieve.paramaters,
 					map        : function (data) {
-						this.table = JSON.parse(data)["return"]
+						this.table = ( self.settings.data.retrieve.method ? self.settings.data.retrieve.method.call(this, data) : data )
 						self.table.update(this.table)
 					}
 				}

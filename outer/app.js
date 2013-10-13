@@ -99,43 +99,99 @@ define(function () {
 																name : "users",
 																type : "table",
 																pass : {
+																	submit_changed_value : function (data) {
+																		return {
+																			action : "set_account",
+																			method : "account_value",
+																			paramaters : {
+																				email       : data.row_id,
+																				column_name : data.column_name,
+																				value       : data.box_value
+																			}
+																		}
+																	},
+																	fields : [
+																		{
+																			title: "first name",
+																			name : "first_name",
+																		},
+																		{
+																			title: "email",
+																			name : "email",
+																		},
+																		{
+																			title: "id",
+																			name : "id",
+																		},
+																		{
+																			title: "password",
+																			name : "password",
+																		},
+																		{
+																			title: "university",
+																			name : "university",
+																		},
+																		{
+																			title: "year",
+																			name : "year",
+																		},
+																		{
+																			title      : "subject",
+																			name       : "subject",
+																		},
+																		{
+																			title      : "status",
+																			name       : "status",
+																			changeable : {
+																				by      : "dropdown",
+																				choices : [
+																					{
+																						title : "ordered pack",
+																						name  : "ordered_pack"
+																					},
+																					{ 
+																						title : "sent pack",
+																						name  : "sent_pack"
+																					},
+																					{ 
+																						title : "received",
+																						name  : "received"
+																					},
+																					{ 
+																						title : "paid",
+																						name  : "paid"
+																					},
+																					{ 
+																						title : "problem",
+																						name  : "problem"
+																					},
+																					{ 
+																						title : "passive",
+																						name  : "passive"
+																					}
+																				]
+																			}
+																		},
+																		{
+																			title : "comment",
+																			name  : "comment",
+																			changeable : { 
+																				by     : "text"
+																			}
+																		}
+																	],
 																	data : {
 																		retrieve : {
 																			path       : ajax_path,
 																			paramaters : {
 																				action : "get_account",
 																				method : "table",
+																			},
+																			method : function (data) {
+																				return JSON.parse(data)["return"]
 																			}
 																		}
 																	},
-																	fields : {
-																		shown : [
-																			"first_name", 
-																			"email", 
-																			"id",
-																			"password",
-																			"university",
-																			"year",
-																			"subject",
-																			"status"
-																		],
-																		changeable : [
-																			{
-																				field : "status",
-																				how   : {
-																					through : "dropdown",
-																					choices : [
-																						"ordered pack",
-																						"sent pack",
-																						"received",
-																						"paid",
-																						"problem",
-																						"passive"
-																					],
-																				}
-																			}
-																		]
-																	}
 																}
 															},
 															{
@@ -149,13 +205,68 @@ define(function () {
 															},
 															{
 																name : "issues",
-																type : "filter",
+																type : "table",
 																pass : {
-																	by        : "any",
-																	that_has  : {
-																		"status" : "issue"
+																	submit_changed_value : function (data) {
+																		return {
+																			action : "set_account",
+																			method : "account_value",
+																			paramaters : {
+																				email       : data.row_id,
+																				column_name : data.column_name,
+																				value       : data.box_value
+																			}
+																		}
 																	},
-																	formating : function () {}
+																	fields : [
+																		{
+																			title: "id",
+																			name : "id",
+																		},
+																		{
+																			title: "first name",
+																			name : "first_name",
+																		},
+																		{
+																			title: "second name",
+																			name : "second_name",
+																		},
+																		{
+																			title: "email",
+																			name : "email",
+																		},
+																		{
+																			title   : "status",
+																			name    : "status",
+																		},
+																		{
+																			title : "comment",
+																			name  : "comment",
+																		}
+																	],
+																	data : {
+																		retrieve : {
+																			path       : ajax_path,
+																			paramaters : {
+																				action : "get_account",
+																				method : "table",
+																			},
+																			method : function (data) {
+
+																				var index, main, table
+
+																				main  = JSON.parse(data)["return"]
+																				index = 0
+																				table = []
+
+																				for (; index < main.length; index++)
+																					if ( main[index].status !== "passive" ) 
+																						table.push(main[index])
+
+																				return table
+																			}
+																		}
+																	},
 																}
 															},
 														]

@@ -69,6 +69,9 @@ define({
 
 		var module = Object.create(this.components[component.type]).make(component.pass, this.modules )
 
+		if ( this.content.wrap.content.node.firstChild )
+				this.content.wrap.content.node.firstChild.remove()
+
 		this.content.wrap.content.node.appendChild(module)
 	},
 
