@@ -3998,7 +3998,9 @@ body {
 
 .table_name {
   float: left;
-  display: inline-block; }
+  display: inline-block;
+  padding: 10px;
+  margin-right: 10px; }
 
 .table_row {
   float: left;
@@ -4007,7 +4009,42 @@ body {
 
 .table_box {
   float: left;
-  display: inline-block; }
+  display: inline-block;
+  padding: 10px;
+  margin-right: 10px; }
+
+.table_box_textarea_wrap {
+  position: relative;
+  float: left;
+  margin-top: 10px;
+  background: #1e3a41;
+  color: white;
+  font-family: Tahoma;
+  font-size: 16px;
+  line-height: 18px; }
+
+.table_box_textarea {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  background: transparent;
+  width: 90%;
+  padding: 5px 5%;
+  color: inherit;
+  font: inherit;
+  float: left;
+  display: block; }
+
+.table_box_textarea_button {
+  display: inline-block;
+  float: left;
+  width: 30%;
+  padding: 5px 5%;
+  margin: 5px 5%;
+  background: #3f7986;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  text-align: center; }
 
 .table_box_dropdown {
   margin-top: 10px;
@@ -4016,7 +4053,7 @@ body {
   padding: 5px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  position: absolute; }
+  position: relative; }
 
 .table_box_dropdown_option {
   padding: 10px;

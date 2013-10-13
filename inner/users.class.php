@@ -93,6 +93,11 @@ class account extends alpha
 					'data_type'   => 'varchar(55)',
 					'null'        => true
 				),
+				array(
+					'column_name' => 'comment',
+					'data_type'   => 'longtext',
+					'null'        => true
+				),
 			)
 		));
 		

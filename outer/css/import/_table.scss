@@ -17,8 +17,8 @@
 .table_name {
 	float       : left;
 	display     : inline-block;
-	// padding     : 10px;
-	// margin-right: 10px;
+	padding     : 10px;
+	margin-right: 10px;
 }
 
 .table_row { 
@@ -30,8 +30,43 @@
 .table_box { 
 	float        : left;
 	display      : inline-block;
-	// padding      : 10px;
-	// margin-right : 10px;
+	padding      : 10px;
+	margin-right : 10px;
+}
+
+.table_box_textarea_wrap { 
+	position    : relative;
+	float       : left;
+	margin-top  : 10px;
+	background  : darken($dark_blue, 20%);
+	color       : $light;
+	font-family : Tahoma;
+	font-size   : 16px;
+	line-height : 18px;
+}
+
+.table_box_textarea { 
+	border      : none;
+	padding     : 0px;
+	margin      : 0px;
+	background  : transparent;
+	width       : 90%;
+	padding     : 5px 5%;
+	color       : inherit;
+	font        : inherit;
+	float       : left;
+	display     : block;
+}
+
+.table_box_textarea_button { 
+	display    : inline-block;
+	float      : left;
+	width      : 30%;
+	padding    : 5px 5%;
+	margin     : 5px 5%;
+	background : $dark_blue;
+	@include border-radius(2px);
+	text-align : center;
 }
 
 .table_box_dropdown { 
@@ -40,7 +75,7 @@
 	background : darken($dark_blue, 20%);
 	padding    : 5px;
 	@include border-radius(2px);
-	position: absolute;
+	position: relative;
 }
 
 .table_box_dropdown_option { 

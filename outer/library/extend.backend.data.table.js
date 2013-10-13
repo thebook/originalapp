@@ -12,9 +12,10 @@ define({
 				row_id : "email"
 			},
 			dimensions : {
+				padding    : 30,
 				box_height : 100,
 				box_width  : 100,
-				height     : "",
+				height     : 400,
 				width      : "",
 			},
 			box : {
@@ -59,8 +60,8 @@ define({
 						name : "year",
 					},
 					{
-						title: "subject",
-						name : "subject",
+						title      : "subject",
+						name       : "subject",
 					},
 					{
 						title      : "status",
@@ -93,6 +94,13 @@ define({
 									name  : "passive"
 								}
 							]
+						}
+					},
+					{
+						title : "comment",
+						name  : "comment",
+						changeable : { 
+							by     : "text"
 						}
 					}
 				]	
