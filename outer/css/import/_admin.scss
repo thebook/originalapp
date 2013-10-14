@@ -75,6 +75,7 @@
 	@include border-radius(2px);
 	&:hover { 
 		padding: 6px 2.5%;
+		margin : 4px 0; 
 		background : $dark_blue;
 	}
 }

@@ -15,8 +15,12 @@ define({
 	sorter  : {
 		sort_relationship : {
 			libraries : "basic",
+			// parts     : "part"
 		},
-		module            : ["manifest/manifest.sorter.basic"],
+		module            : [
+			"manifest/manifest.sorter.basic",
+			// "library/manifest.sorter.part",
+		],
 		default_sorter    : "basic"
 	},
 	module  : {
@@ -27,7 +31,12 @@ define({
 			"library/model",
 			"library/table",
 		],
-		data : [
+		// parts : [
+		// 	"library/part/wrap",
+		// 	"library/part/wrap.foot",
+		// 	"library/part/wrap.backend",
+		// ],
+		data  : [
 			"library/terms_and_conditions"
 		],
 	}

@@ -47,7 +47,7 @@ class alpha
 				$reflection = new ReflectionMethod($this, $method);
 
 				if ($reflection->isPublic()) :
-					
+
 					if ($paramaters) :
 						$array_of_paramaters = array();
 						

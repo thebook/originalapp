@@ -5,15 +5,8 @@ define({
 		var self = this
 
 		this.maker       = Object.create(modules.node_making_tools)
-		this.setup       = {
-			padding      : instructions.dimensions               || 0,
-			row_id       : instructions.setup.row_id             || "id",
-			box_height   : instructions.dimensions.box_height    || 100,
-			box_width    : instructions.dimensions.box_width     || 100,
-			height       : instructions.dimensions.height        || 400,
-			content_width: ( ( instructions.dimensions.box_width || 100 ) + ( instructions.dimensions.padding || 0 ) ) * instructions.box.definitions.length
-		}
 		this.data        = []
+		this.setup       = this.setup_definition(instructions)
 		this.box         = instructions.box
 		this.class_names = {
 			wrap                : "table_wrap",
@@ -97,6 +90,25 @@ define({
 
 	},
 
+	setup_definition : function (instructions) {
+
+		var setup = this.maker.merge_objects({
+			default_object : {
+				padding      : 0,
+				row_id       : "id",
+				box_height   : 100,
+				box_width    : 100,
+				height       : 400,
+			},
+			new_object : instructions.setup
+		})
+		
+		setup.content_width = ( setup.box_width + setup.padding ) * instructions.box.definitions.length
+		
+		return setup
+	},
+
+
 	create_row : function (row) { 
 
 		var self, node
@@ -111,16 +123,28 @@ define({
 
 					var column, definition
 
-					for ( var column in row.data )
-						if ( definition = self.get_box_definition_by_name(column) )
-							parent[column] = {
+					for (var index = 0; index < self.box.definitions.length; index++)
+						if ( definition = self.get_box_definition_by_name(self.box.definitions[index].name) )
+							parent[self.box.definitions[index].name] = {
 								node : self.create_box_based_on_definition({
 									row_id     : row.data[self.setup.row_id],
-									column_name: column,
+									column_name: self.box.definitions[index].name,
 									definition : definition,
-									data       : row.data[column]
+									data       : row.data[self.box.definitions[index].name]
 								})
 							}
+
+
+					// for ( var column in row.data )
+					// 	if ( definition = self.get_box_definition_by_name(column) )
+					// 		parent[column] = {
+					// 			node : self.create_box_based_on_definition({
+					// 				row_id     : row.data[self.setup.row_id],
+					// 				column_name: column,
+					// 				definition : definition,
+					// 				data       : row.data[column]
+					// 			})
+					// 		}
 
 					return parent
 				}

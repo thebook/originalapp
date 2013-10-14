@@ -100,6 +100,7 @@ define(function () {
 																type : "table",
 																pass : {
 																	submit_changed_value : function (data) {
+																		console.log("changed")
 																		return {
 																			action : "set_account",
 																			method : "account_value",
@@ -110,76 +111,85 @@ define(function () {
 																			}
 																		}
 																	},
-																	fields : [
-																		{
-																			title: "first name",
-																			name : "first_name",
+																	table : {
+																		setup : {
+																			row_id     : "email",
+																			padding    : 30,
+																			box_height : 100,
+																			box_width  : 100,
+																			height     : 400,
 																		},
-																		{
-																			title: "email",
-																			name : "email",
-																		},
-																		{
-																			title: "id",
-																			name : "id",
-																		},
-																		{
-																			title: "password",
-																			name : "password",
-																		},
-																		{
-																			title: "university",
-																			name : "university",
-																		},
-																		{
-																			title: "year",
-																			name : "year",
-																		},
-																		{
-																			title      : "subject",
-																			name       : "subject",
-																		},
-																		{
-																			title      : "status",
-																			name       : "status",
-																			changeable : {
-																				by      : "dropdown",
-																				choices : [
-																					{
-																						title : "ordered pack",
-																						name  : "ordered_pack"
-																					},
-																					{ 
-																						title : "sent pack",
-																						name  : "sent_pack"
-																					},
-																					{ 
-																						title : "received",
-																						name  : "received"
-																					},
-																					{ 
-																						title : "paid",
-																						name  : "paid"
-																					},
-																					{ 
-																						title : "problem",
-																						name  : "problem"
-																					},
-																					{ 
-																						title : "passive",
-																						name  : "passive"
-																					}
-																				]
+																		fields : [
+																			{
+																				title: "first name",
+																				name : "first_name",
+																			},
+																			{
+																				title: "email",
+																				name : "email",
+																			},
+																			{
+																				title: "id",
+																				name : "id",
+																			},
+																			{
+																				title: "password",
+																				name : "password",
+																			},
+																			{
+																				title: "university",
+																				name : "university",
+																			},
+																			{
+																				title: "year",
+																				name : "year",
+																			},
+																			{
+																				title      : "subject",
+																				name       : "subject",
+																			},
+																			{
+																				title      : "status",
+																				name       : "status",
+																				changeable : {
+																					by      : "dropdown",
+																					choices : [
+																						{
+																							title : "ordered pack",
+																							name  : "ordered_pack"
+																						},
+																						{ 
+																							title : "sent pack",
+																							name  : "sent_pack"
+																						},
+																						{ 
+																							title : "received",
+																							name  : "received"
+																						},
+																						{ 
+																							title : "paid",
+																							name  : "paid"
+																						},
+																						{ 
+																							title : "problem",
+																							name  : "problem"
+																						},
+																						{ 
+																							title : "passive",
+																							name  : "passive"
+																						}
+																					]
+																				}
+																			},
+																			{
+																				title : "comment",
+																				name  : "comment",
+																				changeable : { 
+																					by     : "text"
+																				}
 																			}
-																		},
-																		{
-																			title : "comment",
-																			name  : "comment",
-																			changeable : { 
-																				by     : "text"
-																			}
-																		}
-																	],
+																		],
+																	},
 																	data : {
 																		retrieve : {
 																			path       : ajax_path,
@@ -207,43 +217,41 @@ define(function () {
 																name : "issues",
 																type : "table",
 																pass : {
-																	submit_changed_value : function (data) {
-																		return {
-																			action : "set_account",
-																			method : "account_value",
-																			paramaters : {
-																				email       : data.row_id,
-																				column_name : data.column_name,
-																				value       : data.box_value
+																	table : {
+																		setup : {
+																			row_id     : "email",
+																			padding    : 30,
+																			box_height : 100,
+																			box_width  : 100,
+																			height     : 400,
+																		},
+																		fields : [
+																			{
+																				title: "id",
+																				name : "id",
+																			},
+																			{
+																				title: "first name",
+																				name : "first_name",
+																			},
+																			{
+																				title: "second name",
+																				name : "second_name",
+																			},
+																			{
+																				title: "email",
+																				name : "email",
+																			},
+																			{
+																				title   : "status",
+																				name    : "status",
+																			},
+																			{
+																				title : "comment",
+																				name  : "comment",
 																			}
-																		}
+																		],
 																	},
-																	fields : [
-																		{
-																			title: "id",
-																			name : "id",
-																		},
-																		{
-																			title: "first name",
-																			name : "first_name",
-																		},
-																		{
-																			title: "second name",
-																			name : "second_name",
-																		},
-																		{
-																			title: "email",
-																			name : "email",
-																		},
-																		{
-																			title   : "status",
-																			name    : "status",
-																		},
-																		{
-																			title : "comment",
-																			name  : "comment",
-																		}
-																	],
 																	data : {
 																		retrieve : {
 																			path       : ajax_path,
@@ -271,15 +279,301 @@ define(function () {
 															},
 														]
 													},
-													model : {
-														retrieve : {
-															users : {
-																paramaters : {
-																	action : "get_account",
-																	method : "table",
+												}
+											},
+											{
+												module : "data",
+												title  : "View Freepost",
+												pass   : {
+													settings : {
+														tabs : [
+															{
+																name : "pending",
+																type : "table",
+																pass : {
+																	submit_changed_value : function (data) {
+																		console.log(data)
+																		return {
+																			action : "set_ticket",
+																			method : "freepost_ticket_value",
+																			paramaters : {
+																				email       : data.row_id,
+																				column_name : data.column_name,
+																				value       : data.box_value
+																			}
+																		}
+																	},
+																	data : {
+																		retrieve : {
+																			path       : ajax_path,
+																			paramaters : {
+																				action : "get_ticket",
+																				method : "freepost",
+																			},
+																			method : function (data) {
+																				var index, main, table
+
+																				main  = JSON.parse(data)["return"]
+																				index = 0
+																				table = []
+
+																				for (; index < main.length; index++)
+																					if ( main[index].status === "pending" )
+																						table.push(main[index])
+
+																				return table
+																			}
+																		}
+																	},
+																	table : {
+																		setup : {
+																			row_id     : "id",
+																			padding    : 30,
+																			box_height : 100,
+																			box_width  : 100,
+																			height     : 400,
+																		},
+																		fields : [
+																			{
+																				title : "id",
+																				name  : "id",
+																			},
+																			{
+																				title : "first name",
+																				name  : "first_name",
+																			},
+																			{
+																				title : "second name",
+																				name  : "second_name",
+																			},
+																			{
+																				title : "email",
+																				name  : "email",
+																			},
+																			{
+																				title : "address",
+																				name  : "address",
+																			},
+																			{
+																				title : "post code",
+																				name  : "post_code",
+																			},
+																			{
+																				title : "town",
+																				name  : "town",
+																			},
+																			{
+																				title : "area",
+																				name  : "area",
+																			},
+																			{
+																				title : "date",
+																				name  : "date",
+																			},
+																			{
+																				title : "status",
+																				name  : "status",
+																				changeable : {
+																					by      : "dropdown",
+																					choices : [
+																						{
+																							title : "pending",
+																							name  : "pending"
+																						},
+																						{ 
+																							title : "sent",
+																							name  : "sent"
+																						}
+																					]
+																				}
+																			}
+																		]
+																	}
 																}
-															}
-														},
+															},
+															{
+																name : "sent",
+																type : "table",
+																pass : {
+																	submit_changed_value : function (data) {
+																		console.log("changed value")
+																		return {
+																			action : "set_freepost",
+																			method : "ticket_value",
+																			paramaters : {
+																				email       : data.row_id,
+																				column_name : data.column_name,
+																				value       : data.box_value
+																			}
+																		}
+																	},
+																	data : {
+																		retrieve : {
+																			path       : ajax_path,
+																			paramaters : {
+																				action : "get_ticket",
+																				method : "freepost",
+																			},
+																			method : function (data) {
+																				var index, main, table
+
+																				main  = JSON.parse(data)["return"]
+																				index = 0
+																				table = []
+
+																				for (; index < main.length; index++)
+																					if ( main[index].status === "sent" )
+																						table.push(main[index])
+
+																				return table
+																			}
+																		}
+																	},
+																	table : {
+																		setup : {
+																			row_id     : "id",
+																			padding    : 30,
+																			box_height : 100,
+																			box_width  : 100,
+																			height     : 400,
+																		},
+																		fields : [
+																			{
+																				title : "id",
+																				name  : "id",
+																			},
+																			{
+																				title : "first name",
+																				name  : "first_name",
+																			},
+																			{
+																				title : "second name",
+																				name  : "second_name",
+																			},
+																			{
+																				title : "email",
+																				name  : "email",
+																			},
+																			{
+																				title : "address",
+																				name  : "address",
+																			},
+																			{
+																				title : "post code",
+																				name  : "post_code",
+																			},
+																			{
+																				title : "town",
+																				name  : "town",
+																			},
+																			{
+																				title : "area",
+																				name  : "area",
+																			},
+																			{
+																				title : "date",
+																				name  : "date",
+																			},
+																			{
+																				title : "status",
+																				name  : "status",
+																				changeable : {
+																					by      : "dropdown",
+																					choices : [
+																						{
+																							title : "pending",
+																							name  : "pending"
+																						},
+																						{ 
+																							title : "sent",
+																							name  : "sent"
+																						}
+																					]
+																				}
+																			}
+																		]
+																	},
+																}
+															},
+														]
+													}
+												}
+											},
+											{
+												module : "data",
+												title  : "View Cheques",
+												pass   : {
+													settings : {
+														tabs : [
+															{
+																name : "all",
+																type : "table",
+																pass : {
+																	data : {
+																		retrieve : {
+																			path       : ajax_path,
+																			paramaters : {
+																				action : "get_ticket",
+																				method : "cheque",
+																			},
+																			method : function (data) {
+																				return JSON.parse(data)["return"]
+																			}
+																		}
+																	},
+																	table : {
+																		setup : {
+																			padding    : 30,
+																			box_height : 100,
+																			box_width  : 100,
+																			height     : 400,
+																		},
+																		fields : [
+																			{
+																				title : "id",
+																				name  : "id",
+																			},
+																			{
+																				title : "first name",
+																				name  : "first_name",
+																			},
+																			{
+																				title : "second name",
+																				name  : "second_name",
+																			},
+																			{
+																				title : "email",
+																				name  : "email",
+																			},
+																			{
+																				title : "address",
+																				name  : "address",
+																			},
+																			{
+																				title : "post code",
+																				name  : "post_code",
+																			},
+																			{
+																				title : "town",
+																				name  : "town",
+																			},
+																			{
+																				title : "area",
+																				name  : "area",
+																			},
+																			{
+																				title : "date",
+																				name  : "date",
+																			},
+																			{
+																				title : "amount",
+																				name  : "amount",
+																			}
+																		]
+																	}
+																}
+															},
+														]
 													}
 												}
 											}

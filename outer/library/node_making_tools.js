@@ -69,4 +69,26 @@ define({
 		return node;
 	},
 
+	merge_objects : function (sort) {
+
+		var final_object, property
+
+		final_object = {}
+
+		for ( property in sort.default_object ) {
+
+			if ( sort.default_object[property].constructor === Object && sort.new_object[property] ) 
+				final_object[property] = this.merge_objects({ 
+					default_object : sort.default_object[property],
+					new_object     : sort.new_object[property]
+				})
+
+			if ( sort.default_object[property].constructor !== Object ) 
+				final_object[property] = sort.new_object[property] || sort.default_object[property]
+
+		}
+
+		return final_object
+	},
+
 });

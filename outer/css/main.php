@@ -3984,6 +3984,7 @@ body {
   border-radius: 2px; }
   .admin_content_menu_item:hover {
     padding: 6px 2.5%;
+    margin: 4px 0;
     background: #3f7986; }
 
 .table_wrap {

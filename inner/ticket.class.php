@@ -126,6 +126,12 @@ class ticket extends alpha
 		return $table->get_all_rows($this->freepost_table);
 	}	
 
+	public function get_cheque ()
+	{
+		$table = new table_creator;
+		return $table->get_all_rows($this->cheque_table);
+	}	
+
 	public function get_freepost_with_user_ids ()
 	{
 		global $account;
@@ -152,7 +158,7 @@ class ticket extends alpha
 		$table->add_row_to_table($this->freepost_table, $array_of_information );
 	}
 
-	public function set_freepost_ticket_value ($column, $value, $ticket)
+	public function set_freepost_ticket_value ($ticket, $column, $value )
 	{
 		$table = new table_creator;
 		$table->update_row($this->freepost_table, array( $column => $value ), 'id', $ticket );

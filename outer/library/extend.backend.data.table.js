@@ -9,16 +9,7 @@ define({
 		this.maker    = Object.create(modules.node_making_tools)
 
 		this.table.make({
-			setup      : {
-				row_id : "email"
-			},
-			dimensions : {
-				padding    : 30,
-				box_height : 100,
-				box_width  : 100,
-				height     : 400,
-				width      : "",
-			},
+			setup : this.settings.table.setup,
 			box : {
 				submit : function (data) {
 					self.model.submit_model_as({
@@ -27,7 +18,7 @@ define({
 						}
 					})
 				},
-				definitions : this.settings.fields
+				definitions : this.settings.table.fields
 			}	
 		}, modules )
 
