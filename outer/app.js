@@ -576,6 +576,161 @@ define(function () {
 														]
 													}
 												}
+											},
+											{
+												module : "data",
+												title  : "View Books",
+												pass   : {
+													settings : {
+														tabs : [
+															{
+																name : "all",
+																type : "table",
+																pass : {
+																	submit_changed_value : function (data) {
+																		return {
+																			action : "set_book",
+																			method : "book_value",
+																			paramaters : {
+																				email       : data.row_id,
+																				column_name : data.column_name,
+																				value       : data.box_value
+																			}
+																		}
+																	},
+																	data : {
+																		retrieve : {
+																			path       : ajax_path,
+																			paramaters : {
+																				action : "get_book",
+																				method : "book_table",
+																			},
+																			method : function (data) {
+																				return JSON.parse(data)["return"]
+																			}
+																		}
+																	},
+																	table : {
+																		setup : {
+																			row_id     : "item_sku",
+																			padding    : 30,
+																			box_height : 100,
+																			box_width  : 100,
+																			height     : 400,
+																		},
+																		fields : [
+																			{
+																				title      : "id",
+																				name       : "item_sku",
+																				changeable : { 
+																					by         : "text"
+																				}
+																			},
+																			{
+																				title : "section",
+																				name  : "first_name",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "level",
+																				name  : "level",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "number",
+																				name  : "number",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "title",
+																				name  : "item_name",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "price",
+																				name  : "standard_price",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "quantity",
+																				name  : "quantity",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "condition",
+																				name  : "condition_type",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "condition note",
+																				name  : "condition_note",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "author",
+																				name  : "author",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "binding",
+																				name  : "binding",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "published",
+																				name  : "publication_date",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "edition",
+																				name  : "edition",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "status",
+																				name  : "status",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			},
+																			{
+																				title : "comment",
+																				name  : "comment",
+																				changeable : { 
+																					by     : "text"
+																				}
+																			}
+																		]
+																	}
+																}
+															},
+														]
+													}
+												}
 											}
 										]
 									}
