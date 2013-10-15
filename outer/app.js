@@ -672,7 +672,45 @@ define(function () {
 																				title : "condition",
 																				name  : "condition_type",
 																				changeable : { 
-																					by     : "text"
+																					by     : "dropdown",
+																					choices: [
+																						{
+																							title : "1  : Used; Like New ",
+																							name  : "1"
+																						},
+																						{
+																							title : "2  : Used; Very Good ",
+																							name  : "2"
+																						},
+																						{
+																							title : "3  : Used; Good ",
+																							name  : "3"
+																						},
+																						{
+																							title : "4  : Used; Acceptable ",
+																							name  : "4"
+																						},
+																						{
+																							title : "5  : Collectible; Like New ",
+																							name  : "5"
+																						},
+																						{
+																							title : "6  : Collectible; Very Good ",
+																							name  : "6"
+																						},
+																						{
+																							title : "7  : Collectible; Good ",
+																							name  : "7"
+																						},
+																						{
+																							title : "8  : Collectible; Acceptable ",
+																							name  : "8"
+																						},
+																						{
+																							title : "11 : New",
+																							name  : "11"
+																						},
+																					],
 																				}
 																			},
 																			{
@@ -714,7 +752,25 @@ define(function () {
 																				title : "status",
 																				name  : "status",
 																				changeable : { 
-																					by     : "text"
+																					by     : "dropdown",
+																					choices: [
+																						{
+																							title : "expecting",
+																							name : "expecting",
+																						},
+																						{ 
+																							title : "recieved",
+																							name : "recieved",
+																						},
+																						{ 
+																							title : "problem",
+																							name : "problem",
+																						},
+																						{ 
+																							title : "passive",
+																							name : "passive"
+																						},
+																					]
 																				}
 																			},
 																			{
