@@ -7,5 +7,6 @@
 	include 'email.class.php';
 	include 'users.class.php';
 	include 'ticket.class.php';
+	include 'make_pdf.php';
 	
 ?>

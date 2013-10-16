@@ -38,7 +38,13 @@ define({
 						this.table = ( self.settings.data.retrieve.method ? self.settings.data.retrieve.method.call(this, data) : data )
 						self.table.update(this.table)
 					}
-				}
+				},
+				// pdf : {
+				// 	paramaters : {
+				// 		action : "get_pdf_maker",
+				// 		method : "freepost"
+				// 	},
+				// },
 			},
 			submit : {
 				field : {
@@ -49,6 +55,8 @@ define({
 				table : []
 			}
 		})
+
+		// this.model.retrieve_model_as("pdf")
 
 		return this.table.main.wrap.node
 	},
