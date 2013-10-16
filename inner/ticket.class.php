@@ -61,6 +61,10 @@ class ticket extends alpha
 				array(
 					'column_name' => 'date',
 					'data_type'   => 'date'
+				),
+				array(
+					'column_name' => 'user_id',
+					'data_type'   => 'INT'
 				)
 			)
 		));
@@ -144,12 +148,6 @@ class ticket extends alpha
 			$return[] = $ticket;
 		endforeach;
 		return $return;
-	}
-
-	public function set_rag_donate ($array_of_information)
-	{
-		$table = new table_creator;
-		$table->add_row_to_table($this->rag_table, $array_of_information );	
 	}
 
 	public function set_freepost ($array_of_information)

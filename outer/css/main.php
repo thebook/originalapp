@@ -4047,7 +4047,7 @@ body {
   border-radius: 2px;
   text-align: center; }
 
-.table_box_dropdown {
+.table_box_dropdown, .table_box_option_dropdown_box {
   margin-top: 10px;
   width: 100px;
   background: #1e3a41;
@@ -4056,8 +4056,35 @@ body {
   border-radius: 2px;
   position: relative; }
 
-.table_box_dropdown_option {
+.table_box_dropdown_option, .table_box_option_dropdown_item {
   padding: 10px;
   cursor: pointer; }
-  .table_box_dropdown_option:hover {
+  .table_box_dropdown_option:hover, .table_box_option_dropdown_item:hover {
     background: #3f7986; }
+
+.table_box_option_button, .table_box_option_button_selected {
+  border: 2px solid white;
+  height: 15px;
+  width: 15px;
+  border-radius: 25px;
+  margin: 0 auto;
+  cursor: pointer; }
+  .table_box_option_button:hover, .table_box_option_button_selected:hover {
+    background: white; }
+
+.table_box_option_button_selected {
+  background: white; }
+
+.table_box_option_dropdown {
+  width: 100%;
+  float: left;
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: center;
+  cursor: pointer; }
+
+.table_box_option_dropdown_box {
+  font-size: 16px;
+  line-height: 16px;
+  text-align: left; }

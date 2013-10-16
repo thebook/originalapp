@@ -85,3 +85,44 @@
 		background : $dark_blue;
 	}
 }
+
+.table_box_option_button {
+	border        : 2px solid $light;
+	height        : 15px;
+	width         : 15px;
+	border-radius : 25px;
+	margin        : 0 auto;
+	cursor        : pointer;
+	&:hover { 
+		background : $light;
+	}
+}
+
+.table_box_option_button_selected {
+	@extend.table_box_option_button;
+	background: $light;
+}
+
+.table_box_option_dropdown {
+	width       : 100%;
+	float       : left;
+	margin-top  : 12px;
+	font-size   : 12px;
+	line-height : 12px;
+	text-align  : center;
+	cursor: pointer;
+
+}
+
+.table_box_option_dropdown_box {
+	font-size : 16px;
+	line-height: 16px;
+	text-align: left;
+	@extend.table_box_dropdown;
+}
+
+
+
+.table_box_option_dropdown_item {
+	@extend.table_box_dropdown_option;
+}

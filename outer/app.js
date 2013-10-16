@@ -292,7 +292,7 @@ define(function () {
 																type : "table",
 																pass : {
 																	submit_changed_value : function (data) {
-																		console.log(data)
+																		
 																		return {
 																			action : "set_ticket",
 																			method : "freepost_ticket_value",
@@ -327,16 +327,26 @@ define(function () {
 																	},
 																	table : {
 																		setup : {
-																			row_id     : "id",
-																			padding    : 30,
-																			box_height : 100,
-																			box_width  : 100,
-																			height     : 400,
+																			row_id       : "id",
+																			padding      : 30,
+																			box_height   : 100,
+																			box_width    : 100,
+																			option_width : 50,
+																			height       : 400,
 																		},
+																		options: [
+																			{
+																				name       : "print",
+																				individual : false,
+																				action     : function (rows) {
+																					console.log("an option is being performed")
+																				}
+																			}
+																		],
 																		fields : [
 																			{
-																				title : "id",
-																				name  : "id",
+																				title : "user id",
+																				name  : "user_id",
 																			},
 																			{
 																				title : "first name",
@@ -396,10 +406,10 @@ define(function () {
 																type : "table",
 																pass : {
 																	submit_changed_value : function (data) {
-																		console.log("changed value")
+																		
 																		return {
-																			action : "set_freepost",
-																			method : "ticket_value",
+																			action : "set_ticket",
+																			method : "freepost_ticket_value",
 																			paramaters : {
 																				email       : data.row_id,
 																				column_name : data.column_name,
@@ -439,8 +449,8 @@ define(function () {
 																		},
 																		fields : [
 																			{
-																				title : "id",
-																				name  : "id",
+																				title : "user id",
+																				name  : "user_id",
 																			},
 																			{
 																				title : "first name",

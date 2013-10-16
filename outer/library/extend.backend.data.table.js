@@ -7,7 +7,7 @@ define({
 		this.model    = Object.create(modules.model)
 		this.table    = Object.create(modules.table)
 		this.maker    = Object.create(modules.node_making_tools)
-
+		
 		this.table.make({
 			setup : this.settings.table.setup,
 			box : {
@@ -18,7 +18,8 @@ define({
 						}
 					})
 				},
-				definitions : this.settings.table.fields
+				definitions : this.settings.table.fields,
+				options     : this.settings.table.options
 			}	
 		}, modules )
 
