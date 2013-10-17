@@ -39,7 +39,16 @@ define({
 			parts : this.content
 		})
 
+		window.setTimeout(function () {
+			self.set_content_height()
+		}, 1000 )
+		
 		return this.content.wrap.node
+	},
+
+	set_content_height : function () {
+		// console.log("set height")
+		this.content.wrap.content.node.style.height = ( document.height - this.content.wrap.content.node.offsetTop ) +"px"
 	},
 
 	create_menu_items : function (parent) {

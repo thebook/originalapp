@@ -512,12 +512,35 @@ define(function () {
 											},
 											{
 												module : "data",
-												title  : "View Cheques",
+												title  : "Pay",
 												pass   : {
 													settings : {
 														tabs : [
 															{
-																name : "sent",
+																name : "scan freepost",
+																type : "scan",
+																pass : {
+																	settings  : {
+																		main_path : ajax_path
+																	},
+																	find_user : { 
+																		title       : "Find User",
+																		description : "This is where you find the user pong chin peng",
+																		request     : {
+																			path       : ajax_path,
+																			paramaters : function () { 
+
+																			}
+																		}
+																	},
+																	find_book : {
+																		title       : "Find Book",
+																		description : "This is where you find the book adopted son pong chin peng",
+																	}
+																}
+															},
+															{
+																name : "printed cheques",
 																type : "table",
 																pass : {
 																	data : {

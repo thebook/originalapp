@@ -4140,3 +4140,107 @@ body {
   font-size: 16px;
   line-height: 16px;
   text-align: left; }
+
+.scan_wrap {
+  width: 100%;
+  float: left; }
+
+.scan_tier {
+  width: 100%;
+  float: left;
+  margin-bottom: 20px; }
+
+.scan_box {
+  width: 50%;
+  float: left;
+  display: inline-block; }
+
+.scan_user {
+  width: 90%;
+  padding: 20px 5%;
+  float: left;
+  display: inline-block; }
+
+.scan_user_title, .scan_information_title {
+  font-weight: bold;
+  color: #1e3a41;
+  margin-bottom: 10px;
+  float: left;
+  width: 100%; }
+
+.scan_user_description {
+  float: left;
+  width: 100%; }
+
+.scan_user_input {
+  background: white;
+  font-family: monospace;
+  color: #1e3a41;
+  font-weight: bold;
+  width: 65%;
+  padding: 10px 2.5%;
+  margin: 10px 0 0 0;
+  border: none;
+  display: inline-block;
+  float: left; }
+
+.scan_user_button {
+  width: 23.5%;
+  padding: 10px 2.5%;
+  margin-left: 1.5%;
+  margin-top: 10px;
+  text-transform: uppercase;
+  background: #1e3a41;
+  color: #3f7986;
+  display: inline-block;
+  font-weight: bold;
+  float: left;
+  cursor: pointer; }
+  .scan_user_button:hover {
+    color: white; }
+
+.scan_information {
+  width: 90%;
+  float: left;
+  padding: 20px 5%; }
+
+.scan_information_field {
+  width: 100%;
+  float: left;
+  margin-bottom: 10px; }
+
+.scan_information_field_title, .book_title {
+  width: 45%;
+  margin-right: 5%;
+  display: inline-block;
+  float: left;
+  color: #1e3a41; }
+
+.scan_information_field_text, .book_status_recieved, .book_status_waiting {
+  width: 50%;
+  display: inline-block;
+  float: left; }
+
+.scan_notification_box {
+  width: 90%;
+  padding: 20px 5%;
+  float: left; }
+
+.scan_green_notification {
+  background: #60791e;
+  color: #1e3a41;
+  font-weight: bold;
+  width: 80%;
+  padding: 20px 10%;
+  -webkit-border-radius: 2px;
+  border-radius: 2px; }
+
+.book_title {
+  color: white;
+  font-weight: bold; }
+
+.book_status_recieved {
+  color: #a1cb32; }
+
+.book_status_waiting {
+  color: #1e3a41; }
