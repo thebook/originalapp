@@ -110,6 +110,12 @@
 	@include border-radius(2px);
 }
 
+.scan_red_notification {
+	@extend.scan_green_notification;
+	background : $red;
+	color : $light;
+}
+
 .book_title { 
 	@extend.scan_information_field_title;
 	color: $light;

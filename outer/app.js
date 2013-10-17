@@ -526,10 +526,50 @@ define(function () {
 																	find_user : { 
 																		title       : "Find User",
 																		description : "This is where you find the user pong chin peng",
+																		show        : [
+																			{
+																				what : "first_name",
+																				as   : "First Name",
+																			},
+																			{
+																				what : "second_name",
+																				as   : "Second Name",
+																			},
+																			{
+																				what : "address",
+																				as   : "Address",
+																			},
+																			{
+																				what : "area",
+																				as   : "Area",
+																			},
+																			{
+																				what : "town",
+																				as   : "Town",
+																			},
+																			{
+																				what : "post_code",
+																				as   : "Post Code",
+																			},
+																			{
+																				what : "status",
+																				as   : "status",
+																			},
+																			{
+																				what : "comment",
+																				as   : "comment",
+																			}
+																		],
 																		request     : {
 																			path       : ajax_path,
-																			paramaters : function () { 
-
+																			paramaters : function (user) { 
+																				return {
+																					action : "get_account",
+																					method : "full_account_by_id",
+																					paramaters : {
+																						id : user.id
+																					}
+																				}
 																			}
 																		}
 																	},

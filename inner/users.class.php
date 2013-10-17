@@ -151,7 +151,18 @@ class account extends alpha
 			$account['price_promise']   = json_decode($account['price_promise']);
 		endif;
 		return $account;
+	}
 
+	public function get_full_account_by_id ($account_id)
+	{
+		$account              = $this->get_account_by_id($account_id);
+		$address              = $this->get_address($account['email'])[0];
+		return array_merge($account, array(
+			'post_code' => $address['post_code'],
+			'town'      => $address['town'],
+			'area'      => $address['area'],
+			'address'   => $address['address'],
+		));
 	}
 
 	public function get_account ($account_email)

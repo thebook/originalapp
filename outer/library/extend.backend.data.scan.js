@@ -6,9 +6,7 @@ define({
 		this.setup       = instructions
 		this.request     = modules.request
 		this.maker       = Object.create(modules.node_making_tools)
-		this.option      = {
-			value_reference : {}
-		}
+		this.users       = []
 		this.class_names = this.maker.merge_objects({
 			default_object : {
 				wrap                           : "scan_wrap",
@@ -26,6 +24,7 @@ define({
 				information_field_text         : "scan_information_field_text",
 				information_box                : "scan_notification_box",
 				information_notification_green : "scan_green_notification",
+				information_notification_red   : "scan_red_notification",
 				book_title                     : "book_title",
 				book_status_recieved           : "book_status_recieved",
 				book_status_waiting            : "book_status_waiting",
@@ -70,8 +69,7 @@ define({
 								attribute : { 
 									"class" : this.class_names.box
 								},
-								children : {
-								}
+								children : {}
 							},
 						}
 					},
@@ -157,29 +155,6 @@ define({
 													"class" : this.class_names.information_title
 												},
 											},
-											field : {
-												attribute : { 
-													"class" : this.class_names.information_field
-												},	
-												children : {
-													title : {
-														property : {
-															textContent : "First Name"
-														},
-														attribute : { 
-															"class" : this.class_names.information_field_title
-														},	
-													},
-													text  : {
-														property : {
-															textContent : "Fong Chin Li"
-														},
-														attribute : { 
-															"class" : this.class_names.information_field_text
-														},	
-													}
-												}
-											}
 										}
 									},
 								}
@@ -268,52 +243,6 @@ define({
 													"class" : this.class_names.information_title
 												},
 											},
-											field : {
-												attribute : { 
-													"class" : this.class_names.information_field
-												},	
-												children : {
-													title : {
-														property : {
-															textContent : "Sucke gee mg gee guide to success"
-														},
-														attribute : { 
-															"class" : this.class_names.book_title
-														},	
-													},
-													text  : {
-														property : {
-															textContent : "Yes"
-														},
-														attribute : { 
-															"class" : this.class_names.book_status_recieved
-														},	
-													}
-												}
-											},
-											filed2 : {
-												attribute : { 
-													"class" : this.class_names.information_field
-												},	
-												children : {
-													title : {
-														property : {
-															textContent : "Magical Adventures of pony jack"
-														},
-														attribute : { 
-															"class" : this.class_names.book_title
-														},	
-													},
-													text  : {
-														property : {
-															textContent : "waiting"
-														},
-														attribute : { 
-															"class" : this.class_names.book_status_waiting
-														},	
-													}
-												}
-											}
 										}
 									},
 								}
@@ -332,7 +261,130 @@ define({
 	},
 
 	search_for_user : function (user) {
-		console.log(user)
+
+		var request, send_data, self
+
+		self      = this
+		request   = this.request.make()
+		request.send({
+			url : this.setup.find_user.request.path || this.setup.main_path,
+			data: this.setup.find_user.request.paramaters.call(this, user),
+			type: "GET"
+		}).then(function (then) {
+			self.deal_with_retrieved_user_response(JSON.parse(then.change.target.response)["return"])
+		})
+	},
+
+	deal_with_retrieved_user_response : function (user) {
+		if ( user === false ) { 
+			this.put_notification({
+				text : "No user was found son",
+				type : "red"
+			})
+		} else { 
+
+			this.put_notification({
+				type : "green",
+				text : "Found user "+ user.first_name,
+			})
+
+			var index, final_user
+
+			index      = 0
+			final_user = {
+				data : user,
+				shown: [],
+				books: [],
+				pay  : [],
+				
+			}
+
+			for (; index < this.setup.find_user.show.length; index++)
+				final_user.shown.push({
+					name  : this.setup.find_user.show[index].as,
+					value : user[this.setup.find_user.show[index].what]
+				})
+
+			this.set_data_fields({
+				for    : "user",
+				fields : final_user.shown
+			})
+		}
+	},
+
+	put_notification : function (notification) { 
+
+		this.main.wrap.top_tier.information.box.node.insertBefore(this.maker.create_and_return_node({
+			property  : {
+				textContent : notification.text
+			},
+			attribute : { 
+				"class" : ( notification.type === "green" ? this.class_names.information_notification_green : this.class_names.information_notification_red )
+			}
+		}), this.main.wrap.top_tier.information.box.node.firstChild )
+	},
+
+	set_data_fields : function (data) { 
+
+		var field, index, class_names, use_class, path
+
+
+		class_names = {
+			user : {
+				title : this.class_names.information_field_title,
+				value : this.class_names.information_field_text,
+			},
+			book : {
+				title : this.class_names.book_title,
+				value : this.class_names.book_status_waiting,
+			}
+		}
+		path        = {
+			user : {
+				tier : "user_tier",
+				data : "user_info",
+			},
+			book : {
+				tier : "book_tier",
+				data : "user_promise",
+			}
+		}
+		index       = 0
+
+		for (; index < data.fields.length; index++) {
+			
+			field = this.maker.create_parts({
+				field : {
+					attribute : { 
+						"class" : this.class_names.information_field
+					},	
+					children : {
+						title : {
+							property : {
+								textContent : data.fields[index].name
+							},
+							attribute : { 
+								"class" : class_names[data.for].title
+							},	
+						},
+						text  : {
+							property : {
+								textContent : data.fields[index].value
+							},
+							attribute : { 
+								"class" : class_names[data.for].value
+							},	
+						}
+					}
+				}
+			})
+			this.maker.append_parts({
+				parts : field 
+			})
+
+			this.main.wrap[path[data.for].tier].data[path[data.for].data]["field_"+index] = field.field
+			this.main.wrap[path[data.for].tier].data[path[data.for].data].node.appendChild(field.field.node)
+		}
 	},
 
 });

@@ -4226,7 +4226,7 @@ body {
   padding: 20px 5%;
   float: left; }
 
-.scan_green_notification {
+.scan_green_notification, .scan_red_notification {
   background: #60791e;
   color: #1e3a41;
   font-weight: bold;
@@ -4234,6 +4234,10 @@ body {
   padding: 20px 10%;
   -webkit-border-radius: 2px;
   border-radius: 2px; }
+
+.scan_red_notification {
+  background: #783127;
+  color: white; }
 
 .book_title {
   color: white;
