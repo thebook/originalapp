@@ -13,6 +13,7 @@ new account;
 new book;
 new email;
 new ticket;
+new settings;
 new pdf_maker;
 // new amazon(
 // 	array(

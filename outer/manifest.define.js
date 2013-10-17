@@ -9,6 +9,7 @@ define({
 				"library/extend.backend",
 				"library/extend.backend.data",
 				"library/extend.backend.data.table",
+				"library/extend.backend.data.admin",
 			]			
 		}
 	},
@@ -30,6 +31,7 @@ define({
 			"library/animator",
 			"library/model",
 			"library/table",
+			"library/request",
 		],
 		// parts : [
 		// 	"library/part/wrap",

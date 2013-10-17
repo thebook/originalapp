@@ -14,7 +14,8 @@ define(function () {
 				node_making_tools : modules.libraries.node_making_tools,
 				animation         : animator,
 				model             : modules.libraries.model,
-				table             : modules.libraries.table
+				table             : modules.libraries.table,
+				request           : modules.libraries.request
 			},
 			thought : {
 				wrap : {
@@ -516,7 +517,7 @@ define(function () {
 													settings : {
 														tabs : [
 															{
-																name : "all",
+																name : "sent",
 																type : "table",
 																pass : {
 																	data : {
@@ -793,6 +794,71 @@ define(function () {
 																		]
 																	}
 																}
+															},
+														]
+													}
+												}
+											},
+											{
+												module : "data",
+												title  : "Settings",
+												pass   : {
+													settings : {
+														tabs : [
+															{
+																name : "emails", 
+																type : "admin",
+																pass : {
+																	main_submit_path : ajax_path,
+																	main_sort_method : function (event) {
+																		var response
+																		response = JSON.parse(event.target.response)
+																		return response.return.value
+																	},
+																	options : [
+																		{	
+																			name        : "freepost_email",
+																			title       : "email",
+																			description : "This be a way to change yer emails for confirming price promises or something",
+																			type        : "textbox",
+																			retrieve    : {
+																				paramaters : {
+																					action     : "get_setting",
+																					method     : "option",
+																					paramaters : {
+																						name   : "freepost_email"
+																					}
+																				},
+																			},
+																			submit      : {     
+																				paramaters : {
+
+																				}
+																			}
+																		},
+																		{	
+																			name        : "another_email",
+																			title       : "email",
+																			description : "This be a way to change yer emails for confirming price promises or something",
+																			type        : "textbox",
+																			retrieve    : {
+																				paramaters : {
+																					action     : "get_setting",
+																					method     : "option",
+																					paramaters : {
+																						name   : "another_email"
+																					}
+																				},
+																			},
+																			submit      : {     
+																				paramaters : {
+
+																				}
+																			}
+																		}
+																	],
+
+																},
 															},
 														]
 													}

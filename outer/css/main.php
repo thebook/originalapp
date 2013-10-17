@@ -3987,6 +3987,58 @@ body {
     margin: 4px 0;
     background: #3f7986; }
 
+.admin_inner_content {
+  float: left;
+  width: 100%;
+  overflow: auto; }
+
+.options_wrap {
+  width: 100%; }
+
+.options_box {
+  width: 98%;
+  padding: 20px 1%;
+  float: left;
+  border-bottom: 4px solid white;
+  margin-bottom: 20px; }
+
+.options_box_title {
+  color: #1e3a41;
+  font-weight: bold;
+  float: left;
+  width: 100%; }
+
+.options_box_description {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: white;
+  float: left;
+  width: 100%; }
+
+.options_box_option_textbox {
+  color: white;
+  border: none;
+  margin: 0;
+  padding: 20px 2%;
+  height: 100px;
+  width: 96%;
+  background: #1e3a41;
+  max-width: 96%;
+  float: left;
+  clear: both; }
+
+.options_box_button {
+  padding: 20px 2%;
+  font-family: monospace;
+  margin-right: 10px;
+  margin-top: 10px;
+  float: left;
+  display: inline-block;
+  cursor: pointer;
+  background: #1e3a41; }
+  .options_box_button:hover {
+    background: #3f7986; }
+
 .table_wrap {
   width: 100%;
   float: left;

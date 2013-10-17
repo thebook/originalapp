@@ -10,6 +10,7 @@ define({
 			wrap      : "admin_content_wrap",
 			menu      : "admin_content_menu",
 			menu_item : "admin_content_menu_item",
+			content   : "admin_inner_content"
 		}
 		this.content     = this.maker.create_parts({
 			wrap : {
@@ -26,7 +27,11 @@ define({
 							return self.create_menu_items(parent)
 						}
 					},
-					content : {}
+					content : {
+						attribute : {
+							"class" : this.class_names.content
+						}
+					}
 				}	
 			}
 		})

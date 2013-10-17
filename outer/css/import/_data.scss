@@ -1,0 +1,53 @@
+.options_wrap { 
+	width: 100%;
+}
+
+.options_box { 
+	width   : 98%;
+	padding : 20px 1%;
+	float   : left;
+	border-bottom: 4px solid $light;
+	margin-bottom: 20px;
+}
+
+.options_box_title { 
+	color       : darken($dark_blue, 20%);
+	font-weight : bold;
+	float       : left;
+	width       : 100%;
+}
+
+.options_box_description { 
+	margin-top    : 15px;
+	margin-bottom : 15px;
+	color         : $light;
+	float         : left;
+	width         : 100%;
+}
+
+.options_box_option_textbox { 
+	color      : $light;
+	border     : none;
+	margin     : 0;
+	padding    : 20px 2%;
+	height     : 100px;
+	width      : 96%;
+	background : darken($dark_blue, 20%);
+	max-width  : 96%;
+	float      : left;
+	clear      : both;
+}
+
+.options_box_button { 
+	padding : 20px 2%;
+	font-family: monospace;
+	margin-right: 10px;
+	margin-top: 10px;
+	float   : left;
+	display : inline-block;
+	cursor: pointer;
+	background : darken($dark_blue, 20%);
+	&:hover { 
+		background : $dark_blue;
+	}
+}
