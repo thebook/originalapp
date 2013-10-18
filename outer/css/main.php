@@ -4248,3 +4248,33 @@ body {
 
 .book_status_waiting {
   color: #1e3a41; }
+
+.scan_user_list {
+  width: 90%;
+  padding: 20px 5%;
+  float: left; }
+
+.scan_user_list_item {
+  width: 80%;
+  padding: 20px 10%;
+  float: left;
+  background: #cccccc;
+  border-bottom: 4px solid #1e3a41;
+  cursor: pointer; }
+  .scan_user_list_item:hover {
+    background: #d9d9d9; }
+
+.scan_user_list_item_title {
+  font-weight: bold;
+  color: #1e3a41; }
+
+.scan_user_list_button {
+  margin-top: 10px;
+  float: left;
+  display: inline-block;
+  color: white;
+  margin-left: 5%;
+  text-transform: uppercase;
+  cursor: pointer; }
+  .scan_user_list_button:hover {
+    color: #1e3a41; }
