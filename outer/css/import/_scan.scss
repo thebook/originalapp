@@ -24,7 +24,7 @@
 
 .scan_user_title {
 	font-weight   : bold;
-	color         : darken($dark_blue, 20%);
+	color         : $deep_blue;
 	margin-bottom : 10px;
 	float: left;
 	width: 100%;
@@ -38,7 +38,7 @@
 .scan_user_input {
 	background  : $light;
 	font-family : monospace;
-	color       : darken($dark_blue, 20%);
+	color       : $deep_blue;
 	font-weight : bold;
 	width       : 65%;
 	padding     : 10px 2.5%;
@@ -54,7 +54,7 @@
 	margin-left    : 1.5%;
 	margin-top     : 10px;
 	text-transform : uppercase;
-	background     : darken($dark_blue, 20%);
+	background     : $deep_blue;
 	color          : $dark_blue;
 	display        : inline-block;
 	font-weight    : bold;
@@ -86,7 +86,7 @@
 	margin-right: 5%;
 	display: inline-block;
 	float: left;
-	color: darken($dark_blue, 20%);
+	color: $deep_blue;
 }
 
 .scan_information_field_text {
@@ -99,11 +99,13 @@
 	width: 90%;
 	padding : 20px 5%;
 	float: left;
+	// max-height: 320px;
+	// overflow : auto;
 }
 
 .scan_green_notification {
 	background : darken($green, 30%);
-	color      : darken($dark_blue, 20%);
+	color      : $deep_blue;
 	font-weight: bold;
 	width      : 80%;
 	padding    : 20px 10%;
@@ -130,7 +132,7 @@
 
 .book_status_waiting { 
 	@extend.scan_information_field_text;
-	color: darken($dark_blue, 20%);
+	color: $deep_blue;
 }
 
 .scan_user_list {
@@ -144,7 +146,7 @@
 	padding       : 20px 10%;
 	float         : left;
 	background    : darken($light, 20%);
-	border-bottom : 4px solid darken($dark_blue, 20%);
+	border-bottom : 4px solid $deep_blue;
 	cursor        : pointer;
 	&:hover {
 		background    : darken($light, 15%);
@@ -153,7 +155,7 @@
 
 .scan_user_list_item_title {
 	font-weight : bold;
-	color       : darken($dark_blue, 20%);
+	color       : $deep_blue;
 }
 
 .scan_user_list_button {
@@ -165,12 +167,72 @@
 	text-transform: uppercase;
 	cursor: pointer;
 	&:hover { 
-		color : darken($dark_blue, 20%)
+		color : $deep_blue;
 	}
 	// padding       : 20px 10%;
 	// background  : darken($light, 20%);	
-	// color       : darken($dark_blue, 20%);
-	// border      : 4px solid darken($dark_blue, 20%);
+	// color       : $deep_blue;
+	// border      : 4px solid $deep_blue;
 	// border-top: none;
 	// margin-right: 2.5%;
+}
+
+.scan_paid_book { 
+	margin-bottom: 10px;
+	float: left;
+	width: 100%;
+}
+
+.scan_paid_book_field { 
+	color: $deep_blue;
+	font-weight: bold;
+	padding: 10px 5%;
+	margin-right: 5%;
+	float: left;
+	display: inline-block;
+	width: 30%;
+}
+
+.scan_paid_book_dropdown { 
+	float: left;
+	display: inline-block;
+	width: 30%;
+	margin-right: 5%;
+}
+
+.scan_paid_book_dropdown_text { 
+	cursor: pointer;
+	width: 65%;
+	padding: 10px 17.5%;
+}
+
+.scan_paid_book_dropdown_box { 
+	width: 90%;
+	padding: 5px 5%;
+	background: $deep_blue;
+	position: relative;
+	@include border-radius(2px);
+}
+
+.scan_paid_book_dropdown_item { 
+	width: 70%;
+	padding : 10px 15%;
+	cursor: pointer;
+	&:hover { 
+		background: $dark_blue;
+	}
+}
+
+.scan_paid_book_input { 
+	display: inline-block;
+	float: left;
+	background: transparent;
+	padding: 10px 0.5%;
+	color: $light;
+	border: none;
+	width: 18%;
+	font-size: 16px;
+	line-height: 16px;
+	font-weight: bold;
+	font-family: monospace;
 }

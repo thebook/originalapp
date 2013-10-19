@@ -199,7 +199,17 @@ define(function () {
 																				method : "table",
 																			},
 																			method : function (data) {
-																				return JSON.parse(data)["return"]
+																				var index, main, table
+
+																				main  = JSON.parse(data)["return"]
+																				index = 0
+																				table = []
+
+																				for (; index < main.length; index++)
+																					if ( main[index].status !== "problem" ) 
+																						table.push(main[index])
+
+																				return table
 																			}
 																		}
 																	},
@@ -269,7 +279,7 @@ define(function () {
 																				table = []
 
 																				for (; index < main.length; index++)
-																					if ( main[index].status !== "passive" ) 
+																					if ( main[index].status === "problem" ) 
 																						table.push(main[index])
 
 																				return table

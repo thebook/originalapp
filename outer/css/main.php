@@ -4278,3 +4278,56 @@ body {
   cursor: pointer; }
   .scan_user_list_button:hover {
     color: #1e3a41; }
+
+.scan_paid_book {
+  margin-bottom: 10px;
+  float: left;
+  width: 100%; }
+
+.scan_paid_book_field {
+  color: #1e3a41;
+  font-weight: bold;
+  padding: 10px 5%;
+  margin-right: 5%;
+  float: left;
+  display: inline-block;
+  width: 30%; }
+
+.scan_paid_book_dropdown {
+  float: left;
+  display: inline-block;
+  width: 30%;
+  margin-right: 5%; }
+
+.scan_paid_book_dropdown_text {
+  cursor: pointer;
+  width: 65%;
+  padding: 10px 17.5%; }
+
+.scan_paid_book_dropdown_box {
+  width: 90%;
+  padding: 5px 5%;
+  background: #1e3a41;
+  position: relative;
+  -webkit-border-radius: 2px;
+  border-radius: 2px; }
+
+.scan_paid_book_dropdown_item {
+  width: 70%;
+  padding: 10px 15%;
+  cursor: pointer; }
+  .scan_paid_book_dropdown_item:hover {
+    background: #3f7986; }
+
+.scan_paid_book_input {
+  display: inline-block;
+  float: left;
+  background: transparent;
+  padding: 10px 0.5%;
+  color: white;
+  border: none;
+  width: 18%;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: bold;
+  font-family: monospace; }

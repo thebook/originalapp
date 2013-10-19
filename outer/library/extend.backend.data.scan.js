@@ -1,5 +1,5 @@
 define({
-	
+	// are they fully isoated? 
 	make : function (instructions, modules) {
 
 		var self         = this
@@ -33,6 +33,13 @@ define({
 				user_list_item                 : "scan_user_list_item",
 				user_list_item_title           : "scan_user_list_item_title",
 				user_button                    : "scan_user_list_button",
+				paid_book                      : "scan_paid_book",
+				paid_book_field                : "scan_paid_book_field",
+				paid_book_dropdown             : "scan_paid_book_dropdown",
+				paid_book_dropdown_text        : "scan_paid_book_dropdown_text",
+				paid_book_dropdown_box         : "scan_paid_book_dropdown_box",
+				paid_book_dropdown_item        : "scan_paid_book_dropdown_item",
+				paid_book_input                : "scan_paid_book_input",
 			},
 			new_object     : this.setup.class_names || {}
 		})
@@ -70,22 +77,13 @@ define({
 										attribute : { 
 											"class" : this.class_names.user_list
 										},
+										methods : {
+											addEventListener : ["click", function (event) {
+												if ( event.target.getAttribute("data-user") )
+													self.show_user_information(event.target.getAttribute("data-user"))
+											}]
+										},
 										children : {
-											item : {
-												attribute : { 
-													"class" : this.class_names.user_list_item
-												},
-												children : {
-													title : {
-														property : {
-															textContent : "Joe McJoe"
-														},
-														attribute : { 
-															"class" : this.class_names.user_list_item_title
-														},
-													}
-												}
-											}
 										}
 									},
 									print_button : {
@@ -97,7 +95,7 @@ define({
 										},
 										methods : {
 											addEventListener : ["click", function () {
-
+												self.package_all_data_for_print()
 											}]
 										}
 									},
@@ -110,8 +108,98 @@ define({
 										},
 										methods : {
 											addEventListener : ["click", function () {
+													self.notify({
+														type : ( self.users.length > 0 ? "green" : "red" ),
+														text : ( self.users.length > 0 ? "Everything has been reset" : "Nothing to reset" ),
+													})
+
+												self.clear_all_data()
+											}]
+										}
+									}
+								}
+							},
+						}
+					},
+					data : {
+						attribute : { 
+							"class" : this.class_names.tier
+						},
+						children : { 
+							books : { 
+								attribute : { 
+									"class" : this.class_names.box
+								},
+								children : {
+									book : {
+										attribute : { 
+											"class" : this.class_names.paid_book
+										},
+										methods : { 
+											addEventListener : ["click", function () { 
 
 											}]
+										},
+										children : {
+											title     : {
+												property : {
+													textContent : "Book"
+												},
+												attribute : { 
+													"class" : this.class_names.paid_book_field
+												},
+											},
+											condition : {
+												attribute : { 
+													"class" : this.class_names.paid_book_dropdown
+												},
+												children : {
+													text : {
+														property : {
+															textContent : "1"
+														},
+														attribute : { 
+															"class" : this.class_names.paid_book_dropdown_text
+														},
+														methods : {
+															addEventListener : ["click", function (event) { 
+																console.log(event.target)
+																if ( event.target.nextSibling.getAttribute("data-open") ) 
+																	self.toggle_dropbox({
+																		box     : event.target.nextSibling,
+																		open    : event.target.nextSibling.getAttribute("data-open"),
+																		display : "inline-block"
+																	})
+															}]
+														}
+													},
+													box : {
+														style : {
+															display : "none"
+														},
+														attribute : { 
+															"class"     : this.class_names.paid_book_dropdown_box,
+															"data-open" : false
+														},
+														children : {
+															item : {
+																property : {
+																	textContent : "stuff"
+																},
+																attribute : { 
+																	"class" : this.class_names.paid_book_dropdown_item
+																}		
+															}
+														}
+													}
+												}
+											},
+											price     : {
+												type      : "input",
+												attribute : {
+													"class" : this.class_names.paid_book_input
+												},
+											}
 										}
 									}
 								}
@@ -312,6 +400,58 @@ define({
 		return this.main.wrap.node
 	},
 
+	toggle_dropbox : function (toggle) { 
+		if ( toggle.open === "true" ) {
+			toggle.box.setAttribute("data-open", false )
+			toggle.box.style.display = "none"
+		} else {
+			toggle.box.setAttribute("data-open", true )
+			toggle.box.style.display = toggle.display
+		}
+	},
+
+	package_all_data_for_print : function () { 
+		console.log(this)
+	},
+
+	add_user_to_control_tab : function (user) {
+
+		var user_item, self
+
+		self      = this
+		user_item = this.maker.create_parts({
+			item : {
+				attribute : { 
+					"class" : this.class_names.user_list_item,
+					"data-user" : user.index
+				},
+				children : {
+					title : {
+						property : {
+							textContent : user.data.first_name +" "+ user.data.second_name
+						},
+						attribute : { 
+							"class"     : this.class_names.user_list_item_title,
+							"data-user" : user.index
+						},
+					}
+				}
+			}
+		})
+
+		this.maker.append_parts({
+			parts : user_item
+		})
+
+		this.main.wrap.top_tier.controls.user_list["user_"+user.index] = user_item.item
+		this.main.wrap.top_tier.controls.user_list.node.appendChild(user_item.item.node)
+	},
+
+	clear_control_tab : function () { 
+		while ( this.main.wrap.top_tier.controls.user_list.node.firstChild )
+			this.main.wrap.top_tier.controls.user_list.node.firstChild.remove()
+	},
+
 	search_for_user : function (user) {
 
 		var request, send_data, self
@@ -324,7 +464,6 @@ define({
 			type: "GET"
 		}).then(function (then) {
 			self.deal_with_retrieved_user_response(JSON.parse(then.change.target.response)["return"])
-			self.make_book_tier_visible()
 		})
 	},
 
@@ -336,28 +475,51 @@ define({
 		user         = this.get_viewing_user_data()
 		pending_book = user.books.indexOf(book.id)
 		if ( pending_book > -1 ) {
-			this.put_notification({
+			this.notify({
 				type : "green",
 				text : "Book is a match"
 			})
-			this.remove_book_from_user({
-				user : this.viewing_user,
-				book : pending_book
-			})
-			this.set_promised_book_as_fulfiled({
-				index : pending_book
+			this.mark_book_as_found({
+				user  : this.viewing_user,
+				index : pending_book,
 			})
 		} else { 
-			this.put_notification({
+			this.notify({
 				type : "red",
 				text : "Book not found in price promises"
 			})
 		}
 	},
 
-	make_book_tier_visible : function () { 
+	show_or_hide_book_tier_based_on_found_users : function () { 
 		if ( this.viewing_user > -1 )
 			this.main.wrap.book_tier.node.style.display = "block"
+		else
+			this.main.wrap.book_tier.node.style.display = "none"
+	},
+
+	mark_book_as_found : function (book) {
+
+		this.set_book_as_paid_book({
+			user  : book.user,
+			index : book.index
+		})
+		this.remove_book_from_user({
+			user : book.user,
+			book : book.index
+		})
+		this.set_promised_book_as_fulfiled({
+			index : book.index
+		})
+	},
+
+	set_book_as_paid_book : function (book) { 
+		this.users[book.user].paid_books.push(this.users[book.user].data.price_promise[book.index])
+		this.users[book.user].ammount = this.users[book.user].ammount + parseFloat( this.users[book.user].data.price_promise[book.index].standard_price )
+	},
+
+	set_paid_book_value : function (set) { 
+		this.users[set.user].paid_books[set.book][set.property] = set.value
 	},
 
 	set_promised_book_as_fulfiled : function (book) { 
@@ -371,8 +533,7 @@ define({
 
 	remove_book_from_user : function (remove) { 
 		this.users[remove.user].books[remove.book] = ""
-		this.users[remove.user].data.price_promise.splice(remove.book, 1)
-		console.log(this.users[remove.user])
+		this.users[remove.user].shown.promise[remove.book].value = "Yes"
 	},
 
 	get_book_field_reference : function (field_number) { 
@@ -388,7 +549,7 @@ define({
 	deal_with_retrieved_user_response : function (user) {
 		
 		if ( user === false ) { 
-			this.put_notification({
+			this.notify({
 				text : "No user was found",
 				type : "red"
 			})
@@ -396,23 +557,27 @@ define({
 			return
 		}
 
-		this.put_notification({
+		this.notify({
 			type : "green",
 			text : "Found user "+ user.first_name,
 		})
 
 		if ( !user.price_promise || user.price_promise.length === 0 )
-			this.put_notification({
+			this.notify({
 				type : "red",
 				text : "User "+ user.first_name +" has no price promises",
 			})
 
 		this.add_new_user(user)
-		this.viewing_user = this.users.length-1
-		this.show_data_of_viewing_user()
+		this.show_user_information(this.users.length-1)
+		this.add_user_to_control_tab({
+			index : this.viewing_user,
+			data  : user
+		})
+		this.show_or_hide_book_tier_based_on_found_users()
 	},
 
-	put_notification : function (notification) { 
+	notify : function (notification) { 
 
 		this.main.wrap.top_tier.information.box.node.insertBefore(this.maker.create_and_return_node({
 			property  : {
@@ -431,13 +596,14 @@ define({
 		promise_index = 0
 		index         = 0
 		user          = {
-			data : data,
-			shown: {
+			data        : data,
+			shown       : {
 				information : [],
 				promise     : []
 			},
-			books: [],
-			pay  : [],
+			books       : [],
+			paid_books  : [],
+			ammount     : 0
 			
 		}
 		
@@ -460,7 +626,11 @@ define({
 		this.users.push(user)
 	},
 
-	show_data_of_viewing_user : function () { 
+	show_user_information : function (user_index) { 
+
+		this.viewing_user = user_index
+
+		this.clear_data_fields()
 
 		this.set_data_fields({
 			for    : "book",
@@ -473,6 +643,46 @@ define({
 		})
 	},
 
+	clear_data_fields : function () { 
+		this.clear_data_field("book")		
+		this.clear_data_field("user")		
+	},
+
+	clear_data_field : function (clear) { 
+
+		var path, object, title
+
+		path = {
+			user : {
+				tier : "user_tier",
+				data : "user_info",
+			},
+			book : {
+				tier : "book_tier",
+				data : "user_promise",
+			}
+		}
+		object = this.main.wrap[path[clear].tier].data[path[clear].data]
+		title  = object.title.node
+
+		for ( var property in object ) 
+			if ( property !== "node" && property !== "title" )
+				delete property
+
+		while ( object.node.firstChild ) 
+			object.node.firstChild.remove()
+
+		object.node.appendChild(title)
+	},
+
+	clear_all_data : function () { 
+		this.users        = []
+		this.viewing_user = -1
+		this.clear_control_tab()
+		this.clear_data_fields()
+		this.show_or_hide_book_tier_based_on_found_users()
+	},
+
 	set_data_fields : function (data) { 
 
 		var field, index, class_names, use_class, path
@@ -483,8 +693,9 @@ define({
 				value : this.class_names.information_field_text,
 			},
 			book : {
-				title : this.class_names.book_title,
-				value : this.class_names.book_status_waiting,
+				title      : this.class_names.book_title,
+				value      : this.class_names.book_status_waiting,
+				true_value : this.class_names.book_status_recieved,
 			}
 		}
 		path        = {
@@ -520,7 +731,7 @@ define({
 								textContent : data.fields[index].value
 							},
 							attribute : { 
-								"class" : class_names[data.for].value
+								"class" : ( data.for === "book" && data.fields[index].value === "Yes" ? class_names[data.for].true_value : class_names[data.for].value ) 
 							},	
 						}
 					}

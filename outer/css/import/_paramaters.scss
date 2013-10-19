@@ -11,6 +11,7 @@ $dark_gray        : #efefef;
 $black_gray       : #555;
 $light            : #fff;
 $dark_blue        : #3f7986;
+$deep_blue        : darken($dark_blue, 20%);
 
 $the_width                : 930px;
 $profile_hub_box_width    : ($the_width/2)- 5;
