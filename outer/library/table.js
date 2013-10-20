@@ -133,7 +133,6 @@ define({
 		return setup
 	},
 
-
 	create_row : function (row) { 
 
 		var self, node

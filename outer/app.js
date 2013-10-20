@@ -199,17 +199,8 @@ define(function () {
 																				method : "table",
 																			},
 																			method : function (data) {
-																				var index, main, table
 
-																				main  = JSON.parse(data)["return"]
-																				index = 0
-																				table = []
-
-																				for (; index < main.length; index++)
-																					if ( main[index].status !== "problem" ) 
-																						table.push(main[index])
-
-																				return table
+																				return JSON.parse(data)["return"]
 																			}
 																		}
 																	},
@@ -588,6 +579,46 @@ define(function () {
 																	find_book : {
 																		title       : "Find Book",
 																		description : "This is where you find the book adopted son pong chin peng",
+																		show : {
+																			condition : [
+																				{
+																					title : "1  : Used; Like New ",
+																					name  : "1"
+																				},
+																				{
+																					title : "2  : Used; Very Good ",
+																					name  : "2"
+																				},
+																				{
+																					title : "3  : Used; Good ",
+																					name  : "3"
+																				},
+																				{
+																					title : "4  : Used; Acceptable ",
+																					name  : "4"
+																				},
+																				{
+																					title : "5  : Collectible; Like New ",
+																					name  : "5"
+																				},
+																				{
+																					title : "6  : Collectible; Very Good ",
+																					name  : "6"
+																				},
+																				{
+																					title : "7  : Collectible; Good ",
+																					name  : "7"
+																				},
+																				{
+																					title : "8  : Collectible; Acceptable ",
+																					name  : "8"
+																				},
+																				{
+																					title : "11 : New",
+																					name  : "11"
+																				},
+																			],
+																		}
 																	}
 																}
 															},

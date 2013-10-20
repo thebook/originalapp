@@ -40,6 +40,7 @@ define({
 				paid_book_dropdown_box         : "scan_paid_book_dropdown_box",
 				paid_book_dropdown_item        : "scan_paid_book_dropdown_item",
 				paid_book_input                : "scan_paid_book_input",
+				paid_book_input_button         : "scan_paid_book_input_button",
 			},
 			new_object     : this.setup.class_names || {}
 		})
@@ -121,7 +122,7 @@ define({
 							},
 						}
 					},
-					data : {
+					data_tier : {
 						attribute : { 
 							"class" : this.class_names.tier
 						},
@@ -130,79 +131,7 @@ define({
 								attribute : { 
 									"class" : this.class_names.box
 								},
-								children : {
-									book : {
-										attribute : { 
-											"class" : this.class_names.paid_book
-										},
-										methods : { 
-											addEventListener : ["click", function () { 
-
-											}]
-										},
-										children : {
-											title     : {
-												property : {
-													textContent : "Book"
-												},
-												attribute : { 
-													"class" : this.class_names.paid_book_field
-												},
-											},
-											condition : {
-												attribute : { 
-													"class" : this.class_names.paid_book_dropdown
-												},
-												children : {
-													text : {
-														property : {
-															textContent : "1"
-														},
-														attribute : { 
-															"class" : this.class_names.paid_book_dropdown_text
-														},
-														methods : {
-															addEventListener : ["click", function (event) { 
-																console.log(event.target)
-																if ( event.target.nextSibling.getAttribute("data-open") ) 
-																	self.toggle_dropbox({
-																		box     : event.target.nextSibling,
-																		open    : event.target.nextSibling.getAttribute("data-open"),
-																		display : "inline-block"
-																	})
-															}]
-														}
-													},
-													box : {
-														style : {
-															display : "none"
-														},
-														attribute : { 
-															"class"     : this.class_names.paid_book_dropdown_box,
-															"data-open" : false
-														},
-														children : {
-															item : {
-																property : {
-																	textContent : "stuff"
-																},
-																attribute : { 
-																	"class" : this.class_names.paid_book_dropdown_item
-																}		
-															}
-														}
-													}
-												}
-											},
-											price     : {
-												type      : "input",
-												attribute : {
-													"class" : this.class_names.paid_book_input
-												},
-											}
-										}
-									}
-								}
+								children : {}
 							},
 						}
 					},
@@ -400,6 +329,214 @@ define({
 		return this.main.wrap.node
 	},
 
+	add_paid_books : function (book) {
+		for (var index = 0; index < this.users[book.user].paid_books.length; index++)
+			this.add_paid_book({
+				user : book.user,
+				index: index
+			})
+	},
+
+	add_paid_book : function (add) {
+
+		var node, book, self
+
+		self = this
+		book = this.users[add.user].data.price_promise[add.index]
+		node = this.maker.create_parts({
+			wrap : {
+				attribute : { 
+					"class" : this.class_names.paid_book
+				},
+				children : {
+					title     : {
+						property : {
+							textContent : book.item_name
+						},
+						attribute : { 
+							"class" : this.class_names.paid_book_field
+						},
+					},
+					condition : {
+						attribute : { 
+							"class" : this.class_names.paid_book_dropdown
+						},
+						children : {
+							text : {
+								property : {
+									textContent : book.condition_type
+								},
+								attribute : { 
+									"class" : this.class_names.paid_book_dropdown_text
+								},
+								methods : {
+									addEventListener : ["click", function (event) { 
+										
+										if ( event.target.nextSibling.getAttribute("data-open") ) 
+											self.toggle_dropbox({
+												box     : event.target.nextSibling,
+												open    : event.target.nextSibling.getAttribute("data-open"),
+												display : "inline-block"
+											})
+									}]
+								}
+							},
+							box : {
+								style : {
+									display : "none"
+								},
+								attribute : { 
+									"class"     : this.class_names.paid_book_dropdown_box,
+									"data-open" : "false",
+									"data-book" : add.index
+								},
+								methods : { 
+									addEventListener : ["click", function (event) {
+
+										if ( !event.target.getAttribute("data-option") ) return
+
+										self.set_paid_book_value({
+											user     : self.viewing_user,
+											book     : event.target.parentElement.getAttribute("data-book"),
+											property : "condition_type",
+											value    : event.target.getAttribute("data-option")
+										})
+
+										self.update_box_value({	
+											box   : event.target.parentElement.previousSibling,
+											value : event.target.getAttribute("data-option")
+										})
+										self.toggle_dropbox({
+											box     : event.target.parentElement,
+											open    : event.target.parentElement.getAttribute("data-open"),
+											display : "inline-block"
+										})
+									}]
+								},
+								children : function (parent) {
+									for (var index = 0; index < self.setup.find_book.show.condition.length; index++)
+											parent["condition_"+index] = {
+												node : this.create_and_return_node({
+													property : {
+														textContent : self.setup.find_book.show.condition[index].title
+													},
+													attribute : { 
+														"class"       : self.class_names.paid_book_dropdown_item,
+														"data-option" : self.setup.find_book.show.condition[index].name,
+													}		
+												})
+											}
+
+
+									return parent
+								}
+							}
+						}
+					},
+					price     : {
+						attribute : {
+							"class" : this.class_names.paid_book_dropdown
+						},
+						children : {
+							text : {
+								property : {
+									textContent : book.standard_price
+								},
+								attribute : { 
+									"class" : this.class_names.paid_book_dropdown_text
+								},
+								methods : {
+									addEventListener : ["click", function (event) { 
+										
+										if ( event.target.nextSibling.getAttribute("data-open") ) 
+											self.toggle_dropbox({
+												box     : event.target.nextSibling,
+												open    : event.target.nextSibling.getAttribute("data-open"),
+												display : "inline-block"
+											})
+									}]
+								}
+							},
+							box : {
+								style : {
+									display : "none"
+								},
+								attribute : { 
+									"class"     : this.class_names.paid_book_dropdown_box,
+									"data-open" : "false",
+									"data-book" : add.index
+								},
+								children : {
+									text : {
+										type : "textarea",
+										attribute : { 
+											"class"     : this.class_names.paid_book_input,
+										},
+									},
+									yes : {
+										property : {
+											textContent : "yes"
+										},
+										attribute : { 
+											"class"     : this.class_names.paid_book_input_button,
+										},
+										methods : { 
+											addEventListener : ["click", function (event) { 
+												self.set_paid_book_value({
+													user     : self.viewing_user,
+													book     : event.target.parentElement.getAttribute("data-book"),
+													property : "standard_price",
+													value    : event.target.previousSibling.value
+												})
+												self.update_box_value({	
+													box   : event.target.parentElement.previousSibling,
+													value : event.target.previousSibling.value
+												})
+												self.toggle_dropbox({
+													box     : event.target.parentElement,
+													open    : event.target.parentElement.getAttribute("data-open"),
+													display : "inline-block"
+												})
+											}]
+										}
+									},
+									no : {
+										property : {
+											textContent : "no"
+										},
+										attribute : { 
+											"class"     : this.class_names.paid_book_input_button,
+										},
+										methods : { 
+											addEventListener : ["click", function () { 
+												self.toggle_dropbox({
+													box     : event.target.parentElement,
+													open    : event.target.parentElement.getAttribute("data-open"),
+													display : "inline-block"
+												})
+											}]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		})
+
+		this.maker.append_parts({
+			parts : node 
+		})
+
+		this.main.wrap.data_tier.books["book_"] = node.wrap
+		this.main.wrap.data_tier.books.node.appendChild(node.wrap.node)
+	},
+
+	update_box_value : function (update) { 
+		update.box.textContent = update.value
+	},
+
 	toggle_dropbox : function (toggle) { 
 		if ( toggle.open === "true" ) {
 			toggle.box.setAttribute("data-open", false )
@@ -500,6 +637,10 @@ define({
 
 	mark_book_as_found : function (book) {
 
+		this.add_paid_book({
+			user : book.user,
+			index: book.index	
+		})
 		this.set_book_as_paid_book({
 			user  : book.user,
 			index : book.index
@@ -630,7 +771,12 @@ define({
 
 		this.viewing_user = user_index
 
+		this.clear_paid_books()
 		this.clear_data_fields()
+
+		this.add_paid_books({
+			user : this.viewing_user
+		})
 
 		this.set_data_fields({
 			for    : "book",
@@ -675,11 +821,16 @@ define({
 		object.node.appendChild(title)
 	},
 
+	clear_paid_books : function () {
+		this.empty_node(this.main.wrap.data_tier.books.node)
+	},
+
 	clear_all_data : function () { 
 		this.users        = []
 		this.viewing_user = -1
 		this.clear_control_tab()
 		this.clear_data_fields()
+		this.clear_paid_books()
 		this.show_or_hide_book_tier_based_on_found_users()
 	},
 
@@ -745,5 +896,10 @@ define({
 			this.main.wrap[path[data.for].tier].data[path[data.for].data].node.appendChild(field.field.node)
 		}
 	},
+
+	empty_node : function (node) {
+		while ( node.firstChild ) 
+			node.firstChild.remove()
+	}
 
 });

@@ -4282,7 +4282,8 @@ body {
 .scan_paid_book {
   margin-bottom: 10px;
   float: left;
-  width: 100%; }
+  width: 100%;
+  height: 100px; }
 
 .scan_paid_book_field {
   color: #1e3a41;
@@ -4296,7 +4297,7 @@ body {
 .scan_paid_book_dropdown {
   float: left;
   display: inline-block;
-  width: 30%;
+  width: 22.5%;
   margin-right: 5%; }
 
 .scan_paid_book_dropdown_text {
@@ -4305,8 +4306,8 @@ body {
   padding: 10px 17.5%; }
 
 .scan_paid_book_dropdown_box {
-  width: 90%;
-  padding: 5px 5%;
+  width: 100px;
+  padding: 5px;
   background: #1e3a41;
   position: relative;
   -webkit-border-radius: 2px;
@@ -4322,12 +4323,24 @@ body {
 .scan_paid_book_input {
   display: inline-block;
   float: left;
-  background: transparent;
-  padding: 10px 0.5%;
+  background: #1e3a41;
+  padding: 10px 5%;
+  font-family: monospace;
   color: white;
   border: none;
-  width: 18%;
-  font-size: 16px;
-  line-height: 16px;
-  font-weight: bold;
-  font-family: monospace; }
+  width: 90%; }
+
+.scan_paid_book_input_button {
+  color: white;
+  background: #3f7986;
+  padding: 5px 5%;
+  width: 35%;
+  float: left;
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 5%;
+  font-weight: normal;
+  text-align: center;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  cursor: pointer; }

@@ -181,6 +181,7 @@
 	margin-bottom: 10px;
 	float: left;
 	width: 100%;
+	height: 100px;
 }
 
 .scan_paid_book_field { 
@@ -196,7 +197,7 @@
 .scan_paid_book_dropdown { 
 	float: left;
 	display: inline-block;
-	width: 30%;
+	width: 22.5%;
 	margin-right: 5%;
 }
 
@@ -207,10 +208,12 @@
 }
 
 .scan_paid_book_dropdown_box { 
-	width: 90%;
-	padding: 5px 5%;
+	width: 100px;
+	padding: 5px;
 	background: $deep_blue;
 	position: relative;
+
+
 	@include border-radius(2px);
 }
 
@@ -224,15 +227,27 @@
 }
 
 .scan_paid_book_input { 
-	display: inline-block;
-	float: left;
-	background: transparent;
-	padding: 10px 0.5%;
-	color: $light;
-	border: none;
-	width: 18%;
-	font-size: 16px;
-	line-height: 16px;
-	font-weight: bold;
-	font-family: monospace;
+	display     : inline-block;
+	float       : left;
+	background  : $deep_blue;
+	padding     : 10px 5%;
+	font-family : monospace;
+	color       : $light;
+	border      : none;
+	width       : 90%;
+}
+
+.scan_paid_book_input_button { 
+	color        : $light;
+	background   : $dark_blue;
+	padding      : 5px 5%;
+	width        : 35%;
+	float        : left;
+	display      : inline-block;
+	margin-top   : 10px;
+	margin-right : 5%;
+	font-weight  : normal;
+	text-align   : center;
+	@include border-radius(3px);
+	cursor: pointer;
 }
