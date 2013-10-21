@@ -84,6 +84,11 @@
 			$pdf->Output( OUTPUT . '/freepost.pdf', 'F');
 		}
 
+    public function get_cheques ()
+    {
+      return 'your cheques here';
+    }
+
 		protected function _get_tcpdf_files ()
 		{
 			require_once INNER . '/library/tcpdf/config/tcpdf_config.php';

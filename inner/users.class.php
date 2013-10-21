@@ -218,6 +218,13 @@ class account extends alpha
 		return $table->check_if_value_is_in_column($this->account_table, "email", $email);
 	}
 
+	public function set_accounts ($accounts)
+	{
+		foreach ($accounts as $account) {
+			$this->set_account($account);
+		}
+	}
+
 	public function set_account ($update)
 	{
 		$table = new table_creator;

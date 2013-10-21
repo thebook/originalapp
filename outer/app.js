@@ -89,6 +89,19 @@ define(function () {
 								extend : {
 									into : "backend",
 									pass : {
+										sign_in : {
+											path : ajax_path,
+											data : {
+												action     : "get_setting",
+												method     : "options",
+												paramaters : {
+													names : [
+														"admin",
+														"password"
+													]
+												}
+											}
+										},
 										use : [
 											{
 												module : "data",
@@ -513,7 +526,7 @@ define(function () {
 											},
 											{
 												module : "data",
-												title  : "Pay",
+												title  : "Payment",
 												pass   : {
 													settings : {
 														tabs : [
@@ -619,6 +632,16 @@ define(function () {
 																				},
 																			],
 																		}
+																	},
+																	submit : {
+																		cheque : { 
+																			action : "get_pdf_maker",
+																			method : "cheques"
+																		},
+																		user : {
+																			action : "set_account",
+																			method : "accounts"
+																		}
 																	}
 																}
 															},
@@ -696,7 +719,7 @@ define(function () {
 											},
 											{
 												module : "data",
-												title  : "View Books",
+												title  : "Stock",
 												pass   : {
 													settings : {
 														tabs : [
@@ -898,6 +921,35 @@ define(function () {
 																				}
 																			}
 																		]
+																	}
+																}
+															},
+															{
+																name : "add books",
+																type : "book",
+																pass : {
+																	text : {
+																		title : "Scan",
+																		description : "Scan the book isbn to see if a match can be found"
+																	},
+																	book : {
+																		show : [
+																			"item_name",
+																			"author",
+																			"condition_type",
+																			"standard_price"
+																		]
+																	},
+																	request : {
+																		path : ajax_path,
+																		find : {
+																			action : "get_amazon",
+																			method : "find",
+																		},
+																		submit : {
+																			action : "set_book",
+																			method : "books"
+																		}
 																	}
 																}
 															},

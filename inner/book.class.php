@@ -263,10 +263,10 @@ class book extends alpha
 		return $table->delete_all_table_rows($this->book_table);	
 	}
 
-	public function set_book ($book)
+	public function set_book ($the_book)
 	{
 		$table   = new table_creator;
-		
+		$book    = (array) $the_book;
 		if ( isset($book['prices']) ) :
 			unset($book['prices']); 
 		endif;

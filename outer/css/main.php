@@ -3922,7 +3922,9 @@ body {
   color: white;
   height: 100%;
   overflow: hidden;
-  background: #3f7986; }
+  background: #3f7986;
+  left: -99.5%;
+  opacity: 0; }
 
 .admin_wrap {
   float: left;
@@ -3970,27 +3972,63 @@ body {
 .admin_content_menu {
   width: 100%;
   float: left;
-  text-align: center;
-  margin: 10px 0px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  background: #1e3a41; }
+  margin: 10px 0px; }
 
 .admin_content_menu_item {
   display: inline-block;
   padding: 10px 2.5%;
   cursor: pointer;
-  -webkit-border-radius: 2px;
-  border-radius: 2px; }
+  background: #1e3a41;
+  margin-right: 1%; }
   .admin_content_menu_item:hover {
-    padding: 6px 2.5%;
-    margin: 4px 0;
-    background: #3f7986; }
+    color: #3f7986;
+    background: white; }
 
 .admin_inner_content {
   float: left;
   width: 100%;
   overflow: auto; }
+
+.admin_notification {
+  background: #b4d65a;
+  color: white;
+  margin: 0 5%;
+  padding: 10px 5%;
+  font-weight: bold;
+  width: 80%;
+  float: left; }
+
+.admin_input {
+  width: 80%;
+  padding: 10px 5%;
+  margin: 10px 5%;
+  float: left;
+  background: #1e3a41;
+  border: none;
+  color: white;
+  font-family: monospace; }
+
+.admin_button {
+  margin-left: 5%;
+  margin-top: 10px;
+  background: #1e3a41;
+  font-weight: bold;
+  padding: 10px 5%;
+  float: left;
+  color: #3f7986;
+  cursor: pointer; }
+  .admin_button:hover {
+    color: white;
+    background: #b4d65a; }
+
+.admin_open {
+  width: 0.5%;
+  height: 100%;
+  left: 99.5%;
+  z-index: 5;
+  position: absolute;
+  float: left;
+  display: block; }
 
 .options_wrap {
   width: 100%; }
@@ -4065,6 +4103,10 @@ body {
   display: inline-block;
   padding: 10px;
   margin-right: 10px; }
+
+.table_box_text {
+  min-height: 20px;
+  width: 100%; }
 
 .table_box_textarea_wrap {
   position: relative;
@@ -4344,3 +4386,17 @@ body {
   -webkit-border-radius: 3px;
   border-radius: 3px;
   cursor: pointer; }
+
+.scan_pay_field_title {
+  color: #1e3a41;
+  width: 90%;
+  padding: 0 5%;
+  float: left;
+  font-weight: bold;
+  margin-bottom: 10px; }
+
+.scan_pay_field {
+  cursor: pointer;
+  float: left;
+  width: 90%;
+  padding: 0 5%; }

@@ -41,6 +41,8 @@ define({
 				paid_book_dropdown_item        : "scan_paid_book_dropdown_item",
 				paid_book_input                : "scan_paid_book_input",
 				paid_book_input_button         : "scan_paid_book_input_button",
+				user_ammount                   : "scan_pay_field",
+				user_ammount_title             : "scan_pay_field_title",
 			},
 			new_object     : this.setup.class_names || {}
 		})
@@ -96,7 +98,7 @@ define({
 										},
 										methods : {
 											addEventListener : ["click", function () {
-												self.package_all_data_for_print()
+												self.submit_data()
 											}]
 										}
 									},
@@ -133,6 +135,100 @@ define({
 								},
 								children : {}
 							},
+							pay : {
+								style : {
+									display : "none",
+									"float" : "right"
+								},
+								attribute : {
+									"class" : this.class_names.box
+								},
+								children : {
+									title : {
+										property : {
+											textContent : "Pay Amount"
+										},
+										attribute : { 
+											"class" : this.class_names.user_ammount_title
+										},
+									},
+									text : {
+										property : {
+											textContent : "0.00"
+										},
+										attribute : { 
+											"class" : this.class_names.user_ammount
+										},
+										methods : {
+											addEventListener : ["click", function (event) { 
+												
+												if ( event.target.nextSibling.getAttribute("data-open") ) 
+													self.toggle_dropbox({
+														box     : event.target.nextSibling,
+														open    : event.target.nextSibling.getAttribute("data-open"),
+														display : "inline-block"
+													})
+											}]
+										}
+									},
+									box : {
+										style : {
+											display : "none"
+										},
+										attribute : { 
+											"class"     : this.class_names.paid_book_dropdown_box,
+											"data-open" : "false",
+										},
+										children : {
+											text : {
+												type : "textarea",
+												attribute : { 
+													"class"     : this.class_names.paid_book_input,
+												},
+											},
+											yes : {
+												property : {
+													textContent : "yes"
+												},
+												attribute : { 
+													"class"     : this.class_names.paid_book_input_button,
+												},
+												methods : { 
+													addEventListener : ["click", function (event) { 
+														self.set_user_ammount({
+															user     : self.viewing_user,
+															value    : event.target.previousSibling.value
+														})
+														self.set_user_ammount_box(event.target.previousSibling.value)
+														self.toggle_dropbox({
+															box     : event.target.parentElement,
+															open    : event.target.parentElement.getAttribute("data-open"),
+															display : "inline-block"
+														})
+													}]
+												}
+											},
+											no : {
+												property : {
+													textContent : "no"
+												},
+												attribute : { 
+													"class"     : this.class_names.paid_book_input_button,
+												},
+												methods : { 
+													addEventListener : ["click", function () { 
+														self.toggle_dropbox({
+															box     : event.target.parentElement,
+															open    : event.target.parentElement.getAttribute("data-open"),
+															display : "inline-block"
+														})
+													}]
+												}
+											}
+										}
+									}
+								}
+							}
 						}
 					},
 					book_tier : {
@@ -528,7 +624,6 @@ define({
 		this.maker.append_parts({
 			parts : node 
 		})
-
 		this.main.wrap.data_tier.books["book_"] = node.wrap
 		this.main.wrap.data_tier.books.node.appendChild(node.wrap.node)
 	},
@@ -545,10 +640,6 @@ define({
 			toggle.box.setAttribute("data-open", true )
 			toggle.box.style.display = toggle.display
 		}
-	},
-
-	package_all_data_for_print : function () { 
-		console.log(this)
 	},
 
 	add_user_to_control_tab : function (user) {
@@ -596,7 +687,7 @@ define({
 		self      = this
 		request   = this.request.make()
 		request.send({
-			url : this.setup.find_user.request.path || this.setup.main_path,
+			url : this.setup.find_user.request.path || this.setup.settings.main_path,
 			data: this.setup.find_user.request.paramaters.call(this, user),
 			type: "GET"
 		}).then(function (then) {
@@ -628,6 +719,105 @@ define({
 		}
 	},
 
+	does_value_match_any_in_the_array : function (match) { 
+
+		var is_a_match
+
+		is_a_match = false 
+		for (var index = 0; index < match.array.length; index++)
+			if ( match.array[index] === match.value ) 
+				is_a_match = true 
+
+		return is_a_match
+	},
+
+	extract_objects_from_an_array_that_dont_match_the_other : function (extract) { 
+
+		var the_extract = []
+		for (var index = 0; index < extract.from.length; index++) {
+			if ( this.does_value_match_any_in_the_array({
+				value : extract.from[index],
+				array : extract.by
+			}) !== true ) the_extract.push(extract.from[index]) 
+		}
+
+		return the_extract
+	},
+
+	submit_data : function () {
+
+		var to_print, user_request, print_request, request
+
+		packaged      = this.package_all_data()
+		request   = this.request.make()
+		request.send({
+			url : this.setup.find_user.request.path || this.setup.settings.main_path,
+			data: {},
+			type: "SET"
+		}).then(function (then) {
+			
+		})
+		// user_request  = this.request.make()
+
+		// print_request = this.request.make()
+		
+		// print_request.send({
+		// 	url : this.setup.submit.path || this.setup.main_path,
+		// 	data: {
+		// 		action : this.setup.submit.action,
+		// 		method : this.setup.submit.method,
+		// 		paramaters : {
+		// 			cheques : to_print
+		// 		}
+		// 	},
+		// 	type: "GET"
+		// }).then(function (then) {
+		// 	console.log(then.change.target.response)
+		// })
+	},
+
+	package_all_data : function () { 
+
+		var user, users
+
+		users = []
+
+		for (var index = 0; index < this.users.length; index++) {
+			user               = this.users[index].data
+			user.price_promise = this.extract_objects_from_an_array_that_dont_match_the_other({
+				from : this.users[index].data.price_promise || [],
+				by   : this.users[index].paid_books
+			})
+			user.credit        = parseFloat(user.credit) + this.users[index].ammount
+			users.push(user)
+		}
+		
+		return {
+			users   : users,
+			cheques : []
+		}
+	},
+
+	submit_user_data : function () { 
+		
+		var request
+
+		request = this.request.make()
+		request.send({
+			url : this.setup.submit.path || this.setup.main_path,
+			data: {
+				action : this.setup.submit.action,
+				method : this.setup.submit.method,
+				paramaters : { 
+					users : this.users
+				}
+			},
+			type: "GET"
+		}).then(function (then) {
+			console.log(then.change.target.response)
+		})
+	},
+
 	show_or_hide_book_tier_based_on_found_users : function () { 
 		if ( this.viewing_user > -1 )
 			this.main.wrap.book_tier.node.style.display = "block"
@@ -652,6 +842,10 @@ define({
 		this.set_promised_book_as_fulfiled({
 			index : book.index
 		})
+		this.update_user_paid_ammount_based_on_book_prices({
+			user : book.user
+		})
+		this.set_user_ammount_box(this.users[book.user].ammount)
 	},
 
 	set_book_as_paid_book : function (book) { 
@@ -661,6 +855,33 @@ define({
 
 	set_paid_book_value : function (set) { 
 		this.users[set.user].paid_books[set.book][set.property] = set.value
+		if ( set.property === "standard_price" ) {
+			this.update_user_paid_ammount_based_on_book_prices({
+				user : set.user
+			})
+			this.set_user_ammount_box(this.users[set.user].ammount)
+		}
+	},
+
+	set_user_ammount : function (set) { 
+		this.users[set.user]["amount"] = set.value
+	},
+
+	set_user_ammount_box : function (value) { 
+		this.main.wrap.data_tier.pay.text.node.textContent = value
+	},
+
+	update_user_paid_ammount_based_on_book_prices : function (update) { 
+
+		var ammount, index
+
+		ammount = 0 
+		index   = 0
+
+		for (; index < this.users[update.user].paid_books.length; index++)
+			ammount = ammount + parseFloat( this.users[update.user].paid_books[index].standard_price )
+
+		this.users[update.user].ammount = ammount
 	},
 
 	set_promised_book_as_fulfiled : function (book) { 
@@ -716,6 +937,15 @@ define({
 			data  : user
 		})
 		this.show_or_hide_book_tier_based_on_found_users()
+		this.show_or_hide_data_tier_based_on_users()
+	},
+
+	show_or_hide_data_tier_based_on_users : function () { 
+
+		if ( this.users.length > 0 ) 
+			this.main.wrap.data_tier.pay.node.style.display = "inline-block"
+		else 
+			this.main.wrap.data_tier.pay.node.style.display = "none"
 	},
 
 	notify : function (notification) { 
@@ -787,6 +1017,7 @@ define({
 			for    : "user",
 			fields : this.users[this.viewing_user].shown.information
 		})
+		this.set_user_ammount_box(this.users[this.viewing_user].ammount)
 	},
 
 	clear_data_fields : function () { 
@@ -832,6 +1063,7 @@ define({
 		this.clear_data_fields()
 		this.clear_paid_books()
 		this.show_or_hide_book_tier_based_on_found_users()
+		this.show_or_hide_data_tier_based_on_users()
 	},
 
 	set_data_fields : function (data) { 

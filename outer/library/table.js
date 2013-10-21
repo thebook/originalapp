@@ -19,6 +19,7 @@ define({
 			name                     : "table_name",
 			row                      : "table_row",
 			box                      : "table_box",
+			box_text                 : "table_box_text",
 			box_dropdown             : "table_box_dropdown",
 			box_dropdown_option      : "table_box_dropdown_option",
 			box_textarea_wrap        : "table_box_textarea_wrap",
@@ -319,7 +320,10 @@ define({
 					text : {
 						property : {
 							textContent : box.data
-						}
+						},
+						attribute : {
+							"class" : this.class_names.box_text
+						},
 					}
 				}
 			}

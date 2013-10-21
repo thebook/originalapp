@@ -1,11 +1,13 @@
 .admin {
-	position: fixed;
-	float   : left;
-	width   : 100%;
-	color   : $light;
-	height  : 100%;
-	overflow: hidden;
+	position   : fixed;
+	float      : left;
+	width      : 100%;
+	color      : $light;
+	height     : 100%;
+	overflow   : hidden;
 	background : $dark_blue;
+	left       : -99.5%;
+	opacity    : 0;
 }
 
 .admin_wrap {
@@ -21,12 +23,13 @@
 }
 
 .admin_back_button {
+
 	font-size      : 14px;
 	margin-left    : 10%;
 	margin-bottom  : 15px;
 	padding        : 5px 5%;
 	float          : left;
-	background     : darken($dark_blue, 20%);
+	background     : $deep_blue;
 	cursor         : pointer;
 	&:hover { 
 		padding    : 5px 5% 5px 15%;
@@ -41,7 +44,7 @@
 	float   : left;
 	cursor: pointer;
 	&:hover { 
-		background: darken($dark_blue, 20%);
+		background: $deep_blue;
 	}
 }
 
@@ -62,21 +65,19 @@
 .admin_content_menu {
 	width: 100%;
 	float: left;
-	text-align: center;
 	margin: 10px 0px;
-	@include border-radius(5px);
-	background : darken($dark_blue, 20%);
 }
 
 .admin_content_menu_item {
-	display: inline-block;
-	padding: 10px 2.5%;
-	cursor: pointer;
-	@include border-radius(2px);
+	display      : inline-block;
+	padding      : 10px 2.5%;
+	cursor       : pointer;
+	background   : $deep_blue;
+	margin-right : 1%;
+	// @include border-radius(5px);
 	&:hover { 
-		padding: 6px 2.5%;
-		margin : 4px 0; 
-		background : $dark_blue;
+		color      : $dark_blue;
+		background : $light;
 	}
 }
 
@@ -84,4 +85,50 @@
 	float: left;
 	width: 100%;
 	overflow: auto
+}
+
+.admin_notification {
+	background  : $green;
+	color       : $light;
+	margin      : 0 5%;
+	padding     : 10px 5%;
+	font-weight : bold;
+	width: 80%;
+	float: left;
+}
+
+.admin_input {
+	width      : 80%;
+	padding    : 10px 5%;
+	margin     : 10px 5%;
+	float      : left;
+	background : $deep_blue;
+	border     : none;
+	color      : $light;
+	font-family: monospace;
+}
+
+.admin_button { 
+	margin-left : 5%;
+	margin-top  : 10px;
+	background  : $deep_blue;
+	font-weight : bold;
+	padding     : 10px 5%;
+	float       : left;
+	color       : $dark_blue;
+	cursor: pointer;
+	&:hover {
+		color : $light;
+		background : $green;
+	}
+}
+
+.admin_open  {
+	width      : 0.5%;
+	height     : 100%;
+	left       : 99.5%;
+	z-index    : 5;
+	position   : absolute;
+	float      : left;
+	display    : block;
 }

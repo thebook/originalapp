@@ -53,9 +53,4 @@ Our staff can: use the price reduction system easily
 	* Our staff can: print an individual cheque or multiple cheques for different users once the books have been received. with the ability to edit the figure.
 		- Cheques to have value automatically written in words onto cheque.
 
-
-
-
-
-
 Pdf generated for freepost pack letter from template

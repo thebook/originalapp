@@ -29,6 +29,12 @@ var alpha = (function ( alpha, $ ) {
 		wake.filter_name   = wake.filter_name   || 'sort';
 		wake.algorithm     = wake.algorithm     || "post";
 
+		{
+			search_by   : "isbn",
+			search_for  : "books",
+			filter_name : "sort",
+		}
+
 		$.post( 
 			ajaxurl, 
 			{ 

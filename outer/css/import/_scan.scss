@@ -251,3 +251,20 @@
 	@include border-radius(3px);
 	cursor: pointer;
 }
+
+.scan_pay_field_title {
+
+	color       : $deep_blue;
+	width       : 90%;
+	padding     : 0 5%;
+	float       : left;
+	font-weight : bold;
+	margin-bottom: 10px;
+}
+
+.scan_pay_field {
+	cursor: pointer;
+	float: left;
+	width       : 90%;
+	padding     : 0 5%;
+}
