@@ -5,6 +5,7 @@ define(function () {
 		var word, animator, ajax_path;
 
 		ajax_path = window.location.origin + "/wp-admin/admin-ajax.php"
+		asset_path= window.location.origin + "/wp-content/themes/book/outer/css/include/image"
 		animator  = Object.create(modules.libraries.animator)
 		world     = Object.create(thought)
 		animator.make()
@@ -15,12 +16,63 @@ define(function () {
 				animation         : animator,
 				model             : modules.libraries.model,
 				table             : modules.libraries.table,
-				request           : modules.libraries.request
+				request           : modules.libraries.request,
+				algorithm         : modules.libraries.algorithm,
+				router            : modules.libraries.router,
 			},
 			thought : {
 				wrap : {
 					self : ".wrap",
 					children : {
+						main : {
+							instructions : {
+								extend : {
+									into : "main",
+									pass : {
+										use : [
+											{
+												name : "head",
+												pass : {
+													request : {
+														path   : ajax_path,
+														action : "get_amazon",
+														method : "find",
+													},
+													images   : {
+														logo       : asset_path + "/header_logo.png",
+														background : asset_path + "/jhonc.png",
+													}, 
+													text : {
+														title     : "What We Do",
+														paragraph : "Recyclabook accepts over a million different titles, you can easily sell your book and get paid quickly and safely."
+													},
+													search : {
+														input : "Pleace type your ISBN here",
+														title : "How Much Is Your Book Worth"
+													}
+												} 
+											},
+											{ 
+												name : "navigation",
+												pass : { 
+													paths : [
+														{
+															name : "How It Works",
+															path : "/"
+														},
+														{
+															name : "Sell Books",
+															path : "sell"
+														}
+													]
+												}
+											}
+										]
+									}
+								},
+							},
+							self : ".main_wrap"
+						},
 						foot : {
 							instructions : {
 								extend : { 

@@ -1,24 +1,24 @@
 .navigation {
-	
-	width: 100%;
+	width: 300px;
 	clear: both;
 	float: left;
+	height: 52px;
 }
 
 .navigation_text_for_bar { 
 	$font_size: 12px;
 		
-	float: left;
-	width: 110px;
-	text-align: center; 
-	display: inline-block;
-	text-transform: Uppercase;
-	color: $darkest_gray;
-	padding: (($bar_height - $font_size )/2) 1.25%;
-	font-size: $font_size;
-	font-family: MotorOil;
-	cursor: pointer;
-	text-decoration: none;
+	float           : left;
+	width           : 110px;
+	text-align      : center; 
+	display         : inline-block;
+	text-transform  : Uppercase;
+	color           : $darkest_gray;
+	padding         : (($bar_height - $font_size )/2) 1.25%;
+	font-size       : $font_size;
+	font-family     : MotorOil;
+	cursor          : pointer;
+	text-decoration : none;
 	
 	&:hover {
 		

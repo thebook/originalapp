@@ -5,6 +5,9 @@ define({
 		manifest_modules : {
 			mains : ["library/extend"],
 			extentions : [
+				"library/extend.main",
+				"library/extend.main.head",
+				"library/extend.main.navigation",
 				"library/extend.foot",
 				"library/extend.backend",
 				"library/extend.backend.data",
@@ -34,6 +37,8 @@ define({
 			"library/model",
 			"library/table",
 			"library/request",
+			"library/algorithm",
+			"library/router",
 		],
 		// parts : [
 		// 	"library/part/wrap",

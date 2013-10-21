@@ -1,21 +1,21 @@
 module({
 
 	make : function (route) { 
-		route   = route;
-		history = [];
+		route   = route
+		history = []
 	},
 
 	begin : function () { 
-		this.observe_url_change();
-		this.intercept_links_and_use_them_to_call_route_changes();
-		this.call_route_callback();
+		this.observe_url_change()
+		this.intercept_links_and_use_them_to_call_route_changes()
+		this.call_route_callback()
 	},
 
 	observe_url_change : function () { 
 
 		if (this.is_history_supported()) {
-			this.initialize_onpopstate_listeners();
-			this.add_onpopstate_listener(this.call_route_callback);
+			this.initialize_onpopstate_listeners()
+			this.add_onpopstate_listener(this.call_route_callback)
 		}
 	},
 
@@ -24,12 +24,11 @@ module({
 		var router = this
 
 		window.onpopstate = function () { 
-			for (var i = this.onpopstate.listeners.length - 1; i >= 0; i--) {
-				this.onpopstate.listeners[i].call(router, { route: router.route, listener_index: i });
-			};
+			for (var i = this.onpopstate.listeners.length - 1; i >= 0; i--)
+				this.onpopstate.listeners[i].call(router, { route: router.route, listener_index: i })
 		};
 
-		window.onpopstate.listeners = [];
+		window.onpopstate.listeners = []
 	},
 
 	add_onpopstate_listener : function (listener) { 

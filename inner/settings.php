@@ -34,8 +34,20 @@
 						'value' => 'recyclaboss'
 					),
 					array( 
-						'name'  => 'password',
-						'value' => 'thinkbigger12!'
+						'name'  => 'header_search_title',
+						'value' => 'How Much Is Your Book Worth'
+					),
+					array( 
+						'name'  => 'header_search_input',
+						'value' => 'Please Type Your ISBN here'
+					),
+					array( 
+						'name'  => 'header_box_title',
+						'value' => 'What We Do'
+					),
+					array( 
+						'name'  => 'header_box_paragraph',
+						'value' => 'Recyclabook accepts over a million different titles, you can easily sell your book and get paid quickly and safely.'
 					),
 				));
 			}

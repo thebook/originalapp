@@ -98,6 +98,14 @@ body {
   color: white;
   font-size: 14px; }
 
+.main_wrap {
+  width: 100%;
+  float: left; }
+
+.main {
+  width: 100%;
+  float: left; }
+
 .pages {
   display: none;
   opacity: 0; }
@@ -1627,9 +1635,10 @@ body {
     background: #abd146; }
 
 .navigation {
-  width: 100%;
+  width: 300px;
   clear: both;
-  float: left; }
+  float: left;
+  height: 52px; }
 
 .navigation_text_for_bar, .with-icon-for-navigation-text-for-bar-active {
   float: left;
