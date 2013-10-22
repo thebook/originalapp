@@ -18,8 +18,8 @@ define({
 			regular_navigation_item_selected : "with-icon-for-navigation-text-for-bar-active",
 		}
 
-		this.navigation        = this.maker.create_parts({
-			main : {
+		this.body        = this.maker.create_parts({
+			wrap : {
 				attribute : {
 					"class" : this.class_names.main
 				},
@@ -214,9 +214,9 @@ define({
 		})
 		
 		this.maker.append_parts({
-			parts : this.navigation
+			parts : this.body
 		})
 
-		return this.navigation.main.node
+		return this
 	},
 });	

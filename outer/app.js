@@ -29,7 +29,24 @@ define(function () {
 								extend : {
 									into : "main",
 									pass : {
+										route : {
+											"/sell" : [
+												{
+													module : "notify",
+													method : "notify",
+													pass   : function (router) { 
+													}
+												}
+											]
+										},
 										use : [
+											{
+												name : "notify",
+												pass : {
+													animation_speed : 300,
+													duration        : 2000
+												}
+											},
 											{
 												name : "head",
 												pass : {

@@ -42,8 +42,8 @@ define({
 			trigger_expand_text      : "homepage_how_it_works_box_button_expanded_text",
 		}
 
-		this.home        = this.maker.create_parts({
-			main : {
+		this.body        = this.maker.create_parts({
+			wrap : {
 				attribute : {
 					"class" : this.class_names.main
 				},
@@ -384,10 +384,10 @@ define({
 		})
 		
 		this.maker.append_parts({
-			parts : this.home
+			parts : this.body
 		})
 
-		return this.home.main.node
+		return this
 	},
 
 	open_box : function (button) { 

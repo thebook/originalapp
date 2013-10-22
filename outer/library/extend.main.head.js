@@ -28,8 +28,8 @@ define({
 			background_image        : "header_image",
 		}
 
-		this.head        = this.maker.create_parts({
-			main : {
+		this.body        = this.maker.create_parts({
+			wrap : {
 				attribute : {
 					"class" : this.class_names.main
 				},
@@ -175,10 +175,10 @@ define({
 		})
 		
 		this.maker.append_parts({
-			parts : this.head
+			parts : this.body
 		})
 
-		return this.head.main.node
+		return this
 	},
 
 	search_for_book : function (book) { 
@@ -188,6 +188,8 @@ define({
 		self    = this
 		request = Object.create(this.request)
 		request = request.make()
+		console.log(this.main.module)
+		this.main.module.notify.notify("Searching For Your Book")
 		request.send({
 			url : this.setup.request.path,
 			data: {
@@ -219,5 +221,8 @@ define({
 		if ( books.length < 1 ) {
 			return 
 		}
+
+		this.main.being.book = books[0]
+		this.main.route.change_url("/sell")
 	}
 });	
