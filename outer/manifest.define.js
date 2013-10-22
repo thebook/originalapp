@@ -8,6 +8,7 @@ define({
 				"library/extend.main",
 				"library/extend.main.head",
 				"library/extend.main.navigation",
+				"library/extend.main.home",
 				"library/extend.foot",
 				"library/extend.backend",
 				"library/extend.backend.data",

@@ -1,4 +1,4 @@
-module({
+define({
 
 	make : function (route) { 
 		route   = route

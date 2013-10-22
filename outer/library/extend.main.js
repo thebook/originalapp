@@ -9,7 +9,7 @@ define({
 			module : {},
 			being  : {}
 		}
-		this.router      = Object.create(module.router)
+		this.router      = Object.create(modules.router)
 		this.maker       = Object.create(modules.node_making_tools)
 		this.class_names = {
 			wrap      : "main",
@@ -50,7 +50,34 @@ define({
 	},
 
 	make_router : function () { 
-
+		this.router.make({
+			on  : function () {},
+			off : function () {},
+			sell : {
+				on  : function () {},
+				off : function () {}
+			},
+			hub : {
+				on  : function () {},
+				off : function () {}
+			},
+			confirm_sign_in : {
+				on  : function () {},
+				off : function () {}
+			},
+			register : {
+				on  : function () {},
+				off : function () {}
+			},
+			confirm : {
+				on  : function () {},
+				off : function () {}
+			},
+			done : {
+				on  : function () {},
+				off : function () {}
+			},
+		})
 	},
 
 	components : {}

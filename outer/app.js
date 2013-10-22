@@ -66,6 +66,42 @@ define(function () {
 														}
 													]
 												}
+											},
+											{
+												name : "home",
+												pass : {
+													box : [
+														{
+															title       : "Find Your Books",
+															description : "find your books and add them to your sell basket",
+															image_path  : asset_path +"/type.png",
+															button      : {
+																title      : "Where is my ISBN",
+																text       : "Just look at the back of your book and find the 13 or 9 digit number bellow.",
+																image_path : asset_path +"/where_is_my_isbn.png",
+															}
+														},
+														{
+															title       : "Freepost<br/>Your Books",
+															description : "we send you a freepost pack and you send us your books",
+															image_path  : asset_path +"/type.png",
+															button      : {
+																title      : "Freepost Options",
+																text       : "We'll send you a postage pack. You will get a mailing with our freepost address sticker attached, so you won't pay a penny to post your books to Recyclabook, or if you have your own packaging, you can print off our own packaging label from this website. This e turnaround time of the order to give you peace of mind, while ensuring you get your payment even faster!",
+																image_path : asset_path +"/freepost_options.png",
+															}
+														},
+														{
+															title       : "Get Paid",
+															description : "we send you a cheque the same day we receive your books",
+															image_path  : asset_path +"/check.png",
+															button      : {
+																title      : "How Am I Being Paid?",
+																text       : "Don’t worry about filling in your bank details. We'll send you a cheque on the same day we receive your books.",
+															}
+														}
+													],
+												}
 											}
 										]
 									}
