@@ -34,6 +34,10 @@
 						'value' => 'recyclaboss'
 					),
 					array( 
+						'name'  => 'password',
+						'value' => 'thinkbigger12!'
+					),
+					array( 
 						'name'  => 'header_search_title',
 						'value' => 'How Much Is Your Book Worth'
 					),
@@ -49,6 +53,14 @@
 						'name'  => 'header_box_paragraph',
 						'value' => 'Recyclabook accepts over a million different titles, you can easily sell your book and get paid quickly and safely.'
 					),
+					array( 
+						'name'  => 'print_email',
+						'value' => ''
+					),
+					array( 
+						'name'  => 'pack_email',
+						'value' => ''
+					),
 				));
 			}
 		}
@@ -58,6 +70,11 @@
 			foreach ($options as $option) {
 				$this->set_option($option);
 			}
+		}
+
+		public function set_option_value ($name, $value)
+		{
+			$this->table->update_row($this->table_name, array( 'value' => $value ), 'name', $name); 
 		}
 
 		public function set_option ($option_array)

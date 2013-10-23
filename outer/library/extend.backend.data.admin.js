@@ -31,7 +31,10 @@ define({
 				children : function (parent) {
 
 					for (var index = 0; index < self.setup.options.length; index++)
-						parent[self.setup.options[index].name] = self.create_option(self.setup.options[index])
+						parent[self.setup.options[index].name] = self.create_option({
+							index  : index,
+							definition : self.setup.options[index]
+						})
 
 					return parent
 				}
@@ -89,7 +92,29 @@ define({
 		this.main.wrap[option.name].control.node.value = option.value
 	},
 
-	create_option : function (definition) {
+	submit_option : function (option) { 
+		
+		var request, self
+		
+		self    = this
+		request = Object.create(this.request)
+		request.make().send({
+			url  : this.setup.main_submit_path,
+			data : {
+				action : this.setup.options[option.index].submit.action,
+				method : this.setup.options[option.index].submit.method,
+				paramaters : {
+					name  : this.setup.options[option.index].submit.name,
+					value : option.value
+				}
+			},
+			type : "POST",
+		}).then(function (response) {
+
+		})
+	},
+
+	create_option : function (option) {
 
 		var option, self
 
@@ -102,7 +127,7 @@ define({
 				children : {
 					title : {
 						property : {
-							textContent : definition.title,
+							textContent : option.definition.title,
 						},
 						attribute : {
 							"class" : this.class_names.box_title
@@ -110,7 +135,7 @@ define({
 					},
 					description : {
 						property : {
-							textContent : definition.description,
+							textContent : option.definition.description,
 						},
 						attribute : {
 							"class" : this.class_names.box_description
@@ -119,7 +144,7 @@ define({
 					control : {
 						type      : "textarea",
 						property  : {
-							textContent : this.option.value_reference[definition.name]
+							textContent : this.option.value_reference[option.definition.name]
 						},
 						attribute : {
 							"class" : this.class_names.box_option_textbox
@@ -130,11 +155,16 @@ define({
 							textContent : "save",
 						},
 						attribute : {
-							"class" : this.class_names.box_option_button
+							"class"      : this.class_names.box_option_button,
+							"data-index" : option.index
 						},
 						methods : {
 							addEventListener : ["click", function (event) { 
-								console.log(event)
+								if ( name = event.target.getAttribute("data-index") )
+									self.submit_option({
+										index : event.target.getAttribute("data-index"),
+										value : event.target.previousSibling.value
+									})
 							}]
 						}
 					},
@@ -144,7 +174,7 @@ define({
 						},
 						attribute : {
 							"class"     : this.class_names.box_option_button,
-							"data-name" : definition.name
+							"data-name" : option.definition.name
 						},
 						methods : {
 							addEventListener : ["click", function (event) { 

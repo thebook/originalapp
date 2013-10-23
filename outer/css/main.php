@@ -1729,12 +1729,20 @@ body {
   content: "S";
   color: white; }
 
+.button_text_for_user {
+  margin: 21px 15px;
+  float: right;
+  color: #3f7986;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 12px; }
+
 .button_for_user {
   border-radius: 32px;
   height: 32px;
   width: 32px;
   cursor: pointer;
-  margin: 10px 42px 0;
+  margin: 10px 42px 0px 0px;
   background: #3f7986;
   float: right;
   -webkit-transition: all 500ms ease;
@@ -3933,7 +3941,8 @@ body {
   overflow: hidden;
   background: #3f7986;
   left: -99.5%;
-  opacity: 0; }
+  opacity: 0;
+  z-index: 99; }
 
 .admin_wrap {
   float: left;
@@ -4087,7 +4096,6 @@ body {
     background: #3f7986; }
 
 .table_wrap {
-  width: 100%;
   float: left;
   overflow: hidden; }
 

@@ -40,7 +40,14 @@ class alpha
 		if (isset($request['method'])) : 
 
 			$method     = $prefix.$request['method'];
-			$paramaters = (isset($request['paramaters'])? json_decode(stripslashes($request['paramaters'])) : false );
+			$paramaters = false;
+			
+			if ( isset($request['paramaters']) ) {
+				$paramaters = $request['paramaters'];
+			}
+			if ( isset($request['paramaters']) && is_string($request['paramaters']) ) {
+				$paramaters = json_decode(stripslashes($request['paramaters']));
+			}
 
 			try {
 				

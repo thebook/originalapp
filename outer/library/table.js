@@ -34,8 +34,7 @@ define({
 		this.main       = this.maker.create_parts({
 			wrap : {
 				style : {
-					height   : this.setup.height +"px",
-					overflow : "scroll",
+					overflow : "scroll-y",
 				},
 				attribute : {
 					"class" : this.class_names.wrap

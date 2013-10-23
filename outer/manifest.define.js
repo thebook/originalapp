@@ -5,11 +5,13 @@ define({
 		manifest_modules : {
 			mains : ["library/extend"],
 			extentions : [
+				"library/extend.old",
 				"library/extend.main",
 				"library/extend.main.notify",
 				"library/extend.main.head",
 				"library/extend.main.navigation",
 				"library/extend.main.home",
+				"library/extend.main.shop",
 				"library/extend.foot",
 				"library/extend.backend",
 				"library/extend.backend.data",
@@ -23,11 +25,11 @@ define({
 	sorter  : {
 		sort_relationship : {
 			libraries : "basic",
-			// parts     : "part"
+			old       : "old",
 		},
 		module            : [
 			"manifest/manifest.sorter.basic",
-			// "library/manifest.sorter.part",
+			"library/manifest.sorter.old",
 		],
 		default_sorter    : "basic"
 	},
@@ -42,11 +44,18 @@ define({
 			"library/algorithm",
 			"library/router",
 		],
-		// parts : [
-		// 	"library/part/wrap",
-		// 	"library/part/wrap.foot",
-		// 	"library/part/wrap.backend",
-		// ],
+		old : [
+			"library/old/old_app",
+			"library/old/manifest/jquery",
+			"library/old/manifest/alpha",
+			"library/old/manifest/manifest.alpha",
+			"library/old/manifest/observe.alpha",
+			"library/old/manifest/route.alpha",
+			"library/old/library/amazon.alpha",
+			"library/old/library/scroll.alpha",
+			"library/old/library/book.alpha",
+			"library/old/library/table.alpha",
+		],
 		data  : [
 			"library/terms_and_conditions"
 		],

@@ -24,108 +24,159 @@ define(function () {
 				wrap : {
 					self : ".wrap",
 					children : {
-						main : {
+						app : {
 							instructions : {
 								extend : {
-									into : "main",
+									into : "old",
 									pass : {
-										route : {
-											"/sell" : [
-												{
-													module : "notify",
-													method : "notify",
-													pass   : function (router) { 
-													}
-												}
-											]
-										},
-										use : [
-											{
-												name : "notify",
-												pass : {
-													animation_speed : 300,
-													duration        : 2000
-												}
-											},
-											{
-												name : "head",
-												pass : {
-													request : {
-														path   : ajax_path,
-														action : "get_amazon",
-														method : "find",
-													},
-													images   : {
-														logo       : asset_path + "/header_logo.png",
-														background : asset_path + "/jhonc.png",
-													}, 
-													text : {
-														title     : "What We Do",
-														paragraph : "Recyclabook accepts over a million different titles, you can easily sell your book and get paid quickly and safely."
-													},
-													search : {
-														input : "Pleace type your ISBN here",
-														title : "How Much Is Your Book Worth"
-													}
-												} 
-											},
-											{ 
-												name : "navigation",
-												pass : { 
-													paths : [
-														{
-															name : "How It Works",
-															path : "/"
-														},
-														{
-															name : "Sell Books",
-															path : "sell"
-														}
-													]
-												}
-											},
-											{
-												name : "home",
-												pass : {
-													box : [
-														{
-															title       : "Find Your Books",
-															description : "find your books and add them to your sell basket",
-															image_path  : asset_path +"/type.png",
-															button      : {
-																title      : "Where is my ISBN",
-																text       : "Just look at the back of your book and find the 13 or 9 digit number bellow.",
-																image_path : asset_path +"/where_is_my_isbn.png",
-															}
-														},
-														{
-															title       : "Freepost<br/>Your Books",
-															description : "we send you a freepost pack and you send us your books",
-															image_path  : asset_path +"/type.png",
-															button      : {
-																title      : "Freepost Options",
-																text       : "We'll send you a postage pack. You will get a mailing with our freepost address sticker attached, so you won't pay a penny to post your books to Recyclabook, or if you have your own packaging, you can print off our own packaging label from this website. This e turnaround time of the order to give you peace of mind, while ensuring you get your payment even faster!",
-																image_path : asset_path +"/freepost_options.png",
-															}
-														},
-														{
-															title       : "Get Paid",
-															description : "we send you a cheque the same day we receive your books",
-															image_path  : asset_path +"/check.png",
-															button      : {
-																title      : "How Am I Being Paid?",
-																text       : "Don’t worry about filling in your bank details. We'll send you a cheque on the same day we receive your books.",
-															}
-														}
-													],
-												}
-											}
-										]
+										path    : ajax_path,
+										include : window.location.origin + "/wp-content/themes/book/outer/css/include/old",
+										modules : modules.old
 									}
-								},
+								}
 							},
 							self : ".main_wrap"
 						},
+						// main : {
+						// 	instructions : {
+						// 		extend : {
+						// 			into : "main",
+						// 			pass : {
+						// 				route : {
+						// 					"/" : [
+						// 						{
+						// 							module : "home",
+						// 							method : "show_or_hide",
+						// 							pass   : "show"
+						// 						},
+						// 						{
+						// 							module : "shop",
+						// 							method : "show_or_hide",
+						// 							pass   : "hide"
+						// 						},
+						// 					],
+						// 					"/sell" : [
+						// 						{
+						// 							module : "shop",
+						// 							method : "set_book",
+						// 							pass   : function () { 
+						// 								return this.main.being.book
+						// 							}
+						// 						},
+						// 						{
+						// 							module : "shop",
+						// 							method : "show_or_hide",
+						// 							pass   : "show"
+						// 						},
+						// 						{
+						// 							module : "home",
+						// 							method : "show_or_hide",
+						// 							pass   : "hide"
+						// 						},
+						// 					]
+						// 				},
+						// 				use : [
+						// 					{
+						// 						name : "notify",
+						// 						pass : {
+						// 							animation_speed : 300,
+						// 							duration        : 2000
+						// 						}
+						// 					},
+						// 					{
+						// 						name : "head",
+						// 						pass : {
+						// 							request : {
+						// 								path   : ajax_path,
+						// 								action : "get_amazon",
+						// 								method : "find",
+						// 							},
+						// 							images   : {
+						// 								logo       : asset_path + "/header_logo.png",
+						// 								background : asset_path + "/jhonc.png",
+						// 							}, 
+						// 							text : {
+						// 								title     : "What We Do",
+						// 								paragraph : "Recyclabook accepts over a million different titles, you can easily sell your book and get paid quickly and safely."
+						// 							},
+						// 							search : {
+						// 								input : "Pleace type your ISBN here",
+						// 								title : "How Much Is Your Book Worth"
+						// 							}
+						// 						} 
+						// 					},
+						// 					{ 
+						// 						name : "navigation",
+						// 						pass : { 
+						// 							paths : [
+						// 								{
+						// 									name : "How It Works",
+						// 									path : "/"
+						// 								},
+						// 								{
+						// 									name : "Sell Books",
+						// 									path : "shop"
+						// 								}
+						// 							]
+						// 						}
+						// 					},
+						// 					{
+						// 						name : "home",
+						// 						pass : {
+						// 							box : [
+						// 								{
+						// 									title       : "Find Your Books",
+						// 									description : "find your books and add them to your sell basket",
+						// 									image_path  : asset_path +"/type.png",
+						// 									button      : {
+						// 										title      : "Where is my ISBN",
+						// 										text       : "Just look at the back of your book and find the 13 or 9 digit number bellow.",
+						// 										image_path : asset_path +"/where_is_my_isbn.png",
+						// 									}
+						// 								},
+						// 								{
+						// 									title       : "Freepost<br/>Your Books",
+						// 									description : "we send you a freepost pack and you send us your books",
+						// 									image_path  : asset_path +"/type.png",
+						// 									button      : {
+						// 										title      : "Freepost Options",
+						// 										text       : "We'll send you a postage pack. You will get a mailing with our freepost address sticker attached, so you won't pay a penny to post your books to Recyclabook, or if you have your own packaging, you can print off our own packaging label from this website. This e turnaround time of the order to give you peace of mind, while ensuring you get your payment even faster!",
+						// 										image_path : asset_path +"/freepost_options.png",
+						// 									}
+						// 								},
+						// 								{
+						// 									title       : "Get Paid",
+						// 									description : "we send you a cheque the same day we receive your books",
+						// 									image_path  : asset_path +"/check.png",
+						// 									button      : {
+						// 										title      : "How Am I Being Paid?",
+						// 										text       : "Don’t worry about filling in your bank details. We'll send you a cheque on the same day we receive your books.",
+						// 									}
+						// 								}
+						// 							],
+						// 						}
+						// 					},
+						// 					{
+						// 						name : "shop",
+						// 						pass : {
+						// 							text : {
+						// 								promotion : "Our price promise guaranteed",
+						// 								sell_for  : "Sell for",
+						// 								add       : "Add To Basket",
+						// 								added     : "Added To Basket",
+						// 							},
+						// 							move : { 
+						// 								padding : 800,
+						// 								speed   : 1000,
+						// 							}
+						// 						}
+						// 					}
+						// 				]
+						// 			}
+						// 		},
+						// 	},
+						// 	self : ".main_wrap"
+						// },
 						foot : {
 							instructions : {
 								extend : { 
@@ -210,12 +261,12 @@ define(function () {
 										use : [
 											{
 												module : "data",
-												title  : "View Users",
+												title  : "Users",
 												pass   : {
 													settings : {
 														tabs : [
 															{
-																name : "users",
+																name : "all",
 																type : "table",
 																pass : {
 																	submit_changed_value : function (data) {
@@ -326,11 +377,70 @@ define(function () {
 															},
 															{
 																name : "price promises",
-																type : "recreate",
+																type : "table",
 																pass : {
-																	from       : ["price_promise"],
-																	add_fields : ["first_name"],
-																	formating  : function () {}
+																	table : {
+																		setup : {
+																			row_id     : "user",
+																			padding    : 30,
+																			box_height : 100,
+																			box_width  : 100,
+																			height     : 400,
+																		},
+																		fields : [
+																			{
+																				title: "user",
+																				name : "user",
+																			},
+																			{
+																				title: "name",
+																				name : "item_name",
+																			},
+																			{
+																				title: "author",
+																				name : "author",
+																			},
+																			{
+																				title: "isbn",
+																				name : "external_product_id",
+																			},
+																			{
+																				title: "price",
+																				name : "standard_price",
+																			},
+																		],
+																	},
+																	data : {
+																		retrieve : {
+																			path       : ajax_path,
+																			paramaters : {
+																				action : "get_account",
+																				method : "table",
+																			},
+																			method : function (data) {
+
+																				var index, main, table, inner_index
+
+																				main    = JSON.parse(data)["return"]
+																				index   = 0
+																				table   = []
+																				promise = {}
+
+																				
+																				for (; index < main.length; index++) {
+																					if ( main[index].price_promise = JSON.parse(main[index].price_promise) ) {
+																						for (inner_index = 0; inner_index < main[index].price_promise.length; inner_index++) {
+																							promise      = main[index].price_promise[inner_index]
+																							promise.user = main[index].first_name +" "+ main[index].second_name
+																							table.push(promise)
+																						}
+																					}
+																				}
+																				console.log(table)
+																				return table
+																			}
+																		}
+																	},
 																}
 															},
 															{
@@ -403,7 +513,7 @@ define(function () {
 											},
 											{
 												module : "data",
-												title  : "View Freepost",
+												title  : "Freepost",
 												pass   : {
 													settings : {
 														tabs : [
@@ -1081,35 +1191,35 @@ define(function () {
 																	options : [
 																		{	
 																			name        : "freepost_email",
-																			title       : "email",
-																			description : "This be a way to change yer emails for confirming price promises or something",
+																			title       : "Freepost Pack Email",
+																			description : "This is the email for when we send the freepost pack to them",
 																			type        : "textbox",
 																			retrieve    : {
 																				paramaters : {
 																					action     : "get_setting",
 																					method     : "option",
 																					paramaters : {
-																						name   : "freepost_email"
+																						name   : "pack_email"
 																					}
 																				},
 																			},
 																			submit      : {     
-																				paramaters : {
-
-																				}
+																				action : "set_setting",
+																				method : "option_value",
+																				name : "pack_email",
 																			}
 																		},
 																		{	
 																			name        : "another_email",
-																			title       : "email",
-																			description : "This be a way to change yer emails for confirming price promises or something",
+																			title       : "Self Print Email",
+																			description : "This is the email for when they print their own id for the freepost pack",
 																			type        : "textbox",
 																			retrieve    : {
 																				paramaters : {
 																					action     : "get_setting",
 																					method     : "option",
 																					paramaters : {
-																						name   : "another_email"
+																						name   : "print_email"
 																					}
 																				},
 																			},

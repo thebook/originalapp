@@ -1,8 +1,17 @@
+.button_text_for_user { 
+	margin: 21px 15px;
+	float: right;
+	color: $dark_blue;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 12px;
+}
+
 .button_for_user { 
 
 	@include circle($input_bar_size);
 	cursor: pointer;
-	margin: $input_margin_size ($bar_height - 10px) 0;
+	margin: $input_margin_size ($bar_height - 10px) 0px 0px;
 	background: $dark_blue;
 	float: right;
 	@include transition;

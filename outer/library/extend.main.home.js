@@ -398,5 +398,39 @@ define({
 			button.box.nextSibling.style.display = "block"
 			button.box.setAttribute("data-open", "true" )
 		}
+	},
+
+	show_or_hide : function (act) { 
+
+		var self, action
+
+		self   = this
+		action = {
+			show : {
+				from : 0,
+				to   : 1,
+			},
+			hide : {
+				from : 1,
+				to   : 0,
+			}
+		}
+		
+		this.animation.animate({
+			element : this.body.wrap.node,
+			property: ["opacity"],
+			from    : [action[act].from],
+			to      : [action[act].to],
+			how_long: 100,
+			easing  : "easeInQuad",
+		})
+
+		if ( act === "hide" ) {
+			window.setTimeout(function () {
+				self.body.wrap.node.style.display = "none"
+			}, 100 )
+		} else { 
+			this.body.wrap.node.style.display = "block"
+		}
 	}
 });	

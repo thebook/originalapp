@@ -48,7 +48,7 @@ define({
 
 	set_content_height : function () {
 		// console.log("set height")
-		this.content.wrap.content.node.style.height = ( document.height - this.content.wrap.content.node.offsetTop ) +"px"
+		this.content.wrap.content.node.style.height = 350 +"px"
 	},
 
 	create_menu_items : function (parent) {

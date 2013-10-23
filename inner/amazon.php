@@ -18,9 +18,10 @@ class amazon extends alpha
 
 	public function get_find ($paramaters)
 	{	
-		$search            = "_search_for_{$paramaters->search_for}_by_{$paramaters->search_by}";
-		$filter_by         = "_filter_{$paramaters->search_for}_by_{$paramaters->filter_name}";
-		$search_paramaters = $this->{$search}($paramaters->typed);
+		$paramaters        = (array)$paramaters;
+		$search            = "_search_for_{$paramaters['search_for']}_by_{$paramaters['search_by']}";
+		$filter_by         = "_filter_{$paramaters['search_for']}_by_{$paramaters['filter_name']}";
+		$search_paramaters = $this->{$search}($paramaters['typed']);
 		$response          = $this->_make_the_call($search_paramaters);
 		$response          = $this->{$filter_by}($response);
 
