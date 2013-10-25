@@ -19,6 +19,7 @@ define({
 				"library/extend.backend.data.admin",
 				"library/extend.backend.data.scan",
 				"library/extend.backend.data.book",
+				"library/extend.backend.data.buttons",
 			]			
 		}
 	},

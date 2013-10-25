@@ -228,6 +228,7 @@ class account extends alpha
 	public function set_account ($update)
 	{
 		$table = new table_creator;
+		$update= (array)$update;
 
 		( isset($update['history']) )        and $update['history']         = json_encode($update['history']);
 		( isset($update['unaccepted_book'])) and $update['unaccepted_book'] = json_encode($update['unaccepted_book']);

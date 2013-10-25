@@ -80,15 +80,10 @@ define({
 				name : option.name,
 				value: value
 			})
-			// self.option.loaded = self.option.loaded + 1 
-			// if ( self.option.loaded === self.setup.options.length ) 
-
 		})
 	},
 
 	set_option_value : function (option) {
-		// console.log(this.main.wrap[option.name].control.node.value)
-		console.log("option value")
 		this.main.wrap[option.name].control.node.value = option.value
 	},
 

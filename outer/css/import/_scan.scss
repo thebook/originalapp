@@ -147,10 +147,21 @@
 	float         : left;
 	background    : darken($light, 20%);
 	border-bottom : 4px solid $deep_blue;
+	font-weight   : bold;
+	color         : $deep_blue;
 	cursor        : pointer;
 	&:hover {
 		background    : darken($light, 15%);
 	}
+}
+
+.scan_user_list_item { 
+	@extend.scan_user_list_item;
+	border        : none;
+	border-bottom : 4px solid $deep_blue;
+	margin        : 0;
+	font-size     : 16px;
+	line-height   : 16px;
 }
 
 .scan_user_list_item_title {

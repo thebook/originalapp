@@ -239,7 +239,7 @@ class book extends alpha
 
 			$books .= (strlen($book['external_product_id']) < 10  ? "$zeros{$book['external_product_id']}\t" : "{$book['external_product_id']}\t" );
 			
-			unset($book['section'], $book['level'], $book['number'], $book['item_sku'], $book['external_product_id'] );
+			unset($book['status'], $book['comment'], $book['section'], $book['level'], $book['number'], $book['item_sku'], $book['external_product_id'] );
 
 			foreach ( $book as $property_name => $property ) :
 				$count++;

@@ -685,7 +685,8 @@ define({
 		var request, send_data, self
 
 		self      = this
-		request   = this.request.make()
+		request   = Object.create(this.request)
+		request   = request.make()
 		request.send({
 			url : this.setup.find_user.request.path || this.setup.settings.main_path,
 			data: this.setup.find_user.request.paramaters.call(this, user),
@@ -746,34 +747,28 @@ define({
 
 	submit_data : function () {
 
-		var to_print, user_request, print_request, request
+		var request, packaged,
 
-		packaged      = this.package_all_data()
-		request   = this.request.make()
+		self      = this
+		packaged  = this.package_all_data()
+		request   = Object.create(this.request)
+		request   = request.make()
 		request.send({
-			url : this.setup.find_user.request.path || this.setup.settings.main_path,
-			data: {},
-			type: "SET"
+			url : this.setup.settings.main_path,
+			data: {
+				action     : this.setup.submit.user.action,
+				method     : this.setup.submit.user.method,
+				paramaters : {
+					users : packaged.users
+				}
+			},
+			type: "POST"
 		}).then(function (then) {
-			
+			self.notify({
+				type : "green", 
+				text : "User Information Updated"
+			})
 		})
-		// user_request  = this.request.make()
-
-		// print_request = this.request.make()
-		
-		// print_request.send({
-		// 	url : this.setup.submit.path || this.setup.main_path,
-		// 	data: {
-		// 		action : this.setup.submit.action,
-		// 		method : this.setup.submit.method,
-		// 		paramaters : {
-		// 			cheques : to_print
-		// 		}
-		// 	},
-		// 	type: "GET"
-		// }).then(function (then) {
-		// 	console.log(then.change.target.response)
-		// })
 	},
 
 	package_all_data : function () { 
@@ -789,7 +784,11 @@ define({
 				by   : this.users[index].paid_books
 			})
 			user.credit        = parseFloat(user.credit) + this.users[index].ammount
-			users.push(user)
+			users.push({
+				email         : user.email,
+				price_promise : user.price_promise,
+				credit        : user.credit,
+			})
 		}
 		
 		return {

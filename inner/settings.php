@@ -54,12 +54,16 @@
 						'value' => 'Recyclabook accepts over a million different titles, you can easily sell your book and get paid quickly and safely.'
 					),
 					array( 
+						'name' => 'password_email',
+						'value'=> "Hi USER_NAME,\n\n You have asked for a password reminder for user name USER_NAME, this is your password USER_PASSWORD.\n\nHave a pleaseant day.\nRecyclabook team."
+					),
+					array( 
 						'name'  => 'print_email',
-						'value' => ''
+						'value' => "Hi USER_NAME,\n\nCongratulations! You have successfully added the following item(s) to your price promise basket:\nADDED_BOOKS\nThe price promise basket is our way of promising that we will give you the price quoted on the day that you registered your books. Your price promise as of DATE is:\n\nPRICE_PROMISE_SUM\n\nYour Price Promise Expires In Two Weeks. The quotes given may not be valid after this period. Hurry, send us your books so we can send you your money!\nWe will soon dispatch a freepost pack to the following address:\nUSER_ADDRESS\n\nOnce you have received the freepost pack, just pop your books into the pre-addressed envelope. Your unique customer identification is USER_ID, pop this number on the letter provided within the freepost pack. Lost the letter? Don’t worry, just include a copy of this email with your books. To check on your price promise basket or to add any new books, visit Recyclabook. Here you can log in and monitor where your books are and, more importantly, where your money is through your account hub.\n\nMany Thanks,\nThe Recyclabook Team"
 					),
 					array( 
 						'name'  => 'pack_email',
-						'value' => ''
+						'value' => "Hi USER_NAME,\n\nCongratulations! You have successfully added the following item(s) to your price promise basket: ADDED_BOOKS\nThe price promise basket is our way of promising that we will give you the price quoted on the day that you registered your books. Your price promise as of DATE is:\n\nPRICE_PROMISE_SUM\n\nYour Price Promise Expires In Two Weeks. The quotes given may not be valid after this period. Hurry, send us your books so we can send you your money!\nWe will soon dispatch a freepost pack to the following address:\n\nUSER_ADDRESS\n\nOnce you have received the freepost pack, just pop your books into the pre-addressed envelope. Your unique customer identification is USER_ID, pop this number on the letter provided within the freepost pack. Lost the letter? Don’t worry, just include a copy of this email with your books. To check on your price promise basket or to add any new books, visit Recyclabook. Here you can log in and monitor where your books are and, more importantly, where your money is through your account hub.\n\nMany Thanks,\nThe Recyclabook Team\nLike us on Facebook or follow us on Twitter for a chance to win some great prizes, to date we have given away hundreds of prizes including an i-Pad 2 and a Mango Bike!!"
 					),
 				));
 			}

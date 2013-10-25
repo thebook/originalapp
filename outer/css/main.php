@@ -4069,7 +4069,8 @@ body {
   margin-bottom: 15px;
   color: white;
   float: left;
-  width: 100%; }
+  width: 100%;
+  line-height: 20px; }
 
 .options_box_option_textbox {
   color: white;
@@ -4319,9 +4320,18 @@ body {
   float: left;
   background: #cccccc;
   border-bottom: 4px solid #1e3a41;
+  font-weight: bold;
+  color: #1e3a41;
   cursor: pointer; }
   .scan_user_list_item:hover {
     background: #d9d9d9; }
+
+.scan_user_list_item {
+  border: none;
+  border-bottom: 4px solid #1e3a41;
+  margin: 0;
+  font-size: 16px;
+  line-height: 16px; }
 
 .scan_user_list_item_title {
   font-weight: bold;

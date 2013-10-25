@@ -151,8 +151,10 @@ class ticket extends alpha
 	}
 
 	public function set_freepost ($array_of_information)
-	{
+	{	
 		$table = new table_creator;
+		$array_of_information['status']  = 'pending';
+		$array_of_information['user_id'] = $table->get_row('account', 'email', $array_of_information['email'])['id'];
 		$table->add_row_to_table($this->freepost_table, $array_of_information );
 	}
 

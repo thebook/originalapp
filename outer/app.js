@@ -1168,6 +1168,154 @@ define(function () {
 																	}
 																}
 															},
+															{
+																name : "export & recalculate",
+																type : "buttons",
+																pass : {
+																	settings : {
+																		path   : ajax_path,
+																	},
+																	request : {
+																		update : {
+																			amazon : {
+																				action : "get_amazon",
+																				method : "find"
+																			},
+																			submit : {
+																				action : "set_book",
+																				method : "book"
+																			}
+																		}
+																	},
+																	use : [
+																		{	
+																			type   : "regular",
+																			title  : "Export",
+																			action : function () { 
+
+																				var request, self
+
+																				self    = this
+																				request = Object.create(this.request)
+																				request = request.make()
+																				request.send({
+																					url : this.setup.settings.path,
+																					data: {
+																						action     : "get_book",
+																						method     : "book_table_exported_as_tab_delimited_file",
+																						paramaters : {}
+																					},
+																					type : "GET"
+																				}).then(function (then) { 
+																					self.notify({
+																						type : "green",
+																						text : "Inventory Link : "+ JSON.parse(then.change.target.response)["return"]
+																					})
+																				})
+																			}
+																		},
+																		{	
+																			type   : "regular",
+																			title  : "Clear Table",
+																			action : function () { 
+																				if (! confirm("Clear Table?") ) return
+																				var request, self
+
+																				self    = this
+																				request = Object.create(this.request)
+																				request = request.make()
+																				request.send({
+																					url : this.setup.settings.path,
+																					data: {
+																						action     : "set_book",
+																						method     : "clear_table",
+																						paramaters : {}
+																					},
+																					type : "POST"
+																				}).then(function (then) { 
+																					self.notify({
+																						type : "green",
+																						text : "Table Cleared"
+																					})
+																				})
+																			}
+																		},
+																		{	
+																			type   : "update",
+																			title  : "Recalculate",
+																			action : function () { 
+
+																				var request, self
+
+																				self    = this
+																				request = Object.create(this.request)
+																				request = request.make()
+																				request.send({
+																					url : this.setup.settings.path,
+																					data: {
+																						action     : "get_book",
+																						method     : "book_table",
+																						paramaters : {}
+																					},
+																					type : "GET"
+																				}).then(function (then) {
+																					var books, new_request, index, upload_count
+																					upload_count= 0
+																					books       = JSON.parse(then.change.target.response)["return"]
+																					index      	= 0
+																					console.log(books)
+																					for (; index < books.length; index++) {
+																						new_request = Object.create(self.request)
+																						new_request = new_request.make()
+																						new_request.send({
+																							url : self.setup.settings.path,
+																							data: {
+																								action : "get_amazon",
+																								method : "find",
+																								paramaters : {
+																									amazon : {
+																										search_by   : "isbn",
+																										search_for  : "books",
+																										filter_name : "sort",
+																										typed       : books[index].external_product_id,
+																									}
+																								}
+																							},
+																							type : "GET"
+																						}).then(function (then) {
+
+																							var book, submit_request
+
+																							book           = JSON.parse(then.change.target.response)["return"]
+																							if ( book.length < 1 ) return
+																							book[0].standard_price = parseFloat( book[0].standard_price ) - 0.1
+																							submit_request = Object.create(self.request)
+																							submit_request = submit_request.make()
+																							submit_request.send({
+																								url : self.setup.settings.path,
+																								data: {
+																									action : "set_book",
+																									method : "book",
+																									paramaters : {
+																										book : book[0]
+																									}
+																								},
+																								type : "POST"
+																							}).then(function (then) {
+																								upload_count = upload_count + 1
+																								self.notify({
+																									type : "green",
+																									text : upload_count +" Uploaded"
+																								})
+																							})
+																						})
+																					}
+																				})
+																			}
+																		}
+																	]
+																}
+															}
 														]
 													}
 												}
@@ -1192,7 +1340,7 @@ define(function () {
 																		{	
 																			name        : "freepost_email",
 																			title       : "Freepost Pack Email",
-																			description : "This is the email for when we send the freepost pack to them",
+																			description : "Variables and what they represent: USER_NAME = first and second name of the user, PRICE_PROMISE_SUM = the value of all the book quotes added in their price price promise basket, ADDED_BOOKS = a list of all the books in their price promise basket, has title, author and quote, USER_ID = the id of the user, USER_ADDRESS = the full address of the user, ( street address, area, post code, town ), DATE = the current date, USER_PASSWORD = the users password.",
 																			type        : "textbox",
 																			retrieve    : {
 																				paramaters : {
@@ -1210,9 +1358,9 @@ define(function () {
 																			}
 																		},
 																		{	
-																			name        : "another_email",
+																			name        : "pack_email",
 																			title       : "Self Print Email",
-																			description : "This is the email for when they print their own id for the freepost pack",
+																			description : "Variables and what they represent: USER_NAME = first and second name of the user, PRICE_PROMISE_SUM = the value of all the book quotes added in their price price promise basket, ADDED_BOOKS = a list of all the books in their price promise basket, has title, author and quote, USER_ID = the id of the user, USER_ADDRESS = the full address of the user, ( street address, area, post code, town ), DATE = the current date, USER_PASSWORD = the users password.",
 																			type        : "textbox",
 																			retrieve    : {
 																				paramaters : {
@@ -1224,9 +1372,29 @@ define(function () {
 																				},
 																			},
 																			submit      : {     
+																				action : "set_setting",
+																				method : "option_value",
+																				name   : "print_email",	
+																			}
+																		},
+																		{	
+																			name        : "password_email",
+																			title       : "Password Recovery Email",
+																			description : "Variables and what they represent: USER_NAME = first and second name of the user, PRICE_PROMISE_SUM = the value of all the book quotes added in their price price promise basket, ADDED_BOOKS = a list of all the books in their price promise basket, has title, author and quote, USER_ID = the id of the user, USER_ADDRESS = the full address of the user, ( street address, area, post code, town ), DATE = the current date, USER_PASSWORD = the users password.",
+																			type        : "textbox",
+																			retrieve    : {
 																				paramaters : {
-
-																				}
+																					action     : "get_setting",
+																					method     : "option",
+																					paramaters : {
+																						name   : "password_email"
+																					}
+																				},
+																			},
+																			submit      : {     
+																				action : "set_setting",
+																				method : "option_value",
+																				name   : "password_email",	
 																			}
 																		}
 																	],

@@ -14,12 +14,7 @@ No spelling or grammar mistakes
 - Its says ‘Mandatory fields’ then none of the fields have a next to them on 'register user' page
 - ?Site accessible and consistent across different browsers. If not accessible then a holding page in its place.
 - 'Cross' aligns correctly with the white box on the more information pop up
-
-
-Automatic Emails are editable
-
-
-
+- Automatic Emails are editable
 
 If you press ‘add again’ the make the button change from ‘added to basket’ to ‘added again’, with a slightly darker shaded of green. Make it go between slightly darker and lighter green every time you press add again, with the 'change' animation implemented
 
