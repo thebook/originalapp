@@ -54,6 +54,80 @@
 			return OUTPUTURI .'/print_cheque.pdf';
 		}
 
+		public function get_freepost ($data)
+        {  
+
+			$this->_get_tcpdf_files();
+			$table = new table_creator;
+			$text  = $table->get_row('book_settings', 'name', 'pack_letter')['value'];
+			print_r($text);
+            $pdf = new TCPDF(
+              'P', 
+              'mm', 
+              PDF_PAGE_FORMAT, 
+              true, 
+              'UTF-8', 
+              false
+            );
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+            $pdf->SetMargins( 10, 0, 10 );
+            $pdf->SetHeaderMargin(0);
+            $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+            if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+                require_once(dirname(__FILE__).'/lang/eng.php');
+                $pdf->setLanguageArray($l);
+            }
+            $pdf->SetFont(
+                'courierb', 
+                '', 
+                12
+            );
+            foreach ($data as $freepost) {
+            	$this->freepost_page($pdf, (array)$freepost, $text);
+            }
+
+			ob_end_clean();
+			$pdf->Output( OUTPUT . '/print_freepost.pdf', 'F');
+
+			return OUTPUTURI .'/print_freepost.pdf';
+		}
+
+		public function freepost_page ($pdf, $data, $text)
+		{
+            $pdf->AddPage();
+            $pdf->Image(OUTER .'/css/include/old/CSS/Includes/works/header_logo.png', 110, 10, 80 );
+            $this->create_bar_code($pdf, $data['id']);
+            $pdf->MultiCell(
+                200,
+                0,
+                $this->replace_placeholders_in_text_with_values( $data, $text ),
+                0,
+                'L',
+                false,
+                1,
+                20,
+                60
+            );
+        }
+
+        public function replace_placeholders_in_text_with_values ($values, $text)
+        {
+        	return preg_replace(
+				array(
+					'/USER_NAME/',
+					'/PRICE_PROMISE_SUM/',
+					'/USER_ID/',
+				),
+				array(
+					$values['name'],
+					$values['sum'],
+					$values['id']
+				),
+				$text
+			);
+        }
+
         public function add_cheque_page($pdf, $data, $offset)
         {
             $pdf->AddPage();
@@ -160,35 +234,37 @@
 			require_once INNER . '/library/tcpdf/config/tcpdf_config.php';
 			require_once INNER . '/library/tcpdf/tcpdf.php';
 		}
-          // $style = array(
-          //       'position'     => '',
-          //       'align'        => 'C',
-          //       'stretch'      => false,
-          //       'fitwidth'     => true,
-          //       'cellfitalign' => '',
-          //       'border'       => true,
-          //       'hpadding'     => 'auto',
-          //       'vpadding'     => 'auto',
-          //       'fgcolor'      => array(0,0,0),
-          //       'bgcolor'      => false, //array(255,255,255),
-          //       'text'         => true,
-          //       'font'         => 'helvetica',
-          //       'fontsize'     => 8,
-          //       'stretchtext'  => 4
-          //   );
 
-          //   $pdf->Cell(0, 0, 'CODE 39 - ANSI MH10.8M-1983 - USD-3 - 3 of 9', 0, 1);
-          //   $pdf->write1DBarcode(
-          //       '124', // code
-          //       'C39', // type
-          //       '',    // x position
-          //       '',    // y position 
-          //       100,   // width 
-          //       30,    // height 
-          //       0.4,   // width of the smallest bar
-          //       $style,// barcode style  
-          //       'N'    // alignment
-          //   );
+		protected function create_bar_code ($pdf, $number)
+		{
+			$style = array(
+                'position'     => '',
+                'align'        => 'C',
+                'stretch'      => false,
+                'fitwidth'     => true,
+                'cellfitalign' => '',
+                'border'       => true,
+                'hpadding'     => 'auto',
+                'vpadding'     => 'auto',
+                'fgcolor'      => array(0,0,0),
+                'bgcolor'      => false, //array(255,255,255),
+                'text'         => true,
+                'font'         => 'helvetica',
+                'fontsize'     => 8,
+                'stretchtext'  => 4
+            );
+            $pdf->write1DBarcode(
+                $number, // code
+                'C39', // type
+                20,    // x position
+                10,    // y position 
+                100,   // width 
+                20,    // height 
+                0.4,   // width of the smallest bar
+                $style,// barcode style  
+                'N'    // alignment
+            );	
+		}
 	}
 	
 	

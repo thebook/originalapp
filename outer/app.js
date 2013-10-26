@@ -427,11 +427,30 @@ define(function () {
 																		options: [
 																			{
 																				name       : "print",
-																				individual : false,
+																				individual : true,
 																				action     : function (rows) {
-																					var request 
+																					
+																					var request, index, freepost_packs
 																					console.log(this)
 																					console.log("an option is being performed")
+																					console.log(rows)
+																					for (var index = 0; index < rows.length; index++) {
+																						rows[index]
+																					};
+																					// request = Object.create(this.request)
+																					// request = request.make()
+																					// request.send({
+																					// 	url : ajax_path,
+																					// 	data: {
+																					// 		action : "get_pdf_maker",
+																					// 		method : "freepost",
+																					// 		paramaters : {
+																					// 			packs : freepost_packs
+																					// 		}
+																					// 	}
+																					// }).then(function(then) { 
+																					// 	window.open(JSON.parse(then.change.event.target.response)["return"], "_blank")
+																					// })
 																				}
 																			}
 																		],
@@ -1222,7 +1241,7 @@ define(function () {
 													settings : {
 														tabs : [
 															{
-																name : "emails", 
+																name : "emails&letter", 
 																type : "admin",
 																pass : {
 																	main_submit_path : ajax_path,
@@ -1273,6 +1292,26 @@ define(function () {
 																			}
 																		},
 																		{	
+																			name        : "pack_letter",
+																			title       : "Freepost Pack Letter",
+																			description : "Variables and what they represent: USER_NAME = first and second name of the user, PRICE_PROMISE_SUM = the value of all the book quotes added in their price price promise basket, USER_ID = the id of the user",
+																			type        : "textbox",
+																			retrieve    : {
+																				paramaters : {
+																					action     : "get_setting",
+																					method     : "option",
+																					paramaters : {
+																						name   : "pack_letter"
+																					}
+																				},
+																			},
+																			submit      : {     
+																				action : "set_setting",
+																				method : "option_value",
+																				name   : "pack_letter",	
+																			}
+																		},
+																		{	
 																			name        : "password_email",
 																			title       : "Password Recovery Email",
 																			description : "Variables and what they represent: USER_NAME = first and second name of the user, PRICE_PROMISE_SUM = the value of all the book quotes added in their price price promise basket, ADDED_BOOKS = a list of all the books in their price promise basket, has title, author and quote, USER_ID = the id of the user, USER_ADDRESS = the full address of the user, ( street address, area, post code, town ), DATE = the current date, USER_PASSWORD = the users password.",
@@ -1291,7 +1330,7 @@ define(function () {
 																				method : "option_value",
 																				name   : "password_email",	
 																			}
-																		}
+																		},
 																	],
 
 																},
