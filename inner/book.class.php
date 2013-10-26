@@ -276,6 +276,9 @@ class book extends alpha
 		if ( isset($book['prices']) ) :
 			unset($book['prices']); 
 		endif;
+		if ( isset($book['id']) ) :
+			unset($book['id']); 
+		endif;
 
 		$default = array(
 			'section'                            => 1,

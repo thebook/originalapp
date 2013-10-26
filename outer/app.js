@@ -430,27 +430,27 @@ define(function () {
 																				individual : true,
 																				action     : function (rows) {
 																					
-																					var request, index, freepost_packs
-																					console.log(this)
-																					console.log("an option is being performed")
-																					console.log(rows)
-																					for (var index = 0; index < rows.length; index++) {
-																						rows[index]
-																					};
-																					// request = Object.create(this.request)
-																					// request = request.make()
-																					// request.send({
-																					// 	url : ajax_path,
-																					// 	data: {
-																					// 		action : "get_pdf_maker",
-																					// 		method : "freepost",
-																					// 		paramaters : {
-																					// 			packs : freepost_packs
-																					// 		}
-																					// 	}
-																					// }).then(function(then) { 
-																					// 	window.open(JSON.parse(then.change.event.target.response)["return"], "_blank")
-																					// })
+																					var request, index, freepost_pack_users
+
+																					freepost_pack_users = []
+																					index               = 0
+																					request             = Object.create(this.request)
+																					request             = request.make()
+																					for (; index < rows.length; index++) 
+																						freepost_pack_users.push(this.data[rows[index]].email)
+																					request.send({
+																						url : ajax_path,
+																						data: {
+																							action : "get_pdf_maker",
+																							method : "freepost",
+																							paramaters : {
+																								packs : freepost_pack_users
+																							}
+																						},
+																						type : "GET"
+																					}).then(function(then) { 
+																						window.open(JSON.parse(then.change.target.response)["return"], "_blank")
+																					})
 																				}
 																			}
 																		],
@@ -741,7 +741,11 @@ define(function () {
 																		user : {
 																			action : "set_account",
 																			method : "accounts"
-																		}
+																		},
+																		book : {
+																			action : "set_book",
+																			method: "books"
+																		},
 																	}
 																}
 															},

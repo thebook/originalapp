@@ -54,13 +54,39 @@
 			return OUTPUTURI .'/print_cheque.pdf';
 		}
 
-		public function get_freepost ($data)
+        public function calculate_sum_of_all_price_promises ($price_promise)
+        {
+            $price_promise = json_decode($price_promise);
+            $sum           = 0;
+            foreach ($price_promise as $promise) {
+                $sum = $sum + $promise->standard_price;
+            }
+            return $sum;
+        }
+
+        public function create_freepost_data ($users)
+        {   
+            $data  = array();
+            $table = new table_creator;
+
+            foreach ($users as $user_email) {
+                $user  = $table->get_row('account', 'email', $user_email );
+                $data[]= array(
+                    'name' => "{$user['first_name']} {$user['second_name']}",
+                    'sum'  => $this->calculate_sum_of_all_price_promises($user['price_promise']),
+                    'id'   => $user['id']
+                );
+            }
+            return $data;
+        }
+
+		public function get_freepost ($users)
         {  
 
 			$this->_get_tcpdf_files();
-			$table = new table_creator;
-			$text  = $table->get_row('book_settings', 'name', 'pack_letter')['value'];
-			print_r($text);
+            $table = new table_creator;
+            $data  = $this->create_freepost_data($users);
+            $text  = $table->get_row('book_settings', 'name', 'pack_letter')['value'];
             $pdf = new TCPDF(
               'P', 
               'mm', 

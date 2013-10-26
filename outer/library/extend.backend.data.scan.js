@@ -751,9 +751,35 @@ define({
 
 		packaged  = this.package_all_data()
 		console.log(packaged)
+		console.log(this)
 		this.submit_user_update(packaged.user)
+		this.submit_books(packaged.book)
 		this.submit_cheques(packaged.cheque.submit)
 		this.submit_print(packaged.cheque.print)
+	},
+
+	submit_books : function (books) { 
+		var request, self
+		
+		self      = this
+		request   = Object.create(this.request)
+		request   = request.make()
+		request.send({
+			url : this.setup.settings.main_path,
+			data: {
+				action     : this.setup.submit.book.action,
+				method     : this.setup.submit.book.method,
+				paramaters : {
+					books : books
+				}
+			},
+			type: "POST"
+		}).then(function (then) {
+			self.notify({
+				type : "green", 
+				text : "Books added to stock"
+			})
+		})
 	},
 
 	submit_print : function (print) { 
@@ -827,8 +853,20 @@ define({
 	package_all_data : function () { 
 		return { 
 			user   : this.package_user_information(this.users),
-			cheque : this.package_cheque_information(this.users)
+			cheque : this.package_cheque_information(this.users),
+			book   : this.package_books(this.users)
 		}
+	},
+
+	package_books : function (users) { 
+		var final_books
+
+		books       = []
+
+		for (var index = 0; index < users.length; index++)
+			books.push(users[index].paid_books)
+
+		return Array.prototype.concat.apply([], books)
 	},
 
 	package_user_information : function (users) { 
