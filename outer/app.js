@@ -37,146 +37,6 @@ define(function () {
 							},
 							self : ".main_wrap"
 						},
-						// main : {
-						// 	instructions : {
-						// 		extend : {
-						// 			into : "main",
-						// 			pass : {
-						// 				route : {
-						// 					"/" : [
-						// 						{
-						// 							module : "home",
-						// 							method : "show_or_hide",
-						// 							pass   : "show"
-						// 						},
-						// 						{
-						// 							module : "shop",
-						// 							method : "show_or_hide",
-						// 							pass   : "hide"
-						// 						},
-						// 					],
-						// 					"/sell" : [
-						// 						{
-						// 							module : "shop",
-						// 							method : "set_book",
-						// 							pass   : function () { 
-						// 								return this.main.being.book
-						// 							}
-						// 						},
-						// 						{
-						// 							module : "shop",
-						// 							method : "show_or_hide",
-						// 							pass   : "show"
-						// 						},
-						// 						{
-						// 							module : "home",
-						// 							method : "show_or_hide",
-						// 							pass   : "hide"
-						// 						},
-						// 					]
-						// 				},
-						// 				use : [
-						// 					{
-						// 						name : "notify",
-						// 						pass : {
-						// 							animation_speed : 300,
-						// 							duration        : 2000
-						// 						}
-						// 					},
-						// 					{
-						// 						name : "head",
-						// 						pass : {
-						// 							request : {
-						// 								path   : ajax_path,
-						// 								action : "get_amazon",
-						// 								method : "find",
-						// 							},
-						// 							images   : {
-						// 								logo       : asset_path + "/header_logo.png",
-						// 								background : asset_path + "/jhonc.png",
-						// 							}, 
-						// 							text : {
-						// 								title     : "What We Do",
-						// 								paragraph : "Recyclabook accepts over a million different titles, you can easily sell your book and get paid quickly and safely."
-						// 							},
-						// 							search : {
-						// 								input : "Pleace type your ISBN here",
-						// 								title : "How Much Is Your Book Worth"
-						// 							}
-						// 						} 
-						// 					},
-						// 					{ 
-						// 						name : "navigation",
-						// 						pass : { 
-						// 							paths : [
-						// 								{
-						// 									name : "How It Works",
-						// 									path : "/"
-						// 								},
-						// 								{
-						// 									name : "Sell Books",
-						// 									path : "shop"
-						// 								}
-						// 							]
-						// 						}
-						// 					},
-						// 					{
-						// 						name : "home",
-						// 						pass : {
-						// 							box : [
-						// 								{
-						// 									title       : "Find Your Books",
-						// 									description : "find your books and add them to your sell basket",
-						// 									image_path  : asset_path +"/type.png",
-						// 									button      : {
-						// 										title      : "Where is my ISBN",
-						// 										text       : "Just look at the back of your book and find the 13 or 9 digit number bellow.",
-						// 										image_path : asset_path +"/where_is_my_isbn.png",
-						// 									}
-						// 								},
-						// 								{
-						// 									title       : "Freepost<br/>Your Books",
-						// 									description : "we send you a freepost pack and you send us your books",
-						// 									image_path  : asset_path +"/type.png",
-						// 									button      : {
-						// 										title      : "Freepost Options",
-						// 										text       : "We'll send you a postage pack. You will get a mailing with our freepost address sticker attached, so you won't pay a penny to post your books to Recyclabook, or if you have your own packaging, you can print off our own packaging label from this website. This e turnaround time of the order to give you peace of mind, while ensuring you get your payment even faster!",
-						// 										image_path : asset_path +"/freepost_options.png",
-						// 									}
-						// 								},
-						// 								{
-						// 									title       : "Get Paid",
-						// 									description : "we send you a cheque the same day we receive your books",
-						// 									image_path  : asset_path +"/check.png",
-						// 									button      : {
-						// 										title      : "How Am I Being Paid?",
-						// 										text       : "Don’t worry about filling in your bank details. We'll send you a cheque on the same day we receive your books.",
-						// 									}
-						// 								}
-						// 							],
-						// 						}
-						// 					},
-						// 					{
-						// 						name : "shop",
-						// 						pass : {
-						// 							text : {
-						// 								promotion : "Our price promise guaranteed",
-						// 								sell_for  : "Sell for",
-						// 								add       : "Add To Basket",
-						// 								added     : "Added To Basket",
-						// 							},
-						// 							move : { 
-						// 								padding : 800,
-						// 								speed   : 1000,
-						// 							}
-						// 						}
-						// 					}
-						// 				]
-						// 			}
-						// 		},
-						// 	},
-						// 	self : ".main_wrap"
-						// },
 						foot : {
 							instructions : {
 								extend : { 
@@ -569,6 +429,8 @@ define(function () {
 																				name       : "print",
 																				individual : false,
 																				action     : function (rows) {
+																					var request 
+																					console.log(this)
 																					console.log("an option is being performed")
 																				}
 																			}
@@ -970,20 +832,49 @@ define(function () {
 																			row_id     : "item_sku",
 																			padding    : 30,
 																			box_height : 100,
-																			box_width  : 100,
+																			box_width  : 150,
 																			height     : 400,
 																		},
+																		options: [
+																			{
+																				name       : "remove",
+																				individual : true,
+																				action     : function (rows) {
+
+																					var index, self
+
+																					index = 0
+																					self  = this
+
+																					for (; index < rows.length; index++) {
+																						var request 
+																						request = Object(this.request)
+																						request = request.make()
+																						request.send({
+																							url : ajax_path,
+																							data: {
+																								action     : "set_book",
+																								method     : "remove_book",
+																								paramaters : {
+																									book_id : this.data[rows[index]].item_sku
+																								}
+																							},
+																							type: "POST"
+																						})
+																						this.find_row_node(rows[index]).remove()
+																					}
+																					this.option.selected = []
+																				}
+																			}
+																		],
 																		fields : [
 																			{
 																				title      : "id",
 																				name       : "item_sku",
-																				changeable : { 
-																					by         : "text"
-																				}
 																			},
 																			{
 																				title : "section",
-																				name  : "first_name",
+																				name  : "section",
 																				changeable : { 
 																					by     : "text"
 																				}

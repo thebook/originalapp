@@ -186,6 +186,11 @@
 	}
 }
 
+.result_book_add_button_static_again {
+	@extend.result_book_add_button_static;
+	background: darken($green, 5%);
+}
+
 $add_button_font_size: 13px;
 
 .result_book_add_button_text { 

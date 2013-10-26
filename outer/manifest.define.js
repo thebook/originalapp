@@ -6,12 +6,6 @@ define({
 			mains : ["library/extend"],
 			extentions : [
 				"library/extend.old",
-				"library/extend.main",
-				"library/extend.main.notify",
-				"library/extend.main.head",
-				"library/extend.main.navigation",
-				"library/extend.main.home",
-				"library/extend.main.shop",
 				"library/extend.foot",
 				"library/extend.backend",
 				"library/extend.backend.data",

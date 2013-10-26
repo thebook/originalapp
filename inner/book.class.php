@@ -263,6 +263,12 @@ class book extends alpha
 		return $table->delete_all_table_rows($this->book_table);	
 	}
 
+	public function set_remove_book ($book_id)
+	{
+		$table = new table_creator;
+		$table->delete_row($this->book_table, 'item_sku', $book_id);
+	}
+
 	public function set_book ($the_book)
 	{
 		$table   = new table_creator;

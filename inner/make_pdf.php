@@ -10,78 +10,150 @@
 			parent::__construct('pdf_maker');
 		}
 
-		public function get_freepost ()
-		{
-			$this->_get_tcpdf_files();
+        protected function prepare_email_data ($user)
+        {
+            return array(
+                'address' => "Joe Mcjoe\n30 The Grange\nLlandaff\nCardiff\nCF5 2LH",
+                'date'    => date('d/m/Y'),
+                'name'    => 'Joe McJoe',
+            );
+        }
 
-            $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		public function get_cheque ()
+		{  
+            // full size 202 units 
+            $offset = array(
+                'width' => 16,
+                'height'=> 12
+            );
+            $data = $this->prepare_email_data();
+			$this->_get_tcpdf_files();
+            $pdf = new TCPDF(
+              'P', 
+              'mm', 
+              PDF_PAGE_FORMAT, 
+              true, 
+              'UTF-8', 
+              false
+            );
             $pdf->SetCreator(PDF_CREATOR);
-            // $pdf->SetAuthor('Recyclabook');
-            // $pdf->SetTitle('Freepost Pack');
-            // $pdf->SetSubject('Freepost');
-            // $pdf->SetHeaderData(
-            //     PDF_HEADER_LOGO, 
-            //     PDF_HEADER_LOGO_WIDTH, 
-            //     PDF_HEADER_TITLE.' 027', 
-            //     PDF_HEADER_STRING
-            // );
-            // $pdf->setHeaderFont(Array(
-            //     PDF_FONT_NAME_MAIN, 
-            //     '', 
-            //     PDF_FONT_SIZE_MAIN)
-            // );
-            // $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
             $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
             $pdf->SetMargins(
-                22, // left
+                10, // left
                 0,  // top
-                22  // right
+                10  // right
             );
-            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-            $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-            $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+            $pdf->SetHeaderMargin(0);
             $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
             if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
                 require_once(dirname(__FILE__).'/lang/eng.php');
                 $pdf->setLanguageArray($l);
             }
             $pdf->AddPage();
-            $pdf->SetFont('helvetica', '', 10);        
-
-            $pdf->MultiCell(
-                // width,   
-                40,
-                // height,
-                0,
-                // text
-                "Joe Mcjoe\n30 The Grange\nLlandaff\nCardiff\nCF5 2LH",
-                // border L,T,R,B || 0,
-                0,
-                // align  L,R,C,J,
-                'L',
-                // fill (color),
-                false,
-                // line next 0:right, 1:begining of next line(default), 2:bellow,
-                1,
-                // x position,
-                30,
-                // y position,
-                22
+            $pdf->SetFont(
+                'courierb', 
+                '', 
+                12
             );
+            // User Address 
             $pdf->MultiCell(
-                40,
+                55,
                 0,
-                "Dear Joe Mcjoe\nThank you for using Recyclabook to sell your books. We hope that the process was quick and easy",
+                $data['address'],
                 0,
                 'L',
                 false,
                 1,
-                100,
-                22
+                35 - $offset['width'],
+                35 - $offset['height']
+            );
+            // Date
+            $pdf->MultiCell(
+                55,
+                0,
+                "Current Date",
+                0,
+                'L',
+                false,
+                1,
+                175 - $offset['width'],
+                85 - $offset['height']
+            );
+            // Full Name
+            $pdf->MultiCell(
+                55,
+                0,
+                "Full name",
+                0,
+                'L',
+                false,
+                1,
+                45 - $offset['width'],
+                105 - $offset['height']
+            );
+            // Number of books sold and sum
+            $pdf->MultiCell(
+                55,
+                0,
+                "Books sold and sum",
+                0,
+                'L',
+                false,
+                1,
+                125 - $offset['width'],
+                105 - $offset['height']
+            );
+            // Cheque date
+            $pdf->MultiCell(
+                55,
+                0,
+                "Cheque Date",
+                0,
+                'L',
+                false,
+                1,
+                188 - $offset['width'],
+                243 - $offset['height']
+            );
+            // Cheque Name
+            $pdf->MultiCell(
+                55,
+                0,
+                "Cheque Name",
+                0,
+                'L',
+                false,
+                1,
+                48 - $offset['width'],
+                258 - $offset['height']
+            );
+            // Cheque Verbal Ammount
+            $pdf->MultiCell(
+                55,
+                0,
+                "Cheqye Verbal Ammount",
+                0,
+                'L',
+                false,
+                1,
+                48 - $offset['width'],
+                267 - $offset['height']
+            );
+            // Cheque Actual Ammount
+            $pdf->MultiCell(
+                55,
+                0,
+                "Cheque Actual Ammount",
+                0,
+                'L',
+                false,
+                1,
+                181 - $offset['width'],
+                258 - $offset['height']
             );
 
 			ob_end_clean();
-			$pdf->Output( OUTPUT . '/freepost.pdf', 'F');
+			$pdf->Output( OUTPUT . '/print_cheque.pdf', 'F');
 		}
 
     public function get_cheques ()

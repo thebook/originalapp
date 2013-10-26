@@ -5,6 +5,7 @@ define({
 		var self = this
 
 		this.maker       = Object.create(modules.node_making_tools)
+		this.request     = modules.request
 		this.data        = []
 		this.box         = instructions.box
 		this.setup       = this.setup_definition(instructions)
@@ -141,7 +142,8 @@ define({
 		node = this.maker.create_parts({	
 			row : {
 				attribute : {
-					"class" : this.class_names.row
+					"class"    : this.class_names.row,
+					"data-row" : row.id,
 				},
 				children : function (parent) {
 
@@ -272,14 +274,27 @@ define({
 	},
 
 	perform_an_option : function (option) {
-		console.log(option.index)
-		console.log( this.box.options)
 
 		if ( this.box.options[option.index].individual === false )
 			for (var index = 0; index < this.option.selected.length; index++)
-				this.box.options[option.index].action.call(this, this.option.selected[index] )
+				this.box.options[option.index].action.call(this, {
+					index : this.option.selected[index],
+					node  : this.find_row_node(this.option.selected[index]),
+				})
 		else
 			this.box.options[option.index].action.call(this, this.option.selected )
+	},
+
+	find_row_node : function (row_index) {
+
+		var row 
+
+		row   = false
+		index = 0 
+		for (; index < this.main.wrap.content.node.children.length; index++)
+			if ( parseInt(this.main.wrap.content.node.children[index].getAttribute("data-row")) === row_index )
+				row = this.main.wrap.content.node.children[index]
+		return row
 	},
 
 	mark_row_as_selected_or_unselected : function (row) { 

@@ -2575,21 +2575,21 @@ body {
   float: left;
   clear: both; }
 
-.result_book_add_button, .result_book_add_button_static {
+.result_book_add_button, .result_book_add_button_static, .result_book_add_button_static_again {
   width: 100%;
   float: left;
   clear: both;
   cursor: pointer;
   color: #3f7986;
   background: #9ad9e0; }
-  .result_book_add_button:hover, .result_book_add_button_static:hover {
+  .result_book_add_button:hover, .result_book_add_button_static:hover, .result_book_add_button_static_again:hover {
     background: #73cad4;
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease;
     -ms-transition: all 500ms ease;
     -o-transition: all 500ms ease;
     transition: all 500ms ease; }
-  .result_book_add_button:active, .result_book_add_button_static:active {
+  .result_book_add_button:active, .result_book_add_button_static:active, .result_book_add_button_static_again:active {
     background: #5fc3ce;
     -webkit-transition: all 500ms ease;
     -moz-transition: all 500ms ease;
@@ -2597,14 +2597,17 @@ body {
     -o-transition: all 500ms ease;
     transition: all 500ms ease; }
 
-.result_book_add_button_static {
+.result_book_add_button_static, .result_book_add_button_static_again {
   background: #b4d65a;
   color: white;
   cursor: default; }
-  .result_book_add_button_static:hover {
+  .result_book_add_button_static:hover, .result_book_add_button_static_again:hover {
     background: #b4d65a; }
-  .result_book_add_button_static:active {
+  .result_book_add_button_static:active, .result_book_add_button_static_again:active {
     background: #b4d65a; }
+
+.result_book_add_button_static_again {
+  background: #abd146; }
 
 .result_book_add_button_text, .with-icon-added-to-sell-basket-tick, .result_book_refused_button {
   height: 13px;
