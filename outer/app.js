@@ -711,9 +711,13 @@ define(function () {
 																		}
 																	},
 																	submit : {
-																		cheque : { 
+																		print : { 
 																			action : "get_pdf_maker",
-																			method : "cheques"
+																			method : "cheque"
+																		},
+																		cheque : {
+																			action : "set_ticket",
+																			method : "cheques",
 																		},
 																		user : {
 																			action : "set_account",

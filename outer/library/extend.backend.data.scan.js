@@ -747,10 +747,39 @@ define({
 
 	submit_data : function () {
 
-		var request, packaged,
+		var packaged
+
+		packaged  = this.package_all_data()
+		console.log(packaged)
+		this.submit_user_update(packaged.user)
+		this.submit_cheques(packaged.cheque.submit)
+		this.submit_print(packaged.cheque.print)
+	},
+
+	submit_print : function (print) { 
+		var request, self
+		self      = this
+		request   = Object.create(this.request)
+		request   = request.make()
+		request.send({
+			url : this.setup.settings.main_path,
+			data: {
+				action     : this.setup.submit.print.action,
+				method     : this.setup.submit.print.method,
+				paramaters : {
+					print : print
+				}
+			},
+			type: "GET"
+		}).then(function (then) {
+			window.open(JSON.parse(then.change.target.response)["return"], '_blank')
+		})
+	},
+
+	submit_user_update : function (users) { 
+		var request, self
 
 		self      = this
-		packaged  = this.package_all_data()
 		request   = Object.create(this.request)
 		request   = request.make()
 		request.send({
@@ -759,7 +788,7 @@ define({
 				action     : this.setup.submit.user.action,
 				method     : this.setup.submit.user.method,
 				paramaters : {
-					users : packaged.users
+					users : users
 				}
 			},
 			type: "POST"
@@ -771,30 +800,129 @@ define({
 		})
 	},
 
-	package_all_data : function () { 
+	submit_cheques : function (cheques) { 
+		var request, self
 
-		var user, users
-
-		users = []
-
-		for (var index = 0; index < this.users.length; index++) {
-			user               = this.users[index].data
-			user.price_promise = this.extract_objects_from_an_array_that_dont_match_the_other({
-				from : this.users[index].data.price_promise || [],
-				by   : this.users[index].paid_books
+		self      = this
+		request   = Object.create(this.request)
+		request   = request.make()
+		request.send({
+			url : this.setup.settings.main_path,
+			data: {
+				action     : this.setup.submit.cheque.action,
+				method     : this.setup.submit.cheque.method,
+				paramaters : {
+					cheques : cheques
+				}
+			},
+			type: "POST"
+		}).then(function (then) {
+			self.notify({
+				type : "green", 
+				text : "Cheques added to history"
 			})
-			user.credit        = parseFloat(user.credit) + this.users[index].ammount
-			users.push({
+		})
+	},
+
+	package_all_data : function () { 
+		return { 
+			user   : this.package_user_information(this.users),
+			cheque : this.package_cheque_information(this.users)
+		}
+	},
+
+	package_user_information : function (users) { 
+
+		var packaged, user 
+
+		packaged = []
+
+		for (var index = 0; index < users.length; index++) {
+			user               = users[index].data
+			user.price_promise = this.extract_objects_from_an_array_that_dont_match_the_other({
+				from : users[index].data.price_promise || [],
+				by   : users[index].paid_books
+			})
+			user.credit        = parseFloat(user.credit) + users[index].ammount
+			packaged.push({
 				email         : user.email,
 				price_promise : user.price_promise,
 				credit        : user.credit,
 			})
+		
 		}
 		
-		return {
-			users   : users,
-			cheques : []
+		return packaged
+	},
+
+	convert_amount : function (number) {
+		
+		var main, point, pounds, pence
+
+		number = number.split(".")
+		main   = parseInt(number[0])
+		point  = ( number[1] ? parseInt(number[1]) : false )
+		pounds = this.number_to_text(main) +"pounds"
+		pence  = ""		
+		if ( point !== false && point > 0 ) 
+			pence = " and "+ this.number_to_text(point) +"pence"
+
+		return pounds + pence
+	},
+
+	number_to_text : function (num) { 
+
+		var a, b	
+
+		a = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen ']
+		b = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety']
+
+	    if ((num = num.toString()).length > 9) return 'overflow';
+	    n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+	    if (!n) return; var str = '';
+	    str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+	    str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+	    str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+	    str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+	    str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) : '';
+
+	    return str;
+	},
+
+	package_cheque_information : function (users) { 
+
+		var date, packaged
+
+		date     = new Date
+		date     = date.getFullYear() +"-"+ date.getMonth() +"-"+ date.getDay()
+		packaged = {
+			submit : [],
+			print  : []
 		}
+
+		for (var index = 0; index < users.length; index++) {
+			packaged.print.push({
+				address        : users[index].data.address+"\n"+users[index].data.post_code+"\n"+users[index].data.town+"\n"+users[index].data.area,
+				number_amount  : users[index].ammount,
+				date           : date,
+				name           : users[index].data.first_name +" "+ users[index].data.second_name,
+				books_sold_sum : users[index].paid_books.length,
+				text_amount    : this.convert_amount(users[index].ammount.toFixed(2))
+			})
+			packaged.submit.push({
+				email       : users[index].data.email,
+				amount      : users[index].ammount,
+				address     : users[index].data.address,
+				post_code   : users[index].data.post_code,
+				town        : users[index].data.town,
+				area        : users[index].data.area,
+				first_name  : users[index].data.first_name,
+				second_name : users[index].data.second_name,
+				date        : date
+			})
+		}
+
+		return packaged
 	},
 
 	submit_user_data : function () { 

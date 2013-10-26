@@ -177,6 +177,13 @@ class ticket extends alpha
 		endforeach;
 	}
 
+	public function set_cheques ($cheques)
+	{
+		foreach ($cheques as $cheque) {
+			$this->set_cheque((array)$cheque);
+		}		
+	}
+
 	public function set_cheque ($array_of_information)
 	{
 		$table = new table_creator;

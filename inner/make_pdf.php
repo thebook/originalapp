@@ -10,23 +10,13 @@
 			parent::__construct('pdf_maker');
 		}
 
-        protected function prepare_email_data ($user)
-        {
-            return array(
-                'address' => "Joe Mcjoe\n30 The Grange\nLlandaff\nCardiff\nCF5 2LH",
-                'date'    => date('d/m/Y'),
-                'name'    => 'Joe McJoe',
-            );
-        }
-
-		public function get_cheque ()
-		{  
-            // full size 202 units 
+        public function get_cheque ($data)
+        {  
+            // full size 210 units 
             $offset = array(
                 'width' => 16,
                 'height'=> 12
             );
-            $data = $this->prepare_email_data();
 			$this->_get_tcpdf_files();
             $pdf = new TCPDF(
               'P', 
@@ -49,12 +39,24 @@
                 require_once(dirname(__FILE__).'/lang/eng.php');
                 $pdf->setLanguageArray($l);
             }
-            $pdf->AddPage();
             $pdf->SetFont(
                 'courierb', 
                 '', 
                 12
             );
+            foreach ($data as $cheque) {
+            	$this->add_cheque_page($pdf, (array)$cheque, $offset);
+            }
+
+			ob_end_clean();
+			$pdf->Output( OUTPUT . '/print_cheque.pdf', 'F');
+
+			return OUTPUTURI .'/print_cheque.pdf';
+		}
+
+        public function add_cheque_page($pdf, $data, $offset)
+        {
+            $pdf->AddPage();
             // User Address 
             $pdf->MultiCell(
                 55,
@@ -71,7 +73,7 @@
             $pdf->MultiCell(
                 55,
                 0,
-                "Current Date",
+                $data['date'],
                 0,
                 'L',
                 false,
@@ -83,7 +85,7 @@
             $pdf->MultiCell(
                 55,
                 0,
-                "Full name",
+                $data['name'],
                 0,
                 'L',
                 false,
@@ -95,7 +97,7 @@
             $pdf->MultiCell(
                 55,
                 0,
-                "Books sold and sum",
+                "Number of books sold to us : {$data['books_sold_sum']}",
                 0,
                 'L',
                 false,
@@ -107,7 +109,7 @@
             $pdf->MultiCell(
                 55,
                 0,
-                "Cheque Date",
+                $data['date'],
                 0,
                 'L',
                 false,
@@ -119,7 +121,7 @@
             $pdf->MultiCell(
                 55,
                 0,
-                "Cheque Name",
+                $data['name'],
                 0,
                 'L',
                 false,
@@ -129,9 +131,9 @@
             );
             // Cheque Verbal Ammount
             $pdf->MultiCell(
-                55,
+                110,
                 0,
-                "Cheqye Verbal Ammount",
+                $data['text_amount'],
                 0,
                 'L',
                 false,
@@ -143,7 +145,7 @@
             $pdf->MultiCell(
                 55,
                 0,
-                "Cheque Actual Ammount",
+                $data['number_amount'],
                 0,
                 'L',
                 false,
@@ -151,15 +153,7 @@
                 181 - $offset['width'],
                 258 - $offset['height']
             );
-
-			ob_end_clean();
-			$pdf->Output( OUTPUT . '/print_cheque.pdf', 'F');
-		}
-
-    public function get_cheques ()
-    {
-      return 'your cheques here';
-    }
+        }
 
 		protected function _get_tcpdf_files ()
 		{

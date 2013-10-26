@@ -6,6 +6,7 @@ define('FRAMEWORKURI', get_template_directory_uri() . '/Framework' );
 define("INNER", TEMPLATEPATH . '/inner');
 define("OUTER", TEMPLATEPATH . '/outer');
 define("OUTPUT", TEMPLATEPATH. '/output');
+define("OUTPUTURI", TEMPLATEURI. '/output');
 define("STARTING_PATH", get_template_directory_uri() . '/outer');
 
 include INNER .'/include.php';
