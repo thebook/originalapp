@@ -42,7 +42,7 @@ define({
 					},
 					login: {
 						style : {
-							display : "none"
+							display : "block"
 						},
 						attribute : {
 							"class" : this.class_names.admin_list
@@ -109,7 +109,7 @@ define({
 					},
 					list : {
 						style : {
-							display : "block"
+							display : "none"
 						},
 						attribute : {
 							"class" : this.class_names.admin_list

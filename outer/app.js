@@ -408,7 +408,7 @@ define(function () {
 																				table = []
 
 																				for (; index < main.length; index++)
-																					if ( main[index].status === "pending" )
+																					if ( main[index].status !== "sent" )
 																						table.push(main[index])
 
 																				return table

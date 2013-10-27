@@ -137,6 +137,14 @@ class account extends alpha
 		// $this->set_account_value('@email', 'price_promise', '[{"package_height":"972","package_width":"51","package_length":"685","package_dimensions_unit_of_measure":"IN","package_weight":"104","package_weight_unit_of_measure":"LB","external_product_id":"0521177189","condition_type":"1","item_name":"Law and Religion","manufacturer":"Cambridge University Press","main_image_url":"http://ecx.images-amazon.com/images/I/41zXYAmb34L.jpg","author":"Russell Sandberg","binding":"Paperback","publication_date":"2011-03-24","standard_price":"9.54","id":"0"}, {"package_height":"972","package_width":"51","package_length":"685","package_dimensions_unit_of_measure":"IN","package_weight":"104","package_weight_unit_of_measure":"LB","external_product_id":"0521177189","condition_type":"1","item_name":"Law and Religion","manufacturer":"Cambridge University Press","main_image_url":"http://ecx.images-amazon.com/images/I/41zXYAmb34L.jpg","author":"Russell Sandberg","binding":"Paperback","publication_date":"2011-03-24","standard_price":"9.54","id":"0"}]');
 	}
 
+	public function set_new_columns ($new_columns)
+	{
+		$table = new table_creator;
+		foreach ($new_columns as $column) {
+			$table->add_column_to_table($column);
+		}
+	}
+
 	public function get_does_admin_user_exist ($name, $password)
 	{
 		$user = 'recyclabook';

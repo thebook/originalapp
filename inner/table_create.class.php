@@ -323,7 +323,8 @@ class table_creator
 	 * @param array $paramaters An array of paramaters to be passed has "table name and field name" for column
 	 */
 	public function add_column_to_table ($paramaters)
-	{
+	{	
+		// print_r($paramaters);
 		if ( !$this->does_column_exist($paramaters['table_name'], $paramaters['column_name']) ) { 
 			
 			global $wpdb;
